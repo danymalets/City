@@ -15,18 +15,17 @@ namespace Sources.Data.Live
             get => _value;
             set
             {
-                _value = value;
-                Changed(_value);
+                if (!_value.Equals(value))
+                {
+                    _value = value;
+                    Changed(_value);
+                }
             }
         }
 
-        public LiveData(T value = default)
+        protected LiveData(T value = default)
         {
             _value = value;
         }
     }
-
-    public class LiveFloat : LiveData<float> { }
-
-    public class LiveString : LiveData<string> { }
 }

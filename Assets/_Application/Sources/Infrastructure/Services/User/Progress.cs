@@ -2,6 +2,6 @@ namespace Sources.Infrastructure.Services.User
 {
     public class Progress
     {
-        public int CurrentLevel { get; private set; } = 1;
+        public int CurrentLevel { get; set; } = 1;
     }
 }

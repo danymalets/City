@@ -20,7 +20,7 @@ namespace Sources.Game.Factories
         {
             Path path = _pathesAccess.Pathes.GetRandom(path => (path.Distance, path));
             float distanceProgress = Random.Range(0, path.Distance);
-            Car car = _poolInstantiator.Instantiate(_assets.CarPrefab);
+            Car car = PoolSpawner.Spawn(_assets.CarPrefab);
             car.Setup(path, distanceProgress);
             return car;
         }

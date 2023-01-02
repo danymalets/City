@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
+using Sources.Utilities;
 using UnityEngine;
 
 namespace Sources.Game.GameObjects.RoadSystem.Pathes
@@ -68,7 +69,7 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes
             Checkpoint[] sources = sourcesEnumerable.ToArray();
             Checkpoint[] targets = targetsEnumerable.ToArray();
 
-            List<Path> pathes = new List<Path>();
+            List<Path> pathes = new();
 
             for (int i = 0; i < Mathf.Min(sources.Length, targets.Length); i++)
             {
@@ -113,9 +114,9 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes
 
         private Vector3 GetAnchorPoint(Checkpoint source, Checkpoint target)
         {
-            if (!Mathf.Approximately(source.Direction.x, 0))
+            if (DMath.NotEquals(source.Direction.x, 0))
                 return new Vector3(target.Position.x, source.Position.y, source.Position.z);
-            else if (!Mathf.Approximately(source.Direction.z, 0))
+            else if (DMath.NotEquals(source.Direction.z, 0))
                 return new Vector3(source.Position.x, source.Position.y, target.Position.z);
             else
                 throw new InvalidOperationException();

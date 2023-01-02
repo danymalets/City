@@ -1,13 +1,28 @@
 namespace Sources.UI.WindowBase.Screens
 {
-    public abstract class Screen : Window
+    public abstract class Screen : ScreenBase, IWindow
     {
-        protected void OpenInternal() =>
-            ForceOpen(MakeTopOnLoad);
+        public Window Open()
+        {
+            OpenInternal();
+            OnOpen();
+            return this;
+        }
 
-        public void Close() =>
-            ForceClose();
+        protected virtual void OnOpen()
+        {
+        }
+    }
+    
+    public abstract class Screen<TPayload> : ScreenBase, IWindow<TPayload>
+    {
+        public Window Open(TPayload payload)
+        {
+            OpenInternal();
+            OnOpen(payload);
+            return this;
+        }
 
-        protected virtual bool MakeTopOnLoad => false;
+        protected abstract void OnOpen(TPayload payload);
     }
 }

@@ -4,64 +4,69 @@ using Sources.Infrastructure.Services.Audio.Data;
 using Sources.Infrastructure.Services.Audio.Sounds;
 using Sources.Infrastructure.Services.Pool;
 using Sources.Infrastructure.Services.Pool.Instantiators;
+using Sources.Infrastructure.Services.User;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Sources.Infrastructure.Services.Audio
 {
     [RequireComponent(typeof(AudioData))]
-    public class AudioService : MonoBehaviour, IAudioService
+    public class AudioService : MonoBehaviour, IInitializable, IAudioService
     {
+        [FormerlySerializedAs("_soundPrefab")]
         [SerializeField]
-        private Sound _soundPrefab;
+        private SoundSource _soundSourcePrefab;
 
-        private IPoolService _pool;
+        private IPoolCreatorService _poolCreator;
         private AudioData _audioData;
 
-        private readonly HashSet<Sound> _playingSounds = new HashSet<Sound>();
-        private IPoolInstantiatorService _poolInstantiator;
+        private readonly HashSet<SoundSource> _playingSounds = new (10);
+        private IPoolSpawnerService _poolSpawner;
+        private Preferences _preferences;
 
-        public void Setup()
+        public void Initialize()
         {
             _audioData = GetComponent<AudioData>();
             
-            _pool = DiContainer.Resolve<IPoolService>();
-            _poolInstantiator = DiContainer.Resolve<IPoolInstantiatorService>();
+            _poolCreator = DiContainer.Resolve<IPoolCreatorService>();
+            _poolSpawner = DiContainer.Resolve<IPoolSpawnerService>();
+            _preferences = DiContainer.Resolve<IUserAccessService>()
+                .User.Preferences;
 
-            _pool.CreatePool(new PoolConfig(_soundPrefab, 20));
+            _poolCreator.CreatePool(new PoolConfig(_soundSourcePrefab, 20));
         }
         
         public void PlayOnce(SoundEffectType soundEffectType)
         {
-            SoundEffectData soundEffectData = _audioData.GetSoundEffectData(soundEffectType);
-            SetupSound(soundEffectData);
+            SoundEffectData data = _audioData.GetSoundEffectData(soundEffectType);
+            SetupSound(new SoundSourceData(data.Clip, data.Volume, false, _preferences.SoundsOn, data.Stopable));
         }
 
         public void PlayMusic(MusicType musicType)
         {
-            MusicData soundEffectData = _audioData.GetMusicData(musicType);
-            SetupSound(soundEffectData);
+            MusicData data = _audioData.GetMusicData(musicType);
+            SetupSound(new SoundSourceData(data.Clip, data.Volume, false, _preferences.SoundsOn, true));
         }
 
         public void StopAll()
         {
-            foreach (Sound sound in _playingSounds)
+            foreach (SoundSource sound in _playingSounds)
             {
                 if (sound.Stopable)
                     sound.Stop();
             }
         }
 
-        private void SetupSound(SoundData soundData)
+        private void SetupSound(SoundSourceData soundSourceData)
         {
-            Sound sound = _poolInstantiator.Instantiate(_soundPrefab, transform);
-            _playingSounds.Add(sound);
-            sound.Setup(soundData, OnSoundPlayed);
+            SoundSource soundSource = _poolSpawner.Spawn(_soundSourcePrefab, transform);
+            _playingSounds.Add(soundSource);
+            soundSource.Setup(soundSourceData, OnSoundPlayed);
         }
 
-        private void OnSoundPlayed(Sound sound)
+        private void OnSoundPlayed(SoundSource soundSource)
         {
-            _playingSounds.Remove(sound);
-            sound.Cleanup();
+            _playingSounds.Remove(soundSource);
         }
     }
 }

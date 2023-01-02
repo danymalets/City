@@ -18,8 +18,8 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes
             out IEnumerable<Checkpoint> sources,
             out IEnumerable<Checkpoint> targets)
         {
-            if (Vector3Utility.SqrDistance(crossroadsPosition, _left.transform.position) <
-                Vector3Utility.SqrDistance(crossroadsPosition, _right.transform.position))
+            if (DVector3.SqrDistance(crossroadsPosition, _left.transform.position) <
+                DVector3.SqrDistance(crossroadsPosition, _right.transform.position))
             {
                 sources = _left.Sources;
                 targets = _right.Targets;

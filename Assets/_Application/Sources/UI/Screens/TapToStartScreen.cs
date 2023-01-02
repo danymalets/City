@@ -4,10 +4,11 @@ using UnityEngine.EventSystems;
 
 namespace Sources.UI.Screens
 {
-    public class TapToStartScreen : SimpleScreen, IEndDragHandler, IPointerClickHandler
+    public class TapToStartScreen : Screen, IEndDragHandler, IPointerClickHandler
     {
         public event Action Tapped;
-        
+
+
         public void OnEndDrag(PointerEventData eventData)
         {
             OnTapped();

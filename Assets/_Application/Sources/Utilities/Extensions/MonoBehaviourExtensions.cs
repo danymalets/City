@@ -8,7 +8,14 @@ namespace Sources.Utilities.Extensions
     {
         public static Coroutine RunWithDelay(this MonoBehaviour behaviour, float delay, Action action) => 
             behaviour.StartCoroutine(RunWithDelay(delay, action));
+        
+        public static Coroutine DoEachFrame(this MonoBehaviour behaviour, float duration, Action<float> action) => 
+            behaviour.StartCoroutine(DoEachFrameCoroutine(duration, action));
 
+        public static Coroutine ChangeEachFrame(this MonoBehaviour behaviour,
+            float duration, float sourceValue, float targetValue, Action<float> valueChanged) => 
+            behaviour.StartCoroutine(ChangeEachFrameCoroutine(duration, sourceValue, targetValue, valueChanged));
+        
         private static IEnumerator RunWithDelay(float delay, Action action)
         {
             yield return new WaitForSeconds(delay);
@@ -30,11 +37,14 @@ namespace Sources.Utilities.Extensions
             action?.Invoke();
         }
         
-        public static Coroutine RunEachFrame(this MonoBehaviour behaviour, Action action) => 
-            behaviour.StartCoroutine(RunEachFrame(action));
+        public static Coroutine RunEachFrame(this MonoBehaviour behaviour, Action action, bool andNow = false) => 
+            behaviour.StartCoroutine(RunEachFrame(action, andNow));
 
-        private static IEnumerator RunEachFrame(Action action)
+        private static IEnumerator RunEachFrame(Action action, bool andNow)
         {
+            if (andNow)
+                action?.Invoke();
+
             while (true)
             {
                 yield return null;
@@ -54,16 +64,41 @@ namespace Sources.Utilities.Extensions
             }
         }
 
-        public static Coroutine RunEachSeconds(this MonoBehaviour behaviour, float period, Action action) =>
-            behaviour.StartCoroutine(RunEachSeconds(period, action));
+        public static Coroutine RunEachSeconds(this MonoBehaviour behaviour, float period, Action action, bool andNow) =>
+            behaviour.StartCoroutine(RunEachSeconds(period, action, andNow));
 
-        private static IEnumerator RunEachSeconds(float period, Action action)
+        private static IEnumerator RunEachSeconds(float period, Action action, bool andNow)
         {
+            if (andNow)
+                action?.Invoke();
+
             while (true)
             {
                 yield return new WaitForSeconds(period);
                 action?.Invoke();
             }
+        }
+        
+        public static IEnumerator DoEachFrameCoroutine(float duration, Action<float> elapsedTimeChanged)
+        {
+            for (float elapsedTime = 0f; elapsedTime < duration; elapsedTime += Time.deltaTime)
+            {
+                elapsedTimeChanged(elapsedTime);
+                yield return null;
+            }
+            elapsedTimeChanged(duration);
+        }
+        
+        public static IEnumerator ChangeEachFrameCoroutine(float duration,
+            float sourceValue,
+            float targetValue, 
+            Action<float> valueChanged)
+        {
+            yield return DoEachFrameCoroutine(duration, elapsedTime =>
+            {
+                float progress = elapsedTime / duration;
+                valueChanged(Mathf.Lerp(sourceValue, targetValue, progress));
+            });
         }
     }
 }

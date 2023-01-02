@@ -1,5 +1,7 @@
 using Sources.Data;
 using Sources.Data.Live;
+using Sources.Infrastructure.Services;
+using Sources.Infrastructure.Services.User;
 using TMPro;
 using UnityEngine;
 
@@ -10,22 +12,23 @@ namespace Sources.UI.Screens.Level
         [SerializeField]
         private TextMeshProUGUI _coinsValueText;
 
-        private LiveInt _coins;
+        private Currency _coins;
         
         public void Setup()
         {
-            _coins = Progress.Coins;
+            _coins = DiContainer.Resolve<IUserAccessService>()
+                .User.Wallet.Coins;
 
             _coinsValueText.text = _coins.Value.ToString();
-            _coins.Changed += OnCoinsValueChanged;
+            _coins.Changed += CoinsValueChanged;
         }
 
         public void Cleanup()
         {
-            _coins.Changed -= OnCoinsValueChanged;
+            _coins.Changed -= CoinsValueChanged;
         }
 
-        private void OnCoinsValueChanged(int coins)
+        private void CoinsValueChanged(long coins)
         {
             _coinsValueText.text = coins.ToString();
         }

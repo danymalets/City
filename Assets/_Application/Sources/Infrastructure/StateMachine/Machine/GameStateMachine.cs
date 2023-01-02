@@ -15,9 +15,10 @@ namespace Sources.Infrastructure.StateMachine.Machine
         {
             _states = new Dictionary<Type, GameStateBase>
             {
-                [typeof(BootstrapStateBase)] = new BootstrapStateBase(this),
-                [typeof(LoadLevelStateBase)] = new LoadLevelStateBase(this),
-                [typeof(LevelStateBase)] = new LevelStateBase(this),
+                [typeof(RegistrationState)] = new RegistrationState(this),
+                [typeof(BootstrapState)] = new BootstrapState(this),
+                [typeof(LoadLevelState)] = new LoadLevelState(this),
+                [typeof(LevelState)] = new LevelState(this),
             };
         }
         

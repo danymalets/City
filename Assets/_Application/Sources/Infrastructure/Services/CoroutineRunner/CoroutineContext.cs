@@ -29,16 +29,16 @@ namespace Sources.Infrastructure.Services.CoroutineRunner
             return coroutine;
         }
         
-        public Coroutine RunEachFrame(Action action)
+        public Coroutine RunEachFrame(Action action, bool andNow = false)
         {
-            Coroutine coroutine = _coroutineRunner.RunEachFrame(action);
+            Coroutine coroutine = _coroutineRunner.RunEachFrame(action, andNow);
             _runningCoroutines.Add(coroutine);
             return coroutine;
         }
         
         public Coroutine RunEachFixedUpdate(Action action)
         {
-            Coroutine coroutine = _coroutineRunner.RunEachPhysicalUpdate(action);
+            Coroutine coroutine = _coroutineRunner.RunEachFixedUpdate(action);
             _runningCoroutines.Add(coroutine);
             return coroutine;
         }
@@ -52,9 +52,9 @@ namespace Sources.Infrastructure.Services.CoroutineRunner
                 StopCoroutine(coroutine);
         }
 
-        public Coroutine RunEachSeconds(float period, Action action)
+        public Coroutine RunEachSeconds(float period, Action action, bool andNow = false)
         {
-            Coroutine coroutine = _coroutineRunner.RunEachSeconds(period, action);
+            Coroutine coroutine = _coroutineRunner.RunEachSeconds(period, action, andNow);
             _runningCoroutines.Add(coroutine);
             return coroutine;
         }

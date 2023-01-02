@@ -2,12 +2,14 @@ using Sources.Data;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.Audio;
 using Sources.Infrastructure.Services.Audio.Clips.Type;
+using Sources.Infrastructure.Services.User;
 using Sources.UI.WindowBase.Popups;
 using UnityEngine;
+using NotImplementedException = System.NotImplementedException;
 
 namespace Sources.UI.Popups.Settings
 {
-    public class SettingsPopup : SimplePopup
+    public class SettingsPopup : Popup
     {
         [SerializeField]
         private SwitchableButton _musicButton;
@@ -22,11 +24,23 @@ namespace Sources.UI.Popups.Settings
 
         protected override void OnOpen()
         {
-            _musicButton.Setup(Prefs.MusicEnabled);
-            _soundsButton.Setup(Prefs.SoundEffectsEnabled);
-            _vibrationButton.Setup(Prefs.VibrationEnabled);
+            Preferences preferences = DiContainer.Resolve<IUserAccessService>()
+                .User.Preferences;
+            
+            _musicButton.Setup(preferences.MusicOn);
+            _soundsButton.Setup(preferences.SoundsOn);
+            _vibrationButton.Setup(preferences.VibrationsOn);
 
             _audio = DiContainer.Resolve<IAudioService>();
+        }
+
+        protected override void OnRefresh()
+        {
+        }
+
+        protected override void OnCloseButtonClicked()
+        {
+            _audio.PlayOnce(SoundEffectType.ButtonClick);
         }
 
         protected override void OnClose()
@@ -34,11 +48,8 @@ namespace Sources.UI.Popups.Settings
             _musicButton.Cleanup();
             _soundsButton.Cleanup();
             _vibrationButton.Cleanup();
-        }
 
-        protected override void OnCloseButtonClicked()
-        {
-            _audio.PlayOnce(SoundEffectType.ButtonClick);
+            _audio = null;
         }
 
         protected override bool ShouldStopTime => true;

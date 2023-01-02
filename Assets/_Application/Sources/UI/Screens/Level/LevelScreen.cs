@@ -13,7 +13,7 @@ using UnityEngine.UI;
 
 namespace Sources.UI.Screens.Level
 {
-    public class LevelScreen : PayloadedScreen<int>
+    public class LevelScreen : Screen<int>
     {
         private const string LevelTextPattern = "LEVEL {0}";
 
@@ -37,10 +37,14 @@ namespace Sources.UI.Screens.Level
         
         protected override void OnSetup()
         {
-            _settingsPopup = UiSystem.Get<SettingsPopup>();
+            _settingsPopup = Ui.Get<SettingsPopup>();
 
             _settingsButton.onClick.AddListener(OnSettingsButtonClicked);
             _restartButton.onClick.AddListener(OnRestartButtonClicked);
+        }
+
+        protected override void OnRefresh()
+        {
         }
 
         protected override void OnOpen(int level)

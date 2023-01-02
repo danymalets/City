@@ -46,7 +46,7 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes
             Direction.sqrMagnitude;
 
         public float SqrDistanceTo(Vector3 point) =>
-            Vector3Utility.SqrDistance(
+            DVector3.SqrDistance(
                 Vector3.Lerp(Source.Position, Target.Position, GetProgress(point)),
                 point);
     }

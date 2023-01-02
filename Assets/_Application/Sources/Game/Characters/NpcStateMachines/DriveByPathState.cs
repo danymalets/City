@@ -36,8 +36,8 @@ namespace Sources.Game.Characters.NpcStateMachines
 
         private void FixedUpdate()
         {
-            // if (Vector3Utility.SqrDistance(_car.RootPosition, _nextPath.GetPointNearSource()) <
-            //     Vector3Utility.SqrDistance(_car.RootPosition, _currentPath.Target.Position))
+            // if (DVector3.SqrDistance(_car.RootPosition, _nextPath.GetPointNearSource()) <
+            //     DVector3.SqrDistance(_car.RootPosition, _currentPath.Target.Position))
             // {
             //     _currentPath = _nextPath;
             //     _nextPath = _currentPath.Target.Targets.GetRandom();
@@ -46,7 +46,7 @@ namespace Sources.Game.Characters.NpcStateMachines
 
             //Vector3 point = _currentPath.GetNearestPoint(_car.RootPosition, ref _distanceProgress);
 
-            //float distanceToNearest = Vector3Utility.SqrDistance(point, _car.RootPosition);
+            //float distanceToNearest = DVector3.SqrDistance(point, _car.RootPosition);
             //Debug.Log($"d to n {distanceToNearest} progr {_distanceProgress}");
 
             float signedAngle = Vector3.SignedAngle(

@@ -1,5 +1,6 @@
 using Sources.Game.Controllers.InputControllers;
 using Sources.Game.StaticData;
+using Sources.Infrastructure.Bootstrap;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.Audio;
 using Sources.Infrastructure.Services.Audio.Clips.Type;
@@ -18,25 +19,26 @@ namespace Sources.Game.Controllers
         private readonly InputScreen _inputScreen;
 
         private readonly LevelBalance _balance;
-        private readonly LevelStaticData _staticData;
+        private readonly LevelContext _levelContext;
 
         private readonly IAudioService _audio;
         private readonly int _level;
-        private readonly ICloseableUIService _closeableUI;
+        private readonly IUiCloseService _uiClose;
         private readonly InputController _inputController;
         private readonly NpcWithCarController _npcWithCarController;
 
-        public GameController(int level, LevelBalance levelBalance, LevelStaticData staticData)
+        public GameController(int level, LevelBalance levelBalance, LevelContext levelContext)
         {
             _level = level;
             _balance = levelBalance;
-            _staticData = staticData;
+            _levelContext = levelContext;
 
-            _closeableUI = DiContainer.Resolve<ICloseableUIService>();
+            IUiService ui = DiContainer.Resolve<IUiService>();
+            _uiClose = DiContainer.Resolve<IUiCloseService>();
 
-            _levelScreen = UiSystem.Get<LevelScreen>();
-            _tapToStartScreen = UiSystem.Get<TapToStartScreen>();
-            _inputScreen = UiSystem.Get<InputScreen>();
+            _levelScreen = ui.Get<LevelScreen>();
+            _tapToStartScreen = ui.Get<TapToStartScreen>();
+            _inputScreen = ui.Get<InputScreen>();
 
             _npcWithCarController = new NpcWithCarController();
 
@@ -72,7 +74,7 @@ namespace Sources.Game.Controllers
             _inputController.Cleanup();
 
             _audio.StopAll();
-            _closeableUI.CloseAll();
+            _uiClose.CloseAll();
         }
     }
 }

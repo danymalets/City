@@ -5,11 +5,12 @@ using UnityEngine;
 
 namespace Sources.Infrastructure.Services.Balance
 {
-    public class BalanceService : IBalanceService
+    public class BalanceService : MonoBehaviour, IBalanceService
     {
         private const string BalancePath = "Balance";
         private const string LevelBalancePattern = "Level_{0}";
         
+        [SerializeField]
         private LevelBalance[] _levelBalances;
         
         public int LevelsCount { get; private set; }

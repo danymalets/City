@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Sources.Infrastructure.Services
+namespace Sources.Infrastructure.Services.Instantiator
 {
     public class GameObjectService : IGameObjectService
     {
@@ -12,23 +12,22 @@ namespace Sources.Infrastructure.Services
         }
 
         public T Instantiate<T>(T prefab) 
-            where T: Object =>
-            Object.Instantiate(prefab);
+            where T: MonoBehaviour =>
+            GameObject.Instantiate(prefab);
 
         public T Instantiate<T>(T prefab, Vector3 at, Quaternion rotation) 
-            where T: Object =>
-            Object.Instantiate(prefab, at, rotation);
+            where T: MonoBehaviour =>
+            GameObject.Instantiate(prefab, at, rotation);
 
         public T Instantiate<T>(T prefab, Transform parent)
-            where T : Object =>
-            Object.Instantiate(prefab, parent);
+            where T : MonoBehaviour =>
+            GameObject.Instantiate(prefab, parent);
 
         public T Instantiate<T>(T prefab, Vector3 position, Quaternion rotation, Transform parent) 
-            where T : Object =>
-            Object.Instantiate(prefab, position, rotation, parent);
+            where T : MonoBehaviour =>
+            GameObject.Instantiate(prefab, position, rotation, parent);
 
-        public void DontDestroyOnLoad<T>(T obj)
-            where T: Object =>
-            Object.DontDestroyOnLoad(obj);
+        public void DontDestroyOnLoad(GameObject obj) =>
+            GameObject.DontDestroyOnLoad(obj);
     }
 }

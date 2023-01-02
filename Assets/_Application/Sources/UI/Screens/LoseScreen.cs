@@ -2,10 +2,11 @@ using System;
 using Sources.UI.WindowBase.Screens;
 using UnityEngine;
 using UnityEngine.UI;
+using Screen = Sources.UI.WindowBase.Screens.Screen;
 
 namespace Sources.UI.Screens
 {
-    public class LoseScreen : SimpleScreen
+    public class LoseScreen : Screen
     {
         public event Action RetryButtonClicked = delegate { };
 

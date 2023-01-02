@@ -1,0 +1,47 @@
+using System;
+using System.Linq;
+using Sources.Infrastructure.Services.CoroutineRunner;
+using Sources.UI.Utilities;
+using Sources.Utilities;
+using UnityEngine;
+
+namespace Sources.Infrastructure.Services.ApplicationCycle
+{
+    public class ApplicationService : MonoBehaviour, IApplicationService, IInitializable
+    {
+        public event Action BackButtonClicked;
+        public event Action<bool> FocusStatusChanged;
+        public event Action<bool> PauseStatusChanged;
+        public event Action ApplicationQuit;
+
+        private CoroutineContext _coroutineContext;
+        
+        public int TargetFrameRate
+        {
+            get => Application.targetFrameRate;
+            set => Application.targetFrameRate = value;
+        }
+
+        public void Initialize()
+        {
+            _coroutineContext = new CoroutineContext();
+
+            _coroutineContext.RunEachFrame(() =>
+            {
+                if (Input.GetKeyDown(KeyCode.Escape))
+                    BackButtonClicked?.Invoke();
+            }, true);
+
+        }
+
+        private void OnApplicationFocus(bool hasFocus) =>
+            FocusStatusChanged?.Invoke(hasFocus);
+
+        private void OnApplicationPause(bool pauseStatus) =>
+            PauseStatusChanged?.Invoke(pauseStatus);
+
+        private void OnApplicationQuit() =>
+            ApplicationQuit?.Invoke();
+
+    }
+}

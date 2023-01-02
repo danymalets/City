@@ -12,7 +12,7 @@ namespace Sources.Game.Factories
             
         public Npc Create(Car car)
         {
-            Npc npc = _poolInstantiator.Instantiate(_assets.NpcPrefab);
+            Npc npc = PoolSpawner.Spawn(_assets.NpcPrefab);
             npc.Setup(car);
             return npc;
         }

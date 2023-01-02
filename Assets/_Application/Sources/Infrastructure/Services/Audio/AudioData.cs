@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Sources.Infrastructure.Services.Audio.Clips.Data;
 using Sources.Infrastructure.Services.Audio.Clips.Type;
 using Sources.Infrastructure.Services.Audio.Data;
 using UnityEngine;
@@ -9,40 +8,34 @@ namespace Sources.Infrastructure.Services.Audio
     public class AudioData : MonoBehaviour
     {
         [SerializeField]
-        private MusicClipData[] _musicClipData;
+        private MusicData[] _musicData;
 
         [Space(30)]
         
         [SerializeField]
-        private SoundEffectClipData[] _soundEffectClipData;
+        private SoundEffectData[] _soundEffectData;
 
-        private readonly Dictionary<SoundEffectType, SoundEffectData> _soundEffectData =
-            new Dictionary<SoundEffectType, SoundEffectData>();
+        private readonly Dictionary<MusicType, MusicData> _musicDictionary = new();
         
-        private readonly Dictionary<MusicType, MusicData> _musicData =
-            new Dictionary<MusicType, MusicData>();
+        private readonly Dictionary<SoundEffectType, SoundEffectData> _soundEffectDictionary = new();
 
         private void Awake()
         {
-            foreach (SoundEffectClipData soundEffectClipData in _soundEffectClipData)
+            foreach (MusicData musicData in _musicData)
             {
-                _soundEffectData.Add(
-                    soundEffectClipData.SoundEffectType,
-                    soundEffectClipData.SoundEffectData);
+                _musicDictionary.Add(musicData.Type, musicData);
             }
-            
-            foreach (MusicClipData musicClipData in _musicClipData)
+
+            foreach (SoundEffectData soundEffectClipData in _soundEffectData)
             {
-                _musicData.Add(
-                    musicClipData.MusicType,
-                    musicClipData.MusicData);
+                _soundEffectDictionary.Add(soundEffectClipData.Type, soundEffectClipData);
             }
         }
 
         public SoundEffectData GetSoundEffectData(SoundEffectType soundEffectType) =>
-            _soundEffectData[soundEffectType];
+            _soundEffectDictionary[soundEffectType];
 
         public MusicData GetMusicData(MusicType musicType) =>
-            _musicData[musicType];
+            _musicDictionary[musicType];
     }
 }

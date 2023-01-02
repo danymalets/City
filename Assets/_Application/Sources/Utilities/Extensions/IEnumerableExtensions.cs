@@ -47,7 +47,7 @@ namespace Sources.Utilities.Extensions
         
         public static TValue GetRandom<T, TValue>(
             this IEnumerable<T> enumerable, 
-            Func<T, (float, TValue)> getValue)
+            Func<T, (float Weight, TValue Result)> getValue)
         {
             if (!enumerable.Any())
                 throw new InvalidOperationException("No data in collection");
@@ -72,7 +72,7 @@ namespace Sources.Utilities.Extensions
                 randValue -= weight;
             }
 
-            return getValue(array[0]).Item2;
+            return getValue(array[0]).Result;
         }
     }
 }

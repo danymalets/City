@@ -1,43 +1,37 @@
 using System;
 using System.Collections;
+using Sources.Infrastructure.Bootstrap;
 using Sources.Infrastructure.Services.CoroutineRunner;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 
 namespace Sources.Infrastructure.Services.SceneLoader
 {
     public class SceneLoaderService : ISceneLoaderService
     {
-        private readonly ICoroutineRunnerService _coroutineRunner;
+        private readonly CoroutineContext _coroutineContext;
 
         public SceneLoaderService()
         {
-            _coroutineRunner = DiContainer.Resolve<ICoroutineRunnerService>();
+            _coroutineContext = new CoroutineContext();
         }
 
-        public void LoadSceneInOneFrame(string sceneName, Action onComplete = null) =>
-            _coroutineRunner.StartCoroutine(LoadSceneInOneFrameCoroutine(sceneName, onComplete));
+        public void LoadScene<T>(Scene scene, Action<T> onComplete = null)
+            where T : SceneContext =>
+            LoadScene(scene, null, onComplete);
 
-        public IEnumerator LoadSceneInOneFrameCoroutine(string sceneName, Action onComplete = null)
-        {
-            SceneManager.LoadScene(sceneName);
-            yield return null;
-            onComplete?.Invoke();
-        }
-            
-        public void LoadScene(string sceneName, Action onComplete = null) =>
-            LoadScene(sceneName, null, onComplete);
+        public void LoadScene<T>(Scene scene, Action<float> onProgressChanged, Action<T> onComplete) 
+            where T : SceneContext => 
+            _coroutineContext.StartCoroutine(LoadSceneCoroutine(scene, onProgressChanged, onComplete));
 
-        public void LoadScene(string sceneName, Action<float> onProgressChanged, Action onComplete) => 
-            _coroutineRunner.StartCoroutine(LoadSceneCoroutine(sceneName, onProgressChanged, onComplete));
-
-        private IEnumerator LoadSceneCoroutine(
-            string sceneIndex, 
+        private IEnumerator LoadSceneCoroutine<T>(
+            Scene scene, 
             Action<float> onProgressChanged, 
-            Action onComplete)
+            Action<T> onComplete) where T : SceneContext
         {
-            AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
-
+            AsyncOperation operation = SceneManager.LoadSceneAsync(scene.buildIndex);
+            
             while (!operation.isDone)
             {
                 onProgressChanged?.Invoke(operation.progress);
@@ -46,7 +40,11 @@ namespace Sources.Infrastructure.Services.SceneLoader
 
             yield return null;
 
-            onComplete?.Invoke();
+            T sceneContext = SceneManager.GetActiveScene().GetRootGameObjects()[0].GetComponent<T>();
+            
+            Assert.IsNotNull(sceneContext);
+            
+            onComplete?.Invoke(sceneContext);
         }
     }
 }

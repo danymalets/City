@@ -2,7 +2,9 @@ using System.Collections;
 using Sources.Data;
 using Sources.Data.Live;
 using Sources.Game.Controllers.EndController;
+using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.CoroutineRunner;
+using Sources.Infrastructure.Services.User;
 using UnityEngine;
 
 namespace Sources.Game.Controllers.InputControllers
@@ -13,6 +15,7 @@ namespace Sources.Game.Controllers.InputControllers
         private readonly WinController _winController;
         
         private readonly CoroutineContext _coroutineContext;
+        private Currency _coins;
 
         public InputController()
         {
@@ -25,6 +28,8 @@ namespace Sources.Game.Controllers.InputControllers
 
         public void StartGame()
         {
+            _coins = DiContainer.Resolve<IUserAccessService>()
+                .User.Wallet.Coins;
             _coroutineContext.StartCoroutine(InputCycle());
         }
 
@@ -36,7 +41,7 @@ namespace Sources.Game.Controllers.InputControllers
 
                 if (Input.GetKeyDown(KeyCode.C))
                 {
-                    _coins.Value++;
+                    _coins.AddCurrency(1);
                 }
                 
                 if (Input.GetKeyDown(KeyCode.W))
