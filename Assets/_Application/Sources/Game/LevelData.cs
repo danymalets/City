@@ -8,13 +8,11 @@ namespace Sources.Game
         public int Level { get; }
         public LevelContext LevelContext { get; }
 
-        public LevelBalance LevelBalance { get; }
 
-        public LevelData(int level, LevelContext levelContext, LevelBalance levelBalance)
+        public LevelData(int level, LevelContext levelContext)
         {
             Level = level;
             LevelContext = levelContext;
-            LevelBalance = levelBalance;
         }
     }
 }

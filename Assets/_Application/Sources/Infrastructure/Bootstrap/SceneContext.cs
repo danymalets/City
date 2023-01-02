@@ -10,8 +10,11 @@ namespace Sources.Infrastructure.Bootstrap
 #if UNITY_EDITOR
         private static bool s_isGameStarted;
         
-        private void Awake()
+        protected virtual void Awake()
         {
+            if (!Application.isPlaying)
+                return;
+            
             if (!s_isGameStarted)
             {
                 s_isGameStarted = true;
@@ -32,6 +35,11 @@ namespace Sources.Infrastructure.Bootstrap
             int index = transform.GetSiblingIndex();
             if (index != 0)
                 transform.SetSiblingIndex(0);
+        }
+#else
+        protected virtual void Awake()
+        {
+            
         }
 #endif
     }

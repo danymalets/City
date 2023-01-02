@@ -1,11 +1,10 @@
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.Screens;
 using UnityEngine;
-using NotImplementedException = System.NotImplementedException;
 
 namespace Sources.UI.Utilities
 {
-    public class SaveArea : MonoBehaviour
+    public class SafeArea : MonoBehaviour
     {
         private IScreenService _screenService;
         private RectTransform _rect;

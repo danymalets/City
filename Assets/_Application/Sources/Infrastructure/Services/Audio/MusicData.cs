@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Sources.Infrastructure.Services.Audio.Data
 {
     [Serializable]
-    public class MusicData : SoundData
+    public class MusicData
     {
         [SerializeField]
         private MusicType _type;

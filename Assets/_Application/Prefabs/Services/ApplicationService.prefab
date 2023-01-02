@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3558729943743589844}
   - component: {fileID: 1081396670406682295}
   m_Layer: 0
-  m_Name: Application Cycle
+  m_Name: ApplicationService
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

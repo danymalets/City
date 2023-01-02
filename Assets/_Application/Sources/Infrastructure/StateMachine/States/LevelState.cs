@@ -40,7 +40,7 @@ namespace Sources.Infrastructure.StateMachine.States
 
         private void StartGame(LevelData levelData)
         {
-            _gameController = new GameController(levelData.Level, levelData.LevelBalance, levelData.LevelContext);
+            _gameController = new GameController(levelData.Level, levelData.LevelContext);
             _gameController.StartGame();
         }
         

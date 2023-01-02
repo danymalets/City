@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -44,8 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baf62dcd43df46b4a4a59da0af347927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soundPrefab: {fileID: 2311244173096841294, guid: fcd34ed0cede44683b5c0f29b2394ac8,
-    type: 3}
+  _soundSourcePrefab: {fileID: 2311244173096841294, guid: fcd34ed0cede44683b5c0f29b2394ac8, type: 3}
 --- !u!114 &7056959408905297375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,24 +58,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bca442caf384457cab23c76cb3d968eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _musicClipData:
-  - _musicType: 0
-    _musicData:
-      _clip: {fileID: 8300000, guid: d8bcd823625d49cf9546ed9cad56da46, type: 3}
-      _volume: 1
-  _soundEffectClipData:
-  - _soundEffectType: 0
-    _soundEffectData:
-      _clip: {fileID: 8300000, guid: a69edf0d9dbc48118ba9c53d371433a0, type: 3}
-      _volume: 1
-      _stopable: 0
-  - _soundEffectType: 3
-    _soundEffectData:
-      _clip: {fileID: 8300000, guid: fd986cc78f7445c39e1391206949a3b9, type: 3}
-      _volume: 1
-      _stopable: 1
-  - _soundEffectType: 4
-    _soundEffectData:
-      _clip: {fileID: 8300000, guid: 0ca4686c8e4e4439a9f005a7f112cb9b, type: 3}
-      _volume: 1
-      _stopable: 1
+  _musicData:
+  - _type: 0
+    _clip: {fileID: 0}
+    _volume: 1
+  _soundEffectData: []

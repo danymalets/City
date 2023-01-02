@@ -17,20 +17,20 @@ namespace Sources.Infrastructure.Services.SceneLoader
             _coroutineContext = new CoroutineContext();
         }
 
-        public void LoadScene<T>(Scene scene, Action<T> onComplete = null)
+        public void LoadScene<T>(string scene, Action<T> onComplete = null)
             where T : SceneContext =>
             LoadScene(scene, null, onComplete);
 
-        public void LoadScene<T>(Scene scene, Action<float> onProgressChanged, Action<T> onComplete) 
+        public void LoadScene<T>(string scene, Action<float> onProgressChanged, Action<T> onComplete) 
             where T : SceneContext => 
             _coroutineContext.StartCoroutine(LoadSceneCoroutine(scene, onProgressChanged, onComplete));
 
         private IEnumerator LoadSceneCoroutine<T>(
-            Scene scene, 
+            string scene, 
             Action<float> onProgressChanged, 
             Action<T> onComplete) where T : SceneContext
         {
-            AsyncOperation operation = SceneManager.LoadSceneAsync(scene.buildIndex);
+            AsyncOperation operation = SceneManager.LoadSceneAsync(scene);
             
             while (!operation.isDone)
             {

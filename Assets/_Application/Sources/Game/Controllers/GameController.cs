@@ -25,12 +25,10 @@ namespace Sources.Game.Controllers
         private readonly int _level;
         private readonly IUiCloseService _uiClose;
         private readonly InputController _inputController;
-        private readonly NpcWithCarController _npcWithCarController;
 
-        public GameController(int level, LevelBalance levelBalance, LevelContext levelContext)
+        public GameController(int level, LevelContext levelContext)
         {
             _level = level;
-            _balance = levelBalance;
             _levelContext = levelContext;
 
             IUiService ui = DiContainer.Resolve<IUiService>();
@@ -39,9 +37,7 @@ namespace Sources.Game.Controllers
             _levelScreen = ui.Get<LevelScreen>();
             _tapToStartScreen = ui.Get<TapToStartScreen>();
             _inputScreen = ui.Get<InputScreen>();
-
-            _npcWithCarController = new NpcWithCarController();
-
+            
             _audio = DiContainer.Resolve<IAudioService>();
 
             _inputController = new InputController();
@@ -54,8 +50,6 @@ namespace Sources.Game.Controllers
             _levelScreen.Open(_level);
             _tapToStartScreen.Open();
             
-            _npcWithCarController.StartSpawn();
-
             _tapToStartScreen.Tapped += TapToStartScreenClicked;
         }
 

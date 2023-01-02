@@ -15,13 +15,12 @@ namespace Sources.Infrastructure.Bootstrap
         [SerializeField]
         private UiService _uiService;
         [SerializeField]
-        private GameObject _servicesRoot;
-        [SerializeField]
         private CoroutineRunnerService _coroutineRunnerService;
         [SerializeField]
         private ApplicationService _applicationService;
+        [FormerlySerializedAs("_poolCreatorService")]
         [SerializeField]
-        private PoolCreatorService _poolCreatorService;
+        private PoolService _poolService;
         [SerializeField]
         private AudioService _audioService;
         [SerializeField]
@@ -30,10 +29,9 @@ namespace Sources.Infrastructure.Bootstrap
         private BalanceService _balanceService;
         
         public UiService UiService => _uiService;
-        public GameObject ServicesRoot => _servicesRoot;
         public CoroutineRunnerService CoroutineRunnerService => _coroutineRunnerService;
         public ApplicationService ApplicationService => _applicationService;
-        public PoolCreatorService PoolCreatorService => _poolCreatorService;
+        public PoolService PoolService => _poolService;
         public AudioService AudioService => _audioService;
         public AssetsService AssetsService => _assetsService;
         public BalanceService BalanceService => _balanceService;

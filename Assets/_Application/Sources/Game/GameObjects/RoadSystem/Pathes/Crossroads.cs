@@ -83,7 +83,7 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes
             Checkpoint source,
             Checkpoint target)
         {
-            List<IConnectingPoint> points = new List<IConnectingPoint>();
+            List<IConnectingPoint> points = new();
 
             Vector3 anchor = GetAnchorPoint(source, target);
 
@@ -102,7 +102,7 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes
                     points.Add(new AdditionalPoint(result));
             }
 
-            List<Path> pathes = new List<Path>();
+            List<Path> pathes = new();
 
             for (int i = 0; i < points.Count - 1; i++)
             {

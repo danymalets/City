@@ -42,18 +42,27 @@ namespace Sources.Infrastructure.Services.User
                 }
                 else
                 {
+                    _playerPrefs.SetInt(UserVersionKey, UserVersion);
                     CreateNewUser();
                 }
             }
-
-            _playerPrefs.SetInt(UserVersionKey, UserVersion);
+            else
+            {
+                _playerPrefs.SetInt(UserVersionKey, UserVersion);
+                CreateNewUser();
+                Debug.Log($"create user");
+            }
         }
 
         private void TryLoadUser()
         {
             string json = _playerPrefs.GetString(UserKey);
 
-            if (!_jsonSerializer.TryDeserialize(json, out User user))
+            if (_jsonSerializer.TryDeserialize(json, out User user))
+            {
+                User = user;
+            }
+            else
             {
                 CreateNewUser();
             }

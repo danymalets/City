@@ -6,12 +6,12 @@ namespace Sources.Game.Factories
 {
     public abstract class Factory
     {
-        protected readonly IPoolSpawnerService PoolSpawner;
+        protected readonly IPoolSpawnerService _poolSpawner;
         protected readonly IAssetsService _assets;
 
         protected Factory()
         {
-            PoolSpawner = DiContainer.Resolve<IPoolSpawnerService>();
+            _poolSpawner = DiContainer.Resolve<IPoolSpawnerService>();
             _assets = DiContainer.Resolve<IAssetsService>();
         }
     }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9157353797611400313
+--- !u!1 &712863224677230125
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6028551029002765579}
-  - component: {fileID: 3918517526923934780}
+  - component: {fileID: 5539211967408763542}
+  - component: {fileID: 1837129293792519255}
   m_Layer: 0
-  m_Name: Coroutine Runner
+  m_Name: AssetsService
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6028551029002765579
+--- !u!4 &5539211967408763542
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9157353797611400313}
+  m_GameObject: {fileID: 712863224677230125}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3918517526923934780
+--- !u!114 &1837129293792519255
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9157353797611400313}
+  m_GameObject: {fileID: 712863224677230125}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f88fa3b9810643c8a55ee0b827b2f9ee, type: 3}
+  m_Script: {fileID: 11500000, guid: 738196c3572e4fc6b8700ee88635329d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _carPrefab: {fileID: 0}
+  _npcPrefab: {fileID: 4956876624677193435, guid: 6fa7a66573ef44ab58c19d3f5146adb8, type: 3}
+  _playerPrefab: {fileID: 0}
+  _emptyScene:
+    m_Handle: 0
+  _cityScene: City

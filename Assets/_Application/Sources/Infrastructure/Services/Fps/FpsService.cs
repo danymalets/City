@@ -12,14 +12,14 @@ namespace Sources.Infrastructure.Services.Fps
         public LiveInt FpsLastSecond { get; } = new(0);
         
         private CoroutineContext _coroutineContext;
-        private TimeService _timeService;
+        private ITimeService _timeService;
         
         private readonly Queue<float> _deltaTimes = new(150);
         private float _sumDeltaTimes = 0;
 
         public void Initialize()
         {
-            _timeService = DiContainer.Resolve<TimeService>();
+            _timeService = DiContainer.Resolve<ITimeService>();
             _coroutineContext = new CoroutineContext();
             _coroutineContext.RunEachFrame(OnUpdate);
         }
@@ -29,7 +29,7 @@ namespace Sources.Infrastructure.Services.Fps
             _sumDeltaTimes += _timeService.DeltaTime;
             _deltaTimes.Enqueue(_timeService.DeltaTime);
 
-            while (_sumDeltaTimes > 0 && _deltaTimes.Any())
+            while (_sumDeltaTimes > 1f && _deltaTimes.Any())
             {
                 _sumDeltaTimes -= _deltaTimes.Dequeue();
             }

@@ -6,14 +6,16 @@ using UnityEngine.Serialization;
 
 namespace Sources.Infrastructure.Bootstrap
 {
+    [DefaultExecutionOrder(-100)]
     public class EntryPoint : SceneContext
     {
         [SerializeField]
         private MonoServices _monoServices;
 
-        private void Start()
+        protected override void Awake()
         {
-            StartGameStateMachine();
+            if (Application.isPlaying)
+                StartGameStateMachine();
         }
         
         private void StartGameStateMachine()

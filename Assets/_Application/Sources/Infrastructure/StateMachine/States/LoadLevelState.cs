@@ -1,15 +1,14 @@
-using Sources.Data;
-using Sources.Data.Live;
 using Sources.Game;
 using Sources.Infrastructure.Bootstrap;
 using Sources.Infrastructure.Services;
+using Sources.Infrastructure.Services.AssetsManager;
 using Sources.Infrastructure.Services.Balance;
 using Sources.Infrastructure.Services.SceneLoader;
+using Sources.Infrastructure.Services.User;
 using Sources.Infrastructure.StateMachine.Machine;
 using Sources.Infrastructure.StateMachine.StateBase;
 using Sources.UI.Screens;
 using Sources.UI.System;
-using UnityEngine.SceneManagement;
 
 namespace Sources.Infrastructure.StateMachine.States
 {
@@ -19,7 +18,6 @@ namespace Sources.Infrastructure.StateMachine.States
         private IBalanceService _balanceService;
         private LoadingScreen _loadingScreen;
         
-        private LiveInt _currentLevel;
 
         public LoadLevelState(IGameStateMachine stateMachine) : base(stateMachine)
         {
@@ -31,17 +29,20 @@ namespace Sources.Infrastructure.StateMachine.States
             
             _sceneLoader = DiContainer.Resolve<ISceneLoaderService>();
             _balanceService = DiContainer.Resolve<IBalanceService>();
-            
-            int level = _currentLevel.Value;
 
-            int realLevel = GetRealLevel(level, _balanceService.LevelsCount);
+            int level = DiContainer.Resolve<IUserAccessService>()
+                .User.Progress.CurrentLevel;
 
-            LevelBalance balance = _balanceService.GetLevelBalance(realLevel);
+            string cityScene = DiContainer.Resolve<IAssetsService>().CityScene;
+
+            //int realLevel = GetRealLevel(level, _balanceService.LevelsCount);
+
+            //LevelBalance balance = _balanceService.GetLevelBalance(realLevel);
             
             _loadingScreen.Open();
 
-            _sceneLoader.LoadScene<LevelContext>(new Scene(), levelContext => 
-                EnterLevelState(new LevelData(level, levelContext, balance)));
+            _sceneLoader.LoadScene<LevelContext>(cityScene, levelContext => 
+                EnterLevelState(new LevelData(level, levelContext)));
         }
 
         private void EnterLevelState(LevelData levelData)
