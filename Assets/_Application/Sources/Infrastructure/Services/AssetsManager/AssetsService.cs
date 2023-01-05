@@ -1,4 +1,5 @@
 using Sources.Game.Characters;
+using Sources.Game.Ecs.Utils;
 using Sources.Game.GameObjects.Cars;
 using UnityEditor;
 using UnityEngine;
@@ -10,25 +11,12 @@ namespace Sources.Infrastructure.Services.AssetsManager
     public class AssetsService : MonoBehaviour, IAssetsService
     {
         [SerializeField]
-        private GameObject _carPrefab;
+        private string _citySceneNameName;
 
         [SerializeField]
-        private GameObject _npcPrefab;
+        private MonoEntity _userCarEntity;
 
-        [SerializeField]
-        private GameObject _playerPrefab;
-
-        [SerializeField]
-        private Scene _emptyScene;
-        
-        [FormerlySerializedAs("_citySceneName")]
-        [SerializeField]
-        private string _cityScene;
-        
-        public GameObject CarPrefab => _carPrefab;
-        public GameObject NpcPrefab => _npcPrefab;
-        public GameObject PlayerPrefab => _playerPrefab;
-        public Scene EmptyScene => _emptyScene;
-        public string CityScene => _cityScene;
+        public string CitySceneName => _citySceneNameName;
+        public MonoEntity UserCarMonoEntity => _userCarEntity;
     }
 }

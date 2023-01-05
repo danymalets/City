@@ -1,3 +1,4 @@
+using Sources.Game.Ecs.Components.Views;
 using UnityEngine;
 
 namespace Sources.Game.GameObjects.Cars
@@ -25,8 +26,6 @@ namespace Sources.Game.GameObjects.Cars
             float horizontal = Input.GetAxis("Horizontal");
 
             bool breaking = Input.GetKey(KeyCode.Space);
-            
-            _carEngine.SetBreak(breaking);
             
             _carEngine.SetMotorCoefficient(vertical);
             _carEngine.SetAngleCoefficient(horizontal);

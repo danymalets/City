@@ -14,6 +14,8 @@ namespace Sources.Infrastructure.Bootstrap
 
         protected override void Awake()
         {
+            base.Awake();
+            
             if (Application.isPlaying)
                 StartGameStateMachine();
         }

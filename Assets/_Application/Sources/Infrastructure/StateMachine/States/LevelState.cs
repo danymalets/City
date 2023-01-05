@@ -1,12 +1,14 @@
 using Sources.Game;
 using Sources.Game.Controllers;
 using Sources.Game.StaticData;
+using Sources.Infrastructure.Bootstrap;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.StateMachine.Machine;
 using Sources.Infrastructure.StateMachine.StateBase;
 using Sources.UI.Screens;
 using Sources.UI.Screens.Level;
 using Sources.UI.System;
+using UnityEngine;
 using static UnityEngine.Object;
 
 namespace Sources.Infrastructure.StateMachine.States
@@ -25,6 +27,10 @@ namespace Sources.Infrastructure.StateMachine.States
 
         protected override void OnEnter(LevelData levelData)
         {
+            Debug.Log($"2 - {levelData.LevelContext == null}");
+
+            DiContainer.Register<ILevelContextService>(levelData.LevelContext);
+            
             IUiService ui = DiContainer.Resolve<IUiService>();
             
             _levelScreen = ui.Get<LevelScreen>();
@@ -35,12 +41,12 @@ namespace Sources.Infrastructure.StateMachine.States
             _winScreen.NextButtonClicked += WinScreen_OnNextButtonClicked;
             _loseScreen.RetryButtonClicked += LoseScreen_OnRetryButtonClicked;
             
-            StartGame(levelData);
+            StartGame();
         }
 
-        private void StartGame(LevelData levelData)
+        private void StartGame()
         {
-            _gameController = new GameController(levelData.Level, levelData.LevelContext);
+            _gameController = new GameController();
             _gameController.StartGame();
         }
         
@@ -70,6 +76,8 @@ namespace Sources.Infrastructure.StateMachine.States
             _levelScreen.RestartButtonClicked -= LevelScreen_OnRestartButtonClicked;
             _winScreen.NextButtonClicked -= WinScreen_OnNextButtonClicked;
             _loseScreen.RetryButtonClicked -= LoseScreen_OnRetryButtonClicked;
+            
+            DiContainer.Unregister<ILevelContextService>();
         }
     }
 }

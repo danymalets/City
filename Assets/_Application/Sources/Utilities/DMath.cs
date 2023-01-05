@@ -63,5 +63,10 @@ namespace Sources.Utilities
 
         public static bool NotEquals(Rect a, Rect b) =>
             !Equals(a, b);
+
+        public static float MoveEulerAngleTowards()
+        {
+            return 0;
+        }
     }
 }

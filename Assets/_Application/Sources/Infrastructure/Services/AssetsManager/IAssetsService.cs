@@ -1,4 +1,5 @@
 using Sources.Game.Characters;
+using Sources.Game.Ecs.Utils;
 using Sources.Game.GameObjects.Cars;
 using UnityEditor;
 using UnityEngine;
@@ -7,8 +8,7 @@ namespace Sources.Infrastructure.Services.AssetsManager
 {
     public interface IAssetsService : IService
     {
-        GameObject CarPrefab { get; }
-        GameObject PlayerPrefab { get; }
-        string CityScene { get; }
+        string CitySceneName { get; }
+        MonoEntity UserCarMonoEntity { get; }
     }
 }

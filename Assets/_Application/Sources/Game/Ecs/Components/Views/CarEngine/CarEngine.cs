@@ -1,26 +1,47 @@
+using Sources.Game.Ecs.Utils;
+using Sources.Game.GameObjects.Cars;
 using Sources.Utilities.Extensions;
 using UnityEngine;
 
-namespace Sources.Game.GameObjects.Cars
+namespace Sources.Game.Ecs.Components.Views
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class CarEngine : MonoBehaviour
+    public class CarEngine : MonoViewComponent<ICarEngine>, ICarEngine
     {
-        private const float BreakTorque = 10000000;
+        private const float BreakTorqueLite = 50;
+        private const float BreakTorqueMax = 10000000;
 
         [SerializeField]
         private AxleInfo[] _axleInfos;
-        public float _maxMotorTorque;
-        public float _maxSteeringAngle;
-        
+
+        [SerializeField]
+        private float _maxMotorTorque = 500;
+
+        [SerializeField]
+        private float _maxSteeringAngle = 40;
+
         public Vector3 RootPosition =>
             ((_leftWheel.position + _rightWheel.position) / 2).WithY(0);
 
         private Transform _leftWheel;
         private Transform _rightWheel;
+        private Rigidbody _rigidBody;
+
+        public float Speed =>
+            transform.InverseTransformDirection(_rigidBody.velocity).z;
+
+        public void SetMaxBreak() => 
+            SetBreak(BreakTorqueMax);
+
+        public void SetLiteBreak() => 
+            SetBreak(BreakTorqueLite);
+
+        public void ResetBreak() => 
+            SetBreak(0);
 
         private void Awake()
         {
+            _rigidBody = GetComponent<Rigidbody>();
             foreach (AxleInfo axleInfo in _axleInfos)
             {
                 if (axleInfo.steering)
@@ -31,7 +52,7 @@ namespace Sources.Game.GameObjects.Cars
             }
         }
 
-        public void SetAngleCoefficient(float angleCoefficient) => 
+        public void SetAngleCoefficient(float angleCoefficient) =>
             SetAngle(angleCoefficient * _maxSteeringAngle);
 
         public void SetMotorCoefficient(float motorCoefficient)
@@ -48,20 +69,13 @@ namespace Sources.Game.GameObjects.Cars
             }
         }
 
-        public void SetBreak(bool enabled)
+
+        private void SetBreak(float breakForce)
         {
             foreach (AxleInfo axleInfo in _axleInfos)
             {
-                if (enabled)
-                {
-                    axleInfo.leftWheel.brakeTorque = BreakTorque * (axleInfo.steering ? 70 : 30);
-                    axleInfo.rightWheel.brakeTorque = BreakTorque * (axleInfo.steering ? 70 : 30);
-                }
-                else
-                {
-                    axleInfo.leftWheel.brakeTorque = 0;
-                    axleInfo.rightWheel.brakeTorque = 0;
-                }
+                axleInfo.leftWheel.brakeTorque = breakForce * (axleInfo.steering ? 70 : 30);
+                axleInfo.rightWheel.brakeTorque = breakForce * (axleInfo.steering ? 70 : 30);
             }
         }
 

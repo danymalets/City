@@ -40,7 +40,7 @@ namespace Sources.Infrastructure.Services.SceneLoader
 
             yield return null;
 
-            T sceneContext = SceneManager.GetActiveScene().GetRootGameObjects()[0].GetComponent<T>();
+            T sceneContext = GameObject.FindObjectOfType<T>();
             
             Assert.IsNotNull(sceneContext);
             

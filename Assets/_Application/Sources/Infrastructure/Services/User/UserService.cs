@@ -30,6 +30,7 @@ namespace Sources.Infrastructure.Services.User
 
             IApplicationService application = DiContainer.Resolve<IApplicationService>();
             application.PauseStatusChanged += ApplicationCycle_OnPauseStatusChanged;
+            application.ApplicationQuit += ApplicationCycle_OnApplicationQuit;
         }
 
         private void InitializeUser()
@@ -42,15 +43,12 @@ namespace Sources.Infrastructure.Services.User
                 }
                 else
                 {
-                    _playerPrefs.SetInt(UserVersionKey, UserVersion);
                     CreateNewUser();
                 }
             }
             else
             {
-                _playerPrefs.SetInt(UserVersionKey, UserVersion);
                 CreateNewUser();
-                Debug.Log($"create user");
             }
         }
 
@@ -77,8 +75,15 @@ namespace Sources.Infrastructure.Services.User
                 Save();
         }
 
+        private void ApplicationCycle_OnApplicationQuit()
+        {
+            Save();
+        }
+
         public void Save()
         {
+            _playerPrefs.SetInt(UserVersionKey, UserVersion);
+
 #if UNITY_EDITOR
             string jsonDebug = _jsonSerializer.Serialize(User, true);
             Debug.Log($"User save: \n \n{jsonDebug}");

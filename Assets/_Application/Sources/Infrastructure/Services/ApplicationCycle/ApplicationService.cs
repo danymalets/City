@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Sources.Infrastructure.ApplicationInput;
 using Sources.Infrastructure.Services.CoroutineRunner;
 using Sources.UI.Utilities;
 using Sources.Utilities;
@@ -15,7 +16,8 @@ namespace Sources.Infrastructure.Services.ApplicationCycle
         public event Action ApplicationQuit;
 
         private CoroutineContext _coroutineContext;
-        
+        private IApplicationInputService _applicationInput;
+
         public int TargetFrameRate
         {
             get => Application.targetFrameRate;
@@ -26,12 +28,13 @@ namespace Sources.Infrastructure.Services.ApplicationCycle
         {
             _coroutineContext = new CoroutineContext();
 
+            _applicationInput = DiContainer.Resolve<IApplicationInputService>();
+            
             _coroutineContext.RunEachFrame(() =>
             {
-                if (Input.GetKeyDown(KeyCode.Escape))
+                if (_applicationInput.GetKeyDown(KeyCode.Escape))
                     BackButtonClicked?.Invoke();
             }, true);
-
         }
 
         private void OnApplicationFocus(bool hasFocus) =>

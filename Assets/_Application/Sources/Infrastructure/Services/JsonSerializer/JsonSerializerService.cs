@@ -6,7 +6,7 @@ namespace Sources.Infrastructure.Services.JsonSerializer
     public class JsonSerializerService : IJsonSerializerService
     {
         public string Serialize<T>(T obj, bool isPretty = false) =>
-            JsonConvert.SerializeObject(obj, isPretty ? Formatting.None : Formatting.Indented);
+            JsonConvert.SerializeObject(obj, isPretty ? Formatting.Indented : Formatting.None);
 
         public bool TryDeserialize<T>(string json, out T obj)
         {

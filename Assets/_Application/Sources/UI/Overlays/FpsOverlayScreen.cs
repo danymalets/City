@@ -1,5 +1,6 @@
 using Sources.Data.Live;
 using Sources.Infrastructure.Services;
+using Sources.Infrastructure.Services.CoroutineRunner;
 using Sources.Infrastructure.Services.Fps;
 using TMPro;
 using UnityEngine;
@@ -15,22 +16,22 @@ namespace Sources.UI.Overlays
         private TextMeshProUGUI _fpsText;
 
         private IFpsService _fpsService;
+        private CoroutineContext _coroutineContext;
 
         protected override void OnOpen()
         {
             _fpsService = DiContainer.Resolve<IFpsService>();
 
-            UpdateFps(_fpsService.FpsLastSecond.Value);
-            
-            _fpsService.FpsLastSecond.Changed += UpdateFps;
+            _coroutineContext = new CoroutineContext();
+            _coroutineContext.RunEachSeconds(1, UpdateFps, true);
         }
 
-        private void UpdateFps(int fps) => 
-            _fpsText.text = string.Format(FpsPattern, fps);
+        private void UpdateFps() => 
+            _fpsText.text = string.Format(FpsPattern, _fpsService.FpsLastSecond.Value);
 
         protected override void OnClose()
         {
-            _fpsService.FpsLastSecond.Changed -= UpdateFps;
+            _coroutineContext.StopAllCoroutines();
             _fpsService = null;
         }
     }

@@ -1,3 +1,4 @@
+using Sources.Game.Ecs.Components.Views;
 using Sources.Game.GameObjects.RoadSystem.Pathes;
 using Sources.Infrastructure.Services.Pool;
 using UnityEngine;
@@ -36,9 +37,6 @@ namespace Sources.Game.GameObjects.Cars
 
         public void SetMotorCoefficient(float vertical) =>
             _carEngine.SetMotorCoefficient(vertical);
-
-        public void SetBreak(bool enabled) =>
-            _carEngine.SetBreak(enabled);
         
         public void SetAngleCoefficient(float horizontal) =>
             _carEngine.SetAngleCoefficient(horizontal);

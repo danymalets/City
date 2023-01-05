@@ -44,9 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738196c3572e4fc6b8700ee88635329d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _carPrefab: {fileID: 0}
-  _npcPrefab: {fileID: 4956876624677193435, guid: 6fa7a66573ef44ab58c19d3f5146adb8, type: 3}
-  _playerPrefab: {fileID: 0}
-  _emptyScene:
-    m_Handle: 0
-  _cityScene: City
+  _citySceneNameName: City
+  _userCarEntity: {fileID: 990607179127907207, guid: 22dd2dd0a228b4f07a6b28a372d9df37, type: 3}

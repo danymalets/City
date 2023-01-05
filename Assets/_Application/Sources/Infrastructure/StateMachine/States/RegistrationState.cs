@@ -1,3 +1,4 @@
+using Sources.Infrastructure.ApplicationInput;
 using Sources.Infrastructure.Bootstrap;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.ApplicationCycle;
@@ -36,6 +37,7 @@ namespace Sources.Infrastructure.StateMachine.States
 
             DiContainer.Register<PhysicsService, IPhysicsService>();
             DiContainer.Register<ICoroutineRunnerService>(monoServices.CoroutineRunnerService);
+            DiContainer.Register<ApplicationInputService, IApplicationInputService>();
             DiContainer.Register<IApplicationService>(monoServices.ApplicationService);
             DiContainer.Register<SceneLoaderService, ISceneLoaderService>();
             DiContainer.Register<ScreenService, IScreenService>();

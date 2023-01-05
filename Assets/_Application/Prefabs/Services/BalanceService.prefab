@@ -44,4 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5817fdc19fec44db88c350e47f27afed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelBalances: []
+  _cameraBalance:
+    _cameraHeight: 3
+    _cameraBackDistance: 5

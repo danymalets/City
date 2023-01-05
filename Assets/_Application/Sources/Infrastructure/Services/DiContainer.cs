@@ -4,6 +4,12 @@ namespace Sources.Infrastructure.Services
 {
     public static class DiContainer
     {
+        public static TService Register<TService>()
+            where TService : class, IService, new()
+        {
+            return Register(new TService());
+        }
+
         public static TService Register<TService>(TService implementation)
             where TService : class, IService
         {
@@ -11,7 +17,7 @@ namespace Sources.Infrastructure.Services
             Bind<TService>(implementation);
             return implementation;
         }
-        
+
         public static TService Register<TImplementation, TService>()
             where TService : class, IService
             where TImplementation : class, TService, new()

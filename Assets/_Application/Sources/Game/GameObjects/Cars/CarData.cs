@@ -1,3 +1,4 @@
+using Sources.Game.Ecs.Components.Views;
 using Sources.Game.GameObjects.RoadSystem.Pathes;
 using UnityEngine;
 

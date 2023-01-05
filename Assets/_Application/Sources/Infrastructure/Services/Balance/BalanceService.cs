@@ -7,35 +7,9 @@ namespace Sources.Infrastructure.Services.Balance
 {
     public class BalanceService : MonoBehaviour, IBalanceService
     {
-        private const string BalancePath = "Balance";
-        private const string LevelBalancePattern = "Level_{0}";
-        
         [SerializeField]
-        private LevelBalance[] _levelBalances;
-        
-        public int LevelsCount { get; private set; }
+        private CameraBalance _cameraBalance;
 
-        public void Load()
-        {
-            LevelsCount = Resources.LoadAll<LevelBalance>(BalancePath).Length;
-            
-            _levelBalances = new LevelBalance[LevelsCount];
-
-            for (int level = 1; level <= LevelsCount; level++)
-            {
-                string path = Path.Combine(BalancePath, string.Format(LevelBalancePattern, level));
-                LevelBalance levelBalance = Resources.Load<LevelBalance>(path);
-
-                if (levelBalance == null)
-                    throw new NullReferenceException($"Level {level} balance not found");
-
-                _levelBalances[level - 1] = levelBalance;
-            }
-        }
-        
-        public LevelBalance GetLevelBalance(int levelNumber) =>
-            _levelBalances[levelNumber - 1];
-
-        public IEnumerable<LevelBalance> LevelData => _levelBalances;
+        public CameraBalance CameraBalance => _cameraBalance;
     }   
 }

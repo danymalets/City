@@ -11,10 +11,8 @@ namespace Sources.Infrastructure.Services
             get => Physics.autoSimulation;
             set => Physics.autoSimulation = value;
         }
-    }
 
-    public interface IPhysicsService : IService
-    {
-        bool AutoSimulation { get; set; }
+        public void Simulate(float step) => 
+            Physics.Simulate(step);
     }
 }

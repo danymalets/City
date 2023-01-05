@@ -17,7 +17,6 @@ namespace Sources.Infrastructure.StateMachine.States
         private ISceneLoaderService _sceneLoader;
         private IBalanceService _balanceService;
         private LoadingScreen _loadingScreen;
-        
 
         public LoadLevelState(IGameStateMachine stateMachine) : base(stateMachine)
         {
@@ -33,7 +32,7 @@ namespace Sources.Infrastructure.StateMachine.States
             int level = DiContainer.Resolve<IUserAccessService>()
                 .User.Progress.CurrentLevel;
 
-            string cityScene = DiContainer.Resolve<IAssetsService>().CityScene;
+            string cityScene = DiContainer.Resolve<IAssetsService>().CitySceneName;
 
             //int realLevel = GetRealLevel(level, _balanceService.LevelsCount);
 
@@ -41,7 +40,7 @@ namespace Sources.Infrastructure.StateMachine.States
             
             _loadingScreen.Open();
 
-            _sceneLoader.LoadScene<LevelContext>(cityScene, levelContext => 
+            _sceneLoader.LoadScene<LevelContextService>(cityScene, levelContext => 
                 EnterLevelState(new LevelData(level, levelContext)));
         }
 
