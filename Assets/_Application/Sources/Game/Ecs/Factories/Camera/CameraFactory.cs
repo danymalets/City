@@ -1,36 +1,24 @@
-using Leopotam.Ecs;
-using Sources.Game.Ecs.Components;
+using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Utils;
+using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Infrastructure.Bootstrap;
 using Sources.Infrastructure.Services;
 
 namespace Sources.Game.Ecs.Factories
 {
-    public class CameraFactory : ICameraFactory 
+    public class CameraFactory : EcsFactory, ICameraFactory 
     {
         private readonly ILevelContextService _levelContextService;
-        private readonly EcsWorld _world;
 
-        public CameraFactory(EcsWorld world)
-        {
-            _world = world;
+        public CameraFactory(World world) : base(world)
+        {          
             _levelContextService = DiContainer.Resolve<ILevelContextService>();
         }
 
-        public EcsEntity Create()
+        public Entity Create()
         {
-            EcsEntity cameraEntity = _world.NewEntity();
-
-            cameraEntity.Add<CameraTag>();
-            
-            MonoEntity monoEntity = _levelContextService.CameraMonoEntity;
-            
-            monoEntity.Setup(cameraEntity);
-
-            cameraEntity.Add<Position>();
-            cameraEntity.Add<Rotation>();
-
+            Entity cameraEntity = _world.CreateFromMono(_levelContextService.CameraMonoEntity)
+                .Add<CameraTag>();
             return cameraEntity;
         }
     }

@@ -1,10 +1,10 @@
-using Leopotam.Ecs;
+using Scellecs.Morpeh;
 using Sources.Infrastructure.Services;
 
 namespace Sources.Game.Ecs.Factories
 {
     public interface IUserFactory : IService
     {
-        EcsEntity CreateUser(EcsEntity carEntity);
+        Entity CreateUser(Entity carEntity);
     }
 }

@@ -1,6 +1,8 @@
+using Sources.Game.Ecs.Utils;
+
 namespace Sources.Game.Ecs.Components.Tags
 {
-    public struct UserTag
+    public struct UserTag : ITag
     {
         
     }

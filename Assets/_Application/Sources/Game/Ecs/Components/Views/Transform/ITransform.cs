@@ -3,8 +3,9 @@ using UnityEngine;
 
 namespace Sources.Game.Ecs.Components
 {
-    public interface ITransform : IMono
+    public interface ITransform : IMonoComponent
     {
-        Transform Transform { get; }
+        Vector3 Position { get; set; }
+        Quaternion Rotation { get; set; }
     }
 }

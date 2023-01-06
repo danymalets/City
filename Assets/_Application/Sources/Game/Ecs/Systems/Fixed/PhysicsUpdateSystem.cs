@@ -1,23 +1,24 @@
-using Leopotam.Ecs;
+using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Infrastructure.Services;
-using Sources.Infrastructure.Services.Times;
 
 namespace Sources.Game.Ecs.Systems.Fixed
 {
-    public class PhysicsUpdateSystem : IEcsRunSystem
+    public class PhysicsUpdateSystem : DFixedUpdateSystem
     {
         private readonly IPhysicsService _physics;
-        private readonly ITimeService _time;
 
         public PhysicsUpdateSystem()
         {
             _physics = DiContainer.Resolve<IPhysicsService>();
-            _time = DiContainer.Resolve<ITimeService>();
         }
 
-        public void Run()
+        protected override void OnInitFilters()
         {
-            _physics.Simulate(_time.FixedDeltaTime);
+        }
+
+        protected override void OnFixedUpdate(float fixedDeltaTime)
+        {
+            _physics.Simulate(fixedDeltaTime);
         }
     }
 }

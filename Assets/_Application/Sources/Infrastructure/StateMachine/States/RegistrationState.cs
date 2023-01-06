@@ -26,32 +26,36 @@ namespace Sources.Infrastructure.StateMachine.States
 {
     public class RegistrationState : GameState<MonoServices>
     {
+        private IDiBuilder _diBuilder;
+
         public RegistrationState(IGameStateMachine stateMachine) : base(stateMachine)
         {
         }
         
         protected override void OnEnter(MonoServices monoServices)
         {
+            _diBuilder = DiBuilder.Create();
+            
             IGameObjectService gameObjectService =
-                DiContainer.Register<GameObjectService, IGameObjectService>();
+                _diBuilder.Register<GameObjectService, IGameObjectService>();
 
-            DiContainer.Register<PhysicsService, IPhysicsService>();
-            DiContainer.Register<ICoroutineRunnerService>(monoServices.CoroutineRunnerService);
-            DiContainer.Register<ApplicationInputService, IApplicationInputService>();
-            DiContainer.Register<IApplicationService>(monoServices.ApplicationService);
-            DiContainer.Register<SceneLoaderService, ISceneLoaderService>();
-            DiContainer.Register<ScreenService, IScreenService>();
-            DiContainer.Register<JsonSerializerService, IJsonSerializerService>();
-            DiContainer.Register<PlayerPrefsService, IPlayerPrefsService>();
-            DiContainer.Register<UserService, IUserAccessService, IUserSaveService>();
-            DiContainer.Register<VibrationService, IVibrationService>();
-            DiContainer.Register<IAssetsService>(monoServices.AssetsService);
-            DiContainer.Register<PoolService, IPoolCreatorService, IPoolSpawnerService>(monoServices.PoolService);
-            DiContainer.Register<TimeService, ITimeService>();
-            DiContainer.Register<FpsService, IFpsService>();
-            DiContainer.Register<IAudioService>(monoServices.AudioService);
-            DiContainer.Register<IBalanceService>(monoServices.BalanceService);
-            DiContainer.Register<UiService, IUiService, IUiRefreshService, IUiCloseService>(monoServices.UiService);
+            _diBuilder.Register<PhysicsService, IPhysicsService>();
+            _diBuilder.Register<ICoroutineRunnerService>(monoServices.CoroutineRunnerService);
+            _diBuilder.Register<ApplicationInputService, IApplicationInputService>();
+            _diBuilder.Register<IApplicationService>(monoServices.ApplicationService);
+            _diBuilder.Register<SceneLoaderService, ISceneLoaderService>();
+            _diBuilder.Register<ScreenService, IScreenService>();
+            _diBuilder.Register<JsonSerializerService, IJsonSerializerService>();
+            _diBuilder.Register<PlayerPrefsService, IPlayerPrefsService>();
+            _diBuilder.Register<UserService, IUserAccessService, IUserSaveService>();
+            _diBuilder.Register<VibrationService, IVibrationService>();
+            _diBuilder.Register<IAssetsService>(monoServices.AssetsService);
+            _diBuilder.Register<PoolService, IPoolCreatorService, IPoolSpawnerService>(monoServices.PoolService);
+            _diBuilder.Register<TimeService, ITimeService>();
+            _diBuilder.Register<FpsService, IFpsService>();
+            _diBuilder.Register<IAudioService>(monoServices.AudioService);
+            _diBuilder.Register<IBalanceService>(monoServices.BalanceService);
+            _diBuilder.Register<UiService, IUiService, IUiRefreshService, IUiCloseService>(monoServices.UiService);
 
             gameObjectService.DontDestroyOnLoad(monoServices.gameObject);
 

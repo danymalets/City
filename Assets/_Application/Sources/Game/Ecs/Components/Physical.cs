@@ -1,7 +1,10 @@
+using System.Collections;
+using Scellecs.Morpeh;
+
 namespace Sources.Game.Ecs.Components
 {
-    public struct Physical
-    {
+    public struct Physical : IComponent
+    { 
         
     }
 }

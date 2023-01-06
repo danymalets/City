@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Sources.Game.Ecs.Components.Views
 {
-    public interface ICarEngine : IMono
+    public interface ICarEngine : IMonoComponent
     {
         Vector3 RootPosition { get; }
         void SetAngleCoefficient(float angleCoefficient);

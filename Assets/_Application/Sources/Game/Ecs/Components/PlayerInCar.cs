@@ -1,9 +1,9 @@
-using Leopotam.Ecs;
+using Scellecs.Morpeh;
 
 namespace Sources.Game.Ecs.Components
 {
-    public struct PlayerInCar
+    public struct PlayerInCar : IComponent
     {
-        public EcsEntity Car;
+        public Entity Car;
     }
 }

@@ -74,5 +74,9 @@ namespace Sources.Utilities.Extensions
 
             return getValue(array[0]).Result;
         }
+
+        public static bool NoOne<T>(this IEnumerable<T> enumerable) =>
+            !enumerable.Any();
+
     }
 }

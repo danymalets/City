@@ -1,5 +1,4 @@
-using System;
-using Leopotam.Ecs;
+using Scellecs.Morpeh;
 using Sources.Infrastructure.Services.Pool;
 using UnityEngine;
 
@@ -10,6 +9,8 @@ namespace Sources.Game.Ecs.Utils
         [SerializeField]
         private MonoComponentBase[] _viewComponents;
 
+        public Entity Entity { get; private set; }
+        
 #if UNITY_EDITOR
         private void OnValidate()
         {
@@ -17,8 +18,10 @@ namespace Sources.Game.Ecs.Utils
         }
 #endif
 
-        public void Setup(EcsEntity entity)
+        public void Setup(Entity entity)
         {
+            Entity = entity;
+            
             foreach (MonoComponentBase viewComponent in _viewComponents)
             {
                 viewComponent.Setup(entity);

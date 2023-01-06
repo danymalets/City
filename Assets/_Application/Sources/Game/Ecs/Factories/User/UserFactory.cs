@@ -1,31 +1,22 @@
-using Leopotam.Ecs;
+using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Utils;
-using Sources.Infrastructure.Services.AssetsManager;
-using Sources.Infrastructure.Services.Pool.Instantiators;
-using UnityEngine;
+using Sources.Game.Ecs.Utils.MorpehWrapper;
 
 namespace Sources.Game.Ecs.Factories
 {
-    public class UserFactory : IUserFactory
+    public class UserFactory : EcsFactory, IUserFactory
     {
-        private readonly EcsWorld _world;
-
-        public UserFactory(EcsWorld world)
+        public UserFactory(World world) : base(world)
         {
-            _world = world;
         }
 
-        public EcsEntity CreateUser(EcsEntity carEntity)
+        public Entity CreateUser(Entity carEntity)
         {
-            EcsEntity user = _world.NewEntity();
-
-            user.Add<UserTag>();
-            user.Add<MoveInput>();
-            user.Set(new PlayerInCar { Car = carEntity });
-
-            return user;
+            return _world.CreateWithEmptyMono()
+                .Add<UserTag>()
+                .Add<MoveInput>()
+                .Set(new PlayerInCar { Car = carEntity });
         }
     }
 }

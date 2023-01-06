@@ -1,38 +1,24 @@
-using Leopotam.Ecs;
+using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components;
-using Sources.Game.Ecs.Utils;
-using Sources.Infrastructure.Services;
-using Sources.Infrastructure.Services.AssetsManager;
-using Sources.Infrastructure.Services.Pool.Instantiators;
+using Sources.Game.Ecs.Components.Tags;
+using Sources.Game.Ecs.Utils.MorpehWrapper;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Factories
 {
-    public class CarFactory : ICarFactory
+    public class CarFactory : EcsFactory, ICarFactory
     {
-        private readonly EcsWorld _world;
-        private readonly IPoolSpawnerService _poolSpawner;
-        private readonly MonoEntity _userCarMonoEntity;
-
-        public CarFactory(EcsWorld world)
+        public CarFactory(World world) : base(world)
         {
-            _world = world;
-
-            _poolSpawner = DiContainer.Resolve<IPoolSpawnerService>();
-            _userCarMonoEntity = DiContainer.Resolve<IAssetsService>().UserCarMonoEntity;
         }
 
-        public EcsEntity CreateCar(Vector3 position, Quaternion rotation)
+        public Entity CreateCar(Vector3 position, Quaternion rotation)
         {
-            EcsEntity carEntity = _world.NewEntity();
-
-            MonoEntity monoEntity = _poolSpawner.Spawn(_userCarMonoEntity, position, rotation);
-            
-            monoEntity.Setup(carEntity);
-
-            carEntity.Add<Physical>();
-
-            return carEntity;
+            return _world.CreateFromMonoPrefab(_assets.UserCarMonoEntity)
+                .Add<CarTag>()
+                .SetupMono<ITransform>(t => t.Position = position)
+                .SetupMono<ITransform>(t => t.Rotation = rotation)
+                .Add<Physical>();
         }
     }
 }

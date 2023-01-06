@@ -1,38 +1,48 @@
-using Leopotam.Ecs;
+using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components;
 using Sources.Game.Ecs.Components.Tags;
+using Sources.Game.Ecs.Utils;
+using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Infrastructure.Services;
+using Sources.Infrastructure.Services.Balance;
 using Sources.Infrastructure.Services.Times;
-using Sources.Utilities;
 using Sources.Utilities.Extensions;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.Camera
 {
-    public class CameraRotationSystem : IEcsRunSystem
+    public class CameraRotationSystem : DUpdateSystem
     {
-        private EcsFilter<CameraTag, Rotation> _cameraFilter;
-        private EcsFilter<UserTag, PlayerInCar> _userFilter;
-        private readonly ITimeService _time;
+        private readonly CameraBalance _cameraBalance;
+
+        private Filter _cameraFilter;
+        private Filter _userFilter;
 
         public CameraRotationSystem()
         {
-            _time = DiContainer.Resolve<ITimeService>();
+            _cameraBalance = DiContainer.Resolve<IBalanceService>()
+                .CameraBalance;
+        }
+        
+        protected override void OnInitFilters()
+        {
+            _userFilter = _world.Filter<UserTag, PlayerInCar>();
+            _cameraFilter = _world.Filter<CameraTag, Mono<ITransform>>();
         }
 
-        public void Run()
+        protected override void OnUpdate(float deltaTime)
         {
-            foreach (int i in _cameraFilter)
-            {
-                ref Rotation cameraRotation = ref _cameraFilter.Get2(i);
-                
-                foreach (int j in _userFilter)
-                {
-                    Quaternion userCarRotation = _userFilter.Get2(j).Car.Get<Rotation>().Value;
+            if (_userFilter.NoOne())
+                return;
 
-                    cameraRotation.Value = cameraRotation.Value.WithEulerY(userCarRotation.eulerAngles.y);
-                }
-            }
+            Entity cameraEntity = _cameraFilter.GetSingleton();
+            Entity userEntity = _userFilter.GetSingleton();
+
+            ITransform cameraTransform = cameraEntity.GetMono<ITransform>();
+            
+            Quaternion userCarRotation = userEntity.Get<PlayerInCar>().Car.GetMono<ITransform>().Rotation;
+
+            cameraTransform.Rotation = cameraTransform.Rotation.WithEulerY(userCarRotation.eulerAngles.y);
         }
     }
 }

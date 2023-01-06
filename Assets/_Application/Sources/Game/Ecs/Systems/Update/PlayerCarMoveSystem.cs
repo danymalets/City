@@ -1,25 +1,27 @@
-using Leopotam.Ecs;
+using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components;
-using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.Views;
-using Sources.Game.Ecs.Utils;
+using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Utilities;
-using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update
 {
-    public class PlayerCarMoveSystem : IEcsRunSystem
+    public class PlayerCarMoveSystem : DUpdateSystem
     {
-        private EcsFilter<MoveInput, PlayerInCar> _filter;
+        private Filter _filter;
 
-        public void Run()
+        protected override void OnInitFilters()
         {
-            foreach (int i in _filter)
+            _filter = _world.Filter<MoveInput, PlayerInCar>();
+        }
+
+        protected override void OnUpdate(float deltaTime)
+        {
+            foreach (Entity playerEntity in _filter)
             {
-                ref MoveInput moveInput = ref _filter.Get1(i);
-                ref PlayerInCar playerInCar = ref _filter.Get2(i);
+                ref MoveInput moveInput = ref playerEntity.Get<MoveInput>();
                 
-                ICarEngine carEngine = playerInCar.Car.Get<ViewComponent<ICarEngine>>().View;
+                ICarEngine carEngine = playerEntity.Get<PlayerInCar>().Car.GetMono<ICarEngine>();
                 
                 carEngine.SetAngleCoefficient(moveInput.Horizontal);
                 carEngine.SetMotorCoefficient(moveInput.Vertical);
@@ -36,7 +38,7 @@ namespace Sources.Game.Ecs.Systems.Update
                 }
                 else if (moveInput.Vertical == 0)
                 {
-                    carEngine.SetLiteBreak();
+                    //carEngine.SetLiteBreak();
                 }
                 else
                 {

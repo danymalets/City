@@ -1,25 +1,19 @@
-using Leopotam.Ecs;
-using Sources.Game.Ecs.Components;
-using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Factories;
-using Sources.Game.Ecs.Utils;
-using Sources.Infrastructure.Bootstrap;
+using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Infrastructure.Services;
 
 namespace Sources.Game.Ecs.Systems.Init
 {
-    public class CameraInitSystem : IEcsInitSystem
+    public class CameraInitSystem : DInitializer
     {
-        private readonly EcsWorld _world;
-        private readonly CameraFactory _cameraFactory;
-        private readonly ILevelContextService _levelContext;
+        private readonly ICameraFactory _cameraFactory;
 
         public CameraInitSystem()
         {
-            _levelContext = DiContainer.Resolve<ILevelContextService>();
+            _cameraFactory = DiContainer.Resolve<ICameraFactory>();
         }
 
-        public void Init()
+        protected override void OnInitialize()
         {
             _cameraFactory.Create();
         }

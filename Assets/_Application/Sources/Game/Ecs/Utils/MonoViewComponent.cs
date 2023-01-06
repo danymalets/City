@@ -1,16 +1,14 @@
 using System;
-using Leopotam.Ecs;
+using Scellecs.Morpeh;
+using Sources.Game.Ecs.Utils.MorpehWrapper;
 
 namespace Sources.Game.Ecs.Utils
 {
-    public class MonoViewComponent<TView> : MonoComponentBase where TView : IMono
+    public class MonoViewComponent<TMono> : MonoComponentBase where TMono : IMonoComponent
     {
-        public override void Setup(EcsEntity entity)
+        public override void Setup(Entity entity)
         {
-            entity.Get<ViewComponent<TView>>().View = 
-                this is TView view ? 
-                    view : 
-                    throw new InvalidCastException();
+            entity.SetMono(this is TMono view ? view : throw new InvalidCastException());
         }
     }
 }

@@ -20,6 +20,7 @@ namespace Sources.Infrastructure.StateMachine.States
         private LevelScreen _levelScreen;
         private WinScreen _winScreen;
         private LoseScreen _loseScreen;
+        private IDiBuilder _diBuilder;
 
         public LevelState(IGameStateMachine stateMachine) : base(stateMachine)
         {
@@ -27,9 +28,9 @@ namespace Sources.Infrastructure.StateMachine.States
 
         protected override void OnEnter(LevelData levelData)
         {
-            Debug.Log($"2 - {levelData.LevelContext == null}");
+            _diBuilder = DiBuilder.Create();
 
-            DiContainer.Register<ILevelContextService>(levelData.LevelContext);
+            _diBuilder.Register<ILevelContextService>(levelData.LevelContext);
             
             IUiService ui = DiContainer.Resolve<IUiService>();
             
@@ -67,7 +68,7 @@ namespace Sources.Infrastructure.StateMachine.States
 
         private void FinishGame()
         {
-            _gameController.EndGame();
+            _gameController.FinishGame();
             _stateMachine.Enter<LoadLevelState>();
         }
 
@@ -77,7 +78,7 @@ namespace Sources.Infrastructure.StateMachine.States
             _winScreen.NextButtonClicked -= WinScreen_OnNextButtonClicked;
             _loseScreen.RetryButtonClicked -= LoseScreen_OnRetryButtonClicked;
             
-            DiContainer.Unregister<ILevelContextService>();
+            _diBuilder.Dispose();
         }
     }
 }

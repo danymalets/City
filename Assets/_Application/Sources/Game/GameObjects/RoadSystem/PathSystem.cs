@@ -21,12 +21,10 @@ namespace Sources.Game.GameObjects.RoadSystem
 
         private void OnEnable()
         {
-            DiContainer.Register<IPathesAccessService>(this);
         }
 
         private void OnDisable()
         {
-            DiContainer.Unregister<IPathesAccessService>();
         }
 
         private void OnDrawGizmos()

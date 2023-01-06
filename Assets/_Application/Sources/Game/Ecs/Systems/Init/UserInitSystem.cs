@@ -1,32 +1,35 @@
-using Leopotam.Ecs;
+using Scellecs.Morpeh;
 using Sources.Game.Ecs.Factories;
 using Sources.Game.Ecs.Utils;
+using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Infrastructure.Bootstrap;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.AssetsManager;
+using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Init
 {
-    public class UserInitSystem : IEcsInitSystem
+    public class UserInitSystem : DInitializer
     {
-        private readonly MonoEntity _userCarEntity;
         private readonly ILevelContextService _levelContext;
 
-        private CarFactory _carFactory;
-        private UserFactory _userFactory;
+        private readonly ICarFactory _carFactory;
+        private readonly IUserFactory _userFactory;
         
         public UserInitSystem()
         {
-            _userCarEntity = DiContainer.Resolve<IAssetsService>().UserCarMonoEntity;
+            _carFactory = DiContainer.Resolve<ICarFactory>();
+            _userFactory = DiContainer.Resolve<IUserFactory>();
+            
             _levelContext = DiContainer.Resolve<ILevelContextService>();
         }
 
-        public void Init()
+        protected override void OnInitialize()
         {
-            EcsEntity car = _carFactory.CreateCar(
+            Entity car = _carFactory.CreateCar(
                 _levelContext.UserSpawnPoint.Position, _levelContext.UserSpawnPoint.Rotation);
 
-            EcsEntity user = _userFactory.CreateUser(car);
+            _userFactory.CreateUser(car);
         }
     }
 }

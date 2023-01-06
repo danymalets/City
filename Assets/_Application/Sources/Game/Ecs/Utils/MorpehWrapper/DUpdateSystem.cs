@@ -6,12 +6,20 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
     {
         protected World _world;
 
-        protected DUpdateSystem(World world)
-        {
-        }
-
         public void SetupWorld(World world) =>
             _world = world;
+
+        public void InitFilters() =>
+            OnInitFilters();
+
+        protected abstract void OnInitFilters();
+
+        public void Initialize() =>
+            OnInitialize();
+
+        protected virtual void OnInitialize()
+        {
+        }
 
         public void Update(float deltaTime) =>
             OnUpdate(deltaTime);

@@ -28,12 +28,15 @@ namespace Sources.Game.Controllers
         private readonly IUiCloseService _uiClose;
         private readonly InputController _inputController;
         private readonly EcsGame _ecsGame;
+        private readonly IDiBuilder _diBuilder;
 
         public GameController()
         {
             IUiService ui = DiContainer.Resolve<IUiService>();
-            
-            DiContainer.Register<InputService, IInputService>();
+
+            _diBuilder = DiBuilder.Create();
+
+            _diBuilder.Register<InputService, IInputService>();
 
             _levelScreen = ui.Get<LevelScreen>();
             _inputScreen = ui.Get<InputScreen>();
@@ -59,16 +62,15 @@ namespace Sources.Game.Controllers
 
             
             _ecsGame.StartGame();
-            Debug.Log($"game started");
         }
 
-        public void EndGame()
+        public void FinishGame()
         {
             _ecsGame.FinishGame();
             _audio.StopAll();
             _uiClose.CloseAll();
             
-            DiContainer.Unregister<IInputService>();
+            _diBuilder.Dispose();
         }
     }
 }

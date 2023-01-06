@@ -1,4 +1,5 @@
 using Scellecs.Morpeh.Systems;
+using UnityEngine;
 
 namespace Sources.Game.Ecs.Utils.MorpehWrapper
 {
@@ -9,15 +10,13 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
         public DUpdateSystemProvider()
         {
             _dSystem = new TDSystem();
-            _dSystem.SetupWorld(World);
         }
 
         public override void OnAwake()
         {
-            if (_dSystem is IDInitializeSystem initializeSystem)
-            {
-                initializeSystem.Initialize();
-            }
+            _dSystem.SetupWorld(World);
+            _dSystem.InitFilters();
+            _dSystem.Initialize();
         }
 
         public override void OnUpdate(float deltaTime)
