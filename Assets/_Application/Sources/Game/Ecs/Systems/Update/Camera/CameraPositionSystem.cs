@@ -32,13 +32,9 @@ namespace Sources.Game.Ecs.Systems.Update.Camera
 
         protected override void OnUpdate(float deltaTime)
         {
-            Debug.Log($"a");
-            
             if (_userFilter.NoOne())
                 return;
             
-            Debug.Log($"b");
-
             Entity cameraEntity = _cameraFilter.GetSingleton();
             Entity userEntity = _userFilter.GetSingleton();
 

@@ -8,11 +8,12 @@ namespace Sources.Utilities.Extensions
 {
     public static class IEnumerableExtensions
     {
-        public static T GetRandom<T>(this IEnumerable<T> enumerable)
+        public static T GetRandom<T>(this IList<T> list)
         {
-            if (!enumerable.Any())
+            if (list.Count == 0)
                 throw new InvalidOperationException("No data in collection");
-            return enumerable.ElementAt(Random.Range(0, enumerable.Count()));
+            
+            return list[Random.Range(0, list.Count)];
         }
         
         public static T MaxBy<T, TValue>(this IEnumerable<T> enumerable, Func<T, TValue> getValue)
@@ -21,7 +22,7 @@ namespace Sources.Utilities.Extensions
             if (!enumerable.Any())
                 throw new InvalidOperationException("No data in collection");
             TValue maxValue = enumerable.Max(getValue);
-            return enumerable.Where(item => getValue(item).Equals(maxValue)).GetRandom();
+            return enumerable.First(item => getValue(item).Equals(maxValue));
         }
         
         public static T MinBy<T, TValue>(this IEnumerable<T> enumerable, Func<T, TValue> getValue)
@@ -30,7 +31,7 @@ namespace Sources.Utilities.Extensions
             if (!enumerable.Any())
                 throw new InvalidOperationException("No data in collection");
             TValue minValue = enumerable.Min(getValue);
-            return enumerable.Where(item => getValue(item).Equals(minValue)).GetRandom();
+            return enumerable.First(item => getValue(item).Equals(minValue));
         }
         
         public static T GetNearestTo<T>(this IEnumerable<T> sources, 

@@ -32,7 +32,6 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
 
         public void StartGame()
         {
-
             _coroutineContext.RunEachFrame(() => World.Update(_time.DeltaTime), true);
             _coroutineContext.RunEachFixedUpdate(() => World.FixedUpdate(_time.FixedDeltaTime));
         }

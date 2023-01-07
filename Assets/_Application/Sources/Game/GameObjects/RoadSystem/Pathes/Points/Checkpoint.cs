@@ -6,9 +6,11 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes.Points
 {
     public class Checkpoint : MonoBehaviour, IConnectingPoint
     {
+        public bool IsRoot => true;
         public Vector3 Position => transform.position;
-        public List<Path> Sources { get; } = new List<Path>();
-        public List<Path> Targets { get; }  = new List<Path>();
+        public Quaternion Rotation => transform.rotation;
+        public List<Path> Sources { get; } = new();
+        public List<Path> Targets { get; }  = new();
         public Vector3 Direction => transform.forward;
 
         private void OnDrawGizmos()

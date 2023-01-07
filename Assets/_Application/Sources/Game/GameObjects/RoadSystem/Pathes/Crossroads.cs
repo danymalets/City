@@ -9,7 +9,7 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes
 {
     public class Crossroads : PathGenerator
     {
-        private const int Segments = 10;
+        private const int PointsCount = 10;
 
         [SerializeField]
         private Road _up;
@@ -87,19 +87,19 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes
 
             Vector3 anchor = GetAnchorPoint(source, target);
 
-            for (int i = 0; i <= Segments; i++)
+            for (int i = 0; i <= PointsCount; i++)
             {
-                float progress = (float)i / Segments;
+                float progress = (float)i / PointsCount;
                 Vector3 first = Vector3.Lerp(source.Position, anchor, progress);
                 Vector3 second = Vector3.Lerp(anchor, target.Position, progress);
                 Vector3 result = Vector3.Lerp(first, second, progress);
 
                 if (i == 0)
                     points.Add(source);
-                else if (i == Segments)
+                else if (i == PointsCount)
                     points.Add(target);
                 else
-                    points.Add(new AdditionalPoint(result));
+                    points.Add(new AdditionalPoint(result, Quaternion.identity,false));
             }
 
             List<Path> pathes = new();

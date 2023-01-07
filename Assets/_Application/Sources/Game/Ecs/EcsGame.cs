@@ -1,4 +1,5 @@
 using Sources.Game.Ecs.Factories;
+using Sources.Game.Ecs.Factories.Npc;
 using Sources.Game.Ecs.Systems;
 using Sources.Game.Ecs.Systems.Fixed;
 using Sources.Game.Ecs.Systems.Init;
@@ -21,6 +22,7 @@ namespace Sources.Game.Ecs
             _diBuilder = DiBuilder.Create();
 
             _diBuilder.Register<ICarFactory>(new CarFactory(_world.World));
+            _diBuilder.Register<INpcFactory>(new NpcFactory(_world.World));
             _diBuilder.Register<IUserFactory>(new UserFactory(_world.World));
             _diBuilder.Register<ICameraFactory>(new CameraFactory(_world.World));
 
@@ -34,6 +36,8 @@ namespace Sources.Game.Ecs
         {
             _world.AddInitializer<UserInitSystem>();
             _world.AddInitializer<CameraInitSystem>();
+            _world.AddInitializer<PathSystemInitSystem>();
+            _world.AddInitializer<NpcWithCarsInitSystem>();
         }
 
         private void AddFixedUpdateSystems()

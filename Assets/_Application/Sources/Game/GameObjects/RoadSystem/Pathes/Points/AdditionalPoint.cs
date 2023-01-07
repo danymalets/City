@@ -5,13 +5,17 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes.Points
 {
     public class AdditionalPoint : IConnectingPoint
     {
+        public bool IsRoot { get; }
         public Vector3 Position { get; }
-        public List<Path> Sources { get; } = new List<Path>();
-        public List<Path> Targets { get; } = new List<Path>();
+        public Quaternion Rotation { get; set; }
+        public List<Path> Sources { get; } = new();
+        public List<Path> Targets { get; } = new();
 
-        public AdditionalPoint(Vector3 position)
+        public AdditionalPoint(Vector3 position, Quaternion rotation, bool isRoot)
         {
             Position = position;
+            Rotation = rotation;
+            IsRoot = isRoot;
         }
     }
 }

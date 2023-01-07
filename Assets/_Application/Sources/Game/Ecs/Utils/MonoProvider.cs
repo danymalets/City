@@ -4,7 +4,7 @@ using Sources.Game.Ecs.Utils.MorpehWrapper;
 
 namespace Sources.Game.Ecs.Utils
 {
-    public class MonoViewComponent<TMono> : MonoComponentBase where TMono : IMonoComponent
+    public class MonoProvider<TMono> : MonoComponentBase where TMono : IMonoComponent
     {
         public override void Setup(Entity entity)
         {

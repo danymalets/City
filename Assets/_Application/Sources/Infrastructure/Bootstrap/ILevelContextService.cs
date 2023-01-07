@@ -7,5 +7,6 @@ namespace Sources.Infrastructure.Bootstrap
     {
         ISpawnPoint UserSpawnPoint { get; }
         MonoEntity CameraMonoEntity { get; }
+        MonoEntity PathSystemEntity { get; }
     }
 }

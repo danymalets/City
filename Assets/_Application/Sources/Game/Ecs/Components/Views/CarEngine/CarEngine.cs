@@ -1,3 +1,4 @@
+using System;
 using Sources.Game.Ecs.Utils;
 using Sources.Game.GameObjects.Cars;
 using Sources.Utilities.Extensions;
@@ -6,14 +7,17 @@ using UnityEngine;
 namespace Sources.Game.Ecs.Components.Views
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class CarEngine : MonoViewComponent<ICarEngine>, ICarEngine
+    public class CarEngine : MonoProvider<ICarEngine>, ICarEngine
     {
-        private const float BreakTorqueLite = 50;
+        private const float BreakTorqueLite = 1.5f;
         private const float BreakTorqueMax = 10000000;
 
         [SerializeField]
         private AxleInfo[] _axleInfos;
-
+        
+        [SerializeField]
+        private float _maxSpeed = 10;
+        
         [SerializeField]
         private float _maxMotorTorque = 500;
 
@@ -50,6 +54,11 @@ namespace Sources.Game.Ecs.Components.Views
                     _rightWheel = axleInfo.rightWheel.transform;
                 }
             }
+        }
+
+        private void FixedUpdate()
+        {
+            _rigidBody.velocity = Vector3.ClampMagnitude(_rigidBody.velocity, _maxSpeed);
         }
 
         public void SetAngleCoefficient(float angleCoefficient) =>

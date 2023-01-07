@@ -29,16 +29,16 @@ namespace Sources.Game.Ecs.Systems.Update
                 if (moveInput.Vertical == 1 && DMath.Less(carEngine.Speed, 0))
                 {
                     carEngine.SetMaxBreak();
-                    //carEngine.SetMotorCoefficient(0);
+                    carEngine.SetMotorCoefficient(0);
                 }
                 else if (moveInput.Vertical == -1 && DMath.Greater(carEngine.Speed, 0))
                 {
                     carEngine.SetMaxBreak();
-                    //carEngine.SetMotorCoefficient(0);
+                    carEngine.SetMotorCoefficient(0);
                 }
                 else if (moveInput.Vertical == 0)
                 {
-                    //carEngine.SetLiteBreak();
+                    carEngine.SetLiteBreak();
                 }
                 else
                 {

@@ -11,8 +11,13 @@ namespace Sources.Infrastructure.Bootstrap
         [SerializeField]
         private MonoEntity _cameraMonoEntity;
 
+        [SerializeField]
+        private MonoEntity _pathSystemEntity;
+
+
         public ISpawnPoint UserSpawnPoint => _userSpawnPoint;
 
         public MonoEntity CameraMonoEntity => _cameraMonoEntity;
+        public MonoEntity PathSystemEntity => _pathSystemEntity;
     }
 }

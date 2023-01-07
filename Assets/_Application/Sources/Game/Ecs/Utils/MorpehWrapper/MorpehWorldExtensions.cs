@@ -13,8 +13,7 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
             monoEntity.Setup(entity);
             return entity;
         }
-        
-        
+
 
         public static Entity CreateWithEmptyMono(this World world)
         {
@@ -28,6 +27,10 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
             return world.CreateFromMono(monoEntity);
         }
 
-        
+        public static ref TComponent GetSingleton<TComponent>(this World world) where TComponent : struct, IComponent =>
+            ref world.Filter<TComponent>().GetSingleton().Get<TComponent>();
+
+        public static TComponent GetMonoSingleton<TComponent>(this World world) where TComponent : IMonoComponent =>
+            world.GetSingleton<Mono<TComponent>>().MonoComponent;
     }
 }
