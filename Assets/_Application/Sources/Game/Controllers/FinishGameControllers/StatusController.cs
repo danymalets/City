@@ -8,7 +8,7 @@ namespace Sources.Game.Controllers.EndController
 {
     public abstract class StatusController
     {
-        private readonly InputScreen _inputScreen;
+        private readonly CarInputScreen _carInputScreen;
         private readonly LevelScreen _levelScreen;
         protected readonly IAudioService _audio;
 
@@ -16,7 +16,7 @@ namespace Sources.Game.Controllers.EndController
         {
             IUiService ui = DiContainer.Resolve<IUiService>(); 
             
-            _inputScreen = ui.Get<InputScreen>();
+            _carInputScreen = ui.Get<CarInputScreen>();
             _levelScreen = ui.Get<LevelScreen>();
             
             _audio = DiContainer.Resolve<IAudioService>();
@@ -24,7 +24,7 @@ namespace Sources.Game.Controllers.EndController
         
         protected void DisableInputAndRetryButton()
         {
-            _inputScreen.Close();
+            _carInputScreen.Close();
             _levelScreen.DisableRestartButton();
         }
     }

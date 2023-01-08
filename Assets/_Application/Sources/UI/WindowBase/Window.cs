@@ -12,7 +12,8 @@ namespace Sources.UI.WindowBase
         protected IUiService Ui;
         public event Action<Window> Opening = delegate { };
         public event Action<Window> Closed = delegate { };
-
+        public bool IsOpened { get; private set; }
+        
         public void SetupInternal(IUiService ui)
         {
             Ui = ui;
@@ -27,6 +28,8 @@ namespace Sources.UI.WindowBase
         {
             if (makeTop)
                 transform.SetAsLastSibling();
+
+            IsOpened = true;
             
             Opening(this);
             gameObject.Enable();
@@ -42,6 +45,7 @@ namespace Sources.UI.WindowBase
         public virtual void ForceClose()
         {
             OnClose();
+            IsOpened = false;
             gameObject.Disable();
             Closed(this);
         }

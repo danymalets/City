@@ -17,16 +17,16 @@ namespace Sources.Game.Ecs.Systems.Init
 {
     public class NpcWithCarsInitSystem : DInitializer
     {
-        private IPathSystem _pathSystem;
         private readonly IPhysicsService _physics;
         private readonly Assets _assets;
-        private readonly LevelContext _levelContext;
+        private readonly IPathSystem _pathSystem;
 
         public NpcWithCarsInitSystem()
         {
             _assets = DiContainer.Resolve<Assets>();
-            _levelContext = DiContainer.Resolve<LevelContext>();
-
+            
+            _pathSystem = DiContainer.Resolve<LevelContext>()
+                .CarsPathSystem;
 
             _physics = DiContainer.Resolve<IPhysicsService>();
         }
@@ -37,28 +37,20 @@ namespace Sources.Game.Ecs.Systems.Init
 
         protected override void OnInitialize()
         {
-            _pathSystem = _world.GetMonoSingleton<IPathSystem>();
-
             List<IConnectingPoint> points = _pathSystem.RootPoints.ToList();
             points.RandomShuffle();
             
-            foreach (IConnectingPoint point in points.Take(30))
+            foreach (IConnectingPoint point in points.Take(20))
             {
                 CarMonoEntity carPrefab = _assets.CarsAssets.GetRandomCar();
                 
                 Collider[] colliders = _physics.OverlapBox(point.Position + point.Rotation *
-                    carPrefab.CenterRelatedRootPoint, carPrefab.HalfExtents, point.Rotation, LayerMasks.Car);
+                    carPrefab.CenterRelatedRootPoint, carPrefab.HalfExtents, point.Rotation, LayerMasks.CarsAndPlayers);
 
                 if (colliders.Length > 0)
                 {
                     continue;
                 }
-                
-                // GameObject deb = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                // GameObject.Destroy(deb.GetComponent<Collider>());
-                // deb.transform.position = point.Position + point.Rotation * carPrefab.CenterRelatedRootPoint;
-                // deb.transform.rotation = point.Rotation;
-                // deb.transform.localScale = carPrefab.HalfExtents * 2;
 
                 Entity car = _factory.CreateCar(carPrefab, point.Position - point.Rotation * carPrefab.RootOffset, point.Rotation);
 
@@ -66,7 +58,7 @@ namespace Sources.Game.Ecs.Systems.Init
                 
                 _physics.SyncTransforms();
                 
-                _factory.CreateNpcInCar(car, point.GetRandomTargetPath());
+                _factory.CreateNpcInCar(_assets.PlayersAssets.GetRandomPlayer(), car, point.GetRandomTargetPath());
             }
         }
     }

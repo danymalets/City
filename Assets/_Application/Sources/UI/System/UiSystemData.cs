@@ -52,13 +52,13 @@ namespace Sources.UI.System
             {
                 T window = windowTransform.GetComponent<T>();
 
-                if (window == null)
-                    throw new InvalidOperationException($"{windowTransform.gameObject.name}" +
-                                                        $" do not have {typeof(T)} component");
-                
-                if (windows.Any(w => w.GetType() == window.GetType()))
-                    throw new InvalidOperationException($"{window.GetType()}" +
-                                                        $" duplicate");
+                // if (window == null)
+                //     throw new InvalidOperationException($"{windowTransform.gameObject.name}" +
+                //                                         $" do not have {typeof(T)} component");
+                //
+                // if (windows.Any(w => w.GetType() == window.GetType()))
+                //     throw new InvalidOperationException($"{window.GetType()}" +
+                //                                         $" duplicate");
                 
                 windows.Add(window);
             }

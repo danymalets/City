@@ -9,23 +9,23 @@ namespace Sources.Game.InputServices
     public class InputService : IInputService
     {
         private readonly IApplicationInputService _applicationInput;
-        private readonly InputScreen _inputScreen;
+        private readonly CarInputScreen _carInputScreen;
 
         public InputService()
         {
             _applicationInput = DiContainer.Resolve<IApplicationInputService>();
-            _inputScreen = DiContainer.Resolve<IUiService>()
-                .Get<InputScreen>();
+            _carInputScreen = DiContainer.Resolve<IUiService>()
+                .Get<CarInputScreen>();
         }
 
         public int Vertical =>
             _applicationInput.VerticalInput == 0 ? 
-                _inputScreen.VerticalInput :
+                _carInputScreen.VerticalInput :
                 _applicationInput.VerticalInput;
 
         public int Horizontal =>
             _applicationInput.HorizontalInput == 0 ?
-                _inputScreen.HorizontalInput : 
+                _carInputScreen.HorizontalInput : 
                 _applicationInput.HorizontalInput;
     }
 }

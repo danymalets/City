@@ -5,7 +5,7 @@ using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 
 namespace Sources.Game.GameObjects.RoadSystem
 {
-    public interface IPathSystem : IMonoComponent
+    public interface IPathSystem 
     {
         IEnumerable<Path> Pathes { get; }
         IEnumerable<IConnectingPoint> RootPoints { get; }

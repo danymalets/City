@@ -5,6 +5,7 @@ using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.Infrastructure.Services;
 using Sources.Utilities.Extensions;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Sources.Game.GameObjects.RoadSystem
 {
@@ -17,9 +18,15 @@ namespace Sources.Game.GameObjects.RoadSystem
         public IEnumerable<Path> Pathes => _pathes;
         public IEnumerable<IConnectingPoint> RootPoints => _rootPoints;
 
+        [SerializeField]
+        private Color _gizmosLaneDirectionColor = Color.blue;
+        
+        [SerializeField]
+        private Color _gizmosRootPointsColor = Color.black;
+        
         private void Awake()
         {
-            foreach (PathGenerator pathGenerator in FindObjectsOfType<PathGenerator>())
+            foreach (PathGenerator pathGenerator in GetComponentsInChildren<PathGenerator>())
             {
                 _pathes.AddRange(pathGenerator.Generate());
             }
@@ -54,13 +61,13 @@ namespace Sources.Game.GameObjects.RoadSystem
         
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.red;
+            Gizmos.color = _gizmosLaneDirectionColor;
             foreach (Path path in _pathes)
             {
                 Gizmos.DrawLine(path.Source.Position, path.Target.Position);
             }
             
-            Gizmos.color = Color.black;
+            Gizmos.color = _gizmosRootPointsColor;
             foreach (IConnectingPoint point in _rootPoints)
             {
                 Gizmos.DrawCube(point.Position, Vector3.one * 1f);

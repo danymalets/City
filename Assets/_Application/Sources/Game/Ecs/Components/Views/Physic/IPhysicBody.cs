@@ -7,5 +7,6 @@ namespace Sources.Game.Ecs.Components.Views
     {
         float SignedSpeed { get; }
         Vector3 Velocity { get; set; }
+        Vector3 LocalVelocity { get; set; }
     }
 }

@@ -24,7 +24,7 @@ namespace Sources.Game.Ecs.Components.Views.CarCollider
                 {
                     if (collider != null)
                         collider.isTrigger = false;
-                    //collider.gameObject.layer = Layers.Car;
+                    collider.gameObject.layer = Layers.Car;
                 }
             }
         }

@@ -25,7 +25,7 @@ namespace Sources.Game.Ecs.Systems.Init
             Entity car = _factory.CreateCar(_assets.CarsAssets.GetRandomCar(),
                  _levelContext.UserSpawnPoint.Position, _levelContext.UserSpawnPoint.Rotation);
 
-            _factory.CreateUserInCar(car);
+            _factory.CreateUserInCar(_assets.PlayersAssets.GetRandomPlayer(), car);
             
             _physics.SyncTransforms();
         }

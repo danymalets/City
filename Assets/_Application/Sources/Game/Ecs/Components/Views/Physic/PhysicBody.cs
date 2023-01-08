@@ -15,12 +15,18 @@ namespace Sources.Game.Ecs.Components.Views
         }
 
         public float SignedSpeed => 
-            transform.InverseTransformDirection(_rigidBody.velocity).z;
+            LocalVelocity.z;
 
         public Vector3 Velocity
         {
             get => _rigidBody.velocity;
             set => _rigidBody.velocity = value;
+        }
+
+        public Vector3 LocalVelocity
+        {
+            get => transform.InverseTransformDirection(_rigidBody.velocity);
+            set => _rigidBody.velocity = transform.TransformDirection(value);
         }
     }
 }

@@ -31,7 +31,11 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
         }
 
         public static ref TComponent GetSingleton<TComponent>(this World world) where TComponent : struct, IComponent =>
-            ref world.Filter<TComponent>().GetSingleton().Get<TComponent>();
+            ref world.GetSingletonEntity<TComponent>().Get<TComponent>();
+
+
+        public static Entity GetSingletonEntity<TComponent>(this World world) where TComponent : struct, IComponent =>
+            world.Filter<TComponent>().GetSingleton();
 
         public static TComponent GetMonoSingleton<TComponent>(this World world) where TComponent : IMonoComponent =>
             world.GetSingleton<Mono<TComponent>>().MonoComponent;

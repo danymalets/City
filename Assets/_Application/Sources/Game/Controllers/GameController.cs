@@ -20,7 +20,7 @@ namespace Sources.Game.Controllers
     public class GameController
     {
         private readonly LevelScreen _levelScreen;
-        private readonly InputScreen _inputScreen;
+        private readonly CarInputScreen _carInputScreen;
 
         private readonly LevelBalance _balance;
         private readonly LevelContext _levelContext;
@@ -54,7 +54,7 @@ namespace Sources.Game.Controllers
             }
 
             _levelScreen = ui.Get<LevelScreen>();
-            _inputScreen = ui.Get<InputScreen>();
+            _carInputScreen = ui.Get<CarInputScreen>();
 
             _uiClose = DiContainer.Resolve<IUiCloseService>();
             
@@ -72,10 +72,7 @@ namespace Sources.Game.Controllers
             _levelScreen.Open(_level);
             
             _levelScreen.EnableRestartButton();
-            
-            _inputScreen.Open();
 
-            
             _ecsGame.StartGame();
         }
 

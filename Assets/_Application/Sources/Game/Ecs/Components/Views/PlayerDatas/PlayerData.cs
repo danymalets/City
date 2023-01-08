@@ -17,7 +17,13 @@ namespace Sources.Game.Ecs.Components.Views.PlayerDatas
 
         private void OnValidate()
         {
-            GetComponent<Rigidbody>().mass = _mass;
+            Rigidbody rigidbody = GetComponent<Rigidbody>();
+            
+            rigidbody.mass = _mass;
+            
+            rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
+            rigidbody.angularDrag = 1f;
         }
     }
 }

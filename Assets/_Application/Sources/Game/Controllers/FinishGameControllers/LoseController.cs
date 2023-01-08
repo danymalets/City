@@ -9,7 +9,7 @@ namespace Sources.Game.Controllers.EndController
     public class LoseController : StatusController
     {
         private readonly LoseScreen _loseScreen;
-        private readonly InputScreen _inputScreen;
+        private readonly CarInputScreen _carInputScreen;
 
         public LoseController()
         {

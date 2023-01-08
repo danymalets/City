@@ -460,11 +460,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _transform: {fileID: 940123183880502109}
-  _carWheels: {fileID: 6140541149467764415}
   _physicBody: {fileID: 2315641939917132761}
+  _entityColliders: {fileID: 592980179656148145}
+  _entityBorders: {fileID: 5896463167345798394}
+  _carWheels: {fileID: 6140541149467764415}
   _carData: {fileID: 4938133259955177375}
-  _carBorders: {fileID: 5896463167345798394}
-  _carColliders: {fileID: 592980179656148145}
 --- !u!1 &4033976489504218873
 GameObject:
   m_ObjectHideFlags: 0
