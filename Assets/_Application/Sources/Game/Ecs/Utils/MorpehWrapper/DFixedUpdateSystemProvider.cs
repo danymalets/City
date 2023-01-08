@@ -14,7 +14,7 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
 
         public override void OnAwake()
         {
-            _dSystem.SetupWorld(World);
+            _dSystem.Setup(World);
             _dSystem.InitFilters();
             _dSystem.Initialize();
         }

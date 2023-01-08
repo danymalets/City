@@ -7,7 +7,7 @@ namespace Sources.Game.Ecs.Systems.Update.Car
 {
     public class CarSmoothSteeringAngleSystem : DFixedUpdateSystem
     {
-        public const float AngleSpeed = 360f;
+        public const float AngleSpeed = 180f;
         
         private Filter _filter;
 

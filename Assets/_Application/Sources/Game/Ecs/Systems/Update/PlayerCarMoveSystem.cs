@@ -18,35 +18,35 @@ namespace Sources.Game.Ecs.Systems.Update
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<MoveInput, PlayerInCar>();
+            _filter = _world.Filter<UserCarInput, PlayerInCar>();
         }
 
         protected override void OnUpdate(float deltaTime)
         {
             foreach (Entity playerEntity in _filter)
             {
-                ref MoveInput moveInput = ref playerEntity.Get<MoveInput>();
+                ref UserCarInput userCarInput = ref playerEntity.Get<UserCarInput>();
                 
                 Entity carEntity = playerEntity.Get<PlayerInCar>().Car;
 
                 float signedSpeed = carEntity.GetMono<IPhysicBody>().SignedSpeed;
 
-                carEntity.Set(new ChangeSteeringAngleRequest { AngleCoefficient = moveInput.Horizontal });
+                carEntity.Set(new ChangeSteeringAngleRequest { AngleCoefficient = userCarInput.Horizontal });
 
-                float motorCoefficient = moveInput.Vertical;
+                float motorCoefficient = userCarInput.Vertical;
                 float breakForce;
                 
-                if (moveInput.Vertical == 1 && DMath.Less(signedSpeed, 0))
+                if (userCarInput.Vertical == 1 && DMath.Less(signedSpeed, 0))
                 {
                     breakForce = BreakTorqueMax;
                     motorCoefficient = 0;
                 }
-                else if (moveInput.Vertical == -1 && DMath.Greater(signedSpeed, 0))
+                else if (userCarInput.Vertical == -1 && DMath.Greater(signedSpeed, 0))
                 {
                     breakForce = BreakTorqueMax;
                     motorCoefficient = 0;
                 }
-                else if (moveInput.Vertical == 0)
+                else if (userCarInput.Vertical == 0)
                 {
                     breakForce = BreakTorqueLite;
                 }

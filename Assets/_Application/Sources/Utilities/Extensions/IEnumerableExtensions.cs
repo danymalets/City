@@ -46,14 +46,14 @@ namespace Sources.Utilities.Extensions
                     target.transform.position));
         }
         
-        public static TValue GetRandom<T, TValue>(
+        public static TValue GetRandomWithWights<T, TValue>(
             this IEnumerable<T> enumerable, 
-            Func<T, (float Weight, TValue Result)> getValue)
+            Func<T, (TValue Result, float Weight)> getValue)
         {
             if (!enumerable.Any())
                 throw new InvalidOperationException("No data in collection");
 
-            float sumWeight = enumerable.Sum(t => getValue(t).Item1);
+            float sumWeight = enumerable.Sum(t => getValue(t).Weight);
             
             if (Mathf.Approximately(sumWeight, 0))
                 throw new InvalidOperationException("Sum weight = 0");
@@ -65,7 +65,7 @@ namespace Sources.Utilities.Extensions
             for (int i = 1; i < array.Length; i++)
             {
                 T element = array[i];
-                (float weight, TValue value) = getValue(element);
+                (TValue value, float weight) = getValue(element);
 
                 if (randValue < weight)
                     return value;

@@ -7,11 +7,11 @@ namespace Sources.Game.Ecs.Systems.Init
 {
     public class PathSystemInitSystem : DInitializer
     {
-        private ILevelContextService _levelContext;
+        private LevelContext _levelContext;
 
         protected override void OnInitialize()
         {
-            _levelContext = DiContainer.Resolve<ILevelContextService>();
+            _levelContext = DiContainer.Resolve<LevelContext>();
 
             _world.CreateWithSingleMono<IPathSystem>(_levelContext.PathSystem);
         }

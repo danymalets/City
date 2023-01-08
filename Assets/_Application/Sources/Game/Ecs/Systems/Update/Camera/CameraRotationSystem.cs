@@ -20,7 +20,7 @@ namespace Sources.Game.Ecs.Systems.Update.Camera
 
         public CameraRotationSystem()
         {
-            _cameraBalance = DiContainer.Resolve<IBalanceService>()
+            _cameraBalance = DiContainer.Resolve<Balance>()
                 .CameraBalance;
         }
         

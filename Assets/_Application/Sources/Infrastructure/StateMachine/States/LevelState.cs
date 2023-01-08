@@ -29,7 +29,7 @@ namespace Sources.Infrastructure.StateMachine.States
         {
             _diBuilder = DiBuilder.Create();
 
-            _diBuilder.Register<ILevelContextService>(levelData.LevelContext);
+            _diBuilder.Register(levelData.LevelContext);
             
             IUiService ui = DiContainer.Resolve<IUiService>();
             

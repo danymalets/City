@@ -21,7 +21,7 @@ namespace Sources.Game.Ecs.Systems.Update
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<UserTag, MoveInput>();
+            _filter = _world.Filter<UserTag, UserCarInput>();
         }
 
         protected override void OnUpdate(float deltaTime)
@@ -31,10 +31,10 @@ namespace Sources.Game.Ecs.Systems.Update
 
             Entity userEntity = _filter.GetSingleton();
 
-            ref MoveInput moveInput = ref userEntity.Get<MoveInput>();
+            ref UserCarInput userCarInput = ref userEntity.Get<UserCarInput>();
 
-            moveInput.Vertical = _inputService.Vertical;
-            moveInput.Horizontal = _inputService.Horizontal;
+            userCarInput.Vertical = _inputService.Vertical;
+            userCarInput.Horizontal = _inputService.Horizontal;
         }
     }
 }

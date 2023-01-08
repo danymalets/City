@@ -1,4 +1,3 @@
-using Sources.Game.Characters;
 using Sources.Infrastructure.Services.ApplicationCycle;
 using Sources.Infrastructure.Services.JsonSerializer;
 using Sources.Infrastructure.Services.PlayerPreferences;

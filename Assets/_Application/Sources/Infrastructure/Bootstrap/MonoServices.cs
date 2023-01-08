@@ -23,10 +23,11 @@ namespace Sources.Infrastructure.Bootstrap
         private PoolService _poolService;
         [SerializeField]
         private AudioService _audioService;
+        [FormerlySerializedAs("_assetsService")]
         [SerializeField]
-        private AssetsService _assetsService;
+        private Assets _assets;
         [SerializeField]
-        private BalanceService _balanceService;
+        private Balance _balanceService;
         [SerializeField]
         private GizmosService _gizmosService;
 
@@ -35,8 +36,8 @@ namespace Sources.Infrastructure.Bootstrap
         public ApplicationService ApplicationService => _applicationService;
         public PoolService PoolService => _poolService;
         public AudioService AudioService => _audioService;
-        public AssetsService AssetsService => _assetsService;
-        public BalanceService BalanceService => _balanceService;
+        public Assets Assets => _assets;
+        public Balance BalanceService => _balanceService;
         public GizmosService GizmosService => _gizmosService;
     }
 }

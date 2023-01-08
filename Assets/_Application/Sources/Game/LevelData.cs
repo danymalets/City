@@ -6,10 +6,10 @@ namespace Sources.Game
     public class LevelData
     {
         public int Level { get; }
-        public LevelContextService LevelContext { get; }
+        public LevelContext LevelContext { get; }
 
 
-        public LevelData(int level, LevelContextService levelContext)
+        public LevelData(int level, LevelContext levelContext)
         {
             Level = level;
             LevelContext = levelContext;

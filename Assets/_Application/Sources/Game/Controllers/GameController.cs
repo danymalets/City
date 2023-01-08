@@ -1,5 +1,6 @@
 using Sources.Game.Controllers.InputControllers;
 using Sources.Game.Ecs;
+using Sources.Game.Ecs.MonoEntities;
 using Sources.Game.InputServices;
 using Sources.Infrastructure.Bootstrap;
 using Sources.Infrastructure.Services;
@@ -22,7 +23,7 @@ namespace Sources.Game.Controllers
         private readonly InputScreen _inputScreen;
 
         private readonly LevelBalance _balance;
-        private readonly LevelContextService _levelContext;
+        private readonly LevelContext _levelContext;
 
         private readonly IAudioService _audio;
         private readonly int _level;
@@ -40,8 +41,17 @@ namespace Sources.Game.Controllers
             _diBuilder.Register<InputService, IInputService>();
 
             IPoolCreatorService poolCreatorService = DiContainer.Resolve<IPoolCreatorService>();
-            IAssetsService assets = DiContainer.Resolve<IAssetsService>();
-            poolCreatorService.CreatePool(new PoolConfig(assets.CarMonoEntity, 40));
+            Assets assets = DiContainer.Resolve<Assets>();
+            
+            foreach (CarMonoEntity carPrefab in assets.CarsAssets.CarPrefabs)
+            {
+                poolCreatorService.CreatePool(new PoolConfig(carPrefab, 40));
+            }
+            
+            foreach (PlayerMonoEntity playerPrefab in assets.PlayersAssets.PlayerPrefabs)
+            {
+                poolCreatorService.CreatePool(new PoolConfig(playerPrefab, 40));
+            }
 
             _levelScreen = ui.Get<LevelScreen>();
             _inputScreen = ui.Get<InputScreen>();

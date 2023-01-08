@@ -50,12 +50,12 @@ namespace Sources.Infrastructure.StateMachine.States
             _diBuilder.Register<PlayerPrefsService, IPlayerPrefsService>();
             _diBuilder.Register<UserService, IUserAccessService, IUserSaveService>();
             _diBuilder.Register<VibrationService, IVibrationService>();
-            _diBuilder.Register<IAssetsService>(monoServices.AssetsService);
+            _diBuilder.Register(monoServices.Assets);
             _diBuilder.Register<PoolService, IPoolCreatorService, IPoolSpawnerService>(monoServices.PoolService);
             _diBuilder.Register<TimeService, ITimeService>();
             _diBuilder.Register<FpsService, IFpsService>();
             _diBuilder.Register<IAudioService>(monoServices.AudioService);
-            _diBuilder.Register<IBalanceService>(monoServices.BalanceService);
+            _diBuilder.Register<Balance>(monoServices.BalanceService);
             _diBuilder.Register<UiService, IUiService, IUiRefreshService, IUiCloseService>(monoServices.UiService);
             _diBuilder.Register<IGizmosService>(monoServices.GizmosService);
 

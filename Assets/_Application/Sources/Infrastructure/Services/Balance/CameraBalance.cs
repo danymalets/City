@@ -1,18 +1,29 @@
 using System;
+using System.IO;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Sources.Infrastructure.Services.Balance
 {
-    [Serializable]
-    public class CameraBalance
+    [CreateAssetMenu(menuName = nameof(Balance) + "/" + nameof(CameraBalance), fileName = nameof(CameraBalance))]
+    public class CameraBalance : ScriptableObject
     {
         [SerializeField]
-        private float _cameraHeight = 5;
+        private float _cameraHeight = 4;
 
         [SerializeField]
-        private float _cameraBackDistance = 7;
+        private float _cameraBackDistance = 6;
 
+        [SerializeField]
+        private float _cameraXRotationAngle = 30;
+        
+        [SerializeField]
+        private float _cameraRotationSpeed = 90f;
+        
         public float CameraHeight => _cameraHeight;
         public float CameraBackDistance => _cameraBackDistance;
+
+        public float CameraXRotationAngle => _cameraXRotationAngle;
+        public float CameraRotationSpeed => _cameraRotationSpeed;
     }
 }
