@@ -1,4 +1,5 @@
 using Sources.Game.Characters;
+using Sources.Game.Ecs.MonoEntities;
 using Sources.Game.Ecs.Utils;
 using Sources.Game.GameObjects.Cars;
 using UnityEditor;
@@ -14,9 +15,9 @@ namespace Sources.Infrastructure.Services.AssetsManager
         private string _citySceneNameName;
 
         [SerializeField]
-        private MonoEntity _userCarEntity;
+        private CarMonoEntity _userCarEntity;
 
         public string CitySceneName => _citySceneNameName;
-        public MonoEntity UserCarMonoEntity => _userCarEntity;
+        public CarMonoEntity CarMonoEntity => _userCarEntity;
     }
 }

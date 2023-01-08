@@ -31,7 +31,7 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes
         }
 
         public bool IsEnded(Vector3 point) =>
-            GetProgress(point) >= 1f;
+            DMath.GreaterOrEquals(GetProgress(point), 1f);
 
         public bool IsOnPath(Vector3 point) =>
             SqrDistanceTo(point) <= AvailableError * AvailableError &&

@@ -1,13 +1,19 @@
+using System.Linq;
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components;
+using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Components.Views;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Utilities;
+using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update
 {
     public class PlayerCarMoveSystem : DUpdateSystem
     {
+        private const float BreakTorqueLite = 1.5f;
+        private const float BreakTorqueMax = 1_000_000_000f;
+        
         private Filter _filter;
 
         protected override void OnInitFilters()
@@ -21,29 +27,36 @@ namespace Sources.Game.Ecs.Systems.Update
             {
                 ref MoveInput moveInput = ref playerEntity.Get<MoveInput>();
                 
-                ICarEngine carEngine = playerEntity.Get<PlayerInCar>().Car.GetMono<ICarEngine>();
-                
-                carEngine.SetAngleCoefficient(moveInput.Horizontal);
-                carEngine.SetMotorCoefficient(moveInput.Vertical);
+                Entity carEntity = playerEntity.Get<PlayerInCar>().Car;
 
-                if (moveInput.Vertical == 1 && DMath.Less(carEngine.Speed, 0))
+                float signedSpeed = carEntity.GetMono<IPhysicBody>().SignedSpeed;
+
+                carEntity.Set(new ChangeSteeringAngleRequest { AngleCoefficient = moveInput.Horizontal });
+
+                float motorCoefficient = moveInput.Vertical;
+                float breakForce;
+                
+                if (moveInput.Vertical == 1 && DMath.Less(signedSpeed, 0))
                 {
-                    carEngine.SetMaxBreak();
-                    carEngine.SetMotorCoefficient(0);
+                    breakForce = BreakTorqueMax;
+                    motorCoefficient = 0;
                 }
-                else if (moveInput.Vertical == -1 && DMath.Greater(carEngine.Speed, 0))
+                else if (moveInput.Vertical == -1 && DMath.Greater(signedSpeed, 0))
                 {
-                    carEngine.SetMaxBreak();
-                    carEngine.SetMotorCoefficient(0);
+                    breakForce = BreakTorqueMax;
+                    motorCoefficient = 0;
                 }
                 else if (moveInput.Vertical == 0)
                 {
-                    carEngine.SetLiteBreak();
+                    breakForce = BreakTorqueLite;
                 }
                 else
                 {
-                    carEngine.ResetBreak();
+                    breakForce = 0;
                 }
+
+                carEntity.Get<CarMotorCoefficient>().Coefficient = motorCoefficient;
+                carEntity.Get<CarBreak>().Break = breakForce;
             }
         }
     }

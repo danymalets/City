@@ -50,29 +50,12 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
             World.AddSystemsGroup(_updateIndex++, systemsGroup);
         }
 
-        public void AddTemp()
-        {
-            // ReSharper disable once Unity.IncorrectScriptableObjectInstantiation
-            _initSystemGroup.AddSystem(new A());
-        }
-
-        private class A : UpdateSystem
-        {
-            public override void OnAwake()
-            {
-                
-            }
-
-            public override void OnUpdate(float deltaTime)
-            {
-                Debug.Log($"updated");
-            }
-        }
-        
         public void AddFixedSystem<TDFixedUpdateSystem>() where TDFixedUpdateSystem : DFixedUpdateSystem, new()
         {
+            SystemsGroup systemsGroup = World.CreateSystemsGroup();
             // ReSharper disable once Unity.IncorrectScriptableObjectInstantiation
-            _initSystemGroup.AddSystem(new DFixedUpdateSystemProvider<TDFixedUpdateSystem>());
+            systemsGroup.AddSystem(new DFixedUpdateSystemProvider<TDFixedUpdateSystem>());
+            World.AddSystemsGroup(_updateIndex++, systemsGroup);
         }
 
         public void AddOneFrame<TComponent>() where TComponent : struct, IComponent => 

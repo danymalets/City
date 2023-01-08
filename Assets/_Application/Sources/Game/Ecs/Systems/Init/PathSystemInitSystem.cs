@@ -1,4 +1,5 @@
 using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Game.GameObjects.RoadSystem;
 using Sources.Infrastructure.Bootstrap;
 using Sources.Infrastructure.Services;
 
@@ -12,7 +13,7 @@ namespace Sources.Game.Ecs.Systems.Init
         {
             _levelContext = DiContainer.Resolve<ILevelContextService>();
 
-            _world.CreateFromMono(_levelContext.PathSystemEntity);
+            _world.CreateWithSingleMono<IPathSystem>(_levelContext.PathSystem);
         }
     }
 }

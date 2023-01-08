@@ -3,6 +3,7 @@ using Sources.Infrastructure.Services.AssetsManager;
 using Sources.Infrastructure.Services.Audio;
 using Sources.Infrastructure.Services.Balance;
 using Sources.Infrastructure.Services.CoroutineRunner;
+using Sources.Infrastructure.Services.Gizmoses;
 using Sources.Infrastructure.Services.Pool;
 using Sources.UI.System;
 using UnityEngine;
@@ -18,7 +19,6 @@ namespace Sources.Infrastructure.Bootstrap
         private CoroutineRunnerService _coroutineRunnerService;
         [SerializeField]
         private ApplicationService _applicationService;
-        [FormerlySerializedAs("_poolCreatorService")]
         [SerializeField]
         private PoolService _poolService;
         [SerializeField]
@@ -27,7 +27,9 @@ namespace Sources.Infrastructure.Bootstrap
         private AssetsService _assetsService;
         [SerializeField]
         private BalanceService _balanceService;
-        
+        [SerializeField]
+        private GizmosService _gizmosService;
+
         public UiService UiService => _uiService;
         public CoroutineRunnerService CoroutineRunnerService => _coroutineRunnerService;
         public ApplicationService ApplicationService => _applicationService;
@@ -35,5 +37,6 @@ namespace Sources.Infrastructure.Bootstrap
         public AudioService AudioService => _audioService;
         public AssetsService AssetsService => _assetsService;
         public BalanceService BalanceService => _balanceService;
+        public GizmosService GizmosService => _gizmosService;
     }
 }

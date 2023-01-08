@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 namespace Sources.Game.Ecs.Components
 {
-    public class TransformComponent : MonoProvider<ITransform>, ITransform
+    public class TransformComponent : MonoBehaviour, ITransform
     {
         public Vector3 Position
         {

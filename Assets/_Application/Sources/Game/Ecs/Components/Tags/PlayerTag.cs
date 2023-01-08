@@ -1,9 +1,10 @@
 
+using Scellecs.Morpeh;
 using Sources.Game.Ecs.Utils;
 
 namespace Sources.Game.Ecs.Components.Tags
 {
-    public struct PlayerTag : ITag
+    public struct PlayerTag : IComponent
     {
     }
 }

@@ -27,6 +27,7 @@ namespace Sources.Game.GameObjects.Cars
         }
 
         private bool IsCar(Collider other) =>
-            !other.isTrigger && other.transform.root.GetComponent<Car>() != null;
+            !other.isTrigger;
+            //&& other.transform.root.GetComponent<Car>() != null;
     }
 }

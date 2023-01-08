@@ -7,15 +7,15 @@ namespace Sources.Infrastructure.Services.CoroutineRunner
     public class CoroutineRunnerService : MonoBehaviour, ICoroutineRunnerService
     {
         public Coroutine RunWithDelay(float delay, Action action) => 
-            MonoBehaviourExtensions.RunWithDelay(this, delay, action);
+            MonoBehaviourCoroutineExtensions.RunWithDelay(this, delay, action);
 
         public Coroutine RunEachFrame(Action action, bool andNow) =>
-            MonoBehaviourExtensions.RunEachFrame(this, action, andNow);
+            MonoBehaviourCoroutineExtensions.RunEachFrame(this, action, andNow);
 
         public Coroutine RunEachFixedUpdate(Action action) =>
-            MonoBehaviourExtensions.RunEachFixedUpdate(this, action);
+            MonoBehaviourCoroutineExtensions.RunEachFixedUpdate(this, action);
 
         public Coroutine RunEachSeconds(float period, Action action, bool andNow = false) =>
-            MonoBehaviourExtensions.RunEachSeconds(this, period, action, andNow);
+            MonoBehaviourCoroutineExtensions.RunEachSeconds(this, period, action, andNow);
     }
 }

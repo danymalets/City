@@ -8,13 +8,14 @@ using UnityEngine;
 
 namespace Sources.Game.GameObjects.RoadSystem
 {
-    public class PathSystem : MonoProvider<IPathSystem>, IPathSystem
+    public class PathSystem : MonoBehaviour, IPathSystem
     {
         private readonly List<Path> _pathes = new();
         private readonly HashSet<IConnectingPoint> _points = new ();
+        private readonly List<IConnectingPoint> _rootPoints = new();
 
         public IEnumerable<Path> Pathes => _pathes;
-        public IEnumerable<IConnectingPoint> Points => _points;
+        public IEnumerable<IConnectingPoint> RootPoints => _rootPoints;
 
         private void Awake()
         {
@@ -27,6 +28,12 @@ namespace Sources.Game.GameObjects.RoadSystem
             {
                 _points.Add(path.Source);
                 _points.Add(path.Target);
+            }
+
+            foreach (IConnectingPoint point in _points)
+            {
+                if (point.IsRoot)
+                    _rootPoints.Add(point);
             }
 
             // foreach (IConnectingPoint point in _points)
@@ -51,6 +58,12 @@ namespace Sources.Game.GameObjects.RoadSystem
             foreach (Path path in _pathes)
             {
                 Gizmos.DrawLine(path.Source.Position, path.Target.Position);
+            }
+            
+            Gizmos.color = Color.black;
+            foreach (IConnectingPoint point in _rootPoints)
+            {
+                Gizmos.DrawCube(point.Position, Vector3.one * 1f);
             }
         }    
     }

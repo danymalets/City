@@ -1,6 +1,5 @@
 using Sources.Game;
 using Sources.Game.Controllers;
-using Sources.Game.StaticData;
 using Sources.Infrastructure.Bootstrap;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.StateMachine.Machine;

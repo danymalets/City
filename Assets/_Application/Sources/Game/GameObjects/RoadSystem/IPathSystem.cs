@@ -8,6 +8,6 @@ namespace Sources.Game.GameObjects.RoadSystem
     public interface IPathSystem : IMonoComponent
     {
         IEnumerable<Path> Pathes { get; }
-        IEnumerable<IConnectingPoint> Points { get; }
+        IEnumerable<IConnectingPoint> RootPoints { get; }
     }
 }

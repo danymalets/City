@@ -13,8 +13,9 @@ namespace Sources.Game.Ecs.Factories
 
         public Entity CreateUser(Entity carEntity)
         {
-            return _world.CreateWithEmptyMono()
+            return _world.CreateEntity()
                 .Add<UserTag>()
+                .Add<PlayerTag>()
                 .Add<MoveInput>()
                 .Set(new PlayerInCar { Car = carEntity });
         }

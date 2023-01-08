@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Sources.Utilities.Extensions
@@ -8,5 +9,16 @@ namespace Sources.Utilities.Extensions
         public static Vector3 WithY(this Vector3 vector, float y) => new (vector.x, y, vector.z);
         public static Vector3 WithZ(this Vector3 vector, float z) => new (vector.x, vector.y, z);
 
+        public static Vector3 Average(this IEnumerable<Vector3> en)
+        {
+            Vector3 result = Vector3.zero;
+            int count = 0;
+            foreach (Vector3 vector in en)
+            {
+                result += vector;
+                count++;
+            }
+            return result / count;
+        } 
     }
 }

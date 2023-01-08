@@ -7,6 +7,7 @@ using Sources.Infrastructure.Services.Audio;
 using Sources.Infrastructure.Services.Balance;
 using Sources.Infrastructure.Services.CoroutineRunner;
 using Sources.Infrastructure.Services.Fps;
+using Sources.Infrastructure.Services.Gizmoses;
 using Sources.Infrastructure.Services.Instantiator;
 using Sources.Infrastructure.Services.JsonSerializer;
 using Sources.Infrastructure.Services.PlayerPreferences;
@@ -56,6 +57,7 @@ namespace Sources.Infrastructure.StateMachine.States
             _diBuilder.Register<IAudioService>(monoServices.AudioService);
             _diBuilder.Register<IBalanceService>(monoServices.BalanceService);
             _diBuilder.Register<UiService, IUiService, IUiRefreshService, IUiCloseService>(monoServices.UiService);
+            _diBuilder.Register<IGizmosService>(monoServices.GizmosService);
 
             gameObjectService.DontDestroyOnLoad(monoServices.gameObject);
 

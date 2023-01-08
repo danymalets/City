@@ -1,12 +1,13 @@
 using Sources.Game.Controllers.InputControllers;
 using Sources.Game.Ecs;
 using Sources.Game.InputServices;
-using Sources.Game.StaticData;
 using Sources.Infrastructure.Bootstrap;
 using Sources.Infrastructure.Services;
+using Sources.Infrastructure.Services.AssetsManager;
 using Sources.Infrastructure.Services.Audio;
 using Sources.Infrastructure.Services.Audio.Clips.Type;
 using Sources.Infrastructure.Services.Balance;
+using Sources.Infrastructure.Services.Pool;
 using Sources.UI.Screens;
 using Sources.UI.Screens.Input;
 using Sources.UI.Screens.Level;
@@ -37,6 +38,10 @@ namespace Sources.Game.Controllers
             _diBuilder = DiBuilder.Create();
 
             _diBuilder.Register<InputService, IInputService>();
+
+            IPoolCreatorService poolCreatorService = DiContainer.Resolve<IPoolCreatorService>();
+            IAssetsService assets = DiContainer.Resolve<IAssetsService>();
+            poolCreatorService.CreatePool(new PoolConfig(assets.CarMonoEntity, 40));
 
             _levelScreen = ui.Get<LevelScreen>();
             _inputScreen = ui.Get<InputScreen>();

@@ -1,4 +1,6 @@
+using Sources.Game.Ecs.MonoEntities;
 using Sources.Game.Ecs.Utils;
+using Sources.Game.GameObjects.RoadSystem;
 using UnityEngine;
 
 namespace Sources.Infrastructure.Bootstrap
@@ -9,15 +11,14 @@ namespace Sources.Infrastructure.Bootstrap
         public SpawnPoint _userSpawnPoint;
 
         [SerializeField]
-        private MonoEntity _cameraMonoEntity;
+        private CameraMonoEntity _cameraMonoEntity;
 
         [SerializeField]
-        private MonoEntity _pathSystemEntity;
-
+        private PathSystem _pathSystem;
 
         public ISpawnPoint UserSpawnPoint => _userSpawnPoint;
 
-        public MonoEntity CameraMonoEntity => _cameraMonoEntity;
-        public MonoEntity PathSystemEntity => _pathSystemEntity;
+        public CameraMonoEntity CameraMonoEntity => _cameraMonoEntity;
+        public PathSystem PathSystem => _pathSystem;
     }
 }

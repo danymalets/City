@@ -1,3 +1,4 @@
+using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Factories;
 using Sources.Game.Ecs.Factories.Npc;
 using Sources.Game.Ecs.Systems;
@@ -5,6 +6,9 @@ using Sources.Game.Ecs.Systems.Fixed;
 using Sources.Game.Ecs.Systems.Init;
 using Sources.Game.Ecs.Systems.Update;
 using Sources.Game.Ecs.Systems.Update.Camera;
+using Sources.Game.Ecs.Systems.Update.Car;
+using Sources.Game.Ecs.Systems.Update.Npc;
+using Sources.Game.Ecs.Systems.Update.User;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Infrastructure.Services;
 
@@ -28,7 +32,6 @@ namespace Sources.Game.Ecs
 
             AddInitializers();
             AddUpdateSystems();
-            AddOneFrames();
             AddFixedUpdateSystems();
         }
 
@@ -42,6 +45,17 @@ namespace Sources.Game.Ecs
 
         private void AddFixedUpdateSystems()
         {
+            _world.AddFixedSystem<NpcCarPathChangeSystem>();
+            _world.AddFixedSystem<NpcCarPathMoveSystem>();
+            
+            _world.AddFixedSystem<CarSmoothSteeringAngleSystem>();
+            
+            _world.AddFixedSystem<CarBreakApplySystem>();
+            _world.AddFixedSystem<CarMotorApplySystem>();
+            _world.AddFixedSystem<SteeringAngleApplySystem>();
+            
+            _world.AddFixedSystem<CarMaxSpeedSystem>();
+
             _world.AddFixedSystem<PhysicsUpdateSystem>();
         }
 
@@ -49,14 +63,13 @@ namespace Sources.Game.Ecs
         {
             _world.AddUpdateSystem<UserInputSystem>();
             _world.AddUpdateSystem<PlayerCarMoveSystem>();
-
+            
             _world.AddUpdateSystem<CameraRotationSystem>();
             _world.AddUpdateSystem<CameraPositionSystem>();
-        }
-
-        private void AddOneFrames()
-        {
-            // _world.AddOneFrame<>();
+            
+            _world.AddUpdateSystem<ChangeSteeringAngleSystem>();
+            
+            _world.AddOneFrame<ChangeSteeringAngleRequest>();
         }
 
         public void StartGame() => 

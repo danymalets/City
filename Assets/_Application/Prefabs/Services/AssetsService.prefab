@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _citySceneNameName: City
-  _userCarEntity: {fileID: 990607179127907207, guid: 22dd2dd0a228b4f07a6b28a372d9df37, type: 3}
+  _userCarEntity: {fileID: 3807972892401286929, guid: 22dd2dd0a228b4f07a6b28a372d9df37, type: 3}

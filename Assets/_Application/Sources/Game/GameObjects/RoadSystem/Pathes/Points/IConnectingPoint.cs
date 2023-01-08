@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Sources.Utilities.Extensions;
 using UnityEngine;
 
 namespace Sources.Game.GameObjects.RoadSystem.Pathes.Points
@@ -10,5 +11,8 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes.Points
         Quaternion Rotation { get; }
         List<Path> Sources { get; }
         List<Path> Targets { get; }
+
+        Path GetRandomTargetPath() =>
+            Targets.GetRandom();
     }
 }

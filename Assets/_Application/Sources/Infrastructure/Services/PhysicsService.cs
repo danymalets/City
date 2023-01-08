@@ -14,5 +14,11 @@ namespace Sources.Infrastructure.Services
 
         public void Simulate(float step) => 
             Physics.Simulate(step);
+
+        public Collider[] OverlapBox(Vector3 center, Vector3 halfExtents, Quaternion orientation, int layerMask) => 
+            Physics.OverlapBox(center, halfExtents, orientation, layerMask, QueryTriggerInteraction.Ignore);
+
+        public void SyncTransforms() => 
+            Physics.SyncTransforms();
     }
 }

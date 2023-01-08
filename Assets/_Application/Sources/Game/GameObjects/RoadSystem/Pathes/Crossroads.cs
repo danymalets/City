@@ -4,6 +4,7 @@ using System.Linq;
 using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.Utilities;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Sources.Game.GameObjects.RoadSystem.Pathes
 {
@@ -11,17 +12,17 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes
     {
         private const int PointsCount = 10;
 
-        [SerializeField]
-        private Road _up;
+        [FormerlySerializedAs("_up")]
+        public Road Up;
 
-        [SerializeField]
-        private Road _right;
+        [FormerlySerializedAs("_right")]
+        public Road Right;
 
-        [SerializeField]
-        private Road _down;
+        [FormerlySerializedAs("_down")]
+        public Road Down;
 
-        [SerializeField]
-        private Road _left;
+        [FormerlySerializedAs("_left")]
+        public Road Left;
 
         public override IEnumerable<Path> Generate()
         {
@@ -47,7 +48,7 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes
         {
             List<CrossroadsSideData> sideData = new List<CrossroadsSideData>();
 
-            foreach (Road road in new[] { _up, _right, _down, _left })
+            foreach (Road road in new[] { Up, Right, Down, Left })
             {
                 if (road == null)
                     continue;

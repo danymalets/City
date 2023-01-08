@@ -15,21 +15,27 @@ namespace Sources.Game.Ecs.Systems.Init
 
         private readonly ICarFactory _carFactory;
         private readonly IUserFactory _userFactory;
-        
+        private readonly IAssetsService _assets;
+        private readonly IPhysicsService _physics;
+
         public UserInitSystem()
         {
             _carFactory = DiContainer.Resolve<ICarFactory>();
             _userFactory = DiContainer.Resolve<IUserFactory>();
             
             _levelContext = DiContainer.Resolve<ILevelContextService>();
+            _physics = DiContainer.Resolve<IPhysicsService>();
+            _assets = DiContainer.Resolve<IAssetsService>();
         }
 
         protected override void OnInitialize()
         {
-            Entity car = _carFactory.CreateCar(
-                _levelContext.UserSpawnPoint.Position, _levelContext.UserSpawnPoint.Rotation);
+            Entity car = _carFactory.CreateCar(_assets.CarMonoEntity,
+                 _levelContext.UserSpawnPoint.Position, _levelContext.UserSpawnPoint.Rotation);
 
             _userFactory.CreateUser(car);
+            
+            _physics.SyncTransforms();
         }
     }
 }

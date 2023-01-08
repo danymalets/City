@@ -13,12 +13,15 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
             monoEntity.Setup(entity);
             return entity;
         }
-
-
-        public static Entity CreateWithEmptyMono(this World world)
+        
+        public static Entity CreateWithSingleMono<TMonoComponent>(this World world, TMonoComponent monoComponent)
+            where TMonoComponent : IMonoComponent
         {
-            return world.CreateEntity();;
+            Entity entity = world.CreateEntity();
+            entity.SetMono<TMonoComponent>(monoComponent);
+            return entity;
         }
+        
 
         public static Entity CreateFromMonoPrefab(this World world, MonoEntity prefab)
         {

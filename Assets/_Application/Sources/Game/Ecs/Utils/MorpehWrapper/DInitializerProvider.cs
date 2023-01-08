@@ -17,7 +17,6 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
             _dSystem.SetupWorld(World);
             _dSystem.InitFilters();
             _dSystem.Initialize();
-            Debug.Log($"update {typeof(TDInitializer)}");
         }
     }
 }

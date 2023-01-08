@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 namespace Sources.Utilities
@@ -68,5 +69,11 @@ namespace Sources.Utilities
         {
             return 0;
         }
+
+        public static float Min(params float[] values) => 
+            values.Aggregate(float.PositiveInfinity, Mathf.Min);
+        
+        public static float Max(params float[] values) => 
+            values.Aggregate(float.NegativeInfinity, Mathf.Max);
     }
 }
