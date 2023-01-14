@@ -33,6 +33,7 @@ namespace Sources.Game.Ecs.Systems.Update.Camera
 
         protected override void OnUpdate(float deltaTime)
         {
+
             if (_userFilter.NoOne())
                 return;
             

@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.Car
 {
-    public class CarMaxSpeedSystem : DFixedUpdateSystem
+    public class CarMaxSpeedSystem : DUpdateSystem
     {
         private Filter _filter;
 
@@ -17,7 +17,7 @@ namespace Sources.Game.Ecs.Systems.Update.Car
             _filter = _world.Filter<CarTag>();
         }
 
-        protected override void OnFixedUpdate(float fixedDeltaTime)
+        protected override void OnUpdate(float fixedDeltaTime)
         {
             foreach (Entity carEntity in _filter)
             {

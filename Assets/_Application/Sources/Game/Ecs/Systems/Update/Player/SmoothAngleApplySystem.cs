@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.Player
 {
-    public class SmoothAngleApplySystem : DFixedUpdateSystem
+    public class SmoothAngleApplySystem : DUpdateSystem
     {
         private Filter _filter;
 
@@ -16,7 +16,7 @@ namespace Sources.Game.Ecs.Systems.Update.Player
             _filter = _world.Filter<PlayerTag>();
         }
 
-        protected override void OnFixedUpdate(float fixedDeltaTime)
+        protected override void OnUpdate(float deltaTime)
         {
             foreach (Entity playerEntity in _filter)
             {

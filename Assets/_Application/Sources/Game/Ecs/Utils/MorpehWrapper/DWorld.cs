@@ -1,5 +1,6 @@
 using Scellecs.Morpeh;
 using Scellecs.Morpeh.Systems;
+using Sources.Game.Ecs.Utils.Debugger.Systems;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.CoroutineRunner;
 using Sources.Infrastructure.Services.Times;
@@ -27,6 +28,9 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
             _initSystemGroup = World.CreateSystemsGroup();
             World.AddSystemsGroup(_updateIndex++, _initSystemGroup);
 
+            AddFixedSystem<FixedDebugIncreaseSystem>(1000);
+            AddUpdateSystem<SystemsDebugDataApplySystem>(1001);
+            
             _coroutineContext = new CoroutineContext();
         }
 
@@ -42,20 +46,20 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
             _initSystemGroup.AddInitializer(new DInitializerProvider<TDInitializer>());
         }
 
-        public void AddUpdateSystem<TDUpdateSystem>() where TDUpdateSystem : DUpdateSystem, new()
+        public void AddUpdateSystem<TDUpdateSystem>(int order = -1) where TDUpdateSystem : DUpdateSystem, new()
         {
             SystemsGroup systemsGroup = World.CreateSystemsGroup();
             // ReSharper disable once Unity.IncorrectScriptableObjectInstantiation
             systemsGroup.AddSystem(new DUpdateSystemProvider<TDUpdateSystem>());
-            World.AddSystemsGroup(_updateIndex++, systemsGroup);
+            World.AddSystemsGroup(order != -1 ? order : _updateIndex++, systemsGroup);
         }
 
-        public void AddFixedSystem<TDFixedUpdateSystem>() where TDFixedUpdateSystem : DFixedUpdateSystem, new()
+        public void AddFixedSystem<TDFixedUpdateSystem>(int order = -1) where TDFixedUpdateSystem : DUpdateSystem, new()
         {
             SystemsGroup systemsGroup = World.CreateSystemsGroup();
             // ReSharper disable once Unity.IncorrectScriptableObjectInstantiation
             systemsGroup.AddSystem(new DFixedUpdateSystemProvider<TDFixedUpdateSystem>());
-            World.AddSystemsGroup(_updateIndex++, systemsGroup);
+            World.AddSystemsGroup(order != -1 ? order : _updateIndex++, systemsGroup);
         }
 
         public void AddOneFrame<TComponent>() where TComponent : struct, IComponent => 

@@ -10,7 +10,7 @@ using Sources.Game.GameObjects.Cars;
 
 namespace Sources.Game.Ecs.Systems.Update.Car
 {
-    public class CarMotorApplySystem : DFixedUpdateSystem
+    public class CarMotorApplySystem : DUpdateSystem
     {
         private Filter _filter;
 
@@ -19,7 +19,7 @@ namespace Sources.Game.Ecs.Systems.Update.Car
             _filter = _world.Filter<CarTag, CarMotorCoefficient, Mono<ICarData>, Mono<ICarWheels>>();
         }
 
-        protected override void OnFixedUpdate(float fixedDeltaTime)
+        protected override void OnUpdate(float fixedDeltaTime)
         {
             foreach (Entity carEntity in _filter)
             {

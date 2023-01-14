@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.Player
 {
-    public class SmoothAngleSystem : DFixedUpdateSystem
+    public class SmoothAngleSystem : DUpdateSystem
     {
         private Filter _filter;
 
@@ -15,7 +15,7 @@ namespace Sources.Game.Ecs.Systems.Update.Player
             _filter = _world.Filter<TargetAngle, SmoothAngle>();
         }
 
-        protected override void OnFixedUpdate(float fixedDeltaTime)
+        protected override void OnUpdate(float deltaTime)
         {
             foreach (Entity entity in _filter)
             {
@@ -24,7 +24,7 @@ namespace Sources.Game.Ecs.Systems.Update.Player
                 ref RotationSpeed rotationSpeed = ref entity.Get<RotationSpeed>();
 
                 smoothAngle.Value = Mathf.MoveTowardsAngle(
-                    smoothAngle.Value, targetAngle.Value, fixedDeltaTime * rotationSpeed.Value);
+                    smoothAngle.Value, targetAngle.Value, deltaTime * rotationSpeed.Value);
             }
         }
     }

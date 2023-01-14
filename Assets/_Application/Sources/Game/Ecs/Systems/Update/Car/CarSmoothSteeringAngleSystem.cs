@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.Car
 {
-    public class CarSmoothSteeringAngleSystem : DFixedUpdateSystem
+    public class CarSmoothSteeringAngleSystem : DUpdateSystem
     {
         public const float AngleSpeed = 180f;
         
@@ -17,7 +17,7 @@ namespace Sources.Game.Ecs.Systems.Update.Car
             _filter = _world.Filter<SteeringAngle, SmoothSteeringAngle>();
         }
 
-        protected override void OnFixedUpdate(float fixedDeltaTime)
+        protected override void OnUpdate(float fixedDeltaTime)
         {
             foreach (Entity carEntity in _filter)
             {

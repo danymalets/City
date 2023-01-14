@@ -3,16 +3,15 @@ using UnityEngine;
 
 namespace Sources.Utilities
 {
-    public static class DTimeExecution
+    public static class DPerformance
     {
-        public static void Execute(Action action)
+        public static long Execute(Action action)
         {
             var watch = System.Diagnostics.Stopwatch.StartNew();
             action();
             watch.Stop();
             long ticks = watch.ElapsedTicks;
-
-            Debug.Log($"Time execution in ticks: {ticks}");
+            return ticks;
         }
     }
 }

@@ -15,7 +15,7 @@ using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.NpcCar
 {
-    public class NpcCarMoveSystem : DFixedUpdateSystem
+    public class NpcCarMoveSystem : DUpdateSystem
     {
         private Filter _filter;
         private readonly IPhysicsService _physics;
@@ -30,7 +30,7 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
             _filter = _world.Filter<NpcTag, PlayerInCar, NpcOnPath>();
         }
 
-        protected override void OnFixedUpdate(float fixedDeltaTime)
+        protected override void OnUpdate(float deltaTime)
         {
             foreach (Entity npcEntity in _filter)
             {

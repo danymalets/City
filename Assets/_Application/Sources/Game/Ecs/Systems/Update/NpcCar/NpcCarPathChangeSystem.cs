@@ -7,7 +7,7 @@ using Sources.Game.Ecs.Utils.MorpehWrapper;
 
 namespace Sources.Game.Ecs.Systems.Update.NpcCar
 {
-    public class NpcCarPathChangeSystem : DFixedUpdateSystem
+    public class NpcCarPathChangeSystem : DUpdateSystem
     {
         private Filter _filter;
 
@@ -16,7 +16,7 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
             _filter = _world.Filter<NpcTag, PlayerInCar, NpcOnPath>();
         }
 
-        protected override void OnFixedUpdate(float fixedDeltaTime)
+        protected override void OnUpdate(float deltaTime)
         {
             foreach (Entity npc in _filter)
             {

@@ -3,7 +3,7 @@ using Sources.Infrastructure.Services;
 
 namespace Sources.Game.Ecs.Systems.Fixed
 {
-    public class PhysicsUpdateSystem : DFixedUpdateSystem
+    public class PhysicsUpdateSystem : DUpdateSystem
     {
         private readonly IPhysicsService _physics;
 
@@ -16,7 +16,7 @@ namespace Sources.Game.Ecs.Systems.Fixed
         {
         }
 
-        protected override void OnFixedUpdate(float fixedDeltaTime)
+        protected override void OnUpdate(float fixedDeltaTime)
         {
             _physics.Simulate(fixedDeltaTime);
         }

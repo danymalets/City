@@ -6,6 +6,7 @@ using Sources.Infrastructure.StateMachine.Machine;
 using Sources.Infrastructure.StateMachine.StateBase;
 using Sources.UI.Overlays;
 using Sources.UI.System;
+using UnityEngine;
 
 namespace Sources.Infrastructure.StateMachine.States
 {
@@ -23,6 +24,7 @@ namespace Sources.Infrastructure.StateMachine.States
             IUiService ui = DiContainer.Resolve<IUiService>();
             
             application.TargetFrameRate = screen.MaxDeviceFrameRate;
+            // Time.fixedDeltaTime = 1 / 30f;
             physics.AutoSimulation = false;
 
             ui.Open<PerformanceScreen>();

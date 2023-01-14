@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.Npc
 {
-    public class NpcPathRotateSystem : DFixedUpdateSystem
+    public class NpcPathRotateSystem : DUpdateSystem
     {
         private Filter _filter;
 
@@ -19,7 +19,7 @@ namespace Sources.Game.Ecs.Systems.Update.Npc
             _filter = _world.Filter<NpcTag, NpcOnPath>().Without<PlayerInCar>();
         }
 
-        protected override void OnFixedUpdate(float fixedDeltaTime)
+        protected override void OnUpdate(float deltaTime)
         {
             foreach (Entity npc in _filter)
             {

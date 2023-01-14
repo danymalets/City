@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.NpcCar
 {
-    public class CarForwardColliderSystem : DFixedUpdateSystem
+    public class CarForwardColliderSystem : DUpdateSystem
     {
         private Filter _filter;
         private readonly SimulationBalance _simulationBalance;
@@ -27,7 +27,7 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
             _filter = _world.Filter<CarTag>();
         }
 
-        protected override void OnFixedUpdate(float fixedDeltaTime)
+        protected override void OnUpdate(float deltaTime)
         {
             foreach (Entity carEntity in _filter)
             {
@@ -49,7 +49,7 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
                 forwardTrigger.Size = new Vector3(
                     borders.HalfExtents.x * 2, borders.HalfExtents.y * 2, _simulationBalance.CarTriggerLength );
                 
-                _fixedUpdateGizmosContext.DrawCube(
+                _updateGizmosContext.DrawCube(
                     forwardTrigger.Center, forwardTrigger.Rotation, forwardTrigger.Size, Color.red);
             }
         }

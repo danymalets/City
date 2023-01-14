@@ -9,7 +9,7 @@ using Sources.Game.GameObjects.Cars;
 
 namespace Sources.Game.Ecs.Systems.Update.Car
 {
-    public class CarBreakApplySystem : DFixedUpdateSystem
+    public class CarBreakApplySystem : DUpdateSystem
     {
         private const float BreakTorqueLite = 1.5f;
         private const float BreakTorqueMax = 1_000_000_000f;
@@ -21,7 +21,7 @@ namespace Sources.Game.Ecs.Systems.Update.Car
             _filter = _world.Filter<CarTag, CarBreak, Mono<ICarWheels>>();
         }
 
-        protected override void OnFixedUpdate(float fixedDeltaTime)
+        protected override void OnUpdate(float fixedDeltaTime)
         {
             foreach (Entity carEntity in _filter)
             {

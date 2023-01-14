@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.Npc
 {
-    public class NpcPathChangeSystem : DFixedUpdateSystem
+    public class NpcPathChangeSystem : DUpdateSystem
     {
         private Filter _filter;
 
@@ -17,7 +17,7 @@ namespace Sources.Game.Ecs.Systems.Update.Npc
             _filter = _world.Filter<NpcTag, NpcOnPath>().Without<PlayerInCar>();
         }
 
-        protected override void OnFixedUpdate(float fixedDeltaTime)
+        protected override void OnUpdate(float fixedDeltaTime)
         {
             foreach (Entity npc in _filter)
             {

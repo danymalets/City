@@ -1,15 +1,17 @@
+using Scellecs.Morpeh;
 using Scellecs.Morpeh.Systems;
+using UnityEngine;
 
 namespace Sources.Game.Ecs.Utils.MorpehWrapper
 {
-    public class DFixedUpdateSystemProvider<TDFixedUpdateSystem> : FixedUpdateSystem 
-        where TDFixedUpdateSystem : DFixedUpdateSystem, new()
+    public class DFixedUpdateSystemProvider<TUpdateSystem> : FixedUpdateSystem
+        where TUpdateSystem : DUpdateSystem, new()
     {
-        private readonly TDFixedUpdateSystem _dSystem;
+        private readonly TUpdateSystem _dSystem;
 
         public DFixedUpdateSystemProvider()
         {
-            _dSystem = new TDFixedUpdateSystem();
+            _dSystem = new TUpdateSystem();
         }
 
         public override void OnAwake()
@@ -19,9 +21,9 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
             _dSystem.Initialize();
         }
 
-        public override void OnUpdate(float fixedDeltaTime)
+        public override void OnUpdate(float deltaTime)
         {
-            _dSystem.FixedUpdate(fixedDeltaTime);
+            _dSystem.Update(deltaTime, true);
         }
     }
 }

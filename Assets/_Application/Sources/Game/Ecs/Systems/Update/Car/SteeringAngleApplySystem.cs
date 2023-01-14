@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.Car
 {
-    public class SteeringAngleApplySystem : DFixedUpdateSystem
+    public class SteeringAngleApplySystem : DUpdateSystem
     {
         private Filter _filter;
 
@@ -20,7 +20,7 @@ namespace Sources.Game.Ecs.Systems.Update.Car
             _filter = _world.Filter<SmoothSteeringAngle, Mono<ICarData>, Mono<ICarWheels>>();
         }
 
-        protected override void OnFixedUpdate(float fixedDeltaTime)
+        protected override void OnUpdate(float deltaTime)
         {
             foreach (Entity carEntity in _filter)
             {

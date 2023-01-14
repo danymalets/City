@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.NpcCar
 {
-    public class NpcCarPathSteeringAngleSystem : DFixedUpdateSystem
+    public class NpcCarPathSteeringAngleSystem : DUpdateSystem
     {
         private Filter _filter;
 
@@ -19,7 +19,7 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
             _filter = _world.Filter<NpcTag, PlayerInCar, NpcOnPath>();
         }
 
-        protected override void OnFixedUpdate(float fixedDeltaTime)
+        protected override void OnUpdate(float fixedDeltaTime)
         {
             foreach (Entity npc in _filter)
             {

@@ -1,15 +1,16 @@
+using Scellecs.Morpeh;
 using Scellecs.Morpeh.Systems;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Utils.MorpehWrapper
 {
-    public class DUpdateSystemProvider<TDSystem> : UpdateSystem where TDSystem : DUpdateSystem, new()
+    public class DUpdateSystemProvider<TSystem> : UpdateSystem where TSystem : DUpdateSystem, new()
     {
-        private readonly TDSystem _dSystem;
+        private readonly TSystem _dSystem;
 
         public DUpdateSystemProvider()
         {
-            _dSystem = new TDSystem();
+            _dSystem = new TSystem();
         }
 
         public override void OnAwake()

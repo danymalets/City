@@ -14,7 +14,7 @@ using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.Player
 {
-    public class PlayerMoveSystem : DFixedUpdateSystem
+    public class PlayerMoveSystem : DUpdateSystem
     {
         private Filter _filter;
 
@@ -23,7 +23,7 @@ namespace Sources.Game.Ecs.Systems.Update.Player
             _filter = _world.Filter<PlayerTag>().Without<PlayerInCar>();
         }
 
-        protected override void OnFixedUpdate(float fixedDeltaTime)
+        protected override void OnUpdate(float deltaTime)
         {
             foreach (Entity npcEntity in _filter)
             {
