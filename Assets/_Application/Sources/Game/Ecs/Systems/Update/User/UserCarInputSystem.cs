@@ -1,22 +1,21 @@
 using Scellecs.Morpeh;
-using Sources.Game.Ecs.Components;
 using Sources.Game.Ecs.Components.Tags;
+using Sources.Game.Ecs.Components.User;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Game.InputServices;
 using Sources.Infrastructure.Services;
 using Sources.Utilities.Extensions;
-using UnityEngine;
 
-namespace Sources.Game.Ecs.Systems.Update
+namespace Sources.Game.Ecs.Systems.Update.User
 {
-    public class UserInputSystem : DUpdateSystem
+    public class UserCarInputSystem : DUpdateSystem
     {
         private Filter _filter;
-        private readonly IInputService _inputService;
+        private readonly ICarInputService _carInputService;
 
-        public UserInputSystem()
+        public UserCarInputSystem()
         {
-            _inputService = DiContainer.Resolve<IInputService>();
+            _carInputService = DiContainer.Resolve<ICarInputService>();
         }
 
         protected override void OnInitFilters()
@@ -33,8 +32,8 @@ namespace Sources.Game.Ecs.Systems.Update
 
             ref UserCarInput userCarInput = ref userEntity.Get<UserCarInput>();
 
-            userCarInput.Vertical = _inputService.Vertical;
-            userCarInput.Horizontal = _inputService.Horizontal;
+            userCarInput.Vertical = _carInputService.Vertical;
+            userCarInput.Horizontal = _carInputService.Horizontal;
         }
     }
 }

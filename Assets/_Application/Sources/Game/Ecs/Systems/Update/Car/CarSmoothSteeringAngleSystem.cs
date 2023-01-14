@@ -1,5 +1,6 @@
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components.Car;
+using Sources.Game.Ecs.Components.Views.Data;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using UnityEngine;
 
@@ -18,13 +19,16 @@ namespace Sources.Game.Ecs.Systems.Update.Car
 
         protected override void OnFixedUpdate(float fixedDeltaTime)
         {
-            foreach (Entity entity in _filter)
+            foreach (Entity carEntity in _filter)
             {
-                ref SmoothSteeringAngle smoothAngle = ref entity.Get<SmoothSteeringAngle>();
-                float angle = entity.Get<SteeringAngle>().Value;
-                
+                ref SmoothSteeringAngle smoothAngle = ref carEntity.Get<SmoothSteeringAngle>();
+                float angle = carEntity.Get<SteeringAngle>().Value;
+                float maxSteeringAngle = carEntity.GetMono<ICarData>().MaxSteeringAngle;
+
                 smoothAngle.Value = Mathf.MoveTowards(smoothAngle.Value, angle,
                     AngleSpeed * fixedDeltaTime);
+                
+                smoothAngle.Value = Mathf.Clamp(smoothAngle.Value, -maxSteeringAngle, maxSteeringAngle);
             }
         }
     }

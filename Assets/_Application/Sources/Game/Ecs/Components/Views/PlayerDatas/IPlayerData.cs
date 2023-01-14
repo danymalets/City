@@ -6,5 +6,6 @@ namespace Sources.Game.Ecs.Components.Views.PlayerDatas
     {
         float Mass { get; }
         float Speed { get; }
+        float MaxRotationSpeed { get; }
     }
 }

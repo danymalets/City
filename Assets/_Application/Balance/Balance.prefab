@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameraBalance: {fileID: 11400000, guid: 7aea2a530239e4708bd6c937b32dd8cc, type: 2}
-  _carsBalance: {fileID: 11400000, guid: 51b0d9f63d86b40c0ba4b353fa43e4e8, type: 2}
+  _simulationBalance: {fileID: 11400000, guid: 4d1e8d5685f344d2ab897402dbcf9d83, type: 2}

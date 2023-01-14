@@ -1,10 +1,10 @@
 using Sources.Infrastructure.Services;
-using Sources.Infrastructure.Services.Audio.Clips.Type;
+using Sources.Infrastructure.Services.Audio;
 using Sources.UI.Screens;
 using Sources.UI.Screens.Input;
 using Sources.UI.System;
 
-namespace Sources.Game.Controllers.EndController
+namespace Sources.Game.Controllers.FinishGameControllers
 {
     public class LoseController : StatusController
     {

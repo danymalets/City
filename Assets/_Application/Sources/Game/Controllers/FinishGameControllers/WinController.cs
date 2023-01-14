@@ -1,12 +1,10 @@
-using Sources.Data;
-using Sources.Data.Live;
 using Sources.Infrastructure.Services;
-using Sources.Infrastructure.Services.Audio.Clips.Type;
+using Sources.Infrastructure.Services.Audio;
 using Sources.Infrastructure.Services.User;
 using Sources.UI.Screens;
 using Sources.UI.System;
 
-namespace Sources.Game.Controllers.EndController
+namespace Sources.Game.Controllers.FinishGameControllers
 {
     public class WinController : StatusController
     {

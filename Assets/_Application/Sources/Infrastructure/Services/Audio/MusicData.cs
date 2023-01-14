@@ -1,10 +1,7 @@
 using System;
-using Sources.Data;
-using Sources.Data.Live;
-using Sources.Infrastructure.Services.Audio.Clips.Type;
 using UnityEngine;
 
-namespace Sources.Infrastructure.Services.Audio.Data
+namespace Sources.Infrastructure.Services.Audio
 {
     [Serializable]
     public class MusicData

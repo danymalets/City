@@ -4,7 +4,7 @@ using Sources.UI.Screens.Input;
 using Sources.UI.Screens.Level;
 using Sources.UI.System;
 
-namespace Sources.Game.Controllers.EndController
+namespace Sources.Game.Controllers.FinishGameControllers
 {
     public abstract class StatusController
     {

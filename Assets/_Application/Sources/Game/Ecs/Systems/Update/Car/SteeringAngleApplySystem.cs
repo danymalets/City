@@ -25,11 +25,8 @@ namespace Sources.Game.Ecs.Systems.Update.Car
             foreach (Entity carEntity in _filter)
             {
                 ICarWheels carWheels = carEntity.GetMono<ICarWheels>();
-                float maxSteeringAngle = carEntity.GetMono<ICarData>().MaxSteeringAngle;
                 float steeringAngle = carEntity.Get<SmoothSteeringAngle>().Value;
 
-                steeringAngle = Mathf.Clamp(steeringAngle, -maxSteeringAngle, maxSteeringAngle);
-                
                 AxleInfo axleInfo = carWheels.AxleInfo[0];
 
                 axleInfo.LeftWheelCollider.steerAngle = steeringAngle;

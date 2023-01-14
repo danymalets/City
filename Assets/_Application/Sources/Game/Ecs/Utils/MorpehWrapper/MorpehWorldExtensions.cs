@@ -1,7 +1,7 @@
 using System;
 using Scellecs.Morpeh;
 using Sources.Infrastructure.Services;
-using Sources.Infrastructure.Services.Pool.Instantiators;
+using Sources.Infrastructure.Services.Pool;
 
 namespace Sources.Game.Ecs.Utils.MorpehWrapper
 {

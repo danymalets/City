@@ -1,32 +1,32 @@
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components;
 using Sources.Game.Ecs.Components.Tags;
+using Sources.Game.Ecs.Components.Views;
 using Sources.Game.Ecs.Utils;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.Balance;
-using Sources.Infrastructure.Services.Times;
 using Sources.Utilities.Extensions;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.Camera
 {
-    public class CameraRotationSystem : DUpdateSystem
+    public class CameraFollowPlayerPositionSystem : DUpdateSystem
     {
         private readonly CameraBalance _cameraBalance;
 
         private Filter _cameraFilter;
         private Filter _userFilter;
 
-        public CameraRotationSystem()
+        public CameraFollowPlayerPositionSystem()
         {
             _cameraBalance = DiContainer.Resolve<Balance>()
                 .CameraBalance;
         }
-        
+
         protected override void OnInitFilters()
         {
-            _userFilter = _world.Filter<UserTag, PlayerInCar>();
+            _userFilter = _world.Filter<UserTag>().Without<PlayerInCar>();
             _cameraFilter = _world.Filter<CameraTag, Mono<ITransform>>();
         }
 
@@ -34,15 +34,16 @@ namespace Sources.Game.Ecs.Systems.Update.Camera
         {
             if (_userFilter.NoOne())
                 return;
-
+            
             Entity cameraEntity = _cameraFilter.GetSingleton();
             Entity userEntity = _userFilter.GetSingleton();
 
             ITransform cameraTransform = cameraEntity.GetMono<ITransform>();
             
-            Quaternion userCarRotation = userEntity.Get<PlayerInCar>().Car.GetMono<ITransform>().Rotation;
+            Vector3 userPosition = userEntity.GetMono<ITransform>().Position;
 
-            cameraTransform.Rotation = cameraTransform.Rotation.WithEulerY(userCarRotation.eulerAngles.y);
+            cameraTransform.Position = (userPosition - cameraTransform.Rotation.GetForward() *
+                _cameraBalance.CameraBackDistance).WithY(_cameraBalance.CameraHeight);
         }
     }
 }

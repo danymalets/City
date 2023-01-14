@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Sources.Infrastructure.Services.Pool.Instantiators
+namespace Sources.Infrastructure.Services.Pool
 {
     public interface IPoolSpawnerService : IService
     {

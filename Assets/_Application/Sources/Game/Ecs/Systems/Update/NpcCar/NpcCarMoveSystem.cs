@@ -1,17 +1,29 @@
+using System.Linq;
 using Scellecs.Morpeh;
+using Sources.Game.Constants;
 using Sources.Game.Ecs.Components;
 using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Components.Npc;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.Views;
+using Sources.Game.Ecs.Components.Views.CarForwardTriggers;
+using Sources.Game.Ecs.Utils;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Infrastructure.Services;
 using Sources.Utilities.Extensions;
+using UnityEngine;
 
-namespace Sources.Game.Ecs.Systems.Update.Npc
+namespace Sources.Game.Ecs.Systems.Update.NpcCar
 {
     public class NpcCarMoveSystem : DFixedUpdateSystem
     {
         private Filter _filter;
+        private readonly IPhysicsService _physics;
+
+        public NpcCarMoveSystem()
+        {
+            _physics = DiContainer.Resolve<IPhysicsService>();
+        }
 
         protected override void OnInitFilters()
         {
@@ -20,11 +32,31 @@ namespace Sources.Game.Ecs.Systems.Update.Npc
 
         protected override void OnFixedUpdate(float fixedDeltaTime)
         {
-            foreach (Entity npc in _filter)
+            foreach (Entity npcEntity in _filter)
             {
-                Entity carEntity = npc.Get<PlayerInCar>().Car;
+                Entity carEntity = npcEntity.Get<PlayerInCar>().Car;
+                ref CarMotorCoefficient carMotorCoefficient = ref carEntity.Get<CarMotorCoefficient>();
+                ref CarBreak carBreak = ref carEntity.Get<CarBreak>();
+                ref ForwardTrigger forwardTrigger = ref carEntity.Get<ForwardTrigger>();
+
+                Entity[] entities = _physics.OverlapBox(forwardTrigger.Center, forwardTrigger.Size / 2, 
+                        forwardTrigger.Rotation, LayerMasks.CarsAndPlayers)
+                    .Select(c => c.transform.root.gameObject)
+                    .Where(r => r.HasComponent<MonoEntity>())
+                    .Select(r => r.GetComponent<MonoEntity>().Entity)
+                    .Where(e => e != carEntity)
+                    .ToArray();
                 
-                carEntity.Get<CarMotorCoefficient>().Coefficient = 1f;
+                if (entities.Any())
+                {
+                    carMotorCoefficient.Coefficient = 0;
+                    carBreak.BreakType = BreakType.Max;
+                }
+                else
+                {
+                    carMotorCoefficient.Coefficient = 1;
+                    carBreak.BreakType = BreakType.None;
+                }
             }
         }
     }

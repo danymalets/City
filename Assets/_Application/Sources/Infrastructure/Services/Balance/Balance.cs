@@ -10,8 +10,10 @@ namespace Sources.Infrastructure.Services.Balance
         [SerializeField]
         private CameraBalance _cameraBalance;
 
-        
-        
+        [SerializeField]
+        private SimulationBalance _simulationBalance;
+
         public CameraBalance CameraBalance => _cameraBalance;
+        public SimulationBalance SimulationBalance => _simulationBalance;
     }   
 }

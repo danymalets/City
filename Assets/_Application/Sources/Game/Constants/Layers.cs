@@ -7,6 +7,6 @@ namespace Sources.Game.Constants
     {
         public static readonly int Player = LayerMask.NameToLayer(nameof(Player));
         public static readonly int Car = LayerMask.NameToLayer(nameof(Car));
-        public static readonly int EntityTrigger = LayerMask.NameToLayer(nameof(EntityTrigger));
+        public static readonly int Environment = LayerMask.NameToLayer(nameof(Environment));
     }
 }

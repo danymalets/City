@@ -6,12 +6,12 @@ using UnityEngine;
 
 namespace Sources.Game.InputServices
 {
-    public class InputService : IInputService
+    public class CarInputService : ICarInputService
     {
         private readonly IApplicationInputService _applicationInput;
         private readonly CarInputScreen _carInputScreen;
 
-        public InputService()
+        public CarInputService()
         {
             _applicationInput = DiContainer.Resolve<IApplicationInputService>();
             _carInputScreen = DiContainer.Resolve<IUiService>()

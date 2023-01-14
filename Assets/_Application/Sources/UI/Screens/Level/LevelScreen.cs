@@ -1,7 +1,6 @@
 using System;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.Audio;
-using Sources.Infrastructure.Services.Audio.Clips.Type;
 using Sources.UI.Popups.Settings;
 using Sources.UI.System;
 using Sources.UI.WindowBase.Screens;

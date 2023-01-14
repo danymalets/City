@@ -1,8 +1,7 @@
 using System;
-using Sources.Data.Live;
 using UnityEngine;
 
-namespace Sources.Infrastructure.Services.Audio.Data
+namespace Sources.Infrastructure.Services.Audio
 {
     [Serializable]
     public abstract class SoundData

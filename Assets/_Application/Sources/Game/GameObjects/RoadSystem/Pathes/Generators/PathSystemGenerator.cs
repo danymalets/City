@@ -1,10 +1,7 @@
 using Sirenix.OdinInspector;
-using Sources.Game.GameObjects.RoadSystem.Pathes;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Sources.Game.GameObjects.RoadSystem
+namespace Sources.Game.GameObjects.RoadSystem.Pathes.Generators
 {
     public class PathSystemGenerator : MonoBehaviour
     {

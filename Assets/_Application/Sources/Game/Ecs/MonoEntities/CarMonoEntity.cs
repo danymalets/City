@@ -3,6 +3,7 @@ using Sources.Game.Ecs.Components;
 using Sources.Game.Ecs.Components.Views;
 using Sources.Game.Ecs.Components.Views.CarBorder;
 using Sources.Game.Ecs.Components.Views.CarCollider;
+using Sources.Game.Ecs.Components.Views.CarForwardTriggers;
 using Sources.Game.Ecs.Components.Views.Data;
 using Sources.Game.Ecs.Utils;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
@@ -51,8 +52,8 @@ namespace Sources.Game.Ecs.MonoEntities
         protected override void OnSetup()
         {
             Entity.SetMono<ITransform>(_transform);
-            Entity.SetMono<ICarBorders>(_entityBorders);
             Entity.SetMono<IEntityColliders>(_entityColliders);
+            Entity.SetMono<IEntityBorders>(_entityBorders);
             Entity.SetMono<IPhysicBody>(_physicBody);
             Entity.SetMono<ICarWheels>(_carWheels);
             Entity.SetMono<ICarData>(_carData);

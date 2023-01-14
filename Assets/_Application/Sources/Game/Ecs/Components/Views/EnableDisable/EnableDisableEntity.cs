@@ -1,7 +1,7 @@
 using Sources.Utilities.Extensions;
 using UnityEngine;
 
-namespace Sources.Game.Ecs.Components.Views
+namespace Sources.Game.Ecs.Components.Views.EnableDisable
 {
     public class EnableDisableEntity : MonoBehaviour, IEnableDisableEntity
     {

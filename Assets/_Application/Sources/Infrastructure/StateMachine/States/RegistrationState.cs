@@ -12,7 +12,6 @@ using Sources.Infrastructure.Services.Instantiator;
 using Sources.Infrastructure.Services.JsonSerializer;
 using Sources.Infrastructure.Services.PlayerPreferences;
 using Sources.Infrastructure.Services.Pool;
-using Sources.Infrastructure.Services.Pool.Instantiators;
 using Sources.Infrastructure.Services.SceneLoader;
 using Sources.Infrastructure.Services.Screens;
 using Sources.Infrastructure.Services.Times;

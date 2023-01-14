@@ -22,10 +22,13 @@ namespace Sources.Game.Ecs.Systems.Init
 
         protected override void OnInitialize()
         {
-            Entity car = _factory.CreateCar(_assets.CarsAssets.GetRandomCar(),
-                 _levelContext.UserSpawnPoint.Position, _levelContext.UserSpawnPoint.Rotation);
-
+             Entity car = _factory.CreateCar(_assets.CarsAssets.GetRandomCar(),
+                  _levelContext.UserSpawnPoint.Position, _levelContext.UserSpawnPoint.Rotation);
+            
             _factory.CreateUserInCar(_assets.PlayersAssets.GetRandomPlayer(), car);
+            
+            // _factory.CreateUser(_assets.PlayersAssets.GetRandomPlayer(), 
+            //     _levelContext.UserSpawnPoint.Position, _levelContext.UserSpawnPoint.Rotation);
             
             _physics.SyncTransforms();
         }

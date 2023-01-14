@@ -1,8 +1,6 @@
-using Sources.Game.Ecs.Utils;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-namespace Sources.Game.Ecs.Components
+namespace Sources.Game.Ecs.Components.Views
 {
     public class TransformComponent : MonoBehaviour, ITransform
     {

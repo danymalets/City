@@ -10,24 +10,20 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes
 {
     public class Crossroads : PathGenerator
     {
-        private const int PointsCount = 10;
+        private const int PointsCount = 8;
 
-        [FormerlySerializedAs("_up")]
         public Road Up;
 
-        [FormerlySerializedAs("_right")]
         public Road Right;
 
-        [FormerlySerializedAs("_down")]
         public Road Down;
 
-        [FormerlySerializedAs("_left")]
         public Road Left;
 
         public override IEnumerable<Path> Generate()
         {
             List<CrossroadsSideData> sideData = GetSideData();
-            List<Path> pathes = new List<Path>();
+            List<Path> pathes = new();
 
             foreach (CrossroadsSideData firstSideData in sideData)
             {
@@ -46,7 +42,7 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes
 
         private List<CrossroadsSideData> GetSideData()
         {
-            List<CrossroadsSideData> sideData = new List<CrossroadsSideData>();
+            List<CrossroadsSideData> sideData = new();
 
             foreach (Road road in new[] { Up, Right, Down, Left })
             {

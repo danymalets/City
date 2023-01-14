@@ -1,6 +1,6 @@
 using Sources.Game.Ecs.Utils;
 
-namespace Sources.Game.Ecs.Components.Views
+namespace Sources.Game.Ecs.Components.Views.EnableDisable
 {
     public interface IEnableDisableEntity : IMonoComponent
     { 

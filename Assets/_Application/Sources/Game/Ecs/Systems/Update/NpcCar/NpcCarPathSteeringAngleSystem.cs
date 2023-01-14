@@ -5,12 +5,10 @@ using Sources.Game.Ecs.Components.Npc;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.Views;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
-using Sources.Infrastructure.Services;
-using Sources.Infrastructure.Services.Gizmoses;
 using Sources.Utilities.Extensions;
 using UnityEngine;
 
-namespace Sources.Game.Ecs.Systems.Update.Npc
+namespace Sources.Game.Ecs.Systems.Update.NpcCar
 {
     public class NpcCarPathSteeringAngleSystem : DFixedUpdateSystem
     {

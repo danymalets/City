@@ -1,25 +1,38 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Sources.Infrastructure.Services.Gizmoses
 {
     public class GizmosService : MonoBehaviour, IGizmosService
     {
-        private readonly List<(Vector3 Center, float Radius, Color color)> _list = new();
-
-        public void DrawSphere(Vector3 center, float radius, Color color) =>
-            _list.Add((center, radius, color));
+        private readonly List<GizmosContext> _contexts = new();
+        
+        public GizmosContext CreateContext()
+        {
+            GizmosContext gizmosContext = new(); 
+            _contexts.Add(gizmosContext);
+            return gizmosContext;
+        }
 
         private void OnDrawGizmos()
         {
-            foreach ((Vector3 center, float radius, Color color) in _list)
+            foreach ((Vector3 center, float radius, Color color) in _contexts.SelectMany(c => c.Spheres))
             {
                 Gizmos.color = color;
                 Gizmos.DrawSphere(center, radius);
             }
             
-            _list.Clear();
+            foreach ((Vector3 Center, Quaternion Rotation, Vector3 Size, Color Color) in _contexts.SelectMany(c => c.Cubes))
+            {
+                var defaultMatrix = Gizmos.matrix;
+                Gizmos.matrix = Matrix4x4.TRS(Center, Rotation, Size);
+                Gizmos.color = Color;
+                Gizmos.DrawCube(Vector3.zero, Vector3.one);
+
+                Gizmos.matrix = defaultMatrix;
+            }
         }
     }
 }

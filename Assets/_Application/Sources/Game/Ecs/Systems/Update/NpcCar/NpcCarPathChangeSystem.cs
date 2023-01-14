@@ -1,14 +1,11 @@
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components;
-using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Components.Npc;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.Views;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
-using Sources.Utilities.Extensions;
-using UnityEngine;
 
-namespace Sources.Game.Ecs.Systems.Update.Npc
+namespace Sources.Game.Ecs.Systems.Update.NpcCar
 {
     public class NpcCarPathChangeSystem : DFixedUpdateSystem
     {

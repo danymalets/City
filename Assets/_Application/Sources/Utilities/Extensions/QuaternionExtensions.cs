@@ -14,7 +14,13 @@ namespace Sources.Utilities.Extensions
         public static Quaternion WithEulerZ(this Quaternion rotation, float z) => 
             Quaternion.Euler(rotation.eulerAngles.x, rotation.eulerAngles.y, z);
 
+        public static Quaternion WithAddEulerY(this Quaternion rotation, float y) => 
+            Quaternion.Euler(rotation.eulerAngles.x, rotation.eulerAngles.y + y, rotation.eulerAngles.z);
+        
         public static Vector3 GetForward(this Quaternion rotation) =>
             rotation * Vector3.forward;
+        
+        public static Vector3 GetUp(this Quaternion rotation) =>
+            rotation * Vector3.up;
     }
 }

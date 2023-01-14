@@ -1,4 +1,5 @@
 using Sources.Game.Ecs.Components;
+using Sources.Game.Ecs.Components.Views;
 using Sources.Game.Ecs.Utils;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using UnityEngine;

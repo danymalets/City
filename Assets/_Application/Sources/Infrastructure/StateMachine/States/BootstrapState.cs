@@ -25,7 +25,7 @@ namespace Sources.Infrastructure.StateMachine.States
             application.TargetFrameRate = screen.MaxDeviceFrameRate;
             physics.AutoSimulation = false;
 
-            ui.Open<FpsOverlayScreen>();
+            ui.Open<PerformanceScreen>();
             
             _stateMachine.Enter<LoadLevelState>();
         }

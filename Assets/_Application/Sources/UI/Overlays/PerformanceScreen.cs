@@ -8,12 +8,16 @@ using Screen = Sources.UI.WindowBase.Screens.Screen;
 
 namespace Sources.UI.Overlays
 {
-    public class FpsOverlayScreen : Screen
+    public class PerformanceScreen : Screen
     {
         private const string FpsPattern = "FPS: {0}";
+        private const string DevicePattern = "Device: {0}";
         
         [SerializeField]
         private TextMeshProUGUI _fpsText;
+        
+        [SerializeField]
+        private TextMeshProUGUI _deviceText;
 
         private IFpsService _fpsService;
         private CoroutineContext _coroutineContext;
@@ -24,6 +28,8 @@ namespace Sources.UI.Overlays
 
             _coroutineContext = new CoroutineContext();
             _coroutineContext.RunEachSeconds(1, UpdateFps, true);
+
+            _deviceText.text = string.Format(DevicePattern, "");
         }
 
         private void UpdateFps() => 

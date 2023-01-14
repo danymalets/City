@@ -10,6 +10,7 @@ using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.Infrastructure.Bootstrap;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.AssetsManager;
+using Sources.Infrastructure.Services.Balance;
 using Sources.Utilities.Extensions;
 using UnityEngine;
 
@@ -20,11 +21,14 @@ namespace Sources.Game.Ecs.Systems.Init
         private readonly IPhysicsService _physics;
         private readonly Assets _assets;
         private readonly PathSystem _pathSystem;
+        private readonly SimulationBalance _simulationBalance;
 
         public NpcInitSystem()
         {
             _physics = DiContainer.Resolve<IPhysicsService>();
             _assets = DiContainer.Resolve<Assets>();
+            _simulationBalance = DiContainer.Resolve<Balance>()
+                .SimulationBalance;
             _pathSystem = DiContainer.Resolve<LevelContext>()
                 .NpcPathSystem;
         }
@@ -34,7 +38,7 @@ namespace Sources.Game.Ecs.Systems.Init
             List<IConnectingPoint> points = _pathSystem.RootPoints.ToList();
             points.RandomShuffle();
             
-            foreach (IConnectingPoint point in points.Take(20))
+            foreach (IConnectingPoint point in points.Take(_simulationBalance.NpcCount))
             {
                 PlayerMonoEntity playerPrefab = _assets.PlayersAssets.GetRandomPlayer();
                 

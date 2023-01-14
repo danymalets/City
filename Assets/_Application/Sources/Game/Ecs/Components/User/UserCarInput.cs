@@ -1,6 +1,6 @@
 using Scellecs.Morpeh;
 
-namespace Sources.Game.Ecs.Components
+namespace Sources.Game.Ecs.Components.User
 {
     public struct UserCarInput : IComponent
     {

@@ -1,11 +1,10 @@
 using System;
 using Sources.Data.Live;
-using Sources.Infrastructure.Services.Audio.Data;
 using Sources.Infrastructure.Services.Pool;
 using Sources.Utilities.Extensions;
 using UnityEngine;
 
-namespace Sources.Infrastructure.Services.Audio.Sounds
+namespace Sources.Infrastructure.Services.Audio
 {
     public class SoundSource : RespawnableBehaviour
     {

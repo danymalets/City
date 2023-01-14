@@ -1,7 +1,7 @@
 using System.Collections;
 using Sources.Data;
 using Sources.Data.Live;
-using Sources.Game.Controllers.EndController;
+using Sources.Game.Controllers.FinishGameControllers;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.CoroutineRunner;
 using Sources.Infrastructure.Services.User;

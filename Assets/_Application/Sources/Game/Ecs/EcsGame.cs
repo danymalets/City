@@ -7,6 +7,7 @@ using Sources.Game.Ecs.Systems.Update;
 using Sources.Game.Ecs.Systems.Update.Camera;
 using Sources.Game.Ecs.Systems.Update.Car;
 using Sources.Game.Ecs.Systems.Update.Npc;
+using Sources.Game.Ecs.Systems.Update.NpcCar;
 using Sources.Game.Ecs.Systems.Update.Player;
 using Sources.Game.Ecs.Systems.Update.User;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
@@ -45,9 +46,13 @@ namespace Sources.Game.Ecs
             _world.AddFixedSystem<NpcPathChangeSystem>();
             
             _world.AddFixedSystem<NpcPathRotateSystem>();
-            _world.AddFixedSystem<PlayerRotationSystem>();
+            _world.AddFixedSystem<SmoothAngleSystem>();
+            _world.AddFixedSystem<SmoothAngleApplySystem>();
+
+            _world.AddFixedSystem<CarForwardColliderSystem>();
 
             _world.AddFixedSystem<NpcMoveSystem>();
+            _world.AddFixedSystem<PlayerMoveSystem>();
 
             _world.AddFixedSystem<NpcCarPathChangeSystem>();
             _world.AddFixedSystem<NpcCarPathSteeringAngleSystem>();
@@ -66,12 +71,19 @@ namespace Sources.Game.Ecs
 
         private void AddUpdateSystems()
         {
-            _world.AddUpdateSystem<UserInputSystem>();
-            _world.AddUpdateSystem<PlayerCarMoveSystem>();
+            _world.AddUpdateSystem<UserTargetAngleSystem>();
+            _world.AddUpdateSystem<UserMoveSystem>();
             
-            _world.AddUpdateSystem<CameraRotationSystem>();
-            _world.AddUpdateSystem<CameraPositionSystem>();
+            _world.AddUpdateSystem<UserPlayerInputSystem>();
+            _world.AddUpdateSystem<UserCarInputSystem>();
+            _world.AddUpdateSystem<UserCarMoveSystem>();
             
+            _world.AddUpdateSystem<CameraFollowCarRotationSystem>();
+            _world.AddUpdateSystem<CameraFollowCarPositionSystem>();
+
+            _world.AddUpdateSystem<CameraFollowPlayerRotationSystem>();
+            _world.AddUpdateSystem<CameraFollowPlayerPositionSystem>();
+
             _world.AddUpdateSystem<ChangeSteeringAngleSystem>();
             
             _world.AddUpdateSystem<WheelGeometrySystem>();
@@ -79,8 +91,8 @@ namespace Sources.Game.Ecs
             _world.AddUpdateSystem<InputScreenSwitcherSystem>();
             
             _world.AddOneFrame<ChangeSteeringAngleRequest>();
-            _world.AddOneFrame<UserWantsExitCar>();
             _world.AddOneFrame<UserWantsEnterCar>();
+            _world.AddOneFrame<UserWantsExitCar>();
         }
 
         public void StartGame() => 

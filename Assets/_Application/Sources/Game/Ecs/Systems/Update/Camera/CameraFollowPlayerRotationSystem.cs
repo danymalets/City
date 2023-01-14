@@ -1,32 +1,32 @@
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components;
 using Sources.Game.Ecs.Components.Tags;
+using Sources.Game.Ecs.Components.Views;
 using Sources.Game.Ecs.Utils;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.Balance;
-using Sources.Infrastructure.Services.Times;
 using Sources.Utilities.Extensions;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.Camera
 {
-    public class CameraPositionSystem : DUpdateSystem
+    public class CameraFollowPlayerRotationSystem : DUpdateSystem
     {
         private readonly CameraBalance _cameraBalance;
 
         private Filter _cameraFilter;
         private Filter _userFilter;
 
-        public CameraPositionSystem()
+        public CameraFollowPlayerRotationSystem()
         {
             _cameraBalance = DiContainer.Resolve<Balance>()
                 .CameraBalance;
         }
-
+        
         protected override void OnInitFilters()
         {
-            _userFilter = _world.Filter<UserTag, PlayerInCar>();
+            _userFilter = _world.Filter<UserTag>().Without<PlayerInCar>();
             _cameraFilter = _world.Filter<CameraTag, Mono<ITransform>>();
         }
 
@@ -34,16 +34,15 @@ namespace Sources.Game.Ecs.Systems.Update.Camera
         {
             if (_userFilter.NoOne())
                 return;
-            
+
             Entity cameraEntity = _cameraFilter.GetSingleton();
             Entity userEntity = _userFilter.GetSingleton();
 
             ITransform cameraTransform = cameraEntity.GetMono<ITransform>();
             
-            Vector3 userCarPosition = userEntity.Get<PlayerInCar>().Car.GetMono<ITransform>().Position;
+            Quaternion userRotation = userEntity.GetMono<ITransform>().Rotation;
 
-            cameraTransform.Position = (userCarPosition - cameraTransform.Rotation.GetForward() *
-                _cameraBalance.CameraBackDistance).WithY(_cameraBalance.CameraHeight);
+            cameraTransform.Rotation = cameraTransform.Rotation.WithEulerY(userRotation.eulerAngles.y);
         }
     }
 }

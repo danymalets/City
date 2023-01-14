@@ -6,7 +6,6 @@ using Sources.Infrastructure.Bootstrap;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.AssetsManager;
 using Sources.Infrastructure.Services.Audio;
-using Sources.Infrastructure.Services.Audio.Clips.Type;
 using Sources.Infrastructure.Services.Balance;
 using Sources.Infrastructure.Services.Pool;
 using Sources.UI.Screens;
@@ -38,7 +37,8 @@ namespace Sources.Game.Controllers
 
             _diBuilder = DiBuilder.Create();
 
-            _diBuilder.Register<InputService, IInputService>();
+            _diBuilder.Register<CarInputService, ICarInputService>();
+            _diBuilder.Register<PlayerInputService, IPlayerInputService>();
 
             IPoolCreatorService poolCreatorService = DiContainer.Resolve<IPoolCreatorService>();
             Assets assets = DiContainer.Resolve<Assets>();
