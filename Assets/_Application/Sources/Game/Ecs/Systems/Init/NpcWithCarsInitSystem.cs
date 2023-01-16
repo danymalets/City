@@ -36,10 +36,6 @@ namespace Sources.Game.Ecs.Systems.Init
             _physics = DiContainer.Resolve<IPhysicsService>();
         }
 
-        protected override void OnInitFilters()
-        {
-        }
-
         protected override void OnInitialize()
         {
             List<IConnectingPoint> points = _pathSystem.RootPoints.ToList();
@@ -59,7 +55,7 @@ namespace Sources.Game.Ecs.Systems.Init
 
                 Entity car = _factory.CreateCar(carPrefab, point.Position - point.Rotation * carPrefab.RootOffset, point.Rotation);
 
-                car.Set(new PlayerCarMaxSpeed { Value = 3f });
+                car.Set(new CarMaxSpeed { Value = 3f });
                 
                 _physics.SyncTransforms();
                 

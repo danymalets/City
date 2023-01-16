@@ -50,13 +50,16 @@ namespace Sources.Game.Ecs
             _world.AddFixedSystem<SmoothAngleApplySystem>();
 
             _world.AddFixedSystem<CarForwardColliderSystem>();
-
+            
+            _world.AddFixedSystem<NpcForwardColliderSystem>();
             _world.AddFixedSystem<NpcMoveSystem>();
             _world.AddFixedSystem<PlayerMoveSystem>();
 
             _world.AddFixedSystem<NpcCarPathChangeSystem>();
             _world.AddFixedSystem<NpcCarPathSteeringAngleSystem>();
             _world.AddFixedSystem<NpcCarMoveSystem>();
+            
+            _world.AddFixedSystem<NpcCarBreakPoint>();
             
             _world.AddFixedSystem<CarSmoothSteeringAngleSystem>();
             

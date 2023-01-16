@@ -44,7 +44,7 @@ namespace Sources.Game.Ecs.Factories
                 .Add<SteeringAngle>()
                 .Add<ForwardTrigger>()
                 .Add<SmoothSteeringAngle>()
-                .Set(new PlayerCarMaxSpeed{Value = Mathf.Infinity});
+                .Set(new CarMaxSpeed{Value = Mathf.Infinity});
             
             return car;
         }
@@ -72,6 +72,7 @@ namespace Sources.Game.Ecs.Factories
 
         private Entity CreateNpc(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation) =>
             CreatePlayer(playerPrefab, position, rotation)
+                .Add<ForwardTrigger>()
                 .Add<NpcTag>();
         
         public Entity CreateNpcOnPath(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation, Path path) =>

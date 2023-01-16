@@ -31,26 +31,30 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
         public void Update(float deltaTime, bool isFixed = false)
         {
             _updateGizmosContext.ClearAll();
-            try
+
+            string name = GetType().Name;
+            long ticks = DPerformance.Execute(() =>
             {
-                string name = GetType().Name;
-                long ticks = DPerformance.Execute(() => OnUpdate(deltaTime));
-                SystemsDebugData systemsDebugData = _world.GetSingleton<SystemsDebugComponent>().Data;
-
-                SystemDebugData systemDebugData = new(name, ticks);
-
-                if (isFixed)
+                try
                 {
-                    systemsDebugData.AddFixedData(systemDebugData);
+                    OnUpdate(deltaTime);
                 }
-                else
+                catch (Exception exception)
                 {
-                    systemsDebugData.AddUpdateData(systemDebugData);
+                    Debug.LogException(exception);
                 }
+            });
+            SystemsDebugData systemsDebugData = _world.GetSingleton<SystemsDebugComponent>().Data;
+
+            SystemDebugData systemDebugData = new(name, ticks);
+
+            if (isFixed)
+            {
+                systemsDebugData.AddFixedData(systemDebugData);
             }
-            catch (Exception exception)
+            else
             {
-                Debug.LogException(exception);
+                systemsDebugData.AddUpdateData(systemDebugData);
             }
         }
 

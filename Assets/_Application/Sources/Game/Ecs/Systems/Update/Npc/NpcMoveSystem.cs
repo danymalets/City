@@ -1,16 +1,28 @@
+using System.Linq;
 using Scellecs.Morpeh;
+using Sources.Game.Constants;
 using Sources.Game.Ecs.Components;
+using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.Views.CarForwardTriggers;
 using Sources.Game.Ecs.Components.Views.PlayerDatas;
+using Sources.Game.Ecs.Utils;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Infrastructure.Services;
+using Sources.Utilities.Extensions;
 
 namespace Sources.Game.Ecs.Systems.Update.Npc
 {
     public class NpcMoveSystem : DUpdateSystem
     {
         private Filter _filter;
+        private readonly IPhysicsService _physics;
+
+        public NpcMoveSystem()
+        {
+            _physics = DiContainer.Resolve<IPhysicsService>();
+        }
 
         protected override void OnInitFilters()
         {
@@ -22,8 +34,25 @@ namespace Sources.Game.Ecs.Systems.Update.Npc
             foreach (Entity npcEntity in _filter)
             {
                 float speed = npcEntity.GetMono<IPlayerData>().Speed;
+                ForwardTrigger forwardTrigger = npcEntity.Get<ForwardTrigger>();
                 ref PlayerSpeed playerSpeed = ref npcEntity.Get<PlayerSpeed>();
-                playerSpeed.Value = speed;
+                
+                Entity[] entities = _physics.OverlapBox(forwardTrigger.Center, forwardTrigger.Size / 2, 
+                        forwardTrigger.Rotation, LayerMasks.CarsAndPlayers)
+                    .Select(c => c.transform.root.gameObject)
+                    .Where(r => r.HasComponent<MonoEntity>())
+                    .Select(r => r.GetComponent<MonoEntity>().Entity)
+                    .Where(e => e != npcEntity)
+                    .ToArray();
+                
+                if (entities.Any())
+                {
+                    playerSpeed.Value = 0;
+                }
+                else
+                {
+                    playerSpeed.Value = speed;
+                }
             }
         }
     }

@@ -23,7 +23,7 @@ namespace Sources.Game.Ecs.Systems.Update.Car
             {
                 IPhysicBody physicBody = carEntity.GetMono<IPhysicBody>();
                 float carMaxSpeed = carEntity.GetMono<ICarData>().MaxSpeed;
-                float playerMaxSpeed = carEntity.Get<PlayerCarMaxSpeed>().Value;
+                float playerMaxSpeed = carEntity.Get<CarMaxSpeed>().Value;
 
                 float maxSpeed = Mathf.Min(carMaxSpeed, playerMaxSpeed);
 

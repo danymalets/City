@@ -3,6 +3,7 @@ using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Infrastructure.Bootstrap;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.AssetsManager;
+using Sources.Infrastructure.Services.Balance;
 
 namespace Sources.Game.Ecs.Systems.Init
 {

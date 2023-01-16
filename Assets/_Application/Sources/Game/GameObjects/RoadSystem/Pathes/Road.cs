@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.Utilities;
 using UnityEngine;
@@ -12,6 +13,8 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes
 
         [SerializeField]
         private SingleLaneRoad _right;
+
+        public float OneRoadLength => Vector3.Distance(_left.Sources.First().Position, _right.Targets.Last().Position);
 
         public void GetCheckpoints(
             Vector3 crossroadsPosition,

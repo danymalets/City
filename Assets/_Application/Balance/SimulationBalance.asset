@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb959a1ed761474e8b9089930cdfa33f, type: 3}
   m_Name: SimulationBalance
   m_EditorClassIdentifier: 
-  _carCount: 20
-  _npcCount: 20
+  _carCount: 30
+  _npcCount: 0
   _carTriggerLength: 1.5
-  _npcTriggerLength: 1
+  _npcTriggerLength: 0.4

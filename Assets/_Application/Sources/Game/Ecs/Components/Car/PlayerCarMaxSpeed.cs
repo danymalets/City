@@ -2,7 +2,7 @@ using Scellecs.Morpeh;
 
 namespace Sources.Game.Ecs.Components.Car
 {
-    public struct PlayerCarMaxSpeed : IComponent
+    public struct CarMaxSpeed : IComponent
     {
         public float Value;
     }
