@@ -28,7 +28,7 @@ namespace Sources.Game.Controllers
         private readonly int _level;
         private readonly IUiCloseService _uiClose;
         private readonly InputController _inputController;
-        private readonly EcsGame _ecsGame;
+        private readonly Ecs.Game _game;
         private readonly IDiBuilder _diBuilder;
 
         public GameController()
@@ -60,7 +60,7 @@ namespace Sources.Game.Controllers
             
             _audio = DiContainer.Resolve<IAudioService>();
 
-            _ecsGame = new EcsGame();
+            _game = new Ecs.Game();
 
             _inputController = new InputController();
         }
@@ -73,12 +73,12 @@ namespace Sources.Game.Controllers
             
             _levelScreen.EnableRestartButton();
 
-            _ecsGame.StartGame();
+            _game.StartGame();
         }
 
         public void FinishGame()
         {
-            _ecsGame.FinishGame();
+            _game.FinishGame();
             _audio.StopAll();
             _uiClose.CloseAll();
             

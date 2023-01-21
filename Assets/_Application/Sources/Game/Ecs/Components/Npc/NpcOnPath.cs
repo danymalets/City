@@ -5,6 +5,6 @@ namespace Sources.Game.Ecs.Components.Npc
 {
     public struct NpcOnPath : IComponent
     {
-        public Path Path;
+        public PathLine PathLine;
     }
 }

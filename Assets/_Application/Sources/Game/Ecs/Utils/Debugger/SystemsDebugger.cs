@@ -1,4 +1,3 @@
-using Sources.Game.Ecs.Utils.Debugger.Components;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Utils.Debugger

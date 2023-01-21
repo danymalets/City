@@ -6,6 +6,7 @@ using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.User;
 using Sources.Game.Ecs.Components.Views;
 using Sources.Game.Ecs.Components.Views.PlayerDatas;
+using Sources.Game.Ecs.Components.Views.Transform;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Utilities;
 using Sources.Utilities.Extensions;

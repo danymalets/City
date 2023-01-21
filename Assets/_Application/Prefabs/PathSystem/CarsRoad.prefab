@@ -53,7 +53,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5340216208406339583}
-  - component: {fileID: 1939425661872080651}
+  - component: {fileID: 2454347257286144694}
   m_Layer: 0
   m_Name: RightLane
   m_TagString: Untagged
@@ -78,7 +78,7 @@ Transform:
   m_Father: {fileID: 4040839766349230179}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1939425661872080651
+--- !u!114 &2454347257286144694
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 852849c3cdbb45efad9fba34c1b1f56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pathData:
+  _roadLanes:
   - _source: {fileID: 6940046009875826231}
     _target: {fileID: 8946765175500480851}
 --- !u!1 &3839588209312484416
@@ -102,7 +102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3378587169454882895}
-  - component: {fileID: 4331914500191874502}
+  - component: {fileID: 8405901870586793226}
   m_Layer: 0
   m_Name: LeftLane
   m_TagString: Untagged
@@ -127,7 +127,7 @@ Transform:
   m_Father: {fileID: 4040839766349230179}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &4331914500191874502
+--- !u!114 &8405901870586793226
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 852849c3cdbb45efad9fba34c1b1f56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pathData:
+  _roadLanes:
   - _source: {fileID: 5834555967471039193}
     _target: {fileID: 611889811767156845}
 --- !u!1 &6737846879883253013
@@ -276,8 +276,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f2bdecfb724decaeded4489bf2fcbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _left: {fileID: 4331914500191874502}
-  _right: {fileID: 1939425661872080651}
+  _left: {fileID: 8405901870586793226}
+  _right: {fileID: 2454347257286144694}
 --- !u!1 &8361841470026642436
 GameObject:
   m_ObjectHideFlags: 0

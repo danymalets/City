@@ -2,27 +2,28 @@ using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.Utilities;
 using Sources.Utilities.Extensions;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Sources.Game.GameObjects.RoadSystem.Pathes
 {
-    public class Path
+    public class PathLine
     {
         private const float AvailableError = 1f;
 
         private readonly float _finalProgress;
-        public IConnectingPoint Source { get; }
-        public IConnectingPoint Target { get; }
+        public Point Source { get; }
+        public Point Target { get; }
         public float Distance { get; }
 
         public Vector3 Direction { get; }
         public Vector3 NormalizedDirection { get; set; }
         
-        public Path(IConnectingPoint source, IConnectingPoint target)
+        public PathLine(Point source, Point target, int delta = -2, Point turnTarget = null)
         {
             Source = source;
             Target = target;
-
-            Source.Targets.Add(this);
+            
+            Source.Targets.Add(new TurnData(delta, turnTarget, this));
             Target.Sources.Add(this);
 
             Direction = Target.Position - Source.Position;

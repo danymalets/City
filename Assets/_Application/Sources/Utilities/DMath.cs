@@ -75,5 +75,11 @@ namespace Sources.Utilities
         
         public static float Max(params float[] values) => 
             values.Aggregate(float.NegativeInfinity, Mathf.Max);
+        
+        public static int Mod(int x, int mod) => 
+            ((x % mod) + mod) % mod;
+
+        public static float Distance(float a, float b) =>
+            Mathf.Abs(a - b);
     }
 }

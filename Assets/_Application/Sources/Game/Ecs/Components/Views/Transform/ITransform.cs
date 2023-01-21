@@ -1,7 +1,7 @@
 using Sources.Game.Ecs.Utils;
 using UnityEngine;
 
-namespace Sources.Game.Ecs.Components.Views
+namespace Sources.Game.Ecs.Components.Views.Transform
 {
     public interface ITransform : IMonoComponent
     {

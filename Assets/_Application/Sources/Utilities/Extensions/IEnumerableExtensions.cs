@@ -79,5 +79,7 @@ namespace Sources.Utilities.Extensions
         public static bool NoOne<T>(this IEnumerable<T> enumerable) =>
             !enumerable.Any();
 
+        public static bool NoOne<T>(this IEnumerable<T> enumerable, Func<T, bool> predicate) =>
+            !enumerable.Any(predicate);
     }
 }

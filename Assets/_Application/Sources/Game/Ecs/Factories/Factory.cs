@@ -1,15 +1,20 @@
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components;
 using Sources.Game.Ecs.Components.Car;
+using Sources.Game.Ecs.Components.Collections;
 using Sources.Game.Ecs.Components.Npc;
+using Sources.Game.Ecs.Components.Npc.NpcCar;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.User;
 using Sources.Game.Ecs.Components.Views;
 using Sources.Game.Ecs.Components.Views.EnableDisable;
+using Sources.Game.Ecs.Components.Views.Transform;
 using Sources.Game.Ecs.MonoEntities;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Game.GameObjects.RoadSystem;
 using Sources.Game.GameObjects.RoadSystem.Pathes;
+using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.Infrastructure.Bootstrap;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.AssetsManager;
@@ -32,6 +37,15 @@ namespace Sources.Game.Ecs.Factories
             _balance = DiContainer.Resolve<Balance>();
             _levelContext = DiContainer.Resolve<LevelContext>();
         }
+
+        public Entity CreatePathes<TTag>(IPathSystem pathSystem) where TTag : struct, IComponent =>
+            _world.CreateEntity()
+                .Add<TTag>()
+                .Add<PathesTag>()
+                .Set(new ListOf<Road>(pathSystem.Roads))
+                .Set(new ListOf<Crossroads>(pathSystem.Crossroads))
+                .Set(new ListOf<Point>(0))
+                .Set(new ListOf<PathLine>(0));
         
         public Entity CreateCar(CarMonoEntity carPrefab, Vector3 position, Quaternion rotation)
         {
@@ -49,12 +63,14 @@ namespace Sources.Game.Ecs.Factories
             return car;
         }
         
-        public Entity CreateNpcInCar(PlayerMonoEntity playerPrefab, Entity carEntity, Path path)
+        public Entity CreateNpcInCar(PlayerMonoEntity playerPrefab, Entity carEntity, PathLine pathLine)
         {
             return CreateNpc(playerPrefab, Vector3.zero, Quaternion.identity)
                 .SetupMono<IEnableDisableEntity>(g => g.Disable())
                 .Set(new PlayerInCar { Car = carEntity })
-                .Set(new NpcOnPath { Path = path });
+                .Set(new NpcOnPath { PathLine = pathLine })
+                .Set(new ListOf<TurnData>(0))
+                .Set(new QueueOf<ChoiceData>(0));
         }
         
         public Entity CreateUserInCar(PlayerMonoEntity playerPrefab, Entity carEntity)
@@ -75,9 +91,9 @@ namespace Sources.Game.Ecs.Factories
                 .Add<ForwardTrigger>()
                 .Add<NpcTag>();
         
-        public Entity CreateNpcOnPath(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation, Path path) =>
+        public Entity CreateNpcOnPath(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation, PathLine pathLine) =>
             CreateNpc(playerPrefab, position, rotation)
-                .Set(new NpcOnPath { Path = path });
+                .Set(new NpcOnPath { PathLine = pathLine });
         
         private Entity CreatePlayer(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation) =>
             _world.CreateFromMonoPrefab(playerPrefab)
@@ -100,10 +116,11 @@ namespace Sources.Game.Ecs.Factories
     public interface IFactory : IService
     {
         Entity CreateCar(CarMonoEntity carPrefab, Vector3 position, Quaternion rotation);
-        Entity CreateNpcInCar(PlayerMonoEntity playerPrefab, Entity carEntity, Path path);
+        Entity CreateNpcInCar(PlayerMonoEntity playerPrefab, Entity carEntity, PathLine pathLine);
         Entity CreateUserInCar(PlayerMonoEntity playerPrefab, Entity carEntity);
         Entity CreateUser(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation);
         Entity CreateCamera();
-        Entity CreateNpcOnPath(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation, Path path);
+        Entity CreateNpcOnPath(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation, PathLine pathLine);
+        Entity CreatePathes<TTag>(IPathSystem pathSystem) where TTag : struct, IComponent;
     }
 }

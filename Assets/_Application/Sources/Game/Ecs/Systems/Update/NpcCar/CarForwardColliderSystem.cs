@@ -3,6 +3,8 @@ using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.Views;
 using Sources.Game.Ecs.Components.Views.CarBorder;
+using Sources.Game.Ecs.Components.Views.CarEngine;
+using Sources.Game.Ecs.Components.Views.Transform;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.Balance;

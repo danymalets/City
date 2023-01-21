@@ -1,4 +1,3 @@
-using DefaultNamespace;
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Utils.Debugger.Components;
 using Sources.Game.Ecs.Utils.MorpehWrapper;

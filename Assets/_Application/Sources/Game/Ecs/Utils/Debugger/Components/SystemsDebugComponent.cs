@@ -1,7 +1,6 @@
 using Scellecs.Morpeh;
-using Sources.Game.Ecs.Utils.Debugger.Components;
 
-namespace DefaultNamespace
+namespace Sources.Game.Ecs.Utils.Debugger.Components
 {
     public struct SystemsDebugComponent : IComponent
     {

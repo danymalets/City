@@ -16,7 +16,6 @@ namespace Sources.Infrastructure.Bootstrap
         [SerializeField]
         private CameraMonoEntity _cameraMonoEntity;
 
-        [FormerlySerializedAs("_pathSystem")]
         [SerializeField]
         private PathSystem _carsPathSystem;
 
@@ -27,6 +26,6 @@ namespace Sources.Infrastructure.Bootstrap
 
         public CameraMonoEntity CameraMonoEntity => _cameraMonoEntity;
         public IPathSystem CarsPathSystem => _carsPathSystem;
-        public PathSystem NpcPathSystem => _npcPathSystem;
+        public IPathSystem NpcPathSystem => _npcPathSystem;
     }
 }

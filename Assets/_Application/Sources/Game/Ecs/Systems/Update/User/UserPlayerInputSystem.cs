@@ -1,5 +1,6 @@
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components;
+using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.User;
 using Sources.Game.Ecs.Utils.MorpehWrapper;

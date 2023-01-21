@@ -1,9 +1,12 @@
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components;
 using Sources.Game.Ecs.Components.Npc;
+using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.Views;
+using Sources.Game.Ecs.Components.Views.Transform;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Utilities.Extensions;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.Npc
@@ -24,9 +27,9 @@ namespace Sources.Game.Ecs.Systems.Update.Npc
                 ref NpcOnPath npcOnPath = ref npc.Get<NpcOnPath>();
                 Vector3 position = npc.GetMono<ITransform>().Position;
 
-                if (npcOnPath.Path.IsEnded(position))
+                if (npcOnPath.PathLine.IsEnded(position))
                 {
-                    npcOnPath.Path = npcOnPath.Path.Target.GetRandomTargetPath();
+                    npcOnPath.PathLine = npcOnPath.PathLine.Target.Targets.GetRandom().FirstPathLine;
                 }
             }
         }

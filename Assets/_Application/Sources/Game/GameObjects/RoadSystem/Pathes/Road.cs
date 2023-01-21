@@ -9,28 +9,26 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes
     public class Road : MonoBehaviour
     {
         [SerializeField]
-        private SingleLaneRoad _left;
+        private OneWayRoad _left;
 
         [SerializeField]
-        private SingleLaneRoad _right;
+        private OneWayRoad _right;
 
-        public float OneRoadLength => Vector3.Distance(_left.Sources.First().Position, _right.Targets.Last().Position);
-
-        public void GetCheckpoints(
-            Vector3 crossroadsPosition,
-            out IEnumerable<Checkpoint> sources,
-            out IEnumerable<Checkpoint> targets)
+        public IEnumerable<RoadLane> RoadLanes => 
+            _left.RoadLanes.Concat(_right.RoadLanes);
+        
+        // sources and targets related road
+        public CrossroadsSideData GetSideData(
+            Vector3 crossroadsPosition)
         {
             if (DVector3.SqrDistance(crossroadsPosition, _left.transform.position) <
                 DVector3.SqrDistance(crossroadsPosition, _right.transform.position))
             {
-                sources = _left.Sources;
-                targets = _right.Targets;
+                return new CrossroadsSideData(_left.Sources, _right.Targets);
             }
             else
             {
-                targets = _left.Targets;
-                sources = _right.Sources;
+                return new CrossroadsSideData(_right.Sources, _left.Targets);
             }
         }
     }

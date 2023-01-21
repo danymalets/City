@@ -1,5 +1,4 @@
 using System;
-using DefaultNamespace;
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Utils.Debugger;
 using Sources.Game.Ecs.Utils.Debugger.Components;
@@ -33,17 +32,21 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
             _updateGizmosContext.ClearAll();
 
             string name = GetType().Name;
-            long ticks = DPerformance.Execute(() =>
-            {
-                try
-                {
-                    OnUpdate(deltaTime);
-                }
-                catch (Exception exception)
-                {
-                    Debug.LogException(exception);
-                }
-            });
+            
+            OnUpdate(deltaTime);
+
+            long ticks = 0;
+            // long ticks = DPerformance.Execute(() =>
+            // {
+            //     try
+            //     {
+            //         OnUpdate(deltaTime);
+            //     }
+            //     catch (Exception exception)
+            //     {
+            //         Debug.LogException(exception);
+            //     }
+            // });
             SystemsDebugData systemsDebugData = _world.GetSingleton<SystemsDebugComponent>().Data;
 
             SystemDebugData systemDebugData = new(name, ticks);

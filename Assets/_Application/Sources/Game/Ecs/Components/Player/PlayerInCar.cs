@@ -1,6 +1,6 @@
 using Scellecs.Morpeh;
 
-namespace Sources.Game.Ecs.Components
+namespace Sources.Game.Ecs.Components.Player
 {
     public struct PlayerInCar : IComponent
     {

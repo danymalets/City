@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 852849c3cdbb45efad9fba34c1b1f56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pathData:
+  _roadLanes:
   - _source: {fileID: 6940046009875826231}
     _target: {fileID: 8946765175500480851}
 --- !u!1 &3839588209312484416
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 852849c3cdbb45efad9fba34c1b1f56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pathData:
+  _roadLanes:
   - _source: {fileID: 5834555967471039193}
     _target: {fileID: 611889811767156845}
 --- !u!1 &6737846879883253013

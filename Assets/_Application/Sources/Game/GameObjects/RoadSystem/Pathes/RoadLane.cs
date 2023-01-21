@@ -5,15 +5,15 @@ using UnityEngine;
 namespace Sources.Game.GameObjects.RoadSystem.Pathes
 {
     [Serializable]
-    public class PathData
+    public class RoadLane
     {
         [SerializeField]
-        private Checkpoint _source;
+        private RoadLaneCheckpoint _source;
         
         [SerializeField]
-        private Checkpoint _target;
+        private RoadLaneCheckpoint _target;
         
-        public Checkpoint Source => _source;
-        public Checkpoint Target => _target;
+        public RoadLaneCheckpoint Source => _source;
+        public RoadLaneCheckpoint Target => _target;
     }
 }

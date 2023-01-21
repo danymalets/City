@@ -7,7 +7,8 @@ namespace Sources.Game.GameObjects.RoadSystem
 {
     public interface IPathSystem 
     {
-        IEnumerable<Path> Pathes { get; }
-        IEnumerable<IConnectingPoint> RootPoints { get; }
+        IEnumerable<PathLine> Pathes { get; }
+        IEnumerable<Road> Roads { get; }
+        IEnumerable<Crossroads> Crossroads { get; }
     }
 }

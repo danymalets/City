@@ -1,4 +1,5 @@
 using Sources.Game.Ecs.Components.Views;
+using Sources.Game.Ecs.Components.Views.CarEngine;
 using Sources.Game.GameObjects.RoadSystem.Pathes;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ namespace Sources.Game.GameObjects.Cars
     {
         private CarWheels _carWheels;
         
-        public Path CurrentPath { get; private set; }
+        public PathLine CurrentPathLine { get; private set; }
         public float DistanceProgress { get; private set; }
 
         private void Awake()
@@ -16,13 +17,13 @@ namespace Sources.Game.GameObjects.Cars
             _carWheels = GetComponent<CarWheels>();
         }
 
-        public void Setup(Path path, float distanceProgress)
+        public void Setup(PathLine pathLine, float distanceProgress)
         {
-            CurrentPath = path;
+            CurrentPathLine = pathLine;
             DistanceProgress = distanceProgress;
             
-            //transform.position = path.GetPointByDistance(distanceProgress);
-            transform.rotation = Quaternion.LookRotation(path.Direction);
+            //transform.position = pathLine.GetPointByDistance(distanceProgress);
+            transform.rotation = Quaternion.LookRotation(pathLine.Direction);
         }
     }
 }

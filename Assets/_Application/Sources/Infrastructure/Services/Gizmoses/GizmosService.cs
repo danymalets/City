@@ -33,6 +33,12 @@ namespace Sources.Infrastructure.Services.Gizmoses
 
                 Gizmos.matrix = defaultMatrix;
             }
+            
+            foreach ((Vector3 Source, Vector3 Target, Color Color) in _contexts.SelectMany(c => c.Lines))
+            {
+                Gizmos.color = Color;
+                Gizmos.DrawLine(Source, Target);
+            }
         }
     }
 }

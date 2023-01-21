@@ -24,5 +24,10 @@ namespace Sources.Utilities
         public static Vector3 Abs(Vector3 vector) =>
             new(Mathf.Abs(vector.x), Mathf.Abs(vector.y), Mathf.Abs(vector.z));
 
+        public static float ManhattanDistance(Vector3 a, Vector3 b) =>
+            DMath.Distance(a.x, b.x) +
+            DMath.Distance(a.y, b.y) +
+            DMath.Distance(a.z, b.z);
+
     }
 }

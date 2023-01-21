@@ -1,14 +1,12 @@
-using System;
 using System.Collections.Generic;
-using Sources.Game.Ecs.Utils.Debugger.Components;
+using Sources.Game.Ecs.Utils.Debugger;
 using UnityEditor;
-using UnityEngine;
 
-namespace Sources.Game.Ecs.Utils.Debugger
+namespace _Application.Sources.Game.Ecs.Utils.Debugger.Editor
 {
     [CustomEditor(typeof(SystemsDebugger))]
     [CanEditMultipleObjects]
-    public class SystemsDebuggerEditor : Editor 
+    public class SystemsDebuggerEditor : UnityEditor.Editor 
     {
         public bool _showFixeds;
         public List<bool> _showFixedsInd = new();

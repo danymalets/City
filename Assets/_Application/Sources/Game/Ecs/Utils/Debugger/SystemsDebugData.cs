@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using Scellecs.Morpeh;
 
-namespace Sources.Game.Ecs.Utils.Debugger.Components
+namespace Sources.Game.Ecs.Utils.Debugger
 {
     public class SystemsDebugData
     {

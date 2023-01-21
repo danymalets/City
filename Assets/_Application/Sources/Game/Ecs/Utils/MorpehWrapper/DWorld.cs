@@ -70,5 +70,8 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
             _coroutineContext.StopAllCoroutines();
             World.Dispose();
         }
+
+        public void AddFixedOneFrame<TComponent>() where TComponent : struct, IComponent => 
+            AddFixedSystem<OneFrameCleanupSystem<TComponent>>();
     }
 }

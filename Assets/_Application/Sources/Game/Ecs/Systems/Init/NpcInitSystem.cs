@@ -2,7 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Scellecs.Morpeh;
 using Sources.Game.Constants;
+using Sources.Game.Ecs.Components;
 using Sources.Game.Ecs.Components.Car;
+using Sources.Game.Ecs.Components.Collections;
+using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.MonoEntities;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Game.GameObjects.RoadSystem;
@@ -20,8 +23,9 @@ namespace Sources.Game.Ecs.Systems.Init
     {
         private readonly IPhysicsService _physics;
         private readonly Assets _assets;
-        private readonly PathSystem _pathSystem;
+        private readonly IPathSystem _pathSystem;
         private readonly SimulationBalance _simulationBalance;
+        private Filter _npcPathesFilter;
 
         public NpcInitSystem()
         {
@@ -33,24 +37,33 @@ namespace Sources.Game.Ecs.Systems.Init
                 .NpcPathSystem;
         }
 
+        protected override void OnInitFilters()
+        {
+            _npcPathesFilter = _world.Filter<NpcsPathesTag>();
+        }
+
         protected override void OnInitialize()
         {
-            List<IConnectingPoint> points = _pathSystem.RootPoints.ToList();
+            Entity npcPathes = _npcPathesFilter.GetSingleton();
+            List<Point> points = npcPathes.Get<ListOf<Point>>().List;
+
             points.RandomShuffle();
             
-            foreach (IConnectingPoint point in points.Take(_simulationBalance.NpcCount))
+            foreach (Point point in points.Take(_simulationBalance.NpcCount))
             {
+                Quaternion npcRotation = Quaternion.LookRotation(point.Direction);
+
                 PlayerMonoEntity playerPrefab = _assets.PlayersAssets.GetRandomPlayer();
                 
-                Collider[] colliders = _physics.OverlapBox(point.Position + point.Rotation *
-                    playerPrefab.Center, playerPrefab.HalfExtents, point.Rotation, LayerMasks.CarsAndPlayers);
+                Collider[] colliders = _physics.OverlapBox(point.Position + npcRotation *
+                    playerPrefab.Center, playerPrefab.HalfExtents, npcRotation, LayerMasks.CarsAndPlayers);
 
                 if (colliders.Length > 0)
                 {
                     continue;
                 }
 
-                Entity npc = _factory.CreateNpcOnPath(playerPrefab, point.Position, point.Rotation, point.GetRandomTargetPath());
+                Entity npc = _factory.CreateNpcOnPath(playerPrefab, point.Position, npcRotation, point.Targets.GetRandom().FirstPathLine);
                 
                 _physics.SyncTransforms();
             }

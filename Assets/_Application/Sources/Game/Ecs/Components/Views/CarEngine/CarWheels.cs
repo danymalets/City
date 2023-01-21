@@ -1,11 +1,8 @@
-using System.Linq;
 using Sirenix.OdinInspector;
 using Sources.Game.GameObjects.Cars;
-using Sources.Utilities;
-using Sources.Utilities.Extensions;
 using UnityEngine;
 
-namespace Sources.Game.Ecs.Components.Views
+namespace Sources.Game.Ecs.Components.Views.CarEngine
 {
     [RequireComponent(typeof(Rigidbody))]
     public class CarWheels : MonoBehaviour, ICarWheels

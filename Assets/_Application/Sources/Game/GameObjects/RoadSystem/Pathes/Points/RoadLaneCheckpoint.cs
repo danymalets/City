@@ -4,15 +4,12 @@ using UnityEngine;
 
 namespace Sources.Game.GameObjects.RoadSystem.Pathes.Points
 {
-    public class Checkpoint : MonoBehaviour, IConnectingPoint
+    public class RoadLaneCheckpoint : MonoBehaviour
     {
-        public bool IsRoot => true;
         public Vector3 Position => transform.position;
-        public Quaternion Rotation => transform.rotation;
-        public List<Path> Sources { get; } = new();
-        public List<Path> Targets { get; }  = new();
-        public Vector3 Direction => transform.forward;
-
+        
+        public Point RelatedPoint { get; set; }
+        
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.blue.WithAlpha(0.5f);

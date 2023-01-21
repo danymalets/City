@@ -5,10 +5,10 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes
 {
     public class CrossroadsSideData
     {
-        public IEnumerable<Checkpoint> Sources { get; }
-        public IEnumerable<Checkpoint> Targets { get; }
+        public IEnumerable<Point> Sources { get; }
+        public IEnumerable<Point> Targets { get; }
 
-        public CrossroadsSideData(IEnumerable<Checkpoint> sources, IEnumerable<Checkpoint> targets)
+        public CrossroadsSideData(IEnumerable<Point> sources, IEnumerable<Point> targets)
         {
             Sources = sources;
             Targets = targets;

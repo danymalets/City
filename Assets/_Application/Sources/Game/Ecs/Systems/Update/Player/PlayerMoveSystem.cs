@@ -4,6 +4,7 @@ using Sources.Game.Ecs.Components.Npc;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.Views;
+using Sources.Game.Ecs.Components.Views.Physic;
 using Sources.Game.Ecs.Components.Views.PlayerAnimators;
 using Sources.Game.Ecs.Components.Views.PlayerDatas;
 using Sources.Game.Ecs.Systems.Init;

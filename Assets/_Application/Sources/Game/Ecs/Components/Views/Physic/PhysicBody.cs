@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace Sources.Game.Ecs.Components.Views
+namespace Sources.Game.Ecs.Components.Views.Physic
 {
     [RequireComponent(typeof(Rigidbody))]
     public class PhysicBody : MonoBehaviour, IPhysicBody
