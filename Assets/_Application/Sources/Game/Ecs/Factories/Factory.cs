@@ -5,6 +5,7 @@ using Sources.Game.Ecs.Components.Collections;
 using Sources.Game.Ecs.Components.Npc;
 using Sources.Game.Ecs.Components.Npc.NpcCar;
 using Sources.Game.Ecs.Components.Player;
+using Sources.Game.Ecs.Components.Player.User;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.User;
 using Sources.Game.Ecs.Components.Views;
@@ -46,7 +47,7 @@ namespace Sources.Game.Ecs.Factories
                 .Set(new ListOf<Crossroads>(pathSystem.Crossroads))
                 .Set(new ListOf<Point>(0))
                 .Set(new ListOf<PathLine>(0));
-        
+
         public Entity CreateCar(CarMonoEntity carPrefab, Vector3 position, Quaternion rotation)
         {
             Entity car = _world.CreateFromMonoPrefab(carPrefab)
@@ -58,11 +59,11 @@ namespace Sources.Game.Ecs.Factories
                 .Add<SteeringAngle>()
                 .Add<ForwardTrigger>()
                 .Add<SmoothSteeringAngle>()
-                .Set(new CarMaxSpeed{Value = Mathf.Infinity});
-            
+                .Set(new CarMaxSpeed { Value = Mathf.Infinity });
+
             return car;
         }
-        
+
         public Entity CreateNpcInCar(PlayerMonoEntity playerPrefab, Entity carEntity, PathLine pathLine)
         {
             return CreateNpc(playerPrefab, Vector3.zero, Quaternion.identity)
@@ -72,35 +73,38 @@ namespace Sources.Game.Ecs.Factories
                 .Set(new ListOf<TurnData>(0))
                 .Set(new QueueOf<ChoiceData>(0));
         }
-        
+
         public Entity CreateUserInCar(PlayerMonoEntity playerPrefab, Entity carEntity)
         {
             return CreateUser(playerPrefab, Vector3.zero, Quaternion.identity)
                 .SetupMono<IEnableDisableEntity>(g => g.Disable())
                 .Set(new PlayerInCar { Car = carEntity });
         }
-        
+
         public Entity CreateUser(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation) =>
             CreatePlayer(playerPrefab, position, rotation)
                 .Add<UserTag>()
                 .Add<UserCarInput>()
-                .Add<UserPlayerInput>();
+                .Add<UserPlayerInput>()
+                .Add<UserFollowTransform>();
 
         private Entity CreateNpc(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation) =>
             CreatePlayer(playerPrefab, position, rotation)
                 .Add<ForwardTrigger>()
                 .Add<NpcTag>();
-        
+
         public Entity CreateNpcOnPath(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation, PathLine pathLine) =>
             CreateNpc(playerPrefab, position, rotation)
-                .Set(new NpcOnPath { PathLine = pathLine });
-        
+                .Set(new NpcOnPath { PathLine = pathLine })
+                .Set(new ListOf<TurnData>(0))
+                .Set(new QueueOf<ChoiceData>(0));
+
         private Entity CreatePlayer(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation) =>
             _world.CreateFromMonoPrefab(playerPrefab)
                 .SetupMono<ITransform>(t => t.Position = position)
                 .SetupMono<ITransform>(t => t.Rotation = rotation)
-                .Set(new TargetAngle{ Value = rotation.eulerAngles.y})
-                .Set(new SmoothAngle{ Value = rotation.eulerAngles.y})
+                .Set(new TargetAngle { Value = rotation.eulerAngles.y })
+                .Set(new SmoothAngle { Value = rotation.eulerAngles.y })
                 .Set(new RotationSpeed { Value = 45f })
                 .Add<PlayerSpeed>()
                 .Add<PlayerTag>();

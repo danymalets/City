@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Sources.Game.GameObjects.RoadSystem.Pathes.Points
@@ -7,10 +8,9 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes.Points
     {
         private int _blockedCount = 0;
         public int Delta { get; }
-        public Point TargetPoint { get; } = null;
+        public Point TargetPoint { get; set; } = null;
         public PathLine FirstPathLine { get; }
         public List<TurnData> BlockableTurns { get; } = new();
-
 
         public TurnData(int delta, Point targetPoint, PathLine firstPathLine)
         {
@@ -19,11 +19,21 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes.Points
             FirstPathLine = firstPathLine;
         }
 
-        public void IncreaseBlocked() =>
-            _blockedCount++;
+        public void IncreaseBlocked()
+        {
+            // Debug.Log($"block before inc {_blockedCount}");
 
-        public void DecreaseBlocked() =>
+            // Debug.Log($"inc");
+            _blockedCount++;
+        }
+
+        public void DecreaseBlocked()
+        {
+            // Debug.Log($"dec");
+
             _blockedCount--;
+            // Debug.Log($"block after dec {_blockedCount}");
+        }
 
         public bool IsBlocked()
         {

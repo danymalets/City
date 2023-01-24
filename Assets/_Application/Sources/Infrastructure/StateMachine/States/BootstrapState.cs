@@ -2,6 +2,7 @@ using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.ApplicationCycle;
 using Sources.Infrastructure.Services.Fps;
 using Sources.Infrastructure.Services.Screens;
+using Sources.Infrastructure.Services.Times;
 using Sources.Infrastructure.StateMachine.Machine;
 using Sources.Infrastructure.StateMachine.StateBase;
 using Sources.UI.Overlays;
@@ -21,11 +22,13 @@ namespace Sources.Infrastructure.StateMachine.States
             IApplicationService application = DiContainer.Resolve<IApplicationService>();
             IPhysicsService physics = DiContainer.Resolve<IPhysicsService>();
             IScreenService screen = DiContainer.Resolve<IScreenService>();
+            ITimeService time = DiContainer.Resolve<ITimeService>();
             IUiService ui = DiContainer.Resolve<IUiService>();
             
             application.TargetFrameRate = screen.MaxDeviceFrameRate;
             // Time.fixedDeltaTime = 1 / 30f;
             physics.AutoSimulation = false;
+            screen.SleepTimeout = SleepTimeout.NeverSleep;
 
             ui.Open<PerformanceScreen>();
             

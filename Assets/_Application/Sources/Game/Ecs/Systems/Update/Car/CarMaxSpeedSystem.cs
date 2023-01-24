@@ -25,13 +25,17 @@ namespace Sources.Game.Ecs.Systems.Update.Car
                 IPhysicBody physicBody = carEntity.GetMono<IPhysicBody>();
                 float carMaxSpeed = carEntity.GetMono<ICarData>().MaxSpeed;
                 float playerMaxSpeed = carEntity.Get<CarMaxSpeed>().Value;
+                ref CarMotorCoefficient motorCoefficient = ref carEntity.Get<CarMotorCoefficient>();
 
                 float maxSpeed = Mathf.Min(carMaxSpeed, playerMaxSpeed);
 
                 if (physicBody.SignedSpeed < 0)
                     maxSpeed /= 2;
-                
-                physicBody.Velocity = Vector3.ClampMagnitude(physicBody.Velocity, maxSpeed);
+
+                if (physicBody.Velocity.magnitude > maxSpeed)
+                {
+                    motorCoefficient.Coefficient = 0;
+                }
             }
         }
     }

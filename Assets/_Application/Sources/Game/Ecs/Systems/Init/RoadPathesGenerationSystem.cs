@@ -37,13 +37,13 @@ namespace Sources.Game.Ecs.Systems.Init
                 {
                     foreach (RoadLane roadLane in road.RoadLanes)
                     {
-                        GeneratePathLines(ref pathLines, roadLane, isCar);
+                        GeneratePathLines(ref pathLines, road, roadLane, isCar);
                     }
                 }
             }
         }
 
-        private void GeneratePathLines(ref ListOf<PathLine> pathLines, RoadLane roadLane, bool isCar)
+        private void GeneratePathLines(ref ListOf<PathLine> pathLines, Road road, RoadLane roadLane, bool isCar)
         {
             List<Point> points = new();
 
@@ -55,8 +55,8 @@ namespace Sources.Game.Ecs.Systems.Init
             float lastDistance = isCar
                 ? _simulationBalance.MaxBreakingDistance + 
                   _simulationBalance.CarRootToForwardPoint + 
-                  _simulationBalance.DistanceBetweenCars
-                : _simulationBalance.MaxNpcRadius + _simulationBalance.DistanceBetweenNpcs;
+                  _simulationBalance.CarDistanceAfterBreak + _simulationBalance.CrosswalkWidth
+                : _simulationBalance.MaxNpcRadius + _simulationBalance.NpcDistanceAfterBreak;
             
             Vector3 preBreakPosition = Vector3.MoveTowards(target, source, lastDistance);
 
@@ -69,7 +69,7 @@ namespace Sources.Game.Ecs.Systems.Init
                 float progress = (float)i / pointsCount;
                 Vector3 position = Vector3.Lerp(source, preBreakPosition, progress);
 
-                points.Add(new Point(position, direction, true));
+                points.Add(new Point(position, direction, road.IsSpawnPoint));
             }
             
             points.Add(new Point(target, direction, false));

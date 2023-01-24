@@ -38,12 +38,16 @@ namespace Sources.Infrastructure.Services.Balance
         [SerializeField]
         private float _maxNpcRadius = 0.4f;
 
+        [FormerlySerializedAs("_distanceBetweenCars")]
         [SerializeField]
-        private float _distanceBetweenCars = 0.2f;
+        private float _carDistanceAfterBreak = 0.2f;
+
+        [FormerlySerializedAs("_distanceBetweenNpcs")]
+        [SerializeField]
+        private float _npcDistanceAfterBreak = 0.2f;
 
         [SerializeField]
-        private float _distanceBetweenNpcs = 0.2f;
-
+        private float _crosswalkWidth = 3f;
 
         public int CarCount => _carCount;
 
@@ -61,7 +65,9 @@ namespace Sources.Infrastructure.Services.Balance
 
         public float MaxNpcRadius => _maxNpcRadius;
 
-        public float DistanceBetweenCars => _distanceBetweenCars;
-        public float DistanceBetweenNpcs => _distanceBetweenNpcs;
+        public float CarDistanceAfterBreak => _carDistanceAfterBreak;
+        public float NpcDistanceAfterBreak => _npcDistanceAfterBreak;
+
+        public float CrosswalkWidth => _crosswalkWidth;
     }
 }

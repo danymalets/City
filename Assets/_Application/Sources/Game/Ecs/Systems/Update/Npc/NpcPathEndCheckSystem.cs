@@ -1,6 +1,7 @@
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components;
 using Sources.Game.Ecs.Components.Npc;
+using Sources.Game.Ecs.Components.Npc.NpcCar;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.Views;
@@ -11,7 +12,7 @@ using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.Npc
 {
-    public class NpcPathChangeSystem : DUpdateSystem
+    public class NpcPathEndCheckSystem : DUpdateSystem
     {
         private Filter _filter;
 
@@ -22,14 +23,15 @@ namespace Sources.Game.Ecs.Systems.Update.Npc
 
         protected override void OnUpdate(float fixedDeltaTime)
         {
-            foreach (Entity npc in _filter)
+            foreach (Entity npcEntity in _filter)
             {
-                ref NpcOnPath npcOnPath = ref npc.Get<NpcOnPath>();
-                Vector3 position = npc.GetMono<ITransform>().Position;
+                ref NpcOnPath npcOnPath = ref npcEntity.Get<NpcOnPath>();
+                Vector3 position = npcEntity.GetMono<ITransform>().Position;
 
                 if (npcOnPath.PathLine.IsEnded(position))
                 {
-                    npcOnPath.PathLine = npcOnPath.PathLine.Target.Targets.GetRandom().FirstPathLine;
+                    npcEntity.Set(new NpcPointReachedEvent{Point = npcOnPath.PathLine.Target});
+                    //npcOnPath.PathLine = npcOnPath.PathLine.Target.Targets.GetRandom().FirstPathLine;
                 }
             }
         }

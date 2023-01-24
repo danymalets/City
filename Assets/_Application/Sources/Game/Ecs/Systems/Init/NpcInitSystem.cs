@@ -45,9 +45,14 @@ namespace Sources.Game.Ecs.Systems.Init
         protected override void OnInitialize()
         {
             Entity npcPathes = _npcPathesFilter.GetSingleton();
-            List<Point> points = npcPathes.Get<ListOf<Point>>().List;
+            Point[] points = npcPathes.Get<ListOf<Point>>().ToArray();
 
             points.RandomShuffle();
+            
+            // Vector3[] kus = GameObject.FindObjectsOfType<Transform>()
+            //     .Where(t => t.gameObject.name == "ku").Select(t => t.position).ToArray();
+            //
+            // points = points.Where(p => kus.Any(k => Vector3.Distance(p.Position, k) <= 0.5f)).ToArray();
             
             foreach (Point point in points.Take(_simulationBalance.NpcCount))
             {

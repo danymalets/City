@@ -14,12 +14,12 @@ using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.NpcCar
 {
-    public class NpcCarBreakRequestHandlerSystem : DUpdateSystem
+    public class NpcCarBreakSystem : DUpdateSystem
     {
         private Filter _filter;
         private readonly SimulationBalance _simulationBalance;
 
-        public NpcCarBreakRequestHandlerSystem()
+        public NpcCarBreakSystem()
         {
             _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
         }
@@ -31,7 +31,7 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
 
         protected override void OnUpdate(float deltaTime)
         {
-            float reqDistance = _simulationBalance.CarRootToForwardPoint + _simulationBalance.DistanceBetweenCars;
+            float reqDistance = _simulationBalance.CarRootToForwardPoint + _simulationBalance.CarDistanceAfterBreak;
             
             foreach (Entity npcEntity in _filter)
             {
@@ -52,7 +52,7 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
                 
                 distance -= reqDistance;
 
-                Debug.Log($"dist {distance} reqdist{reqDistance}");
+                // Debug.Log($"dist {distance} reqdist{reqDistance}");
 
                 if (distance < 0)
                 {

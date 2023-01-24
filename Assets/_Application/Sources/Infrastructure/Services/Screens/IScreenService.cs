@@ -9,6 +9,7 @@ namespace Sources.Infrastructure.Services.Screens
         int Width { get; }
         Rect SafeArea { get; }
         int MaxDeviceFrameRate { get; }
+        int SleepTimeout { get; set; }
 
         event Action ScreenResolutionChanged;
     }

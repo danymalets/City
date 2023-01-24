@@ -49,7 +49,7 @@ namespace Sources.Game.Ecs.Systems.Init
         protected override void OnInitialize()
         {
             Entity npcPathes = _carPathesFilter.GetSingleton();
-            Point[] points = npcPathes.Get<ListOf<Point>>().Where(p => p.IsRoot).ToArray();
+            Point[] points = npcPathes.Get<ListOf<Point>>().ToArray();
 
             points.RandomShuffle();
 

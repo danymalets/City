@@ -16,13 +16,13 @@ using UnityEngine.Assertions;
 
 namespace Sources.Game.Ecs.Systems.Update.NpcCar
 {
-    public class NpcCarPathLineChangeSystem : DUpdateSystem
+    public class NpcPathLineChangeSystem : DUpdateSystem
     {
         private Filter _filter;
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<NpcTag, PlayerInCar, NpcOnPath, NpcCarPointReachedEvent>();
+            _filter = _world.Filter<NpcTag, NpcOnPath, NpcPointReachedEvent>();
         }
 
         protected override void OnUpdate(float deltaTime)
@@ -31,38 +31,33 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
             {
                 ref NpcOnPath npcOnPath = ref npcEntity.Get<NpcOnPath>();
                 ref ListOf<TurnData> carTurns = ref npcEntity.Get<ListOf<TurnData>>();
-                Point reachedPoint = npcEntity.Get<NpcCarPointReachedEvent>().Point;
-                Entity carEntity = npcEntity.Get<PlayerInCar>().Car;
+                Point reachedPoint = npcEntity.Get<NpcPointReachedEvent>().Point;
                 ref QueueOf<ChoiceData> choices = ref npcEntity.Get<QueueOf<ChoiceData>>();
 
                 ChoiceData choiceData = choices.Dequeue();
-                
+
                 Assert.AreEqual(choiceData.Point, reachedPoint);
-                
+
                 npcOnPath.PathLine = choiceData.TurnData.FirstPathLine;
 
                 TurnData[] banTurnsToRemove = carTurns.Where(ct => ct.TargetPoint == reachedPoint).ToArray();
 
-                
                 foreach (TurnData turnData in banTurnsToRemove)
                 {
                     foreach (TurnData banTurn in turnData.BlockableTurns)
                     {
+                        // Debug.Log($"decrease block");
                         banTurn.DecreaseBlocked();
                     }
+
                     carTurns.Remove(turnData);
                 }
-                
+
                 if (choiceData.TurnData.TargetPoint != null)
                 {
-                    foreach (TurnData blockTurn in choiceData.TurnData.BlockableTurns)
-                    {
-                        //blockTurn.IncreaseBlocked();
-                    }
                     carTurns.Add(choiceData.TurnData);
                 }
             }
         }
     }
-    
 }

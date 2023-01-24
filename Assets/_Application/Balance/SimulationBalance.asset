@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb959a1ed761474e8b9089930cdfa33f, type: 3}
   m_Name: SimulationBalance
   m_EditorClassIdentifier: 
-  _carCount: 40
-  _npcCount: 0
-  _carTriggerLength: 1.5
+  _carCount: 20
+  _npcCount: 20
+  _carTriggerLength: 1.7
   _npcTriggerLength: 0.4
   _maxBreakingDistance: 0.8
   _carRootToForwardPoint: 0.5
   _minDistanceBetweenRoots: 4
   _preSolvePathChoiceCount: 5
-  _maxNpcRadius: 0
-  _distanceBetweenCars: 1.1
-  _distanceBetweenNpcs: 0.2
+  _maxNpcRadius: 0.4
+  _carDistanceAfterBreak: 1.1
+  _npcDistanceAfterBreak: 0.3
+  _crosswalkWidth: 3

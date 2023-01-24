@@ -31,7 +31,7 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
 
                 if (npcOnPath.PathLine.IsEnded(carWheels.RootPosition))
                 {
-                    npcEntity.Set(new NpcCarPointReachedEvent{Point = npcOnPath.PathLine.Target});
+                    npcEntity.Set(new NpcPointReachedEvent{Point = npcOnPath.PathLine.Target});
                 }
             }
         }

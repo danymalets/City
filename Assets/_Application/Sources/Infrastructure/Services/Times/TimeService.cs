@@ -8,7 +8,11 @@ namespace Sources.Infrastructure.Services.Times
     {
         public float Time => UnityEngine.Time.time;
         public float DeltaTime => UnityEngine.Time.deltaTime;
-        public float FixedDeltaTime => UnityEngine.Time.fixedDeltaTime;
+        public float FixedDeltaTime
+        {
+            get => UnityEngine.Time.fixedDeltaTime;
+            set => UnityEngine.Time.fixedDeltaTime = value;
+        }
 
         public float TimeScale
         {

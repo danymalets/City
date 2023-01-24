@@ -35,16 +35,16 @@ namespace Sources.Game.Ecs.Systems.Update.Camera
 
         protected override void OnUpdate(float deltaTime)
         {
-
             if (_userFilter.NoOne())
                 return;
-            
+
             Entity cameraEntity = _cameraFilter.GetSingleton();
             Entity userEntity = _userFilter.GetSingleton();
 
             ITransform cameraTransform = cameraEntity.GetMono<ITransform>();
-            
+
             ITransform transform = userEntity.Get<PlayerInCar>().Car.GetMono<ITransform>();
+            // Debug.Log($"pos {transform.Position}");
 
             cameraTransform.Position = (transform.Position - transform.Rotation.GetForward() *
                 _cameraBalance.CameraBackDistance).WithY(_cameraBalance.CameraHeight);

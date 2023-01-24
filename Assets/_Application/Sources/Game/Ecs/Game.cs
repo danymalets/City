@@ -52,7 +52,6 @@ namespace Sources.Game.Ecs
         private void AddFixedUpdateSystems()
         {
             // npc
-            _world.AddFixedSystem<NpcPathChangeSystem>();
             
             _world.AddFixedSystem<NpcPathRotateSystem>();
             _world.AddFixedSystem<SmoothAngleSystem>();
@@ -62,38 +61,42 @@ namespace Sources.Game.Ecs
             
             _world.AddFixedSystem<NpcForwardColliderSystem>();
             _world.AddFixedSystem<NpcMoveSystem>();
-            _world.AddFixedSystem<PlayerMoveSystem>();
-
-            // npc car
-            _world.AddFixedSystem<NpcCarPathEndCheckSystem>();
-
-            _world.AddFixedSystem<NpcCarPathLineChangeSystem>();
-            _world.AddFixedSystem<NpcCarPathEnqueueChoiceSystem>();
             
-            _world.AddFixedSystem<NpcCarBreakChoiceSystem>();
-
-            //_world.AddFixedSystem<NpcCarPathEnqueueChoiceSystem>();
-            //_world.AddFixedSystem<NpcCarBreakPoint>();
-
+            // car
             _world.AddFixedSystem<NpcCarPathSteeringAngleSystem>();
             _world.AddFixedSystem<NpcCarMoveSystem>();
             
-            // npc car break point
-            _world.AddFixedSystem<NpcCarBreakRequestHandlerSystem>();
+            // paths
+            _world.AddFixedSystem<NpcPathEndCheckSystem>();
+            _world.AddFixedSystem<NpcCarPathEndCheckSystem>();
+
+            _world.AddFixedSystem<NpcPathLineChangeSystem>();
+            _world.AddFixedSystem<NpcPathChoiceSystem>();
             
-            // car
+            _world.AddFixedSystem<NpcCarBreakOrMoveChoiceSystem>();
+            _world.AddFixedSystem<NpcBreakOrMoveChoiceSystem>();
+
+            _world.AddFixedSystem<NpcCarBreakSystem>();
+            _world.AddFixedSystem<NpcBreakSystem>();
+            
+            // npc apply
+            _world.AddFixedSystem<PlayerMoveSystem>();
+
+            // car apply
             _world.AddFixedSystem<CarSmoothSteeringAngleSystem>();
             
+            _world.AddFixedSystem<CarMaxSpeedSystem>();
+
             _world.AddFixedSystem<CarBreakApplySystem>();
             _world.AddFixedSystem<CarMotorApplySystem>();
             _world.AddFixedSystem<SteeringAngleApplySystem>();
             
-            _world.AddFixedSystem<CarMaxSpeedSystem>();
 
             // physics
             _world.AddFixedSystem<PhysicsUpdateSystem>();
             
-            _world.AddFixedOneFrame<NpcCarPointReachedEvent>();
+            _world.AddFixedOneFrame<NpcPointReachedEvent>();
+            _world.AddFixedOneFrame<NpcBreakRequest>();
             _world.AddFixedOneFrame<NpcCarBreakRequest>();
         }
 
@@ -105,6 +108,10 @@ namespace Sources.Game.Ecs
             _world.AddUpdateSystem<UserPlayerInputSystem>();
             _world.AddUpdateSystem<UserCarInputSystem>();
             _world.AddUpdateSystem<UserCarMoveSystem>();
+            
+            _world.AddUpdateSystem<UserFollowTransformUpdateSystem>();
+            _world.AddUpdateSystem<UserWithCarFollowTransformUpdateSystem>();
+            _world.AddUpdateSystem<UserWithCarFollowTransformUpdateSystem>();
             
             _world.AddUpdateSystem<CameraFollowCarRotationSystem>();
             _world.AddUpdateSystem<CameraFollowCarPositionSystem>();

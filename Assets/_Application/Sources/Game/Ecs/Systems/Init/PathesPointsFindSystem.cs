@@ -35,7 +35,8 @@ namespace Sources.Game.Ecs.Systems.Init
 
                 foreach (Point point in pointsSet)
                 {
-                    points.Add(point);
+                    if (point.IsSpawnPoint)
+                        points.Add(point);
                 }
             }
         }

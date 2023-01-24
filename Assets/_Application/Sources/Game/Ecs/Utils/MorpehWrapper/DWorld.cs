@@ -4,6 +4,7 @@ using Sources.Game.Ecs.Utils.Debugger.Systems;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.CoroutineRunner;
 using Sources.Infrastructure.Services.Times;
+using Sources.Utilities;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Utils.MorpehWrapper
@@ -36,8 +37,14 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
 
         public void StartGame()
         {
-            _coroutineContext.RunEachFrame(() => World.Update(_time.DeltaTime), true);
-            _coroutineContext.RunEachFixedUpdate(() => World.FixedUpdate(_time.FixedDeltaTime));
+            _coroutineContext.RunEachFrame(() =>
+            {
+                World.Update(_time.DeltaTime);
+            }, true);
+            _coroutineContext.RunEachFixedUpdate(() =>
+            {
+                World.FixedUpdate(_time.FixedDeltaTime);
+            });
         }
 
         public void AddInitializer<TDInitializer>() where TDInitializer : DInitializer, new()

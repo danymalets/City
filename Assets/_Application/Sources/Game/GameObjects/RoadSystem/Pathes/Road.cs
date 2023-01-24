@@ -14,6 +14,12 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes
         [SerializeField]
         private OneWayRoad _right;
 
+        [SerializeField]
+        private bool _isSpawnPoint = true;
+
+
+        public bool IsSpawnPoint => _isSpawnPoint;
+
         public IEnumerable<RoadLane> RoadLanes => 
             _left.RoadLanes.Concat(_right.RoadLanes);
         
@@ -21,8 +27,8 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes
         public CrossroadsSideData GetSideData(
             Vector3 crossroadsPosition)
         {
-            if (DVector3.SqrDistance(crossroadsPosition, _left.transform.position) <
-                DVector3.SqrDistance(crossroadsPosition, _right.transform.position))
+            if (DVector3.SqrDistance(crossroadsPosition, _left.Sources.First().Position) <
+                DVector3.SqrDistance(crossroadsPosition, _right.Sources.First().Position))
             {
                 return new CrossroadsSideData(_left.Sources, _right.Targets);
             }
@@ -31,5 +37,8 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes
                 return new CrossroadsSideData(_right.Sources, _left.Targets);
             }
         }
+
+        public RoadLane[] GetLanesByDistanceTo(Vector3 position) =>
+            RoadLanes.OrderBy(r => DVector3.SqrDistance(r.Source.Position, position)).ToArray();
     }
 }

@@ -16,6 +16,12 @@ namespace Sources.Infrastructure.Services.Screens
 
         public int MaxDeviceFrameRate => Screen.resolutions.Max(r => r.refreshRate);
 
+        public int SleepTimeout
+        {
+            get => Screen.sleepTimeout;
+            set => Screen.sleepTimeout = value;
+        }
+
         public event Action ScreenResolutionChanged;
 
         private CoroutineContext _coroutineContext;

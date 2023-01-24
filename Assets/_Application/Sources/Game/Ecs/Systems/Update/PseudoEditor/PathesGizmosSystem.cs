@@ -1,3 +1,4 @@
+using System.Linq;
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components;
 using Sources.Game.Ecs.Components.Collections;
@@ -30,16 +31,16 @@ namespace Sources.Game.Ecs.Systems.Update.PseudoEditor
                     _updateGizmosContext.DrawLine(pathLine.Source.Position, pathLine.Target.Position, Color.blue);
                 }
                 
-                foreach (Point point in points)
+                foreach (Point point in points.Where(p => p.IsSpawnPoint))
                 {
                     _updateGizmosContext.DrawCube(
                         point.Position, Quaternion.LookRotation(point.Direction), 
-                        Vector3.one * 0.5f, Color.red);
+                        Vector3.one * 0.4f, Color.red);
                     
                     _updateGizmosContext.DrawCube(
-                        point.Position + point.Direction.normalized * 0.25f, 
+                        point.Position + point.Direction.normalized * 0.2f, 
                         Quaternion.LookRotation(point.Direction),
-                        Vector3.one * 0.3f, Color.red);
+                        Vector3.one * 0.25f, Color.red);
                 }
             }
         }
