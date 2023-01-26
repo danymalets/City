@@ -45,6 +45,7 @@ Shader "Custom/FogNew"
             {
                 float4 vertex : SV_POSITION;
                 half2 texcoord : TEXCOORD0;
+                float4 localPos : TEXCOORD1;
                 UNITY_FOG_COORDS(1)
             };
 
@@ -56,6 +57,7 @@ Shader "Custom/FogNew"
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex * _Size);
                 o.texcoord = TRANSFORM_TEX(v.texcoord, _MainTex);
+                o.localPos = v.vertex;
                 UNITY_TRANSFER_FOG(o, o.vertex);
                 return o;
             }
@@ -63,6 +65,7 @@ Shader "Custom/FogNew"
             fixed4 frag(v2f i) : SV_Target
             {
                 fixed4 col = _Color;
+                col.a = col.a * step(i.localPos.y, _Height / _Size);
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 return col;
             }

@@ -27,7 +27,10 @@ Material:
     m_Ints: []
     m_Floats:
     - _End: 50
+    - _Height: 3
+    - _Size: 50
     - _Start: 10
     m_Colors:
-    - _Color: {r: 0.7169812, g: 0.18600929, b: 0.18600929, a: 0.5}
+    - _Color: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 0.62352943}
+    - _Scale: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
