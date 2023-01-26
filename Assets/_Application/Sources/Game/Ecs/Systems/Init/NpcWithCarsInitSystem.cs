@@ -24,17 +24,13 @@ namespace Sources.Game.Ecs.Systems.Init
     {
         private readonly IPhysicsService _physics;
         private readonly Assets _assets;
-        private readonly IPathSystem _pathSystem;
         private readonly SimulationBalance _simulationBalance;
         private Filter _carPathesFilter;
 
         public NpcWithCarsInitSystem()
         {
             _assets = DiContainer.Resolve<Assets>();
-            
-            _pathSystem = DiContainer.Resolve<LevelContext>()
-                .CarsPathSystem;
-            
+
             _simulationBalance = DiContainer.Resolve<Balance>()
                 .SimulationBalance;
 
@@ -49,36 +45,46 @@ namespace Sources.Game.Ecs.Systems.Init
         protected override void OnInitialize()
         {
             Entity npcPathes = _carPathesFilter.GetSingleton();
-            Point[] points = npcPathes.Get<ListOf<Point>>().ToArray();
-
+            
+            Point[] points = npcPathes.GetList<ActiveSpawnPoints, Point>()
+                .Concat(npcPathes.GetList<HorizonSpawnPoints, Point>()).ToArray();
+            
             points.RandomShuffle();
 
             // Vector3[] kus = GameObject.FindObjectsOfType<Transform>()
             //     .Where(t => t.gameObject.name == "ku").Select(t => t.position).ToArray();
             //
             // points = points.Where(p => kus.Any(k => Vector3.Distance(p.Position, k) <= 0.5f)).ToArray();
-            
-            foreach (Point point in points.Take(_simulationBalance.CarCount))
+
+            int count = 0;
+            int reqCount = points.Length * _simulationBalance.CarsCountPer1000SpawnPoints / 1000;
+
+            if (reqCount > 0)
             {
-                Quaternion carRotation = Quaternion.LookRotation(point.Direction);
-                
-                CarMonoEntity carPrefab = _assets.CarsAssets.GetRandomCar();
-                
-                Collider[] colliders = _physics.OverlapBox(point.Position + carRotation *
-                    carPrefab.CenterRelatedRootPoint, carPrefab.HalfExtents, carRotation, LayerMasks.CarsAndPlayers);
-
-                if (colliders.Length > 0)
+                foreach (Point point in points)
                 {
-                    continue;
+                    Quaternion carRotation = Quaternion.LookRotation(point.Direction);
+
+                    CarMonoEntity carPrefab = _assets.CarsAssets.GetRandomCar();
+
+                    bool has = _physics.CheckBox(point.Position + carRotation *
+                        carPrefab.CenterRelatedRootPoint, carPrefab.HalfExtents, carRotation, LayerMasks.CarsAndPlayers);
+
+                    if (!has)
+                    {
+                        Entity car = _factory.CreateCar(carPrefab, point.Position - carRotation * carPrefab.RootOffset, carRotation);
+
+                        car.Set(new CarMaxSpeed { Value = 3f });
+
+                        _physics.SyncTransforms();
+
+                        _factory.CreateNpcInCar(_assets.PlayersAssets.GetRandomPlayer(), car, point.Targets.First().FirstPathLine);
+
+                        count++;
+                        if (count == reqCount)
+                            break;
+                    }
                 }
-
-                Entity car = _factory.CreateCar(carPrefab, point.Position - carRotation * carPrefab.RootOffset, carRotation);
-
-                car.Set(new CarMaxSpeed { Value = 3f });
-                
-                _physics.SyncTransforms();
-                
-                _factory.CreateNpcInCar(_assets.PlayersAssets.GetRandomPlayer(), car, point.Targets.First().FirstPathLine);
             }
         }
     }

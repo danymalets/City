@@ -44,18 +44,18 @@ namespace Sources.Game.Ecs.Systems.Init
             {
                 bool isCar = pathesEntity.Has<CarsPathesTag>();
 
-                ref ListOf<Road> roads = ref pathesEntity.Get<ListOf<Road>>();
-                ref ListOf<Crossroads> crossroads = ref pathesEntity.Get<ListOf<Crossroads>>();
-                ref ListOf<PathLine> pathLines = ref pathesEntity.Get<ListOf<PathLine>>();
+                List<Road> roads = pathesEntity.GetList<AllRoads, Road>();
+                List<PathLine> pathLines = pathesEntity.GetList<AllPathLines, PathLine>();
+                List<Crossroads> crossroads = pathesEntity.GetList<AllCrossroads, Crossroads>();
 
                 foreach (Crossroads crossroad in crossroads)
                 {
-                    Generate(ref pathLines, crossroad);
+                    Generate(pathLines, crossroad);
                 }
             }
         }
 
-        private void Generate(ref ListOf<PathLine> pathLines, Crossroads crossroad)
+        private void Generate(List<PathLine> pathLines, Crossroads crossroad)
         {
             Road[] crossroadRoads = crossroad.GetAllRoads();
             Vector3 crossroadPosition = crossroad.transform.position;
@@ -74,7 +74,7 @@ namespace Sources.Game.Ecs.Systems.Init
                         Point sourcePoint = sourceRoad.GetSideData(crossroadPosition).Targets.First();
                         Point targetPoint = targetRoad.GetSideData(crossroadPosition).Sources.First();
 
-                        Generate(ref pathLines, sourcePoint, targetPoint, deltaIndex);
+                        Generate(pathLines, sourcePoint, targetPoint, deltaIndex);
                     }
                 }
             }
@@ -118,7 +118,7 @@ namespace Sources.Game.Ecs.Systems.Init
             GenerateCrosswalksBlocks(crossroad, crossroad.Right, crossroad.RightRelated);
         }
 
-        private void Generate(ref ListOf<PathLine> pathLines,
+        private void Generate(List<PathLine> pathLines,
             Point source, Point target, int delta)
         {
             int pointsCount = s_pointsCountByDelta[delta];

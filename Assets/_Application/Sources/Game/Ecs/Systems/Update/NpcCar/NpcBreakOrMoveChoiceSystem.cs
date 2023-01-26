@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components.Collections;
 using Sources.Game.Ecs.Components.Npc;
@@ -36,8 +37,9 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
             foreach (Entity npcEntity in _filter)
             {
                 ITransform transform = npcEntity.GetMono<ITransform>();
-                ref QueueOf<ChoiceData> choices = ref npcEntity.Get<QueueOf<ChoiceData>>();
-
+                Queue<ChoiceData> choices = npcEntity.GetQueue<PredictedChoices, ChoiceData>();
+                List<TurnData> carTurns = npcEntity.GetList<ActiveTurns, TurnData>();
+                
                 foreach (ChoiceData choiceData in choices)
                 {
                     if (!choiceData.IsForceMove &&
@@ -46,20 +48,20 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
                     {
                         if (choiceData.TurnData.IsBlocked())
                         {
-                            Debug.Log($"blocked");
 
                             npcEntity.Set(new NpcBreakRequest());
                         }
                         else
                         {
                             choiceData.IsForceMove = true;
-                            Debug.Log($"go");
 
                             foreach (TurnData banTurnData in choiceData.TurnData.BlockableTurns)
                             {
-                                Debug.Log($"block blockable");
                                 banTurnData.IncreaseBlocked();
                             }
+                            
+                            if (choiceData.TurnData.TargetPoint != null)
+                                carTurns.Add(choiceData.TurnData);
                         }
                     }
                 }

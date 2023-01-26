@@ -3,7 +3,8 @@ Shader "Unlit/Fog"
     Properties
     {
         _Color("Color", Color) = (1,1,1,1)
-        _Height("Color", float) = 20
+        _Height("Height", float) = 20
+        _Size("Size", float) = 70
     }
     SubShader
     {
@@ -11,15 +12,17 @@ Shader "Unlit/Fog"
         {
             "RenderType"="Transparent"
             "Queue" = "Transparent"
+            "LightMode" = "Always"
         }
 
-        Cull Front
+        Cull Back
 
         CGPROGRAM
         #pragma surface surf Lambert vertex:vert alpha:fade
-
+        
         fixed4 _Color;
         fixed _Height;
+        fixed _Size;
 
         struct Input
         {
@@ -29,19 +32,17 @@ Shader "Unlit/Fog"
 
         void vert(inout appdata_full v, out Input o)
         {
-            v.normal.xyz = v.normal * -1;
-            UNITY_INITIALIZE_OUTPUT(Input,o);
+            UNITY_INITIALIZE_OUTPUT(Input, o);
+            v.normal.xyz = -v.normal;
+            v.vertex.xyz += v.normal.xyz * _Size;
             o.localPos = v.vertex.xyz;
         }
 
         void surf(Input IN, inout SurfaceOutput o)
         {
             o.Albedo = _Color;
-            o.Alpha = _Color.a * step(IN.localPos.z * 100, _Height);
+            o.Alpha = _Color.a * step(IN.localPos.y, _Height);
         }
         ENDCG
-
     }
-
-    Fallback "Diffuse"
 }

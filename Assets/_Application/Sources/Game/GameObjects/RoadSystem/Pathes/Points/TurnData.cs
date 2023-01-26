@@ -21,18 +21,12 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes.Points
 
         public void IncreaseBlocked()
         {
-            // Debug.Log($"block before inc {_blockedCount}");
-
-            // Debug.Log($"inc");
             _blockedCount++;
         }
 
         public void DecreaseBlocked()
         {
-            // Debug.Log($"dec");
-
             _blockedCount--;
-            // Debug.Log($"block after dec {_blockedCount}");
         }
 
         public bool IsBlocked()

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components;
@@ -23,8 +24,8 @@ namespace Sources.Game.Ecs.Systems.Update.PseudoEditor
         {
             foreach (Entity pathesEntity in _filter)
             {
-                ref ListOf<PathLine> pathLines = ref pathesEntity.Get<ListOf<PathLine>>();
-                ref ListOf<Point> points = ref pathesEntity.Get<ListOf<Point>>();
+                List<Point> points = pathesEntity.GetList<AllSpawnPoints, Point>();
+                List<PathLine> pathLines = pathesEntity.GetList<AllPathLines, PathLine>();
 
                 foreach (PathLine pathLine in pathLines)
                 {

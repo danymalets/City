@@ -22,8 +22,8 @@ namespace Sources.Game.Ecs.Systems.Init
         {
             foreach (Entity pathesEntity in _filter)
             {
-                ref ListOf<PathLine> pathLines = ref pathesEntity.Get<ListOf<PathLine>>();
-                ref ListOf<Point> points = ref pathesEntity.Get<ListOf<Point>>();
+                List<Point> points = pathesEntity.GetList<AllSpawnPoints, Point>();
+                List<PathLine> pathLines = pathesEntity.GetList<AllPathLines, PathLine>();
 
                 HashSet<Point> pointsSet = new();
 

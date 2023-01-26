@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components.Collections;
@@ -30,9 +31,9 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
             foreach (Entity npcEntity in _filter)
             {
                 ref NpcOnPath npcOnPath = ref npcEntity.Get<NpcOnPath>();
-                ref ListOf<TurnData> carTurns = ref npcEntity.Get<ListOf<TurnData>>();
+                List<TurnData> carTurns = npcEntity.GetList<ActiveTurns, TurnData>();
                 Point reachedPoint = npcEntity.Get<NpcPointReachedEvent>().Point;
-                ref QueueOf<ChoiceData> choices = ref npcEntity.Get<QueueOf<ChoiceData>>();
+                Queue<ChoiceData> choices = npcEntity.GetQueue<PredictedChoices, ChoiceData>();
 
                 ChoiceData choiceData = choices.Dequeue();
 
@@ -51,11 +52,6 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
                     }
 
                     carTurns.Remove(turnData);
-                }
-
-                if (choiceData.TurnData.TargetPoint != null)
-                {
-                    carTurns.Add(choiceData.TurnData);
                 }
             }
         }

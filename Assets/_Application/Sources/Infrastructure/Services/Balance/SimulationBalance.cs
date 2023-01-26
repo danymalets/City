@@ -8,10 +8,10 @@ namespace Sources.Infrastructure.Services.Balance
     {
         [Header("Count")]
         [SerializeField]
-        private int _carCount = 20;
+        private int _carsCountPer1000SpawnPoints = 20;
 
         [SerializeField]
-        private int _npcCount = 20;
+        private int _npcCountPer1000SpawnPoints = 20;
 
         [Header("Triggers")]
         [SerializeField]
@@ -48,10 +48,17 @@ namespace Sources.Infrastructure.Services.Balance
 
         [SerializeField]
         private float _crosswalkWidth = 3f;
+        
+        [Header("Generation")]
+        [SerializeField]
+        private float _minActiveRadius = 20;
+        
+        [SerializeField]
+        private float _maxActiveRadius = 31;
 
-        public int CarCount => _carCount;
+        public int CarsCountPer1000SpawnPoints => _carsCountPer1000SpawnPoints;
 
-        public int NpcCount => _npcCount;
+        public int NpcCountPer1000SpawnPoints => _npcCountPer1000SpawnPoints;
 
         public float CarTriggerLength => _carTriggerLength;
 
@@ -69,5 +76,9 @@ namespace Sources.Infrastructure.Services.Balance
         public float NpcDistanceAfterBreak => _npcDistanceAfterBreak;
 
         public float CrosswalkWidth => _crosswalkWidth;
+
+        public float MinActiveRadius => _minActiveRadius;
+
+        public float MaxActiveRadius => _maxActiveRadius;
     }
 }

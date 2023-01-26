@@ -43,10 +43,13 @@ namespace Sources.Game.Ecs.Factories
             _world.CreateEntity()
                 .Add<TTag>()
                 .Add<PathesTag>()
-                .Set(new ListOf<Road>(pathSystem.Roads))
-                .Set(new ListOf<Crossroads>(pathSystem.Crossroads))
-                .Set(new ListOf<Point>(0))
-                .Set(new ListOf<PathLine>(0));
+                .SetList<AllRoads, Road>(pathSystem.Roads)
+                .SetList<AllCrossroads, Crossroads>(pathSystem.Crossroads)
+                .AddList<AllSpawnPoints, Point>()
+                .AddList<ActiveSpawnPoints, Point>()
+                .AddList<HorizonSpawnPoints, Point>()
+                .AddList<AllSpawnPoints, Point>()
+                .AddList<AllPathLines, PathLine>();
 
         public Entity CreateCar(CarMonoEntity carPrefab, Vector3 position, Quaternion rotation)
         {
@@ -70,8 +73,8 @@ namespace Sources.Game.Ecs.Factories
                 .SetupMono<IEnableDisableEntity>(g => g.Disable())
                 .Set(new PlayerInCar { Car = carEntity })
                 .Set(new NpcOnPath { PathLine = pathLine })
-                .Set(new ListOf<TurnData>(0))
-                .Set(new QueueOf<ChoiceData>(0));
+                .AddList<ActiveTurns, TurnData>()
+                .AddQueue<PredictedChoices, ChoiceData>();
         }
 
         public Entity CreateUserInCar(PlayerMonoEntity playerPrefab, Entity carEntity)
@@ -96,8 +99,8 @@ namespace Sources.Game.Ecs.Factories
         public Entity CreateNpcOnPath(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation, PathLine pathLine) =>
             CreateNpc(playerPrefab, position, rotation)
                 .Set(new NpcOnPath { PathLine = pathLine })
-                .Set(new ListOf<TurnData>(0))
-                .Set(new QueueOf<ChoiceData>(0));
+                .AddList<ActiveTurns, TurnData>()
+                .AddQueue<PredictedChoices, ChoiceData>();
 
         private Entity CreatePlayer(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation) =>
             _world.CreateFromMonoPrefab(playerPrefab)
@@ -114,17 +117,5 @@ namespace Sources.Game.Ecs.Factories
             return _world.CreateFromMono(_levelContext.CameraMonoEntity)
                 .Add<CameraTag>();
         }
-    }
-
-
-    public interface IFactory : IService
-    {
-        Entity CreateCar(CarMonoEntity carPrefab, Vector3 position, Quaternion rotation);
-        Entity CreateNpcInCar(PlayerMonoEntity playerPrefab, Entity carEntity, PathLine pathLine);
-        Entity CreateUserInCar(PlayerMonoEntity playerPrefab, Entity carEntity);
-        Entity CreateUser(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation);
-        Entity CreateCamera();
-        Entity CreateNpcOnPath(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation, PathLine pathLine);
-        Entity CreatePathes<TTag>(IPathSystem pathSystem) where TTag : struct, IComponent;
     }
 }

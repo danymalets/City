@@ -1,4 +1,5 @@
 using Scellecs.Morpeh;
+using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Infrastructure.Services.Pool;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace Sources.Game.Ecs.Utils
         public void Setup(Entity entity)
         {
             Entity = entity;
+            entity.Set(new MonoEntityAccess{MonoEntity = this});
             OnSetup();
         }
 

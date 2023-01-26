@@ -5,6 +5,7 @@ using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.Views.CarEngine;
 using Sources.Game.Ecs.Components.Views.Transform;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Utilities.Extensions;
 
 namespace Sources.Game.Ecs.Systems.Update.User
 {
@@ -19,10 +20,15 @@ namespace Sources.Game.Ecs.Systems.Update.User
 
         protected override void OnUpdate(float deltaTime)
         {
+            if (_filter.NoOne())
+                return;
+            
             Entity userEntity = _filter.GetSingleton();
 
-            ICarWheels wheels = userEntity.GetMono<ICarWheels>();
-            ITransform transform = userEntity.GetMono<ITransform>();
+            Entity carEntity = userEntity.Get<PlayerInCar>().Car;
+
+            ICarWheels wheels = carEntity.GetMono<ICarWheels>();
+            ITransform transform = carEntity.GetMono<ITransform>();
             ref UserFollowTransform userFollowTransform = ref userEntity.Get<UserFollowTransform>();
 
             userFollowTransform.Position = wheels.RootPosition;

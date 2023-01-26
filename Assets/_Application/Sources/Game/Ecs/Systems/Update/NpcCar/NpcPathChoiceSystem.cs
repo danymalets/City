@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components.Collections;
@@ -31,7 +32,7 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
         {
             foreach (Entity npcEntity in _filter)
             {
-                ref QueueOf<ChoiceData> choices = ref npcEntity.Get<QueueOf<ChoiceData>>();
+                Queue<ChoiceData> choices = npcEntity.GetQueue<PredictedChoices, ChoiceData>();
                 NpcOnPath npcOnPath = npcEntity.Get<NpcOnPath>();
                 
                 while (choices.Count < _simulationBalance.PreSolvePathChoiceCount)

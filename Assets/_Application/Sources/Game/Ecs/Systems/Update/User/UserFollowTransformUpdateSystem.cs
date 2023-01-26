@@ -4,6 +4,7 @@ using Sources.Game.Ecs.Components.Player.User;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.Views.Transform;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Utilities.Extensions;
 
 namespace Sources.Game.Ecs.Systems.Update.User
 {
@@ -18,6 +19,9 @@ namespace Sources.Game.Ecs.Systems.Update.User
 
         protected override void OnUpdate(float deltaTime)
         {
+            if (_filter.NoOne())
+                return;
+
             Entity userEntity = _filter.GetSingleton();
 
             ITransform transform = userEntity.GetMono<ITransform>();

@@ -32,20 +32,12 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
             _updateGizmosContext.ClearAll();
 
             string name = GetType().Name;
-            
-            OnUpdate(deltaTime);
+
 
             long ticks = 0;
             // long ticks = DPerformance.Execute(() =>
             // {
-            //     try
-            //     {
-            //         OnUpdate(deltaTime);
-            //     }
-            //     catch (Exception exception)
-            //     {
-            //         Debug.LogException(exception);
-            //     }
+                    TryUpdate(deltaTime);
             // });
             SystemsDebugData systemsDebugData = _world.GetSingleton<SystemsDebugComponent>().Data;
 
@@ -58,6 +50,18 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
             else
             {
                 systemsDebugData.AddUpdateData(systemDebugData);
+            }
+        }
+
+        private void TryUpdate(float deltaTime)
+        {
+            try
+            {
+                OnUpdate(deltaTime);
+            }
+            catch (Exception exception)
+            {
+                Debug.LogException(exception);
             }
         }
 

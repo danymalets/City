@@ -11,7 +11,7 @@ namespace Sources.Infrastructure.Bootstrap
     public class LevelContext : SceneContext, IService
     {
         [SerializeField]
-        public SpawnPoint _userSpawnPoint;
+        private SpawnPoint _userSpawnPoint;
 
         [SerializeField]
         private CameraMonoEntity _cameraMonoEntity;
@@ -21,11 +21,15 @@ namespace Sources.Infrastructure.Bootstrap
 
         [SerializeField]
         private PathSystem _npcPathSystem;
+
+        [SerializeField]
+        private Fog _fog;
         
         public ISpawnPoint UserSpawnPoint => _userSpawnPoint;
 
         public CameraMonoEntity CameraMonoEntity => _cameraMonoEntity;
         public IPathSystem CarsPathSystem => _carsPathSystem;
         public IPathSystem NpcPathSystem => _npcPathSystem;
+        public Fog Fog => _fog;
     }
 }

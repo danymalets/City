@@ -29,21 +29,21 @@ namespace Sources.Game.Ecs.Systems.Init
             {
                 bool isCar = pathesEntity.Has<CarsPathesTag>();
                 
-                ref ListOf<Road> roads = ref pathesEntity.Get<ListOf<Road>>();
-                ref ListOf<Crossroads> crossroads = ref pathesEntity.Get<ListOf<Crossroads>>();
-                ref ListOf<PathLine> pathLines = ref pathesEntity.Get<ListOf<PathLine>>();
+                List<Road> roads = pathesEntity.GetList<AllRoads, Road>();
+                List<PathLine> pathLines = pathesEntity.GetList<AllPathLines, PathLine>();
+                List<Crossroads> crossroads = pathesEntity.GetList<AllCrossroads, Crossroads>();
 
                 foreach (Road road in roads)
                 {
                     foreach (RoadLane roadLane in road.RoadLanes)
                     {
-                        GeneratePathLines(ref pathLines, road, roadLane, isCar);
+                        GeneratePathLines(pathLines, road, roadLane, isCar);
                     }
                 }
             }
         }
 
-        private void GeneratePathLines(ref ListOf<PathLine> pathLines, Road road, RoadLane roadLane, bool isCar)
+        private void GeneratePathLines(List<PathLine> pathLines, Road road, RoadLane roadLane, bool isCar)
         {
             List<Point> points = new();
 

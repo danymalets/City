@@ -1,5 +1,6 @@
 using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Components.Npc.NpcCar;
+using Sources.Game.Ecs.Components.Player.User;
 using Sources.Game.Ecs.Components.User;
 using Sources.Game.Ecs.Factories;
 using Sources.Game.Ecs.Systems.Fixed;
@@ -7,6 +8,7 @@ using Sources.Game.Ecs.Systems.Init;
 using Sources.Game.Ecs.Systems.Update;
 using Sources.Game.Ecs.Systems.Update.Camera;
 using Sources.Game.Ecs.Systems.Update.Car;
+using Sources.Game.Ecs.Systems.Update.Generation;
 using Sources.Game.Ecs.Systems.Update.Npc;
 using Sources.Game.Ecs.Systems.Update.NpcCar;
 using Sources.Game.Ecs.Systems.Update.Player;
@@ -29,6 +31,7 @@ namespace Sources.Game.Ecs
             _diBuilder = DiBuilder.Create();
             
             _diBuilder.Register<IFactory>(new Factory(_world.World));
+            _diBuilder.Register<IDespawner>(new Despawner());
 
             AddInitializers();
             AddUpdateSystems();
@@ -45,12 +48,23 @@ namespace Sources.Game.Ecs
             _world.AddInitializer<UserInitSystem>();
             _world.AddInitializer<CameraInitSystem>();
             
+            _world.AddInitializer<ActiveSpawnPointsInitializeSystem>();
+            
             _world.AddInitializer<NpcInitSystem>();
             _world.AddInitializer<NpcWithCarsInitSystem>();
         }
 
         private void AddFixedUpdateSystems()
         {
+            // gen
+            _world.AddFixedSystem<ActiveSpawnPointsUpdateSystem>();
+            
+            _world.AddFixedSystem<InactiveNpcDespawnSystem>();
+            _world.AddFixedSystem<InactiveCarsDespawnSystem>();
+            
+            _world.AddFixedSystem<HorizonCarsSpawnSystem>();
+            _world.AddFixedSystem<HorizonNpcSpawnSystem>();
+
             // npc
             
             _world.AddFixedSystem<NpcPathRotateSystem>();
@@ -111,10 +125,7 @@ namespace Sources.Game.Ecs
             
             _world.AddUpdateSystem<UserFollowTransformUpdateSystem>();
             _world.AddUpdateSystem<UserWithCarFollowTransformUpdateSystem>();
-            _world.AddUpdateSystem<UserWithCarFollowTransformUpdateSystem>();
-            
-            _world.AddUpdateSystem<CameraFollowCarRotationSystem>();
-            _world.AddUpdateSystem<CameraFollowCarPositionSystem>();
+            _world.AddUpdateSystem<UserFogUpdateSystem>();
 
             _world.AddUpdateSystem<CameraFollowPlayerRotationSystem>();
             _world.AddUpdateSystem<CameraFollowPlayerPositionSystem>();

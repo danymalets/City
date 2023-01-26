@@ -23,8 +23,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _FogTint: 0.5
-    - _Height: 7.8
+    - _Height: 4
+    - _Size: 35
     m_Colors:
-    - _Color: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0.7882353}
+    - _Color: {r: 0.627047, g: 0.6817639, b: 0.7264151, a: 0.7176471}
     - _FogParam: {r: 1, g: 1, b: 0.5, a: 1}
   m_BuildTextureStacks: []

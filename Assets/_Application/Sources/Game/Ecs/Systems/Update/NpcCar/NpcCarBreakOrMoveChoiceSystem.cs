@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components.Collections;
 using Sources.Game.Ecs.Components.Npc;
@@ -10,6 +11,7 @@ using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.Balance;
 using Sources.Utilities;
+using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.NpcCar
 {
@@ -38,7 +40,8 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
             {
                 Entity carEntity = npcEntity.Get<PlayerInCar>().Car;
                 ICarWheels wheels = carEntity.GetMono<ICarWheels>();
-                ref QueueOf<ChoiceData> choices = ref npcEntity.Get<QueueOf<ChoiceData>>();
+                Queue<ChoiceData> choices = npcEntity.GetQueue<PredictedChoices, ChoiceData>();
+                List<TurnData> npcTurns = npcEntity.GetList<ActiveTurns, TurnData>();
 
                 foreach (ChoiceData choiceData in choices)
                 {
@@ -57,6 +60,9 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
                             {
                                 banTurnData.IncreaseBlocked();
                             }
+                            
+                            if (choiceData.TurnData.TargetPoint != null)
+                                npcTurns.Add(choiceData.TurnData);
                         }
                     }
                 }
