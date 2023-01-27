@@ -1,48 +1,79 @@
-Shader "Unlit/Fog"
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/Fog"
 {
     Properties
     {
+        _MainTex ("Base (RGB) Alpha (A)", 2D) = "white" {}
         _Color("Color", Color) = (1,1,1,1)
         _Height("Height", float) = 20
         _Size("Size", float) = 70
     }
+
     SubShader
     {
         Tags
         {
-            "RenderType"="Transparent"
-            "Queue" = "Transparent"
-            "LightMode" = "Always"
+            "Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"
         }
+        LOD 100
 
-        Cull Back
+        ZWrite Off
+        Blend SrcAlpha OneMinusSrcAlpha
+        Cull Off
 
-        CGPROGRAM
-        #pragma surface surf Lambert vertex:vert alpha:fade
-        
-        fixed4 _Color;
-        fixed _Height;
-        fixed _Size;
-
-        struct Input
+        Pass
         {
-            float4 color : COLOR;
-            float3 localPos;
-        };
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            #pragma multi_compile_fog
 
-        void vert(inout appdata_full v, out Input o)
-        {
-            UNITY_INITIALIZE_OUTPUT(Input, o);
-            v.normal.xyz = -v.normal;
-            v.vertex.xyz += v.normal.xyz * _Size;
-            o.localPos = v.vertex.xyz;
+            #include "UnityCG.cginc"
+
+            fixed4 _Color;
+            fixed _Height;
+            fixed _Size;
+
+            struct appdata_t
+            {
+                float4 vertex : POSITION;
+                float2 texcoord : TEXCOORD0;
+            };
+
+            struct v2f
+            {
+                float4 vertex : SV_POSITION;
+                half2 texcoord : TEXCOORD0;
+                float4 localPos : TEXCOORD1;
+                UNITY_FOG_COORDS(1)
+            };
+
+            sampler2D _MainTex;
+            float4 _MainTex_ST;
+
+            v2f vert(appdata_t v)
+            {
+                v2f o;
+                o.vertex = UnityObjectToClipPos(v.vertex * _Size);
+                o.texcoord = TRANSFORM_TEX(v.texcoord, _MainTex);
+                o.localPos = v.vertex;
+                UNITY_TRANSFER_FOG(o, o.vertex);
+                return o;
+            }
+
+            fixed4 frag(v2f i) : SV_Target
+            {
+                fixed4 col = _Color;
+
+                fixed norm = i.localPos.y * _Size / _Height;
+                
+                col.a = col.a * (-norm*norm*norm+1);
+                UNITY_APPLY_FOG(i.fogCoord, col);
+                return col;
+            }
+            ENDCG
         }
-
-        void surf(Input IN, inout SurfaceOutput o)
-        {
-            o.Albedo = _Color;
-            o.Alpha = _Color.a * step(IN.localPos.y, _Height);
-        }
-        ENDCG
     }
+
 }

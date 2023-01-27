@@ -278,6 +278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _left: {fileID: 4331914500191874502}
   _right: {fileID: 1939425661872080651}
+  _isSpawnPoint: 0
 --- !u!1 &8361841470026642436
 GameObject:
   m_ObjectHideFlags: 0

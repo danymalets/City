@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SimulationBalance
   m_EditorClassIdentifier: 
   _carsCountPer1000SpawnPoints: 90
-  _npcCountPer1000SpawnPoints: 90
+  _npcCountPer1000SpawnPoints: 110
   _carTriggerLength: 1.7
   _npcTriggerLength: 0.4
   _maxBreakingDistance: 0.8
@@ -24,5 +24,5 @@ MonoBehaviour:
   _carDistanceAfterBreak: 1.1
   _npcDistanceAfterBreak: 0.3
   _crosswalkWidth: 3
-  _minActiveRadius: 38
-  _maxActiveRadius: 42.1
+  _minActiveRadius: 33
+  _maxActiveRadius: 37.1
