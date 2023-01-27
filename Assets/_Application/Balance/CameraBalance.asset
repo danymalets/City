@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: CameraBalance
   m_EditorClassIdentifier: 
   _cameraHeight: 4
-  _cameraBackDistance: 6
-  _cameraXRotationAngle: 30
-  _cameraRotationSpeed: 90
+  _cameraBackDistance: 6.57
+  _cameraXRotationAngle: 70
+  _cameraRotationSpeed: 8

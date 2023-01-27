@@ -26,8 +26,7 @@ namespace Sources.Game.Ecs.Components.Views.PlayerDatas
 
             rigidbody.mass = _mass;
 
-            rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ |
-                                    RigidbodyConstraints.FreezePositionY;
+            rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
             
             rigidbody.angularDrag = 1f;
         }

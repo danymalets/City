@@ -1,5 +1,6 @@
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components;
+using Sources.Game.Ecs.Components.Camera;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Player.User;
 using Sources.Game.Ecs.Components.Tags;
@@ -23,8 +24,7 @@ namespace Sources.Game.Ecs.Systems.Update.Camera
 
         public CameraFollowPlayerPositionSystem()
         {
-            _cameraBalance = DiContainer.Resolve<Balance>()
-                .CameraBalance;
+            _cameraBalance = DiContainer.Resolve<Balance>().CameraBalance;
         }
 
         protected override void OnInitFilters()
@@ -42,11 +42,12 @@ namespace Sources.Game.Ecs.Systems.Update.Camera
             Entity userEntity = _userFilter.GetSingleton();
 
             ITransform cameraTransform = cameraEntity.GetMono<ITransform>();
+            float cameraAngle = cameraEntity.Get<CameraAngle>().Value;
             
             Vector3 userPosition = userEntity.Get<UserFollowTransform>().Position;
-
-            cameraTransform.Position = (userPosition - cameraTransform.Rotation.GetForward() *
-                _cameraBalance.CameraBackDistance).WithY(_cameraBalance.CameraHeight);
+            
+            cameraTransform.Position = (userPosition + Quaternion.AngleAxis(cameraAngle, Vector3.up) *
+                Vector3.back * _cameraBalance.CameraBackDistance).WithY(_cameraBalance.CameraHeight);
         }
     }
 }

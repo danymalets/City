@@ -1,5 +1,6 @@
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components;
+using Sources.Game.Ecs.Components.Camera;
 using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Components.Collections;
 using Sources.Game.Ecs.Components.Npc;
@@ -10,7 +11,6 @@ using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.User;
 using Sources.Game.Ecs.Components.Views;
 using Sources.Game.Ecs.Components.Views.EnableDisable;
-using Sources.Game.Ecs.Components.Views.Transform;
 using Sources.Game.Ecs.MonoEntities;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Game.GameObjects.RoadSystem;
@@ -21,6 +21,8 @@ using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.AssetsManager;
 using Sources.Infrastructure.Services.Balance;
 using UnityEngine;
+using UnityEngine.UIElements;
+using ITransform = Sources.Game.Ecs.Components.Views.Transform.ITransform;
 
 namespace Sources.Game.Ecs.Factories
 {
@@ -115,7 +117,8 @@ namespace Sources.Game.Ecs.Factories
         public Entity CreateCamera()
         {
             return _world.CreateFromMono(_levelContext.CameraMonoEntity)
-                .Add<CameraTag>();
+                .Add<CameraTag>()
+                .Add<CameraAngle>();
         }
     }
 }

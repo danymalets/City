@@ -34,7 +34,7 @@ namespace Sources.Infrastructure.Services.Fps
                 _sumDeltaTimes -= _deltaTimes.Dequeue();
             }
 
-            FpsLastSecond.Value = Mathf.RoundToInt((_deltaTimes.Count + 0.5f) / _sumDeltaTimes);
+            FpsLastSecond.Value = Mathf.RoundToInt(_deltaTimes.Count + 1);
         }
     }
 }

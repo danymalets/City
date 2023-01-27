@@ -4,6 +4,7 @@ using Sources.Game.Ecs.Components.Views;
 using Sources.Game.Ecs.Components.Views.CarBorder;
 using Sources.Game.Ecs.Components.Views.CarCollider;
 using Sources.Game.Ecs.Components.Views.CarEngine;
+using Sources.Game.Ecs.Components.Views.CarEnterPointsData;
 using Sources.Game.Ecs.Components.Views.CarForwardTriggers;
 using Sources.Game.Ecs.Components.Views.Data;
 using Sources.Game.Ecs.Components.Views.Physic;
@@ -20,6 +21,7 @@ namespace Sources.Game.Ecs.MonoEntities
     [RequireComponent(typeof(PhysicBody))]
     [RequireComponent(typeof(EntityColliders))]
     [RequireComponent(typeof(EntityBorders))]
+    [RequireComponent(typeof(CarEnterPoints))]
     [RequireComponent(typeof(CarWheels))]
     [RequireComponent(typeof(CarData))]
     public class CarMonoEntity : MonoEntity
@@ -37,6 +39,9 @@ namespace Sources.Game.Ecs.MonoEntities
         private EntityBorders _entityBorders;
 
         [SerializeField]
+        private CarEnterPoints _carEnterPoints;
+
+        [SerializeField]
         private CarWheels _carWheels;
 
         [SerializeField]
@@ -48,6 +53,7 @@ namespace Sources.Game.Ecs.MonoEntities
             _physicBody = GetComponent<PhysicBody>();
             _entityColliders = GetComponent<EntityColliders>();
             _entityBorders = GetComponent<EntityBorders>();
+            _carEnterPoints = GetComponent<CarEnterPoints>();
             _carWheels = GetComponent<CarWheels>();
             _carData = GetComponent<CarData>();
         }
@@ -55,9 +61,10 @@ namespace Sources.Game.Ecs.MonoEntities
         protected override void OnSetup()
         {
             Entity.SetMono<ITransform>(_transform);
+            Entity.SetMono<IPhysicBody>(_physicBody);
             Entity.SetMono<IEntityColliders>(_entityColliders);
             Entity.SetMono<IEntityBorders>(_entityBorders);
-            Entity.SetMono<IPhysicBody>(_physicBody);
+            Entity.SetMono<ICarEnterPoints>(_carEnterPoints);
             Entity.SetMono<ICarWheels>(_carWheels);
             Entity.SetMono<ICarData>(_carData);
         }

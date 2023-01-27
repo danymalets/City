@@ -11,6 +11,7 @@ using Sources.Game.Ecs.Systems.Init;
 using Sources.Game.Ecs.Utils;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Utilities;
+using Sources.Utilities.Extensions;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.Player
@@ -31,9 +32,13 @@ namespace Sources.Game.Ecs.Systems.Update.Player
                 float speed = npcEntity.Get<PlayerSpeed>().Value;
                 float targetAngle = npcEntity.Get<SmoothAngle>().Value;
                 IPlayerAnimator playerAnimator = npcEntity.GetMono<IPlayerAnimator>();
+
+                IPhysicBody physicBody = npcEntity.GetMono<IPhysicBody>();
+
+                float ySpeed = physicBody.Velocity.y;
                 
-                npcEntity.GetMono<IPhysicBody>().Velocity = 
-                    Quaternion.Euler(0,targetAngle,0) * Vector3.forward * speed;
+                physicBody.Velocity = (Quaternion.Euler(0,targetAngle,0) * Vector3.forward * speed)
+                    .WithY(ySpeed);
           
                 if (DMath.Greater(speed, 0))
                 {

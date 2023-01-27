@@ -28,7 +28,7 @@ namespace Sources.UI.Screens.Input
 
         private void OnEnterCarButtonClicked()
         {
-            _userEntity.Add<UserWantsEnterCar>();
+            _userEntity.Add<PlayerWantsEnterCar>();
         }
 
         private void Update()

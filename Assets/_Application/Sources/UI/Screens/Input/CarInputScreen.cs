@@ -31,21 +31,23 @@ namespace Sources.UI.Screens.Input
             _exitCarButton.onClick.AddListener(OnExitCarButtonClicked);
         }
 
-        private void OnExitCarButtonClicked()
-        {
-            _userEntity.Add<UserWantsExitCar>();
-        }
-
-        public int VerticalInput => GetInputValue(_upButton, _downButton);
-        public int HorizontalInput => GetInputValue(_rightButton, _leftButton);
-
-        private int GetInputValue(GameplayButton positiveButton, GameplayButton negativeButton) => 
-            positiveButton.PressValue - negativeButton.PressValue;
-
         protected override void OnOpen(Entity userEntity)
         {
             _userEntity = userEntity;
         }
+
+        private void OnExitCarButtonClicked()
+        {
+            Debug.Log($"exit");
+            _userEntity.Add<PlayerWantsExitCar>();
+        }
+
+        public int VerticalInput => GetInputValue(_upButton, _downButton);
+
+        public int HorizontalInput => GetInputValue(_rightButton, _leftButton);
+
+        private int GetInputValue(GameplayButton positiveButton, GameplayButton negativeButton) => 
+            positiveButton.PressValue - negativeButton.PressValue;
 
         protected override void OnClose()
         {

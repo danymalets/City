@@ -56,6 +56,9 @@ namespace Sources.Game.Ecs
 
         private void AddFixedUpdateSystems()
         {
+            _world.AddFixedSystem<PlayerCarExitSystem>();
+            _world.AddFixedSystem<PlayerCarEnterSystem>();
+            
             // gen
             _world.AddFixedSystem<ActiveSpawnPointsUpdateSystem>();
             
@@ -112,6 +115,8 @@ namespace Sources.Game.Ecs
             _world.AddFixedOneFrame<NpcPointReachedEvent>();
             _world.AddFixedOneFrame<NpcBreakRequest>();
             _world.AddFixedOneFrame<NpcCarBreakRequest>();
+            _world.AddFixedOneFrame<PlayerWantsExitCar>();
+            _world.AddFixedOneFrame<PlayerWantsEnterCar>();
         }
 
         private void AddUpdateSystems()
@@ -141,8 +146,6 @@ namespace Sources.Game.Ecs
 #endif
 
             _world.AddOneFrame<ChangeSteeringAngleRequest>();
-            _world.AddOneFrame<UserWantsEnterCar>();
-            _world.AddOneFrame<UserWantsExitCar>();
         }
 
         public void StartGame() => 

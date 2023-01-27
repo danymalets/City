@@ -1,5 +1,6 @@
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components;
+using Sources.Game.Ecs.Components.Camera;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Player.User;
 using Sources.Game.Ecs.Components.Tags;
@@ -9,6 +10,7 @@ using Sources.Game.Ecs.Utils;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.Balance;
+using Sources.Utilities;
 using Sources.Utilities.Extensions;
 using UnityEngine;
 
@@ -42,10 +44,21 @@ namespace Sources.Game.Ecs.Systems.Update.Camera
             Entity userEntity = _userFilter.GetSingleton();
 
             ITransform cameraTransform = cameraEntity.GetMono<ITransform>();
-            
+            ref CameraAngle cameraAngle = ref cameraEntity.Get<CameraAngle>();
+
             Quaternion userRotation = userEntity.Get<UserFollowTransform>().Rotation;
 
-            cameraTransform.Rotation = cameraTransform.Rotation.WithEulerY(userRotation.eulerAngles.y);
+            float targetAngle = userRotation.eulerAngles.y;
+
+            float distance = DMath.DistanceAngle(cameraAngle.Value, targetAngle);
+
+            Debug.Log($"{cameraAngle.Value} {targetAngle} {distance}");
+            
+            if (DMath.NotEquals(distance, 0))
+                cameraAngle.Value = Mathf.MoveTowardsAngle(cameraAngle.Value, targetAngle, 
+                    _cameraBalance.CameraRotationSpeed * deltaTime * distance);
+            
+            cameraTransform.Rotation = cameraTransform.Rotation.WithEulerY(cameraAngle.Value);
         }
     }
 }

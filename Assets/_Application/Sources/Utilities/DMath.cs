@@ -81,5 +81,11 @@ namespace Sources.Utilities
 
         public static float Distance(float a, float b) =>
             Mathf.Abs(a - b);
+        
+        public static float DistanceAngle(float a, float b)
+        {
+            float distance = Distance(a, b) % 360f;
+            return Mathf.Min(distance, 360-distance);
+        }
     }
 }
