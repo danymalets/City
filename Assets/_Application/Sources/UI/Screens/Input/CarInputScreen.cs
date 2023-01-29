@@ -38,7 +38,6 @@ namespace Sources.UI.Screens.Input
 
         private void OnExitCarButtonClicked()
         {
-            Debug.Log($"exit");
             _userEntity.Add<PlayerWantsExitCar>();
         }
 

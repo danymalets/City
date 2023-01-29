@@ -46,9 +46,7 @@ namespace Sources.Game.Ecs.Systems.Update.User
 
                 rotationSpeed.Value = Mathf.Min(Mathf.Abs(inputAngle), MaxInputAngle) *
                     playerData.MaxRotationSpeed / MaxInputAngle;
-
-                Debug.Log($"angle {Mathf.Abs(inputAngle)}");
-
+                
                 if (DMath.Equals(Mathf.Abs(inputAngle), 180))
                 {
                     inputAngle = 179f;

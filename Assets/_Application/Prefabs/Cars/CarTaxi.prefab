@@ -252,7 +252,6 @@ MonoBehaviour:
   _maxSpeed: 9
   _maxMotorTorque: 400
   _maxSteeringAngle: 45
-  _rigidBody: {fileID: 3696766144860102866}
 --- !u!114 &3807972892401286929
 MonoBehaviour:
   m_ObjectHideFlags: 0
