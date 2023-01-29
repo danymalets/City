@@ -26,13 +26,14 @@ namespace Sources.Game.Ecs.Systems.Init
         private readonly IPathSystem _pathSystem;
         private readonly SimulationBalance _simulationBalance;
         private Filter _npcPathesFilter;
+        private readonly PlayersBalance _playersBalance;
 
         public NpcInitSystem()
         {
             _physics = DiContainer.Resolve<IPhysicsService>();
             _assets = DiContainer.Resolve<Assets>();
-            _simulationBalance = DiContainer.Resolve<Balance>()
-                .SimulationBalance;
+            _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
+            _playersBalance = DiContainer.Resolve<Balance>().PlayersBalance;
             _pathSystem = DiContainer.Resolve<LevelContext>()
                 .NpcPathSystem;
         }
@@ -66,8 +67,9 @@ namespace Sources.Game.Ecs.Systems.Init
                 {
                     Quaternion npcRotation = Quaternion.LookRotation(point.Direction);
 
-                    PlayerMonoEntity playerPrefab = _assets.PlayersAssets.GetRandomPlayer();
-
+                    PlayerType playerType = _playersBalance.GetRandomPlayerType();
+                    PlayerMonoEntity playerPrefab = _assets.PlayersAssets.GetPlayerPrefab(playerType);
+                    
                     bool has = _physics.CheckBox(point.Position + npcRotation *
                         playerPrefab.Center, playerPrefab.HalfExtents, npcRotation, LayerMasks.CarsAndPlayers);
 

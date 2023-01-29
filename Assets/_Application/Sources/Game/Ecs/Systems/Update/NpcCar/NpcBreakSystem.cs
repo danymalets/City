@@ -19,9 +19,9 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
         {
             foreach (Entity npcEntity in _filter)
             {
-                ref PlayerSpeed playerSpeed = ref npcEntity.Get<PlayerSpeed>();
+                ref PlayerTargetSpeed playerTargetSpeed = ref npcEntity.Get<PlayerTargetSpeed>();
 
-                playerSpeed.Value = 0;
+                playerTargetSpeed.Value = 0;
             }
         }
     }

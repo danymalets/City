@@ -18,7 +18,10 @@ namespace Sources.Game.Ecs.Components.Views.CarForwardTriggers
         }
 
         public Vector3 Center => 
-            transform.TransformPoint(_boxCollider.center);
+            transform.TransformPoint(LocalCenter);
+
+        public Vector3 LocalCenter =>
+            _boxCollider.center;
 
         public Vector3 HalfExtents =>
             _boxCollider.size / 2;

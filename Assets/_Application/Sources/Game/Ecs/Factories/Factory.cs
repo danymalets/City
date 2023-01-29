@@ -108,10 +108,11 @@ namespace Sources.Game.Ecs.Factories
             _world.CreateFromMonoPrefab(playerPrefab)
                 .SetupMono<ITransform>(t => t.Position = position)
                 .SetupMono<ITransform>(t => t.Rotation = rotation)
-                .Set(new TargetAngle { Value = rotation.eulerAngles.y })
-                .Set(new SmoothAngle { Value = rotation.eulerAngles.y })
+                .Set(new PlayerTargetAngle { Value = rotation.eulerAngles.y })
+                .Set(new PlayerSmoothAngle { Value = rotation.eulerAngles.y })
                 .Set(new RotationSpeed { Value = 45f })
-                .Add<PlayerSpeed>()
+                .Add<PlayerTargetSpeed>()
+                .Add<PlayerSmoothSpeed>()
                 .Add<PlayerTag>();
 
         public Entity CreateCamera()

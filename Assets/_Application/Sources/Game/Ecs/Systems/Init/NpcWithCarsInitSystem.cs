@@ -26,13 +26,16 @@ namespace Sources.Game.Ecs.Systems.Init
         private readonly Assets _assets;
         private readonly SimulationBalance _simulationBalance;
         private Filter _carPathesFilter;
+        private readonly PlayersBalance _playersBalance;
+        private readonly CarsBalance _carsBalance;
 
         public NpcWithCarsInitSystem()
         {
             _assets = DiContainer.Resolve<Assets>();
 
-            _simulationBalance = DiContainer.Resolve<Balance>()
-                .SimulationBalance;
+            _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
+            _playersBalance = DiContainer.Resolve<Balance>().PlayersBalance;
+            _carsBalance = DiContainer.Resolve<Balance>().CarsBalance;
 
             _physics = DiContainer.Resolve<IPhysicsService>();
         }
@@ -65,7 +68,8 @@ namespace Sources.Game.Ecs.Systems.Init
                 {
                     Quaternion carRotation = Quaternion.LookRotation(point.Direction);
 
-                    CarMonoEntity carPrefab = _assets.CarsAssets.GetRandomCar();
+                    CarType carType = _carsBalance.GetRandomCarType();
+                    CarMonoEntity carPrefab = _assets.CarsAssets.GetCarPrefab(carType);
 
                     bool has = _physics.CheckBox(point.Position + carRotation *
                         carPrefab.CenterRelatedRootPoint, carPrefab.HalfExtents, carRotation, LayerMasks.CarsAndPlayers);
@@ -78,7 +82,10 @@ namespace Sources.Game.Ecs.Systems.Init
 
                         _physics.SyncTransforms();
 
-                        _factory.CreateNpcInCar(_assets.PlayersAssets.GetRandomPlayer(), car, point.Targets.First().FirstPathLine);
+                        PlayerType playerType = _playersBalance.GetRandomPlayerType();
+                        PlayerMonoEntity playerPrefab = _assets.PlayersAssets.GetPlayerPrefab(playerType);
+                        
+                        _factory.CreateNpcInCar(playerPrefab, car, point.Targets.First().FirstPathLine);
 
                         count++;
                         if (count == reqCount)

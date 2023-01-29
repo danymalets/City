@@ -34,7 +34,7 @@ namespace Sources.Game.Ecs.Systems.Update.Npc
             foreach (Entity npcEntity in _filter)
             {
                 ref ForwardTrigger forwardTrigger = ref npcEntity.Get<ForwardTrigger>();
-                ref SmoothAngle angle = ref npcEntity.Get<SmoothAngle>();
+                ref PlayerSmoothAngle angle = ref npcEntity.Get<PlayerSmoothAngle>();
                 ITransform transform = npcEntity.GetMono<ITransform>();
                 IEntityBorders borders = npcEntity.GetMono<IEntityBorders>();
                 

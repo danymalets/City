@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1892c85b2234733b7a463dfa75dbbb5, type: 3}
   m_Name: CameraBalance
   m_EditorClassIdentifier: 
-  _cameraHeight: 4
-  _cameraBackDistance: 6.57
-  _cameraXRotationAngle: 70
+  _cameraHeight: 3.2
+  _cameraBackDistance: 5.1
+  _cameraTiltRotationAngle: 22
+  _cameraFieldOfView: 70
   _cameraRotationSpeed: 8

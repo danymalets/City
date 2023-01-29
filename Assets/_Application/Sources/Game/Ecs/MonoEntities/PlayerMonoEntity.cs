@@ -20,7 +20,7 @@ namespace Sources.Game.Ecs.MonoEntities
     [RequireComponent(typeof(EnableDisableEntity))]
     [RequireComponent(typeof(PhysicBody))]
     [RequireComponent(typeof(PlayerAnimator))]
-    [RequireComponent(typeof(EntityColliders))]
+    [RequireComponent(typeof(PlayerColliders))]
     [RequireComponent(typeof(EntityBorders))]
     [RequireComponent(typeof(PlayerData))]
     public class PlayerMonoEntity : MonoEntity
@@ -32,7 +32,7 @@ namespace Sources.Game.Ecs.MonoEntities
         private PhysicBody _physicBody;
 
         [SerializeField]
-        private EntityColliders _entityColliders;
+        private PlayerColliders _playerColliders;
 
         [SerializeField]
         private EntityBorders _entityBorders;
@@ -50,7 +50,7 @@ namespace Sources.Game.Ecs.MonoEntities
         {
             _transform = GetComponent<TransformComponent>();
             _physicBody = GetComponent<PhysicBody>();
-            _entityColliders = GetComponent<EntityColliders>();
+            _playerColliders = GetComponent<PlayerColliders>();
             _entityBorders = GetComponent<EntityBorders>();
             _playerAnimator = GetComponent<PlayerAnimator>();
             _playerData = GetComponent<PlayerData>();
@@ -61,7 +61,7 @@ namespace Sources.Game.Ecs.MonoEntities
         {
             Entity.SetMono<ITransform>(_transform);
             Entity.SetMono<IEntityBorders>(_entityBorders);
-            Entity.SetMono<IEntityColliders>(_entityColliders);
+            Entity.SetMono<IPlayerColliders>(_playerColliders);
             Entity.SetMono<IPhysicBody>(_physicBody);
             Entity.SetMono<IPlayerAnimator>(_playerAnimator);
             Entity.SetMono<IPlayerData>(_playerData);

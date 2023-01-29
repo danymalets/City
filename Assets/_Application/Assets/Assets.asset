@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 738196c3572e4fc6b8700ee88635329d, type: 3}
+  m_Name: Assets
+  m_EditorClassIdentifier: 
+  _citySceneNameName: City
+  _carsAssets: {fileID: 11400000, guid: 51b0d9f63d86b40c0ba4b353fa43e4e8, type: 2}
+  _playersAssets: {fileID: 11400000, guid: 9c0fb30d4ea92457c831401b70a66a1d, type: 2}

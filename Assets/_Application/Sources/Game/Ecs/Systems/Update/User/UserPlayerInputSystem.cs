@@ -34,8 +34,7 @@ namespace Sources.Game.Ecs.Systems.Update.User
 
             ref UserPlayerInput userPlayerInput = ref userEntity.Get<UserPlayerInput>();
 
-            userPlayerInput.Vertical = _playerInputService.Vertical;
-            userPlayerInput.Horizontal = _playerInputService.Horizontal;
+            userPlayerInput.MoveInput = _playerInputService.MoveInput;
         }
     }
 }

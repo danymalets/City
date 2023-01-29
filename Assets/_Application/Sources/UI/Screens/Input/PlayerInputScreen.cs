@@ -18,8 +18,7 @@ namespace Sources.UI.Screens.Input
         private Button _enterCarButton;
 
         private Entity _userEntity;
-        public float VerticalInput => _joystick.Vertical;
-        public float HorizontalInput => _joystick.Horizontal;
+        public Vector2 MoveInput => _joystick.Direction;
 
         private void Awake()
         {

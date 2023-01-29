@@ -35,14 +35,12 @@ namespace Sources.Game.Ecs.Systems.Update.User
             UserPlayerInput userPlayerInput = userEntity.Get<UserPlayerInput>();
             ITransform transform = userEntity.GetMono<ITransform>();
             IPlayerData playerData = userEntity.GetMono<IPlayerData>();
-            ref TargetAngle targetAngle = ref userEntity.Get<TargetAngle>();
+            ref PlayerTargetAngle playerTargetAngle = ref userEntity.Get<PlayerTargetAngle>();
             ref RotationSpeed rotationSpeed = ref userEntity.Get<RotationSpeed>();
-
-            Vector2 direction = new(userPlayerInput.Horizontal, userPlayerInput.Vertical);
-
-            Vector3 input = new Vector3(userPlayerInput.Horizontal, 0, userPlayerInput.Vertical);
             
-            if (direction != Vector2.zero)
+            Vector3 input = new Vector3(userPlayerInput.MoveInput.x, 0, userPlayerInput.MoveInput.y);
+            
+            if (userPlayerInput.MoveInput != Vector2.zero)
             {
                 float inputAngle = Vector3.SignedAngle(Vector3.forward, input, Vector3.up);
 
@@ -56,11 +54,12 @@ namespace Sources.Game.Ecs.Systems.Update.User
                     inputAngle = 179f;
                 }
                 
-                targetAngle.Value = transform.Rotation.eulerAngles.y + inputAngle;
+                playerTargetAngle.Value = transform.Rotation.eulerAngles.y + inputAngle;
             }
             else
             {
-                targetAngle.Value = transform.Rotation.eulerAngles.y;
+                rotationSpeed.Value = 0;
+                playerTargetAngle.Value = transform.Rotation.eulerAngles.y;
             }
         }
     }

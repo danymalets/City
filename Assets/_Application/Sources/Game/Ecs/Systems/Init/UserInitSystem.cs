@@ -1,4 +1,5 @@
 using Scellecs.Morpeh;
+using Sources.Game.Ecs.MonoEntities;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Infrastructure.Bootstrap;
 using Sources.Infrastructure.Services;
@@ -13,9 +14,13 @@ namespace Sources.Game.Ecs.Systems.Init
 
         private readonly Assets _assets;
         private readonly IPhysicsService _physics;
+        private readonly PlayersBalance _playersBalance;
+        private readonly CarsBalance _carsBalance;
 
         public UserInitSystem()
         {
+            _playersBalance = DiContainer.Resolve<Balance>().PlayersBalance;
+            _carsBalance = DiContainer.Resolve<Balance>().CarsBalance;
             _levelContext = DiContainer.Resolve<LevelContext>();
             _physics = DiContainer.Resolve<IPhysicsService>();
             _assets = DiContainer.Resolve<Assets>();
@@ -23,14 +28,20 @@ namespace Sources.Game.Ecs.Systems.Init
 
         protected override void OnInitialize()
         {
-             Entity car = _factory.CreateCar(_assets.CarsAssets.GetRandomCar(),
-                  _levelContext.UserSpawnPoint.Position, _levelContext.UserSpawnPoint.Rotation);
-            
-            _factory.CreateUserInCar(_assets.PlayersAssets.GetRandomPlayer(), car);
-            
-            // _factory.CreateUser(_assets.PlayersAssets.GetRandomPlayer(), 
+            CarType carType = _carsBalance.GetRandomCarType();
+            CarMonoEntity carPrefab = _assets.CarsAssets.GetCarPrefab(carType);
+
+            Entity car = _factory.CreateCar(carPrefab,
+                _levelContext.UserSpawnPoint.Position, _levelContext.UserSpawnPoint.Rotation);
+
+            PlayerType playerType = _playersBalance.GetRandomPlayerType();
+            PlayerMonoEntity playerPrefab = _assets.PlayersAssets.GetPlayerPrefab(playerType);
+
+            _factory.CreateUserInCar(playerPrefab, car);
+
+            // _factory.CreateUser(_assets.PlayersAssets.GetRandomCarType(), 
             //     _levelContext.UserSpawnPoint.Position, _levelContext.UserSpawnPoint.Rotation);
-            
+
             _physics.SyncTransforms();
         }
     }

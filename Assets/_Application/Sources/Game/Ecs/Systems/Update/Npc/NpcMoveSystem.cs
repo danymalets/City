@@ -35,7 +35,7 @@ namespace Sources.Game.Ecs.Systems.Update.Npc
             {
                 float speed = npcEntity.GetMono<IPlayerData>().Speed;
                 ForwardTrigger forwardTrigger = npcEntity.Get<ForwardTrigger>();
-                ref PlayerSpeed playerSpeed = ref npcEntity.Get<PlayerSpeed>();
+                ref PlayerTargetSpeed playerTargetSpeed = ref npcEntity.Get<PlayerTargetSpeed>();
                 
                 Entity[] entities = _physics.OverlapBox(forwardTrigger.Center, forwardTrigger.Size / 2, 
                         forwardTrigger.Rotation, LayerMasks.CarsAndPlayers)
@@ -47,11 +47,11 @@ namespace Sources.Game.Ecs.Systems.Update.Npc
                 
                 if (entities.Any())
                 {
-                    playerSpeed.Value = 0;
+                    playerTargetSpeed.Value = 0;
                 }
                 else
                 {
-                    playerSpeed.Value = speed;
+                    playerTargetSpeed.Value = speed;
                 }
             }
         }

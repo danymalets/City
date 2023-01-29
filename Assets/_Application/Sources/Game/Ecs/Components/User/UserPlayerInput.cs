@@ -1,10 +1,10 @@
 using Scellecs.Morpeh;
+using UnityEngine;
 
 namespace Sources.Game.Ecs.Components.User
 {
     public struct UserPlayerInput : IComponent
     {
-        public float Vertical;
-        public float Horizontal;
+        public Vector2 MoveInput;
     }
 }

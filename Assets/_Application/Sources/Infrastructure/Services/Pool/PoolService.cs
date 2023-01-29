@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +17,9 @@ namespace Sources.Infrastructure.Services.Pool
 
             pool.Setup(poolConfig);
             pool.Initialize();
+
+            if (_pools.ContainsKey(poolConfig.Prefab))
+                throw new InvalidOperationException($"{poolConfig.Prefab.gameObject.name} has been added");
             
             _pools.Add(poolConfig.Prefab, pool);
 

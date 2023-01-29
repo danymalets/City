@@ -8,5 +8,7 @@ namespace Sources.Game.Ecs.Components.Views.Physic
         float SignedSpeed { get; }
         Vector3 Velocity { get; set; }
         Vector3 LocalVelocity { get; set; }
+        Vector3 Position { get; set; }
+        Quaternion Rotation { get; set; }
     }
 }

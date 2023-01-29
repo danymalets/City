@@ -2,6 +2,7 @@ using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Player.User;
 using Sources.Game.Ecs.Components.Tags;
+using Sources.Game.Ecs.Components.Views.Physic;
 using Sources.Game.Ecs.Components.Views.Transform;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Utilities.Extensions;

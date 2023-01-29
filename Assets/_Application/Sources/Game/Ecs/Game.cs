@@ -43,6 +43,7 @@ namespace Sources.Game.Ecs
             _world.AddInitializer<PathesInitSystem>();
             _world.AddInitializer<RoadPathesGenerationSystem>();
             _world.AddInitializer<CrossroadsPathesGenerationSystem>();
+            _world.AddInitializer<CrosswalksBlocksGenerationSystem>();
             _world.AddInitializer<PathesPointsFindSystem>();
             
             _world.AddInitializer<UserInitSystem>();
@@ -70,6 +71,12 @@ namespace Sources.Game.Ecs
 
             // npc
             
+            _world.AddFixedSystem<NpcPathEndCheckSystem>();
+            _world.AddFixedSystem<NpcCarPathEndCheckSystem>();
+
+            _world.AddFixedSystem<NpcPathLineChangeSystem>();
+            _world.AddFixedSystem<NpcPathChoiceSystem>();
+            
             _world.AddFixedSystem<NpcPathRotateSystem>();
             _world.AddFixedSystem<SmoothAngleSystem>();
             _world.AddFixedSystem<SmoothAngleApplySystem>();
@@ -84,11 +91,6 @@ namespace Sources.Game.Ecs
             _world.AddFixedSystem<NpcCarMoveSystem>();
             
             // paths
-            _world.AddFixedSystem<NpcPathEndCheckSystem>();
-            _world.AddFixedSystem<NpcCarPathEndCheckSystem>();
-
-            _world.AddFixedSystem<NpcPathLineChangeSystem>();
-            _world.AddFixedSystem<NpcPathChoiceSystem>();
             
             _world.AddFixedSystem<NpcCarBreakOrMoveChoiceSystem>();
             _world.AddFixedSystem<NpcBreakOrMoveChoiceSystem>();
@@ -97,7 +99,8 @@ namespace Sources.Game.Ecs
             _world.AddFixedSystem<NpcBreakSystem>();
             
             // npc apply
-            _world.AddFixedSystem<PlayerMoveSystem>();
+            _world.AddFixedSystem<PlayerSmoothSpeedSystem>();
+            _world.AddFixedSystem<PlayerApplySpeedSystem>();
 
             // car apply
             _world.AddFixedSystem<CarSmoothSteeringAngleSystem>();
@@ -132,14 +135,17 @@ namespace Sources.Game.Ecs
             _world.AddUpdateSystem<UserWithCarFollowTransformUpdateSystem>();
             _world.AddUpdateSystem<UserFogUpdateSystem>();
 
-            _world.AddUpdateSystem<CameraFollowPlayerRotationSystem>();
-            _world.AddUpdateSystem<CameraFollowPlayerPositionSystem>();
-
             _world.AddUpdateSystem<ChangeSteeringAngleSystem>();
             
             _world.AddUpdateSystem<WheelGeometrySystem>();
 
             _world.AddUpdateSystem<InputScreenSwitcherSystem>();
+            
+            _world.AddUpdateSystem<CameraTiltAngleApplySystem>();
+            _world.AddUpdateSystem<CameraFieldOfViewApplySystem>();
+            
+            _world.AddUpdateSystem<CameraFollowPlayerRotationSystem>();
+            _world.AddUpdateSystem<CameraFollowPlayerPositionSystem>();
 
 #if UNITY_EDITOR
             _world.AddUpdateSystem<PathesGizmosSystem>();

@@ -5,7 +5,8 @@ using UnityEngine.Serialization;
 
 namespace Sources.Infrastructure.Services.AssetsManager
 {
-    public class Assets : MonoBehaviour, IService
+    [CreateAssetMenu(menuName = nameof(Assets) + "/" + nameof(Assets), fileName = nameof(Assets))]
+    public class Assets : ScriptableObject, IService
     {
         [SerializeField]
         private string _citySceneNameName;

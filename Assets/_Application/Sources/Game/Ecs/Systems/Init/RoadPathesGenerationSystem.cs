@@ -72,8 +72,15 @@ namespace Sources.Game.Ecs.Systems.Init
                 points.Add(new Point(position, direction, road.IsSpawnPoint));
             }
             
+            if (isCar)
+            {
+                Vector3 prePosition = Vector3.MoveTowards(target, source, _simulationBalance.CrosswalkWidth);
+                points.Add(new Point(prePosition, direction, false));
+            }
+            
             points.Add(new Point(target, direction, false));
 
+            
             for (int i = 0; i < points.Count - 1; i++)
             {
                 pathLines.Add(new PathLine(points[i], points[i + 1]));

@@ -15,7 +15,10 @@ namespace Sources.Infrastructure.Services.Balance
         private float _cameraBackDistance = 6;
 
         [SerializeField]
-        private float _cameraXRotationAngle = 30;
+        private float _cameraTiltRotationAngle = 30;
+        
+        [SerializeField]
+        private float _cameraFieldOfView = 30;
         
         [SerializeField]
         private float _cameraRotationSpeed = 90f;
@@ -23,7 +26,8 @@ namespace Sources.Infrastructure.Services.Balance
         public float CameraHeight => _cameraHeight;
         public float CameraBackDistance => _cameraBackDistance;
 
-        public float CameraXRotationAngle => _cameraXRotationAngle;
+        public float CameraTiltRotationAngle => _cameraTiltRotationAngle;
+        public float CameraFieldOfView => _cameraFieldOfView;
         public float CameraRotationSpeed => _cameraRotationSpeed;
     }
 }

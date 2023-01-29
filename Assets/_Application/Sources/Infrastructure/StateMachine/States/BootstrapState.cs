@@ -24,9 +24,9 @@ namespace Sources.Infrastructure.StateMachine.States
             IScreenService screen = DiContainer.Resolve<IScreenService>();
             ITimeService time = DiContainer.Resolve<ITimeService>();
             IUiService ui = DiContainer.Resolve<IUiService>();
-            
+
             application.TargetFrameRate = screen.MaxDeviceFrameRate;
-            // Time.fixedDeltaTime = 1 / 30f;
+            Time.fixedDeltaTime = 1 / 50f;
             physics.AutoSimulation = false;
             screen.SleepTimeout = SleepTimeout.NeverSleep;
 

@@ -5,6 +5,7 @@ using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Player.User;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.Views;
+using Sources.Game.Ecs.Components.Views.Physic;
 using Sources.Game.Ecs.Components.Views.Transform;
 using Sources.Game.Ecs.Utils;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
@@ -25,8 +26,7 @@ namespace Sources.Game.Ecs.Systems.Update.Camera
 
         public CameraFollowPlayerRotationSystem()
         {
-            _cameraBalance = DiContainer.Resolve<Balance>()
-                .CameraBalance;
+            _cameraBalance = DiContainer.Resolve<Balance>().CameraBalance;
         }
         
         protected override void OnInitFilters()
@@ -52,7 +52,7 @@ namespace Sources.Game.Ecs.Systems.Update.Camera
 
             float distance = DMath.DistanceAngle(cameraAngle.Value, targetAngle);
 
-            Debug.Log($"{cameraAngle.Value} {targetAngle} {distance}");
+            // Debug.Log($"{cameraAngle.Value} {targetAngle} {distance}");
             
             if (DMath.NotEquals(distance, 0))
                 cameraAngle.Value = Mathf.MoveTowardsAngle(cameraAngle.Value, targetAngle, 

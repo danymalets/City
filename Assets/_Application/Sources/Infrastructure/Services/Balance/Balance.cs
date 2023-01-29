@@ -1,11 +1,10 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
 namespace Sources.Infrastructure.Services.Balance
 {
-    public class Balance : MonoBehaviour, IService
+    [CreateAssetMenu(menuName = nameof(Balance) + "/" + nameof(Balance), fileName = nameof(Balance))]
+    public class Balance : ScriptableObject, IService
     {
         [SerializeField]
         private CameraBalance _cameraBalance;
@@ -13,7 +12,16 @@ namespace Sources.Infrastructure.Services.Balance
         [SerializeField]
         private SimulationBalance _simulationBalance;
 
+        [SerializeField]
+        private PlayersBalance _playersBalance;
+
+        [SerializeField]
+        private CarsBalance _carsBalance;
+
         public CameraBalance CameraBalance => _cameraBalance;
         public SimulationBalance SimulationBalance => _simulationBalance;
-    }   
+
+        public PlayersBalance PlayersBalance => _playersBalance;
+        public CarsBalance CarsBalance => _carsBalance;
+    }
 }

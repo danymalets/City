@@ -7,9 +7,6 @@ namespace Sources.Game.Ecs.Components.Views.CarEngine
     [RequireComponent(typeof(Rigidbody))]
     public class CarWheels : MonoBehaviour, ICarWheels
     {
-        private const float BreakTorqueLite = 1.5f;
-        private const float BreakTorqueMax = 1_000_000_000f;
-
         [SerializeField]
         private AxleInfo[] _axleInfos;
 
@@ -30,7 +27,7 @@ namespace Sources.Game.Ecs.Components.Views.CarEngine
 
         private void OnValidate()
         {
-            if (_axleInfos.Length > 0 &&
+            if (_axleInfos != null && _axleInfos.Length > 0 &&
                 _axleInfos[0].LeftWheelCollider != null &&
                 _axleInfos[0].RightWheelCollider != null)
             {

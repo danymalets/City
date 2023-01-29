@@ -2,6 +2,7 @@ using Sources.Infrastructure.ApplicationInput;
 using Sources.Infrastructure.Services;
 using Sources.UI.Screens.Input;
 using Sources.UI.System;
+using UnityEngine;
 
 namespace Sources.Game.InputServices
 {
@@ -17,17 +18,8 @@ namespace Sources.Game.InputServices
                 .Get<PlayerInputScreen>();
         }
 
-        public float Vertical =>
-            UseAppInput ? 
-                _applicationInput.VerticalInput :
-                _playerInputScreen.VerticalInput;
-
-        public float Horizontal =>
-            UseAppInput ?
-                _applicationInput.HorizontalInput : 
-                _playerInputScreen.HorizontalInput;
-
-        private bool UseAppInput =>
-            _applicationInput.HorizontalInput != 0 || _applicationInput.VerticalInput != 0;
+        public Vector2 MoveInput => _playerInputScreen.MoveInput == Vector2.zero
+            ? new Vector2(_applicationInput.HorizontalInput, _applicationInput.VerticalInput)
+            : _playerInputScreen.MoveInput;
     }
 }

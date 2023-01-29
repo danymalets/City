@@ -6,6 +6,7 @@ namespace Sources.Game.Ecs.Components.Views.CarForwardTriggers
     public interface IMonoBox : IMonoComponent
     {
         Vector3 Center { get; }
+        Vector3 LocalCenter { get; }
 
         Vector3 HalfExtents { get; }
         

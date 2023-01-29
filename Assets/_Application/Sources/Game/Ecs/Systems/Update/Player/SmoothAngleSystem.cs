@@ -1,6 +1,7 @@
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components.Npc;
 using Sources.Game.Ecs.Components.Player;
+using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using UnityEngine;
 
@@ -12,19 +13,19 @@ namespace Sources.Game.Ecs.Systems.Update.Player
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<TargetAngle, SmoothAngle>();
+            _filter = _world.Filter<PlayerTag, PlayerTargetAngle, PlayerSmoothAngle>();
         }
 
         protected override void OnUpdate(float deltaTime)
         {
             foreach (Entity entity in _filter)
             {
-                ref TargetAngle targetAngle = ref entity.Get<TargetAngle>();
-                ref SmoothAngle smoothAngle = ref entity.Get<SmoothAngle>();
+                ref PlayerTargetAngle playerTargetAngle = ref entity.Get<PlayerTargetAngle>();
+                ref PlayerSmoothAngle playerSmoothAngle = ref entity.Get<PlayerSmoothAngle>();
                 ref RotationSpeed rotationSpeed = ref entity.Get<RotationSpeed>();
 
-                smoothAngle.Value = Mathf.MoveTowardsAngle(
-                    smoothAngle.Value, targetAngle.Value, deltaTime * rotationSpeed.Value);
+                playerSmoothAngle.Value = Mathf.MoveTowardsAngle(
+                    playerSmoothAngle.Value, playerTargetAngle.Value, deltaTime * rotationSpeed.Value);
             }
         }
     }

@@ -29,6 +29,8 @@ namespace Sources.Game.Ecs.Components.Views.PlayerDatas
             rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
             
             rigidbody.angularDrag = 1f;
+            
+            rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Sources.Game.GameObjects.Cars
     public class AxleInfo
     {
         [SerializeField]
-        private bool _motor;
+        private bool _motor = true;
 
         [Header("LeftWheel")]
         [SerializeField]

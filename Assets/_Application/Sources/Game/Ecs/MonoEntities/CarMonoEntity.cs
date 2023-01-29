@@ -11,6 +11,7 @@ using Sources.Game.Ecs.Components.Views.Physic;
 using Sources.Game.Ecs.Components.Views.Transform;
 using Sources.Game.Ecs.Utils;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Utilities.Extensions;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -19,7 +20,7 @@ namespace Sources.Game.Ecs.MonoEntities
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(TransformComponent))]
     [RequireComponent(typeof(PhysicBody))]
-    [RequireComponent(typeof(EntityColliders))]
+    [RequireComponent(typeof(CarColliders))]
     [RequireComponent(typeof(EntityBorders))]
     [RequireComponent(typeof(CarEnterPoints))]
     [RequireComponent(typeof(CarWheels))]
@@ -32,8 +33,9 @@ namespace Sources.Game.Ecs.MonoEntities
         [SerializeField]
         private PhysicBody _physicBody;
 
+        [FormerlySerializedAs("_entityColliders")]
         [SerializeField]
-        private EntityColliders _entityColliders;
+        private CarColliders _carColliders;
 
         [SerializeField]
         private EntityBorders _entityBorders;
@@ -51,18 +53,23 @@ namespace Sources.Game.Ecs.MonoEntities
         {
             _transform = GetComponent<TransformComponent>();
             _physicBody = GetComponent<PhysicBody>();
-            _entityColliders = GetComponent<EntityColliders>();
+            _carColliders = GetComponent<CarColliders>();
             _entityBorders = GetComponent<EntityBorders>();
             _carEnterPoints = GetComponent<CarEnterPoints>();
             _carWheels = GetComponent<CarWheels>();
             _carData = GetComponent<CarData>();
         }
 
+        private void Awake()
+        {
+            _physicBody.CenterMass = _entityBorders.Center.WithY(_entityBorders.HalfExtents.y * 2f / 3f);
+        }
+
         protected override void OnSetup()
         {
             Entity.SetMono<ITransform>(_transform);
             Entity.SetMono<IPhysicBody>(_physicBody);
-            Entity.SetMono<IEntityColliders>(_entityColliders);
+            Entity.SetMono<ICarColliders>(_carColliders);
             Entity.SetMono<IEntityBorders>(_entityBorders);
             Entity.SetMono<ICarEnterPoints>(_carEnterPoints);
             Entity.SetMono<ICarWheels>(_carWheels);

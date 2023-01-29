@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 949c2a81504544b29a79fd65eeb22258, type: 3}
   m_Name: CarsAssets
   m_EditorClassIdentifier: 
-  _carInitData:
-  - _carPrefab: {fileID: 3807972892401286929, guid: 22dd2dd0a228b4f07a6b28a372d9df37, type: 3}
-    _weight: 100
+  _carData:
+  - CarType: 0
+    _carPrefab: {fileID: 3807972892401286929, guid: 22dd2dd0a228b4f07a6b28a372d9df37, type: 3}
+  - CarType: 1
+    _carPrefab: {fileID: 6904987291108027260, guid: 9c0068836eada23498651fc331b971b2, type: 3}

@@ -39,7 +39,7 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
                 ICarWheels wheels = carEntity.GetMono<ICarWheels>();
                 IEntityBorders borders = carEntity.GetMono<IEntityBorders>();
 
-                float rootToForwardDistance = borders.HalfExtents.z - wheels.RootOffset.z;
+                float rootToForwardDistance = borders.LocalCenter.z + borders.HalfExtents.z - wheels.RootOffset.z;
 
                 Quaternion triggerRotation = transform.Rotation.WithAddEulerY(steeringAngle.Value);
 

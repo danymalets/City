@@ -12,6 +12,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3978207e21e49d9a2d8283b091876cb, type: 3}
   m_Name: PlayersAssets
   m_EditorClassIdentifier: 
-  _carInitData:
-  - _playerPrefab: {fileID: 5284019358905853136, guid: 550481dca322b45d88f7a4a843d915f0, type: 3}
-    _weight: 100
+  _playerData:
+  - PlayerType: 0
+    _playerPrefab: {fileID: 3238988332400546293, guid: 4c9eb3101b41b41cca7c504387cb9e93, type: 3}
+  - PlayerType: 1
+    _playerPrefab: {fileID: 3238988332400546293, guid: b4587275bd8858843b068385a1cb3677, type: 3}
+  - PlayerType: 2
+    _playerPrefab: {fileID: 3238988332400546293, guid: 50573faf858764fb5b6d913f90072016, type: 3}
+  - PlayerType: 3
+    _playerPrefab: {fileID: 3238988332400546293, guid: e7613e48763a24c94ad9062a5a5d9d3c, type: 3}
+  - PlayerType: 4
+    _playerPrefab: {fileID: 3238988332400546293, guid: 65308aee66da64d38add9023cad977ab, type: 3}
+  - PlayerType: 5
+    _playerPrefab: {fileID: 3238988332400546293, guid: 508e2eb127bb347c18c4f6d54cc6a79f, type: 3}
+  - PlayerType: 6
+    _playerPrefab: {fileID: 3238988332400546293, guid: c06ab3ad111b24c3ea8f258f0611abc2, type: 3}
+  - PlayerType: 7
+    _playerPrefab: {fileID: 3238988332400546293, guid: 474be0f3e7f1743b5acfe15e43d0c2b3, type: 3}
+  - PlayerType: 8
+    _playerPrefab: {fileID: 3238988332400546293, guid: c3e147f25622b4d7d91d38d80ae18a5d, type: 3}
+  - PlayerType: 9
+    _playerPrefab: {fileID: 3238988332400546293, guid: 6a278d3b18e5a4ff39ff69262f068a69, type: 3}
+  - PlayerType: 10
+    _playerPrefab: {fileID: 3238988332400546293, guid: bfcb24f604e6345e590dbf855cce5aab, type: 3}
+  - PlayerType: 11
+    _playerPrefab: {fileID: 3238988332400546293, guid: eda95846c7b4244189e745a0f6fe07c6, type: 3}
+  - PlayerType: 12
+    _playerPrefab: {fileID: 3238988332400546293, guid: 121932c4280bd4104bad0d45ee4703c3, type: 3}
+  - PlayerType: 13
+    _playerPrefab: {fileID: 3238988332400546293, guid: 0a0fb8e0efbb94af19aef15e3553f000, type: 3}
+  - PlayerType: 14
+    _playerPrefab: {fileID: 3238988332400546293, guid: 90c42454057224bb3b46ccfdfa0e7320, type: 3}
+  - PlayerType: 15
+    _playerPrefab: {fileID: 3238988332400546293, guid: 09966aeeeb1fd443ab2a578a62cf8ddf, type: 3}
+  - PlayerType: 16
+    _playerPrefab: {fileID: 3238988332400546293, guid: 20ec2155fd7aa4eb9ab6bb5106faf0a7, type: 3}
+  - PlayerType: 17
+    _playerPrefab: {fileID: 3238988332400546293, guid: e130fff5adcc54656a3120acc0d7c4fd, type: 3}
+  - PlayerType: 18
+    _playerPrefab: {fileID: 3238988332400546293, guid: 4e9a7c6a3d1844a2084e0f7bb470d2f8, type: 3}

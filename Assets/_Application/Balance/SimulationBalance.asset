@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SimulationBalance
   m_EditorClassIdentifier: 
   _carsCountPer1000SpawnPoints: 90
-  _npcCountPer1000SpawnPoints: 110
+  _npcCountPer1000SpawnPoints: 90
   _carTriggerLength: 1.7
-  _npcTriggerLength: 0.4
+  _npcTriggerLength: 0.7
   _maxBreakingDistance: 0.8
   _carRootToForwardPoint: 0.5
   _minDistanceBetweenRoots: 4

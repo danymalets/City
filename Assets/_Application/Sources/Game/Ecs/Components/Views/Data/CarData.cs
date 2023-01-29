@@ -1,6 +1,5 @@
 using System;
 using Sirenix.OdinInspector;
-using Sources.Game.Ecs.Utils;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Components.Views.Data
@@ -20,10 +19,6 @@ namespace Sources.Game.Ecs.Components.Views.Data
         [SerializeField]
         private float _maxSteeringAngle = 45;
 
-        [SerializeField]
-        [ReadOnly]
-        private Rigidbody _rigidBody;
-
         public float Mass => _mass;
         public float MaxSpeed => _maxSpeed;
         public float MaxMotorTorque => _maxMotorTorque;
@@ -31,16 +26,9 @@ namespace Sources.Game.Ecs.Components.Views.Data
 
         private void OnValidate()
         {
-            _rigidBody = GetComponent<Rigidbody>();
-            _rigidBody.mass = _mass;
+            Rigidbody rigidbody = GetComponent<Rigidbody>();
+            rigidbody.mass = _mass;
+            rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
         }
-    }
-
-    public interface ICarData : IMonoComponent
-    {
-        float Mass { get; }
-        float MaxSpeed { get; }
-        float MaxMotorTorque { get; }
-        float MaxSteeringAngle { get; }
     }
 }

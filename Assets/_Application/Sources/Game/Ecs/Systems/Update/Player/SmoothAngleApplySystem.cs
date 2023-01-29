@@ -22,9 +22,9 @@ namespace Sources.Game.Ecs.Systems.Update.Player
             foreach (Entity playerEntity in _filter)
             {
                 ITransform transform = playerEntity.GetMono<ITransform>();
-                SmoothAngle smoothAngle = playerEntity.Get<SmoothAngle>();
+                PlayerSmoothAngle playerSmoothAngle = playerEntity.Get<PlayerSmoothAngle>();
                 
-                transform.Rotation = Quaternion.Euler(0, smoothAngle.Value, 0);
+                transform.Rotation = Quaternion.Euler(0, playerSmoothAngle.Value, 0);
             }
         }
     }

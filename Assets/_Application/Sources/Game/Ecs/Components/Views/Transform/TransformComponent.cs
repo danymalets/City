@@ -15,5 +15,9 @@ namespace Sources.Game.Ecs.Components.Views.Transform
             get => transform.rotation;
             set => transform.rotation = value;
         }
+
+        public Vector3 TransformPoint(Vector3 point) => transform.TransformPoint(point);
+
+        public Vector3 InverseTransformPoint(Vector3 point) => transform.InverseTransformPoint(point);
     }
 }

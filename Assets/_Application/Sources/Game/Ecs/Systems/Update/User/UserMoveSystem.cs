@@ -5,6 +5,7 @@ using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.User;
 using Sources.Game.Ecs.Components.Views.PlayerDatas;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Utilities;
 using Sources.Utilities.Extensions;
 using UnityEngine;
 
@@ -28,19 +29,15 @@ namespace Sources.Game.Ecs.Systems.Update.User
             
             UserPlayerInput userPlayerInput = userEntity.Get<UserPlayerInput>();
             IPlayerData playerData = userEntity.GetMono<IPlayerData>();
-            ref PlayerSpeed playerSpeed = ref userEntity.Get<PlayerSpeed>();
-
-            Vector2 direction = new(userPlayerInput.Horizontal, userPlayerInput.Vertical);
-
-            Debug.Log($"dir {direction}");
+            ref PlayerTargetSpeed playerTargetSpeed = ref userEntity.Get<PlayerTargetSpeed>();
             
-            if (direction == Vector2.zero)
+            if (DMath.Equals(userPlayerInput.MoveInput.y, 0))
             {
-                playerSpeed.Value = 0;
+                playerTargetSpeed.Value = 0;
             }
             else
             {
-                playerSpeed.Value = playerData.Speed;
+                playerTargetSpeed.Value = playerData.Speed * 3 * userPlayerInput.MoveInput.y;
             }
         }
     }

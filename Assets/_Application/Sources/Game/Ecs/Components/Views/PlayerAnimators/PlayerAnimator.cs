@@ -7,19 +7,20 @@ namespace Sources.Game.Ecs.Components.Views.PlayerAnimators
         [SerializeField]
         private Animator _animator;
 
-        public void SetIdle()
+        public void SetMoveSpeed(float speed)
         {
-            _animator.SetBool(Parameters.Move, false);
+            _animator.SetFloat(Parameters.Speed, speed);
         }
 
-        public void SetMove()
+        public void SetDie()
         {
-            _animator.SetBool(Parameters.Move, true);
+            _animator.SetBool(Parameters.Die, false);
         }
 
         private static class Parameters
         {
-            public static int Move = Animator.StringToHash(nameof(Move));
+            public static int Speed = Animator.StringToHash(nameof(Speed));
+            public static int Die = Animator.StringToHash(nameof(Die));
         }
     }
 }

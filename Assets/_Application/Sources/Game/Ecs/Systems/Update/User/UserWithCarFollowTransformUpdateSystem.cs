@@ -3,9 +3,11 @@ using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Player.User;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.Views.CarEngine;
+using Sources.Game.Ecs.Components.Views.Physic;
 using Sources.Game.Ecs.Components.Views.Transform;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Utilities.Extensions;
+using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.User
 {
@@ -28,6 +30,7 @@ namespace Sources.Game.Ecs.Systems.Update.User
             Entity carEntity = userEntity.Get<PlayerInCar>().Car;
 
             ICarWheels wheels = carEntity.GetMono<ICarWheels>();
+            // IPhysicBody body = carEntity.GetMono<IPhysicBody>();
             ITransform transform = carEntity.GetMono<ITransform>();
             ref UserFollowTransform userFollowTransform = ref userEntity.Get<UserFollowTransform>();
 

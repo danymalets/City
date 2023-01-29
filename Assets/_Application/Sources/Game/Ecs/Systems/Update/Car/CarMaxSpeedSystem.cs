@@ -26,15 +26,21 @@ namespace Sources.Game.Ecs.Systems.Update.Car
                 float carMaxSpeed = carEntity.GetMono<ICarData>().MaxSpeed;
                 float playerMaxSpeed = carEntity.Get<CarMaxSpeed>().Value;
                 ref CarMotorCoefficient motorCoefficient = ref carEntity.Get<CarMotorCoefficient>();
+                ref CarBreak carBreak = ref carEntity.Get<CarBreak>();
 
                 float maxSpeed = Mathf.Min(carMaxSpeed, playerMaxSpeed);
 
                 if (physicBody.SignedSpeed < 0)
                     maxSpeed /= 2;
-
+                
                 if (physicBody.Velocity.magnitude > maxSpeed)
                 {
                     motorCoefficient.Coefficient = 0;
+                }
+
+                if (physicBody.Velocity.magnitude > maxSpeed + 0.5f)
+                {
+                    carBreak.BreakType = BreakType.Max;
                 }
             }
         }

@@ -23,10 +23,15 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
         private Filter _npcFilter;
         private readonly IPhysicsService _physics;
         private readonly Assets _assets;
+        private readonly PlayersBalance _playersBalance;
 
         public HorizonNpcSpawnSystem()
         {
-            _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
+             Balance balance = DiContainer.Resolve<Balance>();
+
+             _simulationBalance = balance.SimulationBalance;
+             _playersBalance = balance.PlayersBalance;
+             
             _physics = DiContainer.Resolve<IPhysicsService>();
             _assets = DiContainer.Resolve<Assets>();
         }
@@ -48,13 +53,14 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
 
             int reqCars = (activePoints.Count + horizonPoints.Count) * _simulationBalance.NpcCountPer1000SpawnPoints / 1000;
 
-            Debug.Log($"players: {reqCars}");
+            // Debug.Log($"players: {reqCars}");
 
             if (npcs < reqCars)
             {
                 horizonPoints.RandomShuffle();
 
-                PlayerMonoEntity playerPrefab = _assets.PlayersAssets.GetRandomPlayer();
+                PlayerType playerType = _playersBalance.GetRandomPlayerType();
+                PlayerMonoEntity playerPrefab = _assets.PlayersAssets.GetPlayerPrefab(playerType);
 
                 foreach (Point point in horizonPoints)
                 {

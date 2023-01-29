@@ -39,10 +39,12 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
         {
             _coroutineContext.RunEachFrame(() =>
             {
+                // Debug.Log($"update");
                 World.Update(_time.DeltaTime);
             }, true);
             _coroutineContext.RunEachFixedUpdate(() =>
             {
+                // Debug.Log($"fixed");
                 World.FixedUpdate(_time.FixedDeltaTime);
             });
         }

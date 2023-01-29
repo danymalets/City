@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5817fdc19fec44db88c350e47f27afed, type: 3}
+  m_Name: Balance
+  m_EditorClassIdentifier: 
+  _cameraBalance: {fileID: 11400000, guid: 7aea2a530239e4708bd6c937b32dd8cc, type: 2}
+  _simulationBalance: {fileID: 11400000, guid: 4d1e8d5685f344d2ab897402dbcf9d83, type: 2}
+  _playersBalance: {fileID: 11400000, guid: 4d35386de65a94752920915bd2c68438, type: 2}
+  _carsBalance: {fileID: 11400000, guid: 4ca29f054aa864a8bb9f469439a607f4, type: 2}

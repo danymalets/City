@@ -7,7 +7,7 @@ namespace Sources.Game.Ecs.Components.Views.Physic
     {
         [SerializeField]
         private Rigidbody _rigidBody;
-        
+
         private void OnValidate()
         {
             _rigidBody = GetComponent<Rigidbody>();
@@ -26,6 +26,24 @@ namespace Sources.Game.Ecs.Components.Views.Physic
         {
             get => transform.InverseTransformDirection(_rigidBody.velocity);
             set => _rigidBody.velocity = transform.TransformDirection(value);
+        }
+
+        public Vector3 Position
+        {
+            get => _rigidBody.position;
+            set => _rigidBody.position = value;
+        }
+
+        public Quaternion Rotation
+        {
+            get => _rigidBody.rotation;
+            set => _rigidBody.rotation = value;
+        }
+
+        public Vector3 CenterMass
+        {
+            get => _rigidBody.centerOfMass;
+            set => _rigidBody.centerOfMass = value;
         }
     }
 }

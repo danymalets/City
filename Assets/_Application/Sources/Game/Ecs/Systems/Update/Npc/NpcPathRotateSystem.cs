@@ -32,7 +32,7 @@ namespace Sources.Game.Ecs.Systems.Update.Npc
                     Quaternion.LookRotation(npcOnPath.PathLine.Target.Position - transform.Position,
                         Vector3.up).eulerAngles.y;
                 
-                npc.Get<TargetAngle>().Value = targetAngle;
+                npc.Get<PlayerTargetAngle>().Value = targetAngle;
             }
         }
     }

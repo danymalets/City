@@ -16,12 +16,10 @@ namespace Sources.Game.Ecs.Components.Views.CarBorder
         [Button("SET AUTO BORDERS", ButtonSizes.Large)]
         private void SetAutoBorders()
         {
-            IEnumerable<Bounds> allBounds = GetComponent<EntityColliders>().Colliders.Select(c => c.bounds);
-            
+            IEnumerable<Bounds> allBounds = GetComponent<CarColliders>().Colliders.Select(c => c.bounds);
+
             Bounds bounds = DBounds.CombineBounds(allBounds);
 
-            bounds = allBounds.First();
-            
             bounds.min = bounds.min.WithY(0);
             
             _boxCollider.center = bounds.center;

@@ -1,10 +1,10 @@
 using Sources.Infrastructure.Services;
+using UnityEngine;
 
 namespace Sources.Game.InputServices
 {
     public interface IPlayerInputService : IService
     {
-        float Vertical { get; }
-        float Horizontal { get; }
+        Vector2 MoveInput { get; }
     }
 }
