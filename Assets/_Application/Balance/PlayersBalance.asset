@@ -12,6 +12,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94f496c4fd39436f9a21465383619df1, type: 3}
   m_Name: PlayersBalance
   m_EditorClassIdentifier: 
+  _fallImpulse: 210
   _playersBalance:
-  - _playerType: 0
+  - PlayerType: 0
+    _weight: 100
+  - PlayerType: 1
+    _weight: 100
+  - PlayerType: 2
+    _weight: 100
+  - PlayerType: 3
+    _weight: 100
+  - PlayerType: 4
+    _weight: 100
+  - PlayerType: 5
+    _weight: 100
+  - PlayerType: 6
+    _weight: 100
+  - PlayerType: 7
+    _weight: 100
+  - PlayerType: 8
+    _weight: 100
+  - PlayerType: 9
+    _weight: 100
+  - PlayerType: 10
+    _weight: 50
+  - PlayerType: 11
+    _weight: 100
+  - PlayerType: 12
+    _weight: 100
+  - PlayerType: 13
+    _weight: 100
+  - PlayerType: 14
+    _weight: 100
+  - PlayerType: 15
+    _weight: 100
+  - PlayerType: 16
+    _weight: 100
+  - PlayerType: 17
+    _weight: 100
+  - PlayerType: 18
     _weight: 100

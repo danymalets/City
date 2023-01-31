@@ -20,14 +20,20 @@ namespace Sources.Infrastructure.Services.Balance
         [SerializeField]
         private float _cameraFieldOfView = 30;
         
+        [FormerlySerializedAs("_cameraRotationСщуаа")]
+        [FormerlySerializedAs("_cameraRotationSpeed")]
         [SerializeField]
-        private float _cameraRotationSpeed = 90f;
+        private float _cameraRotationCoeff = 90f;
+        
+        [SerializeField]
+        private float _deadAngle = 1f;
         
         public float CameraHeight => _cameraHeight;
         public float CameraBackDistance => _cameraBackDistance;
 
         public float CameraTiltRotationAngle => _cameraTiltRotationAngle;
         public float CameraFieldOfView => _cameraFieldOfView;
-        public float CameraRotationSpeed => _cameraRotationSpeed;
+        public float CameraRotationCoeff => _cameraRotationCoeff;
+        public float DeadAngle => _deadAngle;
     }
 }

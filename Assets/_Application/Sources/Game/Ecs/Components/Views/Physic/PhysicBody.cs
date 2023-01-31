@@ -13,6 +13,11 @@ namespace Sources.Game.Ecs.Components.Views.Physic
             _rigidBody = GetComponent<Rigidbody>();
         }
 
+        public void Setup()
+        {
+            MakePhysical();
+        }
+
         public float SignedSpeed => 
             LocalVelocity.z;
 
@@ -39,6 +44,15 @@ namespace Sources.Game.Ecs.Components.Views.Physic
             get => _rigidBody.rotation;
             set => _rigidBody.rotation = value;
         }
+
+        public void MakeKinematic() =>
+            _rigidBody.isKinematic = true;
+
+        public void MakePhysical() =>
+            _rigidBody.isKinematic = false;
+
+        public void MoveRotation(Quaternion rotation) =>
+            _rigidBody.MoveRotation(rotation);
 
         public Vector3 CenterMass
         {

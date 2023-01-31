@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!224 &139104267 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 22457152, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
-  m_PrefabInstance: {fileID: 1175156031}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &192136995
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -717,7 +712,6 @@ Transform:
   - {fileID: 192136997}
   - {fileID: 1459093551}
   - {fileID: 485670732}
-  - {fileID: 139104267}
   - {fileID: 1499616932}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -747,7 +741,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1160549441}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 132536, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_Name
@@ -819,7 +813,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22457152, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 22457152, guid: 67117722a812a2e46ab8cb8eafbf5f5e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1101,7 +1095,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3963871665760500314, guid: f79eae103fa9b475c9a479e31bb021cd, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3963871665760500314, guid: f79eae103fa9b475c9a479e31bb021cd, type: 3}
       propertyPath: m_LocalPosition.x

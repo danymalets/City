@@ -3,7 +3,6 @@ using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Player.User;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.Views.CarEngine;
-using Sources.Game.Ecs.Components.Views.Physic;
 using Sources.Game.Ecs.Components.Views.Transform;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Utilities.Extensions;
@@ -36,6 +35,8 @@ namespace Sources.Game.Ecs.Systems.Update.User
 
             userFollowTransform.Position = wheels.RootPosition;
             userFollowTransform.Rotation = transform.Rotation;
+            
+            // Debug.Log($"rot {transform.Rotation.eulerAngles.x} {transform.Rotation.eulerAngles.y} {transform.Rotation.eulerAngles.z}");
         }
     }
 }

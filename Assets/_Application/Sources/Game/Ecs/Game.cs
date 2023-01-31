@@ -1,5 +1,7 @@
 using Sources.Game.Ecs.Components.Car;
+using Sources.Game.Ecs.Components.Collections;
 using Sources.Game.Ecs.Components.Npc.NpcCar;
+using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Player.User;
 using Sources.Game.Ecs.Components.User;
 using Sources.Game.Ecs.Factories;
@@ -57,6 +59,21 @@ namespace Sources.Game.Ecs
 
         private void AddFixedUpdateSystems()
         {
+            // awaiters
+            _world.AddFixedSystem<AddComponentWithDelaySystem>();
+            
+            // physics
+            _world.AddFixedSystem<PhysicsUpdateSystem>();
+
+            //death
+            _world.AddFixedSystem<PlayerFallCheckSystem>();
+            _world.AddFixedSystem<PlayerDeathHandlerSystem>();
+            _world.AddFixedSystem<FallAnimationHandlerSystem>();
+            _world.AddFixedSystem<MakeKinematicHandlerSystem>();
+            _world.AddFixedSystem<DisableCollidersRequestHandlerSystem>();
+            _world.AddFixedSystem<DespawnRequestRequestHandlerSystem>();
+
+            //car exit
             _world.AddFixedSystem<PlayerCarExitSystem>();
             _world.AddFixedSystem<PlayerCarEnterSystem>();
             
@@ -110,16 +127,19 @@ namespace Sources.Game.Ecs
             _world.AddFixedSystem<CarBreakApplySystem>();
             _world.AddFixedSystem<CarMotorApplySystem>();
             _world.AddFixedSystem<SteeringAngleApplySystem>();
-            
 
-            // physics
-            _world.AddFixedSystem<PhysicsUpdateSystem>();
-            
             _world.AddFixedOneFrame<NpcPointReachedEvent>();
             _world.AddFixedOneFrame<NpcBreakRequest>();
             _world.AddFixedOneFrame<NpcCarBreakRequest>();
             _world.AddFixedOneFrame<PlayerWantsExitCar>();
             _world.AddFixedOneFrame<PlayerWantsEnterCar>();
+            _world.AddFixedOneFrame<DeadRequest>();
+            _world.AddFixedOneFrame<FallAnimationRequest>();
+            _world.AddFixedOneFrame<DisableCollidersRequest>();
+            _world.AddFixedOneFrame<MakeKinematicRequest>();
+            _world.AddFixedOneFrame<DespawnRequest>();
+            
+            _world.AddFixedOneFrameList<Collisions, CollisionData>();
         }
 
         private void AddUpdateSystems()

@@ -17,5 +17,12 @@ namespace Sources.Game.Ecs.Utils
         }
 
         protected abstract void OnSetup();
+        
+        public void Cleanup()
+        {
+            OnCleanup();
+        }
+
+        protected abstract void OnCleanup();
     }
 }

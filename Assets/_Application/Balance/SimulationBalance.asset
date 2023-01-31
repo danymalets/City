@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _carsCountPer1000SpawnPoints: 90
   _npcCountPer1000SpawnPoints: 90
-  _carTriggerLength: 1.7
+  _carTriggerLength: 2.1
   _npcTriggerLength: 0.7
   _maxBreakingDistance: 0.8
   _carRootToForwardPoint: 0.5
@@ -26,3 +26,4 @@ MonoBehaviour:
   _crosswalkWidth: 3
   _minActiveRadius: 33
   _maxActiveRadius: 37.1
+  _carActiveRadiusDelta: 3.5

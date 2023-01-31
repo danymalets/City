@@ -8,13 +8,13 @@ namespace Sources.Game.Ecs.Components.Views.Data
     public class CarData : MonoBehaviour, ICarData
     {
         [SerializeField]
-        private float _mass = 1000;
+        private float _mass = 800;
 
         [SerializeField]
-        private float _maxSpeed = 10;
+        private float _maxSpeed = 9;
         
         [SerializeField]
-        private float _maxMotorTorque = 500;
+        private float _maxMotorTorque = 400;
 
         [SerializeField]
         private float _maxSteeringAngle = 45;

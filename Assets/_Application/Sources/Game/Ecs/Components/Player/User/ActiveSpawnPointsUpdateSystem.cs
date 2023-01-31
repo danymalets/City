@@ -15,15 +15,11 @@ namespace Sources.Game.Ecs.Components.Player.User
     {
         private Filter _pathesFilter;
         private Filter _userFilter;
-        private readonly float _sqrMinRadius;
-        private readonly float _sqrMaxRadius;
+        private readonly SimulationBalance _simulationBalance;
 
         public ActiveSpawnPointsUpdateSystem()
         {
-            SimulationBalance simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
-
-            _sqrMinRadius = DMath.Sqr(simulationBalance.MinActiveRadius);
-            _sqrMaxRadius = DMath.Sqr(simulationBalance.MaxActiveRadius);
+            _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
         }
 
         protected override void OnInitFilters()
@@ -39,6 +35,15 @@ namespace Sources.Game.Ecs.Components.Player.User
 
             foreach (Entity pathEntity in _pathesFilter)
             {
+                float sqrMinRadius = DMath.Sqr(_simulationBalance.MinActiveRadius);
+                float sqrMaxRadius = DMath.Sqr(_simulationBalance.MaxActiveRadius);
+
+                if (pathEntity.Has<CarsPathesTag>())
+                {
+                    sqrMinRadius += _simulationBalance.CarActiveRadiusDelta;
+                    sqrMaxRadius += _simulationBalance.CarActiveRadiusDelta;
+                }
+                
                 List<Point> allSpawnPoints = pathEntity.GetList<AllSpawnPoints, Point>();
                 List<Point> activePoints = pathEntity.GetList<ActiveSpawnPoints, Point>();
                 List<Point> horizonPoints = pathEntity.GetList<HorizonSpawnPoints, Point>();
@@ -50,9 +55,9 @@ namespace Sources.Game.Ecs.Components.Player.User
                 {
                     float distance = DVector3.SqrDistance(userPosition, point.Position);
                     
-                    if (distance < _sqrMaxRadius)
+                    if (distance < sqrMaxRadius)
                     {
-                        if (distance < _sqrMinRadius)
+                        if (distance < sqrMinRadius)
                         {
                             activePoints.Add(point);
                         }

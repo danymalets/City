@@ -23,6 +23,9 @@ namespace Sources.Game.Ecs.Systems.Update.Camera
 
         private Filter _cameraFilter;
         private Filter _userFilter;
+        private float _now;
+        private bool _st;
+        private float _mx;
 
         public CameraFollowPlayerRotationSystem()
         {
@@ -53,11 +56,18 @@ namespace Sources.Game.Ecs.Systems.Update.Camera
             float distance = DMath.DistanceAngle(cameraAngle.Value, targetAngle);
 
             // Debug.Log($"{cameraAngle.Value} {targetAngle} {distance}");
+
+            float speed = 0;
+            
+            if (distance > _cameraBalance.DeadAngle)
+            {
+                speed = DMath.Sqr((distance - _cameraBalance.DeadAngle) / 30f) * _cameraBalance.CameraRotationCoeff;
+            }
             
             if (DMath.NotEquals(distance, 0))
                 cameraAngle.Value = Mathf.MoveTowardsAngle(cameraAngle.Value, targetAngle, 
-                    _cameraBalance.CameraRotationSpeed * deltaTime * distance);
-            
+                    speed * deltaTime);
+
             cameraTransform.Rotation = cameraTransform.Rotation.WithEulerY(cameraAngle.Value);
         }
     }

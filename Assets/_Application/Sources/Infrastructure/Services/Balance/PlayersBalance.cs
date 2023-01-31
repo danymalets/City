@@ -11,6 +11,9 @@ namespace Sources.Infrastructure.Services.Balance
     public class PlayersBalance : ScriptableObject
     {
         [SerializeField]
+        private float _fallImpulse = 200;
+
+        [SerializeField]
         private List<PlayerBalance> _playersBalance;
 
         private void OnValidate()
@@ -19,6 +22,8 @@ namespace Sources.Infrastructure.Services.Balance
                 pb => pb.PlayerType,
                 (pd, en) => pd.PlayerType = en);
         }
+
+        public float FallImpulse => _fallImpulse;
 
         public PlayerType GetRandomPlayerType() =>
             _playersBalance.GetRandomWithWeights(pb => pb.Weight).PlayerType;

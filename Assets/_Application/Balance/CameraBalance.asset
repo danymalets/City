@@ -16,4 +16,5 @@ MonoBehaviour:
   _cameraBackDistance: 5.1
   _cameraTiltRotationAngle: 22
   _cameraFieldOfView: 70
-  _cameraRotationSpeed: 8
+  _cameraRotationCoeff: 1000
+  _deadAngle: 1

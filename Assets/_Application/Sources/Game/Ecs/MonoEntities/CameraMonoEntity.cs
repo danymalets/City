@@ -29,5 +29,9 @@ namespace Sources.Game.Ecs.MonoEntities
             Entity.SetMono<ITransform>(_transform);
             Entity.SetMono<ICameraData>(_cameraData);
         }
+
+        protected override void OnCleanup()
+        {
+        }
     }
 }

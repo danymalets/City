@@ -32,6 +32,7 @@ namespace Sources.Game.GameObjects.Cars
         public Transform RightWheelGeometry => _rightWheelGeometry;
 
         public Vector3 GetRoot() => ((LeftWheelCollider.transform.position +
-                                      RightWheelCollider.transform.position) / 2).WithY(0);
+                                      RightWheelCollider.transform.position) / 2) -
+                                    LeftWheelCollider.transform.transform.up * LeftWheelCollider.radius;
     }
 }

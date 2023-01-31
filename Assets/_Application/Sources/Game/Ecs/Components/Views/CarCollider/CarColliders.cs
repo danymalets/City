@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Scellecs.Morpeh.Providers;
+using Sirenix.OdinInspector;
 using Sources.Game.Constants;
 using Sources.Game.Ecs.Utils;
 using Sources.Utilities;
@@ -16,7 +17,8 @@ namespace Sources.Game.Ecs.Components.Views.CarCollider
 
         public Collider[] Colliders => _colliders;
 
-        private void OnValidate()
+        [Button("Bake", ButtonSizes.Large)]
+        private void Bake()
         {
             if (_colliders != null)
             {

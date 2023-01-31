@@ -56,6 +56,9 @@ namespace Sources.Infrastructure.Services.Balance
         [SerializeField]
         private float _maxActiveRadius = 31;
 
+        [SerializeField]
+        private float _carActiveRadiusDelta = 3.5f;
+        
         public int CarsCountPer1000SpawnPoints => _carsCountPer1000SpawnPoints;
 
         public int NpcCountPer1000SpawnPoints => _npcCountPer1000SpawnPoints;
@@ -80,5 +83,7 @@ namespace Sources.Infrastructure.Services.Balance
         public float MinActiveRadius => _minActiveRadius;
 
         public float MaxActiveRadius => _maxActiveRadius;
+
+        public float CarActiveRadiusDelta => _carActiveRadiusDelta;
     }
 }

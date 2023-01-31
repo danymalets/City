@@ -5,6 +5,8 @@ namespace Sources.Game.Ecs.Components.Views.CarCollider
 {
     public interface IPlayerColliders : IMonoComponent
     {
-        Collider[] Colliders { get; }
+        EntityCollider[] Colliders { get; }
+        void EnableColliders();
+        void DisableColliders();
     }
 }

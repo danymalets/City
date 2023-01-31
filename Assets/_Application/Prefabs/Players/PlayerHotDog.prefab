@@ -1273,7 +1273,6 @@ GameObject:
   - component: {fileID: 1084415866504179662}
   - component: {fileID: 8474337994418400068}
   - component: {fileID: 3238988332400546293}
-  - component: {fileID: 6657031680005261937}
   m_Layer: 0
   m_Name: PlayerHotDog
   m_TagString: Untagged
@@ -1378,7 +1377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colliders:
-  - {fileID: 270142836864992007}
+  - {fileID: -7242520202249379632}
 --- !u!114 &1084415866504179662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1426,19 +1425,6 @@ MonoBehaviour:
   _playerAnimator: {fileID: 2478004570126896088}
   _playerData: {fileID: 8474337994418400068}
   _enableDisableEntity: {fileID: 1553120330574378390}
---- !u!114 &6657031680005261937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 172216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac795d5100714588a9a721b5291ce758, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _colliders: []
 --- !u!1 &173072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1940,6 +1926,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3949252440662617085}
   - component: {fileID: 270142836864992007}
+  - component: {fileID: -7242520202249379632}
   m_Layer: 8
   m_Name: Collider
   m_TagString: Untagged
@@ -1976,6 +1963,19 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &-7242520202249379632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4908227641736458177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57fd08b87646482cafa8791018277ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider: {fileID: 270142836864992007}
 --- !u!1 &8440242690687890356
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,5 +10,8 @@ namespace Sources.Game.Ecs.Components.Views.Physic
         Vector3 LocalVelocity { get; set; }
         Vector3 Position { get; set; }
         Quaternion Rotation { get; set; }
+        void MakeKinematic();
+        void MakePhysical();
+        void MoveRotation(Quaternion euler);
     }
 }

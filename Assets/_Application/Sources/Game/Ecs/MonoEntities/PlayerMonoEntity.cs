@@ -1,5 +1,6 @@
 using System;
 using Sources.Game.Ecs.Components;
+using Sources.Game.Ecs.Components.Collections;
 using Sources.Game.Ecs.Components.Views;
 using Sources.Game.Ecs.Components.Views.CarBorder;
 using Sources.Game.Ecs.Components.Views.CarCollider;
@@ -66,8 +67,17 @@ namespace Sources.Game.Ecs.MonoEntities
             Entity.SetMono<IPlayerAnimator>(_playerAnimator);
             Entity.SetMono<IPlayerData>(_playerData);
             Entity.SetMono<IEnableDisableEntity>(_enableDisableEntity);
+            
+            _playerColliders.Setup(Entity);
+            _physicBody.Setup();
+            _playerAnimator.Setup();
         }
-        
+
+        protected override void OnCleanup()
+        {
+            _playerColliders.Cleanup();
+        }
+
         public Vector3 Center => _entityBorders.Center;
         public Vector3 HalfExtents => _entityBorders.HalfExtents;
     }

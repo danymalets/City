@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components.Collections;
+using Sources.Game.Ecs.Utils.MorpehWrapper.Components;
+using UnityEngine;
 
 namespace Sources.Game.Ecs.Utils.MorpehWrapper
 {
@@ -21,7 +23,7 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
             else
             {
                 component = default;
-                return true;
+                return false;
             }
         }
 
@@ -29,6 +31,46 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
         {
             entity.AddComponent<TComponent>();
             return entity;
+        }
+        
+        public static ref TComponent AddAndGet<TComponent>(this Entity entity) where TComponent : struct, IComponent => 
+            ref entity.AddComponent<TComponent>();
+
+        public static ref TComponent GetOrCreate<TComponent>(this Entity entity) where TComponent : struct, IComponent
+        {
+            if (entity.Has<TComponent>())
+            {
+                return ref entity.Get<TComponent>();
+            }
+            else
+            {
+                return ref entity.AddAndGet<TComponent>();
+            }
+        }
+        
+        public static Entity AddWithDelay<TComponent>(this Entity entity, float delay)
+            where TComponent : struct, IComponent =>
+            entity.SetWithDelay(delay, new TComponent());
+        
+        public static Entity SetWithDelay<TComponent>(this  Entity entity, float delay, TComponent component)
+            where TComponent : struct, IComponent
+        {
+            entity.GetOrCreateList<AddComponentAwaiters, AddComponentAwaiter>()
+                .Add(new AddComponentAwaiter
+            {
+                Delay = delay,
+                ComponentWrapper = new ComponentWrapper<TComponent>(component),
+            });
+            return entity;
+        }
+
+        public static bool NotHas<TComponent>(this Entity entity) where TComponent : struct, IComponent =>
+            !entity.Has<TComponent>();
+        
+        public static void AddIfNotHas<TComponent>(this Entity entity) where TComponent : struct, IComponent
+        {
+            if (entity.NotHas<TComponent>())
+                entity.Add<TComponent>();
         }
         
         public static void Remove<TComponent>(this Entity entity) where TComponent : struct, IComponent => 
@@ -46,11 +88,36 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
         public static List<TValue> GetList<TListOf, TValue>(this Entity entity)
             where TListOf : struct, IListOf<TValue> =>
             entity.Get<TListOf>().List;
+        
+        public static void RemoveList<TListOf, TValue>(this Entity entity)
+            where TListOf : struct, IListOf<TValue> =>
+            entity.Remove<TListOf>();
 
         public static Entity AddList<TListOf, TValue>(this Entity entity)
             where TListOf : struct, IListOf<TValue> =>
             entity.Set(new TListOf{List =new List<TValue>()});
         
+        public static List<TValue> AddAndGetList<TListOf, TValue>(this Entity entity)
+            where TListOf : struct, IListOf<TValue>
+        {
+            List<TValue> list = new ();
+            entity.Set(new TListOf { List = list });
+            return list;
+        }
+
+        public static List<TValue> GetOrCreateList<TListOf, TValue>(this Entity entity)
+            where TListOf : struct, IListOf<TValue>
+        {
+            if (entity.TryGet(out TListOf listOf))
+            {
+                return listOf.List;
+            }
+            else
+            {
+                return entity.AddAndGetList<TListOf, TValue>();
+            }
+        }
+
         public static Entity SetList<TListOf, TValue>(this Entity entity, IEnumerable<TValue> enumerable)
             where TListOf : struct, IListOf<TValue> =>
             entity.Set(new TListOf{List =new List<TValue>(enumerable)});
@@ -76,8 +143,14 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
             setupMono(entity.GetMono<TMonoComponent>());
             return entity;
         }
+
+        public static MonoEntity GetMonoEntity(this Entity entity) =>
+            entity.Get<MonoEntityAccess>().MonoEntity;
         
-        public static void DespawnMono(this Entity entity) => 
-            entity.Get<MonoEntityAccess>().MonoEntity.Despawn();
+        public static void DespawnMono(this Entity entity)
+        {
+            entity.GetMonoEntity().Cleanup();
+            entity.GetMonoEntity().Despawn();
+        }
     }
 }

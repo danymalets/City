@@ -33,7 +33,6 @@ namespace Sources.Game.Ecs.MonoEntities
         [SerializeField]
         private PhysicBody _physicBody;
 
-        [FormerlySerializedAs("_entityColliders")]
         [SerializeField]
         private CarColliders _carColliders;
 
@@ -74,6 +73,10 @@ namespace Sources.Game.Ecs.MonoEntities
             Entity.SetMono<ICarEnterPoints>(_carEnterPoints);
             Entity.SetMono<ICarWheels>(_carWheels);
             Entity.SetMono<ICarData>(_carData);
+        }
+
+        protected override void OnCleanup()
+        {
         }
 
         public Vector3 CenterRelatedRootPoint => _entityBorders.Center - RootOffset;
