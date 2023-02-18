@@ -42,12 +42,19 @@ namespace Sources.Game.Ecs.Systems.Update.Camera
             Entity userEntity = _userFilter.GetSingleton();
 
             ITransform cameraTransform = cameraEntity.GetMono<ITransform>();
-            float cameraAngle = cameraEntity.Get<CameraAngle>().Value;
+            float cameraAngle = cameraEntity.Get<CameraYAngle>().Value;
             
-            Vector3 userPosition = userEntity.Get<UserFollowTransform>().Position;
+            float cameraSmoothHeight = cameraEntity.Get<CameraSmoothHeight>().Value;
+            float cameraSmoothBackDistance = cameraEntity.Get<CameraSmoothBackDistance>().Value;
+            float smoothFollowY = cameraEntity.Get<CameraSmoothFollowY>().Value;
+
+            Vector3 userPosition = userEntity.Get<PlayerFollowTransform>().Position;
             
-            cameraTransform.Position = (userPosition + Quaternion.AngleAxis(cameraAngle, Vector3.up) *
-                Vector3.back * _cameraBalance.CameraBackDistance).WithY(_cameraBalance.CameraHeight);
+            Vector3 targetPosition = userPosition + Quaternion.AngleAxis(cameraAngle, Vector3.up) *
+                Vector3.back * cameraSmoothBackDistance + (smoothFollowY + cameraSmoothHeight) * Vector3.up;
+
+            cameraTransform.Position = Vector3.MoveTowards(cameraTransform.Position, targetPosition,
+                _cameraBalance.CameraSpeed * deltaTime);
         }
     }
 }

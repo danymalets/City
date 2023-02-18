@@ -4,7 +4,8 @@ namespace Sources.Infrastructure.Services.Times
     {
         float Time { get; }
         float DeltaTime { get; }
-        float FixedDeltaTime { get; set; }
+        float FixedDeltaTime { get; }
+        int PhysicsUpdateCount { get; set; }
         float TimeScale { set; get; }
     }
 }

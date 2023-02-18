@@ -1,8 +1,11 @@
 using System;
+using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components;
+using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.Views;
 using Sources.Game.Ecs.Components.Views.CarBorder;
 using Sources.Game.Ecs.Components.Views.CarCollider;
+using Sources.Game.Ecs.Components.Views.CarColors;
 using Sources.Game.Ecs.Components.Views.CarEngine;
 using Sources.Game.Ecs.Components.Views.CarEnterPointsData;
 using Sources.Game.Ecs.Components.Views.CarForwardTriggers;
@@ -11,9 +14,11 @@ using Sources.Game.Ecs.Components.Views.Physic;
 using Sources.Game.Ecs.Components.Views.Transform;
 using Sources.Game.Ecs.Utils;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Infrastructure.Services.Balance;
 using Sources.Utilities.Extensions;
 using UnityEngine;
 using UnityEngine.Serialization;
+using CarData = Sources.Game.Ecs.Components.Views.Data.CarData;
 
 namespace Sources.Game.Ecs.MonoEntities
 {
@@ -24,6 +29,7 @@ namespace Sources.Game.Ecs.MonoEntities
     [RequireComponent(typeof(EntityBorders))]
     [RequireComponent(typeof(CarEnterPoints))]
     [RequireComponent(typeof(CarWheels))]
+    [RequireComponent(typeof(CarMesh))]
     [RequireComponent(typeof(CarData))]
     public class CarMonoEntity : MonoEntity
     {
@@ -47,6 +53,9 @@ namespace Sources.Game.Ecs.MonoEntities
 
         [SerializeField]
         private CarData _carData;
+        
+        [SerializeField]
+        private CarMesh _carMesh;
 
         private void OnValidate()
         {
@@ -57,6 +66,7 @@ namespace Sources.Game.Ecs.MonoEntities
             _carEnterPoints = GetComponent<CarEnterPoints>();
             _carWheels = GetComponent<CarWheels>();
             _carData = GetComponent<CarData>();
+            _carMesh = GetComponent<CarMesh>();
         }
 
         private void Awake()
@@ -73,6 +83,7 @@ namespace Sources.Game.Ecs.MonoEntities
             Entity.SetMono<ICarEnterPoints>(_carEnterPoints);
             Entity.SetMono<ICarWheels>(_carWheels);
             Entity.SetMono<ICarData>(_carData);
+            Entity.SetMono<ICarMesh>(_carMesh);
         }
 
         protected override void OnCleanup()
@@ -82,5 +93,9 @@ namespace Sources.Game.Ecs.MonoEntities
         public Vector3 CenterRelatedRootPoint => _entityBorders.Center - RootOffset;
         public Vector3 HalfExtents => _entityBorders.HalfExtents;
         public Vector3 RootOffset => _carWheels.RootOffset;
+
+#if UNITY_EDITOR
+        public ICarMesh CarMesh => _carMesh;
+#endif
     }
 }

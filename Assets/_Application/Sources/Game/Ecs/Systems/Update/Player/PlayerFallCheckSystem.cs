@@ -33,7 +33,7 @@ namespace Sources.Game.Ecs.Systems.Update.Player
                 List<CollisionData> collisions = playerEntity.GetList<Collisions, CollisionData>();
                 foreach (CollisionData collisionData in collisions)
                 {
-                    if (collisionData.SqrImpulse > DMath.Sqr(_playersBalance.FallImpulse))
+                    if (collisionData.SqrImpulse > DMath.Sqr(_playersBalance.MinImpulseForFall))
                     {
                         playerEntity.AddIfNotHas<DeadRequest>();
                     }

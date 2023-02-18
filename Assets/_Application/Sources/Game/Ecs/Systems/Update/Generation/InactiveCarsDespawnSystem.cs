@@ -1,4 +1,5 @@
 using Scellecs.Morpeh;
+using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Player.User;
 using Sources.Game.Ecs.Components.Tags;
@@ -13,35 +14,35 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
 {
     public class InactiveCarsDespawnSystem : DUpdateSystem
     {
-        private readonly float _sqrMaxRadius;
-        private Filter _npcFilter;
+        private Filter _carFilter;
         private Filter _userFilter;
+        private readonly SimulationBalance _simulationBalance;
 
         public InactiveCarsDespawnSystem()
         {
-            SimulationBalance simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
-
-            _sqrMaxRadius = DMath.Sqr(simulationBalance.MaxActiveRadius);
+            _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
         }
 
         protected override void OnInitFilters()
         {
             _userFilter = _world.Filter<UserTag>();
-            _npcFilter = _world.Filter<NpcTag, PlayerInCar>();
+            _carFilter = _world.Filter<CarTag>();
         }
 
         protected override void OnUpdate(float deltaTime)
         {
-            Vector3 userPosition = _userFilter.GetSingleton().Get<UserFollowTransform>().Position;
+            float sqrMaxRadius = DMath.Sqr(_simulationBalance.MaxCarActiveRadius);
+            
+            Vector3 userPosition = _userFilter.GetSingleton().Get<PlayerFollowTransform>().Position;
 
-            foreach (Entity npcEntity in _npcFilter)
+            foreach (Entity carEntity in _carFilter)
             {
-                Entity carEntity = npcEntity.Get<PlayerInCar>().Car;
+                ref CarPassengers carPassengers = ref carEntity.Get<CarPassengers>();
                 Vector3 carPosition = carEntity.GetMono<ICarWheels>().RootPosition;
-
-                if (DMath.Greater(DVector3.SqrDistance(carPosition, userPosition), _sqrMaxRadius))
+                
+                if (DMath.Greater(DVector3.SqrDistance(carPosition, userPosition), sqrMaxRadius) &&
+                    carPassengers.IsNoPassengers)
                 {
-                    _despawner.DespawnNpc(npcEntity);
                     _despawner.DespawnCar(carEntity);
                 }
             }

@@ -67,7 +67,8 @@ namespace Sources.Game.Ecs.MonoEntities
             Entity.SetMono<IPlayerAnimator>(_playerAnimator);
             Entity.SetMono<IPlayerData>(_playerData);
             Entity.SetMono<IEnableDisableEntity>(_enableDisableEntity);
-            
+
+            _playerAnimator.transform.localScale = Vector3.one * 0.92f;
             _playerColliders.Setup(Entity);
             _physicBody.Setup();
             _playerAnimator.Setup();

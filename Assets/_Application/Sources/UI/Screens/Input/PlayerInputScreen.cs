@@ -29,10 +29,15 @@ namespace Sources.UI.Screens.Input
         {
             _userEntity.Add<PlayerWantsEnterCar>();
         }
+        
+        
 
         private void Update()
         {
-            // Debug.Log($"joy {_joystick.Direction}");
+            if (UnityEngine.Input.GetKeyDown(KeyCode.E))
+            {
+                _userEntity.Add<PlayerWantsEnterCar>();
+            }
         }
 
         protected override void OnOpen(Entity userEntity)

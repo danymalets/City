@@ -46,7 +46,6 @@ namespace Sources.Infrastructure.StateMachine.States
 
         private void EnterLevelState(LevelData levelData)
         {
-            _loadingScreen.Close();
             _stateMachine.Enter<LevelState, LevelData>(levelData);
         }
 

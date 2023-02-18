@@ -1,4 +1,6 @@
+using System.Linq;
 using Scellecs.Morpeh;
+using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.User;
@@ -6,7 +8,10 @@ using Sources.Game.Ecs.Components.Views.CarEnterPointsData;
 using Sources.Game.Ecs.Components.Views.EnableDisable;
 using Sources.Game.Ecs.Components.Views.Transform;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Infrastructure.Services;
+using Sources.Infrastructure.Services.Balance;
 using Sources.Utilities;
+using Sources.Utilities.Extensions;
 
 namespace Sources.Game.Ecs.Systems.Update.Player
 {
@@ -14,6 +19,12 @@ namespace Sources.Game.Ecs.Systems.Update.Player
     {
         private Filter _filter;
         private Filter _carsFilter;
+        private readonly CarsBalance _carsBalance;
+
+        public PlayerCarEnterSystem()
+        {
+            _carsBalance = DiContainer.Resolve<Balance>().CarsBalance;
+        }
 
         protected override void OnInitFilters()
         {
@@ -29,16 +40,23 @@ namespace Sources.Game.Ecs.Systems.Update.Player
                 IEnableDisableEntity enableDisableEntity = playerEntity.GetMono<IEnableDisableEntity>();
 
                 Entity enterCar = null;
+                float curMinSqrDistance = 0;
                 
                 foreach (Entity carEntity in _carsFilter)
                 {
-                    ICarEnterPoints carEnterPoints = carEntity.GetMono<ICarEnterPoints>();
-
-                    foreach (IEnterPoint enterPoint in carEnterPoints.EnterPoints)
+                    if (carEntity.Get<CarPassengers>().IsNoPassengers)
                     {
-                        if (DVector3.SqrDistance(enterPoint.Position, playerTransform.Position) <= 2 * 2)
+                        ICarEnterPoints carEnterPoints = carEntity.GetMono<ICarEnterPoints>();
+
+                        foreach (IEnterPoint enterPoint in carEnterPoints.EnterPoints)
                         {
-                            enterCar = carEntity;
+                            float sqrDistance = DVector3.SqrDistance(enterPoint.Position, playerTransform.Position);
+                            if (sqrDistance <= DMath.Sqr(_carsBalance.MaxEnterCarDistance) &&
+                                (enterCar == null || sqrDistance < curMinSqrDistance))
+                            {
+                                enterCar = carEntity;
+                                curMinSqrDistance = sqrDistance;
+                            }
                         }
                     }
                 }
@@ -47,6 +65,7 @@ namespace Sources.Game.Ecs.Systems.Update.Player
                 {
                     enableDisableEntity.Disable();
                     playerEntity.Set(new PlayerInCar { Car = enterCar });
+                    enterCar.Get<CarPassengers>().TakePlace(0, playerEntity);
                 }
             }
         }

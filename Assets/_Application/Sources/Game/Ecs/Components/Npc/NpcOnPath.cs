@@ -7,4 +7,8 @@ namespace Sources.Game.Ecs.Components.Npc
     {
         public PathLine PathLine;
     }
+    
+    public struct AlwaysActive : IComponent
+    {
+    }
 }

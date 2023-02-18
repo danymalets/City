@@ -13,16 +13,16 @@ namespace Sources.Infrastructure.Services.AssetsManager
     public class CarsAssets : ScriptableObject
     {
         [SerializeField]
-        private List<CarData> _carData;
+        private List<CarData> _carData = new();
 
         public IEnumerable<CarMonoEntity> CarPrefabs => 
             _carData.Select(d => d.CarPrefab);
 
         private void OnValidate()
         {
-            DValidate.AddRequired(_carData, 
+            DValidate.OptimizeEnumsData(_carData, 
                 cd => cd.CarType, 
-                (cd, en) => cd.CarType = en);
+                cd => new CarData(cd));
         }
         
         public CarMonoEntity GetCarPrefab(CarType carType) =>

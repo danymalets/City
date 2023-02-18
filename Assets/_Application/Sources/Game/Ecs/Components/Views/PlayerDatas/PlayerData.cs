@@ -7,18 +7,11 @@ namespace Sources.Game.Ecs.Components.Views.PlayerDatas
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerData : MonoBehaviour, IPlayerData
     {
-        [SerializeField]
-        private float _speed = 3f;
-
-        [SerializeField]
-        private float _maxRotationSpeed = 180f;
         
         [SerializeField]
         private float _mass = 80f;
 
         public float Mass => _mass;
-        public float Speed => _speed;
-        public float MaxRotationSpeed => _maxRotationSpeed;
 
         private void OnValidate()
         {

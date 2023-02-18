@@ -61,14 +61,14 @@ namespace Sources.Game.Ecs.Systems.Init
 
             int count = 0;
             int reqCount = points.Length * _simulationBalance.CarsCountPer1000SpawnPoints / 1000;
-
+            
             if (reqCount > 0)
             {
                 foreach (Point point in points)
                 {
                     Quaternion carRotation = Quaternion.LookRotation(point.Direction);
 
-                    CarType carType = _carsBalance.GetRandomCarType();
+                    (CarType carType, CarColorType carColorType) = _carsBalance.GetRandomCar();
                     CarMonoEntity carPrefab = _assets.CarsAssets.GetCarPrefab(carType);
 
                     bool has = _physics.CheckBox(point.Position + carRotation *
@@ -76,7 +76,7 @@ namespace Sources.Game.Ecs.Systems.Init
 
                     if (!has)
                     {
-                        Entity car = _factory.CreateCar(carPrefab, point.Position - carRotation * carPrefab.RootOffset, carRotation);
+                        Entity car = _factory.CreateCar(carPrefab, carColorType, point.Position - carRotation * carPrefab.RootOffset, carRotation);
 
                         car.Set(new CarMaxSpeed { Value = 3f });
 

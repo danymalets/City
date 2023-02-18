@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Sources.Game.Ecs.Utils.MorpehWrapper
 {
-    public class DWorld 
+    public class DWorld : IService
     {
        public World World { get; private set; }
         private readonly SystemsGroup _initSystemGroup;
@@ -18,7 +18,6 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
         private readonly ITimeService _time;
 
         private int _updateIndex = 0;
-        private int _fixedUpdateIndex = 0;
         
         public DWorld()
         {

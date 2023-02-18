@@ -32,7 +32,7 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
         {
             foreach (Entity npcEntity in _filter)
             {
-                Queue<ChoiceData> choices = npcEntity.GetQueue<PredictedChoices, ChoiceData>();
+                Queue<TurnChoice> choices = npcEntity.GetQueue<TurnDecisions, TurnChoice>();
                 NpcOnPath npcOnPath = npcEntity.Get<NpcOnPath>();
                 
                 while (choices.Count < _simulationBalance.PreSolvePathChoiceCount)
@@ -40,7 +40,7 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
                     Point lastPoint = choices.Count == 0 ? npcOnPath.PathLine.Target : 
                         choices.Last().TurnData.FirstPathLine.Target;
                     
-                    choices.Enqueue(new ChoiceData(lastPoint, lastPoint.Targets.GetRandom()));
+                    choices.Enqueue(new TurnChoice(lastPoint, lastPoint.Targets.GetRandom()));
                 }
             }
         }

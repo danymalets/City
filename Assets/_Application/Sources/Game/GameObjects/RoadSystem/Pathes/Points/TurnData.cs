@@ -7,8 +7,15 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes.Points
     public class TurnData
     {
         private int _blockedCount = 0;
+        
+        /// <summary>
+        /// Describe turn direction:
+        /// -1: left turn,
+        /// 0: forward turn,
+        /// 1: right turn.
+        /// </summary>
         public int Delta { get; }
-        public Point TargetPoint { get; set; } = null;
+        public Point TargetPoint { get; set; }
         public PathLine FirstPathLine { get; }
         public List<TurnData> BlockableTurns { get; } = new();
 

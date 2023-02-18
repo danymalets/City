@@ -51,10 +51,7 @@ namespace Sources.Infrastructure.Services.Balance
         
         [Header("Generation")]
         [SerializeField]
-        private float _minActiveRadius = 20;
-        
-        [SerializeField]
-        private float _maxActiveRadius = 31;
+        private float _minNpcActiveRadius = 20;
 
         [SerializeField]
         private float _carActiveRadiusDelta = 3.5f;
@@ -80,10 +77,11 @@ namespace Sources.Infrastructure.Services.Balance
 
         public float CrosswalkWidth => _crosswalkWidth;
 
-        public float MinActiveRadius => _minActiveRadius;
+        public float MinNpcActiveRadius => _minNpcActiveRadius;
 
-        public float MaxActiveRadius => _maxActiveRadius;
+        public float MaxNpcActiveRadius => _minNpcActiveRadius + _minDistanceBetweenRoots + 0.1f;
 
-        public float CarActiveRadiusDelta => _carActiveRadiusDelta;
+        public float MinCarActiveRadius => MinNpcActiveRadius + _carActiveRadiusDelta;
+        public float MaxCarActiveRadius => MaxNpcActiveRadius + _carActiveRadiusDelta;
     }
 }

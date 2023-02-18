@@ -24,6 +24,12 @@ namespace Sources.Infrastructure.Services.ApplicationCycle
             set => Application.targetFrameRate = value;
         }
 
+        public string DeviceName =>
+            SystemInfo.deviceName;
+        
+        public string DeviceModel =>
+            SystemInfo.deviceModel;
+
         public void Initialize()
         {
             _coroutineContext = new CoroutineContext();

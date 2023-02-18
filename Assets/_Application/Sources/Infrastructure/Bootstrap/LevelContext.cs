@@ -1,6 +1,7 @@
 using Sources.Game.Ecs.MonoEntities;
 using Sources.Game.Ecs.Utils;
 using Sources.Game.GameObjects.RoadSystem;
+using Sources.Infrastructure.Bootstrap.IdleCarSpawns;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.AssetsManager;
 using UnityEngine;
@@ -24,12 +25,16 @@ namespace Sources.Infrastructure.Bootstrap
 
         [SerializeField]
         private Fog _fog;
-        
+
+        [SerializeField]
+        private IdleCarsSystem _idleCarsSystem;
+
         public ISpawnPoint UserSpawnPoint => _userSpawnPoint;
 
         public CameraMonoEntity CameraMonoEntity => _cameraMonoEntity;
         public IPathSystem CarsPathSystem => _carsPathSystem;
         public IPathSystem NpcPathSystem => _npcPathSystem;
         public Fog Fog => _fog;
+        public IdleCarsSystem IdleCarsSystem => _idleCarsSystem;
     }
 }

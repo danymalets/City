@@ -1,7 +1,9 @@
+using System;
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components.User;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.UI.WindowBase.Screens;
+using Sources.Utilities.Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,6 +41,14 @@ namespace Sources.UI.Screens.Input
         private void OnExitCarButtonClicked()
         {
             _userEntity.Add<PlayerWantsExitCar>();
+        }
+
+        private void Update()
+        {
+            if (UnityEngine.Input.GetKeyDown(KeyCode.R))
+            {
+                _userEntity.Add<PlayerWantsExitCar>();
+            }
         }
 
         public int VerticalInput => GetInputValue(_upButton, _downButton);

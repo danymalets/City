@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 3024147179339209138}
   - component: {fileID: 6140541149467764415}
   - component: {fileID: 4938133259955177375}
+  - component: {fileID: 430978298871753061}
   - component: {fileID: 3807972892401286929}
   m_Layer: 0
   m_Name: CarTaxi
@@ -241,6 +242,19 @@ MonoBehaviour:
   _maxSpeed: 9
   _maxMotorTorque: 400
   _maxSteeringAngle: 45
+--- !u!114 &430978298871753061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2982064454030591518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25efd9c5f5c549cf9f9bc18f6576a9df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meshRenderer: {fileID: 0}
 --- !u!114 &3807972892401286929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +274,7 @@ MonoBehaviour:
   _carEnterPoints: {fileID: 3024147179339209138}
   _carWheels: {fileID: 6140541149467764415}
   _carData: {fileID: 4938133259955177375}
+  _carMesh: {fileID: 430978298871753061}
 --- !u!1001 &2304363207737672780
 PrefabInstance:
   m_ObjectHideFlags: 0

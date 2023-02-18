@@ -8,10 +8,18 @@ namespace Sources.Infrastructure.Services.Balance
     [Serializable]
     public class PlayerData
     {
-        public PlayerType PlayerType;
+        [SerializeField]
+        private PlayerType _playerType;
 
         [SerializeField]
         private PlayerMonoEntity _playerPrefab;
+
+        public PlayerData(PlayerType playerType)
+        {
+            _playerType = playerType;
+        }
+
+        public PlayerType PlayerType => _playerType;
 
         public PlayerMonoEntity PlayerPrefab => _playerPrefab;
     }

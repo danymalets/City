@@ -1,4 +1,7 @@
+using System;
+using Sources.Utilities;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Sources.Game.Ecs.Components.Views.PlayerAnimators
 {
@@ -7,12 +10,22 @@ namespace Sources.Game.Ecs.Components.Views.PlayerAnimators
         [SerializeField]
         private Animator _animator;
 
+        private int _baseLayer;
+
+        private void Awake()
+        {
+            _baseLayer = _animator.GetLayerIndex("BaseLayer");
+            
+            // прогрев, чтобы не было лага при первом использовании
+            _animator.Play(Names.Falling, _baseLayer, Random.value);
+        }
+
         public void Setup()
         {
             _animator.SetFloat(Parameters.Speed, 0);
             _animator.SetBool(Parameters.Die, false);
             
-            _animator.Play(Names.MoveBlendTree, -1, Random.value);
+            _animator.Play(Names.MoveBlendTree, _baseLayer, Random.value);
         }
         
         public void SetMoveSpeed(float speed)
@@ -24,16 +37,17 @@ namespace Sources.Game.Ecs.Components.Views.PlayerAnimators
         {
             _animator.SetBool(Parameters.Die, true);
         }
+        
+        private static class Names
+        {
+            public static int MoveBlendTree = Animator.StringToHash(nameof(MoveBlendTree));
+            public static int Falling = Animator.StringToHash(nameof(Falling));
+        }
 
         private static class Parameters
         {
             public static int Speed = Animator.StringToHash(nameof(Speed));
             public static int Die = Animator.StringToHash(nameof(Die));
-        }
-        
-        private static class Names
-        {
-            public static int MoveBlendTree = Animator.StringToHash(nameof(MoveBlendTree));
         }
     }
 }

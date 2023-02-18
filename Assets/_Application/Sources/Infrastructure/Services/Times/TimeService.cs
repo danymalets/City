@@ -8,12 +8,14 @@ namespace Sources.Infrastructure.Services.Times
     {
         public float Time => UnityEngine.Time.time;
         public float DeltaTime => UnityEngine.Time.deltaTime;
-        public float FixedDeltaTime
+        public float FixedDeltaTime => UnityEngine.Time.fixedDeltaTime;
+        
+        public int PhysicsUpdateCount
         {
-            get => UnityEngine.Time.fixedDeltaTime;
-            set => UnityEngine.Time.fixedDeltaTime = value;
+            get => Mathf.RoundToInt(1 / FixedDeltaTime);
+            set => UnityEngine.Time.fixedDeltaTime = 1f / value;
         }
-
+        
         public float TimeScale
         {
             get => UnityEngine.Time.timeScale;

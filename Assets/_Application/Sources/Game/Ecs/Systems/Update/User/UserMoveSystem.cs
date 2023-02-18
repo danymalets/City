@@ -26,19 +26,12 @@ namespace Sources.Game.Ecs.Systems.Update.User
                 return;
 
             Entity userEntity = _filter.GetSingleton();
-            
+
             UserPlayerInput userPlayerInput = userEntity.Get<UserPlayerInput>();
             IPlayerData playerData = userEntity.GetMono<IPlayerData>();
             ref PlayerTargetSpeed playerTargetSpeed = ref userEntity.Get<PlayerTargetSpeed>();
             
-            if (DMath.Equals(userPlayerInput.MoveInput.y, 0))
-            {
-                playerTargetSpeed.Value = 0;
-            }
-            else
-            {
-                playerTargetSpeed.Value = playerData.Speed * 3 * userPlayerInput.MoveInput.y;
-            }
+            playerTargetSpeed.Value = 3 * userPlayerInput.MoveInput.magnitude;
         }
     }
 }

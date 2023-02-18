@@ -13,6 +13,6 @@ namespace Sources.Infrastructure.Services.CoroutineRunner
         
         Coroutine RunEachFrame(Action action, bool andNow = false);
         Coroutine RunEachFixedUpdate(Action action);
-        Coroutine RunEachSeconds(float period, Action action, bool andNow);
+        Coroutine RunEachSeconds(float period, Action action, bool andNow = false);
     }
 }

@@ -21,9 +21,9 @@ namespace Sources.Infrastructure.Services.AssetsManager
 
         private void OnValidate()
         {
-            DValidate.AddRequired(_playerData, 
+            DValidate.OptimizeEnumsData(_playerData, 
                 pd => pd.PlayerType, 
-                (pd, en) => pd.PlayerType = en);
+                pd => new PlayerData(pd));
         }
 
         public PlayerMonoEntity GetPlayerPrefab(PlayerType playerType) =>

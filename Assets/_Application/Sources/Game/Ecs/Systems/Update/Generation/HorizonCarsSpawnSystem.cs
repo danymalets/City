@@ -59,7 +59,7 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
             {
                 horizonPoints.RandomShuffle();
 
-                CarType carType = _carsBalance.GetRandomCarType();
+                (CarType carType, CarColorType carColorType) = _carsBalance.GetRandomCar();
                 CarMonoEntity carPrefab = _assets.CarsAssets.GetCarPrefab(carType);
 
                 foreach (Point point in horizonPoints)
@@ -71,7 +71,7 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
 
                     if (!has)
                     {
-                        Entity car = _factory.CreateCar(carPrefab, point.Position - carRotation * carPrefab.RootOffset, carRotation);
+                        Entity car = _factory.CreateCar(carPrefab, carColorType,point.Position - carRotation * carPrefab.RootOffset, carRotation);
 
                         car.Set(new CarMaxSpeed { Value = 3f });
 

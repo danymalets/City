@@ -7,11 +7,19 @@ namespace Sources.Infrastructure.Services.Balance
     [Serializable]
     public class CarData
     {
-        public CarType CarType;
-        
+        [SerializeField]
+        private CarType _carType;
+
         [SerializeField]
         private CarMonoEntity _carPrefab;
-        
+
+        public CarData(CarType carType)
+        {
+            _carType = carType;
+        }
+
+
+        public CarType CarType => _carType;
         public CarMonoEntity CarPrefab => _carPrefab;
     }
 }

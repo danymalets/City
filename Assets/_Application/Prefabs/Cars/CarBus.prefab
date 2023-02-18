@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2216060878567245223}
   - component: {fileID: 5571360224309793569}
   - component: {fileID: 2004991549552824017}
+  - component: {fileID: 8520475483886912234}
   - component: {fileID: 5062857388627923658}
   m_Layer: 0
   m_Name: CarBus
@@ -158,6 +159,19 @@ MonoBehaviour:
   _maxSpeed: 9
   _maxMotorTorque: 400
   _maxSteeringAngle: 45
+--- !u!114 &8520475483886912234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896422797593307077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25efd9c5f5c549cf9f9bc18f6576a9df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meshRenderer: {fileID: 1733607759609710751}
 --- !u!114 &5062857388627923658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,7 +252,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b953325a729791343b9fda58b967a70a, type: 2}
+  - {fileID: 2100000, guid: 7ce625da32e024d639e71f45e8a5e661, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

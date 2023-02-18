@@ -12,8 +12,8 @@ namespace Sources.Utilities
         public static int Div(float a, float b)
             => (int)(a/b);
         
-        public static float Mod(float a, float b)
-            => a - Div(a,b) * b;
+        public static float Mod(float x, float mod) => 
+            ((x % mod) + mod) % mod;
 
         #region FLOAT_COMPARE
 
@@ -65,11 +65,6 @@ namespace Sources.Utilities
         public static bool NotEquals(Rect a, Rect b) =>
             !Equals(a, b);
 
-        public static float MoveEulerAngleTowards()
-        {
-            return 0;
-        }
-
         public static float Min(params float[] values) => 
             values.Aggregate(float.PositiveInfinity, Mathf.Min);
         
@@ -84,8 +79,24 @@ namespace Sources.Utilities
         
         public static float DistanceAngle(float a, float b)
         {
-            float distance = Distance(a, b) % 360f;
+            float distance = PositiveAngle(a,b);
             return Mathf.Min(distance, 360-distance);
+        }
+
+        public static float PositiveAngle(float from, float to) => 
+            Mod(to - from, 360f);
+
+        public static float SignedNearestAngle(float from, float to)
+        {
+            float positiveAngle = PositiveAngle(from, to);
+            if (Greater(positiveAngle, 180f))
+            {
+                return -(360 - positiveAngle);
+            }
+            else
+            {
+                return positiveAngle;
+            }
         }
     }
 }

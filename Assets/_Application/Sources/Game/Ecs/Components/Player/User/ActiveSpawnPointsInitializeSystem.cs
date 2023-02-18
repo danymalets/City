@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components.Collections;
 using Sources.Game.Ecs.Components.Tags;
+using Sources.Game.Ecs.Components.Views.Transform;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.Infrastructure.Bootstrap;
@@ -28,23 +29,23 @@ namespace Sources.Game.Ecs.Components.Player.User
 
         protected override void OnInitFilters()
         {
+            _userFilter = _world.Filter<UserTag>();
             _pathesFilter = _world.Filter<PathesTag>();
         }
 
         protected override void OnInitialize()
         {
-            Vector3 userPosition = _userSpawnPoint.Position;
+            Vector3 userPosition = _userFilter.GetSingleton().Get<PlayerFollowTransform>().Position;
 
             foreach (Entity pathEntity in _pathesFilter)
             {
-                float sqrMinRadius = DMath.Sqr(_simulationBalance.MinActiveRadius);
-                float sqrMaxRadius = DMath.Sqr(_simulationBalance.MaxActiveRadius);
+                float sqrMinRadius = DMath.Sqr(pathEntity.Has<CarsPathesTag>() ?
+                    _simulationBalance.MinCarActiveRadius :
+                    _simulationBalance.MinNpcActiveRadius);
 
-                if (pathEntity.Has<CarsPathesTag>())
-                {
-                    sqrMinRadius += _simulationBalance.CarActiveRadiusDelta;
-                    sqrMaxRadius += _simulationBalance.CarActiveRadiusDelta;
-                }
+                float sqrMaxRadius = DMath.Sqr(pathEntity.Has<CarsPathesTag>() ?
+                    _simulationBalance.MaxCarActiveRadius :
+                    _simulationBalance.MaxNpcActiveRadius);
                 
                 List<Point> allSpawnPoints = pathEntity.GetList<AllSpawnPoints, Point>();
                 List<Point> activePoints = pathEntity.GetList<ActiveSpawnPoints, Point>();

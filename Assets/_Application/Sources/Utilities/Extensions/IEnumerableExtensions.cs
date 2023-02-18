@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Object = System.Object;
 using Random = UnityEngine.Random;
 
 namespace Sources.Utilities.Extensions
@@ -26,12 +27,27 @@ namespace Sources.Utilities.Extensions
         }
         
         public static T MinBy<T, TValue>(this IEnumerable<T> enumerable, Func<T, TValue> getValue)
-            where TValue : IEquatable<TValue>
+            where TValue : IComparable<TValue>
         {
-            if (!enumerable.Any())
+            using IEnumerator<T> enumerator = enumerable.GetEnumerator();
+            
+            if (!enumerator.MoveNext())
                 throw new InvalidOperationException("No data in collection");
-            TValue minValue = enumerable.Min(getValue);
-            return enumerable.First(item => getValue(item).Equals(minValue));
+            
+            T res = enumerator.Current;
+            TValue min = getValue(res);
+            while (enumerator.MoveNext())
+            {
+                T obj = enumerator.Current;
+                TValue val = getValue(obj);
+                if (val.CompareTo(min) <= 0)
+                {
+                    min = val;
+                    res = obj;
+                }
+            }
+
+            return res;
         }
         
         public static T GetNearestTo<T>(this IEnumerable<T> sources, 
@@ -55,7 +71,7 @@ namespace Sources.Utilities.Extensions
 
             float sumWeight = array.Sum(getWeight);
             
-            if (Mathf.Approximately(sumWeight, 0))
+            if (DMath.Equals(sumWeight, 0))
                 throw new InvalidOperationException("Sum weight = 0");
             
             float randValue = Random.Range(0, sumWeight);
@@ -64,20 +80,20 @@ namespace Sources.Utilities.Extensions
             {
                 T element = array[i];
                 float weight = getWeight(element);
-
-                if (randValue < weight)
+                
+                if (DMath.NotEquals(weight, 0) && randValue < weight)
                     return element;
                 
                 randValue -= weight;
             }
 
-            return array[0];
+            return array.First(el => DMath.NotEquals(getWeight(el), 0));
         }
 
         public static bool NoOne<T>(this IEnumerable<T> enumerable) =>
             !enumerable.Any();
 
         public static bool NoOne<T>(this IEnumerable<T> enumerable, Func<T, bool> predicate) =>
-            !enumerable.Any(predicate);
+            enumerable ==null || !enumerable.Any(predicate);
     }
 }

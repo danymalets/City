@@ -1,4 +1,5 @@
 using Scellecs.Morpeh;
+using Sources.Game.Ecs.Components.Npc;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Player.User;
 using Sources.Game.Ecs.Components.Tags;
@@ -15,34 +16,45 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
 {
     public class InactiveNpcDespawnSystem : DUpdateSystem
     {
-        private readonly float _sqrMaxRadius;
         private Filter _npcFilter;
         private Filter _userFilter;
+        private readonly SimulationBalance _simulationBalance;
 
         public InactiveNpcDespawnSystem()
         {
-            SimulationBalance simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
-
-            _sqrMaxRadius = DMath.Sqr(simulationBalance.MaxActiveRadius);
+            _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
         }
 
         protected override void OnInitFilters()
         {
             _userFilter = _world.Filter<UserTag>();
-            _npcFilter = _world.Filter<NpcTag>().Without<PlayerInCar>();
+            _npcFilter = _world.Filter<NpcTag>().Without<AlwaysActive>();
         }
 
         protected override void OnUpdate(float deltaTime)
         {
-            Vector3 userPosition = _userFilter.GetSingleton().Get<UserFollowTransform>().Position;
+            Vector3 userPosition = _userFilter.GetSingleton().Get<PlayerFollowTransform>().Position;
 
+            float npcSqrMaxRadius = DMath.Sqr(_simulationBalance.MaxNpcActiveRadius);
+            float carSqrMaxRadius = DMath.Sqr(_simulationBalance.MaxCarActiveRadius + 0.1f);
+            
             foreach (Entity npcEntity in _npcFilter)
             {
-                Vector3 npcPosition = npcEntity.GetMono<ITransform>().Position;
+                Vector3 npcPosition = npcEntity.Get<PlayerFollowTransform>().Position;
 
-                if (DMath.Greater(DVector3.SqrDistance(npcPosition, userPosition), _sqrMaxRadius))
+                if (npcEntity.Has<PlayerInCar>())
                 {
-                    _despawner.DespawnNpc(npcEntity);
+                    if (DMath.Greater(DVector3.SqrDistance(npcPosition, userPosition), carSqrMaxRadius))
+                    {
+                        _despawner.DespawnNpc(npcEntity);
+                    }
+                }
+                else
+                {
+                    if (DMath.Greater(DVector3.SqrDistance(npcPosition, userPosition), npcSqrMaxRadius))
+                    {
+                        _despawner.DespawnNpc(npcEntity);
+                    }
                 }
             }
         }

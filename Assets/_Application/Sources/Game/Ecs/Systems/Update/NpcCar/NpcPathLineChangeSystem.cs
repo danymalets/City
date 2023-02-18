@@ -33,13 +33,13 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
                 ref NpcOnPath npcOnPath = ref npcEntity.Get<NpcOnPath>();
                 List<TurnData> carTurns = npcEntity.GetList<ActiveTurns, TurnData>();
                 Point reachedPoint = npcEntity.Get<NpcPointReachedEvent>().Point;
-                Queue<ChoiceData> choices = npcEntity.GetQueue<PredictedChoices, ChoiceData>();
+                Queue<TurnChoice> choices = npcEntity.GetQueue<TurnDecisions, TurnChoice>();
 
-                ChoiceData choiceData = choices.Dequeue();
+                TurnChoice turnChoice = choices.Dequeue();
 
-                Assert.AreEqual(choiceData.Point, reachedPoint);
+                Assert.AreEqual(turnChoice.Point, reachedPoint);
 
-                npcOnPath.PathLine = choiceData.TurnData.FirstPathLine;
+                npcOnPath.PathLine = turnChoice.TurnData.FirstPathLine;
 
                 TurnData[] banTurnsToRemove = carTurns.Where(ct => ct.TargetPoint == reachedPoint).ToArray();
 

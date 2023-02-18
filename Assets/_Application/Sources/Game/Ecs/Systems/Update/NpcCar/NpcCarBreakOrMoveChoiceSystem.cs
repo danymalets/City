@@ -40,10 +40,10 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
             {
                 Entity carEntity = npcEntity.Get<PlayerInCar>().Car;
                 ICarWheels wheels = carEntity.GetMono<ICarWheels>();
-                Queue<ChoiceData> choices = npcEntity.GetQueue<PredictedChoices, ChoiceData>();
+                Queue<TurnChoice> choices = npcEntity.GetQueue<TurnDecisions, TurnChoice>();
                 List<TurnData> npcTurns = npcEntity.GetList<ActiveTurns, TurnData>();
 
-                foreach (ChoiceData choiceData in choices)
+                foreach (TurnChoice choiceData in choices)
                 {
                     if (!choiceData.IsForceMove && 
                         DVector3.SqrDistance(choiceData.Point.Position, wheels.RootPosition) <=

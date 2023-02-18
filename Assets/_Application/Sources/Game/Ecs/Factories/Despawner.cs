@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Scellecs.Morpeh;
+using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Components.Collections;
+using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Utils;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
@@ -28,6 +30,12 @@ namespace Sources.Game.Ecs.Factories
                     blockedTurn.DecreaseBlocked();
                 }
             }
+
+            if (npcEntity.TryGet(out PlayerInCar playerInCar))
+            {
+                playerInCar.Car.Get<CarPassengers>().FreeUpPlace(playerInCar.Place, npcEntity);
+            }
+
             activeTurns.Clear();
             
             npcEntity.DespawnMono();

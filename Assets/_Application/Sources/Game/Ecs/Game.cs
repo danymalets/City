@@ -32,6 +32,7 @@ namespace Sources.Game.Ecs
 
             _diBuilder = DiBuilder.Create();
             
+            // _diBuilder.Register(_world);
             _diBuilder.Register<IFactory>(new Factory(_world.World));
             _diBuilder.Register<IDespawner>(new Despawner());
 
@@ -42,6 +43,8 @@ namespace Sources.Game.Ecs
 
         private void AddInitializers()
         {
+            _world.AddInitializer<PlayerDeathAnimationWarmUpSystem>();
+            
             _world.AddInitializer<PathesInitSystem>();
             _world.AddInitializer<RoadPathesGenerationSystem>();
             _world.AddInitializer<CrossroadsPathesGenerationSystem>();
@@ -55,15 +58,20 @@ namespace Sources.Game.Ecs
             
             _world.AddInitializer<NpcInitSystem>();
             _world.AddInitializer<NpcWithCarsInitSystem>();
+            _world.AddInitializer<IdleCarsInitSystem>();
         }
 
         private void AddFixedUpdateSystems()
         {
-            // awaiters
-            _world.AddFixedSystem<AddComponentWithDelaySystem>();
-            
             // physics
             _world.AddFixedSystem<PhysicsUpdateSystem>();
+            
+            // awaiters
+            _world.AddFixedSystem<AddComponentWithDelaySystem>();
+
+            // follow transform
+            _world.AddFixedSystem<PlayerFollowTransformUpdateSystem>();
+            _world.AddFixedSystem<PlayerWithCarFollowTransformUpdateSystem>();
 
             //death
             _world.AddFixedSystem<PlayerFallCheckSystem>();
@@ -71,7 +79,7 @@ namespace Sources.Game.Ecs
             _world.AddFixedSystem<FallAnimationHandlerSystem>();
             _world.AddFixedSystem<MakeKinematicHandlerSystem>();
             _world.AddFixedSystem<DisableCollidersRequestHandlerSystem>();
-            _world.AddFixedSystem<DespawnRequestRequestHandlerSystem>();
+            _world.AddFixedSystem<DespawnRequestHandlerSystem>();
 
             //car exit
             _world.AddFixedSystem<PlayerCarExitSystem>();
@@ -85,6 +93,8 @@ namespace Sources.Game.Ecs
             
             _world.AddFixedSystem<HorizonCarsSpawnSystem>();
             _world.AddFixedSystem<HorizonNpcSpawnSystem>();
+            
+            _world.AddFixedSystem<IdleCarsSpawnSystem>();
 
             // npc
             
@@ -95,7 +105,7 @@ namespace Sources.Game.Ecs
             _world.AddFixedSystem<NpcPathChoiceSystem>();
             
             _world.AddFixedSystem<NpcPathRotateSystem>();
-            _world.AddFixedSystem<SmoothAngleSystem>();
+            _world.AddFixedSystem<PlayerSmoothAngleSystem>();
             _world.AddFixedSystem<SmoothAngleApplySystem>();
 
             _world.AddFixedSystem<CarForwardColliderSystem>();
@@ -123,6 +133,7 @@ namespace Sources.Game.Ecs
             _world.AddFixedSystem<CarSmoothSteeringAngleSystem>();
             
             _world.AddFixedSystem<CarMaxSpeedSystem>();
+            _world.AddFixedSystem<CarBreakResetSystem>();
 
             _world.AddFixedSystem<CarBreakApplySystem>();
             _world.AddFixedSystem<CarMotorApplySystem>();
@@ -144,15 +155,17 @@ namespace Sources.Game.Ecs
 
         private void AddUpdateSystems()
         {
-            _world.AddUpdateSystem<UserTargetAngleSystem>();
+            _world.AddUpdateSystem<UserTargetAngleAndSpeedSystem>();
+            _world.AddUpdateSystem<NpcSpeedSystem>();
+            
             _world.AddUpdateSystem<UserMoveSystem>();
             
             _world.AddUpdateSystem<UserPlayerInputSystem>();
             _world.AddUpdateSystem<UserCarInputSystem>();
             _world.AddUpdateSystem<UserCarMoveSystem>();
             
-            _world.AddUpdateSystem<UserFollowTransformUpdateSystem>();
-            _world.AddUpdateSystem<UserWithCarFollowTransformUpdateSystem>();
+            _world.AddUpdateSystem<PlayerFollowTransformUpdateSystem>();
+            _world.AddUpdateSystem<PlayerWithCarFollowTransformUpdateSystem>();
             _world.AddUpdateSystem<UserFogUpdateSystem>();
 
             _world.AddUpdateSystem<ChangeSteeringAngleSystem>();
@@ -161,9 +174,17 @@ namespace Sources.Game.Ecs
 
             _world.AddUpdateSystem<InputScreenSwitcherSystem>();
             
-            _world.AddUpdateSystem<CameraTiltAngleApplySystem>();
+            _world.AddUpdateSystem<CameraXAngleApplySystem>();
             _world.AddUpdateSystem<CameraFieldOfViewApplySystem>();
             
+            _world.AddUpdateSystem<CameraTargetDeltasSystem>();
+            _world.AddUpdateSystem<CameraSmoothDeltasSystem>();
+            
+            _world.AddUpdateSystem<CameraTargetXAngleSystem>();
+            _world.AddUpdateSystem<CameraSmoothXAngleSystem>();
+            
+            _world.AddUpdateSystem<CameraFollowXPositionSystem>();
+
             _world.AddUpdateSystem<CameraFollowPlayerRotationSystem>();
             _world.AddUpdateSystem<CameraFollowPlayerPositionSystem>();
 

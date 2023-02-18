@@ -7,6 +7,8 @@ using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.AssetsManager;
 using Sources.Infrastructure.Services.Audio;
 using Sources.Infrastructure.Services.Balance;
+using Sources.Infrastructure.Services.CoroutineRunner;
+using Sources.Infrastructure.Services.Fps;
 using Sources.Infrastructure.Services.Pool;
 using Sources.UI.Screens;
 using Sources.UI.Screens.Input;
@@ -30,16 +32,54 @@ namespace Sources.Game.Controllers
         private readonly InputController _inputController;
         private readonly Ecs.Game _game;
         private readonly IDiBuilder _diBuilder;
+        private readonly LoadingScreen _loadingScreen;
+        private readonly IFpsService _fpsService;
+        private readonly CoroutineContext _coroutineContext;
 
         public GameController()
         {
             IUiService ui = DiContainer.Resolve<IUiService>();
+            _fpsService = DiContainer.Resolve<IFpsService>();
 
             _diBuilder = DiBuilder.Create();
 
             _diBuilder.Register<CarInputService, ICarInputService>();
             _diBuilder.Register<PlayerInputService, IPlayerInputService>();
 
+            _levelScreen = ui.Get<LevelScreen>();
+            _loadingScreen = ui.Get<LoadingScreen>();
+            _carInputScreen = ui.Get<CarInputScreen>();
+
+            _uiClose = DiContainer.Resolve<IUiCloseService>();
+            
+            _audio = DiContainer.Resolve<IAudioService>();
+
+            _game = new Ecs.Game();
+
+            _coroutineContext = new CoroutineContext();
+            
+            _inputController = new InputController();
+        }
+
+        public void StartGame()
+        {
+            //_audio.PlayMusic(MusicType.RoadNoise);
+
+            PreparePool();
+            
+            _levelScreen.Open(_level);
+            _levelScreen.EnableRestartButton();
+
+            _coroutineContext.RunWithDelay(0.1f, () =>
+            {
+                _game.StartGame();
+            
+                _fpsService.RunWhenFpsStabilizes(() => _loadingScreen.Close());
+            });
+        }
+
+        private void PreparePool()
+        {
             IPoolCreatorService poolCreatorService = DiContainer.Resolve<IPoolCreatorService>();
             Assets assets = DiContainer.Resolve<Assets>();
             
@@ -52,28 +92,6 @@ namespace Sources.Game.Controllers
             {
                 poolCreatorService.CreatePool(new PoolConfig(playerPrefab, 40));
             }
-
-            _levelScreen = ui.Get<LevelScreen>();
-            _carInputScreen = ui.Get<CarInputScreen>();
-
-            _uiClose = DiContainer.Resolve<IUiCloseService>();
-            
-            _audio = DiContainer.Resolve<IAudioService>();
-
-            _game = new Ecs.Game();
-
-            _inputController = new InputController();
-        }
-
-        public void StartGame()
-        {
-            //_audio.PlayMusic(MusicType.RoadNoise);
-
-            _levelScreen.Open(_level);
-            
-            _levelScreen.EnableRestartButton();
-
-            _game.StartGame();
         }
 
         public void FinishGame()

@@ -4,26 +4,32 @@ using Sources.Infrastructure.Services.AssetsManager;
 using Sources.Utilities;
 using Sources.Utilities.Extensions;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Sources.Infrastructure.Services.Balance
 {
     [CreateAssetMenu(menuName = nameof(Balance) + "/" + nameof(PlayersBalance), fileName = nameof(PlayersBalance))]
     public class PlayersBalance : ScriptableObject
     {
+        [FormerlySerializedAs("_fallImpulse")]
         [SerializeField]
-        private float _fallImpulse = 200;
+        private float _minImpulseForFall = 200;
 
+        [SerializeField]
+        private float _maxRotationSpeed = 45f;
+        
         [SerializeField]
         private List<PlayerBalance> _playersBalance;
 
         private void OnValidate()
         {
-            DValidate.AddRequired(_playersBalance,
+            DValidate.OptimizeEnumsData(_playersBalance,
                 pb => pb.PlayerType,
-                (pd, en) => pd.PlayerType = en);
+                pb => new PlayerBalance(pb));
         }
 
-        public float FallImpulse => _fallImpulse;
+        public float MinImpulseForFall => _minImpulseForFall;
+        public float MaxRotationSpeed => _maxRotationSpeed;
 
         public PlayerType GetRandomPlayerType() =>
             _playersBalance.GetRandomWithWeights(pb => pb.Weight).PlayerType;

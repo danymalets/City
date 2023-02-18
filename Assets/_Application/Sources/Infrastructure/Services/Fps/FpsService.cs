@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Sources.Data.Live;
@@ -9,19 +11,20 @@ namespace Sources.Infrastructure.Services.Fps
 {
     public class FpsService : IFpsService, IInitializable
     {
-        public LiveInt FpsLastSecond { get; } = new(0);
+        public int FpsLastSecond { get; private set; }
         
-        private CoroutineContext _coroutineContext;
         private ITimeService _timeService;
-        
-        private readonly Queue<float> _deltaTimes = new(150);
-        private float _sumDeltaTimes = 0;
 
+        private readonly Queue<float> _deltaTimes = new(150);
+
+        private float _sumDeltaTimes = 0;
+        private ICoroutineRunnerService _coroutineRunner;
+        
         public void Initialize()
         {
             _timeService = DiContainer.Resolve<ITimeService>();
-            _coroutineContext = new CoroutineContext();
-            _coroutineContext.RunEachFrame(OnUpdate);
+            _coroutineRunner = DiContainer.Resolve<ICoroutineRunnerService>();
+            _coroutineRunner.RunEachFrame(OnUpdate);
         }
 
         private void OnUpdate()
@@ -34,7 +37,28 @@ namespace Sources.Infrastructure.Services.Fps
                 _sumDeltaTimes -= _deltaTimes.Dequeue();
             }
 
-            FpsLastSecond.Value = Mathf.RoundToInt(_deltaTimes.Count + 1);
+            FpsLastSecond = Mathf.RoundToInt(_deltaTimes.Count + 1);
+        }
+
+        public void RunWhenFpsStabilizes(Action action) =>
+            _coroutineRunner.StartCoroutine(RunWhenFpsStabilizesCoroutine(action));
+
+        private IEnumerator RunWhenFpsStabilizesCoroutine(Action action)
+        {
+            yield return new WaitForSeconds(0.5f);
+
+            int fps;
+            do
+            {
+                fps = FpsLastSecond;
+                // Debug.Log($"fps: {fps}");
+                yield return new WaitForSeconds(0.5f);
+            } 
+            while (FpsLastSecond > fps);
+            
+            // Debug.Log($"fps: {FpsLastSecond} - stable");
+
+            action();
         }
     }
 }

@@ -13,7 +13,130 @@ MonoBehaviour:
   m_Name: CarsBalance
   m_EditorClassIdentifier: 
   _carBalance:
-  - CarType: 0
+  - _carType: 1
+    _weight: 45
+    _carColorBalance: []
+  - _carType: 2
+    _weight: 15
+    _carColorBalance: []
+  - _carType: 0
+    _weight: 40
+    _carColorBalance: []
+  - _carType: 3
+    _weight: 45
+    _carColorBalance: []
+  - _carType: 4
     _weight: 100
-  - CarType: 1
+    _carColorBalance:
+    - _carColorType: 12
+      _weight: 50
+    - _carColorType: 29
+      _weight: 100
+    - _carColorType: 31
+      _weight: 100
+    - _carColorType: 32
+      _weight: 100
+    - _carColorType: 34
+      _weight: 50
+    - _carColorType: 37
+      _weight: 100
+    - _carColorType: 41
+      _weight: 100
+    - _carColorType: 44
+      _weight: 50
+  - _carType: 9
     _weight: 100
+    _carColorBalance:
+    - _carColorType: 12
+      _weight: 50
+    - _carColorType: 29
+      _weight: 100
+    - _carColorType: 31
+      _weight: 100
+    - _carColorType: 32
+      _weight: 100
+    - _carColorType: 34
+      _weight: 50
+    - _carColorType: 37
+      _weight: 100
+    - _carColorType: 41
+      _weight: 100
+    - _carColorType: 44
+      _weight: 50
+  - _carType: 8
+    _weight: 100
+    _carColorBalance:
+    - _carColorType: 12
+      _weight: 50
+    - _carColorType: 29
+      _weight: 100
+    - _carColorType: 31
+      _weight: 100
+    - _carColorType: 32
+      _weight: 100
+    - _carColorType: 34
+      _weight: 50
+    - _carColorType: 37
+      _weight: 100
+    - _carColorType: 41
+      _weight: 100
+    - _carColorType: 44
+      _weight: 50
+  - _carType: 7
+    _weight: 100
+    _carColorBalance:
+    - _carColorType: 12
+      _weight: 50
+    - _carColorType: 29
+      _weight: 100
+    - _carColorType: 31
+      _weight: 100
+    - _carColorType: 32
+      _weight: 100
+    - _carColorType: 34
+      _weight: 50
+    - _carColorType: 37
+      _weight: 100
+    - _carColorType: 41
+      _weight: 100
+    - _carColorType: 44
+      _weight: 50
+  - _carType: 6
+    _weight: 100
+    _carColorBalance:
+    - _carColorType: 12
+      _weight: 50
+    - _carColorType: 29
+      _weight: 100
+    - _carColorType: 31
+      _weight: 100
+    - _carColorType: 32
+      _weight: 100
+    - _carColorType: 34
+      _weight: 50
+    - _carColorType: 37
+      _weight: 100
+    - _carColorType: 41
+      _weight: 100
+    - _carColorType: 44
+      _weight: 50
+  - _carType: 5
+    _weight: 100
+    _carColorBalance:
+    - _carColorType: 12
+      _weight: 50
+    - _carColorType: 29
+      _weight: 100
+    - _carColorType: 31
+      _weight: 100
+    - _carColorType: 32
+      _weight: 100
+    - _carColorType: 34
+      _weight: 50
+    - _carColorType: 37
+      _weight: 100
+    - _carColorType: 41
+      _weight: 100
+    - _carColorType: 44
+      _weight: 50
+  _maxEnterCarDistance: 2

@@ -26,9 +26,9 @@ namespace Sources.Game.Ecs.Systems.Update.User
         {
             Entity userEntity = _filter.GetSingleton();
 
-            UserFollowTransform userFollowTransform = userEntity.Get<UserFollowTransform>();
+            PlayerFollowTransform playerFollowTransform = userEntity.Get<PlayerFollowTransform>();
 
-            _fog.Position = userFollowTransform.Position;
+            _fog.Position = playerFollowTransform.Position;
         }
     }
 }

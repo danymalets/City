@@ -143,6 +143,14 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
             setupMono(entity.GetMono<TMonoComponent>());
             return entity;
         }
+        
+        public static Entity SetupMonoIf<TMonoComponent>(this Entity entity, Func<bool> should, Action<TMonoComponent> setupMono) 
+            where TMonoComponent : IMonoComponent
+        {
+            if (should())
+                entity.SetupMono(setupMono);
+            return entity;
+        }
 
         public static MonoEntity GetMonoEntity(this Entity entity) =>
             entity.Get<MonoEntityAccess>().MonoEntity;

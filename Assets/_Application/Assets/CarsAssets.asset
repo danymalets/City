@@ -13,25 +13,23 @@ MonoBehaviour:
   m_Name: CarsAssets
   m_EditorClassIdentifier: 
   _carData:
-  - CarType: 0
+  - _carType: 0
     _carPrefab: {fileID: 3807972892401286929, guid: 22dd2dd0a228b4f07a6b28a372d9df37, type: 3}
-  - CarType: 1
+  - _carType: 1
     _carPrefab: {fileID: 6904987291108027260, guid: 9c0068836eada23498651fc331b971b2, type: 3}
-  - CarType: 2
-    _carPrefab: {fileID: 6023932704894590869, guid: 127fb03eb61134ec68a0a2a2776cbc4f, type: 3}
-  - CarType: 3
-    _carPrefab: {fileID: 6023932704894590869, guid: 01ae2f3b84170f643bcc1bd4c5d43e89, type: 3}
-  - CarType: 4
-    _carPrefab: {fileID: 3807972892401286929, guid: 5b12d3ed1edc14ba7a8cd39aedc2a198, type: 3}
-  - CarType: 5
+  - _carType: 2
     _carPrefab: {fileID: 179397755831826880, guid: 575be73585b0bf245b9aa3c613cbc13d, type: 3}
-  - CarType: 6
-    _carPrefab: {fileID: 2924757075045790538, guid: f2ce7f1d14a2f224a9608755281b1093, type: 3}
-  - CarType: 7
+  - _carType: 3
+    _carPrefab: {fileID: 3807972892401286929, guid: 5b12d3ed1edc14ba7a8cd39aedc2a198, type: 3}
+  - _carType: 4
+    _carPrefab: {fileID: 6023932704894590869, guid: 127fb03eb61134ec68a0a2a2776cbc4f, type: 3}
+  - _carType: 5
     _carPrefab: {fileID: 5116997421471035774, guid: 4ee37db786a5ecd40948574f249e1888, type: 3}
-  - CarType: 8
-    _carPrefab: {fileID: 5894839061650214317, guid: 033c8f570d249f14a80395fa31cbd177, type: 3}
-  - CarType: 9
+  - _carType: 6
     _carPrefab: {fileID: 6050699076223327977, guid: 10e7498dab5650d4ab0d29522baf84b6, type: 3}
-  - CarType: 10
+  - _carType: 7
+    _carPrefab: {fileID: 5894839061650214317, guid: 033c8f570d249f14a80395fa31cbd177, type: 3}
+  - _carType: 8
+    _carPrefab: {fileID: 2924757075045790538, guid: f2ce7f1d14a2f224a9608755281b1093, type: 3}
+  - _carType: 9
     _carPrefab: {fileID: 5062857388627923658, guid: db9446f72eb3fcf4fbb2e5522ddee565, type: 3}

@@ -31,18 +31,17 @@ namespace Sources.Game.Ecs.Components.Player.User
         protected override void OnUpdate(float deltaTime)
         {
             Entity userEntity = _userFilter.GetSingleton();
-            Vector3 userPosition = userEntity.Get<UserFollowTransform>().Position;
+            Vector3 userPosition = userEntity.Get<PlayerFollowTransform>().Position;
 
             foreach (Entity pathEntity in _pathesFilter)
             {
-                float sqrMinRadius = DMath.Sqr(_simulationBalance.MinActiveRadius);
-                float sqrMaxRadius = DMath.Sqr(_simulationBalance.MaxActiveRadius);
+                float sqrMinRadius = DMath.Sqr(pathEntity.Has<CarsPathesTag>() ?
+                    _simulationBalance.MinCarActiveRadius :
+                    _simulationBalance.MinNpcActiveRadius);
 
-                if (pathEntity.Has<CarsPathesTag>())
-                {
-                    sqrMinRadius += _simulationBalance.CarActiveRadiusDelta;
-                    sqrMaxRadius += _simulationBalance.CarActiveRadiusDelta;
-                }
+                float sqrMaxRadius = DMath.Sqr(pathEntity.Has<CarsPathesTag>() ?
+                    _simulationBalance.MaxCarActiveRadius :
+                    _simulationBalance.MaxNpcActiveRadius);
                 
                 List<Point> allSpawnPoints = pathEntity.GetList<AllSpawnPoints, Point>();
                 List<Point> activePoints = pathEntity.GetList<ActiveSpawnPoints, Point>();

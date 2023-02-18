@@ -20,15 +20,15 @@ namespace Sources.Game.Ecs.Components.Views.CarCollider
         {
             _collisions = entity.GetList<Collisions, CollisionData>();
         }
-
-        private void OnCollisionEnter(Collision collision)
-        {
-            GameObject rootObj = collision.transform.root.gameObject;
-            if (rootObj.TryGetComponent(out MonoEntity monoEntity))
-            {
-                _collisions.Add(new CollisionData(monoEntity.Entity, collision.impulse.sqrMagnitude));
-            }
-        }
+        //
+        // private void OnCollisionEnter(Collision collision)
+        // {
+        //     GameObject rootObj = collision.transform.root.gameObject;
+        //     if (rootObj.TryGetComponent(out MonoEntity monoEntity))
+        //     {
+        //         _collisions.Add(new CollisionData(monoEntity.Entity, collision.impulse.sqrMagnitude));
+        //     }
+        // }
 
         private void OnValidate()
         {

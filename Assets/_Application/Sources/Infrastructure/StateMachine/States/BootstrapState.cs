@@ -7,6 +7,7 @@ using Sources.Infrastructure.StateMachine.Machine;
 using Sources.Infrastructure.StateMachine.StateBase;
 using Sources.UI.Overlays;
 using Sources.UI.System;
+using Sources.Utilities;
 using UnityEngine;
 
 namespace Sources.Infrastructure.StateMachine.States
@@ -25,13 +26,13 @@ namespace Sources.Infrastructure.StateMachine.States
             ITimeService time = DiContainer.Resolve<ITimeService>();
             IUiService ui = DiContainer.Resolve<IUiService>();
 
-            application.TargetFrameRate = screen.MaxDeviceFrameRate;
-            Time.fixedDeltaTime = 1f / 30f;
+            application.TargetFrameRate = 60;//screen.MaxDeviceFrameRate;
+            time.PhysicsUpdateCount = DRandom.Bool() ? 50 : 30;
             physics.AutoSimulation = false;
             screen.SleepTimeout = SleepTimeout.NeverSleep;
 
             ui.Open<PerformanceScreen>();
-            
+
             _stateMachine.Enter<LoadLevelState>();
         }
     }

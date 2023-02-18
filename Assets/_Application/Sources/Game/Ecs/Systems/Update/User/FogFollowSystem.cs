@@ -26,10 +26,10 @@ namespace Sources.Game.Ecs.Systems.Update.User
         {
             Entity userEntity = _filter.GetSingleton();
             
-            UserFollowTransform userFollowTransform = userEntity.Get<UserFollowTransform>();
+            PlayerFollowTransform playerFollowTransform = userEntity.Get<PlayerFollowTransform>();
 
-            // userFollowTransform.Position = wheels.RootPosition;
-            // userFollowTransform.Rotation = transform.Rotation;
+            // playerFollowTransform.Position = wheels.RootPosition;
+            // playerFollowTransform.Rotation = transform.Rotation;
         }
     }
 }

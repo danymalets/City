@@ -67,8 +67,7 @@ namespace Sources.Game.Ecs.Systems.Init
                 {
                     Quaternion npcRotation = Quaternion.LookRotation(point.Direction);
 
-                    PlayerType playerType = _playersBalance.GetRandomPlayerType();
-                    PlayerMonoEntity playerPrefab = _assets.PlayersAssets.GetPlayerPrefab(playerType);
+                    PlayerMonoEntity playerPrefab = _factory.GetRandomPlayerPrefab();
                     
                     bool has = _physics.CheckBox(point.Position + npcRotation *
                         playerPrefab.Center, playerPrefab.HalfExtents, npcRotation, LayerMasks.CarsAndPlayers);

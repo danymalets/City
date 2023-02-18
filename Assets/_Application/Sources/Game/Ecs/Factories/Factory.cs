@@ -9,7 +9,8 @@ using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Player.User;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.User;
-using Sources.Game.Ecs.Components.Views;
+using Sources.Game.Ecs.Components.Views.CarColors;
+using Sources.Game.Ecs.Components.Views.CarEngine;
 using Sources.Game.Ecs.Components.Views.EnableDisable;
 using Sources.Game.Ecs.MonoEntities;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
@@ -21,7 +22,6 @@ using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.AssetsManager;
 using Sources.Infrastructure.Services.Balance;
 using UnityEngine;
-using UnityEngine.UIElements;
 using ITransform = Sources.Game.Ecs.Components.Views.Transform.ITransform;
 
 namespace Sources.Game.Ecs.Factories
@@ -53,37 +53,48 @@ namespace Sources.Game.Ecs.Factories
                 .AddList<AllSpawnPoints, Point>()
                 .AddList<AllPathLines, PathLine>();
 
-        public Entity CreateCar(CarMonoEntity carPrefab, Vector3 position, Quaternion rotation)
+        public Entity CreateCar(CarType carType, CarColorType carColor, Vector3 position, Quaternion rotation) => 
+            CreateCar(_assets.CarsAssets.GetCarPrefab(carType), carColor, position, rotation);
+
+        public Entity CreateRandomCar(Vector3 position, Quaternion rotation)
         {
-            Entity car = _world.CreateFromMonoPrefab(carPrefab)
+            (CarType carType, CarColorType carColorType) = _balance.CarsBalance.GetRandomCar();
+            return CreateCar(carType, carColorType, position, rotation);
+        }
+
+        public Entity CreateCar(CarMonoEntity carPrefab, CarColorType colorType, Vector3 position, Quaternion rotation)
+        {
+            return _world.CreateFromMonoPrefab(carPrefab)
                 .Add<CarTag>()
                 .SetupMono<ITransform>(t => t.Position = position)
                 .SetupMono<ITransform>(t => t.Rotation = rotation)
+                .SetupMonoIf<ICarMesh>(() => colorType != CarColorType.None, 
+                    cc => cc.SetupColor(colorType))
                 .Add<CarMotorCoefficient>()
                 .Add<CarBreak>()
                 .Add<SteeringAngle>()
                 .Add<ForwardTrigger>()
                 .Add<SmoothSteeringAngle>()
+                .Set(new CarPassengers(4))
                 .Set(new CarMaxSpeed { Value = Mathf.Infinity });
-
-            return car;
         }
 
-        public Entity CreateNpcInCar(PlayerMonoEntity playerPrefab, Entity carEntity, PathLine pathLine)
+        public PlayerMonoEntity GetRandomPlayerPrefab()
         {
-            return CreateNpc(playerPrefab, Vector3.zero, Quaternion.identity)
-                .SetupMono<IEnableDisableEntity>(g => g.Disable())
-                .Set(new PlayerInCar { Car = carEntity })
-                .Set(new NpcOnPath { PathLine = pathLine })
-                .AddList<ActiveTurns, TurnData>()
-                .AddQueue<PredictedChoices, ChoiceData>();
+            PlayerType playerType = _balance.PlayersBalance.GetRandomPlayerType();
+            return _assets.PlayersAssets.GetPlayerPrefab(playerType);
         }
 
         public Entity CreateUserInCar(PlayerMonoEntity playerPrefab, Entity carEntity)
         {
             return CreateUser(playerPrefab, Vector3.zero, Quaternion.identity)
                 .SetupMono<IEnableDisableEntity>(g => g.Disable())
-                .Set(new PlayerInCar { Car = carEntity });
+                .Set(new PlayerInCar { Car = carEntity })
+                .Set(new PlayerFollowTransform
+                {
+                    Position = carEntity.GetMono<ICarWheels>().RootPosition,
+                    Rotation = carEntity.GetMono<ITransform>().Rotation
+                });
         }
 
         public Entity CreateUser(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation) =>
@@ -91,18 +102,35 @@ namespace Sources.Game.Ecs.Factories
                 .Add<UserTag>()
                 .Add<UserCarInput>()
                 .Add<UserPlayerInput>()
-                .Add<UserFollowTransform>();
+                .Set(new PlayerFollowTransform
+                {
+                    Position = position,
+                    Rotation = rotation
+                });
 
-        private Entity CreateNpc(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation) =>
+        public Entity CreateNpc(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation) =>
             CreatePlayer(playerPrefab, position, rotation)
                 .Add<ForwardTrigger>()
+                .AddList<ActiveTurns, TurnData>()
                 .Add<NpcTag>();
 
         public Entity CreateNpcOnPath(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation, PathLine pathLine) =>
             CreateNpc(playerPrefab, position, rotation)
                 .Set(new NpcOnPath { PathLine = pathLine })
-                .AddList<ActiveTurns, TurnData>()
-                .AddQueue<PredictedChoices, ChoiceData>();
+                .AddQueue<TurnDecisions, TurnChoice>();
+
+        public Entity CreateNpcInCar(PlayerMonoEntity playerPrefab, Entity carEntity, PathLine pathLine)
+        {
+            Entity npc = CreateNpc(playerPrefab, Vector3.zero, Quaternion.identity)
+                .SetupMono<IEnableDisableEntity>(g => g.Disable())
+                .Set(new PlayerInCar { Car = carEntity, Place = 0 })
+                .Set(new NpcOnPath { PathLine = pathLine })
+                .AddQueue<TurnDecisions, TurnChoice>();
+            
+            carEntity.Get<CarPassengers>().TakePlace(0, npc);
+            
+            return npc;
+        }
 
         private Entity CreatePlayer(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation) =>
             _world.CreateFromMonoPrefab(playerPrefab)
@@ -111,6 +139,7 @@ namespace Sources.Game.Ecs.Factories
                 .Set(new PlayerTargetAngle { Value = rotation.eulerAngles.y })
                 .Set(new PlayerSmoothAngle { Value = rotation.eulerAngles.y })
                 .Set(new RotationSpeed { Value = 45f })
+                .Add<PlayerFollowTransform>()
                 .Add<PlayerTargetSpeed>()
                 .Add<PlayerSmoothSpeed>()
                 .Add<PlayerTag>();
@@ -119,7 +148,14 @@ namespace Sources.Game.Ecs.Factories
         {
             return _world.CreateFromMono(_levelContext.CameraMonoEntity)
                 .Add<CameraTag>()
-                .Add<CameraAngle>();
+                .Add<CameraYAngle>()
+                .Add<CameraTargetBackDistance>()
+                .Add<CameraTargetHeight>()
+                .Add<CameraSmoothBackDistance>()
+                .Add<CameraSmoothHeight>()
+                .Add<CameraXTargetAngle>()
+                .Add<CameraXSmoothAngle>()
+                .Add<CameraSmoothFollowY>();
         }
     }
 }

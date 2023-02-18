@@ -10,5 +10,7 @@ namespace Sources.Infrastructure.Services.ApplicationCycle
         event Action<bool> PauseStatusChanged;
         event Action ApplicationQuit;
         int TargetFrameRate { get; set; }
+        string DeviceName { get; }
+        string DeviceModel { get; }
     }
 }

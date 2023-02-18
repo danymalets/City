@@ -31,14 +31,14 @@ namespace Sources.Game.Ecs.Systems.Update.Player
             {
                 float speed = npcEntity.Get<PlayerSmoothSpeed>().Value;
                 float targetSpeed = npcEntity.Get<PlayerTargetSpeed>().Value;
-                float targetAngle = npcEntity.Get<PlayerSmoothAngle>().Value;
+                float angle = npcEntity.Get<PlayerSmoothAngle>().Value;
                 IPlayerAnimator playerAnimator = npcEntity.GetMono<IPlayerAnimator>();
 
                 IPhysicBody physicBody = npcEntity.GetMono<IPhysicBody>();
 
                 float ySpeed = physicBody.Velocity.y;
                 
-                physicBody.Velocity = (Quaternion.Euler(0,targetAngle,0) * Vector3.forward * targetSpeed)
+                physicBody.Velocity = (Quaternion.Euler(0,angle,0) * Vector3.forward * targetSpeed)
                     .WithY(ySpeed);
           
                 playerAnimator.SetMoveSpeed(speed);

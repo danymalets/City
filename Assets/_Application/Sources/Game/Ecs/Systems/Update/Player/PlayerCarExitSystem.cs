@@ -1,5 +1,7 @@
 using System.Linq;
 using Scellecs.Morpeh;
+using Sources.Game.Ecs.Components.Car;
+using Sources.Game.Ecs.Components.Npc;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.User;
@@ -25,17 +27,25 @@ namespace Sources.Game.Ecs.Systems.Update.Player
             foreach (Entity playerEntity in _filter)
             {
                 ITransform playerTransform = playerEntity.GetMono<ITransform>();
+                ref PlayerTargetAngle playerTargetAngle = ref playerEntity.Get<PlayerTargetAngle>();
+                ref PlayerSmoothAngle playerSmoothAngle = ref playerEntity.Get<PlayerSmoothAngle>();
                 IEnableDisableEntity enableDisableEntity = playerEntity.GetMono<IEnableDisableEntity>();
-
-                Entity carEntity = playerEntity.Get<PlayerInCar>().Car;
-
+                PlayerInCar playerInCar = playerEntity.Get<PlayerInCar>();
+                Entity carEntity = playerInCar.Car;
+                int place = playerInCar.Place;
+                CarPassengers carPassengers = carEntity.Get<CarPassengers>();
                 IEnterPoint enterPoint = carEntity.GetMono<ICarEnterPoints>().EnterPoints.First();
-                
+
+                carPassengers.FreeUpPlace(place, playerEntity);
                 playerEntity.Remove<PlayerInCar>();
 
-                playerTransform.Position = enterPoint.Position + Vector3.up * 0.3f;
-                playerTransform.Rotation = enterPoint.Rotation;
-                
+                playerTransform.Position = enterPoint.Position + Vector3.up * 0.0f;
+
+                float angle = enterPoint.Rotation.eulerAngles.y;
+                playerTransform.Rotation = Quaternion.Euler(0, angle, 0);
+                playerTargetAngle.Value = angle;
+                playerSmoothAngle.Value = angle;
+
                 enableDisableEntity.Enable();
             }
         }

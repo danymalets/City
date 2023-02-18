@@ -12,43 +12,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94f496c4fd39436f9a21465383619df1, type: 3}
   m_Name: PlayersBalance
   m_EditorClassIdentifier: 
-  _fallImpulse: 210
+  _minImpulseForFall: 210
+  _maxRotationSpeed: 90
   _playersBalance:
-  - PlayerType: 0
+  - _playerType: 0
     _weight: 100
-  - PlayerType: 1
+  - _playerType: 1
     _weight: 100
-  - PlayerType: 2
+  - _playerType: 2
     _weight: 100
-  - PlayerType: 3
+  - _playerType: 3
     _weight: 100
-  - PlayerType: 4
+  - _playerType: 4
     _weight: 100
-  - PlayerType: 5
+  - _playerType: 5
     _weight: 100
-  - PlayerType: 6
+  - _playerType: 6
     _weight: 100
-  - PlayerType: 7
+  - _playerType: 7
     _weight: 100
-  - PlayerType: 8
+  - _playerType: 8
     _weight: 100
-  - PlayerType: 9
+  - _playerType: 9
     _weight: 100
-  - PlayerType: 10
+  - _playerType: 10
     _weight: 50
-  - PlayerType: 11
+  - _playerType: 11
     _weight: 100
-  - PlayerType: 12
+  - _playerType: 12
     _weight: 100
-  - PlayerType: 13
+  - _playerType: 13
     _weight: 100
-  - PlayerType: 14
+  - _playerType: 14
     _weight: 100
-  - PlayerType: 15
+  - _playerType: 15
     _weight: 100
-  - PlayerType: 16
+  - _playerType: 16
     _weight: 100
-  - PlayerType: 17
+  - _playerType: 17
     _weight: 100
-  - PlayerType: 18
+  - _playerType: 18
     _weight: 100

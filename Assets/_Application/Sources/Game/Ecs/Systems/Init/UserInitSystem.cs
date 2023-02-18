@@ -28,19 +28,13 @@ namespace Sources.Game.Ecs.Systems.Init
 
         protected override void OnInitialize()
         {
-            CarType carType = _carsBalance.GetRandomCarType();
-            CarMonoEntity carPrefab = _assets.CarsAssets.GetCarPrefab(carType);
-
-            Entity car = _factory.CreateCar(carPrefab,
-                _levelContext.UserSpawnPoint.Position, _levelContext.UserSpawnPoint.Rotation);
-
-            PlayerType playerType = _playersBalance.GetRandomPlayerType();
-            PlayerMonoEntity playerPrefab = _assets.PlayersAssets.GetPlayerPrefab(playerType);
-
-            _factory.CreateUserInCar(playerPrefab, car);
-
-            // _factory.CreateUser(_assets.PlayersAssets.GetRandomCarType(), 
+            // Entity car = _factory.CreateRandomCar(
             //     _levelContext.UserSpawnPoint.Position, _levelContext.UserSpawnPoint.Rotation);
+            
+            // _factory.CreateUserInCar(playerPrefab, car);
+
+            _factory.CreateUser(_assets.PlayersAssets.GetPlayerPrefab(PlayerType.Biker), 
+                _levelContext.UserSpawnPoint.Position, _levelContext.UserSpawnPoint.Rotation);
 
             _physics.SyncTransforms();
         }

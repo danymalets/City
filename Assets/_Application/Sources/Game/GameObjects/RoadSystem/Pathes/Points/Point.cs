@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Sources.Utilities;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
@@ -23,13 +24,13 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes.Points
 
         public bool IsSimple()
         {
-            Assert.IsTrue(Targets.Count != 0);
+            DAssert.IsTrue(Targets.Count != 0);
             return Targets.Count == 1;
         }
         
         public bool IsSimpleBack()
         {
-            Assert.IsTrue(Sources.Count != 0);
+            DAssert.IsTrue(Sources.Count != 0);
             return Sources.Count == 1;
         }
 

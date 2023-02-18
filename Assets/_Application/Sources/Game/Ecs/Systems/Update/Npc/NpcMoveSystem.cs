@@ -33,7 +33,7 @@ namespace Sources.Game.Ecs.Systems.Update.Npc
         {
             foreach (Entity npcEntity in _filter)
             {
-                float speed = npcEntity.GetMono<IPlayerData>().Speed;
+                float speed = 1;
                 ForwardTrigger forwardTrigger = npcEntity.Get<ForwardTrigger>();
                 ref PlayerTargetSpeed playerTargetSpeed = ref npcEntity.Get<PlayerTargetSpeed>();
                 
