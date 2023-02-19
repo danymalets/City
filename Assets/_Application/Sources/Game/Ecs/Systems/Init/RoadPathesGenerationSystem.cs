@@ -29,9 +29,9 @@ namespace Sources.Game.Ecs.Systems.Init
             {
                 bool isCar = pathesEntity.Has<CarsPathesTag>();
                 
-                List<Road> roads = pathesEntity.GetList<AllRoads, Road>();
-                List<PathLine> pathLines = pathesEntity.GetList<AllPathLines, PathLine>();
-                List<Crossroads> crossroads = pathesEntity.GetList<AllCrossroads, Crossroads>();
+                List<Road> roads = pathesEntity.Get<AllRoads>().List;
+                List<PathLine> pathLines = pathesEntity.Get<AllPathLines>().List;
+                List<Crossroads> crossroads = pathesEntity.Get<AllCrossroads>().List;
 
                 foreach (Road road in roads)
                 {

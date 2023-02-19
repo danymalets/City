@@ -59,7 +59,12 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
         public static Entity SetWithDelay<TComponent>(this  Entity entity, float delay, TComponent component)
             where TComponent : struct, IComponent
         {
-            entity.GetOrCreateList<AddComponentAwaiters, AddComponentAwaiter>()
+            if (entity.NotHas<AddComponentAwaiters>())
+            {
+                entity.Set(new AddComponentAwaiters { List = new List<AddComponentAwaiter>() });
+            }
+            
+            entity.Get<AddComponentAwaiters>().List
                 .Add(new AddComponentAwaiter
             {
                 Delay = delay,
@@ -88,55 +93,6 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
 
         public static TMono GetMono<TMono>(this Entity entity) where TMono : IMonoComponent =>
             entity.Get<Mono<TMono>>().MonoComponent;
-        
-        public static List<TValue> GetList<TListOf, TValue>(this Entity entity)
-            where TListOf : struct, IListOf<TValue> =>
-            entity.Get<TListOf>().List;
-        
-        public static void RemoveList<TListOf, TValue>(this Entity entity)
-            where TListOf : struct, IListOf<TValue> =>
-            entity.Remove<TListOf>();
-
-        public static Entity AddList<TListOf, TValue>(this Entity entity)
-            where TListOf : struct, IListOf<TValue> =>
-            entity.Set(new TListOf{List =new List<TValue>()});
-        
-        public static List<TValue> AddAndGetList<TListOf, TValue>(this Entity entity)
-            where TListOf : struct, IListOf<TValue>
-        {
-            List<TValue> list = new ();
-            entity.Set(new TListOf { List = list });
-            return list;
-        }
-
-        public static List<TValue> GetOrCreateList<TListOf, TValue>(this Entity entity)
-            where TListOf : struct, IListOf<TValue>
-        {
-            if (entity.TryGet(out TListOf listOf))
-            {
-                return listOf.List;
-            }
-            else
-            {
-                return entity.AddAndGetList<TListOf, TValue>();
-            }
-        }
-
-        public static Entity SetList<TListOf, TValue>(this Entity entity, IEnumerable<TValue> enumerable)
-            where TListOf : struct, IListOf<TValue> =>
-            entity.Set(new TListOf{List =new List<TValue>(enumerable)});
-        
-        public static Queue<TValue> GetQueue<TQueueOf, TValue>(this Entity entity)
-            where TQueueOf : struct, IQueueOf<TValue> =>
-            entity.Get<TQueueOf>().Queue;
-
-        public static Entity AddQueue<TQueueOf, TValue>(this Entity entity)
-            where TQueueOf : struct, IQueueOf<TValue> =>
-            entity.Set(new TQueueOf{Queue =new Queue<TValue>()});
-        
-        public static Entity SetQueue<TQueueOf, TValue>(this Entity entity, IEnumerable<TValue> enumerable)
-            where TQueueOf : struct, IQueueOf<TValue> =>
-            entity.Set(new TQueueOf{Queue = new Queue<TValue>(enumerable)});
 
         public static void SetMono<TMono>(this Entity entity, TMono monoComponent) where TMono : IMonoComponent => 
             entity.Set(new Mono<TMono>() {MonoComponent = monoComponent});

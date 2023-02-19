@@ -17,7 +17,7 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
         {
             foreach (Entity entity in _filter)
             {
-                List<AddComponentAwaiter> awaiters = entity.GetList<AddComponentAwaiters, AddComponentAwaiter>();
+                List<AddComponentAwaiter> awaiters = entity.Get<AddComponentAwaiters>().List;
                 List<AddComponentAwaiter> awaitersToDelete = new();
 
                 foreach (AddComponentAwaiter awaiter in awaiters)

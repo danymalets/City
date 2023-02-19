@@ -39,17 +39,31 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes.Points
             Assert.IsTrue(IsSimple());
             return Targets[0].FirstPathLine;
         }
+
+        public Point GetPreviousPoint()
+        {
+            Assert.IsTrue(IsSimpleBack());
+            return Sources[0].Source;
+        }
         
         public TurnData GetSimpleTurn()
         {
             Assert.IsTrue(IsSimple());
             return Targets[0];
         }
-
-        public TurnData GetSimpleSourceTurn()
+        
+        public PathLine GetPreviousPathLine()
         {
             Assert.IsTrue(IsSimpleBack());
-            return Sources[0].Source.Targets.First(td => td.FirstPathLine == Sources[0]);
+            return Sources[0];
         }
+        
+        public TurnData GetPreviousTurn()
+        {
+            Assert.IsTrue(IsSimpleBack());
+            return GetPreviousPoint().Targets.First(td => td.FirstPathLine == Sources[0]);
+        }
+
+        public TurnData GetTurn(int delta) => Targets.First(t => t.Delta == delta);
     }
 }

@@ -43,9 +43,9 @@ namespace Sources.Game.Ecs.Components.Player.User
                     _simulationBalance.MaxCarActiveRadius :
                     _simulationBalance.MaxNpcActiveRadius);
                 
-                List<Point> allSpawnPoints = pathEntity.GetList<AllSpawnPoints, Point>();
-                List<Point> activePoints = pathEntity.GetList<ActiveSpawnPoints, Point>();
-                List<Point> horizonPoints = pathEntity.GetList<HorizonSpawnPoints, Point>();
+                List<Point> allSpawnPoints = pathEntity.Get<AllSpawnPoints>().List;
+                List<Point> activePoints = pathEntity.Get<ActiveSpawnPoints>().List;
+                List<Point> horizonPoints = pathEntity.Get<HorizonSpawnPoints>().List;
                 
                 activePoints.Clear();
                 horizonPoints.Clear();

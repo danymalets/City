@@ -5,6 +5,6 @@ namespace Sources.Utilities
     public static class DRandom
     {
         public static bool Bool() => 
-            Random.Range(0, 2) == 0;
+            Random.Range(0, 2) == 1;
     }
 }

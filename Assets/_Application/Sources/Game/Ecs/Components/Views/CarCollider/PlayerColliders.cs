@@ -15,15 +15,15 @@ namespace Sources.Game.Ecs.Components.Views.CarCollider
         [SerializeField]
         private EntityCollider[] _colliders;
 
-        private List<CollisionData> _collisions;
+        private Entity _entity;
 
         public EntityCollider[] Colliders => _colliders;
 
         public void Setup(Entity entity)
         {
             EnableColliders();
-            entity.AddList<Collisions, CollisionData>();
-            _collisions = entity.GetList<Collisions, CollisionData>();
+
+            _entity = entity;
 
             foreach (EntityCollider entityCollider in _colliders)
             {
@@ -52,7 +52,11 @@ namespace Sources.Game.Ecs.Components.Views.CarCollider
             GameObject rootObj = collision.transform.root.gameObject;
             if (rootObj.TryGetComponent(out MonoEntity monoEntity))
             {
-                _collisions.Add(new CollisionData(monoEntity.Entity, collision.impulse.sqrMagnitude));
+                if (_entity.NotHas<Collisions>())
+                    _entity.Set(new Collisions() { List = new List<CollisionData>() });
+
+                _entity.Get<Collisions>().List
+                    .Add(new CollisionData(monoEntity.Entity, collision.impulse.sqrMagnitude));
             }
         }
 

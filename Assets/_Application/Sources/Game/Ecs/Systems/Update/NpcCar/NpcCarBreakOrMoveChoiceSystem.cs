@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components.Collections;
 using Sources.Game.Ecs.Components.Npc;
@@ -11,6 +12,7 @@ using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.Balance;
 using Sources.Utilities;
+using Sources.Utilities.Extensions;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.NpcCar
@@ -40,32 +42,62 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
             {
                 Entity carEntity = npcEntity.Get<PlayerInCar>().Car;
                 ICarWheels wheels = carEntity.GetMono<ICarWheels>();
-                Queue<TurnChoice> choices = npcEntity.GetQueue<TurnDecisions, TurnChoice>();
-                List<TurnData> npcTurns = npcEntity.GetList<ActiveTurns, TurnData>();
-
+                Queue<TurnChoice> choices = npcEntity.Get<TurnDecisions>().Queue;
+                List<TurnData> npcTurns = npcEntity.Get<ActiveTurns>().List;
+                
                 foreach (TurnChoice choiceData in choices)
                 {
-                    if (!choiceData.IsForceMove && 
-                        DVector3.SqrDistance(choiceData.Point.Position, wheels.RootPosition) <=
-                        DMath.Sqr(reqDistance))
+                    if (!choiceData.IsForceMove)
                     {
-                        if (choiceData.TurnData.IsBlocked())
+                        if (DVector3.SqrDistance(choiceData.Point.Position, wheels.RootPosition) <=
+                            DMath.Sqr(reqDistance))
                         {
-                            npcEntity.Set(new NpcCarBreakRequest { Point = choiceData.Point });
-                        }
-                        else
-                        {
-                            choiceData.IsForceMove = true;
-                            foreach (TurnData banTurnData in choiceData.TurnData.BlockableTurns)
+                            TurnChoice[] turnChoices = GetThisAndAllDependentChoices(choiceData, choices).ToArray();
+
+                            if (turnChoices.Any(ch => ch.TurnData.IsBlocked()))
                             {
-                                banTurnData.IncreaseBlocked();
+                                npcEntity.Set(new NpcCarBreakRequest { Point = choiceData.Point });
                             }
-                            
-                            npcTurns.Add(choiceData.TurnData);
+                            else
+                            {
+                                foreach (TurnChoice turnChoice in turnChoices)
+                                {
+                                    ForceMove(npcTurns, turnChoice);
+                                }
+                            }
                         }
+                        
+                        break;
                     }
                 }
             }
+        }
+
+        private static IEnumerable<TurnChoice> GetThisAndAllDependentChoices
+            (TurnChoice choice, Queue<TurnChoice> choices)
+        {
+            TurnChoice tempChoice = choice;
+            
+            yield return tempChoice;
+            
+            while (tempChoice.TurnData.DependentPoint != null)
+            {
+                tempChoice = choices
+                    .First(ch => ch.Point ==
+                                 tempChoice.TurnData.DependentPoint);
+             
+                yield return tempChoice;
+            }
+        }
+
+        private static void ForceMove(List<TurnData> npcTurns, TurnChoice choiceData)
+        {
+            choiceData.IsForceMove = true;
+            foreach (TurnData banTurnData in choiceData.TurnData.BlockableTurns)
+            {
+                banTurnData.IncreaseBlocked();
+            }
+            npcTurns.Add(choiceData.TurnData);
         }
     }
 }

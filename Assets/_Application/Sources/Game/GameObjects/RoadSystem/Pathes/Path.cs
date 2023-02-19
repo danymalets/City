@@ -1,3 +1,4 @@
+using System.Linq;
 using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.Utilities;
 using Sources.Utilities.Extensions;
@@ -31,6 +32,9 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes
             NormalizedDirection = Direction.normalized;
         }
 
+        public TurnData GetAssociatedTurn() =>
+            Source.Targets.First(td => td.FirstPathLine == this);
+        
         public bool IsEnded(Vector3 point) =>
             Distance - GetProgress(point) * Distance <= 0.01f;
 

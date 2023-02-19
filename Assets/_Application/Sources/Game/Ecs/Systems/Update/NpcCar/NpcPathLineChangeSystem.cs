@@ -4,15 +4,10 @@ using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components.Collections;
 using Sources.Game.Ecs.Components.Npc;
 using Sources.Game.Ecs.Components.Npc.NpcCar;
-using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Components.Views.CarEngine;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
-using Sources.Infrastructure.Services;
-using Sources.Infrastructure.Services.Balance;
 using Sources.Utilities;
-using UnityEngine;
 using UnityEngine.Assertions;
 
 namespace Sources.Game.Ecs.Systems.Update.NpcCar
@@ -31,27 +26,29 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
             foreach (Entity npcEntity in _filter)
             {
                 ref NpcOnPath npcOnPath = ref npcEntity.Get<NpcOnPath>();
-                List<TurnData> carTurns = npcEntity.GetList<ActiveTurns, TurnData>();
+                List<TurnData> carTurns = npcEntity.Get<ActiveTurns>().List;
                 Point reachedPoint = npcEntity.Get<NpcPointReachedEvent>().Point;
-                Queue<TurnChoice> choices = npcEntity.GetQueue<TurnDecisions, TurnChoice>();
+                Queue<TurnChoice> choices = npcEntity.Get<TurnDecisions>().Queue;
 
                 TurnChoice turnChoice = choices.Dequeue();
 
-                Assert.AreEqual(turnChoice.Point, reachedPoint);
-
-                npcOnPath.PathLine = turnChoice.TurnData.FirstPathLine;
-
-                TurnData[] banTurnsToRemove = carTurns.Where(ct => ct.TargetPoint == reachedPoint).ToArray();
-
-                foreach (TurnData turnData in banTurnsToRemove)
+                if (turnChoice.Point == reachedPoint)
                 {
-                    foreach (TurnData banTurn in turnData.BlockableTurns)
-                    {
-                        // Debug.Log($"decrease block");
-                        banTurn.DecreaseBlocked();
-                    }
+                    npcOnPath.PathLine = turnChoice.TurnData.FirstPathLine;
 
-                    carTurns.Remove(turnData);
+                    TurnData[] banTurnsToRemove = carTurns.Where(ct => ct.TargetPoint == reachedPoint).ToArray();
+
+                    foreach (TurnData turnData in banTurnsToRemove)
+                    {
+                    
+                        foreach (TurnData banTurn in turnData.BlockableTurns)
+                        {
+                            // Debug.Log($"decrease block");
+                            banTurn.DecreaseBlocked();
+                        }
+
+                        carTurns.Remove(turnData);
+                    }
                 }
             }
         }

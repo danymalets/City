@@ -26,7 +26,7 @@ namespace Sources.Infrastructure.StateMachine.States
             ITimeService time = DiContainer.Resolve<ITimeService>();
             IUiService ui = DiContainer.Resolve<IUiService>();
 
-            application.TargetFrameRate = 60;//screen.MaxDeviceFrameRate;
+            application.TargetFrameRate = screen.MaxDeviceFrameRate;
             time.PhysicsUpdateCount = DRandom.Bool() ? 50 : 30;
             physics.AutoSimulation = false;
             screen.SleepTimeout = SleepTimeout.NeverSleep;

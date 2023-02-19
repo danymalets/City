@@ -48,8 +48,8 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
 
             int cars = _npcWithCarsFilter.Count();
 
-            List<Point> activePoints = pathesEntity.GetList<ActiveSpawnPoints, Point>();
-            List<Point> horizonPoints = pathesEntity.GetList<HorizonSpawnPoints, Point>();
+            List<Point> activePoints = pathesEntity.Get<ActiveSpawnPoints>().List;
+            List<Point> horizonPoints = pathesEntity.Get<HorizonSpawnPoints>().List;
 
             int reqCars = (activePoints.Count + horizonPoints.Count) * _simulationBalance.CarsCountPer1000SpawnPoints / 1000;
 

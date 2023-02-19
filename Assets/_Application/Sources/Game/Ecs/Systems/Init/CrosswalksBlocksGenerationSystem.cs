@@ -29,8 +29,8 @@ namespace Sources.Game.Ecs.Systems.Init
         {
             foreach (Entity pathesEntity in _filter)
             {
-                List<PathLine> pathLines = pathesEntity.GetList<AllPathLines, PathLine>();
-                List<Crossroads> crossroads = pathesEntity.GetList<AllCrossroads, Crossroads>();
+                List<PathLine> pathLines = pathesEntity.Get<AllPathLines>().List;
+                List<Crossroads> crossroads = pathesEntity.Get<AllCrossroads>().List;
 
                 foreach (Crossroads crossroad in crossroads)
                 {
@@ -66,21 +66,21 @@ namespace Sources.Game.Ecs.Systems.Init
             Point secondCrosswalkLaneSource = secondCrosswalkLane.Source.RelatedPoint;
             Point secondCrosswalkLaneTarget = secondCrosswalkLane.Target.RelatedPoint;
 
-            firstCrosswalkLaneSource.Targets.First().TargetPoint = firstCrosswalkLaneTarget;
-            firstCrosswalkLaneSource.Targets.First().BlockableTurns.Add(roadSource.GetSimpleTurn());
-            firstCrosswalkLaneSource.Targets.First().BlockableTurns.Add(roadTarget.GetSimpleSourceTurn());  
+            firstCrosswalkLaneSource.GetSimpleTurn().TargetPoint = firstCrosswalkLaneTarget;
+            firstCrosswalkLaneSource.GetSimpleTurn().BlockableTurns.Add(roadSource.GetSimpleTurn());
+            firstCrosswalkLaneSource.GetSimpleTurn().BlockableTurns.Add(roadTarget.GetPreviousTurn());  
             
-            secondCrosswalkLaneSource.Targets.First().TargetPoint = secondCrosswalkLaneTarget;
-            secondCrosswalkLaneSource.Targets.First().BlockableTurns.Add(roadSource.GetSimpleTurn());
-            secondCrosswalkLaneSource.Targets.First().BlockableTurns.Add(roadTarget.GetSimpleSourceTurn());
+            secondCrosswalkLaneSource.GetSimpleTurn().TargetPoint = secondCrosswalkLaneTarget;
+            secondCrosswalkLaneSource.GetSimpleTurn().BlockableTurns.Add(roadSource.GetSimpleTurn());
+            secondCrosswalkLaneSource.GetSimpleTurn().BlockableTurns.Add(roadTarget.GetPreviousTurn());
             
-            roadSource.Targets.First().TargetPoint = roadSource.Targets.First().FirstPathLine.Target;
-            roadSource.Targets.First().BlockableTurns.Add(firstCrosswalkLaneSource.Targets.First());
-            roadSource.Targets.First().BlockableTurns.Add(secondCrosswalkLaneTarget.Targets.First());
+            roadSource.GetSimpleTurn().TargetPoint = roadSource.GetSimpleTurn().FirstPathLine.Target;
+            roadSource.GetSimpleTurn().BlockableTurns.Add(firstCrosswalkLaneSource.GetSimpleTurn());
+            roadSource.GetSimpleTurn().BlockableTurns.Add(secondCrosswalkLaneSource.GetSimpleTurn());
             
-            roadTarget.Sources.First().Source.Targets.First().TargetPoint = roadTarget;
-            roadTarget.Sources.First().Source.Targets.First().BlockableTurns.Add(firstCrosswalkLaneSource.Targets.First());
-            roadTarget.Sources.First().Source.Targets.First().BlockableTurns.Add(secondCrosswalkLaneTarget.Targets.First());
+            roadTarget.GetPreviousTurn().TargetPoint = roadTarget;
+            roadTarget.Sources.First().Source.GetSimpleTurn().BlockableTurns.Add(firstCrosswalkLaneSource.GetSimpleTurn());
+            roadTarget.Sources.First().Source.GetSimpleTurn().BlockableTurns.Add(secondCrosswalkLaneSource.GetSimpleTurn());
         }
     }
 }

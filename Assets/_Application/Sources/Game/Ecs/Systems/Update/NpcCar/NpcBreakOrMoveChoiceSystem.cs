@@ -37,30 +37,37 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
             foreach (Entity npcEntity in _filter)
             {
                 ITransform transform = npcEntity.GetMono<ITransform>();
-                Queue<TurnChoice> choices = npcEntity.GetQueue<TurnDecisions, TurnChoice>();
-                List<TurnData> carTurns = npcEntity.GetList<ActiveTurns, TurnData>();
+                Queue<TurnChoice> choices = npcEntity.Get<TurnDecisions>().Queue;
+                List<TurnData> carTurns = npcEntity.Get<ActiveTurns>().List;
 
                 foreach (TurnChoice choiceData in choices)
                 {
-                    if (!choiceData.IsForceMove &&
-                        DVector3.SqrDistance(choiceData.Point.Position, transform.Position) <=
-                        DMath.Sqr(reqDistance))
+                    if (!choiceData.IsForceMove)
                     {
-                        if (choiceData.TurnData.IsBlocked())
+                        if (DVector3.SqrDistance(choiceData.Point.Position, transform.Position) <=
+                            DMath.Sqr(reqDistance))
                         {
-                            npcEntity.Set(new NpcBreakRequest());
-                        }
-                        else
-                        {
-                            choiceData.IsForceMove = true;
-
-                            foreach (TurnData banTurnData in choiceData.TurnData.BlockableTurns)
+                            if (choiceData.TurnData.IsBlocked())
                             {
-                                banTurnData.IncreaseBlocked();
+                                _updateGizmosContext.DrawLine(transform.Position, 
+                                    choiceData.Point.Position, Color.red);
+                                
+                                npcEntity.Set(new NpcBreakRequest());
                             }
+                            else
+                            {
+                                choiceData.IsForceMove = true;
 
-                            carTurns.Add(choiceData.TurnData);
+                                foreach (TurnData banTurnData in choiceData.TurnData.BlockableTurns)
+                                {
+                                    banTurnData.IncreaseBlocked();
+                                }
+
+                                carTurns.Add(choiceData.TurnData);
+                            }
                         }
+
+                        break;
                     }
                 }
             }

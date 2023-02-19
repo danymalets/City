@@ -19,13 +19,13 @@ namespace Sources.Game.Ecs.Aspects
         public readonly void SetPath(PathLine pathLine)
         {
             Entity.Set(new NpcOnPath { PathLine = pathLine })
-                .AddList<ActiveTurns, TurnData>()
-                .AddQueue<TurnDecisions, TurnChoice>();
+                .Set(new ActiveTurns { List = new List<TurnData>() })
+                .Set(new TurnDecisions { Queue = new Queue<TurnChoice>() });
         }
         
         public readonly void LeavePath()
         {
-            List<TurnData> activeTurns = Entity.GetList<ActiveTurns, TurnData>();
+            List<TurnData> activeTurns = Entity.Get<ActiveTurns>().List;
             
             foreach (TurnData activeTurn in activeTurns)
             {

@@ -73,12 +73,6 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
 
         public void AddOneFrame<TComponent>() where TComponent : struct, IComponent => 
             AddUpdateSystem<OneFrameCleanupSystem<TComponent>>();
-        
-        public void AddOneFrameList<TList, TValue>() where TList : struct, IListOf<TValue> => 
-            AddUpdateSystem<OneFrameListCleanupSystem<TList, TValue>>();
-        
-        public void AddFixedOneFrameList<TList, TValue>() where TList : struct, IListOf<TValue> => 
-            AddFixedSystem<OneFrameListCleanupSystem<TList, TValue>>();
 
         public void FinishGame()
         {

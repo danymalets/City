@@ -46,14 +46,23 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
                 float sqrReqDistance = DMath.Sqr(reqDistance);
                 
                 Vector3 position = npcEntity.Get<PlayerFollowTransform>().Position;
-                Queue<TurnChoice> choices = npcEntity.GetQueue<TurnDecisions, TurnChoice>();
+                Queue<TurnChoice> choices = npcEntity.Get<TurnDecisions>().Queue;
                 NpcOnPath npcOnPath = npcEntity.Get<NpcOnPath>();
 
                 Point lastPoint = choices.Count == 0 ? npcOnPath.PathLine.Target : choices.Last().TurnData.FirstPathLine.Target;
 
                 if (DVector3.SqrDistance(position, lastPoint.Position) < sqrReqDistance)
                 {
-                    choices.Enqueue(new TurnChoice(lastPoint, lastPoint.Targets.GetRandom()));
+                    TurnData selectedTurnData = lastPoint.Targets.GetRandom();
+                    choices.Enqueue(new TurnChoice(lastPoint, selectedTurnData));
+
+                    while (selectedTurnData.DependentPoint != null)
+                    {
+                        lastPoint = selectedTurnData.DependentPoint;
+                        
+                        selectedTurnData = lastPoint.Targets.GetRandom();
+                        choices.Enqueue(new TurnChoice(lastPoint, selectedTurnData));
+                    }
                 }
             }
         }

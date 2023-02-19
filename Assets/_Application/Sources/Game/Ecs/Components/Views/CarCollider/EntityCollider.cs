@@ -13,12 +13,10 @@ namespace Sources.Game.Ecs.Components.Views.CarCollider
         [SerializeField]
         private Collider _collider;
 
-        private List<CollisionData> _collisions;
         public Collider Collider => _collider;
 
         public void Setup(Entity entity)
         {
-            _collisions = entity.GetList<Collisions, CollisionData>();
         }
         //
         // private void OnCollisionEnter(Collision collision)
@@ -37,7 +35,6 @@ namespace Sources.Game.Ecs.Components.Views.CarCollider
 
         public void Cleanup()
         {
-            _collisions = null;
         }
     }
 }

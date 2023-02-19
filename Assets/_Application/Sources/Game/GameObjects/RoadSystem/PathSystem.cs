@@ -14,7 +14,7 @@ namespace Sources.Game.GameObjects.RoadSystem
         private readonly List<PathLine> _pathes = new();
 
         public IEnumerable<PathLine> Pathes => _pathes;
-        public IEnumerable<Road> Roads => GetComponentsInChildren<Road>();
-        public IEnumerable<Crossroads> Crossroads => GetComponentsInChildren<Crossroads>();
+        public IEnumerable<Road> Roads => GetComponentsInChildren<Road>(true);
+        public IEnumerable<Crossroads> Crossroads => GetComponentsInChildren<Crossroads>(true);
     }
 }

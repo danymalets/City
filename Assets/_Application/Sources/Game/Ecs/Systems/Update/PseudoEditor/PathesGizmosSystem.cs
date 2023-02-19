@@ -7,6 +7,7 @@ using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Game.GameObjects.RoadSystem.Pathes;
 using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
+using Sources.Utilities;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.PseudoEditor
@@ -24,22 +25,25 @@ namespace Sources.Game.Ecs.Systems.Update.PseudoEditor
         {
             foreach (Entity pathesEntity in _filter)
             {
-                List<Point> points = pathesEntity.GetList<AllSpawnPoints, Point>();
-                List<PathLine> pathLines = pathesEntity.GetList<AllPathLines, PathLine>();
+                List<Point> points = pathesEntity.Get<AllSpawnPoints>().List;
+                List<PathLine> pathLines = pathesEntity.Get<AllPathLines>().List;
 
                 foreach (PathLine pathLine in pathLines)
                 {
-                    _updateGizmosContext.DrawLine(pathLine.Source.Position, pathLine.Target.Position, Color.blue);
+                    if (!pathLine.GetAssociatedTurn().IsBlocked())
+                        _updateGizmosContext.DrawLine(pathLine.Source.Position, pathLine.Target.Position, Color.blue);
+                    else
+                        _updateGizmosContext.DrawLine(pathLine.Source.Position, pathLine.Target.Position, DColor.Purple);
                 }
-                
+
                 foreach (Point point in points.Where(p => p.IsSpawnPoint))
                 {
                     _updateGizmosContext.DrawCube(
-                        point.Position, Quaternion.LookRotation(point.Direction), 
+                        point.Position, Quaternion.LookRotation(point.Direction),
                         Vector3.one * 0.4f, Color.red);
-                    
+
                     _updateGizmosContext.DrawCube(
-                        point.Position + point.Direction.normalized * 0.2f, 
+                        point.Position + point.Direction.normalized * 0.2f,
                         Quaternion.LookRotation(point.Direction),
                         Vector3.one * 0.25f, Color.red);
                 }

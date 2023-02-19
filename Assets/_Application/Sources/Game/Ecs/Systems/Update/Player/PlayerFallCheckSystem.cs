@@ -23,14 +23,14 @@ namespace Sources.Game.Ecs.Systems.Update.Player
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<NpcTag>().Without<Dead>();
+            _filter = _world.Filter<NpcTag, Collisions>().Without<Dead>();
         }
 
         protected override void OnUpdate(float deltaTime)
         {
             foreach (Entity playerEntity in _filter)
             {
-                List<CollisionData> collisions = playerEntity.GetList<Collisions, CollisionData>();
+                List<CollisionData> collisions = playerEntity.Get<Collisions>().List;
                 foreach (CollisionData collisionData in collisions)
                 {
                     if (collisionData.SqrImpulse > DMath.Sqr(_playersBalance.MinImpulseForFall))

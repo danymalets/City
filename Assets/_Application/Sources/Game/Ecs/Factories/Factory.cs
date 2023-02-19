@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Aspects;
 using Sources.Game.Ecs.Components;
@@ -46,13 +48,13 @@ namespace Sources.Game.Ecs.Factories
             _world.CreateEntity()
                 .Add<TTag>()
                 .Add<PathesTag>()
-                .SetList<AllRoads, Road>(pathSystem.Roads)
-                .SetList<AllCrossroads, Crossroads>(pathSystem.Crossroads)
-                .AddList<AllSpawnPoints, Point>()
-                .AddList<ActiveSpawnPoints, Point>()
-                .AddList<HorizonSpawnPoints, Point>()
-                .AddList<AllSpawnPoints, Point>()
-                .AddList<AllPathLines, PathLine>();
+                .Set(new AllRoads { List = pathSystem.Roads.ToList() })
+                .Set(new AllCrossroads { List = pathSystem.Crossroads.ToList() })
+                .Set(new AllSpawnPoints { List = new List<Point>() })
+                .Set(new ActiveSpawnPoints { List = new List<Point>() })
+                .Set(new HorizonSpawnPoints { List = new List<Point>() })
+                .Set(new AllSpawnPoints { List = new List<Point>() })
+                .Set(new AllPathLines { List = new List<PathLine>() });
 
         public Entity CreateCar(CarType carType, CarColorType carColor, Vector3 position, Quaternion rotation) => 
             CreateCar(_assets.CarsAssets.GetCarPrefab(carType), carColor, position, rotation);

@@ -43,5 +43,6 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes.Points
             Assert.IsTrue(_blockedCount >= 0);
             return _blockedCount > 0;
         }
+
     }
 }

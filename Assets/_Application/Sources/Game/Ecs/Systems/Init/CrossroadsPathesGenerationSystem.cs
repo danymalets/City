@@ -40,17 +40,17 @@ namespace Sources.Game.Ecs.Systems.Init
         {
             foreach (Entity pathesEntity in _filter)
             {
-                List<PathLine> pathLines = pathesEntity.GetList<AllPathLines, PathLine>();
-                List<Crossroads> crossroads = pathesEntity.GetList<AllCrossroads, Crossroads>();
+                List<PathLine> pathLines = pathesEntity.Get<AllPathLines>().List;
+                List<Crossroads> crossroads = pathesEntity.Get<AllCrossroads>().List;
 
                 foreach (Crossroads crossroad in crossroads)
                 {
-                    Generate(pathLines, crossroad);
+                    Generate(pathLines, crossroad, pathesEntity.Has<CarsPathesTag>());
                 }
             }
         }
 
-        private void Generate(List<PathLine> pathLines, Crossroads crossroad)
+        private void Generate(List<PathLine> pathLines, Crossroads crossroad, bool isCars)
         {
             Road[] crossroadRoads = crossroad.GetAllRoads();
             Vector3 crossroadPosition = crossroad.transform.position;
@@ -68,8 +68,15 @@ namespace Sources.Game.Ecs.Systems.Init
                     {
                         Point sourcePoint = sourceRoad.GetSideData(crossroadPosition).Targets.First();
                         Point targetPoint = targetRoad.GetSideData(crossroadPosition).Sources.First();
-
+                        
                         Generate(pathLines, sourcePoint, targetPoint, deltaIndex);
+                        
+                        if (isCars)
+                        {
+                            sourcePoint.GetPreviousTurn().DependentPoint = sourcePoint;
+
+                            sourcePoint.GetTurn(deltaIndex).DependentPoint = targetPoint;
+                        }
                     }
                 }
             }
@@ -102,7 +109,7 @@ namespace Sources.Game.Ecs.Systems.Init
                         continue;
 
                     TurnData banTurnData = banTargets.First(bt => bt.Delta == banTurnDelta);
-                    
+
                     turnData.BlockableTurns.Add(banTurnData);
                 }
             }
@@ -141,7 +148,7 @@ namespace Sources.Game.Ecs.Systems.Init
                 pathLines.Add(new PathLine(points[i], points[i + 1], points[i + 1]));
             }
         }
-        
+
         private Vector3 GetAnchorPoint(Point source, Point target) =>
             source.Position + source.Direction.normalized *
             DVector3.ManhattanDistance(source.Position, target.Position) / 2;

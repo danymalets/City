@@ -149,8 +149,7 @@ namespace Sources.Game.Ecs
             _world.AddFixedOneFrame<DisableCollidersRequest>();
             _world.AddFixedOneFrame<MakeKinematicRequest>();
             _world.AddFixedOneFrame<DespawnRequest>();
-            
-            _world.AddFixedOneFrameList<Collisions, CollisionData>();
+            _world.AddFixedOneFrame<Collisions>();
         }
 
         private void AddUpdateSystems()

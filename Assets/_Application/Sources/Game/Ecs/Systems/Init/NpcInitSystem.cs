@@ -47,8 +47,8 @@ namespace Sources.Game.Ecs.Systems.Init
         {
             Entity npcPathes = _npcPathesFilter.GetSingleton();
             
-            Point[] points = npcPathes.GetList<ActiveSpawnPoints, Point>()
-                .Concat(npcPathes.GetList<HorizonSpawnPoints, Point>()).ToArray();
+            Point[] points = npcPathes.Get<ActiveSpawnPoints>().List
+                .Concat(npcPathes.Get<HorizonSpawnPoints>().List).ToArray();
 
             points.RandomShuffle();
             
