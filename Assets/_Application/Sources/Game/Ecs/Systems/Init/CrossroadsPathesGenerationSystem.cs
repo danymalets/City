@@ -134,11 +134,11 @@ namespace Sources.Game.Ecs.Systems.Init
 
             points.Add(target);
 
-            pathLines.Add(new PathLine(points[0], points[1], delta, points[^1]));
+            pathLines.Add(new PathLine(points[0], points[1], points[^1], delta));
 
             for (int i = 1; i < points.Count - 1; i++)
             {
-                pathLines.Add(new PathLine(points[i], points[i + 1]));
+                pathLines.Add(new PathLine(points[i], points[i + 1], points[i + 1]));
             }
         }
         

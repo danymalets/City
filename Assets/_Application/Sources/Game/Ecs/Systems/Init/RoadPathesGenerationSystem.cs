@@ -83,7 +83,7 @@ namespace Sources.Game.Ecs.Systems.Init
             
             for (int i = 0; i < points.Count - 1; i++)
             {
-                pathLines.Add(new PathLine(points[i], points[i + 1]));
+                pathLines.Add(new PathLine(points[i], points[i + 1], points[i + 1]));
             }
 
             roadLane.Source.RelatedPoint = points[0];

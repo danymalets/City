@@ -18,7 +18,7 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes
         public Vector3 Direction { get; }
         public Vector3 NormalizedDirection { get; set; }
         
-        public PathLine(Point source, Point target, int delta = -2, Point turnTarget = null)
+        public PathLine(Point source, Point target, Point turnTarget, int delta = -2)
         {
             Source = source;
             Target = target;

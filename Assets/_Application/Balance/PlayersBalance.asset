@@ -53,3 +53,4 @@ MonoBehaviour:
     _weight: 100
   - _playerType: 18
     _weight: 100
+  <UserMaxSpeed>k__BackingField: 3

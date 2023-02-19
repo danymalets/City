@@ -61,8 +61,7 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
                                 banTurnData.IncreaseBlocked();
                             }
                             
-                            if (choiceData.TurnData.TargetPoint != null)
-                                npcTurns.Add(choiceData.TurnData);
+                            npcTurns.Add(choiceData.TurnData);
                         }
                     }
                 }

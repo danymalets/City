@@ -29,7 +29,7 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
         {
             _filter = _world.Filter<NpcTag, NpcOnPath>().Without<PlayerInCar>();
         }
-        
+
         protected override void OnUpdate(float deltaTime)
         {
             float reqDistance = _simulationBalance.MaxNpcRadius + _simulationBalance.NpcDistanceAfterBreak;
@@ -39,7 +39,7 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
                 ITransform transform = npcEntity.GetMono<ITransform>();
                 Queue<TurnChoice> choices = npcEntity.GetQueue<TurnDecisions, TurnChoice>();
                 List<TurnData> carTurns = npcEntity.GetList<ActiveTurns, TurnData>();
-                
+
                 foreach (TurnChoice choiceData in choices)
                 {
                     if (!choiceData.IsForceMove &&
@@ -48,7 +48,6 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
                     {
                         if (choiceData.TurnData.IsBlocked())
                         {
-
                             npcEntity.Set(new NpcBreakRequest());
                         }
                         else
@@ -59,9 +58,8 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
                             {
                                 banTurnData.IncreaseBlocked();
                             }
-                            
-                            if (choiceData.TurnData.TargetPoint != null)
-                                carTurns.Add(choiceData.TurnData);
+
+                            carTurns.Add(choiceData.TurnData);
                         }
                     }
                 }

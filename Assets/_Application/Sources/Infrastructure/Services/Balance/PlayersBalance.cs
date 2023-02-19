@@ -17,7 +17,9 @@ namespace Sources.Infrastructure.Services.Balance
 
         [SerializeField]
         private float _maxRotationSpeed = 45f;
-        
+
+        [field: SerializeField] public float UserMaxSpeed { get; private set; } = 3;
+
         [SerializeField]
         private List<PlayerBalance> _playersBalance;
 

@@ -17,6 +17,8 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes.Points
         public int Delta { get; }
         public Point TargetPoint { get; set; }
         public PathLine FirstPathLine { get; }
+        
+        public Point DependentPoint { get; set; }
         public List<TurnData> BlockableTurns { get; } = new();
 
         public TurnData(int delta, Point targetPoint, PathLine firstPathLine)
