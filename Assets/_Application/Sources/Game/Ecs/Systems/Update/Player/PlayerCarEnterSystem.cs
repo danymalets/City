@@ -37,7 +37,7 @@ namespace Sources.Game.Ecs.Systems.Update.Player
             foreach (Entity playerEntity in _filter)
             {
                 ITransform playerTransform = playerEntity.GetMono<ITransform>();
-                IEnableDisableEntity enableDisableEntity = playerEntity.GetMono<IEnableDisableEntity>();
+                IEnableableEntity enableableEntity = playerEntity.GetMono<IEnableableEntity>();
 
                 Entity enterCar = null;
                 float curMinSqrDistance = 0;
@@ -63,7 +63,7 @@ namespace Sources.Game.Ecs.Systems.Update.Player
 
                 if (enterCar != null)
                 {
-                    enableDisableEntity.Disable();
+                    enableableEntity.Disable();
                     playerEntity.Set(new PlayerInCar { Car = enterCar });
                     enterCar.Get<CarPassengers>().TakePlace(0, playerEntity);
                 }

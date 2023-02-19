@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components.Collections;
+using Sources.Game.Ecs.Utils.Aspects;
 using Sources.Game.Ecs.Utils.MorpehWrapper.Components;
 using UnityEngine;
 
@@ -12,6 +13,9 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
     {
         public static ref TComponent Get<TComponent>(this Entity entity) where TComponent : struct, IComponent =>
             ref entity.GetComponent<TComponent>();
+        
+        public static TAspect GetAspect<TAspect>(this Entity entity) where TAspect : struct, IDAspectBase =>
+            new TAspect(){Entity = entity};
 
         public static bool TryGet<TComponent>(this Entity entity, out TComponent component) where TComponent : struct, IComponent
         {

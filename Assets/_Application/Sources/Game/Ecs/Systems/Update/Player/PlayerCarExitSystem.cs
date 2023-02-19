@@ -29,7 +29,7 @@ namespace Sources.Game.Ecs.Systems.Update.Player
                 ITransform playerTransform = playerEntity.GetMono<ITransform>();
                 ref PlayerTargetAngle playerTargetAngle = ref playerEntity.Get<PlayerTargetAngle>();
                 ref PlayerSmoothAngle playerSmoothAngle = ref playerEntity.Get<PlayerSmoothAngle>();
-                IEnableDisableEntity enableDisableEntity = playerEntity.GetMono<IEnableDisableEntity>();
+                IEnableableEntity enableableEntity = playerEntity.GetMono<IEnableableEntity>();
                 PlayerInCar playerInCar = playerEntity.Get<PlayerInCar>();
                 Entity carEntity = playerInCar.Car;
                 int place = playerInCar.Place;
@@ -46,7 +46,7 @@ namespace Sources.Game.Ecs.Systems.Update.Player
                 playerTargetAngle.Value = angle;
                 playerSmoothAngle.Value = angle;
 
-                enableDisableEntity.Enable();
+                enableableEntity.Enable();
             }
         }
     }

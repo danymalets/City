@@ -1,4 +1,5 @@
 using Scellecs.Morpeh;
+using Sources.Game.Ecs.Aspects;
 using Sources.Game.Ecs.Components;
 using Sources.Game.Ecs.Components.Camera;
 using Sources.Game.Ecs.Components.Car;
@@ -88,7 +89,7 @@ namespace Sources.Game.Ecs.Factories
         public Entity CreateUserInCar(PlayerMonoEntity playerPrefab, Entity carEntity)
         {
             return CreateUser(playerPrefab, Vector3.zero, Quaternion.identity)
-                .SetupMono<IEnableDisableEntity>(g => g.Disable())
+                .SetupMono<IEnableableEntity>(g => g.Disable())
                 .Set(new PlayerInCar { Car = carEntity })
                 .Set(new PlayerFollowTransform
                 {
@@ -111,22 +112,25 @@ namespace Sources.Game.Ecs.Factories
         public Entity CreateNpc(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation) =>
             CreatePlayer(playerPrefab, position, rotation)
                 .Add<ForwardTrigger>()
-                .AddList<ActiveTurns, TurnData>()
                 .Add<NpcTag>();
 
-        public Entity CreateNpcOnPath(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation, PathLine pathLine) =>
-            CreateNpc(playerPrefab, position, rotation)
-                .Set(new NpcOnPath { PathLine = pathLine })
-                .AddQueue<TurnDecisions, TurnChoice>();
+        public Entity CreateNpcOnPath(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation, PathLine pathLine)
+        {
+            Entity npc = CreateNpc(playerPrefab, position, rotation);
+            
+            npc.GetAspect<NpcStatusAspect>().SetPath(pathLine);
+            
+            return npc;
+        }
 
         public Entity CreateNpcInCar(PlayerMonoEntity playerPrefab, Entity carEntity, PathLine pathLine)
         {
             Entity npc = CreateNpc(playerPrefab, Vector3.zero, Quaternion.identity)
-                .SetupMono<IEnableDisableEntity>(g => g.Disable())
-                .Set(new PlayerInCar { Car = carEntity, Place = 0 })
-                .Set(new NpcOnPath { PathLine = pathLine })
-                .AddQueue<TurnDecisions, TurnChoice>();
+                .SetupMono<IEnableableEntity>(g => g.Disable())
+                .Set(new PlayerInCar { Car = carEntity, Place = 0 });
             
+            npc.GetAspect<NpcStatusAspect>().SetPath(pathLine);
+
             carEntity.Get<CarPassengers>().TakePlace(0, npc);
             
             return npc;

@@ -18,7 +18,7 @@ namespace Sources.Game.Ecs.MonoEntities
 {
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(TransformComponent))]
-    [RequireComponent(typeof(EnableDisableEntity))]
+    [RequireComponent(typeof(EnableableEntity))]
     [RequireComponent(typeof(PhysicBody))]
     [RequireComponent(typeof(PlayerAnimator))]
     [RequireComponent(typeof(PlayerColliders))]
@@ -44,8 +44,9 @@ namespace Sources.Game.Ecs.MonoEntities
         [SerializeField]
         private PlayerData _playerData;
 
+        [FormerlySerializedAs("_enableDisableEntity")]
         [SerializeField]
-        private EnableDisableEntity _enableDisableEntity;
+        private EnableableEntity _enableableEntity;
         
         private void OnValidate()
         {
@@ -55,7 +56,7 @@ namespace Sources.Game.Ecs.MonoEntities
             _entityBorders = GetComponent<EntityBorders>();
             _playerAnimator = GetComponent<PlayerAnimator>();
             _playerData = GetComponent<PlayerData>();
-            _enableDisableEntity = GetComponent<EnableDisableEntity>();
+            _enableableEntity = GetComponent<EnableableEntity>();
         }
 
         protected override void OnSetup()
@@ -66,7 +67,7 @@ namespace Sources.Game.Ecs.MonoEntities
             Entity.SetMono<IPhysicBody>(_physicBody);
             Entity.SetMono<IPlayerAnimator>(_playerAnimator);
             Entity.SetMono<IPlayerData>(_playerData);
-            Entity.SetMono<IEnableDisableEntity>(_enableDisableEntity);
+            Entity.SetMono<IEnableableEntity>(_enableableEntity);
 
             _playerAnimator.transform.localScale = Vector3.one * 0.92f;
             _playerColliders.Setup(Entity);
