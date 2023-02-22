@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Sources.Game.Ecs.Utils.MorpehWrapper
 {
-    public class DFixedUpdateSystemProvider<TUpdateSystem> : FixedUpdateSystem
+    public class DFixedUpdateSystemProvider<TUpdateSystem> : IFixedSystem
         where TUpdateSystem : DUpdateSystem, new()
     {
         private readonly TUpdateSystem _dSystem;
@@ -14,16 +14,22 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
             _dSystem = new TUpdateSystem();
         }
 
-        public override void OnAwake()
+        public void OnAwake()
         {
             _dSystem.Setup(World);
             _dSystem.InitFilters();
             _dSystem.Initialize();
         }
 
-        public override void OnUpdate(float deltaTime)
+        public World World { get; set; }
+
+        public void OnUpdate(float deltaTime)
         {
             _dSystem.Update(deltaTime, true);
+        }
+
+        public void Dispose()
+        {
         }
     }
 }
