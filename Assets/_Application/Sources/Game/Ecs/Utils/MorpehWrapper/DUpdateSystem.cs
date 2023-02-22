@@ -1,9 +1,6 @@
 using System;
-using Scellecs.Morpeh;
 using Sources.Game.Ecs.Utils.Debugger;
-using Sources.Game.Ecs.Utils.Debugger.Components;
 using Sources.Infrastructure.Services.Gizmoses;
-using Sources.Utilities;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Utils.MorpehWrapper
@@ -33,24 +30,13 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
 
             string name = GetType().Name;
 
-
             long ticks = 0;
             // long ticks = DPerformance.Execute(() =>
             // {
                     TryUpdate(deltaTime);
             // });
-            SystemsDebugData systemsDebugData = _world.GetSingleton<SystemsDebugComponent>().Data;
 
             SystemDebugData systemDebugData = new(name, ticks);
-
-            if (isFixed)
-            {
-                systemsDebugData.AddFixedData(systemDebugData);
-            }
-            else
-            {
-                systemsDebugData.AddUpdateData(systemDebugData);
-            }
         }
 
         private void TryUpdate(float deltaTime)

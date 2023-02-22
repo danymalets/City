@@ -1,27 +1,25 @@
 using Scellecs.Morpeh;
-using Scellecs.Morpeh.Systems;
-using Sources.Game.Ecs.Components.Collections;
-using Sources.Game.Ecs.Utils.Debugger.Systems;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.CoroutineRunner;
+using Sources.Infrastructure.Services.Fps;
 using Sources.Infrastructure.Services.Times;
-using Sources.Utilities;
-using UnityEngine;
 
 namespace Sources.Game.Ecs.Utils.MorpehWrapper
 {
     public class DWorld : IService
     {
-       public World World { get; private set; }
+        public World World { get; private set; }
         private readonly SystemsGroup _initSystemGroup;
         private readonly CoroutineContext _coroutineContext;
         private readonly ITimeService _time;
 
         private int _updateIndex = 0;
-        
+        private readonly IFpsService _fpsService;
+
         public DWorld()
         {
             _time = DiContainer.Resolve<ITimeService>();
+            _fpsService = DiContainer.Resolve<IFpsService>();
             
             World = World.Create();
             World.UpdateByUnity = false;
@@ -29,9 +27,6 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
             _initSystemGroup = World.CreateSystemsGroup();
             World.AddSystemsGroup(_updateIndex++, _initSystemGroup);
 
-            AddFixedSystem<FixedDebugIncreaseSystem>(1000);
-            AddUpdateSystem<SystemsDebugDataApplySystem>(1001);
-            
             _coroutineContext = new CoroutineContext();
         }
 
@@ -39,13 +34,13 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
         {
             _coroutineContext.RunEachFrame(() =>
             {
-                // Debug.Log($"update");
-                World.Update(_time.DeltaTime);
+                if (_fpsService.FpsLastSecond >= 20)
+                    World.Update(_time.DeltaTime);
             }, true);
             _coroutineContext.RunEachFixedUpdate(() =>
             {
-                // Debug.Log($"fixed");
-                World.FixedUpdate(_time.FixedDeltaTime);
+                if (_fpsService.FpsLastSecond >= 20)
+                    World.FixedUpdate(_time.FixedDeltaTime);
             });
         }
 
