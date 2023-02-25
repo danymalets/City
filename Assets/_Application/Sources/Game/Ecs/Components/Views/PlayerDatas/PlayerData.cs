@@ -4,10 +4,8 @@ using UnityEngine.Serialization;
 
 namespace Sources.Game.Ecs.Components.Views.PlayerDatas
 {
-    [RequireComponent(typeof(Rigidbody))]
     public class PlayerData : MonoBehaviour, IPlayerData
     {
-        
         [SerializeField]
         private float _mass = 80f;
 

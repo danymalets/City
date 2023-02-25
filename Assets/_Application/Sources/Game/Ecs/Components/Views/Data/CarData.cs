@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Sources.Game.Ecs.Components.Views.Data
 {
-    [RequireComponent(typeof(Rigidbody))]
     public class CarData : MonoBehaviour, ICarData
     {
         [SerializeField]

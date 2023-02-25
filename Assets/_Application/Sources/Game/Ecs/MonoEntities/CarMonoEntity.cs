@@ -22,7 +22,6 @@ using CarData = Sources.Game.Ecs.Components.Views.Data.CarData;
 
 namespace Sources.Game.Ecs.MonoEntities
 {
-    [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(TransformComponent))]
     [RequireComponent(typeof(PhysicBody))]
     [RequireComponent(typeof(CarColliders))]
@@ -84,6 +83,8 @@ namespace Sources.Game.Ecs.MonoEntities
             Entity.SetMono<ICarWheels>(_carWheels);
             Entity.SetMono<ICarData>(_carData);
             Entity.SetMono<ICarMesh>(_carMesh);
+            
+            _physicBody.Setup();
             
             // Entity.GetMono<IPhysicBody>().IsKinematic = true;
             // Entity.GetMono<IPhysicBody>().DetectCollisions = false;

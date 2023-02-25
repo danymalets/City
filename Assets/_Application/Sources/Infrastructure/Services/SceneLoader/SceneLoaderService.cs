@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Sources.Infrastructure.Bootstrap;
 using Sources.Infrastructure.Services.CoroutineRunner;
+using Sources.Utilities;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
@@ -42,7 +43,7 @@ namespace Sources.Infrastructure.Services.SceneLoader
 
             T sceneContext = GameObject.FindObjectOfType<T>();
             
-            Assert.IsNotNull(sceneContext);
+            DAssert.IsTrue(sceneContext != null);
             
             onComplete?.Invoke(sceneContext);
         }

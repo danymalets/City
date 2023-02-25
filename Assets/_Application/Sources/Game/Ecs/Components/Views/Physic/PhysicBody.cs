@@ -1,46 +1,66 @@
+using System;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Components.Views.Physic
 {
-    [RequireComponent(typeof(Rigidbody))]
     public class PhysicBody : MonoBehaviour, IPhysicBody
     {
         [SerializeField]
         private Rigidbody _rigidBody;
-        
+
+        private Vector3 _velocity;
+        private UnityEngine.Transform _transform;
+
+        private void Awake()
+        {
+            _transform = transform;
+        }
+
+        public void Setup()
+        {
+            _velocity = Vector3.zero;
+            DestroyBody();
+        }
+
         private void OnValidate()
         {
             _rigidBody = GetComponent<Rigidbody>();
         }
 
-        public void Setup()
-        {
-            MakePhysical();
-        }
-
         public void DestroyBody()
         {
-            Destroy(_rigidBody);
+            if (_rigidBody != null)
+            {
+                Destroy(_rigidBody);
+                _rigidBody = null;
+            }
         }
 
-        public float SignedSpeed => 
+        public float SignedSpeed =>
             LocalVelocity.z;
 
         public Vector3 Velocity
         {
-            get => _rigidBody.velocity;
-            set => _rigidBody.velocity = value;
+            get => _rigidBody == null ? _velocity : _rigidBody.velocity;
+            set
+            {
+                _velocity = value;
+                if (_rigidBody != null)
+                {
+                    _rigidBody.velocity = _velocity;
+                }
+            }
         }
 
         public Vector3 LocalVelocity
         {
-            get => transform.InverseTransformDirection(_rigidBody.velocity);
-            set => _rigidBody.velocity = transform.TransformDirection(value);
+            get => transform.InverseTransformDirection(Velocity);
+            set => Velocity = transform.TransformDirection(value);
         }
 
         public Vector3 Position
         {
-            get => _rigidBody.position;
+            get => _rigidBody == null ? _rigidBody.position : transform.position;
             set => _rigidBody.position = value;
         }
 
@@ -50,26 +70,13 @@ namespace Sources.Game.Ecs.Components.Views.Physic
             set => _rigidBody.rotation = value;
         }
 
-        public bool DetectCollisions
+        public void MoveRotation(Quaternion rotation)
         {
-            get => _rigidBody.detectCollisions;
-            set => _rigidBody.detectCollisions = value;
+            if (_rigidBody == null)
+                _transform.rotation = rotation;
+            else
+                _rigidBody.MoveRotation(rotation);
         }
-
-        public bool IsKinematic
-        {
-            get => _rigidBody.isKinematic;
-            set => _rigidBody.isKinematic = value;
-        }
-
-        public void MakeKinematic() =>
-            _rigidBody.isKinematic = true;
-
-        public void MakePhysical() =>
-            _rigidBody.isKinematic = false;
-
-        public void MoveRotation(Quaternion rotation) =>
-            _rigidBody.MoveRotation(rotation);
 
         public Vector3 CenterMass
         {

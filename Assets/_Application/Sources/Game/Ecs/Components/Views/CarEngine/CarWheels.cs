@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace Sources.Game.Ecs.Components.Views.CarEngine
 {
-    [RequireComponent(typeof(Rigidbody))]
     public class CarWheels : MonoBehaviour, ICarWheels
     {
         [SerializeField]

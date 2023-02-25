@@ -5,6 +5,7 @@ using Sources.Infrastructure.Bootstrap;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.AssetsManager;
 using Sources.Infrastructure.Services.Balance;
+using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Init
 {
@@ -37,6 +38,8 @@ namespace Sources.Game.Ecs.Systems.Init
                 _levelContext.UserSpawnPoint.Position, _levelContext.UserSpawnPoint.Rotation);
 
             _physics.SyncTransforms();
+
+            Physics.autoSyncTransforms = false;
         }
     }
 }

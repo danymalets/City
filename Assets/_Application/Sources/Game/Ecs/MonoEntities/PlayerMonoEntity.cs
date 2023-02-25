@@ -16,7 +16,6 @@ using UnityEngine.Serialization;
 
 namespace Sources.Game.Ecs.MonoEntities
 {
-    [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(TransformComponent))]
     [RequireComponent(typeof(EnableableEntity))]
     [RequireComponent(typeof(PhysicBody))]
@@ -71,9 +70,10 @@ namespace Sources.Game.Ecs.MonoEntities
 
             _playerAnimator.transform.localScale = Vector3.one * 0.92f;
             _playerColliders.Setup(Entity);
-            _physicBody.Setup();
             _playerAnimator.Setup();
             
+            _physicBody.Setup();
+
             // Entity.GetMono<IPhysicBody>().IsKinematic = true;
             // Entity.GetMono<IPhysicBody>().DetectCollisions = false;
         }

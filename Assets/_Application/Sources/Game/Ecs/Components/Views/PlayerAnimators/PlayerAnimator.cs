@@ -14,10 +14,7 @@ namespace Sources.Game.Ecs.Components.Views.PlayerAnimators
 
         private void Awake()
         {
-            _baseLayer = _animator.GetLayerIndex("BaseLayer");
-            
-            // прогрев, чтобы не было лага при первом использовании
-            _animator.Play(Names.Falling, _baseLayer, Random.value);
+            _baseLayer = _animator.GetLayerIndex(Layers.BaseLayer);
         }
 
         public void Setup()
@@ -36,6 +33,11 @@ namespace Sources.Game.Ecs.Components.Views.PlayerAnimators
         public void SetDie()
         {
             _animator.SetBool(Parameters.Die, true);
+        }
+        
+        private static class Layers
+        {
+            public static string BaseLayer = nameof(BaseLayer);
         }
         
         private static class Names

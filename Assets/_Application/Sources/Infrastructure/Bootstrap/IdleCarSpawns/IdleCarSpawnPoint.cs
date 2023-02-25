@@ -47,7 +47,7 @@ namespace Sources.Infrastructure.Bootstrap.IdleCarSpawns
         {
             if (_visual != null)
             {
-                Destroy(_visual);
+                Destroy(_visual.gameObject);
                 Debug.LogWarning("Idle Car Spawn Points Visual Enabled");
             }
         }

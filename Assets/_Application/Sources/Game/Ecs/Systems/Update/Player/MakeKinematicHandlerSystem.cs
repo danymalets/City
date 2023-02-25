@@ -20,7 +20,7 @@ namespace Sources.Game.Ecs.Systems.Update.Player
             foreach (Entity playerEntity in _filter)
             {
                 IPhysicBody physicBody = playerEntity.GetMono<IPhysicBody>();
-                physicBody.MakeKinematic();
+                // physicBody.MakeKinematic();
             }
         }
     }
