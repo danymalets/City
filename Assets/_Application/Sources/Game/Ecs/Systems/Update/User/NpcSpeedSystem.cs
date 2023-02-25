@@ -18,7 +18,7 @@ namespace Sources.Game.Ecs.Systems.Update.User
             _playerBalance = DiContainer.Resolve<Balance>().PlayersBalance;
         }
 
-        protected override void OnInitFilters()
+        protected override void OnConstruct()
         {
             _filter = _world.Filter<NpcTag>().Without<PlayerInCar>();
         }

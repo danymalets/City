@@ -25,7 +25,7 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
             _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
         }
 
-        protected override void OnInitFilters()
+        protected override void OnConstruct()
         {
             _userFilter = _world.Filter<UserTag>();
             _npcFilter = _world.Filter<NpcTag>().Without<AlwaysActive>();

@@ -23,7 +23,7 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
             _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
         }
 
-        protected override void OnInitFilters()
+        protected override void OnConstruct()
         {
             _userFilter = _world.Filter<UserTag>();
             _carFilter = _world.Filter<CarTag>();

@@ -17,7 +17,7 @@ namespace Sources.Game.Ecs.Systems.Init
         private Filter _filter;
         private SimulationBalance _simulationBalance;
 
-        protected override void OnInitFilters()
+        protected override void OnConstruct()
         {
             _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
             _filter = _world.Filter<PathesTag>();

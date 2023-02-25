@@ -1,9 +1,10 @@
+using Scellecs.Morpeh;
 using Scellecs.Morpeh.Systems;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Utils.MorpehWrapper
 {
-    public class DInitializerProvider<TDInitializer> : Initializer where TDInitializer : DInitializer, new()
+    public class DInitializerProvider<TDInitializer> : IInitializer where TDInitializer : DInitializer, new()
     {
         private readonly TDInitializer _dSystem;
 
@@ -12,11 +13,17 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
             _dSystem = new TDInitializer();
         }
 
-        public override void OnAwake()
+        public void OnAwake()
         {
             _dSystem.Setup(World);
-            _dSystem.InitFilters();
+            _dSystem.Construct();
             _dSystem.Initialize();
+        }
+
+        public World World { get; set; }
+
+        public void Dispose()
+        {
         }
     }
 }

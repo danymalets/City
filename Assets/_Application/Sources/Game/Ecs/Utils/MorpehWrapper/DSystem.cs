@@ -11,6 +11,7 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
         protected IFactory _factory;
         protected IGizmosService _gizmos;
         protected IDespawner _despawner;
+        protected GizmosContext _updateGizmosContext;
 
         public void Setup(World world)
         {
@@ -18,6 +19,21 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
             _factory = DiContainer.Resolve<IFactory>();
             _despawner = DiContainer.Resolve<IDespawner>();
             _gizmos = DiContainer.Resolve<IGizmosService>();
+            _updateGizmosContext = _gizmos.CreateContext();
+        }
+        
+        public void Construct() =>
+            OnConstruct();
+
+        protected abstract void OnConstruct();
+
+        public void Initialize()
+        {
+            OnInitialize();
+        }
+
+        protected virtual void OnInitialize()
+        {
         }
     }
 }

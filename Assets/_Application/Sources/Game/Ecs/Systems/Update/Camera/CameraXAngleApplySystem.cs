@@ -19,7 +19,7 @@ namespace Sources.Game.Ecs.Systems.Update.Camera
             _cameraBalance = DiContainer.Resolve<Balance>().CameraBalance;
         }
 
-        protected override void OnInitFilters()
+        protected override void OnConstruct()
         {
             _cameraFilter = _world.Filter<CameraTag>();
         }

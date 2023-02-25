@@ -26,7 +26,7 @@ namespace Sources.Game.Ecs.Systems.Update.Player
             _carsBalance = DiContainer.Resolve<Balance>().CarsBalance;
         }
 
-        protected override void OnInitFilters()
+        protected override void OnConstruct()
         {
             _filter = _world.Filter<PlayerTag, PlayerWantsEnterCar>().Without<PlayerInCar>();
             _carsFilter = _world.Filter<CarTag>();

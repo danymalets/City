@@ -24,7 +24,7 @@ namespace Sources.Game.Ecs.Systems.Update.Npc
                 .SimulationBalance;
         }
 
-        protected override void OnInitFilters()
+        protected override void OnConstruct()
         {
             _filter = _world.Filter<NpcTag>();
         }

@@ -7,7 +7,7 @@ namespace Sources.Game.Ecs.Components.Views.Physic
     {
         [SerializeField]
         private Rigidbody _rigidBody;
-
+        
         private void OnValidate()
         {
             _rigidBody = GetComponent<Rigidbody>();
@@ -16,6 +16,11 @@ namespace Sources.Game.Ecs.Components.Views.Physic
         public void Setup()
         {
             MakePhysical();
+        }
+
+        public void DestroyBody()
+        {
+            Destroy(_rigidBody);
         }
 
         public float SignedSpeed => 
@@ -43,6 +48,18 @@ namespace Sources.Game.Ecs.Components.Views.Physic
         {
             get => _rigidBody.rotation;
             set => _rigidBody.rotation = value;
+        }
+
+        public bool DetectCollisions
+        {
+            get => _rigidBody.detectCollisions;
+            set => _rigidBody.detectCollisions = value;
+        }
+
+        public bool IsKinematic
+        {
+            get => _rigidBody.isKinematic;
+            set => _rigidBody.isKinematic = value;
         }
 
         public void MakeKinematic() =>

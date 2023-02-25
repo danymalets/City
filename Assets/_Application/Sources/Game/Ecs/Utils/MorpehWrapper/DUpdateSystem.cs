@@ -7,36 +7,24 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
 {
     public abstract class DUpdateSystem : DSystem
     {
-        protected GizmosContext _updateGizmosContext;
-
-        public void InitFilters() =>
-            OnInitFilters();
-
-        protected abstract void OnInitFilters();
-
-        public void Initialize()
+        protected DUpdateSystem()
         {
-            _updateGizmosContext = _gizmos.CreateContext();
-            OnInitialize();
         }
 
-        protected virtual void OnInitialize()
+        protected override void OnConstruct()
         {
+        }
+
+        protected override void OnInitialize()
+        {
+            
         }
 
         public void Update(float deltaTime, bool isFixed = false)
         {
             _updateGizmosContext.ClearAll();
-
-            string name = GetType().Name;
-
-            long ticks = 0;
-            // long ticks = DPerformance.Execute(() =>
-            // {
-                    TryUpdate(deltaTime);
-            // });
-
-            SystemDebugData systemDebugData = new(name, ticks);
+            
+            TryUpdate(deltaTime);
         }
 
         private void TryUpdate(float deltaTime)

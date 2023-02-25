@@ -12,7 +12,7 @@ namespace Sources.Game.Ecs.Systems.Fixed
             _physics = DiContainer.Resolve<IPhysicsService>();
         }
 
-        protected override void OnInitFilters()
+        protected override void OnConstruct()
         {
         }
 

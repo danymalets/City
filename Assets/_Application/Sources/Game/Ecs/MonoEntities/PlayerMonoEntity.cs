@@ -73,6 +73,9 @@ namespace Sources.Game.Ecs.MonoEntities
             _playerColliders.Setup(Entity);
             _physicBody.Setup();
             _playerAnimator.Setup();
+            
+            // Entity.GetMono<IPhysicBody>().IsKinematic = true;
+            // Entity.GetMono<IPhysicBody>().DetectCollisions = false;
         }
 
         protected override void OnCleanup()

@@ -4,16 +4,9 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
 {
     public abstract class DInitializer : DSystem
     {
-        public void InitFilters() =>
-            OnInitFilters();
-
-        protected virtual void OnInitFilters()
+        protected override void OnConstruct()
         {
+            
         }
-
-        public void Initialize() =>
-            OnInitialize();
-
-        protected abstract void OnInitialize();
     }
 }

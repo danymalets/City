@@ -20,7 +20,7 @@ namespace Sources.Game.Ecs.Systems.Update.User
             _playerInputService = DiContainer.Resolve<IPlayerInputService>();
         }
 
-        protected override void OnInitFilters()
+        protected override void OnConstruct()
         {
             _filter = _world.Filter<UserTag>().Without<PlayerInCar>();
         }

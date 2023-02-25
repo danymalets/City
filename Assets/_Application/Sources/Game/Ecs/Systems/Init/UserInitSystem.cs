@@ -33,7 +33,7 @@ namespace Sources.Game.Ecs.Systems.Init
             
             // _factory.CreateUserInCar(playerPrefab, car);
 
-            _factory.CreateUser(_assets.PlayersAssets.GetPlayerPrefab(PlayerType.Biker), 
+            _factory.CreateUser(_assets.PlayersAssets.GetPlayerPrefab(PlayerType.Gangster), 
                 _levelContext.UserSpawnPoint.Position, _levelContext.UserSpawnPoint.Rotation);
 
             _physics.SyncTransforms();

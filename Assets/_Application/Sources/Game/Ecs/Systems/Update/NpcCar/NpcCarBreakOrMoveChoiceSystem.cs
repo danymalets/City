@@ -27,7 +27,7 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
             _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
         }
 
-        protected override void OnInitFilters()
+        protected override void OnConstruct()
         {
             _filter = _world.Filter<NpcTag, PlayerInCar, NpcOnPath>();
         }

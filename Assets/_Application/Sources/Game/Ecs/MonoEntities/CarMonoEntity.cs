@@ -84,6 +84,9 @@ namespace Sources.Game.Ecs.MonoEntities
             Entity.SetMono<ICarWheels>(_carWheels);
             Entity.SetMono<ICarData>(_carData);
             Entity.SetMono<ICarMesh>(_carMesh);
+            
+            // Entity.GetMono<IPhysicBody>().IsKinematic = true;
+            // Entity.GetMono<IPhysicBody>().DetectCollisions = false;
         }
 
         protected override void OnCleanup()

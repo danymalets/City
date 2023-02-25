@@ -8,7 +8,7 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
     {
         private Filter _filter;
 
-        protected override void OnInitFilters()
+        protected override void OnConstruct()
         {
             _filter = _world.Filter<AddComponentAwaiters>();
         }

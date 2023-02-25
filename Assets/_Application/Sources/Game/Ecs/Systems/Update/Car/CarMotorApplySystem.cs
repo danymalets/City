@@ -15,7 +15,7 @@ namespace Sources.Game.Ecs.Systems.Update.Car
     {
         private Filter _filter;
 
-        protected override void OnInitFilters()
+        protected override void OnConstruct()
         {
             _filter = _world.Filter<CarTag, CarMotorCoefficient, Mono<ICarData>, Mono<ICarWheels>>();
         }

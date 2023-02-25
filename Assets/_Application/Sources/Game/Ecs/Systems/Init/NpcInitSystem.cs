@@ -6,6 +6,7 @@ using Sources.Game.Ecs.Components;
 using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Components.Collections;
 using Sources.Game.Ecs.Components.Tags;
+using Sources.Game.Ecs.Components.Views.Physic;
 using Sources.Game.Ecs.MonoEntities;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Game.GameObjects.RoadSystem;
@@ -38,7 +39,7 @@ namespace Sources.Game.Ecs.Systems.Init
                 .NpcPathSystem;
         }
 
-        protected override void OnInitFilters()
+        protected override void OnConstruct()
         {
             _npcPathesFilter = _world.Filter<NpcsPathesTag>();
         }

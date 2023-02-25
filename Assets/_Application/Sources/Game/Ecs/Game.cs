@@ -45,6 +45,7 @@ namespace Sources.Game.Ecs
         {
             _world.AddInitializer<PlayerDeathAnimationWarmUpSystem>();
             
+            _world.AddInitializer<FogInitSystem>();
             _world.AddInitializer<PathesInitSystem>();
             _world.AddInitializer<RoadPathesGenerationSystem>();
             _world.AddInitializer<CrossroadsPathesGenerationSystem>();

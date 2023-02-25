@@ -17,7 +17,7 @@ namespace Sources.Game.Ecs.Systems.Update.User
             // _levelContext 
         }
 
-        protected override void OnInitFilters()
+        protected override void OnConstruct()
         {
             _filter = _world.Filter<UserTag>();
         }

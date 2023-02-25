@@ -31,7 +31,7 @@ namespace Sources.Game.Ecs.Systems.Init
             _assets = DiContainer.Resolve<Assets>();
         }
 
-        protected override void OnInitFilters()
+        protected override void OnConstruct()
         {
             _userFilter = _world.Filter<UserTag>();
         }

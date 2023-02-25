@@ -36,7 +36,7 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
             _assets = DiContainer.Resolve<Assets>();
         }
 
-        protected override void OnInitFilters()
+        protected override void OnConstruct()
         {
             _pathesFilter = _world.Filter<NpcsPathesTag>();
             _npcFilter = _world.Filter<NpcTag>().Without<PlayerInCar>();

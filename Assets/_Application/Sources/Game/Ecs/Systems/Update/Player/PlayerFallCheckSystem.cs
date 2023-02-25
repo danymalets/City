@@ -21,7 +21,7 @@ namespace Sources.Game.Ecs.Systems.Update.Player
             _playersBalance = DiContainer.Resolve<Balance>().PlayersBalance;
         }
 
-        protected override void OnInitFilters()
+        protected override void OnConstruct()
         {
             _filter = _world.Filter<NpcTag, Collisions>().Without<Dead>();
         }

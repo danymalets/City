@@ -22,7 +22,7 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
         private Filter _filter;
         private readonly IPhysicsService _physics;
 
-        protected override void OnInitFilters()
+        protected override void OnConstruct()
         {
             _filter = _world.Filter<NpcTag, PlayerInCar>();
         }

@@ -18,7 +18,7 @@ namespace Sources.Game.Ecs.Systems.Update.User
             _carInputService = DiContainer.Resolve<ICarInputService>();
         }
 
-        protected override void OnInitFilters()
+        protected override void OnConstruct()
         {
             _filter = _world.Filter<UserTag, UserCarInput>();
         }

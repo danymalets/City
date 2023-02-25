@@ -27,7 +27,7 @@ namespace Sources.Game.Ecs.Components.Player.User
             _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
         }
 
-        protected override void OnInitFilters()
+        protected override void OnConstruct()
         {
             _userFilter = _world.Filter<UserTag>();
             _pathesFilter = _world.Filter<PathesTag>();

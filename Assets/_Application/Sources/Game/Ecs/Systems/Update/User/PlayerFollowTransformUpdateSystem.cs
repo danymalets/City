@@ -14,7 +14,7 @@ namespace Sources.Game.Ecs.Systems.Update.User
     {
         private Filter _filter;
 
-        protected override void OnInitFilters()
+        protected override void OnConstruct()
         {
             _filter = _world.Filter<PlayerTag>().Without<PlayerInCar>();
         }

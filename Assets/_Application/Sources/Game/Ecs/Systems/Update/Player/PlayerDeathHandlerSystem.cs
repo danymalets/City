@@ -10,7 +10,7 @@ namespace Sources.Game.Ecs.Systems.Update.Player
     {
         private Filter _filter;
 
-        protected override void OnInitFilters()
+        protected override void OnConstruct()
         {
             _filter = _world.Filter<PlayerTag, DeadRequest>();
         }

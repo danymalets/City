@@ -16,7 +16,7 @@ namespace Sources.Game.Ecs.Systems.Update.Npc
     {
         private Filter _filter;
 
-        protected override void OnInitFilters()
+        protected override void OnConstruct()
         {
             _filter = _world.Filter<NpcTag, NpcOnPath>().Without<PlayerInCar>();
         }
