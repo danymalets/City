@@ -8,6 +8,7 @@ using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.Balance;
 using Sources.Utilities;
+using Sources.Utilities.Extensions;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.Generation
@@ -31,16 +32,24 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
 
         protected override void OnUpdate(float deltaTime)
         {
-            float sqrMaxRadius = DMath.Sqr(_simulationBalance.MaxCarActiveRadius);
+            PlayerFollowTransform userTransform = _userFilter.GetSingleton().Get<PlayerFollowTransform>();
             
-            Vector3 userPosition = _userFilter.GetSingleton().Get<PlayerFollowTransform>().Position;
-
             foreach (Entity carEntity in _carFilter)
             {
                 ref CarPassengers carPassengers = ref carEntity.Get<CarPassengers>();
                 Vector3 carPosition = carEntity.GetMono<ICarWheels>().RootPosition;
                 
-                if (DMath.Greater(DVector3.SqrDistance(carPosition, userPosition), sqrMaxRadius) &&
+                Vector2 directionToEntity = (Quaternion.Inverse(userTransform.Rotation) *
+                                                     (carPosition - userTransform.Position)).GetXZ();
+
+                Vector2 maxSize = new(_simulationBalance.CarMaxActiveRadius, _simulationBalance.CarMaxActiveRadius);
+
+                if (directionToEntity.y < 0)
+                {
+                    maxSize.y = _simulationBalance.BackCarMaxActiveRadius;
+                }
+                
+                if (!DMath.InEllipse(directionToEntity, maxSize) &&
                     carPassengers.IsNoPassengers)
                 {
                     _despawner.DespawnCar(carEntity);

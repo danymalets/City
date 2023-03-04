@@ -38,7 +38,7 @@ namespace Sources.Game.Ecs.Systems.Init
 
         protected override void OnInitialize()
         {
-            float sqrMaxRadius = DMath.Sqr(_simulationBalance.MaxNpcActiveRadius);
+            float sqrMaxRadius = DMath.Sqr(_simulationBalance.NpcMaxActiveRadius);
 
             Vector3 userPosition = _userFilter.GetSingleton().Get<PlayerFollowTransform>().Position;
 

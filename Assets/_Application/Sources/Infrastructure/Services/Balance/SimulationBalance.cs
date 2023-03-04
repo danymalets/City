@@ -49,12 +49,16 @@ namespace Sources.Infrastructure.Services.Balance
         [SerializeField]
         private float _crosswalkWidth = 3f;
         
+        [FormerlySerializedAs("_minNpcActiveRadius")]
         [Header("Generation")]
         [SerializeField]
-        private float _minNpcActiveRadius = 20;
+        private float _npcMinActiveRadius = 20;
 
         [SerializeField]
         private float _carActiveRadiusDelta = 3.5f;
+
+        [field: SerializeField]
+        public float BackNpcMinActiveRadius = 10f;
         
         public int CarsCountPer1000SpawnPoints => _carsCountPer1000SpawnPoints;
 
@@ -77,11 +81,14 @@ namespace Sources.Infrastructure.Services.Balance
 
         public float CrosswalkWidth => _crosswalkWidth;
 
-        public float MinNpcActiveRadius => _minNpcActiveRadius;
+        public float NpcMinActiveRadius => _npcMinActiveRadius;
 
-        public float MaxNpcActiveRadius => _minNpcActiveRadius + _minDistanceBetweenRoots + 0.1f;
-
-        public float MinCarActiveRadius => MinNpcActiveRadius + _carActiveRadiusDelta;
-        public float MaxCarActiveRadius => MaxNpcActiveRadius + _carActiveRadiusDelta;
+        public float NpcMaxActiveRadius => _npcMinActiveRadius + _minDistanceBetweenRoots + 0.01f;
+        public float BackNpcMaxActiveRadius => BackNpcMinActiveRadius + _minDistanceBetweenRoots + 0.01f;
+        
+        public float CarMinActiveRadius => NpcMinActiveRadius + _carActiveRadiusDelta;
+        public float CarMaxActiveRadius => NpcMaxActiveRadius + _carActiveRadiusDelta;
+        public float BackCarMinActiveRadius => BackNpcMinActiveRadius + _carActiveRadiusDelta;
+        public float BackCarMaxActiveRadius => BackNpcMaxActiveRadius + _carActiveRadiusDelta;
     }
 }

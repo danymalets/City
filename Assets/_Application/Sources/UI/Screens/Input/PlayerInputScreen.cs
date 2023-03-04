@@ -38,6 +38,8 @@ namespace Sources.UI.Screens.Input
             {
                 _userEntity.Add<PlayerWantsEnterCar>();
             }
+
+            _enterCarButton.gameObject.SetActive(_userEntity.Has<CarInputPossibility>());
         }
 
         protected override void OnOpen(Entity userEntity)

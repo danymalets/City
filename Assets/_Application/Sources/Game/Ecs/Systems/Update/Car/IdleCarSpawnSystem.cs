@@ -38,8 +38,8 @@ namespace Sources.Game.Ecs.Systems.Update.Car
 
         protected override void OnUpdate(float deltaTime)
         {
-            float sqrMinRadius = DMath.Sqr(_simulationBalance.MinNpcActiveRadius);
-            float sqrMaxRadius = DMath.Sqr(_simulationBalance.MaxNpcActiveRadius);
+            float sqrMinRadius = DMath.Sqr(_simulationBalance.NpcMinActiveRadius);
+            float sqrMaxRadius = DMath.Sqr(_simulationBalance.NpcMaxActiveRadius);
 
             Vector3 userPosition = _userFilter.GetSingleton().Get<PlayerFollowTransform>().Position;
 

@@ -51,7 +51,7 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
 
                 Point lastPoint = choices.Count == 0 ? npcOnPath.PathLine.Target : choices.Last().TurnData.FirstPathLine.Target;
 
-                if (DVector3.SqrDistance(position, lastPoint.Position) < sqrReqDistance)
+                if (choices.Count == 0 || DVector3.SqrDistance(position, lastPoint.Position) < sqrReqDistance)
                 {
                     TurnData selectedTurnData = lastPoint.Targets.GetRandom();
                     choices.Enqueue(new TurnChoice(lastPoint, selectedTurnData));

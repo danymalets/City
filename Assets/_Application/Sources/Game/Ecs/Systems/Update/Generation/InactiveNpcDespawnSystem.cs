@@ -8,6 +8,7 @@ using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.Balance;
 using Sources.Utilities;
+using Sources.Utilities.Extensions;
 using UnityEngine;
 using UnityEngine.UIElements;
 using ITransform = Sources.Game.Ecs.Components.Views.Transform.ITransform;
@@ -33,25 +34,42 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
 
         protected override void OnUpdate(float deltaTime)
         {
-            Vector3 userPosition = _userFilter.GetSingleton().Get<PlayerFollowTransform>().Position;
+            PlayerFollowTransform userTransform = _userFilter.GetSingleton().Get<PlayerFollowTransform>();
 
-            float npcSqrMaxRadius = DMath.Sqr(_simulationBalance.MaxNpcActiveRadius);
-            float carSqrMaxRadius = DMath.Sqr(_simulationBalance.MaxCarActiveRadius + 0.1f);
-            
             foreach (Entity npcEntity in _npcFilter)
             {
                 Vector3 npcPosition = npcEntity.Get<PlayerFollowTransform>().Position;
 
+                Vector2 directionToEntity = (Quaternion.Inverse(userTransform.Rotation) *
+                                             (npcPosition - userTransform.Position)).GetXZ();
+
                 if (npcEntity.Has<PlayerInCar>())
                 {
-                    if (DMath.Greater(DVector3.SqrDistance(npcPosition, userPosition), carSqrMaxRadius))
+                    Vector2 maxSize = new(_simulationBalance.CarMaxActiveRadius, _simulationBalance.CarMaxActiveRadius);
+
+                    if (directionToEntity.y < 0)
+                    {
+                        maxSize.y = _simulationBalance.BackCarMaxActiveRadius;
+                    }
+                    
+                    maxSize.x += 0.01f;
+                    maxSize.y += 0.01f;
+                    
+                    if (!DMath.InEllipse(directionToEntity, maxSize))
                     {
                         _despawner.DespawnNpc(npcEntity);
                     }
                 }
                 else
                 {
-                    if (DMath.Greater(DVector3.SqrDistance(npcPosition, userPosition), npcSqrMaxRadius))
+                    Vector2 maxSize = new(_simulationBalance.NpcMaxActiveRadius, _simulationBalance.NpcMaxActiveRadius);
+
+                    if (directionToEntity.y < 0)
+                    {
+                        maxSize.y = _simulationBalance.BackNpcMaxActiveRadius;
+                    }
+                    
+                    if (!DMath.InEllipse(directionToEntity, maxSize))
                     {
                         _despawner.DespawnNpc(npcEntity);
                     }

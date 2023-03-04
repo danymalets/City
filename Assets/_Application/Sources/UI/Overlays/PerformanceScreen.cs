@@ -17,7 +17,7 @@ namespace Sources.UI.Overlays
         private const string DeviceModelPattern = "Device Model: {0}";
         private const string TargetFpsPattern = "Target Fps: {0}";
         private const string PhysicsUpdateCountPattern = "Physics Update Count: {0}";
-        private const string RigidbodyCountPattern = "<b>Rigidbodies Count:</b> {0}";
+        private const string RigidbodyCountPattern = "Rigidbodies Count: {0}";
         
         [SerializeField]
         private TextMeshProUGUI _fpsText;

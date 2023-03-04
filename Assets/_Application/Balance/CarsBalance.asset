@@ -139,4 +139,4 @@ MonoBehaviour:
       _weight: 100
     - _carColorType: 44
       _weight: 50
-  _maxEnterCarDistance: 2
+  _maxEnterCarDistance: 1

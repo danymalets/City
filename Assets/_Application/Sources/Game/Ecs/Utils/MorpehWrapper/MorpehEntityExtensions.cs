@@ -90,6 +90,21 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
             entity.SetComponent(component);
             return entity;
         }
+        
+        public static Entity SetEnable<TComponent>(this Entity entity, bool enable) where TComponent : struct, IComponent
+        {
+            entity.Remove<TComponent>();
+            if (enable)
+                entity.Add<TComponent>();
+            return entity;
+        }
+        
+        public static Entity RemoveIfHas<TComponent>(this Entity entity) where TComponent : struct, IComponent
+        {
+            if (entity.Has<TComponent>())
+                entity.Remove<TComponent>();
+            return entity;
+        }
 
         public static TMono GetMono<TMono>(this Entity entity) where TMono : IMonoComponent =>
             entity.Get<Mono<TMono>>().MonoComponent;

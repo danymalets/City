@@ -10,7 +10,6 @@ namespace Sources.Utilities
         public static void OptimizeEnumsData<T, TEnum>(List<T> list, Func<T, TEnum> getEnum, Func<TEnum, T> creatEnum, TEnum[] except = null)
             where TEnum : Enum
         {
-            
             AddRequired(list, getEnum, creatEnum, except);
             RemoveDuplicates(list, getEnum);
             Sort(list, getEnum);

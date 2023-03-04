@@ -22,7 +22,8 @@ namespace Sources.Game.Ecs.Systems.Init
         {
             foreach (Entity pathesEntity in _filter)
             {
-                List<Point> points = pathesEntity.Get<AllSpawnPoints>().List;
+                List<Point> allPoints = pathesEntity.Get<AllPoints>().List;
+                List<Point> spawnPoints = pathesEntity.Get<AllSpawnPoints>().List;
                 List<PathLine> pathLines = pathesEntity.Get<AllPathLines>().List;
 
                 HashSet<Point> pointsSet = new();
@@ -35,8 +36,10 @@ namespace Sources.Game.Ecs.Systems.Init
 
                 foreach (Point point in pointsSet)
                 {
+                    allPoints.Add(point);
+                    
                     if (point.IsSpawnPoint)
-                        points.Add(point);
+                        spawnPoints.Add(point);
                 }
             }
         }

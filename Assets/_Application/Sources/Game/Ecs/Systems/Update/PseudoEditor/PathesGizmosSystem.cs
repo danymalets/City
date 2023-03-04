@@ -8,6 +8,7 @@ using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Game.GameObjects.RoadSystem.Pathes;
 using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.Utilities;
+using Sources.Utilities.Extensions;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.PseudoEditor
@@ -25,7 +26,9 @@ namespace Sources.Game.Ecs.Systems.Update.PseudoEditor
         {
             foreach (Entity pathesEntity in _filter)
             {
-                List<Point> points = pathesEntity.Get<AllSpawnPoints>().List;
+                List<Point> points = pathesEntity.Get<AllPoints>().List;
+                List<Point> activePoints = pathesEntity.Get<ActiveSpawnPoints>().List;
+                List<Point> horizonPoints = pathesEntity.Get<HorizonSpawnPoints>().List;
                 List<PathLine> pathLines = pathesEntity.Get<AllPathLines>().List;
 
                 foreach (PathLine pathLine in pathLines)
@@ -36,16 +39,38 @@ namespace Sources.Game.Ecs.Systems.Update.PseudoEditor
                         _updateGizmosContext.DrawLine(pathLine.Source.Position, pathLine.Target.Position, DColor.Purple);
                 }
 
-                foreach (Point point in points.Where(p => p.IsSpawnPoint))
+                foreach (Point point in points)
                 {
-                    _updateGizmosContext.DrawCube(
-                        point.Position, Quaternion.LookRotation(point.Direction),
-                        Vector3.one * 0.4f, Color.red);
+                    Color color = point.IsSpawnPoint ? DColor.Purple : Color.red;
 
                     _updateGizmosContext.DrawCube(
-                        point.Position + point.Direction.normalized * 0.2f,
+                        point.Position, Quaternion.LookRotation(point.Direction),
+                        Vector3.one * 0.15f, color);
+
+                    _updateGizmosContext.DrawCube(
+                        point.Position + point.Direction.normalized * 0.1f,
                         Quaternion.LookRotation(point.Direction),
-                        Vector3.one * 0.25f, Color.red);
+                        Vector3.one * 0.1f, color);
+
+                    if (activePoints.Contains(point))
+                    {
+                        _updateGizmosContext.DrawSphere(
+                            point.Position + point.Direction.normalized * 0.1f, 0.2f,
+                            Color.red.WithAlpha(0.5f));
+                    }
+                }
+
+                foreach (Point point in activePoints)
+                {
+                    _updateGizmosContext.DrawSphere(
+                        point.Position + point.Direction.normalized * 0.1f, 2f,
+                        Color.red.WithAlpha(1f));
+                }
+                foreach (Point point in horizonPoints)
+                {
+                    _updateGizmosContext.DrawSphere(
+                        point.Position + point.Direction.normalized * 0.1f, 2f,
+                        Color.yellow.WithAlpha(1f));
                 }
             }
         }

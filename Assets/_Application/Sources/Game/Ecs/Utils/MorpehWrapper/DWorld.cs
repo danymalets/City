@@ -5,12 +5,15 @@ using Sources.Infrastructure.Services.CoroutineRunner;
 using Sources.Infrastructure.Services.Fps;
 using Sources.Infrastructure.Services.Times;
 using Sources.Utilities;
+using UnityEngine;
 
 namespace Sources.Game.Ecs.Utils.MorpehWrapper
 {
     public class DWorld : IService
     {
         private const bool DebugPerformance = true;
+        private const float TimeScale = 1;
+        private const float MinWorkableFps = 0;
         
         public World World { get; private set; }
         private readonly CoroutineContext _coroutineContext;
@@ -76,13 +79,31 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
             
             _coroutineContext.RunEachFrame(() =>
             {
-                if (_fpsService.FpsLastSecond >= 20)
-                    WorldUpdate(_time.DeltaTime);
+                if (_fpsService.FpsLastSecond >= MinWorkableFps)
+                {
+                    float totalDeltaTime = TimeScale * _time.DeltaTime;
+
+                    while (DMath.Greater(totalDeltaTime, 0))
+                    {
+                        float deltaTime = Mathf.Min(totalDeltaTime, _time.FixedDeltaTime);
+                        WorldUpdate(deltaTime);
+                        totalDeltaTime -= deltaTime;
+                    }
+                }
             }, true);
             _coroutineContext.RunEachFixedUpdate(() =>
             {
-                if (_fpsService.FpsLastSecond >= 20)
-                    WorldFixedUpdate(_time.FixedDeltaTime);
+                if (_fpsService.FpsLastSecond >= MinWorkableFps)
+                {
+                    float totalDeltaTime = TimeScale * _time.FixedDeltaTime;
+
+                    while (DMath.Greater(totalDeltaTime, 0))
+                    {
+                        float deltaTime = Mathf.Min(totalDeltaTime, _time.FixedDeltaTime);
+                        WorldFixedUpdate(deltaTime);
+                        totalDeltaTime -= deltaTime;
+                    }
+                }
             });
         }
 

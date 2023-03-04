@@ -28,7 +28,7 @@ namespace Sources.Game.Ecs.Systems.Update.Player
 
         protected override void OnConstruct()
         {
-            _filter = _world.Filter<PlayerTag, PlayerWantsEnterCar>().Without<PlayerInCar>();
+            _filter = _world.Filter<UserTag>().Without<PlayerInCar>();
             _carsFilter = _world.Filter<CarTag>();
         }
 
@@ -63,10 +63,15 @@ namespace Sources.Game.Ecs.Systems.Update.Player
 
                 if (enterCar != null)
                 {
-                    enableableEntity.Disable();
-                    playerEntity.Set(new PlayerInCar { Car = enterCar });
-                    enterCar.Get<CarPassengers>().TakePlace(0, playerEntity);
+                    if (playerEntity.Has<PlayerWantsEnterCar>())
+                    {
+                        enableableEntity.Disable();
+                        playerEntity.Set(new PlayerInCar { Car = enterCar });
+                        enterCar.Get<CarPassengers>().TakePlace(0, playerEntity);
+                    }
                 }
+
+                playerEntity.SetEnable<CarInputPossibility>(enterCar != null);
             }
         }
     }

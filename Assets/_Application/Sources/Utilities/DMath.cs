@@ -98,5 +98,9 @@ namespace Sources.Utilities
                 return positiveAngle;
             }
         }
+
+        public static bool InEllipse(Vector2 point, Vector2 size) => 
+            Sqr(point.x / size.x) + Sqr(point.y / size.y) <= 1;
+        
     }
 }

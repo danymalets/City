@@ -641,7 +641,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6436507177558121780}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -756,20 +756,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7501943624662465539}
     m_Modifications:
-    - target: {fileID: 15137238163109976, guid: ea2680c405d9f481e829b243e955c9a1, type: 3}
-      propertyPath: m_text
-      value: 'EXIT
-
-        CAR'
-      objectReference: {fileID: 0}
-    - target: {fileID: 15137238163109976, guid: ea2680c405d9f481e829b243e955c9a1, type: 3}
-      propertyPath: m_fontSize
-      value: 72
-      objectReference: {fileID: 0}
-    - target: {fileID: 2130024548091474913, guid: ea2680c405d9f481e829b243e955c9a1, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6228425698047024953, guid: ea2680c405d9f481e829b243e955c9a1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -865,29 +851,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3247696764446104299, guid: ea2680c405d9f481e829b243e955c9a1, type: 3}
   m_PrefabInstance: {fileID: 3026219702773337299}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8192325303122263562}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &8192325303122263562 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6363505718764253913, guid: ea2680c405d9f481e829b243e955c9a1, type: 3}
-  m_PrefabInstance: {fileID: 3026219702773337299}
-  m_PrefabAsset: {fileID: 0}
---- !u!225 &8776123633086849225
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8192325303122263562}
-  m_Enabled: 1
-  m_Alpha: 0.5
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!224 &9192017147903480810 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6228425698047024953, guid: ea2680c405d9f481e829b243e955c9a1, type: 3}

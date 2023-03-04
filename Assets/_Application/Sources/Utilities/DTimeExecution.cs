@@ -1,5 +1,5 @@
 using System;
-using UnityEngine;
+using System.Diagnostics;
 
 namespace Sources.Utilities
 {
@@ -7,7 +7,7 @@ namespace Sources.Utilities
     {
         public static long Execute(Action action)
         {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
+            Stopwatch watch = Stopwatch.StartNew();
             action();
             watch.Stop();
             long ticks = watch.ElapsedTicks;

@@ -23,6 +23,7 @@ MonoBehaviour:
   _maxNpcRadius: 0.3
   _carDistanceAfterBreak: 1.1
   _npcDistanceAfterBreak: 0.2
-  _crosswalkWidth: 3
-  _minNpcActiveRadius: 50
+  _crosswalkWidth: 2.3
+  _npcMinActiveRadius: 50
   _carActiveRadiusDelta: 4
+  BackNpcMinActiveRadius: 5

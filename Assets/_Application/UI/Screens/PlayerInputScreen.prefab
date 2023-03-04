@@ -269,6 +269,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7851297112747802216}
     m_Modifications:
+    - target: {fileID: 15137238163109976, guid: ea2680c405d9f481e829b243e955c9a1, type: 3}
+      propertyPath: m_text
+      value: 'ENTER
+
+        CAR'
+      objectReference: {fileID: 0}
+    - target: {fileID: 15137238163109976, guid: ea2680c405d9f481e829b243e955c9a1, type: 3}
+      propertyPath: m_fontSize
+      value: 65.7
+      objectReference: {fileID: 0}
     - target: {fileID: 2130024548091474913, guid: ea2680c405d9f481e829b243e955c9a1, type: 3}
       propertyPath: m_Color.a
       value: 1

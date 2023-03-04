@@ -41,7 +41,7 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
 
                 float rootToForwardDistance = borders.LocalCenter.z + borders.HalfExtents.z - wheels.RootOffset.z;
 
-                Quaternion triggerRotation = transform.Rotation.WithAddEulerY(steeringAngle.Value);
+                Quaternion triggerRotation = transform.Rotation.WithIncreasedEulerY(steeringAngle.Value);
 
                 Vector3 triggerCenter = wheels.RootPosition + triggerRotation * Vector3.forward * 
                     (rootToForwardDistance + _simulationBalance.CarTriggerLength / 2);

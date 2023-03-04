@@ -18,7 +18,7 @@ namespace Sources.Game.Ecs.Systems.Init
 
         protected override void OnInitialize()
         {
-            _levelContext.Fog.SetRadius(_simulationBalance.MinNpcActiveRadius - 0.5f);
+            _levelContext.Fog.SetRadius(_simulationBalance.NpcMinActiveRadius - 0.5f);
         }
     }
 }

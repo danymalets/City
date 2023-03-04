@@ -7,6 +7,7 @@ using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.Balance;
 using Sources.Utilities;
+using Sources.Utilities.Extensions;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Components.Player.User
@@ -30,18 +31,25 @@ namespace Sources.Game.Ecs.Components.Player.User
 
         protected override void OnUpdate(float deltaTime)
         {
-            Entity userEntity = _userFilter.GetSingleton();
-            Vector3 userPosition = userEntity.Get<PlayerFollowTransform>().Position;
+            PlayerFollowTransform userTransform = _userFilter.GetSingleton().Get<PlayerFollowTransform>();
 
             foreach (Entity pathEntity in _pathesFilter)
             {
-                float sqrMinRadius = DMath.Sqr(pathEntity.Has<CarsPathesTag>() ?
-                    _simulationBalance.MinCarActiveRadius :
-                    _simulationBalance.MinNpcActiveRadius);
+                float minRadius = pathEntity.Has<CarsPathesTag>() ?
+                    _simulationBalance.CarMinActiveRadius :
+                    _simulationBalance.NpcMinActiveRadius;
 
-                float sqrMaxRadius = DMath.Sqr(pathEntity.Has<CarsPathesTag>() ?
-                    _simulationBalance.MaxCarActiveRadius :
-                    _simulationBalance.MaxNpcActiveRadius);
+                float maxRadius = pathEntity.Has<CarsPathesTag>() ?
+                    _simulationBalance.CarMaxActiveRadius :
+                    _simulationBalance.NpcMaxActiveRadius;
+                
+                float backMinRadius = pathEntity.Has<CarsPathesTag>() ?
+                    _simulationBalance.BackCarMinActiveRadius :
+                    _simulationBalance.BackNpcMinActiveRadius;
+                
+                float backMaxRadius = pathEntity.Has<CarsPathesTag>() ?
+                    _simulationBalance.BackCarMaxActiveRadius :
+                    _simulationBalance.BackNpcMaxActiveRadius;
                 
                 List<Point> allSpawnPoints = pathEntity.Get<AllSpawnPoints>().List;
                 List<Point> activePoints = pathEntity.Get<ActiveSpawnPoints>().List;
@@ -52,11 +60,21 @@ namespace Sources.Game.Ecs.Components.Player.User
 
                 foreach (Point point in allSpawnPoints)
                 {
-                    float distance = DVector3.SqrDistance(userPosition, point.Position);
-                    
-                    if (distance < sqrMaxRadius)
+                    Vector2 directionToEntity = (Quaternion.Inverse(userTransform.Rotation) *
+                                                 (point.Position - userTransform.Position)).GetXZ();
+
+                    Vector2 minSize = new(minRadius, minRadius);
+                    Vector2 maxSize = new(maxRadius, maxRadius);
+
+                    if (directionToEntity.y < 0)
                     {
-                        if (distance < sqrMinRadius)
+                        minSize.y = backMinRadius;
+                        maxSize.y = backMaxRadius;
+                    }
+                    
+                    if (DMath.InEllipse(directionToEntity, maxSize))
+                    {
+                        if (DMath.InEllipse(directionToEntity, minSize))
                         {
                             activePoints.Add(point);
                         }
