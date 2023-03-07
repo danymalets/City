@@ -11,6 +11,8 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
         
         private readonly Dictionary<DUpdateSystem, long> _updateData = new();
         private readonly Dictionary<DUpdateSystem, long> _fixedData = new();
+        private int _fixeds;
+        private int _updates;
 
         public void WriteFixedData(DUpdateSystem fixedUpdateSystem, long ticks)
         {
@@ -27,7 +29,9 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
 
         public void LogData()
         {
-            Debug.Log($"Fixed:\n\n{GetDebugText(_fixedData)}\n\n Update:\n\n{GetDebugText(_updateData)}");
+            float updateMs = (float)_updateData.Values.Sum() / 10_000 / _updates;
+            float fixedMs = (float)_fixedData.Values.Sum() / 10_000 / _fixeds;
+            Debug.Log($"Fixed(avg={fixedMs}ms):\n\n{GetDebugText(_fixedData)}\n\n Update(avg={updateMs:F1}ms): \n\n{GetDebugText(_updateData)}");
         }
 
         private string GetDebugText(Dictionary<DUpdateSystem, long> data) => 
@@ -44,6 +48,18 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
         {
             _updateData.Clear();
             _fixedData.Clear();
+            _updates = 0;
+            _fixeds = 0;
+        }
+
+        public void EndFixed()
+        {
+            _fixeds++;
+        }
+
+        public void EndUpdate()
+        {
+            _updates++;
         }
     }
 }

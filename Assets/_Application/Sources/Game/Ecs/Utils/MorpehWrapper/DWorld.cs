@@ -19,7 +19,6 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
         private readonly CoroutineContext _coroutineContext;
         private readonly ITimeService _time;
 
-        private int _updateIndex = 0;
         private readonly IFpsService _fpsService;
 
         private readonly List<DInitializer> _initializers = new();
@@ -41,7 +40,7 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
 
             if (DebugPerformance)
             {
-                _coroutineContext.RunEachSeconds(3f, () =>
+                _coroutineContext.RunEachSeconds(5f, () =>
                 {
                     _systemsPerformance.LogData();
                     _systemsPerformance.Reset();
@@ -126,6 +125,11 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
 
                 World.Commit();
             }
+
+            if (DebugPerformance)
+            {
+                _systemsPerformance.EndUpdate();
+            }
         }
 
         private void WorldFixedUpdate(float fixedDeltaTime)
@@ -145,6 +149,11 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
                     fixedSystem.Update(fixedDeltaTime);
                 }
                 World.Commit();
+            }
+            
+            if (DebugPerformance)
+            {
+                _systemsPerformance.EndFixed();
             }
         }
 
