@@ -1,5 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using Sources.Infrastructure.Services;
+using Sources.UI.Overlays;
+using Sources.UI.System;
 using Sources.Utilities.Extensions;
 using UnityEngine;
 
@@ -31,7 +34,13 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
         {
             float updateMs = (float)_updateData.Values.Sum() / 10_000 / _updates;
             float fixedMs = (float)_fixedData.Values.Sum() / 10_000 / _fixeds;
-            Debug.Log($"Fixed(avg={fixedMs}ms):\n\n{GetDebugText(_fixedData)}\n\n Update(avg={updateMs:F1}ms): \n\n{GetDebugText(_updateData)}");
+
+            string text =
+                $"Fixed(avg={fixedMs}ms):\n\n{GetDebugText(_fixedData)}\n\n Update(avg={updateMs:F1}ms): \n\n{GetDebugText(_updateData)}";
+            
+            Debug.Log(text);
+
+            DiContainer.Resolve<IUiService>().Get<PerformanceScreen>().SetInfoText(text);
         }
 
         private string GetDebugText(Dictionary<DUpdateSystem, long> data) => 

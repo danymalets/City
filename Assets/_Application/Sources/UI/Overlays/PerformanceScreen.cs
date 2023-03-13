@@ -36,6 +36,9 @@ namespace Sources.UI.Overlays
         
         [SerializeField]
         private TextMeshProUGUI _rigidbodiesCountText;
+
+        [SerializeField]
+        private TextMeshProUGUI _perfText;
         
         private IFpsService _fpsService;
         private CoroutineContext _coroutineContext;
@@ -60,6 +63,11 @@ namespace Sources.UI.Overlays
             _deviceNameText.text = string.Format(DeviceNamePattern, _application.DeviceName);
             _deviceModelText.text = string.Format(DeviceModelPattern, _application.DeviceModel);
             _rigidbodiesCountText.text = string.Format(RigidbodyCountPattern, FindObjectsOfType<Rigidbody>().Length);
+        }
+
+        public void SetInfoText(string text)
+        {
+            _perfText.text = text;
         }
 
         protected override void OnClose()

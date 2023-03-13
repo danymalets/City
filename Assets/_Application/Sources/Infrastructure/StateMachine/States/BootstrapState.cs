@@ -27,7 +27,7 @@ namespace Sources.Infrastructure.StateMachine.States
             IUiService ui = DiContainer.Resolve<IUiService>();
 
             application.TargetFrameRate = screen.MaxDeviceFrameRate;
-            time.PhysicsUpdateCount = 50;
+            time.PhysicsUpdateCount = 30;
             physics.AutoSimulation = false;
             screen.SleepTimeout = SleepTimeout.NeverSleep;
 

@@ -20,6 +20,7 @@ namespace Sources.Game.Ecs.Utils
         
         public void Cleanup()
         {
+            Entity = null;
             OnCleanup();
         }
 

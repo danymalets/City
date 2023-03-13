@@ -11,7 +11,7 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
 {
     public class DWorld : IService
     {
-        private const bool DebugPerformance = true;
+        private const bool DebugPerformance = false;
         private const float TimeScale = 1;
         private const float MinWorkableFps = 0;
         
@@ -40,7 +40,7 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
 
             if (DebugPerformance)
             {
-                _coroutineContext.RunEachSeconds(5f, () =>
+                _coroutineContext.RunEachSeconds(0.5f, () =>
                 {
                     _systemsPerformance.LogData();
                     _systemsPerformance.Reset();
