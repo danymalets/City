@@ -15,9 +15,6 @@ namespace Sources.Game.Ecs.Components.Views.PlayerAnimators
         private void Awake()
         {
             _baseLayer = _animator.GetLayerIndex("BaseLayer");
-            
-            // прогрев, чтобы не было лага при первом использовании
-            _animator.Play(Names.Falling, _baseLayer, Random.value);
         }
 
         public void Setup()
