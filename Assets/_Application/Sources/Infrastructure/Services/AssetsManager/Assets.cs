@@ -10,19 +10,19 @@ namespace Sources.Infrastructure.Services.AssetsManager
     {
         [SerializeField]
         private string _citySceneNameName;
-        
-        [FormerlySerializedAs("_carsBalance")]
+
         [SerializeField]
         private CarsAssets _carsAssets;
 
-        [FormerlySerializedAs("_playersBalance")]
         [SerializeField]
         private PlayersAssets _playersAssets;
-        
+
         public string CitySceneName => _citySceneNameName;
-        
+
         public CarsAssets CarsAssets => _carsAssets;
 
         public PlayersAssets PlayersAssets => _playersAssets;
+
+        [field: SerializeField] public PhysicsAssets PhysicsAssets { get; private set; }
     }
 }

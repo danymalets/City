@@ -18,6 +18,7 @@ using Sources.Game.GameObjects.RoadSystem.Pathes;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.AssetsManager;
 using Sources.Infrastructure.Services.Balance;
+using Sources.Utilities.Extensions;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Factories
@@ -74,8 +75,10 @@ namespace Sources.Game.Ecs.Factories
             return npc;
         }
 
-        public Entity CreateNpcInCar(PlayerMonoEntity playerPrefab, Entity carEntity, PathLine pathLine)
+        public Entity CreateNpcInCarOnPath(PlayerMonoEntity playerPrefab, Entity carEntity, PathLine pathLine)
         {
+            playerPrefab.gameObject.Enable();
+            
             Entity npc = CreateNpc(playerPrefab, Vector3.zero, Quaternion.identity)
                 .SetupAccessible<IEnableableGameObject>(g => g.Disable())
                 .Set(new PlayerInCar { Car = carEntity, Place = 0 });
@@ -91,7 +94,7 @@ namespace Sources.Game.Ecs.Factories
         {
             PlayerMonoEntity playerMonoEntity = _poolSpawner.Spawn(playerPrefab, position, rotation);
 
-            return _world.CreateFromMono(playerPrefab)
+            return _world.CreateFromMono(playerMonoEntity)
                 .SetAccess<IEnableableGameObject>(playerMonoEntity.EnableableGameObject)
                 .SetAccess<IRigidbodySwitcher>(playerMonoEntity.RigidbodySwitcher)
                 .SetAccess<RigidbodySettings>(new RigidbodySettings(_playersBalance.Mass, 

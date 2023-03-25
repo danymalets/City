@@ -16,5 +16,6 @@ namespace Sources.Game.Ecs.DefaultComponents.Monos
         }
 
         public Entity Entity { get; set; }
+        public abstract PhysicMaterial PhysicsMaterial { get; set; }
     }
 }

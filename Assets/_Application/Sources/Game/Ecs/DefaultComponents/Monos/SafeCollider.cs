@@ -9,7 +9,8 @@ namespace Sources.Game.Ecs.DefaultComponents.Monos
     {
         [SerializeField]
         protected TCollider _collider;
-        
+
+
         public override bool IsTrigger
         {
             get => _collider.isTrigger;
@@ -17,7 +18,13 @@ namespace Sources.Game.Ecs.DefaultComponents.Monos
         }
 
         public override Bounds Bounds => _collider.bounds;
-        
+
+        public override PhysicMaterial PhysicsMaterial
+        {
+            get => _collider.material;
+            set => _collider.material = value;
+        }
+
         private void OnValidate()
         {
             _collider = GetComponent<TCollider>();

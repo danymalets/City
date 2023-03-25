@@ -14,7 +14,7 @@ TagManager:
   - 
   - Car
   - Player
-  - EntityTrigger
+  - CarBorders
   - Ground
   - Environment
   - 

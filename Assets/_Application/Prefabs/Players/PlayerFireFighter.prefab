@@ -1140,7 +1140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &485478
 Transform:
   m_ObjectHideFlags: 0
@@ -1917,10 +1917,6 @@ PrefabInstance:
     - target: {fileID: 6048463052166916182, guid: 397de7691ad574487b5f56506c5ff32d, type: 3}
       propertyPath: m_Name
       value: PlayerCollider
-      objectReference: {fileID: 0}
-    - target: {fileID: 6048463052166916182, guid: 397de7691ad574487b5f56506c5ff32d, type: 3}
-      propertyPath: m_Layer
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 397de7691ad574487b5f56506c5ff32d, type: 3}

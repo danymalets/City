@@ -71,8 +71,11 @@ namespace Sources.Game.Ecs.MonoEntities
             _meshRenderers = GetComponentsInChildren<SafeMeshRenderer>();
             _colliders = GetComponentsInChildren<SafeColliderBase>()
                 .ExceptOne(_carBorders.SafeBoxCollider).ToArray();
-            
-            DValidate.SetupLayer(_colliders, Layers.Car);
+
+            foreach (SafeColliderBase collider in _colliders) 
+                collider.Layer = Layers.Car;
+
+            _carBorders.SafeBoxCollider.Layer = Layers.CarBorders;
         }
 
         [Button("Set auto borders (do not use multi-click on this button)", ButtonSizes.Large)]

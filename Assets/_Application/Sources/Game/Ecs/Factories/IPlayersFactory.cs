@@ -13,6 +13,6 @@ namespace Sources.Game.Ecs.Factories
         Entity CreateUser(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation);
         Entity CreateNpc(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation);
         Entity CreateNpcOnPath(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation, PathLine pathLine);
-        Entity CreateNpcInCar(PlayerMonoEntity playerPrefab, Entity carEntity, PathLine pathLine);
+        Entity CreateNpcInCarOnPath(PlayerMonoEntity playerPrefab, Entity carEntity, PathLine pathLine);
     }
 }

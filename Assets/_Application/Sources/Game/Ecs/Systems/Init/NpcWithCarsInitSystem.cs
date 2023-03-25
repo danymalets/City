@@ -85,7 +85,7 @@ namespace Sources.Game.Ecs.Systems.Init
                         PlayerType playerType = _playersBalance.GetRandomPlayerType();
                         PlayerMonoEntity playerPrefab = _assets.PlayersAssets.GetPlayerPrefab(playerType);
                         
-                        _playersFactory.CreateNpcInCar(playerPrefab, car, point.Targets.First().FirstPathLine);
+                        _playersFactory.CreateNpcInCarOnPath(playerPrefab, car, point.Targets.First().FirstPathLine);
 
                         count++;
                         if (count == reqCount)

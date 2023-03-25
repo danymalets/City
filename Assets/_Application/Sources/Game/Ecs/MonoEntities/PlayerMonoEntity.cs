@@ -6,6 +6,7 @@ using Sources.Game.Constants;
 using Sources.Game.Ecs.DefaultComponents.Monos;
 using Sources.Game.Ecs.DefaultComponents.Views;
 using Sources.Game.Ecs.Utils;
+using Sources.PseudoEditor;
 using Sources.Utilities;
 using Sources.Utilities.Extensions;
 using UnityEngine;
@@ -42,6 +43,7 @@ namespace Sources.Game.Ecs.MonoEntities
         public IEnumerable<IEntityAccess> Colliders => _colliders;
         public IAnimator Animator => _animator;
 
+#if UNITY_EDITOR
         [Button("Bake", ButtonSizes.Large)]
         private void Bake()
         {
@@ -53,8 +55,15 @@ namespace Sources.Game.Ecs.MonoEntities
             _playerBorders = GetComponentInChildren<PlayerBorders>();
             _animator = GetComponentInChildren<SafeAnimator>();
             _colliders = GetComponentsInChildren<SafeColliderBase>();
-            
-            DValidate.SetupLayer(_colliders, Layers.Car);
+
+            PhysicMaterial physicsMaterial = DEditor.EditorServices.Assets.PhysicsAssets.PlayerPhysicsMaterial;
+
+            foreach (SafeColliderBase collider in _colliders)
+            {
+                collider.Layer = Layers.Player;
+                collider.PhysicsMaterial = physicsMaterial;
+            }
         }
+#endif
     }
 }

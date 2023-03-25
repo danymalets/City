@@ -52,12 +52,12 @@ namespace Sources.Infrastructure.Services.Fps
             do
             {
                 fps = FpsLastSecond;
-                // Debug.Log($"fps: {fps}");
+                Debug.Log($"fps: {fps}");
                 yield return new WaitForSeconds(0.5f);
             } 
             while (FpsLastSecond > fps);
             
-            // Debug.Log($"fps: {FpsLastSecond} - stable");
+            Debug.Log($"fps: {FpsLastSecond} - stable");
 
             action();
         }
