@@ -1,12 +1,10 @@
 using Scellecs.Morpeh;
-using Sources.Game.Ecs.Components;
 using Sources.Game.Ecs.Components.Npc;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.User;
-using Sources.Game.Ecs.Components.Views;
-using Sources.Game.Ecs.Components.Views.PlayerDatas;
-using Sources.Game.Ecs.Components.Views.Transform;
+using Sources.Game.Ecs.DefaultComponents;
+using Sources.Game.Ecs.DefaultComponents.Views;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.Balance;
@@ -41,7 +39,7 @@ namespace Sources.Game.Ecs.Systems.Update.User
             Entity userEntity = _filter.GetSingleton();
 
             UserPlayerInput userPlayerInput = userEntity.Get<UserPlayerInput>();
-            ITransform transform = userEntity.GetMono<ITransform>();
+            ITransform transform = userEntity.GetAccess<ITransform>();
             ref PlayerTargetAngle playerTargetAngle = ref userEntity.Get<PlayerTargetAngle>();
             ref RotationSpeed rotationSpeed = ref userEntity.Get<RotationSpeed>();
 

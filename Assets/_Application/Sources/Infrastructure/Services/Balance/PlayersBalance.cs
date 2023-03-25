@@ -23,6 +23,8 @@ namespace Sources.Infrastructure.Services.Balance
         [SerializeField]
         private List<PlayerBalance> _playersBalance;
 
+        [field: SerializeField] public float Mass { get; private set; } = 70;
+
         private void OnValidate()
         {
             DValidate.OptimizeEnumsData(_playersBalance,
@@ -31,6 +33,7 @@ namespace Sources.Infrastructure.Services.Balance
         }
 
         public float MinImpulseForFall => _minImpulseForFall;
+
         public float MaxRotationSpeed => _maxRotationSpeed;
 
         public PlayerType GetRandomPlayerType() =>

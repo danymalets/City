@@ -6,6 +6,7 @@ using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Components.Collections;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
+using Sources.Game.Ecs.Factories;
 using Sources.Game.Ecs.MonoEntities;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
@@ -26,6 +27,8 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
         private readonly Assets _assets;
         private readonly PlayersBalance _playersBalance;
         private readonly CarsBalance _carsBalance;
+        private readonly ICarsFactory _carsFactory;
+        private readonly IPlayersFactory _playersFactory;
 
         public HorizonCarsSpawnSystem()
         {
@@ -34,6 +37,8 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
             _carsBalance = DiContainer.Resolve<Balance>().CarsBalance;
             _physics = DiContainer.Resolve<IPhysicsService>();
             _assets = DiContainer.Resolve<Assets>();
+            _carsFactory = DiContainer.Resolve<ICarsFactory>();
+            _playersFactory = DiContainer.Resolve<IPlayersFactory>();
         }
 
         protected override void OnConstruct()
@@ -71,14 +76,14 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
 
                     if (!has)
                     {
-                        Entity car = _factory.CreateCar(carPrefab, carColorType,point.Position - carRotation * carPrefab.RootOffset, carRotation);
+                        Entity car = _carsFactory.CreateCar(carPrefab, carColorType,point.Position - carRotation * carPrefab.RootOffset, carRotation);
 
                         car.Set(new CarMaxSpeed { Value = 3f });
 
                         PlayerType playerType = _playersBalance.GetRandomPlayerType();
                         PlayerMonoEntity playerPrefab = _assets.PlayersAssets.GetPlayerPrefab(playerType);
                         
-                        _factory.CreateNpcInCar(playerPrefab, car, point.Targets.First().FirstPathLine);
+                        _playersFactory.CreateNpcInCar(playerPrefab, car, point.Targets.First().FirstPathLine);
 
                         break;
                     }

@@ -1,10 +1,10 @@
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Components.Views.Data;
-using Sources.Game.Ecs.Components.Views.Physic;
+using Sources.Game.Ecs.DefaultComponents.Views;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
-using Sources.Utilities;
+using Sources.Infrastructure.Services;
+using Sources.Infrastructure.Services.Balance;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.Car
@@ -12,6 +12,12 @@ namespace Sources.Game.Ecs.Systems.Update.Car
     public class CarMaxSpeedSystem : DUpdateSystem
     {
         private Filter _filter;
+        private readonly CarsBalance _carsBalance;
+
+        public CarMaxSpeedSystem()
+        {
+            _carsBalance = DiContainer.Resolve<Balance>().CarsBalance;
+        }
 
         protected override void OnConstruct()
         {
@@ -22,8 +28,8 @@ namespace Sources.Game.Ecs.Systems.Update.Car
         {
             foreach (Entity carEntity in _filter)
             {
-                IPhysicBody physicBody = carEntity.GetMono<IPhysicBody>();
-                float carMaxSpeed = carEntity.GetMono<ICarData>().MaxSpeed;
+                IRigidbody physicBody = carEntity.GetAccess<IRigidbody>();
+                float carMaxSpeed = _carsBalance.MaxSpeed;
                 float playerMaxSpeed = carEntity.Get<CarMaxSpeed>().Value;
                 ref CarMotorCoefficient motorCoefficient = ref carEntity.Get<CarMotorCoefficient>();
                 ref CarBreak carBreak = ref carEntity.Get<CarBreak>();

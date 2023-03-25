@@ -4,6 +4,7 @@ using Sources.Game.Ecs.Components.Npc.NpcCar;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Player.User;
 using Sources.Game.Ecs.Components.User;
+using Sources.Game.Ecs.Despawners;
 using Sources.Game.Ecs.Factories;
 using Sources.Game.Ecs.Systems.Fixed;
 using Sources.Game.Ecs.Systems.Init;
@@ -33,8 +34,13 @@ namespace Sources.Game.Ecs
             _diBuilder = DiBuilder.Create();
             
             // _diBuilder.Register(_world);
-            _diBuilder.Register<IFactory>(new Factory(_world.World));
-            _diBuilder.Register<IDespawner>(new Despawner());
+            _diBuilder.Register<IPlayersFactory>(new PlayersFactory(_world.World));
+            _diBuilder.Register<ICarsFactory>(new CarsFactory(_world.World));
+            _diBuilder.Register<IPathesFactory>(new PathesFactory(_world.World));
+            _diBuilder.Register<ICamerasFactory>(new CamerasFactory(_world.World));
+            
+            _diBuilder.Register<IPlayersDespawner>(new PlayersDespawner(_world.World));
+            _diBuilder.Register<ICarsDespawner>(new CarsDespawner(_world.World));
 
             AddInitializers();
             AddUpdateSystems();

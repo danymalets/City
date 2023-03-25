@@ -6,7 +6,8 @@ using Sources.Game.Ecs.Components;
 using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Components.Collections;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Components.Views.Physic;
+using Sources.Game.Ecs.DefaultComponents.Monos;
+using Sources.Game.Ecs.Factories;
 using Sources.Game.Ecs.MonoEntities;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Game.GameObjects.RoadSystem;
@@ -28,6 +29,7 @@ namespace Sources.Game.Ecs.Systems.Init
         private readonly SimulationBalance _simulationBalance;
         private Filter _npcPathesFilter;
         private readonly PlayersBalance _playersBalance;
+        private readonly IPlayersFactory _playersFactory;
 
         public NpcInitSystem()
         {
@@ -35,8 +37,8 @@ namespace Sources.Game.Ecs.Systems.Init
             _assets = DiContainer.Resolve<Assets>();
             _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
             _playersBalance = DiContainer.Resolve<Balance>().PlayersBalance;
-            _pathSystem = DiContainer.Resolve<LevelContext>()
-                .NpcPathSystem;
+            _pathSystem = DiContainer.Resolve<LevelContext>().NpcPathSystem;
+            _playersFactory = DiContainer.Resolve<IPlayersFactory>();
         }
 
         protected override void OnConstruct()
@@ -68,14 +70,15 @@ namespace Sources.Game.Ecs.Systems.Init
                 {
                     Quaternion npcRotation = Quaternion.LookRotation(point.Direction);
 
-                    PlayerMonoEntity playerPrefab = _factory.GetRandomPlayerPrefab();
+                    PlayerMonoEntity playerPrefab = _playersFactory.GetRandomPlayerPrefab();
                     
-                    bool has = _physics.CheckBox(point.Position + npcRotation *
-                        playerPrefab.Center, playerPrefab.HalfExtents, npcRotation, LayerMasks.CarsAndPlayers);
+                    SafeCapsuleCollider capsule = playerPrefab.PlayerBorders.SafeCapsuleCollider;
+
+                    bool has = _physics.CheckCapsule(capsule.Start + point.Position, capsule.End + point.Position, capsule.Radius, LayerMasks.CarsAndPlayers);
 
                     if (!has)
                     {
-                        Entity npc = _factory.CreateNpcOnPath(playerPrefab, point.Position, npcRotation,
+                        Entity npc = _playersFactory.CreateNpcOnPath(playerPrefab, point.Position, npcRotation,
                             point.Targets.GetRandom().FirstPathLine);
 
                         _physics.SyncTransforms();

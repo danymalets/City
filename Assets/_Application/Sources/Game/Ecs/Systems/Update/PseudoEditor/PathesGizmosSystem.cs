@@ -60,18 +60,18 @@ namespace Sources.Game.Ecs.Systems.Update.PseudoEditor
                     }
                 }
 
-                foreach (Point point in activePoints)
-                {
-                    _updateGizmosContext.DrawSphere(
-                        point.Position + point.Direction.normalized * 0.1f, 2f,
-                        Color.red.WithAlpha(1f));
-                }
-                foreach (Point point in horizonPoints)
-                {
-                    _updateGizmosContext.DrawSphere(
-                        point.Position + point.Direction.normalized * 0.1f, 2f,
-                        Color.yellow.WithAlpha(1f));
-                }
+                // foreach (Point point in activePoints)
+                // {
+                //     _updateGizmosContext.DrawSphere(
+                //         point.Position + point.Direction.normalized * 0.1f, 2f,
+                //         Color.red.WithAlpha(1f));
+                // }
+                // foreach (Point point in horizonPoints)
+                // {
+                //     _updateGizmosContext.DrawSphere(
+                //         point.Position + point.Direction.normalized * 0.1f, 2f,
+                //         Color.yellow.WithAlpha(1f));
+                // }
             }
         }
     }

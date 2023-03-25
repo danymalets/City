@@ -1,9 +1,10 @@
 using Scellecs.Morpeh;
+using Sources.Game.Components.Views;
 using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Player.User;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Components.Views.CarEngine;
+using Sources.Game.Ecs.Despawners;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.Balance;
@@ -18,10 +19,12 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
         private Filter _carFilter;
         private Filter _userFilter;
         private readonly SimulationBalance _simulationBalance;
+        private readonly ICarsDespawner _carsDespawner;
 
         public InactiveCarsDespawnSystem()
         {
             _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
+            _carsDespawner = DiContainer.Resolve<ICarsDespawner>();
         }
 
         protected override void OnConstruct()
@@ -37,7 +40,7 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
             foreach (Entity carEntity in _carFilter)
             {
                 ref CarPassengers carPassengers = ref carEntity.Get<CarPassengers>();
-                Vector3 carPosition = carEntity.GetMono<ICarWheels>().RootPosition;
+                Vector3 carPosition = carEntity.GetAccess<IWheelsSystem>().RootPosition;
                 
                 Vector2 directionToEntity = (Quaternion.Inverse(userTransform.Rotation) *
                                                      (carPosition - userTransform.Position)).GetXZ();
@@ -52,7 +55,7 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
                 if (!DMath.InEllipse(directionToEntity, maxSize) &&
                     carPassengers.IsNoPassengers)
                 {
-                    _despawner.DespawnCar(carEntity);
+                    _carsDespawner.DespawnCar(carEntity);
                 }
             }
         }

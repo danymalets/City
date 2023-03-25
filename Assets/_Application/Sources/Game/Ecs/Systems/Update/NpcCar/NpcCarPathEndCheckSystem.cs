@@ -1,14 +1,10 @@
 using Scellecs.Morpeh;
-using Sources.Game.Ecs.Components;
+using Sources.Game.Components.Views;
 using Sources.Game.Ecs.Components.Npc;
 using Sources.Game.Ecs.Components.Npc.NpcCar;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Components.Views;
-using Sources.Game.Ecs.Components.Views.CarEngine;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
-using Sources.Utilities.Extensions;
-using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.NpcCar
 {
@@ -27,7 +23,7 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
             {
                 ref NpcOnPath npcOnPath = ref npcEntity.Get<NpcOnPath>();
                 Entity carEntity = npcEntity.Get<PlayerInCar>().Car;
-                ICarWheels carWheels = carEntity.GetMono<ICarWheels>();
+                IWheelsSystem carWheels = carEntity.GetAccess<IWheelsSystem>();
 
                 if (npcOnPath.PathLine.IsEnded(carWheels.RootPosition))
                 {

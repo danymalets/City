@@ -7,7 +7,6 @@ using Sources.Game.Ecs.Components.Npc.NpcCar;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Player.User;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Components.Views.Transform;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.Infrastructure.Services;

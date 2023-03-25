@@ -1,4 +1,5 @@
 using Scellecs.Morpeh;
+using Sources.Game.Ecs.Factories;
 using Sources.Game.Ecs.MonoEntities;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Infrastructure.Bootstrap;
@@ -16,6 +17,7 @@ namespace Sources.Game.Ecs.Systems.Init
         private readonly IPhysicsService _physics;
         private readonly PlayersBalance _playersBalance;
         private readonly CarsBalance _carsBalance;
+        private readonly IPlayersFactory _playersFactory;
 
         public UserInitSystem()
         {
@@ -24,6 +26,7 @@ namespace Sources.Game.Ecs.Systems.Init
             _levelContext = DiContainer.Resolve<LevelContext>();
             _physics = DiContainer.Resolve<IPhysicsService>();
             _assets = DiContainer.Resolve<Assets>();
+            _playersFactory = DiContainer.Resolve<IPlayersFactory>();
         }
 
         protected override void OnInitialize()
@@ -33,7 +36,7 @@ namespace Sources.Game.Ecs.Systems.Init
             
             // _factory.CreateUserInCar(playerPrefab, car);
 
-            _factory.CreateUser(_assets.PlayersAssets.GetPlayerPrefab(PlayerType.Gangster), 
+            _playersFactory.CreateUser(_assets.PlayersAssets.GetPlayerPrefab(PlayerType.Gangster), 
                 _levelContext.UserSpawnPoint.Position, _levelContext.UserSpawnPoint.Rotation);
 
             _physics.SyncTransforms();

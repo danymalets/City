@@ -1,4 +1,4 @@
-using Sources.Game.Ecs.Components.Views.CarForwardTriggers;
+using Sources.Game.Components.Old.CarCollider;
 using UnityEngine;
 
 namespace Sources.Infrastructure.Services
@@ -22,8 +22,11 @@ namespace Sources.Infrastructure.Services
         public bool CheckBox(Vector3 center, Vector3 halfExtents, Quaternion orientation, int layerMask) => 
             Physics.CheckBox(center, halfExtents, orientation, layerMask, QueryTriggerInteraction.Ignore);
         
-        public bool CheckBox(IMonoBox monoBox, int layerMask) => 
-            CheckBox(monoBox.Center, monoBox.HalfExtents, monoBox.Rotation, layerMask);
+        public bool CheckBox(BoxColliderData monoBoxCollider, int layerMask) => 
+            CheckBox(monoBoxCollider.Center, monoBoxCollider.HalfExtents, monoBoxCollider.Rotation, layerMask);
+        
+        public bool CheckCapsule(Vector3 start, Vector3 end, float radius, int layerMask) => 
+            Physics.CheckCapsule(start, end, radius, layerMask);
 
         public void SyncTransforms() => 
             Physics.SyncTransforms();

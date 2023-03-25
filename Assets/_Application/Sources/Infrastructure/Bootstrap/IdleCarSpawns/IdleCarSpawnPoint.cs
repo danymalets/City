@@ -71,7 +71,7 @@ namespace Sources.Infrastructure.Bootstrap.IdleCarSpawns
                 collider.enabled = false;
             }
 
-            foreach (MeshRenderer meshRenderer in _visual.CarMesh.MeshRenderers)
+            foreach (MeshRenderer meshRenderer in _visual.MeshRenderers)
             {
                 meshRenderer.sharedMaterial = new Material(meshRenderer.sharedMaterial);
             }
@@ -84,7 +84,7 @@ namespace Sources.Infrastructure.Bootstrap.IdleCarSpawns
             if (_visual == null)
                 return;
 
-            foreach (MeshRenderer meshRenderer in _visual.CarMesh.MeshRenderers)
+            foreach (MeshRenderer meshRenderer in _visual.MeshRenderers)
             {
                 meshRenderer.sharedMaterial.SetInt("_TargetIndex", (int)_carColor);
             }

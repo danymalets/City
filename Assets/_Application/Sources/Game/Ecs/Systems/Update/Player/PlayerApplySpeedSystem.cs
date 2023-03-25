@@ -1,16 +1,9 @@
 using Scellecs.Morpeh;
-using Sources.Game.Ecs.Components;
-using Sources.Game.Ecs.Components.Npc;
+using Sources.Game.Components.Old.PlayerAnimators;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Components.Views;
-using Sources.Game.Ecs.Components.Views.Physic;
-using Sources.Game.Ecs.Components.Views.PlayerAnimators;
-using Sources.Game.Ecs.Components.Views.PlayerDatas;
-using Sources.Game.Ecs.Systems.Init;
-using Sources.Game.Ecs.Utils;
+using Sources.Game.Ecs.DefaultComponents.Views;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
-using Sources.Utilities;
 using Sources.Utilities.Extensions;
 using UnityEngine;
 
@@ -32,10 +25,10 @@ namespace Sources.Game.Ecs.Systems.Update.Player
                 float speed = npcEntity.Get<PlayerSmoothSpeed>().Value;
                 float targetSpeed = npcEntity.Get<PlayerTargetSpeed>().Value;
                 float angle = npcEntity.Get<PlayerSmoothAngle>().Value;
-                IPlayerAnimator playerAnimator = npcEntity.GetMono<IPlayerAnimator>();
+                IPlayerAnimator playerAnimator = npcEntity.GetAccess<IPlayerAnimator>();
 
-                IPhysicBody physicBody = npcEntity.GetMono<IPhysicBody>();
-
+                IRigidbody physicBody = npcEntity.GetAccess<IRigidbody>();
+                
                 float ySpeed = physicBody.Velocity.y;
                 
                 physicBody.Velocity = (Quaternion.Euler(0,angle,0) * Vector3.forward * targetSpeed)

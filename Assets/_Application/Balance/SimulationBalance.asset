@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb959a1ed761474e8b9089930cdfa33f, type: 3}
   m_Name: SimulationBalance
   m_EditorClassIdentifier: 
-  _carsCountPer1000SpawnPoints: 100
-  _npcCountPer1000SpawnPoints: 90
+  _carsCountPer1000SpawnPoints: 70
+  _npcCountPer1000SpawnPoints: 60
   _carTriggerLength: 1.9
   _npcTriggerLength: 0.7
   _maxBreakingDistance: 0.8
@@ -24,6 +24,6 @@ MonoBehaviour:
   _carDistanceAfterBreak: 1.1
   _npcDistanceAfterBreak: 0.2
   _crosswalkWidth: 2.3
-  _npcMinActiveRadius: 55
+  _npcMinActiveRadius: 30
   _carActiveRadiusDelta: 4
-  BackNpcMinActiveRadius: 15
+  BackNpcMinActiveRadius: 5

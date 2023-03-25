@@ -1,37 +1,32 @@
-using Sources.Game.Ecs.Components;
-using Sources.Game.Ecs.Components.Views;
-using Sources.Game.Ecs.Components.Views.Camera;
-using Sources.Game.Ecs.Components.Views.Transform;
+using Sirenix.OdinInspector;
+using Sources.Game.Ecs.DefaultComponents;
+using Sources.Game.Ecs.DefaultComponents.Monos;
+using Sources.Game.Ecs.DefaultComponents.Views;
 using Sources.Game.Ecs.Utils;
-using Sources.Game.Ecs.Utils.MorpehWrapper;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.MonoEntities
 {
-    [RequireComponent(typeof(TransformComponent))]
-    [RequireComponent(typeof(CameraData))]
+    [RequireComponent(typeof(SafeTransform))]
+    [RequireComponent(typeof(SafeCamera))]
     public class CameraMonoEntity : MonoEntity
     {
         [SerializeField]
-        private TransformComponent _transform;
-
-        [SerializeField]
-        private CameraData _cameraData;
+        private SafeTransform _transform;
         
-        private void OnValidate()
-        {
-            _transform = GetComponent<TransformComponent>();
-            _cameraData = GetComponent<CameraData>();
-        }
+        [SerializeField]
+        private SafeCamera _camera;
+        
+        public ITransform Transform => _transform;
+        public ICamera Camera => _camera;
 
-        protected override void OnSetup()
+        [Button("Bake", ButtonSizes.Large)]
+        private void Bake()
         {
-            Entity.SetMono<ITransform>(_transform);
-            Entity.SetMono<ICameraData>(_cameraData);
-        }
-
-        protected override void OnCleanup()
-        {
+            base.OnValidate();
+            
+            _transform = GetComponent<SafeTransform>();
+            _camera = GetComponent<SafeCamera>();
         }
     }
 }

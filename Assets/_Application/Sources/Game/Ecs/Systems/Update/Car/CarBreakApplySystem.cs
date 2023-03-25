@@ -1,13 +1,10 @@
 using System;
 using Scellecs.Morpeh;
+using Sources.Game.Components.Views;
 using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Components.Views;
-using Sources.Game.Ecs.Components.Views.CarEngine;
-using Sources.Game.Ecs.Utils;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Game.GameObjects.Cars;
-using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.Car
 {
@@ -20,14 +17,14 @@ namespace Sources.Game.Ecs.Systems.Update.Car
 
         protected override void OnConstruct()
         {
-            _filter = _world.Filter<CarTag, CarBreak, Mono<ICarWheels>>();
+            _filter = _world.Filter<CarTag>();
         }
 
         protected override void OnUpdate(float fixedDeltaTime)
         {
             foreach (Entity carEntity in _filter)
             {
-                AxleInfo[] axleInfos = carEntity.GetMono<ICarWheels>().AxleInfo;
+                AxleInfo[] axleInfos = carEntity.GetAccess<IWheelsSystem>().AxleInfo;
                 BreakType breakType = carEntity.Get<CarBreak>().BreakType;
 
                 for (int i = 0; i < axleInfos.Length; i++)

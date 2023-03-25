@@ -1,4 +1,4 @@
-using Sources.Game.Ecs.Components.Views.CarForwardTriggers;
+using Sources.Game.Components.Old.CarCollider;
 using UnityEngine;
 
 namespace Sources.Infrastructure.Services
@@ -10,6 +10,7 @@ namespace Sources.Infrastructure.Services
         Collider[] OverlapBox(Vector3 center, Vector3 halfExtents, Quaternion orientation, int layerMask);
         void SyncTransforms();
         bool CheckBox(Vector3 center, Vector3 halfExtents, Quaternion orientation, int layerMask);
-        bool CheckBox(IMonoBox monoBox, int layerMask);
+        bool CheckBox(BoxColliderData monoBoxCollider, int layerMask);
+        bool CheckCapsule(Vector3 start, Vector3 end, float radius, int layerMask);
     }
 }

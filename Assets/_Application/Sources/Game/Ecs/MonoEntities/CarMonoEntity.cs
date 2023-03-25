@@ -1,104 +1,86 @@
-using System;
-using Scellecs.Morpeh;
-using Sources.Game.Ecs.Components;
-using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Components.Views;
-using Sources.Game.Ecs.Components.Views.CarBorder;
-using Sources.Game.Ecs.Components.Views.CarCollider;
-using Sources.Game.Ecs.Components.Views.CarColors;
-using Sources.Game.Ecs.Components.Views.CarEngine;
-using Sources.Game.Ecs.Components.Views.CarEnterPointsData;
-using Sources.Game.Ecs.Components.Views.CarForwardTriggers;
-using Sources.Game.Ecs.Components.Views.Data;
-using Sources.Game.Ecs.Components.Views.Physic;
-using Sources.Game.Ecs.Components.Views.Transform;
+using System.Collections.Generic;
+using System.Linq;
+using Sirenix.OdinInspector;
+using Sources.Game.Components.Old.CarEnterPointsData;
+using Sources.Game.Components.Views;
+using Sources.Game.Constants;
+using Sources.Game.Ecs.DefaultComponents.Monos;
+using Sources.Game.Ecs.DefaultComponents.Views;
 using Sources.Game.Ecs.Utils;
-using Sources.Game.Ecs.Utils.MorpehWrapper;
-using Sources.Infrastructure.Services.Balance;
+using Sources.Utilities;
 using Sources.Utilities.Extensions;
 using UnityEngine;
-using UnityEngine.Serialization;
-using CarData = Sources.Game.Ecs.Components.Views.Data.CarData;
 
 namespace Sources.Game.Ecs.MonoEntities
 {
-    [RequireComponent(typeof(Rigidbody))]
-    [RequireComponent(typeof(TransformComponent))]
-    [RequireComponent(typeof(PhysicBody))]
-    [RequireComponent(typeof(CarColliders))]
-    [RequireComponent(typeof(EntityBorders))]
-    [RequireComponent(typeof(CarEnterPoints))]
-    [RequireComponent(typeof(CarWheels))]
-    [RequireComponent(typeof(CarMesh))]
-    [RequireComponent(typeof(CarData))]
+    [RequireComponent(typeof(EnableableGameObject))]
+    [RequireComponent(typeof(SafeTransform))]
+    [RequireComponent(typeof(RigidbodySwitcher))]
     public class CarMonoEntity : MonoEntity
     {
         [SerializeField]
-        private TransformComponent _transform;
+        private EnableableGameObject _enableableGameObject;
 
         [SerializeField]
-        private PhysicBody _physicBody;
+        private SafeTransform _transform;
 
         [SerializeField]
-        private CarColliders _carColliders;
+        private RigidbodySwitcher _rigidbodySwitcher;
 
         [SerializeField]
-        private EntityBorders _entityBorders;
+        private WheelsSystem _wheelsSystem;
 
         [SerializeField]
-        private CarEnterPoints _carEnterPoints;
+        private CarEnterPoints _enterPoints;
 
         [SerializeField]
-        private CarWheels _carWheels;
+        private CarBorders _carBorders;
 
         [SerializeField]
-        private CarData _carData;
-        
-        [SerializeField]
-        private CarMesh _carMesh;
+        private SafeColliderBase[] _colliders;
 
-        private void OnValidate()
-        {
-            _transform = GetComponent<TransformComponent>();
-            _physicBody = GetComponent<PhysicBody>();
-            _carColliders = GetComponent<CarColliders>();
-            _entityBorders = GetComponent<EntityBorders>();
-            _carEnterPoints = GetComponent<CarEnterPoints>();
-            _carWheels = GetComponent<CarWheels>();
-            _carData = GetComponent<CarData>();
-            _carMesh = GetComponent<CarMesh>();
-        }
+        [SerializeField]
+        private SafeMeshRenderer[] _meshRenderers;
+
+        public IEnableableGameObject EnableableGameObject => _enableableGameObject;
+        public IRigidbodySwitcher RigidbodySwitcher => _rigidbodySwitcher;
+        public ITransform Transform => _transform;
+        public IWheelsSystem WheelsSystem => _wheelsSystem;
+        public ICarEnterPoints EnterPoints => _enterPoints;
+        public ICarBorders BorderCollider => _carBorders;
+        public IEnumerable<IEntityAccess> Colliders => _colliders;
+        public IEnumerable<IMeshRenderer> MeshRenderers => _meshRenderers;
 
         private void Awake()
         {
-            _physicBody.CenterMass = _entityBorders.Center.WithY(_entityBorders.HalfExtents.y * 2f / 3f);
+            foreach (SafeMeshRenderer meshRenderer in _meshRenderers) 
+                meshRenderer.Material = new Material(meshRenderer.Material);
         }
 
-        protected override void OnSetup()
+        [Button("Bake", ButtonSizes.Large)]
+        private void Bake()
         {
-            Entity.SetMono<ITransform>(_transform);
-            Entity.SetMono<IPhysicBody>(_physicBody);
-            Entity.SetMono<ICarColliders>(_carColliders);
-            Entity.SetMono<IEntityBorders>(_entityBorders);
-            Entity.SetMono<ICarEnterPoints>(_carEnterPoints);
-            Entity.SetMono<ICarWheels>(_carWheels);
-            Entity.SetMono<ICarData>(_carData);
-            Entity.SetMono<ICarMesh>(_carMesh);
+            base.OnValidate();
             
-            // Entity.GetMono<IPhysicBody>().IsKinematic = true;
-            // Entity.GetMono<IPhysicBody>().DetectCollisions = false;
+            _transform = GetComponent<SafeTransform>();
+            _enableableGameObject = GetComponent<EnableableGameObject>();
+            _rigidbodySwitcher = GetComponent<RigidbodySwitcher>();
+            _wheelsSystem = GetComponentInChildren<WheelsSystem>();
+            _enterPoints = GetComponentInChildren<CarEnterPoints>();
+            _carBorders = GetComponentInChildren<CarBorders>();
+            _meshRenderers = GetComponentsInChildren<SafeMeshRenderer>();
+            _colliders = GetComponentsInChildren<SafeColliderBase>()
+                .ExceptOne(_carBorders.SafeBoxCollider).ToArray();
+            
+            DValidate.SetupLayer(_colliders, Layers.Car);
         }
 
-        protected override void OnCleanup()
-        {
-        }
+        [Button("Set auto borders (do not use multi-click on this button)", ButtonSizes.Large)]
+        private void SetAutoBorders() => 
+            _carBorders.SetupBounds(_colliders);
 
-        public Vector3 CenterRelatedRootPoint => _entityBorders.Center - RootOffset;
-        public Vector3 HalfExtents => _entityBorders.HalfExtents;
-        public Vector3 RootOffset => _carWheels.RootOffset;
-
-#if UNITY_EDITOR
-        public ICarMesh CarMesh => _carMesh;
-#endif
+        public Vector3 CenterRelatedRootPoint => _carBorders.SafeBoxCollider.BoxColliderData.Center - RootOffset;
+        public Vector3 HalfExtents => _carBorders.SafeBoxCollider.BoxColliderData.HalfExtents;
+        public Vector3 RootOffset => _wheelsSystem.RootOffset;
     }
 }

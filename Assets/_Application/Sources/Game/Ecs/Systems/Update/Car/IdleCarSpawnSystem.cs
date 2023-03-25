@@ -2,7 +2,7 @@ using Scellecs.Morpeh;
 using Sources.Game.Constants;
 using Sources.Game.Ecs.Components.Player.User;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Components.Views.Transform;
+using Sources.Game.Ecs.Factories;
 using Sources.Game.Ecs.MonoEntities;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Infrastructure.Bootstrap;
@@ -22,6 +22,7 @@ namespace Sources.Game.Ecs.Systems.Update.Car
         private readonly IPhysicsService _physics;
         private readonly Assets _assets;
         private readonly SimulationBalance _simulationBalance;
+        private readonly ICarsFactory _carsFactory;
 
         public IdleCarsSpawnSystem()
         {
@@ -29,6 +30,7 @@ namespace Sources.Game.Ecs.Systems.Update.Car
             _idleCarsSystem = DiContainer.Resolve<LevelContext>().IdleCarsSystem;
             _physics = DiContainer.Resolve<IPhysicsService>();
             _assets = DiContainer.Resolve<Assets>();
+            _carsFactory = DiContainer.Resolve<ICarsFactory>();
         }
 
         protected override void OnConstruct()
@@ -59,7 +61,7 @@ namespace Sources.Game.Ecs.Systems.Update.Car
 
                     if (!has)
                     {
-                        Entity car = _factory.CreateCar(carPrefab, point.CarColor,
+                        Entity car = _carsFactory.CreateCar(carPrefab, point.CarColor,
                             point.Position - point.Rotation * carPrefab.RootOffset, point.Rotation);
 
                         point.AliveCar = car;

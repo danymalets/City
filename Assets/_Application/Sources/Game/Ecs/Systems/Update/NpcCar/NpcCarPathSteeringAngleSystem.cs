@@ -1,12 +1,11 @@
 using Scellecs.Morpeh;
-using Sources.Game.Ecs.Components;
+using Sources.Game.Components.Views;
 using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Components.Npc;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Components.Views;
-using Sources.Game.Ecs.Components.Views.CarEngine;
-using Sources.Game.Ecs.Components.Views.Transform;
+using Sources.Game.Ecs.DefaultComponents;
+using Sources.Game.Ecs.DefaultComponents.Views;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Utilities.Extensions;
 using UnityEngine;
@@ -28,8 +27,8 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
             {
                 ref NpcOnPath npcOnPath = ref npc.Get<NpcOnPath>();
                 Entity carEntity = npc.Get<PlayerInCar>().Car;
-                ICarWheels carWheels = carEntity.GetMono<ICarWheels>();
-                ITransform carTransform = carEntity.GetMono<ITransform>();
+                IWheelsSystem carWheels = carEntity.GetAccess<IWheelsSystem>();
+                ITransform carTransform = carEntity.GetAccess<ITransform>();
                 
                 float signedAngle = Vector3.SignedAngle(carTransform.Rotation.GetForward().WithY(0),
                     (npcOnPath.PathLine.Target.Position - carWheels.RootPosition).WithY(0), Vector3.up);

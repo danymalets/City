@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Scellecs.Morpeh;
+using Sources.Game.Components.Views;
 using Sources.Game.Ecs.Components.Collections;
 using Sources.Game.Ecs.Components.Npc;
 using Sources.Game.Ecs.Components.Npc.NpcCar;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Components.Views.CarEngine;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.Infrastructure.Services;
@@ -41,7 +41,7 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
             foreach (Entity npcEntity in _filter)
             {
                 Entity carEntity = npcEntity.Get<PlayerInCar>().Car;
-                ICarWheels wheels = carEntity.GetMono<ICarWheels>();
+                IWheelsSystem wheels = carEntity.GetAccess<IWheelsSystem>();
                 Queue<TurnChoice> choices = npcEntity.Get<TurnDecisions>().Queue;
                 List<TurnData> npcTurns = npcEntity.Get<ActiveTurns>().List;
                 

@@ -2,11 +2,9 @@ using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Player.User;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Components.Views.Physic;
-using Sources.Game.Ecs.Components.Views.Transform;
+using Sources.Game.Ecs.DefaultComponents;
+using Sources.Game.Ecs.DefaultComponents.Views;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
-using Sources.Utilities.Extensions;
-using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.User
 {
@@ -23,7 +21,7 @@ namespace Sources.Game.Ecs.Systems.Update.User
         {
             foreach (Entity playerEntity in _filter)
             {
-                ITransform transform = playerEntity.GetMono<ITransform>();
+                ITransform transform = playerEntity.GetAccess<ITransform>();
                 ref PlayerFollowTransform playerFollowTransform = ref playerEntity.Get<PlayerFollowTransform>();
 
                 playerFollowTransform.Position = transform.Position;

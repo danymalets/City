@@ -1,13 +1,14 @@
 using System.Linq;
 using Scellecs.Morpeh;
+using Sources.Game.Components.Old.CarEnterPointsData;
 using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Components.Npc;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Components.User;
-using Sources.Game.Ecs.Components.Views.CarEnterPointsData;
-using Sources.Game.Ecs.Components.Views.EnableDisable;
-using Sources.Game.Ecs.Components.Views.Transform;
+using Sources.Game.Ecs.DefaultComponents;
+using Sources.Game.Ecs.DefaultComponents.Monos;
+using Sources.Game.Ecs.DefaultComponents.Views;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using UnityEngine;
 
@@ -26,15 +27,15 @@ namespace Sources.Game.Ecs.Systems.Update.Player
         {
             foreach (Entity playerEntity in _filter)
             {
-                ITransform playerTransform = playerEntity.GetMono<ITransform>();
+                ITransform playerTransform = playerEntity.GetAccess<ITransform>();
                 ref PlayerTargetAngle playerTargetAngle = ref playerEntity.Get<PlayerTargetAngle>();
                 ref PlayerSmoothAngle playerSmoothAngle = ref playerEntity.Get<PlayerSmoothAngle>();
-                IEnableableEntity enableableEntity = playerEntity.GetMono<IEnableableEntity>();
+                EnableableGameObject enableableEntity = playerEntity.GetAccess<EnableableGameObject>();
                 PlayerInCar playerInCar = playerEntity.Get<PlayerInCar>();
                 Entity carEntity = playerInCar.Car;
                 int place = playerInCar.Place;
                 CarPassengers carPassengers = carEntity.Get<CarPassengers>();
-                IEnterPoint enterPoint = carEntity.GetMono<ICarEnterPoints>().EnterPoints.First();
+                IEnterPoint enterPoint = carEntity.GetAccess<ICarEnterPoints>().EnterPoints.First();
 
                 carPassengers.FreeUpPlace(place, playerEntity);
                 playerEntity.Remove<PlayerInCar>();

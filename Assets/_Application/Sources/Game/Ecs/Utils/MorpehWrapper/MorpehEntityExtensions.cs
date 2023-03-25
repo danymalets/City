@@ -106,24 +106,35 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
             return entity;
         }
 
-        public static TMono GetMono<TMono>(this Entity entity) where TMono : IMonoComponent =>
-            entity.Get<Mono<TMono>>().MonoComponent;
-
-        public static void SetMono<TMono>(this Entity entity, TMono monoComponent) where TMono : IMonoComponent => 
-            entity.Set(new Mono<TMono>() {MonoComponent = monoComponent});
+        public static TAccessible GetAccess<TAccessible>(this Entity entity) =>
+            entity.Get<AccessTo<TAccessible>>().AccessValue;
         
-        public static Entity SetupMono<TMonoComponent>(this Entity entity, Action<TMonoComponent> setupMono) 
-            where TMonoComponent : IMonoComponent
+        public static void RemoveAccess<TAccessible>(this Entity entity) =>
+            entity.Remove<AccessTo<TAccessible>>();
+        
+        public static bool HasAccess<TAccessible>(this Entity entity) =>
+            entity.Has<AccessTo<TAccessible>>();
+
+        public static Entity SetAccess<TAccessible>(this Entity entity, TAccessible accessValue) => 
+            entity.Set(new AccessTo<TAccessible> {AccessValue = accessValue});
+        
+        public static Entity SetupAccessible<TAccessible>(this Entity entity, Action<TAccessible> accessValue) 
         {
-            setupMono(entity.GetMono<TMonoComponent>());
+            accessValue(entity.GetAccess<TAccessible>());
             return entity;
         }
         
-        public static Entity SetupMonoIf<TMonoComponent>(this Entity entity, Func<bool> should, Action<TMonoComponent> setupMono) 
-            where TMonoComponent : IMonoComponent
+        public static Entity SetupAspect<TAspect>(this Entity entity, Action<TAspect> accessValue) 
+            where TAspect : struct, IDAspectBase
         {
-            if (should())
-                entity.SetupMono(setupMono);
+            accessValue(entity.GetAspect<TAspect>());
+            return entity;
+        }
+        
+        public static Entity SetupAccessibleIf<TAccessible>(this Entity entity, Func<bool> if_func, Action<TAccessible> accessValue) 
+        {
+            if (if_func())
+                entity.SetupAccessible(accessValue);
             return entity;
         }
 

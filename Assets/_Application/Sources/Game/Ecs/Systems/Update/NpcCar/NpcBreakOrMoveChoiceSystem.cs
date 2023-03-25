@@ -5,7 +5,8 @@ using Sources.Game.Ecs.Components.Npc;
 using Sources.Game.Ecs.Components.Npc.NpcCar;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Components.Views.Transform;
+using Sources.Game.Ecs.DefaultComponents;
+using Sources.Game.Ecs.DefaultComponents.Views;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.Infrastructure.Services;
@@ -36,7 +37,7 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
 
             foreach (Entity npcEntity in _filter)
             {
-                ITransform transform = npcEntity.GetMono<ITransform>();
+                ITransform transform = npcEntity.GetAccess<ITransform>();
                 Queue<TurnChoice> choices = npcEntity.Get<TurnDecisions>().Queue;
                 List<TurnData> carTurns = npcEntity.Get<ActiveTurns>().List;
 

@@ -8,7 +8,6 @@ namespace Sources.Game
         public int Level { get; }
         public LevelContext LevelContext { get; }
 
-
         public LevelData(int level, LevelContext levelContext)
         {
             Level = level;

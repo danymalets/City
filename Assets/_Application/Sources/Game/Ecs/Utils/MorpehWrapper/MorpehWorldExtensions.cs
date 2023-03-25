@@ -11,23 +11,15 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
         {
             Entity entity = world.CreateEntity();
             monoEntity.Setup(entity);
+            entity.Set(new MonoEntityAccess{MonoEntity = monoEntity});
             return entity;
         }
         
         public static Entity CreateWithSingleMono<TMonoComponent>(this World world, TMonoComponent monoComponent)
-            where TMonoComponent : IMonoComponent
         {
             Entity entity = world.CreateEntity();
-            entity.SetMono<TMonoComponent>(monoComponent);
+            entity.SetAccess<TMonoComponent>(monoComponent);
             return entity;
-        }
-        
-
-        public static Entity CreateFromMonoPrefab(this World world, MonoEntity prefab)
-        {
-            IPoolSpawnerService poolSpawner = DiContainer.Resolve<IPoolSpawnerService>();
-            MonoEntity monoEntity = poolSpawner.Spawn(prefab);
-            return world.CreateFromMono(monoEntity);
         }
 
         public static ref TComponent GetSingleton<TComponent>(this World world) where TComponent : struct, IComponent =>
@@ -37,7 +29,7 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
         public static Entity GetSingletonEntity<TComponent>(this World world) where TComponent : struct, IComponent =>
             world.Filter<TComponent>().GetSingleton();
 
-        public static TComponent GetMonoSingleton<TComponent>(this World world) where TComponent : IMonoComponent =>
-            world.GetSingleton<Mono<TComponent>>().MonoComponent;
+        public static TComponent GetAccessSingleton<TComponent>(this World world) =>
+            world.GetSingleton<AccessTo<TComponent>>().AccessValue;
     }
 }

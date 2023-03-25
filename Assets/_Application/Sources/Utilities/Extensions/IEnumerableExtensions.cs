@@ -16,6 +16,9 @@ namespace Sources.Utilities.Extensions
             
             return list[Random.Range(0, list.Count)];
         }
+
+        public static IEnumerable<T> ExceptOne<T>(this IEnumerable<T> e, T value) =>
+            e.Except(new[] { value });
         
         public static T MaxBy<T, TValue>(this IEnumerable<T> enumerable, Func<T, TValue> getValue)
             where TValue : IEquatable<TValue>

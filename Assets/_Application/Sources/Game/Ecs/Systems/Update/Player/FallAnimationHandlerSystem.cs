@@ -1,7 +1,7 @@
 using Scellecs.Morpeh;
+using Sources.Game.Components.Old.PlayerAnimators;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Components.Views.PlayerAnimators;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 
 namespace Sources.Game.Ecs.Systems.Update.Player
@@ -19,7 +19,7 @@ namespace Sources.Game.Ecs.Systems.Update.Player
         {
             foreach (Entity playerEntity in _filter)
             {
-                IPlayerAnimator playerAnimator = playerEntity.GetMono<IPlayerAnimator>();
+                IPlayerAnimator playerAnimator = playerEntity.GetAccess<IPlayerAnimator>();
                 playerAnimator.SetDie();
             }
         }

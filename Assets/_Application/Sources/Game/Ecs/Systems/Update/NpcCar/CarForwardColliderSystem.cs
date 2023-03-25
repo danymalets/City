@@ -1,10 +1,11 @@
 using Scellecs.Morpeh;
+using Sources.Game.Components.Old.CarCollider;
+using Sources.Game.Components.Views;
 using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Components.Views;
-using Sources.Game.Ecs.Components.Views.CarBorder;
-using Sources.Game.Ecs.Components.Views.CarEngine;
-using Sources.Game.Ecs.Components.Views.Transform;
+using Sources.Game.Ecs.DefaultComponents;
+using Sources.Game.Ecs.DefaultComponents.Monos;
+using Sources.Game.Ecs.DefaultComponents.Views;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.Balance;
@@ -35,11 +36,14 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
             {
                 ref ForwardTrigger forwardTrigger = ref carEntity.Get<ForwardTrigger>();
                 ref SmoothSteeringAngle steeringAngle = ref carEntity.Get<SmoothSteeringAngle>();
-                ITransform transform = carEntity.GetMono<ITransform>();
-                ICarWheels wheels = carEntity.GetMono<ICarWheels>();
-                IEntityBorders borders = carEntity.GetMono<IEntityBorders>();
-
-                float rootToForwardDistance = borders.LocalCenter.z + borders.HalfExtents.z - wheels.RootOffset.z;
+                ITransform transform = carEntity.GetAccess<ITransform>();
+                IWheelsSystem wheels = carEntity.GetAccess<IWheelsSystem>();
+                SafeBoxCollider safeBoxCollider = carEntity.GetAccess<ICarBorders>().SafeBoxCollider;
+                
+                BoxColliderData borders = safeBoxCollider.BoxColliderData;
+                
+                float rootToForwardDistance = safeBoxCollider
+                    .LocalCenter.z + borders.HalfExtents.z - wheels.RootOffset.z;
 
                 Quaternion triggerRotation = transform.Rotation.WithIncreasedEulerY(steeringAngle.Value);
 

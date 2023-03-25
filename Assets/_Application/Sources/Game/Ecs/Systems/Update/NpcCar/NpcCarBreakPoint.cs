@@ -1,12 +1,9 @@
 using Scellecs.Morpeh;
-using Sources.Game.Ecs.Components;
+using Sources.Game.Components.Views;
 using Sources.Game.Ecs.Components.Car;
-using Sources.Game.Ecs.Components.Npc;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Components.Views;
-using Sources.Game.Ecs.Components.Views.CarEngine;
-using Sources.Game.Ecs.Components.Views.Physic;
+using Sources.Game.Ecs.DefaultComponents.Views;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Infrastructure.Services;
 using UnityEngine;
@@ -34,8 +31,8 @@ namespace Sources.Game.Ecs.Systems.Update.NpcCar
                 Entity carEntity = npcEntity.Get<PlayerInCar>().Car;
                 
                 //ITransform transform = npcEntity.GetMono<ITransform>();
-                ICarWheels wheels = carEntity.GetMono<ICarWheels>();
-                IPhysicBody physicBody = carEntity.GetMono<IPhysicBody>();
+                IWheelsSystem wheels = carEntity.GetAccess<IWheelsSystem>();
+                IRigidbody physicBody = carEntity.GetAccess<IRigidbody>();
                 CarMaxSpeed maxSpeed = carEntity.Get<CarMaxSpeed>();
                 ref CarBreak carBreak = ref carEntity.Get<CarBreak>();
                 ref CarMotorCoefficient carMotorCoefficient = ref carEntity.Get<CarMotorCoefficient>();

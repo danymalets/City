@@ -3,15 +3,13 @@ using Sources.Game.Ecs.Components.Npc;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Player.User;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Components.Views.CarEngine;
+using Sources.Game.Ecs.Despawners;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.Balance;
 using Sources.Utilities;
 using Sources.Utilities.Extensions;
 using UnityEngine;
-using UnityEngine.UIElements;
-using ITransform = Sources.Game.Ecs.Components.Views.Transform.ITransform;
 
 namespace Sources.Game.Ecs.Systems.Update.Generation
 {
@@ -20,10 +18,12 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
         private Filter _npcFilter;
         private Filter _userFilter;
         private readonly SimulationBalance _simulationBalance;
+        private readonly IPlayersDespawner _playersDespawner;
 
         public InactiveNpcDespawnSystem()
         {
             _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
+            _playersDespawner = DiContainer.Resolve<IPlayersDespawner>();
         }
 
         protected override void OnConstruct()
@@ -57,7 +57,7 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
                     
                     if (!DMath.InEllipse(directionToEntity, maxSize))
                     {
-                        _despawner.DespawnNpc(npcEntity);
+                        _playersDespawner.DespawnNpc(npcEntity);
                     }
                 }
                 else
@@ -71,7 +71,7 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
                     
                     if (!DMath.InEllipse(directionToEntity, maxSize))
                     {
-                        _despawner.DespawnNpc(npcEntity);
+                        _playersDespawner.DespawnNpc(npcEntity);
                     }
                 }
             }

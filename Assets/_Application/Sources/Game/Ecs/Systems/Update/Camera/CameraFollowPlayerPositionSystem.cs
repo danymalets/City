@@ -1,12 +1,9 @@
 using Scellecs.Morpeh;
-using Sources.Game.Ecs.Components;
 using Sources.Game.Ecs.Components.Camera;
-using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Player.User;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Components.Views;
-using Sources.Game.Ecs.Components.Views.Transform;
-using Sources.Game.Ecs.Utils;
+using Sources.Game.Ecs.DefaultComponents;
+using Sources.Game.Ecs.DefaultComponents.Views;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.Balance;
@@ -41,7 +38,7 @@ namespace Sources.Game.Ecs.Systems.Update.Camera
             Entity cameraEntity = _cameraFilter.GetSingleton();
             Entity userEntity = _userFilter.GetSingleton();
 
-            ITransform cameraTransform = cameraEntity.GetMono<ITransform>();
+            ITransform cameraTransform = cameraEntity.GetAccess<ITransform>();
             float cameraAngle = cameraEntity.Get<CameraYAngle>().Value;
             
             float cameraSmoothHeight = cameraEntity.Get<CameraSmoothHeight>().Value;

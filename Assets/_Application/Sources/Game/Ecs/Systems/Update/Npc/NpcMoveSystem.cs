@@ -1,16 +1,14 @@
 using System.Linq;
 using Scellecs.Morpeh;
 using Sources.Game.Constants;
-using Sources.Game.Ecs.Components;
 using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Components.Views.CarForwardTriggers;
-using Sources.Game.Ecs.Components.Views.PlayerDatas;
 using Sources.Game.Ecs.Utils;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Infrastructure.Services;
 using Sources.Utilities.Extensions;
+using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.Npc
 {

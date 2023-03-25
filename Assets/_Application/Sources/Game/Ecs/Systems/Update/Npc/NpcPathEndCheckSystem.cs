@@ -1,13 +1,11 @@
 using Scellecs.Morpeh;
-using Sources.Game.Ecs.Components;
 using Sources.Game.Ecs.Components.Npc;
 using Sources.Game.Ecs.Components.Npc.NpcCar;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Components.Views;
-using Sources.Game.Ecs.Components.Views.Transform;
+using Sources.Game.Ecs.DefaultComponents;
+using Sources.Game.Ecs.DefaultComponents.Views;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
-using Sources.Utilities.Extensions;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.Npc
@@ -26,7 +24,7 @@ namespace Sources.Game.Ecs.Systems.Update.Npc
             foreach (Entity npcEntity in _filter)
             {
                 ref NpcOnPath npcOnPath = ref npcEntity.Get<NpcOnPath>();
-                Vector3 position = npcEntity.GetMono<ITransform>().Position;
+                Vector3 position = npcEntity.GetAccess<ITransform>().Position;
 
                 if (npcOnPath.PathLine.IsEnded(position))
                 {

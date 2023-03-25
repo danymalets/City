@@ -40,7 +40,7 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
 
             if (DebugPerformance)
             {
-                _coroutineContext.RunEachSeconds(0.5f, () =>
+                _coroutineContext.RunEachSeconds(3f, () =>
                 {
                     _systemsPerformance.LogData();
                     _systemsPerformance.Reset();

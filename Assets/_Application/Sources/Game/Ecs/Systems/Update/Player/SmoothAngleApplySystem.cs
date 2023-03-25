@@ -1,9 +1,7 @@
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Components.Views;
-using Sources.Game.Ecs.Components.Views.Physic;
-using Sources.Game.Ecs.Components.Views.Transform;
+using Sources.Game.Ecs.DefaultComponents.Views;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using UnityEngine;
 
@@ -22,7 +20,7 @@ namespace Sources.Game.Ecs.Systems.Update.Player
         {
             foreach (Entity playerEntity in _filter)
             {
-                IPhysicBody physicBody = playerEntity.GetMono<IPhysicBody>();
+                IRigidbody physicBody = playerEntity.GetAccess<IRigidbody>();
                 PlayerSmoothAngle playerSmoothAngle = playerEntity.Get<PlayerSmoothAngle>();
                 
                 physicBody.MoveRotation(Quaternion.Euler(0, playerSmoothAngle.Value, 0));

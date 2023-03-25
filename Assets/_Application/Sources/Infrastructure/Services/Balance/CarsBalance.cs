@@ -16,9 +16,14 @@ namespace Sources.Infrastructure.Services.Balance
 
         public float MaxEnterCarDistance => _maxEnterCarDistance;
 
+        [field: SerializeField] public float MaxSpeed { get; set; } = 5;
+        [field: SerializeField] public float MaxMotorTorque { get; set; } = 350;
+        [field: SerializeField] public float MaxSteeringAngle { get; set; } = 40;
+        [field: SerializeField] public float Mass { get; set; } = 400;
+
         private void OnValidate()
         {
-            DValidate.OptimizeEnumsData(_carBalance, 
+            DValidate.OptimizeEnumsData(_carBalance,
                 cb => cb.CarType, carType => new CarBalance(carType));
 
             foreach (CarBalance carBalance in _carBalance)

@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components.Collections;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Components.Views.Transform;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.Infrastructure.Bootstrap;

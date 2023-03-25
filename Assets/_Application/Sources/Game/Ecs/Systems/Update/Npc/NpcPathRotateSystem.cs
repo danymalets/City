@@ -1,13 +1,10 @@
 using Scellecs.Morpeh;
-using Sources.Game.Ecs.Components;
-using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Components.Npc;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Components.Views;
-using Sources.Game.Ecs.Components.Views.Transform;
+using Sources.Game.Ecs.DefaultComponents;
+using Sources.Game.Ecs.DefaultComponents.Views;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
-using Sources.Utilities.Extensions;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.Npc
@@ -26,7 +23,7 @@ namespace Sources.Game.Ecs.Systems.Update.Npc
             foreach (Entity npc in _filter)
             {
                 ref NpcOnPath npcOnPath = ref npc.Get<NpcOnPath>();
-                ITransform transform = npc.GetMono<ITransform>();
+                ITransform transform = npc.GetAccess<ITransform>();
 
                 float targetAngle =
                     Quaternion.LookRotation(npcOnPath.PathLine.Target.Position - transform.Position,

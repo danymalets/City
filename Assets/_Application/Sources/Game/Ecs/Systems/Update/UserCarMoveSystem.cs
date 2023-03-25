@@ -4,8 +4,7 @@ using Sources.Game.Ecs.Components;
 using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.User;
-using Sources.Game.Ecs.Components.Views;
-using Sources.Game.Ecs.Components.Views.Physic;
+using Sources.Game.Ecs.DefaultComponents.Views;
 using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Utilities;
 using UnityEngine;
@@ -29,7 +28,7 @@ namespace Sources.Game.Ecs.Systems.Update
                 
                 Entity carEntity = playerEntity.Get<PlayerInCar>().Car;
 
-                float signedSpeed = carEntity.GetMono<IPhysicBody>().SignedSpeed;
+                float signedSpeed = carEntity.GetAccess<IRigidbody>().SignedSpeed;
 
                 carEntity.Set(new ChangeSteeringAngleRequest { AngleCoefficient = userCarInput.Horizontal });
 
