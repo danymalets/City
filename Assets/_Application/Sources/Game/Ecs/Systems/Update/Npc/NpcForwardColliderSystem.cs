@@ -21,8 +21,7 @@ namespace Sources.Game.Ecs.Systems.Update.Npc
 
         public NpcForwardColliderSystem()
         {
-            _simulationBalance = DiContainer.Resolve<Balance>()
-                .SimulationBalance;
+            _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
         }
 
         protected override void OnConstruct()
@@ -43,7 +42,6 @@ namespace Sources.Game.Ecs.Systems.Update.Npc
 
                 Vector3 triggerCenter = transform.Position + triggerRotation * (Vector3.forward * 
                     (borders.Radius + _simulationBalance.NpcTriggerLength / 2));
-                
 
                 forwardTrigger.Center = triggerCenter;
                 forwardTrigger.Rotation = triggerRotation;

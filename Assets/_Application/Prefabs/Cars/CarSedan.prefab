@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 5005267040358122460}
   - component: {fileID: 2413015072295179843}
   - component: {fileID: 5048703797997044444}
+  - component: {fileID: 585186630055864039}
   - component: {fileID: 5116997421471035774}
   m_Layer: 0
   m_Name: CarSedan
@@ -173,6 +174,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb179ff50bfb4cb0bf615b30598f0f7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &585186630055864039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8626589004573408254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6255f5e6f19f4f138662fba2637be11d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5116997421471035774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73231e2e2a74640bafe8cf05d23e0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collisionsReceivers:
+  - {fileID: 585186630055864039}
   _allColliders:
   - {fileID: -6685217718645556877}
   - {fileID: -5579771549869008121}

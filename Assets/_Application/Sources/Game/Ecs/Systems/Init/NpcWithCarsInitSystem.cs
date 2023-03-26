@@ -54,11 +54,6 @@ namespace Sources.Game.Ecs.Systems.Init
             
             points.RandomShuffle();
 
-            // Vector3[] kus = GameObject.FindObjectsOfType<Transform>()
-            //     .Where(t => t.gameObject.name == "ku").Select(t => t.position).ToArray();
-            //
-            // points = points.Where(p => kus.Any(k => Vector3.Distance(p.Position, k) <= 0.5f)).ToArray();
-
             int count = 0;
             int reqCount = points.Length * _simulationBalance.CarsCountPer1000SpawnPoints / 1000;
             

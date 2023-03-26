@@ -11,7 +11,7 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
 {
     public class DWorld : IService
     {
-        private const bool DebugPerformance = false;
+        private const bool DebugPerformance = true;
         private const float TimeScale = 1;
         private const float MinWorkableFps = 0;
         

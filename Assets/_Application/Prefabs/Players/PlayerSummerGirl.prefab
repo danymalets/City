@@ -1267,6 +1267,7 @@ GameObject:
   - component: {fileID: 8068870698138260876}
   - component: {fileID: 1833612218856641757}
   - component: {fileID: 6595243964895780816}
+  - component: {fileID: 2612426357338661243}
   - component: {fileID: 3238988332400546293}
   m_Layer: 0
   m_Name: PlayerSummerGirl
@@ -1328,6 +1329,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb179ff50bfb4cb0bf615b30598f0f7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2612426357338661243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6255f5e6f19f4f138662fba2637be11d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3238988332400546293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1340,6 +1353,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44631277df68403995764e54848d3d64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collisionsReceivers:
+  - {fileID: 2612426357338661243}
   _allColliders:
   - {fileID: 2684758693099684232}
   _enableableGameObject: {fileID: 8068870698138260876}
@@ -1347,8 +1362,6 @@ MonoBehaviour:
   _rigidbodySwitcher: {fileID: 6595243964895780816}
   _playerBorders: {fileID: 1410394810796576632}
   _animator: {fileID: 3539437093035303082}
-  _colliders:
-  - {fileID: 2684758693099684232}
 --- !u!1 &173072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1920,7 +1933,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6048463052166916182, guid: 397de7691ad574487b5f56506c5ff32d, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 397de7691ad574487b5f56506c5ff32d, type: 3}

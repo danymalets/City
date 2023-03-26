@@ -36,19 +36,21 @@ namespace Sources.Game.Ecs.Systems.Update.Npc
                 ref PlayerTargetSpeed playerTargetSpeed = ref npcEntity.Get<PlayerTargetSpeed>();
                 
                 Entity[] entities = _physics.OverlapBox(forwardTrigger.Center, forwardTrigger.Size / 2, 
-                        forwardTrigger.Rotation, LayerMasks.CarsAndPlayers)
+                        forwardTrigger.Rotation, LayerMasks.CarsBordersAndPlayers)
                     .Select(c => c.transform.root.gameObject)
                     .Where(r => r.HasComponent<MonoEntity>())
                     .Select(r => r.GetComponent<MonoEntity>().Entity)
                     .Where(e => e != npcEntity)
                     .ToArray();
-                
+
                 if (entities.Any())
                 {
+                    Debug.Log($"has");
                     playerTargetSpeed.Value = 0;
                 }
                 else
                 {
+                    Debug.Log($"not has");
                     playerTargetSpeed.Value = speed;
                 }
             }

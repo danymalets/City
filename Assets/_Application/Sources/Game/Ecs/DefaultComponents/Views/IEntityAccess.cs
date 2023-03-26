@@ -6,4 +6,5 @@ namespace Sources.Game.Ecs.DefaultComponents.Views
     {
         Entity Entity { get; set; }
     }
+    
 }

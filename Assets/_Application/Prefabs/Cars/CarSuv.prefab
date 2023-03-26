@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 8651028098950948211}
   - component: {fileID: 7022321095499335892}
   - component: {fileID: 3602849578629419144}
+  - component: {fileID: 2060771121765900027}
   - component: {fileID: 2924757075045790538}
   m_Layer: 0
   m_Name: CarSuv
@@ -173,6 +174,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb179ff50bfb4cb0bf615b30598f0f7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2060771121765900027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3156564577573658876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6255f5e6f19f4f138662fba2637be11d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2924757075045790538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73231e2e2a74640bafe8cf05d23e0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collisionsReceivers:
+  - {fileID: 2060771121765900027}
   _allColliders:
   - {fileID: -6751623799208480603}
   - {fileID: 8017465216678294007}

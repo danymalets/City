@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 2038674917544356031}
   - component: {fileID: 3899050546406838284}
   - component: {fileID: 651990962640641953}
+  - component: {fileID: 4344031433962039610}
   - component: {fileID: 6904987291108027260}
   m_Layer: 0
   m_Name: CarAmbulance
@@ -248,6 +249,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb179ff50bfb4cb0bf615b30598f0f7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4344031433962039610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7772386564766756225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6255f5e6f19f4f138662fba2637be11d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6904987291108027260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73231e2e2a74640bafe8cf05d23e0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collisionsReceivers:
+  - {fileID: 4344031433962039610}
   _allColliders:
   - {fileID: -4742803397275594647}
   - {fileID: 800835895114549803}

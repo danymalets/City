@@ -22,11 +22,10 @@ namespace Sources.Game.Ecs.Despawners
                 playerInCar.Car.Get<CarPassengers>().FreeUpPlace(playerInCar.Place, playerEntity);
             }
 
-            // SwitchableRigidbodyAspect switchableRigidbodyAspect = playerEntity.GetAspect<SwitchableRigidbodyAspect>();
-            //
-            // if (switchableRigidbodyAspect.HasPhysicBody())
-            //     switchableRigidbodyAspect.DisablePhysicBody();
-            Debug.Log($"despawn player");
+            SwitchableRigidbodyAspect switchableRigidbodyAspect = playerEntity.GetAspect<SwitchableRigidbodyAspect>();
+            
+            if (switchableRigidbodyAspect.HasPhysicBody())
+                switchableRigidbodyAspect.DisablePhysicBody();
             
             playerEntity.DespawnMono();
             playerEntity.Dispose();

@@ -55,11 +55,12 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
             List<Point> activePoints = pathesEntity.Get<ActiveSpawnPoints>().List;
             List<Point> horizonPoints = pathesEntity.Get<HorizonSpawnPoints>().List;
 
-            int reqCars = (activePoints.Count + horizonPoints.Count) * _simulationBalance.NpcCountPer1000SpawnPoints / 1000;
+            int reqNpcs = (activePoints.Count + horizonPoints.Count) * _simulationBalance.NpcCountPer1000SpawnPoints / 1000;
 
             // Debug.Log($"players: {reqCars}");
-
-            if (npcs < reqCars)
+            reqNpcs = 1;
+            
+            if (npcs < reqNpcs)
             {
                 horizonPoints.RandomShuffle();
 

@@ -18,7 +18,6 @@ namespace Sources.Infrastructure.Services.Balance
             _carType = carType;
         }
 
-
         public CarType CarType => _carType;
         public CarMonoEntity CarPrefab => _carPrefab;
     }

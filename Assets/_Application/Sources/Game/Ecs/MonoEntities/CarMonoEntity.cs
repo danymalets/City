@@ -7,7 +7,6 @@ using Sources.Game.Constants;
 using Sources.Game.Ecs.DefaultComponents.Monos;
 using Sources.Game.Ecs.DefaultComponents.Views;
 using Sources.Game.Ecs.Utils;
-using Sources.Utilities;
 using Sources.Utilities.Extensions;
 using UnityEngine;
 
@@ -15,6 +14,8 @@ namespace Sources.Game.Ecs.MonoEntities
 {
     [RequireComponent(typeof(EnableableGameObject))]
     [RequireComponent(typeof(SafeTransform))]
+    [RequireComponent(typeof(RigidbodySwitcher))]
+    [RequireComponent(typeof(CollisionsReceiver))]
     public class CarMonoEntity : MonoEntity
     {
         [SerializeField]
@@ -60,9 +61,6 @@ namespace Sources.Game.Ecs.MonoEntities
         private void Bake()
         {
             base.OnValidate();
-            
-            if (_rigidbodySwitcher != null)
-                DestroyImmediate(_rigidbodySwitcher);
 
             _transform = GetComponent<SafeTransform>();
             _enableableGameObject = GetComponent<EnableableGameObject>();
@@ -77,6 +75,7 @@ namespace Sources.Game.Ecs.MonoEntities
             foreach (SafeColliderBase collider in _colliders) 
                 collider.Layer = Layers.Car;
 
+            _carBorders.SafeBoxCollider.IsTrigger = true;
             _carBorders.SafeBoxCollider.Layer = Layers.CarBorders;
         }
 

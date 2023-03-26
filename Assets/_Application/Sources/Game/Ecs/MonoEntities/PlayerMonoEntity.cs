@@ -1,21 +1,22 @@
 using System.Collections.Generic;
-using System.Linq;
 using Sirenix.OdinInspector;
 using Sources.Game.Components.Views;
 using Sources.Game.Constants;
 using Sources.Game.Ecs.DefaultComponents.Monos;
 using Sources.Game.Ecs.DefaultComponents.Views;
 using Sources.Game.Ecs.Utils;
-using Sources.PseudoEditor;
-using Sources.Utilities;
-using Sources.Utilities.Extensions;
 using UnityEngine;
+#if UNITY_EDITOR
+using Sources.PseudoEditor;
+#endif
 
 namespace Sources.Game.Ecs.MonoEntities
 {
     [RequireComponent(typeof(EnableableGameObject))]
     [RequireComponent(typeof(SafeTransform))]
-    public class PlayerMonoEntity : MonoEntity
+    [RequireComponent(typeof(RigidbodySwitcher))]
+    [RequireComponent(typeof(CollisionsReceiver))]
+    public partial class PlayerMonoEntity : MonoEntity
     {
         [SerializeField]
         private EnableableGameObject _enableableGameObject;
@@ -32,14 +33,10 @@ namespace Sources.Game.Ecs.MonoEntities
         [SerializeField]
         private SafeAnimator _animator;
 
-        [SerializeField]
-        private SafeColliderBase[] _colliders;
-
         public IEnableableGameObject EnableableGameObject => _enableableGameObject;
         public IRigidbodySwitcher RigidbodySwitcher => _rigidbodySwitcher;
         public ITransform Transform => _transform;
         public IPlayerBorders PlayerBorders => _playerBorders;
-        public IEnumerable<IEntityAccess> Colliders => _colliders;
         public IAnimator Animator => _animator;
 
 #if UNITY_EDITOR
@@ -47,24 +44,14 @@ namespace Sources.Game.Ecs.MonoEntities
         private void Bake()
         {
             base.OnValidate();
-            
-            if (_rigidbodySwitcher != null)
-                DestroyImmediate(_rigidbodySwitcher);
 
             _transform = GetComponent<SafeTransform>();
             _enableableGameObject = GetComponent<EnableableGameObject>();
             _rigidbodySwitcher = GetComponent<RigidbodySwitcher>();
             _playerBorders = GetComponentInChildren<PlayerBorders>();
             _animator = GetComponentInChildren<SafeAnimator>();
-            _colliders = GetComponentsInChildren<SafeColliderBase>();
-
-            PhysicMaterial physicsMaterial = DEditor.EditorServices.Assets.PhysicsAssets.PlayerPhysicsMaterial;
-
-            foreach (SafeColliderBase collider in _colliders)
-            {
-                collider.Layer = Layers.Player;
-                collider.PhysicsMaterial = physicsMaterial;
-            }
+            
+            _playerBorders.SafeCapsuleCollider.Layer = Layers.Player;
         }
 #endif
     }

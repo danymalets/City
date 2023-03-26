@@ -39,6 +39,13 @@ namespace Sources.Game.Ecs.Utils.MorpehWrapper
         
         public static ref TComponent AddAndGet<TComponent>(this Entity entity) where TComponent : struct, IComponent => 
             ref entity.AddComponent<TComponent>();
+        
+        public static ref TComponent SetAndGet<TComponent>(this Entity entity, TComponent component)
+            where TComponent : struct, IComponent
+        {
+            entity.SetComponent<TComponent>(component);
+            return ref entity.Get<TComponent>();
+        }
 
         public static ref TComponent GetOrCreate<TComponent>(this Entity entity) where TComponent : struct, IComponent
         {

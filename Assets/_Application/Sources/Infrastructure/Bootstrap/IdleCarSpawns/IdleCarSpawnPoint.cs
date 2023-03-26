@@ -1,5 +1,6 @@
 using Scellecs.Morpeh;
 using Sirenix.OdinInspector;
+using Sources.Game.Ecs.DefaultComponents.Views;
 using Sources.Game.Ecs.MonoEntities;
 using Sources.Infrastructure.Services.Balance;
 using UnityEngine;
@@ -71,9 +72,9 @@ namespace Sources.Infrastructure.Bootstrap.IdleCarSpawns
                 collider.enabled = false;
             }
 
-            foreach (MeshRenderer meshRenderer in _visual.MeshRenderers)
+            foreach (IMeshRenderer meshRenderer in _visual.MeshRenderers)
             {
-                meshRenderer.sharedMaterial = new Material(meshRenderer.sharedMaterial);
+                meshRenderer.SharedMaterial = new Material(meshRenderer.SharedMaterial);
             }
 
             TryUpdateColor();
@@ -84,9 +85,9 @@ namespace Sources.Infrastructure.Bootstrap.IdleCarSpawns
             if (_visual == null)
                 return;
 
-            foreach (MeshRenderer meshRenderer in _visual.MeshRenderers)
+            foreach (IMeshRenderer meshRenderer in _visual.MeshRenderers)
             {
-                meshRenderer.sharedMaterial.SetInt("_TargetIndex", (int)_carColor);
+                meshRenderer.SharedMaterial.SetInt("_TargetIndex", (int)_carColor);
             }
         }
 

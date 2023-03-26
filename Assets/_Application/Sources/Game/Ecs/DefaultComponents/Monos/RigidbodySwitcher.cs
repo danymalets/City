@@ -11,8 +11,8 @@ namespace Sources.Game.Ecs.DefaultComponents.Monos
 
         public SafeRigidbody EnableRigidbody()
         {
-            if (_safeRigidbody != null)
-                return _safeRigidbody;
+            DAssert.IsTrue(_rigidbody == null);
+            DAssert.IsTrue(_safeRigidbody == null);
             
             _rigidbody = gameObject.AddComponent<Rigidbody>();
             _rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
@@ -21,9 +21,12 @@ namespace Sources.Game.Ecs.DefaultComponents.Monos
 
         public void DisableRigidbody()
         {
+            DAssert.IsTrue(_rigidbody != null);
+            DAssert.IsTrue(_safeRigidbody != null);
+            
             _rigidbody.interpolation = RigidbodyInterpolation.None;
-            Destroy(_rigidbody);
-            Destroy(_safeRigidbody);
+            DestroyImmediate(_rigidbody);
+            DestroyImmediate(_safeRigidbody);
             _rigidbody = null;
             _safeRigidbody = null;
         }

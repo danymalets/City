@@ -15,6 +15,12 @@ namespace Sources.Game.Ecs.DefaultComponents.Monos
             get => _meshRenderer.material;
             set => _meshRenderer.material = value;
         }
+        
+        public Material SharedMaterial
+        {
+            get => _meshRenderer.sharedMaterial;
+            set => _meshRenderer.sharedMaterial = value;
+        }
 
         private void OnValidate()
         {

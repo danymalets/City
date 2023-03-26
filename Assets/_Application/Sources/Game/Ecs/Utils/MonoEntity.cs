@@ -14,38 +14,39 @@ namespace Sources.Game.Ecs.Utils
     {
         [ReadOnly]
         [SerializeField]
+        private CollisionsReceiver[] _collisionsReceivers;
+
+        [ReadOnly]
+        [SerializeField]
         private SafeColliderBase[] _allColliders;
-        
+
         public Entity Entity { get; set; }
 
         public void Setup(Entity entity)
         {
             Entity = entity;
-            foreach (SafeColliderBase safeColliderBase in _allColliders)
-            {
+            foreach (SafeColliderBase safeColliderBase in _allColliders) 
                 safeColliderBase.Entity = entity;
-            }
-            // OnSetup();
+            
+            foreach (CollisionsReceiver collisionsReceiver in _collisionsReceivers) 
+                collisionsReceiver.Entity = entity;
         }
-
-        // protected abstract void OnSetup();
-
+        
         public void Cleanup()
         {
-            foreach (SafeColliderBase safeColliderBase in _allColliders)
-            {
-                safeColliderBase.Entity = null;
-            }
+            foreach (SafeColliderBase safeColliderBase in _allColliders) 
+                safeColliderBase.Entity = null; 
+            
+            foreach (CollisionsReceiver collisionsReceiver in _collisionsReceivers) 
+                collisionsReceiver.Entity = null;
 
             Entity = null;
-            // OnCleanup();
         }
-
-        // protected abstract void OnCleanup();
-
+        
         protected virtual void OnValidate()
         {
             _allColliders = GetComponentsInChildren<SafeColliderBase>();
+            _collisionsReceivers = GetComponentsInChildren<CollisionsReceiver>();
         }
 
         [Button("Make Safe", ButtonSizes.Large)]

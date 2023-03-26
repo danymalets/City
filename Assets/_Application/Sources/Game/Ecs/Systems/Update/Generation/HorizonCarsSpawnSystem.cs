@@ -58,7 +58,7 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
 
             int reqCars = (activePoints.Count + horizonPoints.Count) * _simulationBalance.CarsCountPer1000SpawnPoints / 1000;
 
-            // Debug.Log($"cars: {reqCars}");
+            reqCars = 0;
 
             if (cars < reqCars)
             {

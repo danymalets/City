@@ -14,8 +14,8 @@ namespace Sources.Game.Ecs.Despawners
         {
             SwitchableRigidbodyAspect switchableRigidbodyAspect = carEntity.GetAspect<SwitchableRigidbodyAspect>();
 
-            // if (switchableRigidbodyAspect.HasPhysicBody())
-            //     switchableRigidbodyAspect.DisablePhysicBody();
+            if (switchableRigidbodyAspect.HasPhysicBody())
+                switchableRigidbodyAspect.DisablePhysicBody();
             
             carEntity.DespawnMono();
             carEntity.Dispose();

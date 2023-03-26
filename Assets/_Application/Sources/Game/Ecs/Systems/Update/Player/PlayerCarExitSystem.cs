@@ -30,7 +30,7 @@ namespace Sources.Game.Ecs.Systems.Update.Player
                 ITransform playerTransform = playerEntity.GetAccess<ITransform>();
                 ref PlayerTargetAngle playerTargetAngle = ref playerEntity.Get<PlayerTargetAngle>();
                 ref PlayerSmoothAngle playerSmoothAngle = ref playerEntity.Get<PlayerSmoothAngle>();
-                EnableableGameObject enableableEntity = playerEntity.GetAccess<EnableableGameObject>();
+                IEnableableGameObject enableableEntity = playerEntity.GetAccess<IEnableableGameObject>();
                 PlayerInCar playerInCar = playerEntity.Get<PlayerInCar>();
                 Entity carEntity = playerInCar.Car;
                 int place = playerInCar.Place;

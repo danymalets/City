@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94f496c4fd39436f9a21465383619df1, type: 3}
   m_Name: PlayersBalance
   m_EditorClassIdentifier: 
-  _minImpulseForFall: 210
+  _minImpulseForFall: 10
   _maxRotationSpeed: 90
   <UserMaxSpeed>k__BackingField: 3.5
   _playersBalance:

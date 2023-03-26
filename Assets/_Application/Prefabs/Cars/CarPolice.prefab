@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 3383523454148890972}
   - component: {fileID: 3953906121361626741}
   - component: {fileID: 8609334599100525035}
+  - component: {fileID: 198467063548202264}
   - component: {fileID: 3807972892401286929}
   m_Layer: 0
   m_Name: CarPolice
@@ -173,6 +174,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb179ff50bfb4cb0bf615b30598f0f7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &198467063548202264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2982064454030591518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6255f5e6f19f4f138662fba2637be11d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3807972892401286929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73231e2e2a74640bafe8cf05d23e0e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collisionsReceivers:
+  - {fileID: 198467063548202264}
   _allColliders:
   - {fileID: 9051834761675437710}
   - {fileID: 8428081722034474934}

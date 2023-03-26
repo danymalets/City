@@ -102,7 +102,6 @@ namespace Sources.Game.Ecs.Factories
                 .SetAccess<ITransform>(playerMonoEntity.Transform)
                 .SetAccess<IPlayerAnimator>(new PlayerAnimator(playerMonoEntity.Animator))
                 .SetAccess<IPlayerBorders>(playerMonoEntity.PlayerBorders)
-                .SetAccess<IEntityAccess[]>(playerMonoEntity.Colliders.ToArray())
                 .SetupAccessible<IPlayerAnimator>(pa => pa.Setup())
                 .SetupAspect<SwitchableRigidbodyAspect>(pa =>
                 {
