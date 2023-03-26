@@ -15,7 +15,6 @@ namespace Sources.Game.Ecs.MonoEntities
 {
     [RequireComponent(typeof(EnableableGameObject))]
     [RequireComponent(typeof(SafeTransform))]
-    [RequireComponent(typeof(RigidbodySwitcher))]
     public class CarMonoEntity : MonoEntity
     {
         [SerializeField]
@@ -62,6 +61,9 @@ namespace Sources.Game.Ecs.MonoEntities
         {
             base.OnValidate();
             
+            if (_rigidbodySwitcher != null)
+                DestroyImmediate(_rigidbodySwitcher);
+
             _transform = GetComponent<SafeTransform>();
             _enableableGameObject = GetComponent<EnableableGameObject>();
             _rigidbodySwitcher = GetComponent<RigidbodySwitcher>();

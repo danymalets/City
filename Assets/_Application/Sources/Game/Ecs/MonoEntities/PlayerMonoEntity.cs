@@ -15,7 +15,6 @@ namespace Sources.Game.Ecs.MonoEntities
 {
     [RequireComponent(typeof(EnableableGameObject))]
     [RequireComponent(typeof(SafeTransform))]
-    [RequireComponent(typeof(RigidbodySwitcher))]
     public class PlayerMonoEntity : MonoEntity
     {
         [SerializeField]
@@ -48,6 +47,9 @@ namespace Sources.Game.Ecs.MonoEntities
         private void Bake()
         {
             base.OnValidate();
+            
+            if (_rigidbodySwitcher != null)
+                DestroyImmediate(_rigidbodySwitcher);
 
             _transform = GetComponent<SafeTransform>();
             _enableableGameObject = GetComponent<EnableableGameObject>();
