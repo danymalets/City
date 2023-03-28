@@ -4,7 +4,8 @@ using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Player.User;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Despawners;
-using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Game.Ecs.Utils.MorpehUtils;
+using Sources.Game.Ecs.Utils.MorpehUtils.Systems;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.Balance;
 using Sources.Utilities;
@@ -17,12 +18,12 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
     {
         private Filter _npcFilter;
         private Filter _userFilter;
-        private readonly SimulationBalance _simulationBalance;
+        private readonly SimulationSettings _simulationSettings;
         private readonly IPlayersDespawner _playersDespawner;
 
         public InactiveNpcDespawnSystem()
         {
-            _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
+            _simulationSettings = DiContainer.Resolve<SimulationSettings>();
             _playersDespawner = DiContainer.Resolve<IPlayersDespawner>();
         }
 
@@ -45,11 +46,11 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
 
                 if (npcEntity.Has<PlayerInCar>())
                 {
-                    Vector2 maxSize = new(_simulationBalance.CarMaxActiveRadius, _simulationBalance.CarMaxActiveRadius);
+                    Vector2 maxSize = new(_simulationSettings.CarMaxActiveRadius, _simulationSettings.CarMaxActiveRadius);
 
                     if (directionToEntity.y < 0)
                     {
-                        maxSize.y = _simulationBalance.BackCarMaxActiveRadius;
+                        maxSize.y = _simulationSettings.BackCarMaxActiveRadius;
                     }
                     
                     maxSize.x += 0.01f;
@@ -62,11 +63,11 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
                 }
                 else
                 {
-                    Vector2 maxSize = new(_simulationBalance.NpcMaxActiveRadius, _simulationBalance.NpcMaxActiveRadius);
+                    Vector2 maxSize = new(_simulationSettings.NpcMaxActiveRadius, _simulationSettings.NpcMaxActiveRadius);
 
                     if (directionToEntity.y < 0)
                     {
-                        maxSize.y = _simulationBalance.BackNpcMaxActiveRadius;
+                        maxSize.y = _simulationSettings.BackNpcMaxActiveRadius;
                     }
                     
                     if (!DMath.InEllipse(directionToEntity, maxSize))

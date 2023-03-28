@@ -23,5 +23,8 @@ namespace Sources.Infrastructure.Services.Balance
 
         public PlayersBalance PlayersBalance => _playersBalance;
         public CarsBalance CarsBalance => _carsBalance;
+
+        [field: SerializeField] public QualityBalance QualityBalance { get; private set; }
+        
     }
 }

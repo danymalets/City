@@ -8,7 +8,8 @@ using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.DefaultComponents.Monos;
 using Sources.Game.Ecs.Factories;
 using Sources.Game.Ecs.MonoEntities;
-using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Game.Ecs.Utils.MorpehUtils;
+using Sources.Game.Ecs.Utils.MorpehUtils.Systems;
 using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.AssetsManager;
@@ -30,11 +31,11 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
 
         public HorizonNpcSpawnSystem()
         {
-             Balance balance = DiContainer.Resolve<Balance>();
+            Balance balance = DiContainer.Resolve<Balance>();
 
-             _simulationBalance = balance.SimulationBalance;
-             _playersBalance = balance.PlayersBalance;
-             
+            _simulationBalance = balance.SimulationBalance;
+            _playersBalance = balance.PlayersBalance;
+
             _physics = DiContainer.Resolve<IPhysicsService>();
             _assets = DiContainer.Resolve<Assets>();
             _playersFactory = DiContainer.Resolve<IPlayersFactory>();
@@ -58,33 +59,24 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
             int reqNpcs = (activePoints.Count + horizonPoints.Count) * _simulationBalance.NpcCountPer1000SpawnPoints / 1000;
 
             // Debug.Log($"players: {reqCars}");
-            reqNpcs = 1;
-            
-            if (npcs < reqNpcs)
+
+            horizonPoints.RandomShuffle();
+
+            PlayerType playerType = _playersBalance.GetRandomPlayerType();
+            PlayerMonoEntity playerPrefab = _assets.PlayersAssets.GetPlayerPrefab(playerType);
+
+            foreach (Point point in horizonPoints)
             {
-                horizonPoints.RandomShuffle();
-
-                PlayerType playerType = _playersBalance.GetRandomPlayerType();
-                PlayerMonoEntity playerPrefab = _assets.PlayersAssets.GetPlayerPrefab(playerType);
-
-                foreach (Point point in horizonPoints)
+                if (npcs >= reqNpcs)
+                    return;
+                
+                if (_playersFactory.TryCreateRandomNpc(point, out Entity createdEntity))
                 {
-                    Quaternion npcRotation = Quaternion.LookRotation(point.Direction);
+                    _physics.SyncTransforms();
 
-                    SafeCapsuleCollider capsule = playerPrefab.PlayerBorders.SafeCapsuleCollider;
+                    npcs++;
 
-                    bool has = _physics.CheckCapsule(capsule.Start + point.Position, 
-                        capsule.End + point.Position, capsule.Radius, LayerMasks.CarsAndPlayers);
-
-                    if (!has)
-                    {
-                        Entity npc = _playersFactory.CreateNpcOnPath(playerPrefab, point.Position, npcRotation,
-                            point.Targets.GetRandom().FirstPathLine);
-
-                        _physics.SyncTransforms();
-
-                        break;
-                    }
+                    break;
                 }
             }
         }

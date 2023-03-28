@@ -9,7 +9,8 @@ using Sources.Game.Ecs.Components.User;
 using Sources.Game.Ecs.DefaultComponents;
 using Sources.Game.Ecs.DefaultComponents.Monos;
 using Sources.Game.Ecs.DefaultComponents.Views;
-using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Game.Ecs.Utils.MorpehUtils;
+using Sources.Game.Ecs.Utils.MorpehUtils.Systems;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.Player

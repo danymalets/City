@@ -27,8 +27,8 @@ namespace Sources.Infrastructure.Services.Balance
         [SerializeField]
         private float _carRootToForwardPoint = 0.4f;
 
-        [SerializeField]
-        private float _minDistanceBetweenRoots = 1.5f;
+        [field: SerializeField]
+        public float MinDistanceBetweenRoots { get; private set; } = 4;
 
         [FormerlySerializedAs("_preSolvePathChoice")]
         [SerializeField]
@@ -49,17 +49,10 @@ namespace Sources.Infrastructure.Services.Balance
         [SerializeField]
         private float _crosswalkWidth = 3f;
         
-        [FormerlySerializedAs("_minNpcActiveRadius")]
-        [Header("Generation")]
-        [SerializeField]
-        private float _npcMinActiveRadius = 20;
-
-        [SerializeField]
-        private float _carActiveRadiusDelta = 3.5f;
-
+        [field: Header("Generation")]
         [field: SerializeField]
-        public float BackNpcMinActiveRadius = 10f;
-        
+        public float CarActiveRadiusDelta { get; private set; } = 4f;
+
         public int CarsCountPer1000SpawnPoints => _carsCountPer1000SpawnPoints;
 
         public int NpcCountPer1000SpawnPoints => _npcCountPer1000SpawnPoints;
@@ -72,7 +65,6 @@ namespace Sources.Infrastructure.Services.Balance
 
         public float CarRootToForwardPoint => _carRootToForwardPoint;
         public int PreSolvePathChoiceCount => _preSolvePathChoiceCount;
-        public float MinDistanceBetweenRoots => _minDistanceBetweenRoots;
 
         public float MaxNpcRadius => _maxNpcRadius;
 
@@ -80,15 +72,5 @@ namespace Sources.Infrastructure.Services.Balance
         public float NpcDistanceAfterBreak => _npcDistanceAfterBreak;
 
         public float CrosswalkWidth => _crosswalkWidth;
-
-        public float NpcMinActiveRadius => _npcMinActiveRadius;
-
-        public float NpcMaxActiveRadius => _npcMinActiveRadius + _minDistanceBetweenRoots + 0.01f;
-        public float BackNpcMaxActiveRadius => BackNpcMinActiveRadius + _minDistanceBetweenRoots + 0.01f;
-        
-        public float CarMinActiveRadius => NpcMinActiveRadius + _carActiveRadiusDelta;
-        public float CarMaxActiveRadius => NpcMaxActiveRadius + _carActiveRadiusDelta;
-        public float BackCarMinActiveRadius => BackNpcMinActiveRadius + _carActiveRadiusDelta;
-        public float BackCarMaxActiveRadius => BackNpcMaxActiveRadius + _carActiveRadiusDelta;
     }
 }

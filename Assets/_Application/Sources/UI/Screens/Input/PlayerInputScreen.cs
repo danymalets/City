@@ -1,7 +1,7 @@
 using System;
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components.User;
-using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Game.Ecs.Utils.MorpehUtils;
 using Sources.UI.WindowBase.Screens;
 using UnityEngine;
 using UnityEngine.UI;

@@ -1,4 +1,4 @@
-using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Game.Ecs.Utils.MorpehUtils.Systems;
 using Sources.Infrastructure.Services;
 
 namespace Sources.Game.Ecs.Systems.Fixed

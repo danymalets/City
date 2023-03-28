@@ -5,16 +5,13 @@ using Sources.Game.Ecs.DefaultComponents;
 using Sources.Game.Ecs.DefaultComponents.Monos;
 using Sources.Game.Ecs.DefaultComponents.Views;
 using Sources.Game.Ecs.MonoEntities;
-using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Game.Ecs.Utils.MorpehUtils;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Factories
 {
     public class CamerasFactory : Factory, ICamerasFactory
     {
-        public CamerasFactory(World world) : base(world)
-        {
-        }
 
         public Entity CreateCamera()
         {

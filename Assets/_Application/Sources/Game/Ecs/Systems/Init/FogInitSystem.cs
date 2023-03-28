@@ -1,4 +1,4 @@
-using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Game.Ecs.Utils.MorpehUtils.Systems;
 using Sources.Infrastructure.Bootstrap;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.Balance;
@@ -8,17 +8,17 @@ namespace Sources.Game.Ecs.Systems.Init
     public class FogInitSystem : DInitializer
     {
         private readonly LevelContext _levelContext;
-        private readonly SimulationBalance _simulationBalance;
+        private readonly SimulationSettings _simulationSettings;
 
         public FogInitSystem()
         {
             _levelContext = DiContainer.Resolve<LevelContext>();
-            _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
+            _simulationSettings = DiContainer.Resolve<SimulationSettings>();
         }
 
         protected override void OnInitialize()
         {
-            _levelContext.Fog.SetRadius(_simulationBalance.NpcMinActiveRadius - 0.5f);
+            _levelContext.Fog.SetRadius(_simulationSettings.NpcMinActiveRadius - 0.5f);
         }
     }
 }

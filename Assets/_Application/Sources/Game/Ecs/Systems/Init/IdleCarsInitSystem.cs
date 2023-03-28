@@ -4,7 +4,8 @@ using Sources.Game.Ecs.Components.Player.User;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Factories;
 using Sources.Game.Ecs.MonoEntities;
-using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Game.Ecs.Utils.MorpehUtils;
+using Sources.Game.Ecs.Utils.MorpehUtils.Systems;
 using Sources.Infrastructure.Bootstrap;
 using Sources.Infrastructure.Bootstrap.IdleCarSpawns;
 using Sources.Infrastructure.Services;
@@ -21,12 +22,12 @@ namespace Sources.Game.Ecs.Systems.Init
         private readonly IdleCarsSystem _idleCarsSystem;
         private readonly IPhysicsService _physics;
         private readonly Assets _assets;
-        private readonly SimulationBalance _simulationBalance;
+        private readonly SimulationSettings _simulationSettings;
         private readonly ICarsFactory _carsFactory;
 
         public IdleCarsInitSystem()
         {
-            _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
+            _simulationSettings = DiContainer.Resolve<SimulationSettings>();
             _idleCarsSystem = DiContainer.Resolve<LevelContext>().IdleCarsSystem;
             _carsFactory = DiContainer.Resolve<ICarsFactory>();
             _physics = DiContainer.Resolve<IPhysicsService>();
@@ -40,7 +41,7 @@ namespace Sources.Game.Ecs.Systems.Init
 
         protected override void OnInitialize()
         {
-            float sqrMaxRadius = DMath.Sqr(_simulationBalance.NpcMaxActiveRadius);
+            float sqrMaxRadius = DMath.Sqr(_simulationSettings.NpcMaxActiveRadius);
 
             Vector3 userPosition = _userFilter.GetSingleton().Get<PlayerFollowTransform>().Position;
 

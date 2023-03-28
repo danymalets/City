@@ -37,7 +37,7 @@ namespace Sources.Infrastructure.Bootstrap.IdleCarSpawns
 
         public CarType CarType => _carType;
 
-        public CarColorType CarColor => _carType.IsColorable() ? _carColor : CarColorType.None;
+        public CarColorType? CarColor => _carType.IsColorable() ? _carColor : null;
 
         public Vector3 Position => transform.position;
         public Quaternion Rotation => transform.rotation;

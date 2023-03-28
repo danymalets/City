@@ -2,7 +2,6 @@ namespace Sources.Infrastructure.Services.Balance
 {
     public enum CarColorType
     {
-        None = 9,
         Brown = 32,
         Blue = 41,
         LightGrey = 34,

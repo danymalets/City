@@ -2,6 +2,7 @@ using System.Linq;
 using Scellecs.Morpeh;
 using Sources.Game.Components.Old.PlayerAnimators;
 using Sources.Game.Components.Views;
+using Sources.Game.Constants;
 using Sources.Game.Ecs.Aspects;
 using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Components.Npc;
@@ -13,8 +14,9 @@ using Sources.Game.Ecs.DefaultComponents;
 using Sources.Game.Ecs.DefaultComponents.Monos;
 using Sources.Game.Ecs.DefaultComponents.Views;
 using Sources.Game.Ecs.MonoEntities;
-using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Game.Ecs.Utils.MorpehUtils;
 using Sources.Game.GameObjects.RoadSystem.Pathes;
+using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.AssetsManager;
 using Sources.Infrastructure.Services.Balance;
@@ -26,9 +28,11 @@ namespace Sources.Game.Ecs.Factories
     public class PlayersFactory : Factory, IPlayersFactory
     {
         private readonly PlayersBalance _playersBalance;
+        private readonly IPhysicsService _physics;
 
-        public PlayersFactory(World world) : base(world)
+        public PlayersFactory() : base()
         {
+            _physics = DiContainer.Resolve<IPhysicsService>();
             _playersBalance = DiContainer.Resolve<Balance>().PlayersBalance;
         }
 
@@ -66,6 +70,28 @@ namespace Sources.Game.Ecs.Factories
                 .Add<ForwardTrigger>()
                 .Add<NpcTag>();
 
+        public bool TryCreateRandomNpc(Point point, out Entity createdEntity)
+        {
+            PlayerMonoEntity playerPrefab = GetRandomPlayerPrefab();
+            
+            SafeCapsuleCollider capsule = playerPrefab.PlayerBorders.SafeCapsuleCollider;
+
+            bool has = _physics.CheckCapsule(capsule.Start + point.Position, capsule.End + point.Position,
+                capsule.Radius, LayerMasks.CarsAndPlayers);
+
+            if (has)
+            {
+                createdEntity = default;
+                return false;
+            }
+            else
+            {
+                createdEntity = CreateNpcOnPath(playerPrefab, point.Position, point.Rotation,
+                    point.Targets.GetRandom().FirstPathLine);
+                return true;
+            }
+        }
+
         public Entity CreateNpcOnPath(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation, PathLine pathLine)
         {
             Entity npc = CreateNpc(playerPrefab, position, rotation);
@@ -89,6 +115,9 @@ namespace Sources.Game.Ecs.Factories
             
             return npc;
         }
+
+        public Entity CreateRandomNpcInCarOnPath(Entity car, Point point) => 
+            CreateNpcInCarOnPath(GetRandomPlayerPrefab(), car, point.Targets.First().FirstPathLine);
 
         private Entity CreatePlayer(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation)
         {

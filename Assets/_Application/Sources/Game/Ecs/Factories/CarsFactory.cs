@@ -2,13 +2,15 @@ using System.Linq;
 using Scellecs.Morpeh;
 using Sources.Game.Components.Old.CarEnterPointsData;
 using Sources.Game.Components.Views;
+using Sources.Game.Constants;
 using Sources.Game.Ecs.Aspects;
 using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.DefaultComponents;
 using Sources.Game.Ecs.DefaultComponents.Views;
 using Sources.Game.Ecs.MonoEntities;
-using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Game.Ecs.Utils.MorpehUtils;
+using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.Balance;
 using Sources.Utilities.Extensions;
@@ -19,22 +21,46 @@ namespace Sources.Game.Ecs.Factories
     public class CarsFactory : Factory, ICarsFactory
     {
         private readonly CarsBalance _carsBalance;
+        private readonly IPhysicsService _physics;
 
-        public CarsFactory(World world) : base(world)
+        public CarsFactory()
         {
             _carsBalance = DiContainer.Resolve<Balance>().CarsBalance;
+            _physics = DiContainer.Resolve<IPhysicsService>();
         }
 
-        public Entity CreateCar(CarType carType, CarColorType carColor, Vector3 position, Quaternion rotation) =>
-            CreateCar(_assets.CarsAssets.GetCarPrefab(carType), carColor, position, rotation);
+        public Entity CreateCar(CarColorData carColorData, Vector3 position, Quaternion rotation) =>
+            CreateCar(_assets.CarsAssets.GetCarPrefab(carColorData.CarType), carColorData.CarColor,
+                position, rotation);
 
         public Entity CreateRandomCar(Vector3 position, Quaternion rotation)
         {
-            (CarType carType, CarColorType carColorType) = _balance.CarsBalance.GetRandomCar();
-            return CreateCar(carType, carColorType, position, rotation);
+            CarColorData carColorData = _balance.CarsBalance.GetRandomCar();
+            return CreateCar(carColorData, position, rotation);
         }
 
-        public Entity CreateCar(CarMonoEntity carPrefab, CarColorType colorType, Vector3 position, Quaternion rotation)
+        public bool TryCreateRandomCarOnPath(Point point, out Entity createdCar)
+        {
+            CarColorData carColorData = _carsBalance.GetRandomCar();
+            CarMonoEntity carPrefab = _assets.CarsAssets.GetCarPrefab(carColorData.CarType);
+
+            bool has = _physics.CheckBox(point.Position + point.Rotation * carPrefab.CenterRelatedRootPoint,
+                carPrefab.HalfExtents,  point.Rotation , LayerMasks.CarsAndPlayers);
+
+            if (has)
+            {
+                createdCar = default;
+                return false;
+            }
+            else
+            {
+                createdCar = CreateCar(carPrefab, carColorData.CarColor,
+                    point.Position -  point.Rotation * carPrefab.RootOffset,  point.Rotation);
+                return true;
+            }
+        }
+
+        public Entity CreateCar(CarMonoEntity carPrefab, CarColorType? colorType, Vector3 position, Quaternion rotation)
         {
             CarMonoEntity carMonoEntity = _poolSpawner.Spawn(carPrefab, position, rotation);
             
@@ -52,8 +78,8 @@ namespace Sources.Game.Ecs.Factories
                         .WithY(carMonoEntity.HalfExtents.y * 2) * (1f / 3f)))
                 .SetupAspect<CarColorAspect>(cc =>
                 {
-                    if (colorType != CarColorType.None)
-                        cc.SetupColor(colorType);
+                    if (colorType != null)
+                        cc.SetupColor(colorType.Value);
                 })
                 .SetupAspect<SwitchableRigidbodyAspect>(pa =>
                 {

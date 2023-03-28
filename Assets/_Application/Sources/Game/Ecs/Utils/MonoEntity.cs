@@ -3,7 +3,6 @@ using Scellecs.Morpeh;
 using Sirenix.OdinInspector;
 using Sources.Game.Ecs.DefaultComponents.Monos;
 using Sources.Game.Ecs.DefaultComponents.Views;
-using Sources.Game.Ecs.Utils.MorpehWrapper;
 using Sources.Infrastructure.Services.Pool;
 using Sources.Utilities.Extensions;
 using UnityEngine;

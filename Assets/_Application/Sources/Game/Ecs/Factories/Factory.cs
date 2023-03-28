@@ -1,4 +1,5 @@
 using Scellecs.Morpeh;
+using Sources.Game.Ecs.Utils.MorpehUtils;
 using Sources.Infrastructure.Bootstrap;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.AssetsManager;
@@ -9,15 +10,15 @@ namespace Sources.Game.Ecs.Factories
 {
     public abstract class Factory
     {
-        protected readonly World _world;
+        protected readonly DWorld _world;
         protected readonly Assets _assets;
         protected readonly LevelContext _levelContext;
         protected readonly Balance _balance;
         protected readonly IPoolSpawnerService _poolSpawner;
 
-        protected Factory(World world)
+        protected Factory()
         {
-            _world = world;
+            _world = DiContainer.Resolve<DWorld>();
             _assets = DiContainer.Resolve<Assets>();
             _balance = DiContainer.Resolve<Balance>();
             _poolSpawner = DiContainer.Resolve<IPoolSpawnerService>();

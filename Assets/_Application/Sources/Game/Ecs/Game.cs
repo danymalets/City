@@ -17,7 +17,8 @@ using Sources.Game.Ecs.Systems.Update.NpcCar;
 using Sources.Game.Ecs.Systems.Update.Player;
 using Sources.Game.Ecs.Systems.Update.PseudoEditor;
 using Sources.Game.Ecs.Systems.Update.User;
-using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Game.Ecs.Utils.MorpehUtils;
+using Sources.Game.Ecs.Utils.MorpehUtils.CustomSystems;
 using Sources.Infrastructure.Services;
 
 namespace Sources.Game.Ecs
@@ -29,18 +30,19 @@ namespace Sources.Game.Ecs
 
         public Game()
         {
-            _world = new DWorld();
-
             _diBuilder = DiBuilder.Create();
+
+            _world = _diBuilder.Register<DWorld>();
             
             // _diBuilder.Register(_world);
-            _diBuilder.Register<IPlayersFactory>(new PlayersFactory(_world.World));
-            _diBuilder.Register<ICarsFactory>(new CarsFactory(_world.World));
-            _diBuilder.Register<IPathesFactory>(new PathesFactory(_world.World));
-            _diBuilder.Register<ICamerasFactory>(new CamerasFactory(_world.World));
+            _diBuilder.Register<IPlayersFactory>(new PlayersFactory());
+            _diBuilder.Register<ICarsFactory>(new CarsFactory());
+            _diBuilder.Register<IPathesFactory>(new PathesFactory());
+            _diBuilder.Register<ICamerasFactory>(new CamerasFactory());
             
-            _diBuilder.Register<IPlayersDespawner>(new PlayersDespawner(_world.World));
-            _diBuilder.Register<ICarsDespawner>(new CarsDespawner(_world.World));
+            _diBuilder.Register<IPlayersDespawner>(new PlayersDespawner());
+            _diBuilder.Register<ICarsDespawner>(new CarsDespawner());
+            _diBuilder.Register(new SimulationSettings());
 
             AddInitializers();
             AddUpdateSystems();

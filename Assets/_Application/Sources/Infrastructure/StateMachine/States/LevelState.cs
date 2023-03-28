@@ -30,6 +30,8 @@ namespace Sources.Infrastructure.StateMachine.States
             _diBuilder = DiBuilder.Create();
 
             _diBuilder.Register(levelData.LevelContext);
+            _gameController = new GameController();
+
             
             IUiService ui = DiContainer.Resolve<IUiService>();
             
@@ -46,7 +48,6 @@ namespace Sources.Infrastructure.StateMachine.States
 
         private void StartGame()
         {
-            _gameController = new GameController();
             _gameController.StartGame();
         }
         
@@ -76,7 +77,7 @@ namespace Sources.Infrastructure.StateMachine.States
             _levelScreen.RestartButtonClicked -= LevelScreen_OnRestartButtonClicked;
             _winScreen.NextButtonClicked -= WinScreen_OnNextButtonClicked;
             _loseScreen.RetryButtonClicked -= LoseScreen_OnRetryButtonClicked;
-            
+
             _diBuilder.Dispose();
         }
     }

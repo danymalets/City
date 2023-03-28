@@ -6,7 +6,8 @@ using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.DefaultComponents;
 using Sources.Game.Ecs.DefaultComponents.Views;
-using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Game.Ecs.Utils.MorpehUtils;
+using Sources.Game.Ecs.Utils.MorpehUtils.Systems;
 using Sources.Utilities.Extensions;
 using UnityEngine;
 

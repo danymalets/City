@@ -4,7 +4,7 @@ using Sources.Game.Ecs.Components.Collections;
 using Sources.Game.Ecs.Components.Npc;
 using Sources.Game.Ecs.Components.Npc.NpcCar;
 using Sources.Game.Ecs.Utils.Aspects;
-using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Game.Ecs.Utils.MorpehUtils;
 using Sources.Game.GameObjects.RoadSystem.Pathes;
 using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 

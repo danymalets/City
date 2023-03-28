@@ -32,15 +32,15 @@ namespace Sources.Infrastructure.Services.Balance
             }
         }
 
-        public (CarType carType, CarColorType carColorType) GetRandomCar()
+        public CarColorData GetRandomCar()
         {
             CarBalance carBalance = _carBalance.GetRandomWithWeights(pb => pb.Weight);
             CarType carType = carBalance.CarType;
 
             if (!carType.IsColorable())
-                return (carType, CarColorType.None);
+                return new CarColorData(carType, null);
 
-            return (carType, carBalance.GetRandomColor());
+            return new CarColorData(carType, carBalance.GetRandomColor());
         }
     }
 }

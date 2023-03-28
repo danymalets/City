@@ -1,14 +1,16 @@
 using Scellecs.Morpeh;
+using Sources.Game.Ecs.Utils.MorpehUtils;
+using Sources.Infrastructure.Services;
 
 namespace Sources.Game.Ecs.Despawners
 {
     public abstract class Despawner
     {
-        protected readonly World _world;
+        protected readonly DWorld _world;
 
-        protected Despawner(World world)
+        protected Despawner()
         {
-            _world = world;
+            _world = DiContainer.Resolve<DWorld>();
         }
     }
 }

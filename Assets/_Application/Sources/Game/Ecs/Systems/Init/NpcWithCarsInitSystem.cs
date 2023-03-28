@@ -6,7 +6,8 @@ using Sources.Game.Ecs.Components.Collections;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Factories;
 using Sources.Game.Ecs.MonoEntities;
-using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Game.Ecs.Utils.MorpehUtils;
+using Sources.Game.Ecs.Utils.MorpehUtils.Systems;
 using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.AssetsManager;
@@ -48,44 +49,29 @@ namespace Sources.Game.Ecs.Systems.Init
         protected override void OnInitialize()
         {
             Entity npcPathes = _carPathesFilter.GetSingleton();
-            
+
             Point[] points = npcPathes.Get<ActiveSpawnPoints>().List
                 .Concat(npcPathes.Get<HorizonSpawnPoints>().List).ToArray();
-            
+
             points.RandomShuffle();
 
             int count = 0;
             int reqCount = points.Length * _simulationBalance.CarsCountPer1000SpawnPoints / 1000;
-            
-            if (reqCount > 0)
+
+            foreach (Point point in points)
             {
-                foreach (Point point in points)
+                if (count == reqCount)
+                    break;
+
+                if (_carsFactory.TryCreateRandomCarOnPath(point, out Entity car))
                 {
-                    Quaternion carRotation = Quaternion.LookRotation(point.Direction);
+                    car.Set(new CarMaxSpeed { Value = 3f });
 
-                    (CarType carType, CarColorType carColorType) = _carsBalance.GetRandomCar();
-                    CarMonoEntity carPrefab = _assets.CarsAssets.GetCarPrefab(carType);
+                    _physics.SyncTransforms();
 
-                    bool has = _physics.CheckBox(point.Position + carRotation *
-                        carPrefab.CenterRelatedRootPoint, carPrefab.HalfExtents, carRotation, LayerMasks.CarsAndPlayers);
+                    Entity player = _playersFactory.CreateRandomNpcInCarOnPath(car, point);
 
-                    if (!has)
-                    {
-                        Entity car = _carsFactory.CreateCar(carPrefab, carColorType, point.Position - carRotation * carPrefab.RootOffset, carRotation);
-
-                        car.Set(new CarMaxSpeed { Value = 3f });
-
-                        _physics.SyncTransforms();
-
-                        PlayerType playerType = _playersBalance.GetRandomPlayerType();
-                        PlayerMonoEntity playerPrefab = _assets.PlayersAssets.GetPlayerPrefab(playerType);
-                        
-                        _playersFactory.CreateNpcInCarOnPath(playerPrefab, car, point.Targets.First().FirstPathLine);
-
-                        count++;
-                        if (count == reqCount)
-                            break;
-                    }
+                    count++;
                 }
             }
         }

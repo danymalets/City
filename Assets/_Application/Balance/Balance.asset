@@ -16,3 +16,4 @@ MonoBehaviour:
   _simulationBalance: {fileID: 11400000, guid: 4d1e8d5685f344d2ab897402dbcf9d83, type: 2}
   _playersBalance: {fileID: 11400000, guid: 4d35386de65a94752920915bd2c68438, type: 2}
   _carsBalance: {fileID: 11400000, guid: 4ca29f054aa864a8bb9f469439a607f4, type: 2}
+  <QualityBalance>k__BackingField: {fileID: 11400000, guid: 76b787ecc614e45b8a01bff7eb11ab4b, type: 2}

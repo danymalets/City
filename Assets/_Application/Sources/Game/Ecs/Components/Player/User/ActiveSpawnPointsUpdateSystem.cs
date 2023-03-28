@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components.Collections;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Game.Ecs.Utils.MorpehUtils;
+using Sources.Game.Ecs.Utils.MorpehUtils.Systems;
 using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.Balance;
@@ -16,11 +17,11 @@ namespace Sources.Game.Ecs.Components.Player.User
     {
         private Filter _pathesFilter;
         private Filter _userFilter;
-        private readonly SimulationBalance _simulationBalance;
+        private readonly SimulationSettings _simulationSettings;
 
         public ActiveSpawnPointsUpdateSystem()
         {
-            _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
+            _simulationSettings = DiContainer.Resolve<SimulationSettings>();
         }
 
         protected override void OnConstruct()
@@ -36,20 +37,20 @@ namespace Sources.Game.Ecs.Components.Player.User
             foreach (Entity pathEntity in _pathesFilter)
             {
                 float minRadius = pathEntity.Has<CarsPathesTag>() ?
-                    _simulationBalance.CarMinActiveRadius :
-                    _simulationBalance.NpcMinActiveRadius;
+                    _simulationSettings.CarMinActiveRadius :
+                    _simulationSettings.NpcMinActiveRadius;
 
                 float maxRadius = pathEntity.Has<CarsPathesTag>() ?
-                    _simulationBalance.CarMaxActiveRadius :
-                    _simulationBalance.NpcMaxActiveRadius;
+                    _simulationSettings.CarMaxActiveRadius :
+                    _simulationSettings.NpcMaxActiveRadius;
                 
                 float backMinRadius = pathEntity.Has<CarsPathesTag>() ?
-                    _simulationBalance.BackCarMinActiveRadius :
-                    _simulationBalance.BackNpcMinActiveRadius;
+                    _simulationSettings.BackCarMinActiveRadius :
+                    _simulationSettings.BackNpcMinActiveRadius;
                 
                 float backMaxRadius = pathEntity.Has<CarsPathesTag>() ?
-                    _simulationBalance.BackCarMaxActiveRadius :
-                    _simulationBalance.BackNpcMaxActiveRadius;
+                    _simulationSettings.BackCarMaxActiveRadius :
+                    _simulationSettings.BackNpcMaxActiveRadius;
                 
                 List<Point> allSpawnPoints = pathEntity.Get<AllSpawnPoints>().List;
                 List<Point> activePoints = pathEntity.Get<ActiveSpawnPoints>().List;

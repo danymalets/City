@@ -12,6 +12,7 @@ using Sources.Infrastructure.Services.Instantiator;
 using Sources.Infrastructure.Services.JsonSerializer;
 using Sources.Infrastructure.Services.PlayerPreferences;
 using Sources.Infrastructure.Services.Pool;
+using Sources.Infrastructure.Services.Quality;
 using Sources.Infrastructure.Services.SceneLoader;
 using Sources.Infrastructure.Services.Screens;
 using Sources.Infrastructure.Services.Times;
@@ -49,7 +50,7 @@ namespace Sources.Infrastructure.StateMachine.States
             _diBuilder.Register<PlayerPrefsService, IPlayerPrefsService>();
             _diBuilder.Register<UserService, IUserAccessService, IUserSaveService>();
             _diBuilder.Register<VibrationService, IVibrationService>();
-            _diBuilder.Register(monoServices.Assets);
+            _diBuilder.Register<Assets>(monoServices.Assets);
             _diBuilder.Register<PoolService, IPoolCreatorService, IPoolSpawnerService>(monoServices.PoolService);
             _diBuilder.Register<TimeService, ITimeService>();
             _diBuilder.Register<FpsService, IFpsService>();
@@ -57,6 +58,7 @@ namespace Sources.Infrastructure.StateMachine.States
             _diBuilder.Register<Balance>(monoServices.BalanceService);
             _diBuilder.Register<UiService, IUiService, IUiRefreshService, IUiCloseService>(monoServices.UiService);
             _diBuilder.Register<IGizmosService>(monoServices.GizmosService);
+            _diBuilder.Register<QualityService, IQualityAccessService, IQualityChangerService>();
 
             gameObjectService.DontDestroyOnLoad(monoServices.gameObject);
 

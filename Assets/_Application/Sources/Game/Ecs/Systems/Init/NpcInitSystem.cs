@@ -9,7 +9,8 @@ using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.DefaultComponents.Monos;
 using Sources.Game.Ecs.Factories;
 using Sources.Game.Ecs.MonoEntities;
-using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Game.Ecs.Utils.MorpehUtils;
+using Sources.Game.Ecs.Utils.MorpehUtils.Systems;
 using Sources.Game.GameObjects.RoadSystem;
 using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.Infrastructure.Bootstrap;
@@ -49,44 +50,25 @@ namespace Sources.Game.Ecs.Systems.Init
         protected override void OnInitialize()
         {
             Entity npcPathes = _npcPathesFilter.GetSingleton();
-            
+
             Point[] points = npcPathes.Get<ActiveSpawnPoints>().List
                 .Concat(npcPathes.Get<HorizonSpawnPoints>().List).ToArray();
 
             points.RandomShuffle();
-            
+
             int count = 0;
             int reqCount = points.Length * _simulationBalance.NpcCountPer1000SpawnPoints / 1000;
-            
-            // Vector3[] kus = GameObject.FindObjectsOfType<Transform>()
-            //     .Where(t => t.gameObject.name == "ku").Select(t => t.position).ToArray();
-            //
-            // points = points.Where(p => kus.Any(k => Vector3.Distance(p.Position, k) <= 0.5f)).ToArray();
 
-            if (reqCount > 0)
+            foreach (Point point in points)
             {
-
-                foreach (Point point in points)
+                if (count == reqCount)
+                    break;
+                
+                if (_playersFactory.TryCreateRandomNpc(point, out Entity createdEntity))
                 {
-                    Quaternion npcRotation = Quaternion.LookRotation(point.Direction);
+                    _physics.SyncTransforms();
 
-                    PlayerMonoEntity playerPrefab = _playersFactory.GetRandomPlayerPrefab();
-                    
-                    SafeCapsuleCollider capsule = playerPrefab.PlayerBorders.SafeCapsuleCollider;
-
-                    bool has = _physics.CheckCapsule(capsule.Start + point.Position, capsule.End + point.Position, capsule.Radius, LayerMasks.CarsAndPlayers);
-
-                    if (!has)
-                    {
-                        Entity npc = _playersFactory.CreateNpcOnPath(playerPrefab, point.Position, npcRotation,
-                            point.Targets.GetRandom().FirstPathLine);
-
-                        _physics.SyncTransforms();
-
-                        count++;
-                        if (count == reqCount)
-                            break;
-                    }
+                    count++;
                 }
             }
         }

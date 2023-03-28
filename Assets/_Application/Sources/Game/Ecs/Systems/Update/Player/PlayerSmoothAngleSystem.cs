@@ -2,7 +2,8 @@ using Scellecs.Morpeh;
 using Sources.Game.Ecs.Components.Npc;
 using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
-using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Game.Ecs.Utils.MorpehUtils;
+using Sources.Game.Ecs.Utils.MorpehUtils.Systems;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.Player

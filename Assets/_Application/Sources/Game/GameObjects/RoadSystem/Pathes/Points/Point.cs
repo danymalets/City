@@ -14,7 +14,8 @@ namespace Sources.Game.GameObjects.RoadSystem.Pathes.Points
         public Vector3 Direction { get; }
         public List<TurnData> Targets { get; } = new();
         public List<PathLine> Sources { get; } = new();
-        
+        public Quaternion Rotation => Quaternion.LookRotation(Direction);
+
         public Point(Vector3 position, Vector3 direction, bool isSpawnPoint)
         {
             Position = position;

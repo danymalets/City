@@ -1,3 +1,4 @@
+using System;
 using Sources.Game.Controllers.InputControllers;
 using Sources.Game.Ecs;
 using Sources.Game.Ecs.MonoEntities;
@@ -41,57 +42,40 @@ namespace Sources.Game.Controllers
             IUiService ui = DiContainer.Resolve<IUiService>();
             _fpsService = DiContainer.Resolve<IFpsService>();
 
+
             _diBuilder = DiBuilder.Create();
 
             _diBuilder.Register<CarInputService, ICarInputService>();
             _diBuilder.Register<PlayerInputService, IPlayerInputService>();
 
+            _game = new Ecs.Game();
+            
             _levelScreen = ui.Get<LevelScreen>();
             _loadingScreen = ui.Get<LoadingScreen>();
             _carInputScreen = ui.Get<CarInputScreen>();
 
             _uiClose = DiContainer.Resolve<IUiCloseService>();
-            
+
             _audio = DiContainer.Resolve<IAudioService>();
 
-            _game = new Ecs.Game();
-
             _coroutineContext = new CoroutineContext();
-            
+
             _inputController = new InputController();
         }
-
+        
         public void StartGame()
         {
             //_audio.PlayMusic(MusicType.RoadNoise);
-
-            PreparePool();
             
             _levelScreen.Open(_level);
             _levelScreen.EnableRestartButton();
 
-            _coroutineContext.RunWithDelay(0.1f, () =>
-            {
-                _game.StartGame();
+            _game.StartGame();
             
-                _fpsService.RunWhenFpsStabilizes(() => _loadingScreen.Close());
+            _coroutineContext.RunWithDelay(5f, () =>
+            {
+                _loadingScreen.Close();
             });
-        }
-
-        private void PreparePool()
-        {
-            IPoolCreatorService poolCreatorService = DiContainer.Resolve<IPoolCreatorService>();
-            Assets assets = DiContainer.Resolve<Assets>();
-            
-            foreach (CarMonoEntity carPrefab in assets.CarsAssets.CarPrefabs)
-            {
-                poolCreatorService.CreatePool(new PoolConfig(carPrefab, 40));
-            }
-            
-            foreach (PlayerMonoEntity playerPrefab in assets.PlayersAssets.PlayerPrefabs)
-            {
-                poolCreatorService.CreatePool(new PoolConfig(playerPrefab, 40));
-            }
         }
 
         public void FinishGame()
@@ -99,7 +83,7 @@ namespace Sources.Game.Controllers
             _game.FinishGame();
             _audio.StopAll();
             _uiClose.CloseAll();
-            
+
             _diBuilder.Dispose();
         }
     }

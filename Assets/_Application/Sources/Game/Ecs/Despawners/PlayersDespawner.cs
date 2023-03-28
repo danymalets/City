@@ -2,16 +2,13 @@ using Scellecs.Morpeh;
 using Sources.Game.Ecs.Aspects;
 using Sources.Game.Ecs.Components.Car;
 using Sources.Game.Ecs.Components.Player;
-using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Game.Ecs.Utils.MorpehUtils;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Despawners
 {
     public class PlayersDespawner : Despawner, IPlayersDespawner
     {
-        public PlayersDespawner(World world) : base(world)
-        {
-        }
 
         public void DespawnNpc(Entity playerEntity)
         {

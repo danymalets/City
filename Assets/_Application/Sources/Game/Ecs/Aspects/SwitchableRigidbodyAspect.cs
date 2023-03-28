@@ -3,7 +3,7 @@ using Sources.Game.Ecs.DefaultComponents;
 using Sources.Game.Ecs.DefaultComponents.Monos;
 using Sources.Game.Ecs.DefaultComponents.Views;
 using Sources.Game.Ecs.Utils.Aspects;
-using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Game.Ecs.Utils.MorpehUtils;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Aspects

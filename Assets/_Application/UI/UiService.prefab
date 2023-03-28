@@ -915,6 +915,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1928246730576272125, guid: 49f332d1aba9f40bebcfa799bc12a972, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928246730576272125, guid: 49f332d1aba9f40bebcfa799bc12a972, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928246730576272125, guid: 49f332d1aba9f40bebcfa799bc12a972, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928246730576272125, guid: 49f332d1aba9f40bebcfa799bc12a972, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928246730576272125, guid: 49f332d1aba9f40bebcfa799bc12a972, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928246730576272125, guid: 49f332d1aba9f40bebcfa799bc12a972, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3658791815095437816, guid: 49f332d1aba9f40bebcfa799bc12a972, type: 3}
       propertyPath: m_Name
       value: PerformanceScreen
@@ -1141,7 +1165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7934728908865116120, guid: 49f332d1aba9f40bebcfa799bc12a972, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 314.14716
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7934728908865116120, guid: 49f332d1aba9f40bebcfa799bc12a972, type: 3}
       propertyPath: m_AnchoredPosition.y

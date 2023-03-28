@@ -8,7 +8,8 @@ using Sources.Game.Ecs.Components.Player;
 using Sources.Game.Ecs.Components.Tags;
 using Sources.Game.Ecs.Factories;
 using Sources.Game.Ecs.MonoEntities;
-using Sources.Game.Ecs.Utils.MorpehWrapper;
+using Sources.Game.Ecs.Utils.MorpehUtils;
+using Sources.Game.Ecs.Utils.MorpehUtils.Systems;
 using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.AssetsManager;
@@ -57,36 +58,22 @@ namespace Sources.Game.Ecs.Systems.Update.Generation
             List<Point> horizonPoints = pathesEntity.Get<HorizonSpawnPoints>().List;
 
             int reqCars = (activePoints.Count + horizonPoints.Count) * _simulationBalance.CarsCountPer1000SpawnPoints / 1000;
+            
+            horizonPoints.RandomShuffle();
 
-            reqCars = 0;
-
-            if (cars < reqCars)
+            foreach (Point point in horizonPoints)
             {
-                horizonPoints.RandomShuffle();
+                if (cars >= reqCars)
+                    return;
 
-                (CarType carType, CarColorType carColorType) = _carsBalance.GetRandomCar();
-                CarMonoEntity carPrefab = _assets.CarsAssets.GetCarPrefab(carType);
-
-                foreach (Point point in horizonPoints)
+                if (_carsFactory.TryCreateRandomCarOnPath(point, out Entity car))
                 {
-                    Quaternion carRotation = Quaternion.LookRotation(point.Direction);
+                    car.Set(new CarMaxSpeed { Value = 3f });
 
-                    bool has = _physics.CheckBox(point.Position + carRotation *
-                        carPrefab.CenterRelatedRootPoint, carPrefab.HalfExtents, carRotation, LayerMasks.CarsAndPlayers);
+                    Entity player = _playersFactory.CreateRandomNpcInCarOnPath(car, point);
+                    cars++;
 
-                    if (!has)
-                    {
-                        Entity car = _carsFactory.CreateCar(carPrefab, carColorType,point.Position - carRotation * carPrefab.RootOffset, carRotation);
-
-                        car.Set(new CarMaxSpeed { Value = 3f });
-
-                        PlayerType playerType = _playersBalance.GetRandomPlayerType();
-                        PlayerMonoEntity playerPrefab = _assets.PlayersAssets.GetPlayerPrefab(playerType);
-                        
-                        _playersFactory.CreateNpcInCarOnPath(playerPrefab, car, point.Targets.First().FirstPathLine);
-
-                        break;
-                    }
+                    break;
                 }
             }
         }

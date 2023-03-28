@@ -9,6 +9,7 @@ using Sources.Infrastructure.StateMachine.Machine;
 using Sources.Infrastructure.StateMachine.StateBase;
 using Sources.UI.Screens;
 using Sources.UI.System;
+using UnityEngine.SceneManagement;
 
 namespace Sources.Infrastructure.StateMachine.States
 {
@@ -39,7 +40,9 @@ namespace Sources.Infrastructure.StateMachine.States
             //LevelBalance balance = _balanceService.GetLevelBalance(realLevel);
             
             _loadingScreen.Open();
-
+            
+            SceneManager.LoadScene($"Empty");
+            
             _sceneLoader.LoadScene<LevelContext>(cityScene, levelContext => 
                 EnterLevelState(new LevelData(level, levelContext)));
         }
