@@ -10,6 +10,7 @@ using Sources.Infrastructure.Services.Fps;
 using Sources.Infrastructure.Services.Gizmoses;
 using Sources.Infrastructure.Services.Instantiator;
 using Sources.Infrastructure.Services.JsonSerializer;
+using Sources.Infrastructure.Services.Physics;
 using Sources.Infrastructure.Services.PlayerPreferences;
 using Sources.Infrastructure.Services.Pool;
 using Sources.Infrastructure.Services.Quality;

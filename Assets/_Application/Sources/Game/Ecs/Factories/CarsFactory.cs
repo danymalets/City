@@ -13,6 +13,7 @@ using Sources.Game.Ecs.Utils.MorpehUtils;
 using Sources.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.Balance;
+using Sources.Infrastructure.Services.Physics;
 using Sources.Utilities.Extensions;
 using UnityEngine;
 

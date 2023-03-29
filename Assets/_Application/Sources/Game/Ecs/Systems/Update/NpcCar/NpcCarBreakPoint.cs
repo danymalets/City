@@ -7,6 +7,7 @@ using Sources.Game.Ecs.DefaultComponents.Views;
 using Sources.Game.Ecs.Utils.MorpehUtils;
 using Sources.Game.Ecs.Utils.MorpehUtils.Systems;
 using Sources.Infrastructure.Services;
+using Sources.Infrastructure.Services.Physics;
 using UnityEngine;
 
 namespace Sources.Game.Ecs.Systems.Update.NpcCar

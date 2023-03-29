@@ -12,10 +12,8 @@ namespace Sources.Infrastructure.Bootstrap
         [SerializeField]
         private MonoServices _monoServices;
 
-        protected override void Awake()
+        private void Awake()
         {
-            base.Awake();
-            
             if (Application.isPlaying)
                 StartGameStateMachine();
         }

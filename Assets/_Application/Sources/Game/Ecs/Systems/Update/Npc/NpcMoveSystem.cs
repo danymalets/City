@@ -8,6 +8,7 @@ using Sources.Game.Ecs.Utils;
 using Sources.Game.Ecs.Utils.MorpehUtils;
 using Sources.Game.Ecs.Utils.MorpehUtils.Systems;
 using Sources.Infrastructure.Services;
+using Sources.Infrastructure.Services.Physics;
 using Sources.Utilities.Extensions;
 using UnityEngine;
 

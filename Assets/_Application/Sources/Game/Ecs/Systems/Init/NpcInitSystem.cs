@@ -17,6 +17,7 @@ using Sources.Infrastructure.Bootstrap;
 using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.AssetsManager;
 using Sources.Infrastructure.Services.Balance;
+using Sources.Infrastructure.Services.Physics;
 using Sources.Utilities.Extensions;
 using UnityEngine;
 

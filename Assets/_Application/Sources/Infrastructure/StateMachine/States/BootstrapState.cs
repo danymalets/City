@@ -3,6 +3,7 @@ using Sources.Infrastructure.Services;
 using Sources.Infrastructure.Services.ApplicationCycle;
 using Sources.Infrastructure.Services.AssetsManager;
 using Sources.Infrastructure.Services.Fps;
+using Sources.Infrastructure.Services.Physics;
 using Sources.Infrastructure.Services.Pool;
 using Sources.Infrastructure.Services.Screens;
 using Sources.Infrastructure.Services.Times;
