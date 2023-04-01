@@ -1,14 +1,14 @@
+using _Application.Sources.MonoViews.MonoViews;
+using _Application.Sources.Utils.Data;
 using Scellecs.Morpeh;
-using Sources.App.Game.Components.Monos;
-using Sources.App.Game.Components.Old;
 using Sources.App.Game.Ecs.Components.Car;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.Balance;
 using Sources.Di;
 using Sources.DMorpeh.DefaultComponents.Views;
 using Sources.DMorpeh.MorpehUtils.Extensions;
 using Sources.DMorpeh.MorpehUtils.Systems;
+using Sources.Services.BalanceManager;
 using Sources.Utils.Extensions;
 using UnityEngine;
 
@@ -21,7 +21,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.Npc
 
         public NpcForwardColliderSystem()
         {
-            _simulationBalance = DiContainer.Resolve<Balance.Balance>().SimulationBalance;
+            _simulationBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().SimulationBalance;
         }
 
         protected override void OnConstruct()

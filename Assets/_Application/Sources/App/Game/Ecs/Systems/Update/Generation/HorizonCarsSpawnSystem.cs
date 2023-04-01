@@ -6,12 +6,13 @@ using Sources.App.Game.Ecs.Components.Collections;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.App.Game.Ecs.Factories;
-using Sources.App.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.AssetsManager;
-using Sources.Balance;
+using Sources.Data.RoadSystem.Pathes.Points;
 using Sources.Di;
 using Sources.DMorpeh.MorpehUtils.Extensions;
 using Sources.DMorpeh.MorpehUtils.Systems;
+using Sources.Services.AssetsManager;
+using Sources.Services.BalanceManager;
 using Sources.Services.Physics;
 using Sources.Utils.Extensions;
 
@@ -31,9 +32,9 @@ namespace Sources.App.Game.Ecs.Systems.Update.Generation
 
         public HorizonCarsSpawnSystem()
         {
-            _simulationBalance = DiContainer.Resolve<Balance.Balance>().SimulationBalance;
-            _playersBalance = DiContainer.Resolve<Balance.Balance>().PlayersBalance;
-            _carsBalance = DiContainer.Resolve<Balance.Balance>().CarsBalance;
+            _simulationBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().SimulationBalance;
+            _playersBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().PlayersBalance;
+            _carsBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().CarsBalance;
             _physics = DiContainer.Resolve<IPhysicsService>();
             _assets = DiContainer.Resolve<Assets>();
             _carsFactory = DiContainer.Resolve<ICarsFactory>();

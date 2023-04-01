@@ -1,5 +1,5 @@
 using System;
-using Sources.App.Infrastructure.ApplicationInput;
+using _Application.Sources.Services.ApplicationInput;
 using Sources.Di;
 using Sources.Services.CoroutineRunner;
 using UnityEngine;

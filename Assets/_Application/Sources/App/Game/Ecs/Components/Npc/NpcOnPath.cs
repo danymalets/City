@@ -1,5 +1,5 @@
 using Scellecs.Morpeh;
-using Sources.App.Game.GameObjects.RoadSystem.Pathes;
+using Sources.Data.RoadSystem.Pathes;
 
 namespace Sources.App.Game.Ecs.Components.Npc
 {

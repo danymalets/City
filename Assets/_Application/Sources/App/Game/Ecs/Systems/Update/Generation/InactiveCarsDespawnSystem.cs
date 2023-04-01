@@ -1,5 +1,5 @@
+using _Application.Sources.MonoViews.MonoViews;
 using Scellecs.Morpeh;
-using Sources.App.Game.Components.Monos;
 using Sources.App.Game.Ecs.Components.Car;
 using Sources.App.Game.Ecs.Components.Player.User;
 using Sources.App.Game.Ecs.Components.Tags;

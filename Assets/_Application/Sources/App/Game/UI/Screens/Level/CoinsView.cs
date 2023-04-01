@@ -1,5 +1,5 @@
 using Sources.Di;
-using Sources.User;
+using Sources.Services.UserService;
 using TMPro;
 using UnityEngine;
 

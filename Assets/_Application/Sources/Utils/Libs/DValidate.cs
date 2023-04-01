@@ -1,28 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Sources.App.Game.Constants;
-using Sources.DMorpeh.DefaultComponents.Monos;
 using Sources.Utils.Extensions;
 
 namespace Sources.Utils.Libs
 {
     public static class DValidate
     {
-        public static void SetupLayer(IEnumerable<SafeColliderBase> entityColliders, int layer)
-        {
-            if (entityColliders != null)
-            {
-                foreach (SafeColliderBase entityCollider in entityColliders)
-                {
-                    if (entityCollider != null)
-                    {
-                        entityCollider.Layer = Layers.Car;
-                    }
-                }
-            }
-        }
-        
         public static void OptimizeEnumsData<T, TEnum>(List<T> list, Func<T, TEnum> getEnum, Func<TEnum, T> creatEnum, TEnum[] except = null)
             where TEnum : Enum
         {

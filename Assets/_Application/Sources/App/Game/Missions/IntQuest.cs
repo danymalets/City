@@ -1,3 +1,5 @@
+using Sources.Services.UserService;
+
 namespace Sources.App.Game.Missions
 {
     public abstract class IntQuest<TProgress> : Quest<TProgress>

@@ -1,19 +1,19 @@
 using System.Linq;
+using _Application.Sources.MonoViews;
+using _Application.Sources.MonoViews.MonoViews;
 using Scellecs.Morpeh;
-using Sources.App.Game.Components.Monos;
-using Sources.App.Game.Components.Old.CarEnterPointsData;
 using Sources.App.Game.Constants;
 using Sources.App.Game.Ecs.Aspects;
 using Sources.App.Game.Ecs.Components.Car;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.App.Game.Ecs.MonoEntities;
-using Sources.App.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.AssetsManager;
-using Sources.Balance;
+using Sources.Data.RoadSystem.Pathes.Points;
 using Sources.Di;
 using Sources.DMorpeh.DefaultComponents;
 using Sources.DMorpeh.DefaultComponents.Views;
 using Sources.DMorpeh.MorpehUtils.Extensions;
+using Sources.Services.BalanceManager;
 using Sources.Services.Physics;
 using Sources.Utils.Extensions;
 using UnityEngine;
@@ -27,7 +27,7 @@ namespace Sources.App.Game.Ecs.Factories
 
         public CarsFactory()
         {
-            _carsBalance = DiContainer.Resolve<Balance.Balance>().CarsBalance;
+            _carsBalance = DiContainer.Resolve<Balance>().CarsBalance;
             _physics = DiContainer.Resolve<IPhysicsService>();
         }
 

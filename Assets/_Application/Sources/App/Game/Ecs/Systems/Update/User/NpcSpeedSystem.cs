@@ -1,10 +1,10 @@
 using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.Balance;
 using Sources.Di;
 using Sources.DMorpeh.MorpehUtils.Extensions;
 using Sources.DMorpeh.MorpehUtils.Systems;
+using Sources.Services.BalanceManager;
 using Sources.Utils.Extensions;
 
 namespace Sources.App.Game.Ecs.Systems.Update.User
@@ -16,7 +16,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.User
 
         public NpcSpeedSystem()
         {
-            _playerBalance = DiContainer.Resolve<Balance.Balance>().PlayersBalance;
+            _playerBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().PlayersBalance;
         }
 
         protected override void OnConstruct()

@@ -4,9 +4,9 @@ using Sources.App.Game.UI.Screens.Input;
 using Sources.App.Game.UI.Screens.Level;
 using Sources.App.Game.UI.System;
 using Sources.App.Infrastructure.Bootstrap;
-using Sources.Balance;
 using Sources.Di;
 using Sources.Services.Audio;
+using Sources.Services.BalanceManager;
 using Sources.Services.CoroutineRunner;
 using Sources.Services.Fps;
 
@@ -17,7 +17,6 @@ namespace Sources.App.Game
         private readonly LevelScreen _levelScreen;
         private readonly CarInputScreen _carInputScreen;
 
-        private readonly LevelBalance _balance;
         private readonly LevelContext _levelContext;
 
         private readonly IAudioService _audio;

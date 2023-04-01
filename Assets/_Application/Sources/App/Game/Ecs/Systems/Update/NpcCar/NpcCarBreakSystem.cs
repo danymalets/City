@@ -1,16 +1,16 @@
+using _Application.Sources.MonoViews.MonoViews;
 using Scellecs.Morpeh;
-using Sources.App.Game.Components.Monos;
 using Sources.App.Game.Ecs.Components.Car;
 using Sources.App.Game.Ecs.Components.Npc;
 using Sources.App.Game.Ecs.Components.Npc.NpcCar;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.App.Game.GameObjects.RoadSystem.Pathes.Points;
-using Sources.Balance;
+using Sources.Data.RoadSystem.Pathes.Points;
 using Sources.Di;
 using Sources.DMorpeh.DefaultComponents.Views;
 using Sources.DMorpeh.MorpehUtils.Extensions;
 using Sources.DMorpeh.MorpehUtils.Systems;
+using Sources.Services.BalanceManager;
 using UnityEngine;
 
 namespace Sources.App.Game.Ecs.Systems.Update.NpcCar
@@ -22,7 +22,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.NpcCar
 
         public NpcCarBreakSystem()
         {
-            _simulationBalance = DiContainer.Resolve<Balance.Balance>().SimulationBalance;
+            _simulationBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().SimulationBalance;
         }
 
         protected override void OnConstruct()

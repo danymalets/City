@@ -1,6 +1,6 @@
 using System.Linq;
+using _Application.Sources.MonoViews;
 using Scellecs.Morpeh;
-using Sources.App.Game.Components.Old.CarEnterPointsData;
 using Sources.App.Game.Ecs.Components.Car;
 using Sources.App.Game.Ecs.Components.Npc;
 using Sources.App.Game.Ecs.Components.Player;

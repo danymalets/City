@@ -1,8 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Sources.App.Game.UI.Overlays;
-using Sources.App.Game.UI.System;
-using Sources.Di;
 using Sources.DMorpeh.MorpehUtils.Systems;
 using Sources.Utils.Extensions;
 using UnityEngine;
@@ -41,7 +38,7 @@ namespace Sources.DMorpeh.MorpehUtils
             
             Debug.Log(text);
 
-            DiContainer.Resolve<IUiService>().Get<PerformanceScreen>().SetInfoText(text);
+            // DiContainer.Resolve<IUiService>().Get<PerformanceScreen>().SetInfoText(text);
         }
 
         private string GetDebugText(Dictionary<DUpdateSystem, long> data) => 

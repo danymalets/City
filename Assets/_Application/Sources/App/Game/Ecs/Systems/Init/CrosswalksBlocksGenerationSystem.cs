@@ -3,12 +3,12 @@ using System.Linq;
 using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Collections;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.App.Game.GameObjects.RoadSystem.Pathes;
-using Sources.App.Game.GameObjects.RoadSystem.Pathes.Points;
-using Sources.Balance;
+using Sources.Data.RoadSystem.Pathes;
+using Sources.Data.RoadSystem.Pathes.Points;
 using Sources.Di;
 using Sources.DMorpeh.MorpehUtils.Extensions;
 using Sources.DMorpeh.MorpehUtils.Systems;
+using Sources.Services.BalanceManager;
 
 namespace Sources.App.Game.Ecs.Systems.Init
 {
@@ -19,7 +19,7 @@ namespace Sources.App.Game.Ecs.Systems.Init
 
         protected override void OnConstruct()
         {
-            _simulationBalance = DiContainer.Resolve<Balance.Balance>().SimulationBalance;
+            _simulationBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().SimulationBalance;
             _filter = _world.Filter<PathesTag>();
         }
 

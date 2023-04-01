@@ -1,13 +1,13 @@
 using System.Linq;
+using _Application.Sources.MonoViews;
+using _Application.Sources.MonoViews.MonoViews;
 using Scellecs.Morpeh;
-using Sources.App.Game.Components.Monos;
 using Sources.App.Game.Ecs.Components.Car;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.App.Game.GameObjects.Cars;
-using Sources.Balance;
 using Sources.Di;
 using Sources.DMorpeh.MorpehUtils.Extensions;
 using Sources.DMorpeh.MorpehUtils.Systems;
+using Sources.Services.BalanceManager;
 
 namespace Sources.App.Game.Ecs.Systems.Update.Car
 {
@@ -18,7 +18,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.Car
 
         public CarMotorApplySystem()
         {
-            _carsBalance = DiContainer.Resolve<Balance.Balance>().CarsBalance;
+            _carsBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().CarsBalance;
         }
 
         protected override void OnConstruct()

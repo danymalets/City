@@ -6,12 +6,13 @@ using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.App.Game.Ecs.Factories;
 using Sources.App.Game.Ecs.MonoEntities;
-using Sources.App.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.AssetsManager;
-using Sources.Balance;
+using Sources.Data.RoadSystem.Pathes.Points;
 using Sources.Di;
 using Sources.DMorpeh.MorpehUtils.Extensions;
 using Sources.DMorpeh.MorpehUtils.Systems;
+using Sources.Services.AssetsManager;
+using Sources.Services.BalanceManager;
 using Sources.Services.Physics;
 using Sources.Utils.Extensions;
 
@@ -29,7 +30,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.Generation
 
         public HorizonNpcSpawnSystem()
         {
-            Balance.Balance balance = DiContainer.Resolve<Balance.Balance>();
+            Services.BalanceManager.Balance balance = DiContainer.Resolve<Services.BalanceManager.Balance>();
 
             _simulationBalance = balance.SimulationBalance;
             _playersBalance = balance.PlayersBalance;

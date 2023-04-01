@@ -1,5 +1,5 @@
-using Sources.Balance;
 using Sources.Di;
+using Sources.Services.BalanceManager;
 
 namespace Sources.Services.Quality
 {

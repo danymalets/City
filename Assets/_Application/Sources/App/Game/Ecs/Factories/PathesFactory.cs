@@ -3,9 +3,9 @@ using System.Linq;
 using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Collections;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.App.Game.GameObjects.RoadSystem;
-using Sources.App.Game.GameObjects.RoadSystem.Pathes;
-using Sources.App.Game.GameObjects.RoadSystem.Pathes.Points;
+using Sources.Data.RoadSystem;
+using Sources.Data.RoadSystem.Pathes;
+using Sources.Data.RoadSystem.Pathes.Points;
 using Sources.DMorpeh.MorpehUtils.Extensions;
 
 namespace Sources.App.Game.Ecs.Factories

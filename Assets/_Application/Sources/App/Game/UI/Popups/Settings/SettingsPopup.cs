@@ -1,7 +1,7 @@
 using Sources.App.Game.UI.WindowBase.Popups;
 using Sources.Di;
 using Sources.Services.Audio;
-using Sources.User;
+using Sources.Services.UserService;
 using UnityEngine;
 
 namespace Sources.App.Game.UI.Popups.Settings

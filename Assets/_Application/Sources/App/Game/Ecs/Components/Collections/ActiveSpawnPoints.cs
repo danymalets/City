@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Scellecs.Morpeh;
-using Sources.App.Game.GameObjects.RoadSystem.Pathes.Points;
+using Sources.Data.RoadSystem.Pathes.Points;
 
 namespace Sources.App.Game.Ecs.Components.Collections
 {

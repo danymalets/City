@@ -6,6 +6,7 @@ using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.AssetsManager;
 using Sources.Di;
 using Sources.Services.ApplicationCycle;
+using Sources.Services.AssetsManager;
 using Sources.Services.Physics;
 using Sources.Services.Pool;
 using Sources.Services.Screens;

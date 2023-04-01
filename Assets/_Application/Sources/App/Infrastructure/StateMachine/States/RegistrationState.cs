@@ -1,11 +1,12 @@
+using _Application.Sources.Services.ApplicationInput;
 using Sources.App.Game.UI.System;
-using Sources.App.Infrastructure.ApplicationInput;
 using Sources.App.Infrastructure.Bootstrap;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.AssetsManager;
 using Sources.Di;
 using Sources.Services.ApplicationCycle;
+using Sources.Services.AssetsManager;
 using Sources.Services.Audio;
 using Sources.Services.CoroutineRunner;
 using Sources.Services.Fps;
@@ -19,8 +20,8 @@ using Sources.Services.Quality;
 using Sources.Services.SceneLoader;
 using Sources.Services.Screens;
 using Sources.Services.Times;
+using Sources.Services.UserService;
 using Sources.Services.Vibration;
-using Sources.User;
 
 namespace Sources.App.Infrastructure.StateMachine.States
 {
@@ -54,7 +55,7 @@ namespace Sources.App.Infrastructure.StateMachine.States
             _diBuilder.Register<TimeService, ITimeService>();
             _diBuilder.Register<FpsService, IFpsService>();
             _diBuilder.Register<IAudioService>(monoServices.AudioService);
-            _diBuilder.Register<Balance.Balance>(monoServices.BalanceService);
+            _diBuilder.Register<Services.BalanceManager.Balance>(monoServices.BalanceService);
             _diBuilder.Register<UiService, IUiService, IUiRefreshService, IUiCloseService>(monoServices.UiService);
             _diBuilder.Register<IGizmosService>(monoServices.GizmosService);
             _diBuilder.Register<QualityService, IQualityAccessService, IQualityChangerService>();

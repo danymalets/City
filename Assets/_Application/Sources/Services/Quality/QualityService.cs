@@ -1,7 +1,8 @@
-using Sources.Balance;
+using _Application.Sources.Data;
 using Sources.Di;
+using Sources.Services.BalanceManager;
 using Sources.Services.Times;
-using Sources.User;
+using Sources.Services.UserService;
 using UnityEngine;
 
 namespace Sources.Services.Quality
@@ -17,7 +18,7 @@ namespace Sources.Services.Quality
         public QualityService()
         {
             _preferences = DiContainer.Resolve<IUserAccessService>().User.Preferences;
-            _qualityBalance = DiContainer.Resolve<Balance.Balance>().QualityBalance;
+            _qualityBalance = DiContainer.Resolve<Balance>().QualityBalance;
             _time = DiContainer.Resolve<ITimeService>();
         }
 

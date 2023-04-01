@@ -1,4 +1,4 @@
-using Sources.App.Game.Components.Old;
+using _Application.Sources.Utils.Data;
 using UnityEngine;
 
 namespace Sources.DMorpeh.DefaultComponents.Views

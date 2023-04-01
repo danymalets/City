@@ -3,14 +3,15 @@ using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Collections;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.App.Game.Ecs.Factories;
-using Sources.App.Game.GameObjects.RoadSystem;
-using Sources.App.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.App.Infrastructure.Bootstrap;
 using Sources.AssetsManager;
-using Sources.Balance;
+using Sources.Data.RoadSystem;
+using Sources.Data.RoadSystem.Pathes.Points;
 using Sources.Di;
 using Sources.DMorpeh.MorpehUtils.Extensions;
 using Sources.DMorpeh.MorpehUtils.Systems;
+using Sources.Services.AssetsManager;
+using Sources.Services.BalanceManager;
 using Sources.Services.Physics;
 using Sources.Utils.Extensions;
 
@@ -30,8 +31,8 @@ namespace Sources.App.Game.Ecs.Systems.Init
         {
             _physics = DiContainer.Resolve<IPhysicsService>();
             _assets = DiContainer.Resolve<Assets>();
-            _simulationBalance = DiContainer.Resolve<Balance.Balance>().SimulationBalance;
-            _playersBalance = DiContainer.Resolve<Balance.Balance>().PlayersBalance;
+            _simulationBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().SimulationBalance;
+            _playersBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().PlayersBalance;
             _pathSystem = DiContainer.Resolve<LevelContext>().NpcPathSystem;
             _playersFactory = DiContainer.Resolve<IPlayersFactory>();
         }

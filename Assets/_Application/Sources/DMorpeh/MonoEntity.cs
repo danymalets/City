@@ -1,7 +1,6 @@
 using Scellecs.Morpeh;
 using Sirenix.OdinInspector;
 using Sources.DMorpeh.DefaultComponents.Monos;
-using Sources.DMorpeh.DefaultComponents.Views;
 using Sources.Services.Pool;
 using Sources.Utils.Extensions;
 using UnityEngine;

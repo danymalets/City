@@ -1,6 +1,6 @@
 using Sources.Data.Live;
 using Sources.Di;
-using Sources.User;
+using Sources.Services.UserService;
 using UnityEngine;
 
 namespace Sources.Services.Vibration

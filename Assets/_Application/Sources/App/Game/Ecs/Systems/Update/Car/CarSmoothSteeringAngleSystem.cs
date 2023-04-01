@@ -1,9 +1,9 @@
 using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Car;
-using Sources.Balance;
 using Sources.Di;
 using Sources.DMorpeh.MorpehUtils.Extensions;
 using Sources.DMorpeh.MorpehUtils.Systems;
+using Sources.Services.BalanceManager;
 using UnityEngine;
 
 namespace Sources.App.Game.Ecs.Systems.Update.Car
@@ -17,7 +17,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.Car
 
         public CarSmoothSteeringAngleSystem()
         {
-            _carsBalance = DiContainer.Resolve<Balance.Balance>().CarsBalance;
+            _carsBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().CarsBalance;
         }
 
         protected override void OnConstruct()

@@ -2,10 +2,10 @@ using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Camera;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.Balance;
 using Sources.Di;
 using Sources.DMorpeh.MorpehUtils.Extensions;
 using Sources.DMorpeh.MorpehUtils.Systems;
+using Sources.Services.BalanceManager;
 using Sources.Utils.Extensions;
 
 namespace Sources.App.Game.Ecs.Systems.Update.Camera
@@ -18,7 +18,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.Camera
 
         public CameraTargetXAngleSystem()
         {
-            _cameraBalance = DiContainer.Resolve<Balance.Balance>().CameraBalance;
+            _cameraBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().CameraBalance;
         }
 
         protected override void OnConstruct()

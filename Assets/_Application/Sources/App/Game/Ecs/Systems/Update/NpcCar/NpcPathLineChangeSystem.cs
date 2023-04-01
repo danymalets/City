@@ -5,7 +5,7 @@ using Sources.App.Game.Ecs.Components.Collections;
 using Sources.App.Game.Ecs.Components.Npc;
 using Sources.App.Game.Ecs.Components.Npc.NpcCar;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.App.Game.GameObjects.RoadSystem.Pathes.Points;
+using Sources.Data.RoadSystem.Pathes.Points;
 using Sources.DMorpeh.MorpehUtils.Extensions;
 using Sources.DMorpeh.MorpehUtils.Systems;
 

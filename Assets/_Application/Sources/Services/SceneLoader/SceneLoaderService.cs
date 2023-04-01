@@ -42,8 +42,6 @@ namespace Sources.Services.SceneLoader
 
             T sceneContext = GameObject.FindObjectOfType<T>();
             
-            Assert.IsNotNull(sceneContext);
-            
             onComplete?.Invoke(sceneContext);
         }
     }

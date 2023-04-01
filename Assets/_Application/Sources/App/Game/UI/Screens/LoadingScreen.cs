@@ -1,5 +1,5 @@
 using Sources.Di;
-using Sources.User;
+using Sources.Services.UserService;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,7 +17,7 @@ namespace Sources.App.Game.UI.Screens
 
         protected override void OnOpen()
         {
-            User.User user = DiContainer.Resolve<IUserAccessService>().User;
+            User user = DiContainer.Resolve<IUserAccessService>().User;
             _withCheckQuality = user.Preferences.BestQualityForDevice == null;
         }
 

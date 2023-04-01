@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using _Application.Sources.Monos.Bootstrap;
 using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Collections;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.App.Game.GameObjects.RoadSystem.Pathes.Points;
 using Sources.App.Infrastructure.Bootstrap;
+using Sources.Data.RoadSystem.Pathes.Points;
 using Sources.Di;
 using Sources.DMorpeh.MorpehUtils.Extensions;
 using Sources.DMorpeh.MorpehUtils.Systems;

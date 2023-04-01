@@ -5,12 +5,12 @@ using Sources.App.Game.Ecs.Components.Npc;
 using Sources.App.Game.Ecs.Components.Npc.NpcCar;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.App.Game.GameObjects.RoadSystem.Pathes.Points;
-using Sources.Balance;
+using Sources.Data.RoadSystem.Pathes.Points;
 using Sources.Di;
 using Sources.DMorpeh.DefaultComponents.Views;
 using Sources.DMorpeh.MorpehUtils.Extensions;
 using Sources.DMorpeh.MorpehUtils.Systems;
+using Sources.Services.BalanceManager;
 using Sources.Utils.Libs;
 using UnityEngine;
 
@@ -23,7 +23,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.NpcCar
 
         public NpcBreakOrMoveChoiceSystem()
         {
-            _simulationBalance = DiContainer.Resolve<Balance.Balance>().SimulationBalance;
+            _simulationBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().SimulationBalance;
         }
 
         protected override void OnConstruct()

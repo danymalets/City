@@ -2,11 +2,11 @@ using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Camera;
 using Sources.App.Game.Ecs.Components.Player.User;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.Balance;
 using Sources.Di;
 using Sources.DMorpeh.DefaultComponents.Views;
 using Sources.DMorpeh.MorpehUtils.Extensions;
 using Sources.DMorpeh.MorpehUtils.Systems;
+using Sources.Services.BalanceManager;
 using Sources.Utils.Extensions;
 using UnityEngine;
 
@@ -21,7 +21,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.Camera
 
         public CameraFollowPlayerPositionSystem()
         {
-            _cameraBalance = DiContainer.Resolve<Balance.Balance>().CameraBalance;
+            _cameraBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().CameraBalance;
         }
 
         protected override void OnConstruct()

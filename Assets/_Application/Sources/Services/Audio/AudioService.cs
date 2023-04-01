@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Sources.Di;
 using Sources.Services.Pool;
-using Sources.User;
+using Sources.Services.UserService;
 using UnityEngine;
 using UnityEngine.Serialization;
 
