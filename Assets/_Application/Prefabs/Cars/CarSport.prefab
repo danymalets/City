@@ -108,8 +108,8 @@ GameObject:
   - component: {fileID: 1422398974750452217}
   - component: {fileID: 6458919657180150019}
   - component: {fileID: 7070940977832427996}
+  - component: {fileID: 7181252829312494256}
   - component: {fileID: 8316055835822453520}
-  - component: {fileID: 8123729858295547824}
   - component: {fileID: 6023932704894590869}
   m_Layer: 0
   m_Name: CarSport
@@ -162,6 +162,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1e27a2978e47ee8bb9efe902089318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7181252829312494256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6914979329890454321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6255f5e6f19f4f138662fba2637be11d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8316055835822453520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,18 +184,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb179ff50bfb4cb0bf615b30598f0f7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8123729858295547824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6914979329890454321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6255f5e6f19f4f138662fba2637be11d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &6023932704894590869
@@ -199,8 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collisionsReceivers:
-  - {fileID: 8123729858295547824}
-  _allColliders:
+  - {fileID: 7181252829312494256}
   - {fileID: 5667989465695327802}
   - {fileID: -5059525292220363375}
   - {fileID: -4389785952756776965}

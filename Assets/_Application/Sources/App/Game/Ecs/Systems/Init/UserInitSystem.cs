@@ -1,10 +1,10 @@
-using Sources.App.DMorpeh.MorpehUtils.Systems;
 using Sources.App.Game.Ecs.Factories;
 using Sources.App.Infrastructure.Bootstrap;
-using Sources.App.Infrastructure.Services;
-using Sources.App.Infrastructure.Services.AssetsManager;
-using Sources.App.Infrastructure.Services.Balance;
-using Sources.App.Infrastructure.Services.Physics;
+using Sources.AssetsManager;
+using Sources.Balance;
+using Sources.Di;
+using Sources.DMorpeh.MorpehUtils.Systems;
+using Sources.Services.Physics;
 
 namespace Sources.App.Game.Ecs.Systems.Init
 {
@@ -20,8 +20,8 @@ namespace Sources.App.Game.Ecs.Systems.Init
 
         public UserInitSystem()
         {
-            _playersBalance = DiContainer.Resolve<Balance>().PlayersBalance;
-            _carsBalance = DiContainer.Resolve<Balance>().CarsBalance;
+            _playersBalance = DiContainer.Resolve<Balance.Balance>().PlayersBalance;
+            _carsBalance = DiContainer.Resolve<Balance.Balance>().CarsBalance;
             _levelContext = DiContainer.Resolve<LevelContext>();
             _physics = DiContainer.Resolve<IPhysicsService>();
             _assets = DiContainer.Resolve<Assets>();

@@ -1,5 +1,5 @@
-using Sources.App.DMorpeh.MorpehUtils;
-using Sources.App.Infrastructure.Services;
+using Sources.Di;
+using Sources.DMorpeh.MorpehUtils;
 
 namespace Sources.App.Game.Ecs.Despawners
 {

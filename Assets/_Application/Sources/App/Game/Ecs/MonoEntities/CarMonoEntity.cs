@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
-using Sources.App.DMorpeh;
 using Sources.App.Game.Components.Monos;
 using Sources.App.Game.Components.Old.CarEnterPointsData;
 using Sources.App.Game.Components.Views;
 using Sources.App.Game.Constants;
-using Sources.App.Game.Ecs.DefaultComponents.Monos;
-using Sources.App.Game.Ecs.DefaultComponents.Views;
+using Sources.DMorpeh;
+using Sources.DMorpeh.DefaultComponents.Monos;
+using Sources.DMorpeh.DefaultComponents.Views;
 using Sources.Utils.Extensions;
 using UnityEngine;
 
@@ -16,7 +16,6 @@ namespace Sources.App.Game.Ecs.MonoEntities
     [RequireComponent(typeof(EnableableGameObject))]
     [RequireComponent(typeof(SafeTransform))]
     [RequireComponent(typeof(RigidbodySwitcher))]
-    [RequireComponent(typeof(CollisionsReceiver))]
     public class CarMonoEntity : MonoEntity
     {
         [SerializeField]

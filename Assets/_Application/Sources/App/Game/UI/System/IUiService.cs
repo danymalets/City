@@ -1,5 +1,5 @@
 using Sources.App.Game.UI.WindowBase;
-using Sources.App.Infrastructure.Services;
+using Sources.Di;
 
 namespace Sources.App.Game.UI.System
 {

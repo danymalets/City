@@ -1,8 +1,8 @@
 using Scellecs.Morpeh;
 using Sirenix.OdinInspector;
-using Sources.App.Game.Ecs.DefaultComponents.Views;
 using Sources.App.Game.Ecs.MonoEntities;
-using Sources.App.Infrastructure.Services.AssetsManager;
+using Sources.AssetsManager;
+using Sources.DMorpeh.DefaultComponents.Views;
 using Sources.ProjectEditor;
 using Sources.Utils.PseudoEditor;
 using UnityEngine;

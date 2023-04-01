@@ -1,5 +1,5 @@
 using Sources.App.Game.Components.Monos;
-using Sources.App.Game.Ecs.DefaultComponents.Monos;
+using Sources.DMorpeh.DefaultComponents.Monos;
 using UnityEngine;
 
 namespace Sources.App.Game.Components.Views

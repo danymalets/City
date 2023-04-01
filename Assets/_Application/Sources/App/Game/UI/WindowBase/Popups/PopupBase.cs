@@ -1,7 +1,7 @@
 using Sources.App.Game.UI.Animator;
-using Sources.App.Infrastructure.Services;
-using Sources.App.Infrastructure.Services.ApplicationCycle;
-using Sources.App.Infrastructure.Services.Times;
+using Sources.Di;
+using Sources.Services.ApplicationCycle;
+using Sources.Services.Times;
 using UnityEngine;
 using UnityEngine.UI;
 

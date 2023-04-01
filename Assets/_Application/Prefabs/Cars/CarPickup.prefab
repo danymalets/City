@@ -108,8 +108,8 @@ GameObject:
   - component: {fileID: 7201492194542698250}
   - component: {fileID: 2322896957048998375}
   - component: {fileID: 4705060340762094782}
+  - component: {fileID: 2985921899560733912}
   - component: {fileID: 7422478933671317125}
-  - component: {fileID: 1832832420360636011}
   - component: {fileID: 6050699076223327977}
   m_Layer: 0
   m_Name: CarPickup
@@ -162,6 +162,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1e27a2978e47ee8bb9efe902089318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2985921899560733912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8603947346005607963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6255f5e6f19f4f138662fba2637be11d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7422478933671317125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,18 +184,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb179ff50bfb4cb0bf615b30598f0f7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1832832420360636011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8603947346005607963}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6255f5e6f19f4f138662fba2637be11d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &6050699076223327977
@@ -199,8 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collisionsReceivers:
-  - {fileID: 1832832420360636011}
-  _allColliders:
+  - {fileID: 2985921899560733912}
   - {fileID: 3809212072153786999}
   - {fileID: -4390363266853319215}
   - {fileID: -1157118385411164603}

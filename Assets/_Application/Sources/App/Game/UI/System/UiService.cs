@@ -3,8 +3,8 @@ using System.Linq;
 using Sources.App.Game.UI.WindowBase;
 using Sources.App.Game.UI.WindowBase.Popups;
 using Sources.App.Game.UI.WindowBase.Screens;
-using Sources.App.Infrastructure.Services;
-using Sources.App.Infrastructure.Services.ApplicationCycle;
+using Sources.Di;
+using Sources.Services.ApplicationCycle;
 using UnityEngine;
 using UnityEngine.Assertions;
 

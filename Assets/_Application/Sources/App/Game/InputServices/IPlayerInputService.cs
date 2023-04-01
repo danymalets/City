@@ -1,4 +1,4 @@
-using Sources.App.Infrastructure.Services;
+using Sources.Di;
 using UnityEngine;
 
 namespace Sources.App.Game.InputServices

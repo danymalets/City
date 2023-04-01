@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sources.App.Game.Components.Monos;
-using Sources.App.Game.Ecs.DefaultComponents.Monos;
+using Sources.DMorpeh.DefaultComponents.Monos;
 using Sources.Utils.Extensions;
 using Sources.Utils.Libs;
 using UnityEngine;

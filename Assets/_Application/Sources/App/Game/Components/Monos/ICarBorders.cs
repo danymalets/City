@@ -1,4 +1,4 @@
-using Sources.App.Game.Ecs.DefaultComponents.Monos;
+using Sources.DMorpeh.DefaultComponents.Monos;
 
 namespace Sources.App.Game.Components.Monos
 {

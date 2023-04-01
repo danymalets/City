@@ -1,6 +1,6 @@
-using Sources.App.Infrastructure.Services;
-using Sources.App.Infrastructure.Services.Balance;
-using Sources.App.Infrastructure.Services.Quality;
+using Sources.Balance;
+using Sources.Di;
+using Sources.Services.Quality;
 
 namespace Sources.App.Game.Ecs
 {
@@ -14,7 +14,7 @@ namespace Sources.App.Game.Ecs
         public SimulationSettings()
         {
             _qualityAccess = DiContainer.Resolve<IQualityAccessService>();
-            _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
+            _simulationBalance = DiContainer.Resolve<Balance.Balance>().SimulationBalance;
         }
 
         private GameQualitySettings QualitySettings => _qualityAccess.GameQualitySettings;

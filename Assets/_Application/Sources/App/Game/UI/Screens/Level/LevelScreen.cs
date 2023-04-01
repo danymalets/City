@@ -1,8 +1,8 @@
 using System;
 using Sources.App.Game.UI.Popups.Settings;
 using Sources.App.Game.UI.WindowBase.Screens;
-using Sources.App.Infrastructure.Services;
-using Sources.App.Infrastructure.Services.Audio;
+using Sources.Di;
+using Sources.Services.Audio;
 using Sources.Utils.Extensions;
 using TMPro;
 using UnityEngine;

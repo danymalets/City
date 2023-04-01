@@ -2,9 +2,9 @@ using Sources.App.Game;
 using Sources.App.Game.UI.Screens;
 using Sources.App.Game.UI.Screens.Level;
 using Sources.App.Game.UI.System;
-using Sources.App.Infrastructure.Services;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
+using Sources.Di;
 
 namespace Sources.App.Infrastructure.StateMachine.States
 {

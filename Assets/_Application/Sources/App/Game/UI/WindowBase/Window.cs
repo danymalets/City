@@ -1,6 +1,6 @@
 using System;
 using Sources.App.Game.UI.System;
-using Sources.App.Infrastructure.Services;
+using Sources.Di;
 using Sources.Utils.Extensions;
 using UnityEngine;
 

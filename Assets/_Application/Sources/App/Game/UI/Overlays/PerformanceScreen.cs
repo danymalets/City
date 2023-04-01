@@ -1,8 +1,8 @@
-using Sources.App.Infrastructure.Services;
-using Sources.App.Infrastructure.Services.ApplicationCycle;
-using Sources.App.Infrastructure.Services.CoroutineRunner;
-using Sources.App.Infrastructure.Services.Fps;
-using Sources.App.Infrastructure.Services.Times;
+using Sources.Di;
+using Sources.Services.ApplicationCycle;
+using Sources.Services.CoroutineRunner;
+using Sources.Services.Fps;
+using Sources.Services.Times;
 using TMPro;
 using UnityEngine;
 

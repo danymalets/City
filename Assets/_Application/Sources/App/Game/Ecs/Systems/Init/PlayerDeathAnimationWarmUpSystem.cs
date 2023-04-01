@@ -1,11 +1,11 @@
 using Scellecs.Morpeh;
-using Sources.App.DMorpeh.MorpehUtils.Extensions;
-using Sources.App.DMorpeh.MorpehUtils.Systems;
 using Sources.App.Game.Ecs.Components.Npc;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Factories;
 using Sources.App.Game.Ecs.MonoEntities;
-using Sources.App.Infrastructure.Services;
+using Sources.Di;
+using Sources.DMorpeh.MorpehUtils.Extensions;
+using Sources.DMorpeh.MorpehUtils.Systems;
 using UnityEngine;
 
 namespace Sources.App.Game.Ecs.Systems.Init

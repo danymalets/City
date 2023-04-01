@@ -1,11 +1,10 @@
 using Sources.App.Game.UI.System;
-using Sources.App.Infrastructure.Services.ApplicationCycle;
-using Sources.App.Infrastructure.Services.AssetsManager;
-using Sources.App.Infrastructure.Services.Audio;
-using Sources.App.Infrastructure.Services.Balance;
-using Sources.App.Infrastructure.Services.CoroutineRunner;
-using Sources.App.Infrastructure.Services.Gizmoses;
-using Sources.App.Infrastructure.Services.Pool;
+using Sources.AssetsManager;
+using Sources.Services.ApplicationCycle;
+using Sources.Services.Audio;
+using Sources.Services.CoroutineRunner;
+using Sources.Services.Gizmoses;
+using Sources.Services.Pool;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -27,7 +26,7 @@ namespace Sources.App.Infrastructure.Bootstrap
         [SerializeField]
         private Assets _assets;
         [SerializeField]
-        private Balance _balanceService;
+        private Balance.Balance _balanceService;
         [SerializeField]
         private GizmosService _gizmosService;
 
@@ -37,7 +36,7 @@ namespace Sources.App.Infrastructure.Bootstrap
         public PoolService PoolService => _poolService;
         public AudioService AudioService => _audioService;
         public Assets Assets => _assets;
-        public Balance BalanceService => _balanceService;
+        public Balance.Balance BalanceService => _balanceService;
         public GizmosService GizmosService => _gizmosService;
     }
 }

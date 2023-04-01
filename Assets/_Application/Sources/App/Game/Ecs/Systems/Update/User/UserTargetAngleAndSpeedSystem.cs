@@ -1,13 +1,13 @@
 using Scellecs.Morpeh;
-using Sources.App.DMorpeh.MorpehUtils.Extensions;
-using Sources.App.DMorpeh.MorpehUtils.Systems;
 using Sources.App.Game.Ecs.Components.Npc;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.App.Game.Ecs.Components.User;
-using Sources.App.Game.Ecs.DefaultComponents.Views;
-using Sources.App.Infrastructure.Services;
-using Sources.App.Infrastructure.Services.Balance;
+using Sources.Balance;
+using Sources.Di;
+using Sources.DMorpeh.DefaultComponents.Views;
+using Sources.DMorpeh.MorpehUtils.Extensions;
+using Sources.DMorpeh.MorpehUtils.Systems;
 using Sources.Utils.Extensions;
 using Sources.Utils.Libs;
 using UnityEngine;
@@ -23,7 +23,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.User
 
         public UserTargetAngleAndSpeedSystem()
         {
-            _playerBalance = DiContainer.Resolve<Balance>().PlayersBalance;
+            _playerBalance = DiContainer.Resolve<Balance.Balance>().PlayersBalance;
         }
 
         protected override void OnConstruct()

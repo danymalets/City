@@ -4,11 +4,11 @@ using Sources.App.Game.UI.Screens.Input;
 using Sources.App.Game.UI.Screens.Level;
 using Sources.App.Game.UI.System;
 using Sources.App.Infrastructure.Bootstrap;
-using Sources.App.Infrastructure.Services;
-using Sources.App.Infrastructure.Services.Audio;
-using Sources.App.Infrastructure.Services.Balance;
-using Sources.App.Infrastructure.Services.CoroutineRunner;
-using Sources.App.Infrastructure.Services.Fps;
+using Sources.Balance;
+using Sources.Di;
+using Sources.Services.Audio;
+using Sources.Services.CoroutineRunner;
+using Sources.Services.Fps;
 
 namespace Sources.App.Game
 {

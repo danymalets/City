@@ -1,4 +1,4 @@
-using Sources.App.Game.Ecs.DefaultComponents.Views;
+using Sources.DMorpeh.DefaultComponents.Views;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

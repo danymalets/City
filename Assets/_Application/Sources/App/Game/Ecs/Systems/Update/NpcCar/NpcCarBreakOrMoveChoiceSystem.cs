@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Scellecs.Morpeh;
-using Sources.App.DMorpeh.MorpehUtils.Extensions;
-using Sources.App.DMorpeh.MorpehUtils.Systems;
 using Sources.App.Game.Components.Monos;
 using Sources.App.Game.Ecs.Components.Collections;
 using Sources.App.Game.Ecs.Components.Npc;
@@ -10,8 +8,10 @@ using Sources.App.Game.Ecs.Components.Npc.NpcCar;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.App.Game.GameObjects.RoadSystem.Pathes.Points;
-using Sources.App.Infrastructure.Services;
-using Sources.App.Infrastructure.Services.Balance;
+using Sources.Balance;
+using Sources.Di;
+using Sources.DMorpeh.MorpehUtils.Extensions;
+using Sources.DMorpeh.MorpehUtils.Systems;
 using Sources.Utils.Libs;
 
 namespace Sources.App.Game.Ecs.Systems.Update.NpcCar
@@ -23,7 +23,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.NpcCar
 
         public NpcCarBreakOrMoveChoiceSystem()
         {
-            _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
+            _simulationBalance = DiContainer.Resolve<Balance.Balance>().SimulationBalance;
         }
 
         protected override void OnConstruct()

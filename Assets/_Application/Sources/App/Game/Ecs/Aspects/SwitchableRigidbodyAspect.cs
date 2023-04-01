@@ -1,9 +1,9 @@
 using Scellecs.Morpeh;
-using Sources.App.DMorpeh.Aspects;
-using Sources.App.DMorpeh.MorpehUtils.Extensions;
-using Sources.App.Game.Ecs.DefaultComponents;
-using Sources.App.Game.Ecs.DefaultComponents.Monos;
-using Sources.App.Game.Ecs.DefaultComponents.Views;
+using Sources.DMorpeh.Aspects;
+using Sources.DMorpeh.DefaultComponents;
+using Sources.DMorpeh.DefaultComponents.Monos;
+using Sources.DMorpeh.DefaultComponents.Views;
+using Sources.DMorpeh.MorpehUtils.Extensions;
 
 namespace Sources.App.Game.Ecs.Aspects
 {

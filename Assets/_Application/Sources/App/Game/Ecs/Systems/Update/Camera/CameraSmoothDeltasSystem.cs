@@ -1,10 +1,10 @@
 using Scellecs.Morpeh;
-using Sources.App.DMorpeh.MorpehUtils.Extensions;
-using Sources.App.DMorpeh.MorpehUtils.Systems;
 using Sources.App.Game.Ecs.Components.Camera;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.App.Infrastructure.Services;
-using Sources.App.Infrastructure.Services.Balance;
+using Sources.Balance;
+using Sources.Di;
+using Sources.DMorpeh.MorpehUtils.Extensions;
+using Sources.DMorpeh.MorpehUtils.Systems;
 using Sources.Utils.Extensions;
 using UnityEngine;
 
@@ -17,7 +17,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.Camera
 
         public CameraSmoothDeltasSystem()
         {
-            _cameraBalance = DiContainer.Resolve<Balance>().CameraBalance;
+            _cameraBalance = DiContainer.Resolve<Balance.Balance>().CameraBalance;
         }
 
         protected override void OnConstruct()

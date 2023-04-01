@@ -1,14 +1,14 @@
 using Scellecs.Morpeh;
-using Sources.App.DMorpeh.MorpehUtils.Extensions;
-using Sources.App.DMorpeh.MorpehUtils.Systems;
 using Sources.App.Game.Components.Old.CarEnterPointsData;
 using Sources.App.Game.Ecs.Components.Car;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.App.Game.Ecs.Components.User;
-using Sources.App.Game.Ecs.DefaultComponents.Views;
-using Sources.App.Infrastructure.Services;
-using Sources.App.Infrastructure.Services.Balance;
+using Sources.Balance;
+using Sources.Di;
+using Sources.DMorpeh.DefaultComponents.Views;
+using Sources.DMorpeh.MorpehUtils.Extensions;
+using Sources.DMorpeh.MorpehUtils.Systems;
 using Sources.Utils.Libs;
 
 namespace Sources.App.Game.Ecs.Systems.Update.Player
@@ -21,7 +21,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.Player
 
         public PlayerCarEnterSystem()
         {
-            _carsBalance = DiContainer.Resolve<Balance>().CarsBalance;
+            _carsBalance = DiContainer.Resolve<Balance.Balance>().CarsBalance;
         }
 
         protected override void OnConstruct()

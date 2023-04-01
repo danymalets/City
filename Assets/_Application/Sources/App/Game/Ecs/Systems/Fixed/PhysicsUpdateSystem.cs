@@ -1,6 +1,6 @@
-using Sources.App.DMorpeh.MorpehUtils.Systems;
-using Sources.App.Infrastructure.Services;
-using Sources.App.Infrastructure.Services.Physics;
+using Sources.Di;
+using Sources.DMorpeh.MorpehUtils.Systems;
+using Sources.Services.Physics;
 
 namespace Sources.App.Game.Ecs.Systems.Fixed
 {

@@ -1,5 +1,5 @@
 using Sources.App.Infrastructure.Bootstrap;
-using Sources.App.Infrastructure.Services.AssetsManager;
+using Sources.AssetsManager;
 
 namespace Sources.App.Game.Missions
 {

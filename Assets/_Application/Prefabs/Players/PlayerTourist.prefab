@@ -1132,8 +1132,8 @@ GameObject:
   - component: {fileID: 485478}
   - component: {fileID: 8068870698138260876}
   - component: {fileID: 1833612218856641757}
+  - component: {fileID: 6547210667513062201}
   - component: {fileID: 6595243964895780816}
-  - component: {fileID: 2612426357338661243}
   - component: {fileID: 3238988332400546293}
   m_Layer: 0
   m_Name: PlayerTourist
@@ -1183,6 +1183,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1e27a2978e47ee8bb9efe902089318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6547210667513062201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6255f5e6f19f4f138662fba2637be11d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6595243964895780816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1193,18 +1205,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb179ff50bfb4cb0bf615b30598f0f7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2612426357338661243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 172216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6255f5e6f19f4f138662fba2637be11d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &3238988332400546293
@@ -1220,8 +1220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collisionsReceivers:
-  - {fileID: 2612426357338661243}
-  _allColliders:
+  - {fileID: 6547210667513062201}
   - {fileID: 1784918914458650144}
   _enableableGameObject: {fileID: 8068870698138260876}
   _transform: {fileID: 1833612218856641757}

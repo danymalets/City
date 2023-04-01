@@ -1,16 +1,16 @@
 using System.Linq;
 using Scellecs.Morpeh;
-using Sources.App.DMorpeh.MorpehUtils.Extensions;
-using Sources.App.DMorpeh.MorpehUtils.Systems;
 using Sources.App.Game.Ecs.Components.Car;
 using Sources.App.Game.Ecs.Components.Collections;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.App.Game.Ecs.Factories;
 using Sources.App.Game.GameObjects.RoadSystem.Pathes.Points;
-using Sources.App.Infrastructure.Services;
-using Sources.App.Infrastructure.Services.AssetsManager;
-using Sources.App.Infrastructure.Services.Balance;
-using Sources.App.Infrastructure.Services.Physics;
+using Sources.AssetsManager;
+using Sources.Balance;
+using Sources.Di;
+using Sources.DMorpeh.MorpehUtils.Extensions;
+using Sources.DMorpeh.MorpehUtils.Systems;
+using Sources.Services.Physics;
 using Sources.Utils.Extensions;
 
 namespace Sources.App.Game.Ecs.Systems.Init
@@ -30,9 +30,9 @@ namespace Sources.App.Game.Ecs.Systems.Init
         {
             _assets = DiContainer.Resolve<Assets>();
 
-            _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
-            _playersBalance = DiContainer.Resolve<Balance>().PlayersBalance;
-            _carsBalance = DiContainer.Resolve<Balance>().CarsBalance;
+            _simulationBalance = DiContainer.Resolve<Balance.Balance>().SimulationBalance;
+            _playersBalance = DiContainer.Resolve<Balance.Balance>().PlayersBalance;
+            _carsBalance = DiContainer.Resolve<Balance.Balance>().CarsBalance;
 
             _physics = DiContainer.Resolve<IPhysicsService>();
             _carsFactory = DiContainer.Resolve<ICarsFactory>();

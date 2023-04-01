@@ -1,6 +1,5 @@
 using System.Linq;
 using Scellecs.Morpeh;
-using Sources.App.DMorpeh.MorpehUtils.Extensions;
 using Sources.App.Game.Components.Monos;
 using Sources.App.Game.Components.Old.PlayerAnimators;
 using Sources.App.Game.Components.Views;
@@ -12,16 +11,17 @@ using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Player.User;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.App.Game.Ecs.Components.User;
-using Sources.App.Game.Ecs.DefaultComponents;
-using Sources.App.Game.Ecs.DefaultComponents.Monos;
-using Sources.App.Game.Ecs.DefaultComponents.Views;
 using Sources.App.Game.Ecs.MonoEntities;
 using Sources.App.Game.GameObjects.RoadSystem.Pathes;
 using Sources.App.Game.GameObjects.RoadSystem.Pathes.Points;
-using Sources.App.Infrastructure.Services;
-using Sources.App.Infrastructure.Services.AssetsManager;
-using Sources.App.Infrastructure.Services.Balance;
-using Sources.App.Infrastructure.Services.Physics;
+using Sources.AssetsManager;
+using Sources.Balance;
+using Sources.Di;
+using Sources.DMorpeh.DefaultComponents;
+using Sources.DMorpeh.DefaultComponents.Monos;
+using Sources.DMorpeh.DefaultComponents.Views;
+using Sources.DMorpeh.MorpehUtils.Extensions;
+using Sources.Services.Physics;
 using Sources.Utils.Extensions;
 using UnityEngine;
 
@@ -35,7 +35,7 @@ namespace Sources.App.Game.Ecs.Factories
         public PlayersFactory() : base()
         {
             _physics = DiContainer.Resolve<IPhysicsService>();
-            _playersBalance = DiContainer.Resolve<Balance>().PlayersBalance;
+            _playersBalance = DiContainer.Resolve<Balance.Balance>().PlayersBalance;
         }
 
         public PlayerMonoEntity GetRandomPlayerPrefab()

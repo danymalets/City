@@ -1,5 +1,5 @@
 using Scellecs.Morpeh;
-using Sources.App.Infrastructure.Services;
+using Sources.Di;
 
 namespace Sources.App.Game.Ecs.Despawners
 {

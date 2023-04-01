@@ -1,5 +1,5 @@
-using Sources.App.Infrastructure.Services;
-using Sources.App.Infrastructure.Services.Screens;
+using Sources.Di;
+using Sources.Services.Screens;
 using UnityEngine;
 
 namespace Sources.App.Game.UI.Utilities

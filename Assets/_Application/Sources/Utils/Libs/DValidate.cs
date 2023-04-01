@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sources.App.Game.Constants;
-using Sources.App.Game.Ecs.DefaultComponents.Monos;
+using Sources.DMorpeh.DefaultComponents.Monos;
 using Sources.Utils.Extensions;
 
 namespace Sources.Utils.Libs

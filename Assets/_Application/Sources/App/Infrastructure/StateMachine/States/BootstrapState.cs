@@ -1,15 +1,15 @@
 using Sources.App.Game.Ecs.MonoEntities;
 using Sources.App.Game.UI.Overlays;
 using Sources.App.Game.UI.System;
-using Sources.App.Infrastructure.Services;
-using Sources.App.Infrastructure.Services.ApplicationCycle;
-using Sources.App.Infrastructure.Services.AssetsManager;
-using Sources.App.Infrastructure.Services.Physics;
-using Sources.App.Infrastructure.Services.Pool;
-using Sources.App.Infrastructure.Services.Screens;
-using Sources.App.Infrastructure.Services.Times;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
+using Sources.AssetsManager;
+using Sources.Di;
+using Sources.Services.ApplicationCycle;
+using Sources.Services.Physics;
+using Sources.Services.Pool;
+using Sources.Services.Screens;
+using Sources.Services.Times;
 using UnityEngine;
 
 namespace Sources.App.Infrastructure.StateMachine.States

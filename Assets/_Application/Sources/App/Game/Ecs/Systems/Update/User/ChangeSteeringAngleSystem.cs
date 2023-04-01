@@ -1,10 +1,10 @@
 using Scellecs.Morpeh;
-using Sources.App.DMorpeh.MorpehUtils.Extensions;
-using Sources.App.DMorpeh.MorpehUtils.Systems;
 using Sources.App.Game.Ecs.Components.Car;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.App.Infrastructure.Services;
-using Sources.App.Infrastructure.Services.Balance;
+using Sources.Balance;
+using Sources.Di;
+using Sources.DMorpeh.MorpehUtils.Extensions;
+using Sources.DMorpeh.MorpehUtils.Systems;
 
 namespace Sources.App.Game.Ecs.Systems.Update.User
 {
@@ -15,7 +15,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.User
 
         public ChangeSteeringAngleSystem()
         {
-            _carsBalance = DiContainer.Resolve<Balance>().CarsBalance;
+            _carsBalance = DiContainer.Resolve<Balance.Balance>().CarsBalance;
         }
 
         protected override void OnConstruct()

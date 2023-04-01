@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using Scellecs.Morpeh;
-using Sources.App.DMorpeh.MorpehUtils.Extensions;
-using Sources.App.DMorpeh.MorpehUtils.Systems;
 using Sources.App.Game.Ecs.Components.Collections;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.App.Infrastructure.Services;
-using Sources.App.Infrastructure.Services.Balance;
+using Sources.Balance;
+using Sources.Di;
+using Sources.DMorpeh.MorpehUtils.Extensions;
+using Sources.DMorpeh.MorpehUtils.Systems;
 using Sources.Utils.Libs;
 
 namespace Sources.App.Game.Ecs.Systems.Update.Player
@@ -18,7 +18,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.Player
 
         public PlayerFallCheckSystem()
         {
-            _playersBalance = DiContainer.Resolve<Balance>().PlayersBalance;
+            _playersBalance = DiContainer.Resolve<Balance.Balance>().PlayersBalance;
         }
 
         protected override void OnConstruct()

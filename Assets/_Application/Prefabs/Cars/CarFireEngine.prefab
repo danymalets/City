@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6107925104528757423}
   - component: {fileID: 5300058845811029274}
   - component: {fileID: 366690134215470923}
+  - component: {fileID: 8182959364058690282}
   - component: {fileID: 8294544457419961379}
-  - component: {fileID: 1635596176118199570}
   - component: {fileID: 179397755831826880}
   m_Layer: 0
   m_Name: CarFireEngine
@@ -65,6 +65,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1e27a2978e47ee8bb9efe902089318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8182959364058690282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877746141918546034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6255f5e6f19f4f138662fba2637be11d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8294544457419961379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,18 +87,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb179ff50bfb4cb0bf615b30598f0f7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1635596176118199570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 877746141918546034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6255f5e6f19f4f138662fba2637be11d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &179397755831826880
@@ -102,8 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collisionsReceivers:
-  - {fileID: 1635596176118199570}
-  _allColliders:
+  - {fileID: 8182959364058690282}
   - {fileID: -4498745264864017056}
   - {fileID: -313717945133495338}
   - {fileID: 6937917841977127852}

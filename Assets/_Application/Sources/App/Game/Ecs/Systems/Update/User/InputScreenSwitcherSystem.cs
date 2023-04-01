@@ -1,12 +1,12 @@
 using System.Linq;
 using Scellecs.Morpeh;
-using Sources.App.DMorpeh.MorpehUtils.Extensions;
-using Sources.App.DMorpeh.MorpehUtils.Systems;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.App.Game.UI.Screens.Input;
 using Sources.App.Game.UI.System;
-using Sources.App.Infrastructure.Services;
+using Sources.Di;
+using Sources.DMorpeh.MorpehUtils.Extensions;
+using Sources.DMorpeh.MorpehUtils.Systems;
 
 namespace Sources.App.Game.Ecs.Systems.Update.User
 {

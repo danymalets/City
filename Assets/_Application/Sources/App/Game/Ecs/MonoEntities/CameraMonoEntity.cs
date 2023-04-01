@@ -1,7 +1,7 @@
 using Sirenix.OdinInspector;
-using Sources.App.DMorpeh;
-using Sources.App.Game.Ecs.DefaultComponents.Monos;
-using Sources.App.Game.Ecs.DefaultComponents.Views;
+using Sources.DMorpeh;
+using Sources.DMorpeh.DefaultComponents.Monos;
+using Sources.DMorpeh.DefaultComponents.Views;
 using UnityEngine;
 
 namespace Sources.App.Game.Ecs.MonoEntities

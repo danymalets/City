@@ -1,5 +1,5 @@
-using Sources.App.Infrastructure.Services;
-using Sources.App.Infrastructure.Services.User;
+using Sources.Di;
+using Sources.User;
 using TMPro;
 using UnityEngine;
 

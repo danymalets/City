@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6249130083997363644}
   - component: {fileID: 3005615643497670962}
   - component: {fileID: 5029809147312394748}
+  - component: {fileID: 8521414303341288940}
   - component: {fileID: 35121062131261439}
-  - component: {fileID: 8911900601507651766}
   - component: {fileID: 5062857388627923658}
   m_Layer: 0
   m_Name: CarBus
@@ -65,6 +65,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1e27a2978e47ee8bb9efe902089318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8521414303341288940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896422797593307077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6255f5e6f19f4f138662fba2637be11d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &35121062131261439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,18 +87,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb179ff50bfb4cb0bf615b30598f0f7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8911900601507651766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 896422797593307077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6255f5e6f19f4f138662fba2637be11d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &5062857388627923658
@@ -102,8 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collisionsReceivers:
-  - {fileID: 8911900601507651766}
-  _allColliders:
+  - {fileID: 8521414303341288940}
   - {fileID: 397366371902242990}
   - {fileID: -1704799370028369604}
   - {fileID: 1980326568923909493}

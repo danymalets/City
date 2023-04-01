@@ -1,27 +1,26 @@
 using Sources.App.Game.UI.System;
 using Sources.App.Infrastructure.ApplicationInput;
 using Sources.App.Infrastructure.Bootstrap;
-using Sources.App.Infrastructure.Services;
-using Sources.App.Infrastructure.Services.ApplicationCycle;
-using Sources.App.Infrastructure.Services.AssetsManager;
-using Sources.App.Infrastructure.Services.Audio;
-using Sources.App.Infrastructure.Services.Balance;
-using Sources.App.Infrastructure.Services.CoroutineRunner;
-using Sources.App.Infrastructure.Services.Fps;
-using Sources.App.Infrastructure.Services.Gizmoses;
-using Sources.App.Infrastructure.Services.Instantiator;
-using Sources.App.Infrastructure.Services.JsonSerializer;
-using Sources.App.Infrastructure.Services.Physics;
-using Sources.App.Infrastructure.Services.PlayerPreferences;
-using Sources.App.Infrastructure.Services.Pool;
-using Sources.App.Infrastructure.Services.Quality;
-using Sources.App.Infrastructure.Services.SceneLoader;
-using Sources.App.Infrastructure.Services.Screens;
-using Sources.App.Infrastructure.Services.Times;
-using Sources.App.Infrastructure.Services.User;
-using Sources.App.Infrastructure.Services.Vibration;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
+using Sources.AssetsManager;
+using Sources.Di;
+using Sources.Services.ApplicationCycle;
+using Sources.Services.Audio;
+using Sources.Services.CoroutineRunner;
+using Sources.Services.Fps;
+using Sources.Services.Gizmoses;
+using Sources.Services.Instantiator;
+using Sources.Services.JsonSerializer;
+using Sources.Services.Physics;
+using Sources.Services.PlayerPreferences;
+using Sources.Services.Pool;
+using Sources.Services.Quality;
+using Sources.Services.SceneLoader;
+using Sources.Services.Screens;
+using Sources.Services.Times;
+using Sources.Services.Vibration;
+using Sources.User;
 
 namespace Sources.App.Infrastructure.StateMachine.States
 {
@@ -55,7 +54,7 @@ namespace Sources.App.Infrastructure.StateMachine.States
             _diBuilder.Register<TimeService, ITimeService>();
             _diBuilder.Register<FpsService, IFpsService>();
             _diBuilder.Register<IAudioService>(monoServices.AudioService);
-            _diBuilder.Register<Balance>(monoServices.BalanceService);
+            _diBuilder.Register<Balance.Balance>(monoServices.BalanceService);
             _diBuilder.Register<UiService, IUiService, IUiRefreshService, IUiCloseService>(monoServices.UiService);
             _diBuilder.Register<IGizmosService>(monoServices.GizmosService);
             _diBuilder.Register<QualityService, IQualityAccessService, IQualityChangerService>();

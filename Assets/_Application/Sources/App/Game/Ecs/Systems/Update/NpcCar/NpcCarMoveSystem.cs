@@ -1,15 +1,16 @@
 using System.Linq;
 using Scellecs.Morpeh;
-using Sources.App.DMorpeh;
-using Sources.App.DMorpeh.MorpehUtils.Extensions;
-using Sources.App.DMorpeh.MorpehUtils.Systems;
 using Sources.App.Game.Constants;
 using Sources.App.Game.Ecs.Components.Car;
 using Sources.App.Game.Ecs.Components.Npc;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.App.Infrastructure.Services;
-using Sources.App.Infrastructure.Services.Physics;
+using Sources.Di;
+using Sources.DMorpeh;
+using Sources.DMorpeh.DefaultComponents.Views;
+using Sources.DMorpeh.MorpehUtils.Extensions;
+using Sources.DMorpeh.MorpehUtils.Systems;
+using Sources.Services.Physics;
 using Sources.Utils.Extensions;
 
 namespace Sources.App.Game.Ecs.Systems.Update.NpcCar
@@ -42,7 +43,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.NpcCar
                         forwardTrigger.Rotation, LayerMasks.CarsAndPlayers)
                     .Select(c => c.transform.root.gameObject)
                     .Where(r => r.HasComponent<MonoEntity>())
-                    .Select(r => r.GetComponent<MonoEntity>().Entity)
+                    .Select(r => r.GetComponent<IEntityAccess>().Entity)
                     .Where(e => e != carEntity)
                     .ToArray();
                 

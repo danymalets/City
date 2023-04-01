@@ -1,6 +1,6 @@
-using Sources.App.DMorpeh.MorpehUtils.Systems;
 using Sources.App.Infrastructure.Bootstrap;
-using Sources.App.Infrastructure.Services;
+using Sources.Di;
+using Sources.DMorpeh.MorpehUtils.Systems;
 
 namespace Sources.App.Game.Ecs.Systems.Init
 {

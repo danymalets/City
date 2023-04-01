@@ -1,12 +1,12 @@
 using Scellecs.Morpeh;
-using Sources.App.DMorpeh.MorpehUtils.Extensions;
-using Sources.App.DMorpeh.MorpehUtils.Systems;
 using Sources.App.Game.Components.Monos;
 using Sources.App.Game.Ecs.Components.Car;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.App.Game.Ecs.DefaultComponents.Views;
-using Sources.App.Infrastructure.Services.Physics;
+using Sources.DMorpeh.DefaultComponents.Views;
+using Sources.DMorpeh.MorpehUtils.Extensions;
+using Sources.DMorpeh.MorpehUtils.Systems;
+using Sources.Services.Physics;
 using UnityEngine;
 
 namespace Sources.App.Game.Ecs.Systems.Update.NpcCar

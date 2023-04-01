@@ -108,8 +108,8 @@ GameObject:
   - component: {fileID: 427699799878158492}
   - component: {fileID: 3383523454148890972}
   - component: {fileID: 3953906121361626741}
+  - component: {fileID: 3985437308345708592}
   - component: {fileID: 8609334599100525035}
-  - component: {fileID: 198467063548202264}
   - component: {fileID: 3807972892401286929}
   m_Layer: 0
   m_Name: CarPolice
@@ -162,6 +162,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1e27a2978e47ee8bb9efe902089318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3985437308345708592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2982064454030591518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6255f5e6f19f4f138662fba2637be11d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8609334599100525035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,18 +184,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb179ff50bfb4cb0bf615b30598f0f7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &198467063548202264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2982064454030591518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6255f5e6f19f4f138662fba2637be11d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &3807972892401286929
@@ -199,8 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collisionsReceivers:
-  - {fileID: 198467063548202264}
-  _allColliders:
+  - {fileID: 3985437308345708592}
   - {fileID: 9051834761675437710}
   - {fileID: 8428081722034474934}
   - {fileID: 4606438321913922204}
