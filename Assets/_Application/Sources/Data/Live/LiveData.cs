@@ -1,6 +1,4 @@
 using System;
-using Sources.Infrastructure.Services;
-using Sources.Infrastructure.Services.ApplicationCycle;
 
 namespace Sources.Data.Live
 {
