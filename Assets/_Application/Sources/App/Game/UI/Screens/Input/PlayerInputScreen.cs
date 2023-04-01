@@ -1,7 +1,7 @@
 using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.User;
-using Sources.App.Game.UI.WindowBase.Screens;
-using Sources.DMorpeh.MorpehUtils.Extensions;
+using Sources.Services.Ui.WindowBase.Screens;
+using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 

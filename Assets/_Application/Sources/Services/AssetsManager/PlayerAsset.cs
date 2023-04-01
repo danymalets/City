@@ -1,6 +1,6 @@
 using System;
-using Sources.App.Game.Ecs.MonoEntities;
-using Sources.AssetsManager;
+using Sources.Data;
+using Sources.Monos.MonoEntities;
 using UnityEngine;
 
 namespace Sources.Services.AssetsManager

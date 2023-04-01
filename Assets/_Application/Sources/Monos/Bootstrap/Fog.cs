@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Application.Sources.Monos.Bootstrap
+namespace Sources.Monos.Bootstrap
 {
     public class Fog : MonoBehaviour
     {

@@ -1,8 +1,8 @@
-using _Application.Sources.MonoViews.MonoViews;
-using Sources.DMorpeh.DefaultComponents.Monos;
+using Sources.MonoViews.MonoViews;
+using Sources.Utils.DMorpeh.DefaultComponents.Monos;
 using UnityEngine;
 
-namespace _Application.Sources.Monos.Components.Monos
+namespace Sources.Monos.Components.Monos
 {
     [RequireComponent(typeof(SafeCapsuleCollider))]
     public class PlayerBorders : MonoBehaviour, IPlayerBorders

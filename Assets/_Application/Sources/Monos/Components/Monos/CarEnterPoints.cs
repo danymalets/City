@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using _Application.Sources.MonoViews;
+using Sources.MonoViews;
 using UnityEngine;
 
-namespace Sources.App.Game.Components.Old.CarEnterPointsData
+namespace Sources.Monos.Components.Monos
 {
     public class CarEnterPoints : MonoBehaviour, ICarEnterPoints
     {

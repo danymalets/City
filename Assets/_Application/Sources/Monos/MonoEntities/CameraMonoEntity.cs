@@ -1,10 +1,10 @@
 using Sirenix.OdinInspector;
-using Sources.DMorpeh;
-using Sources.DMorpeh.DefaultComponents.Monos;
-using Sources.DMorpeh.DefaultComponents.Views;
+using Sources.Utils.DMorpeh;
+using Sources.Utils.DMorpeh.DefaultComponents.Monos;
+using Sources.Utils.DMorpeh.DefaultComponents.Views;
 using UnityEngine;
 
-namespace Sources.App.Game.Ecs.MonoEntities
+namespace Sources.Monos.MonoEntities
 {
     [RequireComponent(typeof(SafeTransform))]
     [RequireComponent(typeof(SafeCamera))]

@@ -1,4 +1,4 @@
-using Sources.App.Infrastructure.Bootstrap;
+using Sources.Monos;
 
 namespace Sources.App.Game
 {

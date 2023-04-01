@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Application.Sources.Services.ApplicationInput
+namespace Sources.Services.ApplicationInput
 {
     public class ApplicationInputService : IApplicationInputService
     {

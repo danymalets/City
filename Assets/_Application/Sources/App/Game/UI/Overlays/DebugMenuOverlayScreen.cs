@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Screen = Sources.Services.Ui.WindowBase.Screens.Screen;
 
 namespace Sources.App.Game.UI.Overlays
 {
-    public class DebugMenuOverlayScreen : WindowBase.Screens.Screen
+    public class DebugMenuOverlayScreen : Screen
     {
         [SerializeField]
         private Button _openDebugMenuButton;

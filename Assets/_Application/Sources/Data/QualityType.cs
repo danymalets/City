@@ -1,6 +1,6 @@
 using System;
 
-namespace _Application.Sources.Data
+namespace Sources.Data
 {
     [Serializable]
     public enum QualityType

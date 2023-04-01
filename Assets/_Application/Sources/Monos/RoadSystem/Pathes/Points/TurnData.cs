@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine.Assertions;
 
-namespace Sources.Data.RoadSystem.Pathes.Points
+namespace Sources.Monos.RoadSystem.Pathes.Points
 {
     public class TurnData
     {

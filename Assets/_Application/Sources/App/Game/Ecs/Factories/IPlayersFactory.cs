@@ -1,8 +1,8 @@
 using Scellecs.Morpeh;
-using Sources.App.Game.Ecs.MonoEntities;
-using Sources.Data.RoadSystem.Pathes;
-using Sources.Data.RoadSystem.Pathes.Points;
-using Sources.Di;
+using Sources.Monos.MonoEntities;
+using Sources.Monos.RoadSystem.Pathes;
+using Sources.Monos.RoadSystem.Pathes.Points;
+using Sources.Services.Di;
 using UnityEngine;
 
 namespace Sources.App.Game.Ecs.Factories

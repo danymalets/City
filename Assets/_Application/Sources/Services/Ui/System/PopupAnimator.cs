@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Sources.App.Game.UI.Animator
+namespace Sources.Services.Ui.System
 {
     public abstract class PopupAnimator : MonoBehaviour
     {

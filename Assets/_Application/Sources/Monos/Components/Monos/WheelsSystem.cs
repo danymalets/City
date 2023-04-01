@@ -1,9 +1,8 @@
-using _Application.Sources.MonoViews;
-using _Application.Sources.MonoViews.MonoViews;
-using Sources.DMorpeh.DefaultComponents;
+using Sources.MonoViews;
+using Sources.MonoViews.MonoViews;
 using UnityEngine;
 
-namespace _Application.Sources.Monos.Components.Monos
+namespace Sources.Monos.Components.Monos
 {
     public class WheelsSystem : MonoBehaviour, IWheelsSystem
     {

@@ -1,11 +1,11 @@
-using _Application.Sources.Monos.Bootstrap;
-using _Application.Sources.Monos.Bootstrap.IdleCarSpawns;
-using Sources.App.Game.Ecs.MonoEntities;
-using Sources.Data.RoadSystem;
-using Sources.Di;
+using Sources.Monos.Bootstrap;
+using Sources.Monos.Bootstrap.IdleCarSpawns;
+using Sources.Monos.MonoEntities;
+using Sources.Monos.RoadSystem;
+using Sources.Services.Di;
 using UnityEngine;
 
-namespace Sources.App.Infrastructure.Bootstrap
+namespace Sources.Monos
 {
     public class LevelContext : SceneContext, IService
     {

@@ -1,4 +1,4 @@
-namespace Sources.App.Game.Components.Old.PlayerAnimators
+namespace Sources.Monos.Components.Old.PlayerAnimators
 {
     public interface IPlayerAnimator 
     {

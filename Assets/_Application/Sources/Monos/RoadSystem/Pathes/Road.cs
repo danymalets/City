@@ -3,7 +3,7 @@ using System.Linq;
 using Sources.Utils.Libs;
 using UnityEngine;
 
-namespace Sources.Data.RoadSystem.Pathes
+namespace Sources.Monos.RoadSystem.Pathes
 {
     public class Road : MonoBehaviour
     {

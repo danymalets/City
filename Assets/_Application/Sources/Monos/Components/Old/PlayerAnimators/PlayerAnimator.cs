@@ -1,8 +1,8 @@
-using Sources.DMorpeh.DefaultComponents.Views;
+using Sources.Utils.DMorpeh.DefaultComponents.Views;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Sources.App.Game.Components.Old.PlayerAnimators
+namespace Sources.Monos.Components.Old.PlayerAnimators
 {
     public class PlayerAnimator :  IPlayerAnimator
     {

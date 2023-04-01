@@ -1,13 +1,13 @@
 using Scellecs.Morpeh;
 using Sirenix.OdinInspector;
-using Sources.App.Game.Ecs.MonoEntities;
-using Sources.AssetsManager;
-using Sources.DMorpeh.DefaultComponents.Views;
+using Sources.Data;
+using Sources.Monos.MonoEntities;
+using Sources.Utils.DMorpeh.DefaultComponents.Views;
 using UnityEngine;
 #if UNITY_EDITOR
 #endif
 
-namespace _Application.Sources.Monos.Bootstrap.IdleCarSpawns
+namespace Sources.Monos.Bootstrap.IdleCarSpawns
 {
     public class IdleCarSpawnPoint : MonoBehaviour
     {

@@ -1,8 +1,8 @@
-using Sources.Di;
+using Sources.Services.Di;
 using Sources.Services.Screens;
 using UnityEngine;
 
-namespace Sources.App.Game.UI.Utilities
+namespace Sources.Services.Ui.Utilities
 {
     public class SafeArea : MonoBehaviour
     {

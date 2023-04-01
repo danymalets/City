@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Sources.Di;
+using Sources.Services.Di;
 using UnityEngine;
 
 namespace Sources.Services.CoroutineRunner

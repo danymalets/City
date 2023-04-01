@@ -1,16 +1,15 @@
-using Sources.App.Game.Ecs.MonoEntities;
 using Sources.App.Game.UI.Overlays;
-using Sources.App.Game.UI.System;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
-using Sources.AssetsManager;
-using Sources.Di;
+using Sources.Monos.MonoEntities;
 using Sources.Services.ApplicationCycle;
 using Sources.Services.AssetsManager;
+using Sources.Services.Di;
 using Sources.Services.Physics;
 using Sources.Services.Pool;
 using Sources.Services.Screens;
 using Sources.Services.Times;
+using Sources.Services.Ui.System;
 using UnityEngine;
 
 namespace Sources.App.Infrastructure.StateMachine.States

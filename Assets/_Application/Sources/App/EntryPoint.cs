@@ -1,8 +1,10 @@
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.States;
+using Sources.Monos;
+using Sources.Services.MonoServices;
 using UnityEngine;
 
-namespace Sources.App.Infrastructure.Bootstrap
+namespace Sources.App
 {
     [DefaultExecutionOrder(-100)]
     public class EntryPoint : SceneContext

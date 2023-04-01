@@ -1,8 +1,8 @@
 using Scellecs.Morpeh;
-using Sources.AssetsManager;
-using Sources.DMorpeh.Aspects;
-using Sources.DMorpeh.DefaultComponents.Views;
-using Sources.DMorpeh.MorpehUtils.Extensions;
+using Sources.Data;
+using Sources.Utils.DMorpeh.Aspects;
+using Sources.Utils.DMorpeh.DefaultComponents.Views;
+using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
 
 namespace Sources.App.Game.Ecs.Aspects
 {

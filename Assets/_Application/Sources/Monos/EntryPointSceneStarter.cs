@@ -4,7 +4,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Sources.App.Infrastructure.Bootstrap
+namespace Sources.Monos
 {
     public class EntryPointSceneStarter : MonoBehaviour
     {

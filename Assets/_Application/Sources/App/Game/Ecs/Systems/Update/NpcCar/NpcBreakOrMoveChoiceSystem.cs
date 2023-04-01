@@ -5,12 +5,12 @@ using Sources.App.Game.Ecs.Components.Npc;
 using Sources.App.Game.Ecs.Components.Npc.NpcCar;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.Data.RoadSystem.Pathes.Points;
-using Sources.Di;
-using Sources.DMorpeh.DefaultComponents.Views;
-using Sources.DMorpeh.MorpehUtils.Extensions;
-using Sources.DMorpeh.MorpehUtils.Systems;
+using Sources.Monos.RoadSystem.Pathes.Points;
 using Sources.Services.BalanceManager;
+using Sources.Services.Di;
+using Sources.Utils.DMorpeh.DefaultComponents.Views;
+using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
+using Sources.Utils.DMorpeh.MorpehUtils.Systems;
 using Sources.Utils.Libs;
 using UnityEngine;
 

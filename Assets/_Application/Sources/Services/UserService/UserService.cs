@@ -1,5 +1,5 @@
-using Sources.Di;
 using Sources.Services.ApplicationCycle;
+using Sources.Services.Di;
 using Sources.Services.JsonSerializer;
 using Sources.Services.PlayerPreferences;
 using UnityEngine;

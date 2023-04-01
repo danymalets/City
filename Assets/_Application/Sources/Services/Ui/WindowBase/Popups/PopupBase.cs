@@ -1,11 +1,11 @@
-using Sources.App.Game.UI.Animator;
-using Sources.Di;
 using Sources.Services.ApplicationCycle;
+using Sources.Services.Di;
 using Sources.Services.Times;
+using Sources.Services.Ui.System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Sources.App.Game.UI.WindowBase.Popups
+namespace Sources.Services.Ui.WindowBase.Popups
 {
     [RequireComponent(typeof(CanvasGroup))]
     public abstract class PopupBase : Window

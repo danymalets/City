@@ -1,5 +1,4 @@
-using _Application.Sources.Monos.Bootstrap;
-using Sources.App.Infrastructure.Bootstrap;
+using Sources.Monos.Bootstrap;
 using Sources.Services.UserService;
 using UnityEngine;
 

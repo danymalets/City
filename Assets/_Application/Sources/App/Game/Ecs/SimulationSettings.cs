@@ -1,5 +1,5 @@
-using Sources.Di;
 using Sources.Services.BalanceManager;
+using Sources.Services.Di;
 using Sources.Services.Quality;
 
 namespace Sources.App.Game.Ecs

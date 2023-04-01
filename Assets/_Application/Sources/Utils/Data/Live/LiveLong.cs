@@ -1,4 +1,4 @@
-namespace Sources.Data.Live
+namespace Sources.Utils.Data.Live
 {
     public class LiveLong : LiveData<long>
     {

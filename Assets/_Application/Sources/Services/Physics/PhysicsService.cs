@@ -1,4 +1,4 @@
-using _Application.Sources.Utils.Data;
+using Sources.Utils.Data;
 using UnityEngine;
 
 namespace Sources.Services.Physics

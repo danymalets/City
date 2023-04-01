@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
-using _Application.Sources.MonoViews.MonoViews;
-using Sources.DMorpeh.DefaultComponents.Monos;
+using Sources.MonoViews.MonoViews;
+using Sources.Utils.DMorpeh.DefaultComponents.Monos;
 using Sources.Utils.Extensions;
 using Sources.Utils.Libs;
 using UnityEngine;
 
-namespace _Application.Sources.Monos.Components.Monos
+namespace Sources.Monos.Components.Monos
 {
     [RequireComponent(typeof(SafeBoxCollider))]
     public class CarBorders : MonoBehaviour, ICarBorders

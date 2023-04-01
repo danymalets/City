@@ -1,9 +1,9 @@
 using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Camera;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.App.Game.Ecs.MonoEntities;
-using Sources.DMorpeh.DefaultComponents.Views;
-using Sources.DMorpeh.MorpehUtils.Extensions;
+using Sources.Monos.MonoEntities;
+using Sources.Utils.DMorpeh.DefaultComponents.Views;
+using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
 
 namespace Sources.App.Game.Ecs.Factories
 {

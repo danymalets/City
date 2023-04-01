@@ -1,7 +1,7 @@
 using Sources.Utils.Extensions;
 using UnityEngine;
 
-namespace Sources.Data.RoadSystem.Pathes.Points
+namespace Sources.Monos.RoadSystem.Pathes.Points
 {
     public class RoadLaneCheckpoint : MonoBehaviour
     {

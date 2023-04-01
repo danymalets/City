@@ -2,12 +2,12 @@ using System.Collections.Generic;
 using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Collections;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.Data.RoadSystem.Pathes;
-using Sources.Data.RoadSystem.Pathes.Points;
-using Sources.Di;
-using Sources.DMorpeh.MorpehUtils.Extensions;
-using Sources.DMorpeh.MorpehUtils.Systems;
+using Sources.Monos.RoadSystem.Pathes;
+using Sources.Monos.RoadSystem.Pathes.Points;
 using Sources.Services.BalanceManager;
+using Sources.Services.Di;
+using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
+using Sources.Utils.DMorpeh.MorpehUtils.Systems;
 using UnityEngine;
 
 namespace Sources.App.Game.Ecs.Systems.Init

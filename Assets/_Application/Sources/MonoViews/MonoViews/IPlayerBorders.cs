@@ -1,6 +1,6 @@
-using Sources.DMorpeh.DefaultComponents.Monos;
+using Sources.Utils.DMorpeh.DefaultComponents.Monos;
 
-namespace _Application.Sources.MonoViews.MonoViews
+namespace Sources.MonoViews.MonoViews
 {
     public interface IPlayerBorders
     {

@@ -1,5 +1,5 @@
-using _Application.Sources.Data;
-using Sources.Di;
+using Sources.Data;
+using Sources.Services.Di;
 
 namespace Sources.Services.Quality
 {

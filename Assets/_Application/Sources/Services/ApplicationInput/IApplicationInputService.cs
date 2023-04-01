@@ -1,7 +1,7 @@
-using Sources.Di;
+using Sources.Services.Di;
 using UnityEngine;
 
-namespace _Application.Sources.Services.ApplicationInput
+namespace Sources.Services.ApplicationInput
 {
     public interface IApplicationInputService : IService
     {

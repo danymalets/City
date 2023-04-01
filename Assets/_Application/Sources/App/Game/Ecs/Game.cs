@@ -17,9 +17,10 @@ using Sources.App.Game.Ecs.Systems.Update.NpcCar;
 using Sources.App.Game.Ecs.Systems.Update.Player;
 using Sources.App.Game.Ecs.Systems.Update.PseudoEditor;
 using Sources.App.Game.Ecs.Systems.Update.User;
-using Sources.Di;
-using Sources.DMorpeh.MorpehUtils;
-using Sources.DMorpeh.MorpehUtils.CustomSystems;
+using Sources.Services.Di;
+using Sources.Utils.DMorpeh;
+using Sources.Utils.DMorpeh.MorpehUtils;
+using Sources.Utils.DMorpeh.MorpehUtils.CustomSystems;
 
 namespace Sources.App.Game.Ecs
 {

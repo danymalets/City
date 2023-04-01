@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Sources.Data.RoadSystem.Pathes;
+using Sources.Monos.RoadSystem.Pathes;
 
-namespace Sources.Data.RoadSystem
+namespace Sources.Monos.RoadSystem
 {
     public interface IPathSystem 
     {

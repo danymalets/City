@@ -1,7 +1,7 @@
-using Sources.App.Game.UI.WindowBase;
-using Sources.Di;
+using Sources.Services.Di;
+using Sources.Services.Ui.WindowBase;
 
-namespace Sources.App.Game.UI.System
+namespace Sources.Services.Ui.System
 {
     public interface IUiService : IService
     {

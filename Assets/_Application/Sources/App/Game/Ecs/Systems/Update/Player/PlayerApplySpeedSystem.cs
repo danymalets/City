@@ -1,10 +1,10 @@
 using Scellecs.Morpeh;
-using Sources.App.Game.Components.Old.PlayerAnimators;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.DMorpeh.DefaultComponents.Views;
-using Sources.DMorpeh.MorpehUtils.Extensions;
-using Sources.DMorpeh.MorpehUtils.Systems;
+using Sources.Monos.Components.Old.PlayerAnimators;
+using Sources.Utils.DMorpeh.DefaultComponents.Views;
+using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
+using Sources.Utils.DMorpeh.MorpehUtils.Systems;
 using Sources.Utils.Extensions;
 using UnityEngine;
 

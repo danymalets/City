@@ -1,6 +1,6 @@
-using _Application.Sources.Data;
-using Sources.Di;
+using Sources.Data;
 using Sources.Services.BalanceManager;
+using Sources.Services.Di;
 using Sources.Services.Times;
 using Sources.Services.UserService;
 using UnityEngine;

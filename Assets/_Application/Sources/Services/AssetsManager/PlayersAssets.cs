@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using Sources.App.Game.Ecs.MonoEntities;
-using Sources.AssetsManager;
+using Sources.Data;
+using Sources.Monos.MonoEntities;
 using Sources.Utils.Libs;
 using UnityEngine;
 

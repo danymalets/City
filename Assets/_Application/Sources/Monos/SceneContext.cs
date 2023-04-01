@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Sources.App.Infrastructure.Bootstrap
+namespace Sources.Monos
 {
 #if UNITY_EDITOR
     [RequireComponent(typeof(EntryPointSceneStarter))]

@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-namespace Sources.App.Infrastructure.Bootstrap
+namespace Sources.Monos
 {
     [ExecuteInEditMode]
     public class SceneFirstChildUpdater : MonoBehaviour

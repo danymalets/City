@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Sources.Data.RoadSystem.Pathes.Points;
+using Sources.Monos.RoadSystem.Pathes.Points;
 
-namespace Sources.Data.RoadSystem.Pathes
+namespace Sources.Monos.RoadSystem.Pathes
 {
     public class CrossroadsSideData
     {

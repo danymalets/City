@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using Sources.Data.RoadSystem.Pathes.Points;
+using Sources.Monos.RoadSystem.Pathes.Points;
 using UnityEngine;
 
-namespace Sources.Data.RoadSystem.Pathes
+namespace Sources.Monos.RoadSystem.Pathes
 {
     public class OneWayRoad : MonoBehaviour
     {

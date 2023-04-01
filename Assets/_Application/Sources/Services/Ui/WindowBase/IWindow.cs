@@ -1,4 +1,4 @@
-namespace Sources.App.Game.UI.WindowBase
+namespace Sources.Services.Ui.WindowBase
 {
     public interface IWindow
     {

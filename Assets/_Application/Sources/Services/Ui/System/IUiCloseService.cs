@@ -1,6 +1,6 @@
-using Sources.Di;
+using Sources.Services.Di;
 
-namespace Sources.App.Game.UI.System
+namespace Sources.Services.Ui.System
 {
     public interface IUiCloseService : IService
     {

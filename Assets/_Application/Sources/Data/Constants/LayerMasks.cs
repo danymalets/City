@@ -1,6 +1,6 @@
 using Sources.Utils.Libs;
 
-namespace Sources.App.Game.Constants
+namespace Sources.Data.Constants
 {
     public static class LayerMasks
     {

@@ -1,8 +1,8 @@
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.App.Game.Ecs.Factories;
-using Sources.App.Infrastructure.Bootstrap;
-using Sources.Di;
-using Sources.DMorpeh.MorpehUtils.Systems;
+using Sources.Monos;
+using Sources.Services.Di;
+using Sources.Utils.DMorpeh.MorpehUtils.Systems;
 
 namespace Sources.App.Game.Ecs.Systems.Init
 {

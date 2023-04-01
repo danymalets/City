@@ -1,7 +1,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace _Application.Sources.Monos.Bootstrap.IdleCarSpawns
+namespace Sources.Monos.Bootstrap.IdleCarSpawns
 {
     public class IdleCarsSystem : MonoBehaviour
     {

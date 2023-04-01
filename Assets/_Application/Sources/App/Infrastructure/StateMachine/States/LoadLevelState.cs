@@ -1,13 +1,12 @@
 using Sources.App.Game;
 using Sources.App.Game.UI.Screens;
-using Sources.App.Game.UI.System;
-using Sources.App.Infrastructure.Bootstrap;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
-using Sources.AssetsManager;
-using Sources.Di;
+using Sources.Monos;
 using Sources.Services.AssetsManager;
+using Sources.Services.Di;
 using Sources.Services.SceneLoader;
+using Sources.Services.Ui.System;
 using Sources.Services.UserService;
 using UnityEngine.SceneManagement;
 

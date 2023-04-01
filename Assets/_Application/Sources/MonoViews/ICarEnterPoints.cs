@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace _Application.Sources.MonoViews
+namespace Sources.MonoViews
 {
     public interface ICarEnterPoints
     {

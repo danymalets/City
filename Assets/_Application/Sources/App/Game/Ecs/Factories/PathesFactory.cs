@@ -3,10 +3,10 @@ using System.Linq;
 using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Collections;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.Data.RoadSystem;
-using Sources.Data.RoadSystem.Pathes;
-using Sources.Data.RoadSystem.Pathes.Points;
-using Sources.DMorpeh.MorpehUtils.Extensions;
+using Sources.Monos.RoadSystem;
+using Sources.Monos.RoadSystem.Pathes;
+using Sources.Monos.RoadSystem.Pathes.Points;
+using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
 
 namespace Sources.App.Game.Ecs.Factories
 {

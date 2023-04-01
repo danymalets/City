@@ -1,18 +1,17 @@
 using System.Collections.Generic;
 using System.Linq;
-using _Application.Sources.Monos.Components.Monos;
-using _Application.Sources.MonoViews;
-using _Application.Sources.MonoViews.MonoViews;
 using Sirenix.OdinInspector;
-using Sources.App.Game.Components.Old.CarEnterPointsData;
-using Sources.App.Game.Constants;
-using Sources.DMorpeh;
-using Sources.DMorpeh.DefaultComponents.Monos;
-using Sources.DMorpeh.DefaultComponents.Views;
+using Sources.Data.Constants;
+using Sources.Monos.Components.Monos;
+using Sources.MonoViews;
+using Sources.MonoViews.MonoViews;
+using Sources.Utils.DMorpeh;
+using Sources.Utils.DMorpeh.DefaultComponents.Monos;
+using Sources.Utils.DMorpeh.DefaultComponents.Views;
 using Sources.Utils.Extensions;
 using UnityEngine;
 
-namespace Sources.App.Game.Ecs.MonoEntities
+namespace Sources.Monos.MonoEntities
 {
     [RequireComponent(typeof(EnableableGameObject))]
     [RequireComponent(typeof(SafeTransform))]

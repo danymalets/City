@@ -1,7 +1,6 @@
-using Sources.DMorpeh.DefaultComponents;
 using UnityEngine;
 
-namespace _Application.Sources.MonoViews.MonoViews
+namespace Sources.MonoViews.MonoViews
 {
     public interface IWheelsSystem
     {

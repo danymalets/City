@@ -1,6 +1,6 @@
 using System;
-using Sources.App.Infrastructure.Bootstrap;
-using Sources.Di;
+using Sources.Monos;
+using Sources.Services.Di;
 
 namespace Sources.Services.SceneLoader
 {

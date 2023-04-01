@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
-using Sources.Di;
 using Sources.Services.CoroutineRunner;
+using Sources.Services.Di;
 using Sources.Utils.Libs;
 using UnityEngine;
 

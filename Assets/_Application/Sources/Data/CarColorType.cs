@@ -1,4 +1,4 @@
-namespace Sources.AssetsManager
+namespace Sources.Data
 {
     public enum CarColorType
     {

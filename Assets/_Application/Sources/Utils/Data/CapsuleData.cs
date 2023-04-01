@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Application.Sources.Utils.Data
+namespace Sources.Utils.Data
 {
     public struct CapsuleData
     {

@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using Sources.Di;
+using Sources.Services.Di;
 using UnityEngine;
 
 namespace Sources.Services.CoroutineRunner

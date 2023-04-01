@@ -3,10 +3,10 @@ using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.App.Game.UI.Screens.Input;
-using Sources.App.Game.UI.System;
-using Sources.Di;
-using Sources.DMorpeh.MorpehUtils.Extensions;
-using Sources.DMorpeh.MorpehUtils.Systems;
+using Sources.Services.Di;
+using Sources.Services.Ui.System;
+using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
+using Sources.Utils.DMorpeh.MorpehUtils.Systems;
 
 namespace Sources.App.Game.Ecs.Systems.Update.User
 {

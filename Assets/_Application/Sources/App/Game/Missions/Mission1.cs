@@ -1,4 +1,4 @@
-using Sources.AssetsManager;
+using Sources.Data;
 
 namespace Sources.App.Game.Missions
 {

@@ -1,16 +1,16 @@
-using _Application.Sources.Monos.Bootstrap.IdleCarSpawns;
 using Scellecs.Morpeh;
-using Sources.App.Game.Constants;
 using Sources.App.Game.Ecs.Components.Player.User;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.App.Game.Ecs.Factories;
-using Sources.App.Game.Ecs.MonoEntities;
-using Sources.App.Infrastructure.Bootstrap;
-using Sources.Di;
-using Sources.DMorpeh.MorpehUtils.Extensions;
-using Sources.DMorpeh.MorpehUtils.Systems;
+using Sources.Data.Constants;
+using Sources.Monos;
+using Sources.Monos.Bootstrap.IdleCarSpawns;
+using Sources.Monos.MonoEntities;
 using Sources.Services.AssetsManager;
+using Sources.Services.Di;
 using Sources.Services.Physics;
+using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
+using Sources.Utils.DMorpeh.MorpehUtils.Systems;
 using Sources.Utils.Libs;
 using UnityEngine;
 

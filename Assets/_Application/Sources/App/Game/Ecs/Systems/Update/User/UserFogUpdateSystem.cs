@@ -1,11 +1,11 @@
-using _Application.Sources.Monos.Bootstrap;
 using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Player.User;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.App.Infrastructure.Bootstrap;
-using Sources.Di;
-using Sources.DMorpeh.MorpehUtils.Extensions;
-using Sources.DMorpeh.MorpehUtils.Systems;
+using Sources.Monos;
+using Sources.Monos.Bootstrap;
+using Sources.Services.Di;
+using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
+using Sources.Utils.DMorpeh.MorpehUtils.Systems;
 
 namespace Sources.App.Game.Ecs.Systems.Update.User
 {

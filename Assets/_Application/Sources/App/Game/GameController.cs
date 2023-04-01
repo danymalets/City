@@ -1,14 +1,15 @@
+using System.Reflection;
 using Sources.App.Game.InputServices;
 using Sources.App.Game.UI.Screens;
 using Sources.App.Game.UI.Screens.Input;
 using Sources.App.Game.UI.Screens.Level;
-using Sources.App.Game.UI.System;
-using Sources.App.Infrastructure.Bootstrap;
-using Sources.Di;
+using Sources.Monos;
 using Sources.Services.Audio;
 using Sources.Services.BalanceManager;
 using Sources.Services.CoroutineRunner;
+using Sources.Services.Di;
 using Sources.Services.Fps;
+using Sources.Services.Ui.System;
 
 namespace Sources.App.Game
 {
@@ -30,6 +31,7 @@ namespace Sources.App.Game
 
         public GameController()
         {
+        
             IUiService ui = DiContainer.Resolve<IUiService>();
             _fpsService = DiContainer.Resolve<IFpsService>();
 

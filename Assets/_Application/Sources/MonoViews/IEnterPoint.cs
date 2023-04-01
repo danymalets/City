@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Application.Sources.MonoViews
+namespace Sources.MonoViews
 {
     public interface IEnterPoint
     {

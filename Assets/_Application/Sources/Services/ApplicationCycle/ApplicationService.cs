@@ -1,7 +1,7 @@
 using System;
-using _Application.Sources.Services.ApplicationInput;
-using Sources.Di;
+using Sources.Services.ApplicationInput;
 using Sources.Services.CoroutineRunner;
+using Sources.Services.Di;
 using UnityEngine;
 
 namespace Sources.Services.ApplicationCycle

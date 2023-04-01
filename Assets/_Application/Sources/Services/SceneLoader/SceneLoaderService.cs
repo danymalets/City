@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using Sources.App.Infrastructure.Bootstrap;
+using Sources.Monos;
 using Sources.Services.CoroutineRunner;
 using UnityEngine;
 using UnityEngine.Assertions;

@@ -1,6 +1,6 @@
-using Sources.App.Game.UI.WindowBase.Popups;
-using Sources.Di;
 using Sources.Services.Audio;
+using Sources.Services.Di;
+using Sources.Services.Ui.WindowBase.Popups;
 using Sources.Services.UserService;
 using UnityEngine;
 

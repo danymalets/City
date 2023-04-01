@@ -1,4 +1,4 @@
-namespace Sources.App.Game.UI.WindowBase.Popups
+namespace Sources.Services.Ui.WindowBase.Popups
 {
     public abstract class Popup : PopupBase, IWindow
     {

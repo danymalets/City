@@ -3,7 +3,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Sources.App.Game.UI.Animator
+namespace Sources.Services.Ui.System
 {
     [RequireComponent(typeof(Image))]
     [RequireComponent(typeof(CanvasGroup))]

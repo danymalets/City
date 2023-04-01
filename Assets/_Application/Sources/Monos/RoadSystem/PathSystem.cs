@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using Sources.Data.RoadSystem.Pathes;
+using Sources.Monos.RoadSystem.Pathes;
 using UnityEngine;
 
-namespace Sources.Data.RoadSystem
+namespace Sources.Monos.RoadSystem
 {
     public class PathSystem : MonoBehaviour, IPathSystem
     {

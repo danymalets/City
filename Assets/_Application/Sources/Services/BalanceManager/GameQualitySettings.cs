@@ -1,5 +1,5 @@
 using System;
-using _Application.Sources.Data;
+using Sources.Data;
 using UnityEngine;
 
 namespace Sources.Services.BalanceManager

@@ -1,11 +1,12 @@
-using Sources.Di;
+using Sources.Services.Di;
 using Sources.Services.UserService;
 using UnityEngine;
 using UnityEngine.UI;
+using Screen = Sources.Services.Ui.WindowBase.Screens.Screen;
 
 namespace Sources.App.Game.UI.Screens
 {
-    public class LoadingScreen : WindowBase.Screens.Screen
+    public class LoadingScreen : Screen
     {
         private const float SceneLoadProgress = 1f / 3f;
         private const float CheckQualityProgress = 2f / 3f;

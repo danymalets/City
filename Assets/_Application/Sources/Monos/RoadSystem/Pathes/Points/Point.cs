@@ -4,7 +4,7 @@ using Sources.Utils.Libs;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Sources.Data.RoadSystem.Pathes.Points
+namespace Sources.Monos.RoadSystem.Pathes.Points
 {
     public class Point
     {

@@ -1,7 +1,7 @@
-using _Application.Sources.Services.ApplicationInput;
 using Sources.App.Game.UI.Screens.Input;
-using Sources.App.Game.UI.System;
-using Sources.Di;
+using Sources.Services.ApplicationInput;
+using Sources.Services.Di;
+using Sources.Services.Ui.System;
 
 namespace Sources.App.Game.InputServices
 {

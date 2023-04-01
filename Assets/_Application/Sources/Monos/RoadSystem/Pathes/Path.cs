@@ -1,10 +1,10 @@
 using System.Linq;
-using Sources.Data.RoadSystem.Pathes.Points;
+using Sources.Monos.RoadSystem.Pathes.Points;
 using Sources.Utils.Extensions;
 using Sources.Utils.Libs;
 using UnityEngine;
 
-namespace Sources.Data.RoadSystem.Pathes
+namespace Sources.Monos.RoadSystem.Pathes
 {
     public class PathLine
     {

@@ -1,5 +1,5 @@
-using _Application.Sources.Utils.Data;
-using Sources.Di;
+using Sources.Services.Di;
+using Sources.Utils.Data;
 using UnityEngine;
 
 namespace Sources.Services.Physics

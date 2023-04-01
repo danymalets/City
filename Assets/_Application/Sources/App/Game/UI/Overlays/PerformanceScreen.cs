@@ -1,14 +1,15 @@
-using Sources.Di;
 using Sources.Services.ApplicationCycle;
 using Sources.Services.CoroutineRunner;
+using Sources.Services.Di;
 using Sources.Services.Fps;
 using Sources.Services.Times;
 using TMPro;
 using UnityEngine;
+using Screen = Sources.Services.Ui.WindowBase.Screens.Screen;
 
 namespace Sources.App.Game.UI.Overlays
 {
-    public class PerformanceScreen : WindowBase.Screens.Screen
+    public class PerformanceScreen : Screen
     {
         private const string FpsPattern = "Fps: {0}";
         private const string DeviceNamePattern = "Device Name: {0}";

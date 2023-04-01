@@ -2,8 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Sources.Di;
 using Sources.Services.CoroutineRunner;
+using Sources.Services.Di;
 using Sources.Services.Times;
 using UnityEngine;
 
