@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
+using Sources.Data;
+using Sources.Data.MonoViews;
 using Sources.Utils.Libs;
 using UnityEngine;
 
 namespace Sources.Monos.RoadSystem.Pathes
 {
-    public class Road : MonoBehaviour
+    public class Road : MonoBehaviour, IRoad
     {
         [SerializeField]
         private OneWayRoad _left;
@@ -19,12 +21,11 @@ namespace Sources.Monos.RoadSystem.Pathes
 
         public bool IsSpawnPoint => _isSpawnPoint;
 
-        public IEnumerable<RoadLane> RoadLanes => 
+        public IEnumerable<IRoadLane> RoadLanes => 
             _left.RoadLanes.Concat(_right.RoadLanes);
         
         // sources and targets related road
-        public CrossroadsSideData GetSideData(
-            Vector3 crossroadsPosition)
+        public CrossroadsSideData GetSideData(Vector3 crossroadsPosition)
         {
             if (DVector3.SqrDistance(crossroadsPosition, _left.Sources.First().Position) <
                 DVector3.SqrDistance(crossroadsPosition, _right.Sources.First().Position))
@@ -37,7 +38,7 @@ namespace Sources.Monos.RoadSystem.Pathes
             }
         }
 
-        public RoadLane[] GetLanesByDistanceTo(Vector3 position) =>
+        public IRoadLane[] GetLanesByDistanceTo(Vector3 position) =>
             RoadLanes.OrderBy(r => DVector3.SqrDistance(r.Source.Position, position)).ToArray();
     }
 }

@@ -3,9 +3,8 @@ using Sources.App.Game.Ecs.Components.Player.User;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.App.Game.Ecs.Factories;
 using Sources.Data.Constants;
+using Sources.Data.MonoViews;
 using Sources.Monos;
-using Sources.Monos.Bootstrap.IdleCarSpawns;
-using Sources.Monos.MonoEntities;
 using Sources.Services.AssetsManager;
 using Sources.Services.Di;
 using Sources.Services.Physics;
@@ -19,7 +18,7 @@ namespace Sources.App.Game.Ecs.Systems.Init
     public class IdleCarsInitSystem : DInitializer
     {
         private Filter _userFilter;
-        private readonly IdleCarsSystem _idleCarsSystem;
+        private readonly IIdleCarsSystem _idleCarsSystem;
         private readonly IPhysicsService _physics;
         private readonly Assets _assets;
         private readonly SimulationSettings _simulationSettings;
@@ -28,7 +27,7 @@ namespace Sources.App.Game.Ecs.Systems.Init
         public IdleCarsInitSystem()
         {
             _simulationSettings = DiContainer.Resolve<SimulationSettings>();
-            _idleCarsSystem = DiContainer.Resolve<LevelContext>().IdleCarsSystem;
+            _idleCarsSystem = DiContainer.Resolve<ILevelContext>().IdleCarsSystem;
             _carsFactory = DiContainer.Resolve<ICarsFactory>();
             _physics = DiContainer.Resolve<IPhysicsService>();
             _assets = DiContainer.Resolve<Assets>();
@@ -45,11 +44,11 @@ namespace Sources.App.Game.Ecs.Systems.Init
 
             Vector3 userPosition = _userFilter.GetSingleton().Get<PlayerFollowTransform>().Position;
 
-            foreach (IdleCarSpawnPoint point in _idleCarsSystem.SpawnPoints)
+            foreach (IIdleCarSpawnPoint point in _idleCarsSystem.SpawnPoints)
             {
                 if (DVector3.SqrDistance(userPosition, point.Position) < sqrMaxRadius)
                 {
-                    CarMonoEntity carPrefab = _assets.CarsAssets.GetCarPrefab(point.CarType);
+                    ICarMonoEntity carPrefab = _assets.CarsAssets.GetCarPrefab(point.CarType);
 
                     bool has = _physics.CheckBox(point.Position + point.Rotation *
                         carPrefab.CenterRelatedRootPoint, carPrefab.HalfExtents, point.Rotation, LayerMasks.CarsAndPlayers);

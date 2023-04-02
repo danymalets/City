@@ -1,4 +1,4 @@
-using Sources.Monos.Bootstrap;
+using Sources.Data.MonoViews;
 using UnityEngine;
 
 namespace Sources.App.Game.Missions

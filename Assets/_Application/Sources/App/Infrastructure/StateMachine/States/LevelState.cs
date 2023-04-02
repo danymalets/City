@@ -3,6 +3,9 @@ using Sources.App.Game.UI.Screens;
 using Sources.App.Game.UI.Screens.Level;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
+using Sources.Data;
+using Sources.Data.MonoViews;
+using Sources.Monos;
 using Sources.Services.Di;
 using Sources.Services.Ui.System;
 
@@ -25,7 +28,7 @@ namespace Sources.App.Infrastructure.StateMachine.States
         {
             _diBuilder = DiBuilder.Create();
 
-            _diBuilder.Register(levelData.LevelContext);
+            _diBuilder.Register<ILevelContext>(levelData.LevelContext);
             _gameController = new GameController();
 
             

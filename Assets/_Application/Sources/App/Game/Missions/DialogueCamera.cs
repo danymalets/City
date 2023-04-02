@@ -1,3 +1,5 @@
+using Sources.Data;
+
 namespace Sources.App.Game.Missions
 {
     public class DialogueCamera

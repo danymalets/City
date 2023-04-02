@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sources.Data;
+using Sources.Data.MonoViews;
 using Sources.Monos.MonoEntities;
 using Sources.Utils.Libs;
 using UnityEngine;
@@ -13,7 +14,7 @@ namespace Sources.Services.AssetsManager
         [SerializeField]
         private List<PlayerAsset> _playerData;
 
-        public IEnumerable<PlayerMonoEntity> PlayerPrefabs =>
+        public IEnumerable<IPlayerMonoEntity> PlayerPrefabs =>
             _playerData.Select(d => d.PlayerPrefab);
 
         private void OnValidate()
@@ -23,7 +24,7 @@ namespace Sources.Services.AssetsManager
                 pd => new PlayerAsset(pd));
         }
 
-        public PlayerMonoEntity GetPlayerPrefab(PlayerType playerType) =>
+        public IPlayerMonoEntity GetPlayerPrefab(PlayerType playerType) =>
             _playerData.First(pd => pd.PlayerType == playerType).PlayerPrefab;
     }
 }

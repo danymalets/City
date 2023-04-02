@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
+using Sources.Data;
 using Sources.Monos;
 using Sources.Services.CoroutineRunner;
+using Sources.Utils.Libs;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
@@ -18,17 +20,17 @@ namespace Sources.Services.SceneLoader
         }
 
         public void LoadScene<T>(string scene, Action<T> onComplete = null)
-            where T : SceneContext =>
+            where T : ISceneContext =>
             LoadScene(scene, null, onComplete);
 
         public void LoadScene<T>(string scene, Action<float> onProgressChanged, Action<T> onComplete) 
-            where T : SceneContext => 
+            where T : ISceneContext => 
             _coroutineContext.StartCoroutine(LoadSceneCoroutine(scene, onProgressChanged, onComplete));
 
         private IEnumerator LoadSceneCoroutine<T>(
             string scene, 
             Action<float> onProgressChanged, 
-            Action<T> onComplete) where T : SceneContext
+            Action<T> onComplete) where T : ISceneContext
         {
             AsyncOperation operation = SceneManager.LoadSceneAsync(scene);
             
@@ -40,7 +42,10 @@ namespace Sources.Services.SceneLoader
 
             yield return null;
 
-            T sceneContext = GameObject.FindObjectOfType<T>();
+            T sceneContext = GameObject.FindObjectOfType<SceneContext>()
+                .gameObject.GetComponent<T>();
+            
+            DAssert.IsTrue(sceneContext != null);
             
             onComplete?.Invoke(sceneContext);
         }

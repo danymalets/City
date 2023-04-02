@@ -1,8 +1,8 @@
 using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Car;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.MonoViews;
-using Sources.MonoViews.MonoViews;
+using Sources.Data.MonoViews;
+using Sources.Data.MonoViews.MonoViews;
 using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
 using Sources.Utils.DMorpeh.MorpehUtils.Systems;
 

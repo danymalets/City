@@ -3,6 +3,7 @@ using Sources.App.Game.InputServices;
 using Sources.App.Game.UI.Screens;
 using Sources.App.Game.UI.Screens.Input;
 using Sources.App.Game.UI.Screens.Level;
+using Sources.Data.MonoViews;
 using Sources.Monos;
 using Sources.Services.Audio;
 using Sources.Services.BalanceManager;
@@ -18,7 +19,7 @@ namespace Sources.App.Game
         private readonly LevelScreen _levelScreen;
         private readonly CarInputScreen _carInputScreen;
 
-        private readonly LevelContext _levelContext;
+        private readonly ILevelContext _levelContext;
 
         private readonly IAudioService _audio;
         private readonly int _level;

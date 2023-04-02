@@ -3,8 +3,8 @@ using System.Linq;
 using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Collections;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.Monos.RoadSystem.Pathes;
-using Sources.Monos.RoadSystem.Pathes.Points;
+using Sources.Data;
+using Sources.Data.MonoViews;
 using Sources.Services.BalanceManager;
 using Sources.Services.Di;
 using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
@@ -28,16 +28,16 @@ namespace Sources.App.Game.Ecs.Systems.Init
             foreach (Entity pathesEntity in _filter)
             {
                 List<PathLine> pathLines = pathesEntity.Get<AllPathLines>().List;
-                List<Crossroads> crossroads = pathesEntity.Get<AllCrossroads>().List;
+                List<ICrossroads> crossroads = pathesEntity.Get<AllCrossroads>().List;
 
-                foreach (Crossroads crossroad in crossroads)
+                foreach (ICrossroads crossroad in crossroads)
                 {
                     Generate(pathLines, crossroad);
                 }
             }
         }
 
-        private void Generate(List<PathLine> pathLines, Crossroads crossroad)
+        private void Generate(List<PathLine> pathLines, ICrossroads crossroad)
         {
             GenerateCrosswalksBlocks(crossroad, crossroad.Forward, crossroad.ForwardRelated);
             GenerateCrosswalksBlocks(crossroad, crossroad.Left, crossroad.LeftRelated);
@@ -45,19 +45,19 @@ namespace Sources.App.Game.Ecs.Systems.Init
             GenerateCrosswalksBlocks(crossroad, crossroad.Right, crossroad.RightRelated);
         }
         
-        private void GenerateCrosswalksBlocks(Crossroads crossroads, Road road, Road crosswalk)
+        private void GenerateCrosswalksBlocks(ICrossroads crossroads, IRoad road, IRoad crosswalk)
         {
             if (road == null || crosswalk == null)
                 return;
             
-            CrossroadsSideData roadSideData = road.GetSideData(crossroads.transform.position);
-            RoadLane[] crosswalkLanes = crosswalk.GetLanesByDistanceTo(crossroads.transform.position);
+            CrossroadsSideData roadSideData = road.GetSideData(crossroads.Position);
+            IRoadLane[] crosswalkLanes = crosswalk.GetLanesByDistanceTo(crossroads.Position);
 
             Point roadSource = roadSideData.Sources.First();
             Point roadTarget = roadSideData.Targets.First();
             
-            RoadLane firstCrosswalkLane = crosswalkLanes[0];
-            RoadLane secondCrosswalkLane = crosswalkLanes[1];
+            IRoadLane firstCrosswalkLane = crosswalkLanes[0];
+            IRoadLane secondCrosswalkLane = crosswalkLanes[1];
 
             Point firstCrosswalkLaneSource = firstCrosswalkLane.Source.RelatedPoint;
             Point firstCrosswalkLaneTarget = firstCrosswalkLane.Target.RelatedPoint;

@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
 using Sources.Data.Constants;
+using Sources.Data.MonoViews;
+using Sources.Data.MonoViews.MonoViews;
 using Sources.Monos.Components.Monos;
-using Sources.MonoViews;
-using Sources.MonoViews.MonoViews;
 using Sources.Utils.DMorpeh;
 using Sources.Utils.DMorpeh.DefaultComponents.Monos;
 using Sources.Utils.DMorpeh.DefaultComponents.Views;
@@ -16,7 +16,7 @@ namespace Sources.Monos.MonoEntities
     [RequireComponent(typeof(EnableableGameObject))]
     [RequireComponent(typeof(SafeTransform))]
     [RequireComponent(typeof(RigidbodySwitcher))]
-    public class CarMonoEntity : MonoEntity
+    public class CarMonoEntity : MonoEntity, ICarMonoEntity
     {
         [SerializeField]
         private EnableableGameObject _enableableGameObject;

@@ -1,3 +1,4 @@
+using Sources.Data.MonoViews;
 using Sources.Monos;
 using Sources.Services.Di;
 using Sources.Utils.DMorpeh.MorpehUtils.Systems;
@@ -6,12 +7,12 @@ namespace Sources.App.Game.Ecs.Systems.Init
 {
     public class FogInitSystem : DInitializer
     {
-        private readonly LevelContext _levelContext;
+        private readonly ILevelContext _levelContext;
         private readonly SimulationSettings _simulationSettings;
 
         public FogInitSystem()
         {
-            _levelContext = DiContainer.Resolve<LevelContext>();
+            _levelContext = DiContainer.Resolve<ILevelContext>();
             _simulationSettings = DiContainer.Resolve<SimulationSettings>();
         }
 

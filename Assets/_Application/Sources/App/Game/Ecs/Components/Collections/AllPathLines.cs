@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Scellecs.Morpeh;
-using Sources.Monos.RoadSystem.Pathes;
+using Sources.Data;
 
 namespace Sources.App.Game.Ecs.Components.Collections
 {

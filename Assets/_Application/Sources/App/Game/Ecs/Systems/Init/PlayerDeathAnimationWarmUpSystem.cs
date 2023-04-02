@@ -2,7 +2,7 @@ using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Npc;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Factories;
-using Sources.Monos.MonoEntities;
+using Sources.Data.MonoViews;
 using Sources.Services.Di;
 using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
 using Sources.Utils.DMorpeh.MorpehUtils.Systems;
@@ -21,7 +21,7 @@ namespace Sources.App.Game.Ecs.Systems.Init
 
         protected override void OnInitialize()
         {
-            PlayerMonoEntity playerPrefab = _playersFactory.GetRandomPlayerPrefab();
+            IPlayerMonoEntity playerPrefab = _playersFactory.GetRandomPlayerPrefab();
             Entity npcEntity = _playersFactory.CreateNpc(playerPrefab, new Vector3(100, 0, 100), Quaternion.identity);
 
             npcEntity.Add<AlwaysActive>();

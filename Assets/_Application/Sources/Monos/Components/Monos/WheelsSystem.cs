@@ -1,5 +1,5 @@
-using Sources.MonoViews;
-using Sources.MonoViews.MonoViews;
+using Sources.Data.MonoViews;
+using Sources.Data.MonoViews.MonoViews;
 using UnityEngine;
 
 namespace Sources.Monos.Components.Monos

@@ -6,8 +6,7 @@ using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.App.Game.Ecs.Factories;
 using Sources.Data;
-using Sources.Monos.MonoEntities;
-using Sources.Monos.RoadSystem.Pathes.Points;
+using Sources.Data.MonoViews;
 using Sources.Services.AssetsManager;
 using Sources.Services.BalanceManager;
 using Sources.Services.Di;
@@ -62,7 +61,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.Generation
             horizonPoints.RandomShuffle();
 
             PlayerType playerType = _playersBalance.GetRandomPlayerType();
-            PlayerMonoEntity playerPrefab = _assets.PlayersAssets.GetPlayerPrefab(playerType);
+            IPlayerMonoEntity playerPrefab = _assets.PlayersAssets.GetPlayerPrefab(playerType);
 
             foreach (Point point in horizonPoints)
             {

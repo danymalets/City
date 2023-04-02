@@ -1,4 +1,4 @@
-using Sources.MonoViews.MonoViews;
+using Sources.Data.MonoViews.MonoViews;
 using Sources.Utils.DMorpeh.DefaultComponents.Monos;
 using UnityEngine;
 

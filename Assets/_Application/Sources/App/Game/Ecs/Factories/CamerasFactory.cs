@@ -1,7 +1,7 @@
 using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Camera;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.Monos.MonoEntities;
+using Sources.Data.MonoViews;
 using Sources.Utils.DMorpeh.DefaultComponents.Views;
 using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
 
@@ -12,7 +12,7 @@ namespace Sources.App.Game.Ecs.Factories
 
         public Entity CreateCamera()
         {
-            CameraMonoEntity cameraMonoEntity = _levelContext.CameraMonoEntity;
+            ICameraMonoEntity cameraMonoEntity = _levelContext.CameraMonoEntity;
             return _world.CreateFromMono(cameraMonoEntity)
                 .SetAccess<ITransform>(cameraMonoEntity.Transform)
                 .SetAccess<ICamera>(cameraMonoEntity.Camera)

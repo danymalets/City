@@ -1,5 +1,5 @@
 using Scellecs.Morpeh;
-using Sources.Monos.RoadSystem;
+using Sources.Data.MonoViews;
 using Sources.Services.Di;
 
 namespace Sources.App.Game.Ecs.Factories

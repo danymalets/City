@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sources.Data;
+using Sources.Data.MonoViews;
 using Sources.Monos.MonoEntities;
 using Sources.Utils.Libs;
 using UnityEngine;
@@ -13,7 +14,7 @@ namespace Sources.Services.AssetsManager
         [SerializeField]
         private List<CarAsset> _carData = new();
 
-        public IEnumerable<CarMonoEntity> CarPrefabs => 
+        public IEnumerable<ICarMonoEntity> CarPrefabs => 
             _carData.Select(d => d.CarPrefab);
 
         private void OnValidate()
@@ -23,7 +24,7 @@ namespace Sources.Services.AssetsManager
                 cd => new CarAsset(cd));
         }
         
-        public CarMonoEntity GetCarPrefab(CarType carType) =>
+        public ICarMonoEntity GetCarPrefab(CarType carType) =>
             _carData.First(cd => cd.CarType == carType).CarPrefab;
     }
 }

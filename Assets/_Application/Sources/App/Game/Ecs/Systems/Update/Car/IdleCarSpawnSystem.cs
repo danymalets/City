@@ -3,9 +3,8 @@ using Sources.App.Game.Ecs.Components.Player.User;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.App.Game.Ecs.Factories;
 using Sources.Data.Constants;
+using Sources.Data.MonoViews;
 using Sources.Monos;
-using Sources.Monos.Bootstrap.IdleCarSpawns;
-using Sources.Monos.MonoEntities;
 using Sources.Services.AssetsManager;
 using Sources.Services.Di;
 using Sources.Services.Physics;
@@ -19,7 +18,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.Car
     public class IdleCarsSpawnSystem : DUpdateSystem
     {
         private Filter _userFilter;
-        private readonly IdleCarsSystem _idleCarsSystem;
+        private readonly IIdleCarsSystem _idleCarsSystem;
         private readonly IPhysicsService _physics;
         private readonly Assets _assets;
         private readonly SimulationSettings _simulationSettings;
@@ -28,7 +27,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.Car
         public IdleCarsSpawnSystem()
         {
             _simulationSettings = DiContainer.Resolve<SimulationSettings>();
-            _idleCarsSystem = DiContainer.Resolve<LevelContext>().IdleCarsSystem;
+            _idleCarsSystem = DiContainer.Resolve<ILevelContext>().IdleCarsSystem;
             _physics = DiContainer.Resolve<IPhysicsService>();
             _assets = DiContainer.Resolve<Assets>();
             _carsFactory = DiContainer.Resolve<ICarsFactory>();
@@ -46,7 +45,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.Car
 
             Vector3 userPosition = _userFilter.GetSingleton().Get<PlayerFollowTransform>().Position;
 
-            foreach (IdleCarSpawnPoint point in _idleCarsSystem.SpawnPoints)
+            foreach (IIdleCarSpawnPoint point in _idleCarsSystem.SpawnPoints)
             {
                 if (!point.AliveCar.IsNullOrDisposed())
                     continue;
@@ -54,7 +53,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.Car
                 float sqrDistance = DVector3.SqrDistance(userPosition, point.Position);
                 if (sqrDistance > sqrMinRadius && sqrDistance < sqrMaxRadius)
                 {
-                    CarMonoEntity carPrefab = _assets.CarsAssets.GetCarPrefab(point.CarType);
+                    ICarMonoEntity carPrefab = _assets.CarsAssets.GetCarPrefab(point.CarType);
 
                     bool has = _physics.CheckBox(point.Position + point.Rotation *
                         carPrefab.CenterRelatedRootPoint, carPrefab.HalfExtents, point.Rotation, 

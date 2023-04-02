@@ -2,7 +2,7 @@ using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Car;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.MonoViews.MonoViews;
+using Sources.Data.MonoViews.MonoViews;
 using Sources.Services.Physics;
 using Sources.Utils.DMorpeh.DefaultComponents.Views;
 using Sources.Utils.DMorpeh.MorpehUtils.Extensions;

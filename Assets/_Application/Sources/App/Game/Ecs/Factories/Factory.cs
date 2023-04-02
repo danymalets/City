@@ -1,3 +1,4 @@
+using Sources.Data.MonoViews;
 using Sources.Monos;
 using Sources.Services.AssetsManager;
 using Sources.Services.Di;
@@ -10,7 +11,7 @@ namespace Sources.App.Game.Ecs.Factories
     {
         protected readonly DWorld _world;
         protected readonly Assets _assets;
-        protected readonly LevelContext _levelContext;
+        protected readonly ILevelContext _levelContext;
         protected readonly Services.BalanceManager.Balance _balance;
         protected readonly IPoolSpawnerService _poolSpawner;
 
@@ -20,7 +21,7 @@ namespace Sources.App.Game.Ecs.Factories
             _assets = DiContainer.Resolve<Assets>();
             _balance = DiContainer.Resolve<Services.BalanceManager.Balance>();
             _poolSpawner = DiContainer.Resolve<IPoolSpawnerService>();
-            _levelContext = DiContainer.Resolve<LevelContext>();
+            _levelContext = DiContainer.Resolve<ILevelContext>();
         }
     }
 }

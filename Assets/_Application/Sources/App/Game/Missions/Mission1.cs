@@ -4,7 +4,7 @@ namespace Sources.App.Game.Missions
 {
     public static class Mission1
     {
-        public static Mission GetMission(Mission1Context context) => new Mission("Уход из дома",
+        public static Mission GetMission(IMission1Context context) => new Mission("Уход из дома",
             new SubMissionBase[]
             {
                 new SpawnNpc(PlayerType.Grandma, context.MumSpawnPoint),

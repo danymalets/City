@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Sources.Data;
+using Sources.Data.MonoViews;
 using Sources.Monos.RoadSystem.Pathes;
 using UnityEngine;
 
@@ -9,7 +11,7 @@ namespace Sources.Monos.RoadSystem
         private readonly List<PathLine> _pathes = new();
 
         public IEnumerable<PathLine> Pathes => _pathes;
-        public IEnumerable<Road> Roads => GetComponentsInChildren<Road>(true);
-        public IEnumerable<Crossroads> Crossroads => GetComponentsInChildren<Crossroads>(true);
+        public IEnumerable<IRoad> Roads => GetComponentsInChildren<Road>(true);
+        public IEnumerable<ICrossroads> Crossroads => GetComponentsInChildren<Crossroads>(true);
     }
 }

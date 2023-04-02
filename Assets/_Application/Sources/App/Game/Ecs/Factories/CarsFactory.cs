@@ -5,10 +5,8 @@ using Sources.App.Game.Ecs.Components.Car;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.Data;
 using Sources.Data.Constants;
-using Sources.Monos.MonoEntities;
-using Sources.Monos.RoadSystem.Pathes.Points;
-using Sources.MonoViews;
-using Sources.MonoViews.MonoViews;
+using Sources.Data.MonoViews;
+using Sources.Data.MonoViews.MonoViews;
 using Sources.Services.BalanceManager;
 using Sources.Services.Di;
 using Sources.Services.Physics;
@@ -44,7 +42,7 @@ namespace Sources.App.Game.Ecs.Factories
         public bool TryCreateRandomCarOnPath(Point point, out Entity createdCar)
         {
             CarColorData carColorData = _carsBalance.GetRandomCar();
-            CarMonoEntity carPrefab = _assets.CarsAssets.GetCarPrefab(carColorData.CarType);
+            ICarMonoEntity carPrefab = _assets.CarsAssets.GetCarPrefab(carColorData.CarType);
 
             bool has = _physics.CheckBox(point.Position + point.Rotation * carPrefab.CenterRelatedRootPoint,
                 carPrefab.HalfExtents,  point.Rotation , LayerMasks.CarsAndPlayers);
@@ -62,9 +60,9 @@ namespace Sources.App.Game.Ecs.Factories
             }
         }
 
-        public Entity CreateCar(CarMonoEntity carPrefab, CarColorType? colorType, Vector3 position, Quaternion rotation)
+        public Entity CreateCar(ICarMonoEntity carPrefab, CarColorType? colorType, Vector3 position, Quaternion rotation)
         {
-            CarMonoEntity carMonoEntity = _poolSpawner.Spawn(carPrefab, position, rotation);
+            ICarMonoEntity carMonoEntity = _poolSpawner.Spawn(carPrefab, position, rotation);
             
             return _world.CreateFromMono(carMonoEntity)
                 .Add<CarTag>()

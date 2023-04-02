@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Sources.Utils.DMorpeh
 {
-    public abstract class MonoEntity : RespawnableBehaviour
+    public abstract class MonoEntity : RespawnableBehaviour, IMonoEntity
     {
         [ReadOnly]
         [SerializeField]

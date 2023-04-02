@@ -2,6 +2,8 @@ using Sources.App.Game;
 using Sources.App.Game.UI.Screens;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
+using Sources.Data;
+using Sources.Data.MonoViews;
 using Sources.Monos;
 using Sources.Services.AssetsManager;
 using Sources.Services.Di;
@@ -42,7 +44,7 @@ namespace Sources.App.Infrastructure.StateMachine.States
             
             SceneManager.LoadScene($"Empty");
             
-            _sceneLoader.LoadScene<LevelContext>(cityScene, levelContext => 
+            _sceneLoader.LoadScene<ILevelContext>(cityScene, levelContext => 
                 EnterLevelState(new LevelData(level, levelContext)));
         }
 

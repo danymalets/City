@@ -3,9 +3,9 @@ using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Collections;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.App.Game.Ecs.Factories;
+using Sources.Data;
+using Sources.Data.MonoViews;
 using Sources.Monos;
-using Sources.Monos.RoadSystem;
-using Sources.Monos.RoadSystem.Pathes.Points;
 using Sources.Services.AssetsManager;
 using Sources.Services.BalanceManager;
 using Sources.Services.Di;
@@ -30,9 +30,9 @@ namespace Sources.App.Game.Ecs.Systems.Init
         {
             _physics = DiContainer.Resolve<IPhysicsService>();
             _assets = DiContainer.Resolve<Assets>();
-            _simulationBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().SimulationBalance;
-            _playersBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().PlayersBalance;
-            _pathSystem = DiContainer.Resolve<LevelContext>().NpcPathSystem;
+            _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
+            _playersBalance = DiContainer.Resolve<Balance>().PlayersBalance;
+            _pathSystem = DiContainer.Resolve<ILevelContext>().NpcPathSystem;
             _playersFactory = DiContainer.Resolve<IPlayersFactory>();
         }
 

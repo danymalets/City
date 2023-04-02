@@ -14,6 +14,7 @@ namespace Sources.App.Game.Ecs.Despawners
                 switchableRigidbodyAspect.DisablePhysicBody();
             
             carEntity.DespawnMono();
+            _poolDespawner.Despawn(carEntity.GetMonoEntity());
             carEntity.Dispose();
         }
     }

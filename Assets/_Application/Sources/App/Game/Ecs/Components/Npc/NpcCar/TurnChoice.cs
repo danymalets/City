@@ -1,4 +1,4 @@
-using Sources.Monos.RoadSystem.Pathes.Points;
+using Sources.Data;
 
 namespace Sources.App.Game.Ecs.Components.Npc.NpcCar
 {

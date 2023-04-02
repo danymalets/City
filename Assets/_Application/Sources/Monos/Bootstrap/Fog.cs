@@ -1,8 +1,9 @@
+using Sources.Data.MonoViews;
 using UnityEngine;
 
 namespace Sources.Monos.Bootstrap
 {
-    public class Fog : MonoBehaviour
+    public class Fog : MonoBehaviour, IFog
     {
         [SerializeField]
         private MeshRenderer _firstSphere;

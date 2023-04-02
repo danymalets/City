@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using Scellecs.Morpeh;
-using Sources.Monos.RoadSystem.Pathes;
+using Sources.Data.MonoViews;
 
 namespace Sources.App.Game.Ecs.Components.Collections
 {
     public struct AllCrossroads : IComponent
     {
-        public List<Crossroads> List { get; set; }
+        public List<ICrossroads> List { get; set; }
     }
 }

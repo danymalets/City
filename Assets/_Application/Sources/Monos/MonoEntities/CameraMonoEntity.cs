@@ -1,4 +1,5 @@
 using Sirenix.OdinInspector;
+using Sources.Data.MonoViews;
 using Sources.Utils.DMorpeh;
 using Sources.Utils.DMorpeh.DefaultComponents.Monos;
 using Sources.Utils.DMorpeh.DefaultComponents.Views;
@@ -8,7 +9,7 @@ namespace Sources.Monos.MonoEntities
 {
     [RequireComponent(typeof(SafeTransform))]
     [RequireComponent(typeof(SafeCamera))]
-    public class CameraMonoEntity : MonoEntity
+    public class CameraMonoEntity : MonoEntity, ICameraMonoEntity
     {
         [SerializeField]
         private SafeTransform _transform;

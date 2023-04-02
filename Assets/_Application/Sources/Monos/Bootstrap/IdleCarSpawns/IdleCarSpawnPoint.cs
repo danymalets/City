@@ -1,6 +1,7 @@
 using Scellecs.Morpeh;
 using Sirenix.OdinInspector;
 using Sources.Data;
+using Sources.Data.MonoViews;
 using Sources.Monos.MonoEntities;
 using Sources.Utils.DMorpeh.DefaultComponents.Views;
 using UnityEngine;
@@ -9,7 +10,7 @@ using UnityEngine;
 
 namespace Sources.Monos.Bootstrap.IdleCarSpawns
 {
-    public class IdleCarSpawnPoint : MonoBehaviour
+    public class IdleCarSpawnPoint : MonoBehaviour, IIdleCarSpawnPoint
     {
         [ReadOnly]
         [SerializeField]

@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Collections;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.Monos.RoadSystem.Pathes;
-using Sources.Monos.RoadSystem.Pathes.Points;
+using Sources.Data;
+using Sources.Data.MonoViews;
 using Sources.Services.BalanceManager;
 using Sources.Services.Di;
 using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
@@ -29,13 +29,13 @@ namespace Sources.App.Game.Ecs.Systems.Init
             {
                 bool isCar = pathesEntity.Has<CarsPathesTag>();
                 
-                List<Road> roads = pathesEntity.Get<AllRoads>().List;
+                List<IRoad> roads = pathesEntity.Get<AllRoads>().List;
                 List<PathLine> pathLines = pathesEntity.Get<AllPathLines>().List;
-                List<Crossroads> crossroads = pathesEntity.Get<AllCrossroads>().List;
+                List<ICrossroads> crossroads = pathesEntity.Get<AllCrossroads>().List;
 
-                foreach (Road road in roads)
+                foreach (IRoad road in roads)
                 {
-                    foreach (RoadLane roadLane in road.RoadLanes)
+                    foreach (IRoadLane roadLane in road.RoadLanes)
                     {
                         GeneratePathLines(pathLines, road, roadLane, isCar);
                     }
@@ -43,7 +43,7 @@ namespace Sources.App.Game.Ecs.Systems.Init
             }
         }
 
-        private void GeneratePathLines(List<PathLine> pathLines, Road road, RoadLane roadLane, bool isCar)
+        private void GeneratePathLines(List<PathLine> pathLines, IRoad road, IRoadLane roadLane, bool isCar)
         {
             List<Point> points = new();
 

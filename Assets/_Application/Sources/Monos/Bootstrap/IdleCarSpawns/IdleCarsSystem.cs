@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using Sources.Data.MonoViews;
 using UnityEngine;
 
 namespace Sources.Monos.Bootstrap.IdleCarSpawns
 {
-    public class IdleCarsSystem : MonoBehaviour
+    public class IdleCarsSystem : MonoBehaviour, IIdleCarsSystem
     {
         [ReadOnly]
         [SerializeField]
@@ -15,8 +17,8 @@ namespace Sources.Monos.Bootstrap.IdleCarSpawns
         [SerializeField]
         private bool _visualize;
 
-        public IdleCarSpawnPoint[] SpawnPoints => _spawnPoints;
-
+        public IEnumerable<IIdleCarSpawnPoint> SpawnPoints => _spawnPoints;
+        
 #if UNITY_EDITOR
         private void OnValidate()
         {

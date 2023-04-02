@@ -1,9 +1,11 @@
+using Sources.Data;
+using Sources.Data.MonoViews;
 using Sources.Utils.Extensions;
 using UnityEngine;
 
 namespace Sources.Monos.RoadSystem.Pathes.Points
 {
-    public class RoadLaneCheckpoint : MonoBehaviour
+    public class RoadLaneCheckpoint : MonoBehaviour, IRoadLaneCheckpoint
     {
         public Vector3 Position => transform.position;
         

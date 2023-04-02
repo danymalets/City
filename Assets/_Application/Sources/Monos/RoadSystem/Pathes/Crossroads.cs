@@ -1,16 +1,15 @@
+using Sources.Data.MonoViews;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace Sources.Monos.RoadSystem.Pathes
 {
-    public class Crossroads : MonoBehaviour
+    public class Crossroads : MonoBehaviour, ICrossroads
     {
-        [FormerlySerializedAs("Up")]
         public Road Forward;
 
         public Road Right;
 
-        [FormerlySerializedAs("Down")]
         public Road Back;
 
         public Road Left;
@@ -20,10 +19,18 @@ namespace Sources.Monos.RoadSystem.Pathes
         public Road BackRelated;
         public Road LeftRelated;
 
+        public Vector3 Position => transform.position;
+        IRoad ICrossroads.Forward => Forward;
+        IRoad ICrossroads.Right => Right;
+        IRoad ICrossroads.Back => Back;
+        IRoad ICrossroads.Left => Left;
+        IRoad ICrossroads.ForwardRelated => ForwardRelated;
+        IRoad ICrossroads.RightRelated => RightRelated;
+        IRoad ICrossroads.BackRelated => BackRelated;
+        IRoad ICrossroads.LeftRelated => LeftRelated;
+        public IRoad[] GetAllRoads() => new[] { Forward, Left, Back, Right };
+        public IRoad[] GetAllRelatedRoads() => new[] { ForwardRelated, RightRelated, BackRelated, LeftRelated };
 
-        public Road[] GetAllRoads() => new[] { Forward, Left, Back, Right };
-        public Road[] GetAllRelatedRoads() => new[] { ForwardRelated, RightRelated, BackRelated, LeftRelated };
-        
         private float _oneRoadLength;
     }
 }

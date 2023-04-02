@@ -1,7 +1,7 @@
 using Sources.App.Game.UI.Overlays;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
-using Sources.Monos.MonoEntities;
+using Sources.Data.MonoViews;
 using Sources.Services.ApplicationCycle;
 using Sources.Services.AssetsManager;
 using Sources.Services.Di;
@@ -44,12 +44,12 @@ namespace Sources.App.Infrastructure.StateMachine.States
             IPoolCreatorService poolCreatorService = DiContainer.Resolve<IPoolCreatorService>();
             Assets assets = DiContainer.Resolve<Assets>();
 
-            foreach (CarMonoEntity carPrefab in assets.CarsAssets.CarPrefabs)
+            foreach (ICarMonoEntity carPrefab in assets.CarsAssets.CarPrefabs)
             {
                 poolCreatorService.CreatePool(new PoolConfig(carPrefab, 40));
             }
 
-            foreach (PlayerMonoEntity playerPrefab in assets.PlayersAssets.PlayerPrefabs)
+            foreach (IPlayerMonoEntity playerPrefab in assets.PlayersAssets.PlayerPrefabs)
             {
                 poolCreatorService.CreatePool(new PoolConfig(playerPrefab, 40));
             }

@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Sources.MonoViews;
+using Sources.Data.MonoViews;
 using UnityEngine;
 
 namespace Sources.Monos.Components.Monos

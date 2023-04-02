@@ -7,7 +7,7 @@ namespace Sources.Services.Pool
     public partial class Pool : MonoBehaviour
     {
         private PoolConfig _config;
-        
+
         private readonly Stack<RespawnableBehaviour> _freeObjects =
             new Stack<RespawnableBehaviour>();
 
@@ -19,53 +19,56 @@ namespace Sources.Services.Pool
             _config = config;
         }
 
-        public void Initialize()
+        public IEnumerable<IRespawnable> Initialize()
         {
-            for (int i = 0; i < _config.Size; i++) 
-                CreateNew();
+            for (int i = 0; i < _config.Size; i++)
+                yield return CreateNew();
         }
 
-        public RespawnableBehaviour Get()
+        public T Get<T>(Transform parent, Vector3 position, Quaternion rotation)
+            where T : IRespawnable
         {
             _instanceCount++;
             _maxInstance = Math.Max(_maxInstance, _instanceCount);
-            
+
             if (IsNoFreeObjects)
             {
-                Debug.LogWarning($"There are too few {_config.Prefab.name} objects in the pool");
+                Debug.LogWarning($"There are too few {_config.Prefab.RespawnableBehaviour.name} objects in the pool");
                 CreateNew();
             }
 
             RespawnableBehaviour respawnableBehaviour = _freeObjects.Pop();
-            
-            respawnableBehaviour.transform.SetParent(null);
-            respawnableBehaviour.transform.position = Vector3.zero;
+
+            respawnableBehaviour.transform.SetParent(parent);
+            respawnableBehaviour.transform.localPosition = position;
+            respawnableBehaviour.transform.localRotation = rotation;
             respawnableBehaviour.gameObject.SetActive(true);
 
-            return respawnableBehaviour;
+            return respawnableBehaviour is T respawnable ? respawnable : throw new InvalidOperationException();
         }
+        
 
         public void Destroy()
         {
             Destroy(gameObject);
         }
 
-        private void CreateNew()
+        private IRespawnable CreateNew()
         {
-            RespawnableBehaviour respawnableBehaviour = Instantiate(_config.Prefab, transform);
-            
+            RespawnableBehaviour respawnableBehaviour = Instantiate(_config.Prefab.RespawnableBehaviour, transform);
+
             respawnableBehaviour.transform.SetParent(transform);
             respawnableBehaviour.gameObject.SetActive(false);
-
-            respawnableBehaviour.Despawned += OnDespawned;
-
+            
             _freeObjects.Push(respawnableBehaviour);
+
+            return respawnableBehaviour;
         }
 
-        private void OnDespawned(RespawnableBehaviour respawnableBehaviour)
+        public void OnDespawned(RespawnableBehaviour respawnableBehaviour)
         {
             _instanceCount--;
-            
+
             respawnableBehaviour.transform.SetParent(transform);
             respawnableBehaviour.transform.localPosition = Vector3.zero;
 

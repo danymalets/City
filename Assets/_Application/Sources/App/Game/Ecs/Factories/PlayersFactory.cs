@@ -9,12 +9,9 @@ using Sources.App.Game.Ecs.Components.Tags;
 using Sources.App.Game.Ecs.Components.User;
 using Sources.Data;
 using Sources.Data.Constants;
-using Sources.Monos.Components.Monos;
+using Sources.Data.MonoViews;
+using Sources.Data.MonoViews.MonoViews;
 using Sources.Monos.Components.Old.PlayerAnimators;
-using Sources.Monos.MonoEntities;
-using Sources.Monos.RoadSystem.Pathes;
-using Sources.Monos.RoadSystem.Pathes.Points;
-using Sources.MonoViews.MonoViews;
 using Sources.Services.BalanceManager;
 using Sources.Services.Di;
 using Sources.Services.Physics;
@@ -38,25 +35,25 @@ namespace Sources.App.Game.Ecs.Factories
             _playersBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().PlayersBalance;
         }
 
-        public PlayerMonoEntity GetRandomPlayerPrefab()
+        public IPlayerMonoEntity GetRandomPlayerPrefab()
         {
             PlayerType playerType = _balance.PlayersBalance.GetRandomPlayerType();
             return _assets.PlayersAssets.GetPlayerPrefab(playerType);
         }
 
-        public Entity CreateUserInCar(PlayerMonoEntity playerPrefab, Entity carEntity)
+        public Entity CreateUserInCar(IPlayerMonoEntity playerPrefab, Entity carEntity)
         {
             return CreateUser(playerPrefab, Vector3.zero, Quaternion.identity)
                 .SetupAccessible<EnableableGameObject>(g => g.Disable())
                 .Set(new PlayerInCar { Car = carEntity })
                 .Set(new PlayerFollowTransform
                 {
-                    Position = carEntity.GetAccess<WheelsSystem>().RootPosition,
+                    Position = carEntity.GetAccess<IWheelsSystem>().RootPosition,
                     Rotation = carEntity.GetAccess<ITransform>().Rotation
                 });
         }
 
-        public Entity CreateUser(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation) =>
+        public Entity CreateUser(IPlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation) =>
             CreatePlayer(playerPrefab, position, rotation)
                 .Add<UserTag>()
                 .Add<UserCarInput>()
@@ -67,14 +64,14 @@ namespace Sources.App.Game.Ecs.Factories
                     Rotation = rotation
                 });
 
-        public Entity CreateNpc(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation) =>
+        public Entity CreateNpc(IPlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation) =>
             CreatePlayer(playerPrefab, position, rotation)
                 .Add<ForwardTrigger>()
                 .Add<NpcTag>();
 
         public bool TryCreateRandomNpc(Point point, out Entity createdEntity)
         {
-            PlayerMonoEntity playerPrefab = GetRandomPlayerPrefab();
+            IPlayerMonoEntity playerPrefab = GetRandomPlayerPrefab();
             
             SafeCapsuleCollider capsule = playerPrefab.PlayerBorders.SafeCapsuleCollider;
 
@@ -94,7 +91,7 @@ namespace Sources.App.Game.Ecs.Factories
             }
         }
 
-        public Entity CreateNpcOnPath(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation, PathLine pathLine)
+        public Entity CreateNpcOnPath(IPlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation, PathLine pathLine)
         {
             Entity npc = CreateNpc(playerPrefab, position, rotation);
             
@@ -103,10 +100,8 @@ namespace Sources.App.Game.Ecs.Factories
             return npc;
         }
 
-        public Entity CreateNpcInCarOnPath(PlayerMonoEntity playerPrefab, Entity carEntity, PathLine pathLine)
+        public Entity CreateNpcInCarOnPath(IPlayerMonoEntity playerPrefab, Entity carEntity, PathLine pathLine)
         {
-            playerPrefab.gameObject.Enable();
-            
             Entity npc = CreateNpc(playerPrefab, Vector3.zero, Quaternion.identity)
                 .SetupAccessible<IEnableableGameObject>(g => g.Disable())
                 .Set(new PlayerInCar { Car = carEntity, Place = 0 });
@@ -121,9 +116,9 @@ namespace Sources.App.Game.Ecs.Factories
         public Entity CreateRandomNpcInCarOnPath(Entity car, Point point) => 
             CreateNpcInCarOnPath(GetRandomPlayerPrefab(), car, point.Targets.First().FirstPathLine);
 
-        private Entity CreatePlayer(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation)
+        private Entity CreatePlayer(IPlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation)
         {
-            PlayerMonoEntity playerMonoEntity = _poolSpawner.Spawn(playerPrefab, position, rotation);
+            IPlayerMonoEntity playerMonoEntity = _poolSpawner.Spawn(playerPrefab, position, rotation);
 
             return _world.CreateFromMono(playerMonoEntity)
                 .SetAccess<IEnableableGameObject>(playerMonoEntity.EnableableGameObject)
@@ -134,10 +129,7 @@ namespace Sources.App.Game.Ecs.Factories
                 .SetAccess<IPlayerAnimator>(new PlayerAnimator(playerMonoEntity.Animator))
                 .SetAccess<IPlayerBorders>(playerMonoEntity.PlayerBorders)
                 .SetupAccessible<IPlayerAnimator>(pa => pa.Setup())
-                .SetupAspect<SwitchableRigidbodyAspect>(pa =>
-                {
-                    pa.EnablePhysicBody();
-                })
+                .SetupAspect<SwitchableRigidbodyAspect>(pa => pa.EnablePhysicBody())
                 .Set(new PlayerTargetAngle { Value = rotation.eulerAngles.y })
                 .Set(new PlayerSmoothAngle { Value = rotation.eulerAngles.y })
                 .Set(new RotationSpeed { Value = 45f })

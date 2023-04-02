@@ -8,7 +8,6 @@ namespace Sources.App.Game.Ecs.Despawners
 {
     public class PlayersDespawner : Despawner, IPlayersDespawner
     {
-
         public void DespawnNpc(Entity playerEntity)
         {
             playerEntity.GetAspect<NpcStatusAspect>().LeaveIfOnPath();
@@ -24,6 +23,7 @@ namespace Sources.App.Game.Ecs.Despawners
                 switchableRigidbodyAspect.DisablePhysicBody();
             
             playerEntity.DespawnMono();
+            _poolDespawner.Despawn(playerEntity.GetMonoEntity());
             playerEntity.Dispose();
         }
     }

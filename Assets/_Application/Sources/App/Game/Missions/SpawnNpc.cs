@@ -1,5 +1,5 @@
 using Sources.Data;
-using Sources.Monos.Bootstrap;
+using Sources.Data.MonoViews;
 
 namespace Sources.App.Game.Missions
 {

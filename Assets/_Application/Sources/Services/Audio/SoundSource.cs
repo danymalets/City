@@ -1,4 +1,5 @@
 using System;
+using Sources.Services.Di;
 using Sources.Services.Pool;
 using Sources.Utils.Data.Live;
 using Sources.Utils.Extensions;
@@ -13,6 +14,7 @@ namespace Sources.Services.Audio
         private AudioSource _audioSource;
         private LiveBool _soundEnabled;
         private Action<SoundSource> _onPlayed;
+        private IPoolDespawnerService _poolDespawner;
 
         private void Awake()
         {
@@ -21,6 +23,8 @@ namespace Sources.Services.Audio
 
         public void Setup(SoundSourceData data, Action<SoundSource> onPlayed)
         {
+            _poolDespawner = DiContainer.Resolve<IPoolDespawnerService>();
+            
             Stopable = data.Stopable;
             
             _soundEnabled = data.SoundsEnabled;
@@ -47,7 +51,7 @@ namespace Sources.Services.Audio
         public void Cleanup()
         {
             _soundEnabled.Changed -= OnEnabledValueChanged;
-            Despawn();
+            _poolDespawner.Despawn(this);
             _onPlayed?.Invoke(this);
         }
     }

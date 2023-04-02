@@ -1,7 +1,8 @@
 using Sirenix.OdinInspector;
 using Sources.Data.Constants;
+using Sources.Data.MonoViews;
+using Sources.Data.MonoViews.MonoViews;
 using Sources.Monos.Components.Monos;
-using Sources.MonoViews.MonoViews;
 using Sources.Utils.DMorpeh;
 using Sources.Utils.DMorpeh.DefaultComponents.Monos;
 using Sources.Utils.DMorpeh.DefaultComponents.Views;
@@ -14,7 +15,7 @@ namespace Sources.Monos.MonoEntities
     [RequireComponent(typeof(EnableableGameObject))]
     [RequireComponent(typeof(SafeTransform))]
     [RequireComponent(typeof(RigidbodySwitcher))]
-    public partial class PlayerMonoEntity : MonoEntity
+    public partial class PlayerMonoEntity : MonoEntity, IPlayerMonoEntity
     {
         [SerializeField]
         private EnableableGameObject _enableableGameObject;

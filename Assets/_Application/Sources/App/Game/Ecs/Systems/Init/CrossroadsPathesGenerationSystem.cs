@@ -3,8 +3,8 @@ using System.Linq;
 using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Collections;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.Monos.RoadSystem.Pathes;
-using Sources.Monos.RoadSystem.Pathes.Points;
+using Sources.Data;
+using Sources.Data.MonoViews;
 using Sources.Services.BalanceManager;
 using Sources.Services.Di;
 using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
@@ -42,28 +42,28 @@ namespace Sources.App.Game.Ecs.Systems.Init
             foreach (Entity pathesEntity in _filter)
             {
                 List<PathLine> pathLines = pathesEntity.Get<AllPathLines>().List;
-                List<Crossroads> crossroads = pathesEntity.Get<AllCrossroads>().List;
+                List<ICrossroads> crossroads = pathesEntity.Get<AllCrossroads>().List;
 
-                foreach (Crossroads crossroad in crossroads)
+                foreach (ICrossroads crossroad in crossroads)
                 {
                     Generate(pathLines, crossroad, pathesEntity.Has<CarsPathesTag>());
                 }
             }
         }
 
-        private void Generate(List<PathLine> pathLines, Crossroads crossroad, bool isCars)
+        private void Generate(List<PathLine> pathLines, ICrossroads crossroad, bool isCars)
         {
-            Road[] crossroadRoads = crossroad.GetAllRoads();
-            Vector3 crossroadPosition = crossroad.transform.position;
+            IRoad[] crossroadRoads = crossroad.GetAllRoads();
+            Vector3 crossroadPosition = crossroad.Position;
 
             for (int sourceIndex = 0; sourceIndex < crossroadRoads.Length; sourceIndex++)
             {
-                Road sourceRoad = crossroadRoads[sourceIndex];
+                IRoad sourceRoad = crossroadRoads[sourceIndex];
 
                 foreach (int deltaIndex in s_deltaIndices)
                 {
                     int targetIndex = DMath.Mod(sourceIndex + deltaIndex, crossroadRoads.Length);
-                    Road targetRoad = crossroadRoads[targetIndex];
+                    IRoad targetRoad = crossroadRoads[targetIndex];
 
                     if (sourceRoad != null && targetRoad != null)
                     {
@@ -84,7 +84,7 @@ namespace Sources.App.Game.Ecs.Systems.Init
 
             for (int sourceIndex = 0; sourceIndex < crossroadRoads.Length; sourceIndex++)
             {
-                Road sourceRoad = crossroadRoads[sourceIndex];
+                IRoad sourceRoad = crossroadRoads[sourceIndex];
 
                 if (sourceRoad == null)
                     continue;
@@ -94,7 +94,7 @@ namespace Sources.App.Game.Ecs.Systems.Init
                 foreach ((int delta, int banRoadDelta, int banTurnDelta) in s_banns)
                 {
                     // Road targetRoad = crossroadRoads[DMath.Mod(sourceIndex + delta, crossroadRoads.Length)];
-                    Road banRoad = crossroadRoads[DMath.Mod(sourceIndex + banRoadDelta, crossroadRoads.Length)];
+                    IRoad banRoad = crossroadRoads[DMath.Mod(sourceIndex + banRoadDelta, crossroadRoads.Length)];
 
                     if (banRoad == null)
                         continue;

@@ -142,13 +142,12 @@ namespace Sources.Utils.DMorpeh.MorpehUtils.Extensions
             return entity;
         }
 
-        public static MonoEntity GetMonoEntity(this Entity entity) =>
+        public static IMonoEntity GetMonoEntity(this Entity entity) =>
             entity.Get<MonoEntityAccess>().MonoEntity;
         
         public static void DespawnMono(this Entity entity)
         {
             entity.GetMonoEntity().Cleanup();
-            entity.GetMonoEntity().Despawn();
         }
     }
 }

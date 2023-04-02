@@ -3,19 +3,9 @@ using UnityEngine;
 
 namespace Sources.Services.Pool
 {
-    public class RespawnableBehaviour : MonoBehaviour
+    public class RespawnableBehaviour : MonoBehaviour, IRespawnable
     {
-        public event Action<RespawnableBehaviour> Despawned = delegate { };
 
-        public void Despawn()
-        {    
-            OnDespawn();
-            gameObject.SetActive(false);
-            Despawned(this);
-        }
-
-        protected virtual void OnDespawn()
-        {
-        }
+        RespawnableBehaviour IRespawnable.RespawnableBehaviour => this;
     }
 }
