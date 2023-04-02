@@ -17,5 +17,20 @@ namespace Sources.Monos.Components.Monos
         
         public Vector3 RootPosition => 
             AxleInfo[0].GetRoot();
+
+        public void EnableSystem() =>
+            SetSystemEnabled(true);
+        
+        public void DisableSystem() =>
+            SetSystemEnabled(false);
+
+        public void SetSystemEnabled(bool enabled)
+        {
+            foreach (AxleInfo axleInfo in _axleInfos)
+            {
+                axleInfo.LeftWheelCollider.gameObject.SetActive(enabled);
+                axleInfo.RightWheelCollider.gameObject.SetActive(enabled);
+            }
+        }
     }
 }

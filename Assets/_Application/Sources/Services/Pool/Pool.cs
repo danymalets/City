@@ -46,7 +46,6 @@ namespace Sources.Services.Pool
 
             return respawnableBehaviour is T respawnable ? respawnable : throw new InvalidOperationException();
         }
-        
 
         public void Destroy()
         {

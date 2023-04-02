@@ -81,10 +81,7 @@ namespace Sources.App.Game.Ecs.Factories
                     if (colorType != null)
                         cc.SetupColor(colorType.Value);
                 })
-                .SetupAspect<SwitchableRigidbodyAspect>(pa =>
-                {
-                    pa.EnablePhysicBody();
-                })
+                .SetupAspect<SwitchableRigidbodyAspect>(pa => pa.EnablePhysicBody())
                 .Add<CarMotorCoefficient>()
                 .Add<CarBreak>()
                 .Add<SteeringAngle>()

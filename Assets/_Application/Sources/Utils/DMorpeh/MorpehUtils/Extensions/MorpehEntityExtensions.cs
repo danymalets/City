@@ -27,6 +27,20 @@ namespace Sources.Utils.DMorpeh.MorpehUtils.Extensions
                 return false;
             }
         }
+        
+        public static bool TryGetAccess<TAccess>(this Entity entity, out TAccess access)
+        {
+            if (entity.Has<AccessTo<TAccess>>())
+            {
+                access = entity.GetAccess<TAccess>();
+                return true;
+            }
+            else
+            {
+                access = default;
+                return false;
+            }
+        }
 
         public static Entity Add<TComponent>(this Entity entity) where TComponent : struct, IComponent
         {

@@ -71,6 +71,8 @@ namespace Sources.Monos.MonoEntities
             _meshRenderers = GetComponentsInChildren<SafeMeshRenderer>();
             _colliders = GetComponentsInChildren<SafeColliderBase>()
                 .ExceptOne(_carBorders.SafeBoxCollider).ToArray();
+            
+            _wheelsSystem.DisableSystem();
 
             foreach (SafeColliderBase collider in _colliders) 
                 collider.Layer = Layers.Car;
