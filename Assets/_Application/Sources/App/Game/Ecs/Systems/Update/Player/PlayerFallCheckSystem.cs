@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Scellecs.Morpeh;
-using Sources.App.Game.Ecs.Components.Collections;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.Services.BalanceManager;
@@ -20,7 +19,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.Player
 
         public PlayerFallCheckSystem()
         {
-            _playersBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().PlayersBalance;
+            _playersBalance = DiContainer.Resolve<Balance>().PlayersBalance;
         }
 
         protected override void OnConstruct()

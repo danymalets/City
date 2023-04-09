@@ -1,6 +1,6 @@
 using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Camera;
-using Sources.App.Game.Ecs.Components.Player.User;
+using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.Services.BalanceManager;
 using Sources.Services.Di;
@@ -25,7 +25,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.Camera
 
         public CameraFollowPlayerRotationSystem()
         {
-            _cameraBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().CameraBalance;
+            _cameraBalance = DiContainer.Resolve<Balance>().CameraBalance;
         }
 
         protected override void OnConstruct()

@@ -1,5 +1,5 @@
 using Scellecs.Morpeh;
-using Sources.App.Game.Ecs.Components.Player.User;
+using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
 using Sources.Utils.DMorpeh.MorpehUtils.Systems;

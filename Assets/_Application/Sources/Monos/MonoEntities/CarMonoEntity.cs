@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
+using Sources.Data.Cars;
 using Sources.Data.Constants;
-using Sources.Data.MonoViews;
-using Sources.Data.MonoViews.MonoViews;
-using Sources.Monos.Components.Monos;
+using Sources.Data.MonoEntities;
+using Sources.Monos.Cars;
 using Sources.Utils.DMorpeh;
 using Sources.Utils.DMorpeh.DefaultComponents.Monos;
 using Sources.Utils.DMorpeh.DefaultComponents.Views;

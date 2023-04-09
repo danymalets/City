@@ -2,7 +2,7 @@ using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Car;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.Data.MonoViews.MonoViews;
+using Sources.Data.Players;
 using Sources.Services.BalanceManager;
 using Sources.Services.Di;
 using Sources.Utils.Data;
@@ -21,7 +21,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.Npc
 
         public NpcForwardColliderSystem()
         {
-            _simulationBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().SimulationBalance;
+            _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
         }
 
         protected override void OnConstruct()

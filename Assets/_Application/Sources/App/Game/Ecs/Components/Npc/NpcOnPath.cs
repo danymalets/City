@@ -1,5 +1,6 @@
 using Scellecs.Morpeh;
 using Sources.Data;
+using Sources.Data.Pathes;
 
 namespace Sources.App.Game.Ecs.Components.Npc
 {

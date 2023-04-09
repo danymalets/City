@@ -1,9 +1,12 @@
 using System.Collections.Generic;
 using Scellecs.Morpeh;
-using Sources.App.Game.Ecs.Components.Collections;
+using Sources.App.Game.Ecs.Components.Car;
 using Sources.App.Game.Ecs.Components.Npc;
 using Sources.App.Game.Ecs.Components.Npc.NpcCar;
+using Sources.App.Game.Ecs.Components.NpcPathes;
 using Sources.Data;
+using Sources.Data.Cars;
+using Sources.Data.Pathes;
 using Sources.Utils.DMorpeh.Aspects;
 using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
 

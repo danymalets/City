@@ -1,4 +1,4 @@
-namespace Sources.Data
+namespace Sources.Services.SceneLoader
 {
     public interface ISceneContext
     {

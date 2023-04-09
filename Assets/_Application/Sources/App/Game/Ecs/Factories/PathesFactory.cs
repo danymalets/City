@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using Scellecs.Morpeh;
-using Sources.App.Game.Ecs.Components.Collections;
+using Sources.App.Game.Ecs.Components.NpcPathes;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.Data;
-using Sources.Data.MonoViews;
+using Sources.Data.Pathes;
+using Sources.Data.Points;
 using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
 
 namespace Sources.App.Game.Ecs.Factories

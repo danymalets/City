@@ -16,7 +16,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.User
 
         public NpcSpeedSystem()
         {
-            _playerBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().PlayersBalance;
+            _playerBalance = DiContainer.Resolve<Balance>().PlayersBalance;
         }
 
         protected override void OnConstruct()

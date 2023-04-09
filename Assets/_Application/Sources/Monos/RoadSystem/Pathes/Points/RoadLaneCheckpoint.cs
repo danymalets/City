@@ -1,5 +1,6 @@
 using Sources.Data;
-using Sources.Data.MonoViews;
+using Sources.Data.Pathes;
+using Sources.Data.Points;
 using Sources.Utils.Extensions;
 using UnityEngine;
 

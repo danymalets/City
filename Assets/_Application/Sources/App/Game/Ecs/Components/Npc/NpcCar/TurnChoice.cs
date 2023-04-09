@@ -1,4 +1,6 @@
 using Sources.Data;
+using Sources.Data.Cars;
+using Sources.Data.Points;
 
 namespace Sources.App.Game.Ecs.Components.Npc.NpcCar
 {

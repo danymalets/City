@@ -2,7 +2,7 @@ using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Npc;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Factories;
-using Sources.Data.MonoViews;
+using Sources.Data.MonoEntities;
 using Sources.Services.Di;
 using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
 using Sources.Utils.DMorpeh.MorpehUtils.Systems;

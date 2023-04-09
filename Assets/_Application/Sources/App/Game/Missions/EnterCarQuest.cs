@@ -1,4 +1,5 @@
 using Sources.Data;
+using Sources.Data.Cars;
 
 namespace Sources.App.Game.Missions
 {

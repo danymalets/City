@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using Scellecs.Morpeh;
-using Sources.App.Game.Ecs.Components.Collections;
+using Sources.App.Game.Ecs.Components.Car;
 using Sources.App.Game.Ecs.Components.Npc;
 using Sources.App.Game.Ecs.Components.Npc.NpcCar;
+using Sources.App.Game.Ecs.Components.NpcPathes;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.Data;
+using Sources.Data.Cars;
 using Sources.Services.BalanceManager;
 using Sources.Services.Di;
 using Sources.Utils.DMorpeh.DefaultComponents.Views;
@@ -23,7 +25,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.NpcCar
 
         public NpcBreakOrMoveChoiceSystem()
         {
-            _simulationBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().SimulationBalance;
+            _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
         }
 
         protected override void OnConstruct()

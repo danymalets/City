@@ -1,5 +1,5 @@
 using Scellecs.Morpeh;
-using Sources.App.Game.Ecs.Components.User;
+using Sources.App.Game.Ecs.Components.Player;
 using Sources.Services.Ui.WindowBase.Screens;
 using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
 using UnityEngine;

@@ -1,3 +1,6 @@
+using System;
+using UnityEngine;
+
 namespace Sources.App.Game.Missions
 {
     public class Mission

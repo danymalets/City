@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using Scellecs.Morpeh;
-using Sources.App.Game.Ecs.Components.Collections;
+using Sources.App.Game.Ecs.Components.NpcPathes;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.Data;
-using Sources.Data.MonoViews;
+using Sources.Data.Pathes;
+using Sources.Data.Points;
 using Sources.Services.BalanceManager;
 using Sources.Services.Di;
 using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
@@ -19,7 +20,7 @@ namespace Sources.App.Game.Ecs.Systems.Init
 
         protected override void OnConstruct()
         {
-            _simulationBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().SimulationBalance;
+            _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
             _filter = _world.Filter<PathesTag>();
         }
 

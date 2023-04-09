@@ -1,5 +1,5 @@
 using Sirenix.OdinInspector;
-using Sources.Data.MonoViews;
+using Sources.Data.MonoEntities;
 using Sources.Utils.DMorpeh;
 using Sources.Utils.DMorpeh.DefaultComponents.Monos;
 using Sources.Utils.DMorpeh.DefaultComponents.Views;

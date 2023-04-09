@@ -1,4 +1,4 @@
-using Sources.Data.MonoViews;
+using Sources.Data.Pathes;
 using UnityEngine;
 using UnityEngine.Serialization;
 

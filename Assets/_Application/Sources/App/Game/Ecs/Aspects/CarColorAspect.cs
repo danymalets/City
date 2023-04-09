@@ -1,5 +1,6 @@
 using Scellecs.Morpeh;
 using Sources.Data;
+using Sources.Data.Cars;
 using Sources.Utils.DMorpeh.Aspects;
 using Sources.Utils.DMorpeh.DefaultComponents.Views;
 using Sources.Utils.DMorpeh.MorpehUtils.Extensions;

@@ -1,7 +1,7 @@
 using Sources.App.Game.UI.Overlays;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
-using Sources.Data.MonoViews;
+using Sources.Data.MonoEntities;
 using Sources.Services.ApplicationCycle;
 using Sources.Services.AssetsManager;
 using Sources.Services.Di;

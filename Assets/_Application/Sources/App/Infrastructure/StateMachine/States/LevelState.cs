@@ -4,8 +4,7 @@ using Sources.App.Game.UI.Screens.Level;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.Data;
-using Sources.Data.MonoViews;
-using Sources.Monos;
+using Sources.Data.Common;
 using Sources.Services.Di;
 using Sources.Services.Ui.System;
 

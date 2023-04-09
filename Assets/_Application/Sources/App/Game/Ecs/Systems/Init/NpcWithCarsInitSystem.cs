@@ -1,10 +1,11 @@
 using System.Linq;
 using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Car;
-using Sources.App.Game.Ecs.Components.Collections;
+using Sources.App.Game.Ecs.Components.NpcPathes;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.App.Game.Ecs.Factories;
 using Sources.Data;
+using Sources.Data.Points;
 using Sources.Services.AssetsManager;
 using Sources.Services.BalanceManager;
 using Sources.Services.Di;
@@ -18,22 +19,14 @@ namespace Sources.App.Game.Ecs.Systems.Init
     public class NpcWithCarsInitSystem : DInitializer
     {
         private readonly IPhysicsService _physics;
-        private readonly Assets _assets;
         private readonly SimulationBalance _simulationBalance;
         private Filter _carPathesFilter;
-        private readonly PlayersBalance _playersBalance;
-        private readonly CarsBalance _carsBalance;
         private readonly ICarsFactory _carsFactory;
         private readonly IPlayersFactory _playersFactory;
 
         public NpcWithCarsInitSystem()
         {
-            _assets = DiContainer.Resolve<Assets>();
-
-            _simulationBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().SimulationBalance;
-            _playersBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().PlayersBalance;
-            _carsBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().CarsBalance;
-
+            _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
             _physics = DiContainer.Resolve<IPhysicsService>();
             _carsFactory = DiContainer.Resolve<ICarsFactory>();
             _playersFactory = DiContainer.Resolve<IPlayersFactory>();

@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using Scellecs.Morpeh;
-using Sources.App.Game.Ecs.Components.Collections;
+using Sources.App.Game.Ecs.Components.NpcPathes;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.Data;
+using Sources.Data.Pathes;
+using Sources.Data.Points;
 using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
 using Sources.Utils.DMorpeh.MorpehUtils.Systems;
 

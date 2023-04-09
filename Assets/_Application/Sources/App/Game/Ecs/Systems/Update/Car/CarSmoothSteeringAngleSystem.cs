@@ -17,7 +17,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.Car
 
         public CarSmoothSteeringAngleSystem()
         {
-            _carsBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().CarsBalance;
+            _carsBalance = DiContainer.Resolve<Balance>().CarsBalance;
         }
 
         protected override void OnConstruct()

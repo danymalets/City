@@ -4,14 +4,14 @@ using Sources.App.Game.Ecs.Aspects;
 using Sources.App.Game.Ecs.Components.Car;
 using Sources.App.Game.Ecs.Components.Npc;
 using Sources.App.Game.Ecs.Components.Player;
-using Sources.App.Game.Ecs.Components.Player.User;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.App.Game.Ecs.Components.User;
 using Sources.Data;
+using Sources.Data.Cars;
 using Sources.Data.Constants;
-using Sources.Data.MonoViews;
-using Sources.Data.MonoViews.MonoViews;
-using Sources.Monos.Components.Old.PlayerAnimators;
+using Sources.Data.MonoEntities;
+using Sources.Data.Pathes;
+using Sources.Data.Players;
+using Sources.Data.Points;
 using Sources.Services.BalanceManager;
 using Sources.Services.Di;
 using Sources.Services.Physics;
@@ -32,7 +32,7 @@ namespace Sources.App.Game.Ecs.Factories
         public PlayersFactory() : base()
         {
             _physics = DiContainer.Resolve<IPhysicsService>();
-            _playersBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().PlayersBalance;
+            _playersBalance = DiContainer.Resolve<Balance>().PlayersBalance;
         }
 
         public IPlayerMonoEntity GetRandomPlayerPrefab()

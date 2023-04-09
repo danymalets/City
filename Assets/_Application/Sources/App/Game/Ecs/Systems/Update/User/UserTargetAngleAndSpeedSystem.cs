@@ -2,7 +2,6 @@ using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Npc;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.App.Game.Ecs.Components.User;
 using Sources.Services.BalanceManager;
 using Sources.Services.Di;
 using Sources.Utils.DMorpeh.DefaultComponents.Views;
@@ -23,7 +22,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.User
 
         public UserTargetAngleAndSpeedSystem()
         {
-            _playerBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().PlayersBalance;
+            _playerBalance = DiContainer.Resolve<Balance>().PlayersBalance;
         }
 
         protected override void OnConstruct()

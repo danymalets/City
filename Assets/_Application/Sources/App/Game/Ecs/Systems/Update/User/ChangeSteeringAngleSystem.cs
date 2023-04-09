@@ -15,7 +15,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.User
 
         public ChangeSteeringAngleSystem()
         {
-            _carsBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().CarsBalance;
+            _carsBalance = DiContainer.Resolve<Balance>().CarsBalance;
         }
 
         protected override void OnConstruct()

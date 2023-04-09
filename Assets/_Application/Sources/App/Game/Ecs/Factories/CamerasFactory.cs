@@ -1,7 +1,7 @@
 using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Camera;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.Data.MonoViews;
+using Sources.Data.MonoEntities;
 using Sources.Utils.DMorpeh.DefaultComponents.Views;
 using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
 
@@ -9,7 +9,6 @@ namespace Sources.App.Game.Ecs.Factories
 {
     public class CamerasFactory : Factory, ICamerasFactory
     {
-
         public Entity CreateCamera()
         {
             ICameraMonoEntity cameraMonoEntity = _levelContext.CameraMonoEntity;

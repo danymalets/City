@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using Scellecs.Morpeh;
-using Sources.App.Game.Ecs.Components.Collections;
+using Sources.App.Game.Ecs.Components.NpcPathes;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.Data;
-using Sources.Data.MonoViews;
+using Sources.Data.Pathes;
+using Sources.Data.Points;
 using Sources.Services.BalanceManager;
 using Sources.Services.Di;
 using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
@@ -15,11 +16,9 @@ namespace Sources.App.Game.Ecs.Systems.Init
     public class CrosswalksBlocksGenerationSystem : DInitializer
     {
         private Filter _filter;
-        private SimulationBalance _simulationBalance;
 
         protected override void OnConstruct()
         {
-            _simulationBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().SimulationBalance;
             _filter = _world.Filter<PathesTag>();
         }
 

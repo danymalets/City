@@ -1,7 +1,6 @@
 using Scellecs.Morpeh;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
-using Sources.App.Game.Ecs.Components.User;
 using Sources.Services.BalanceManager;
 using Sources.Services.Di;
 using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
@@ -18,7 +17,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.User
 
         public UserMoveSystem()
         {
-            _playersBalance = DiContainer.Resolve<Services.BalanceManager.Balance>().PlayersBalance;
+            _playersBalance = DiContainer.Resolve<Balance>().PlayersBalance;
         }
 
         protected override void OnConstruct()

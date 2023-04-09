@@ -1,7 +1,6 @@
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.App.Game.Ecs.Factories;
-using Sources.Data.MonoViews;
-using Sources.Monos;
+using Sources.Data.Common;
 using Sources.Services.Di;
 using Sources.Utils.DMorpeh.MorpehUtils.Systems;
 

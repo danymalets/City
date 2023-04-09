@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using Scellecs.Morpeh;
-using Sources.App.Game.Ecs.Components.Collections;
+using Sources.App.Game.Ecs.Components.NpcPathes;
 using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.App.Game.Ecs.Factories;
 using Sources.Data;
-using Sources.Data.MonoViews;
+using Sources.Data.MonoEntities;
+using Sources.Data.Points;
 using Sources.Services.AssetsManager;
 using Sources.Services.BalanceManager;
 using Sources.Services.Di;
@@ -29,7 +30,7 @@ namespace Sources.App.Game.Ecs.Systems.Update.Generation
 
         public HorizonNpcSpawnSystem()
         {
-            Services.BalanceManager.Balance balance = DiContainer.Resolve<Services.BalanceManager.Balance>();
+            Balance balance = DiContainer.Resolve<Balance>();
 
             _simulationBalance = balance.SimulationBalance;
             _playersBalance = balance.PlayersBalance;

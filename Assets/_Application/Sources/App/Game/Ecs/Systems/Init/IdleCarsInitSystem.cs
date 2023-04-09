@@ -1,10 +1,13 @@
 using Scellecs.Morpeh;
-using Sources.App.Game.Ecs.Components.Player.User;
+using Sources.App.Game.Ecs.Components.Player;
 using Sources.App.Game.Ecs.Components.Tags;
 using Sources.App.Game.Ecs.Factories;
+using Sources.App.Game.Services;
+using Sources.Data.Common;
 using Sources.Data.Constants;
-using Sources.Data.MonoViews;
-using Sources.Monos;
+using Sources.Data.MonoEntities;
+using Sources.Data.Pathes;
+using Sources.Data.Points;
 using Sources.Services.AssetsManager;
 using Sources.Services.Di;
 using Sources.Services.Physics;

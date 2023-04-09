@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Sources.Data;
-using Sources.Data.MonoViews;
+using Sources.Data.Pathes;
 using Sources.Monos.RoadSystem.Pathes;
 using UnityEngine;
 

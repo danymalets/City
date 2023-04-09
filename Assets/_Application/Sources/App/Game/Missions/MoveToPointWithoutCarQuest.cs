@@ -1,4 +1,4 @@
-using Sources.Data.MonoViews;
+using Sources.Data.Points;
 using UnityEngine;
 
 namespace Sources.App.Game.Missions

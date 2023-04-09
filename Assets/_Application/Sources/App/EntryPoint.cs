@@ -1,7 +1,7 @@
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.States;
-using Sources.Monos;
 using Sources.Services.MonoServices;
+using Sources.Services.SceneLoader;
 using UnityEngine;
 
 namespace Sources.App

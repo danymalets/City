@@ -1,7 +1,6 @@
-using Sources.Data;
 using UnityEngine;
 
-namespace Sources.Monos
+namespace Sources.Services.SceneLoader
 {
 #if UNITY_EDITOR
     [RequireComponent(typeof(EntryPointSceneStarter))]
