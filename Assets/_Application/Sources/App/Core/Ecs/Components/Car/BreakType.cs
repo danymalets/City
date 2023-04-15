@@ -1,4 +1,4 @@
-namespace _Application.Sources.App.Core.Ecs.Components.Car
+namespace Sources.App.Core.Ecs.Components.Car
 {
     public enum BreakType
     {

@@ -1,6 +1,6 @@
 using Scellecs.Morpeh;
 
-namespace _Application.Sources.App.Core.Ecs.Components.Npc
+namespace Sources.App.Core.Ecs.Components.Npc
 {
     public struct PlayerTargetAngle : IComponent
     {

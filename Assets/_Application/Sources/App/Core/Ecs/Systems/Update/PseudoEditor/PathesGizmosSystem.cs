@@ -1,16 +1,16 @@
 using System.Collections.Generic;
-using _Application.Sources.App.Core.Ecs.Components.NpcPathes;
-using _Application.Sources.App.Core.Ecs.Components.Tags;
-using _Application.Sources.App.Data.Pathes;
-using _Application.Sources.App.Data.Points;
-using _Application.Sources.Utils.CommonUtils.Extensions;
-using _Application.Sources.Utils.CommonUtils.Libs;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Components.NpcPathes;
+using Sources.App.Core.Ecs.Components.Tags;
+using Sources.App.Data.Pathes;
+using Sources.App.Data.Points;
+using Sources.Utils.CommonUtils.Extensions;
+using Sources.Utils.CommonUtils.Libs;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using UnityEngine;
 
-namespace _Application.Sources.App.Core.Ecs.Systems.Update.PseudoEditor
+namespace Sources.App.Core.Ecs.Systems.Update.PseudoEditor
 {
     public class PathesGizmosSystem : DUpdateSystem
     {

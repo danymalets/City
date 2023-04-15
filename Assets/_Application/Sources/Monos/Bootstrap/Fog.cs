@@ -1,4 +1,4 @@
-using _Application.Sources.App.Data.Common;
+using Sources.App.Data.Common;
 using UnityEngine;
 
 namespace Sources.Monos.Bootstrap

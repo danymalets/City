@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using _Application.Sources.Utils.CommonUtils.Libs;
 using Scellecs.Morpeh;
+using Sources.Utils.CommonUtils.Libs;
 
-namespace _Application.Sources.App.Core.Ecs.Components.Car
+namespace Sources.App.Core.Ecs.Components.Car
 {
     public readonly struct CarPassengers : IComponent
     {

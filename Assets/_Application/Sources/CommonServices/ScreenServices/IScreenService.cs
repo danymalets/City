@@ -1,8 +1,8 @@
 using System;
-using _Application.Sources.Utils.Di;
+using Sources.Utils.Di;
 using UnityEngine;
 
-namespace _Application.Sources.CommonServices.ScreenServices
+namespace Sources.CommonServices.ScreenServices
 {
     public interface IScreenService : IService
     {

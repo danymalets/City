@@ -1,7 +1,7 @@
 using System;
-using _Application.Sources.Utils.Di;
+using Sources.Utils.Di;
 
-namespace _Application.Sources.CommonServices.ApplicationServices
+namespace Sources.CommonServices.ApplicationServices
 {
     public interface IApplicationService : IService
     {

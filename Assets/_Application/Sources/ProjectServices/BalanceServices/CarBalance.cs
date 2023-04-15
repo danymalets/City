@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using _Application.Sources.App.Data.Cars;
-using _Application.Sources.Utils.CommonUtils.Extensions;
-using _Application.Sources.Utils.CommonUtils.Libs;
 using Sirenix.OdinInspector;
+using Sources.App.Data.Cars;
+using Sources.Utils.CommonUtils.Extensions;
+using Sources.Utils.CommonUtils.Libs;
 using UnityEngine;
 
 namespace Sources.ProjectServices.BalanceServices

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Application.Sources.App.Core.GameObjects.Players.Ragdolls
+namespace Sources.App.Core.GameObjects.Players.Ragdolls
 {
     public class TransformData
     {

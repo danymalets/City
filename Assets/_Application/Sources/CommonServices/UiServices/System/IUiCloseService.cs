@@ -1,6 +1,6 @@
-using _Application.Sources.Utils.Di;
+using Sources.Utils.Di;
 
-namespace _Application.Sources.CommonServices.UiServices.System
+namespace Sources.CommonServices.UiServices.System
 {
     public interface IUiCloseService : IService
     {

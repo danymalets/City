@@ -1,7 +1,7 @@
-using _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Views;
+using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using UnityEngine;
 
-namespace _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Monos
+namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
 {
     public class EnableableGameObject : MonoBehaviour, IEnableableGameObject
     {

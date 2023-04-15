@@ -1,9 +1,9 @@
-using _Application.Sources.Utils.Di;
 using Sources.ProjectServices.UserService;
+using Sources.Utils.Di;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Application.Sources.App.UI.Screens
+namespace Sources.App.UI.Screens
 {
     public class LoadingScreen : CommonServices.UiServices.WindowBase.Screens.Screen
     {

@@ -1,17 +1,17 @@
-using _Application.Sources.App.Core.Ecs.Components.Camera;
-using _Application.Sources.App.Core.Ecs.Components.Player;
-using _Application.Sources.App.Core.Ecs.Components.Tags;
-using _Application.Sources.Utils.CommonUtils.Extensions;
-using _Application.Sources.Utils.CommonUtils.Libs;
-using _Application.Sources.Utils.Di;
-using _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Views;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Components.Camera;
+using Sources.App.Core.Ecs.Components.Player;
+using Sources.App.Core.Ecs.Components.Tags;
 using Sources.ProjectServices.BalanceServices;
+using Sources.Utils.CommonUtils.Extensions;
+using Sources.Utils.CommonUtils.Libs;
+using Sources.Utils.Di;
+using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using UnityEngine;
 
-namespace _Application.Sources.App.Core.Ecs.Systems.Update.Camera
+namespace Sources.App.Core.Ecs.Systems.Update.Camera
 {
     public class CameraFollowPlayerRotationSystem : DUpdateSystem
     {

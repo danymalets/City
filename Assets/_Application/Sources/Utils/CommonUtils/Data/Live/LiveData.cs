@@ -1,6 +1,6 @@
 using System;
 
-namespace _Application.Sources.Utils.CommonUtils.Data.Live
+namespace Sources.Utils.CommonUtils.Data.Live
 {
     public abstract class LiveData<T>
     {

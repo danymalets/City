@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using _Application.Sources.Utils.MorpehWrapper.Aspects;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Components;
 using Scellecs.Morpeh;
+using Sources.Utils.MorpehWrapper.Aspects;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Components;
 
-namespace _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Extensions
+namespace Sources.Utils.MorpehWrapper.MorpehUtils.Extensions
 {
     public static class MorpehEntityExtensions
     {

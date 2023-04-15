@@ -1,4 +1,4 @@
-namespace _Application.Sources.Utils.CommonUtils.Data.Live
+namespace Sources.Utils.CommonUtils.Data.Live
 {
     public class LiveBool : LiveData<bool>
     {

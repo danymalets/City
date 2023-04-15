@@ -1,6 +1,6 @@
-using _Application.Sources.App.Data.Points;
+using Sources.App.Data.Points;
 
-namespace _Application.Sources.App.Core.Missions
+namespace Sources.App.Core.Missions
 {
     public class DialogueCamera
     {

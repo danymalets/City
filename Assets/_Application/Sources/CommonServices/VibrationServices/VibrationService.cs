@@ -1,6 +1,6 @@
-using _Application.Sources.Utils.CommonUtils.Data.Live;
-using _Application.Sources.Utils.Di;
 using Sources.ProjectServices.UserService;
+using Sources.Utils.CommonUtils.Data.Live;
+using Sources.Utils.Di;
 using UnityEngine;
 
 namespace Sources.CommonServices.VibrationServices

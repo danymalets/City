@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using _Application.Sources.App.Infrastructure.StateMachine.StateBase;
-using _Application.Sources.App.Infrastructure.StateMachine.States;
+using Sources.App.Infrastructure.StateMachine.StateBase;
+using Sources.App.Infrastructure.StateMachine.States;
 
-namespace _Application.Sources.App.Infrastructure.StateMachine.Machine
+namespace Sources.App.Infrastructure.StateMachine.Machine
 {
     public class GameStateMachine : IGameStateMachine
     {

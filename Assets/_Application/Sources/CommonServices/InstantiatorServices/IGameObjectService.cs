@@ -1,7 +1,7 @@
-using _Application.Sources.Utils.Di;
+using Sources.Utils.Di;
 using UnityEngine;
 
-namespace _Application.Sources.CommonServices.InstantiatorServices
+namespace Sources.CommonServices.InstantiatorServices
 {
     public interface IGameObjectService : IService
     {

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using _Application.Sources.App.Data.Pathes;
 using Scellecs.Morpeh;
+using Sources.App.Data.Pathes;
 
-namespace _Application.Sources.App.Core.Ecs.Components.NpcPathes
+namespace Sources.App.Core.Ecs.Components.NpcPathes
 {
     public struct AllPathLines : IComponent
     {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace _Application.Sources.App.Data.Pathes
+namespace Sources.App.Data.Pathes
 {
     public interface IPathSystem 
     {

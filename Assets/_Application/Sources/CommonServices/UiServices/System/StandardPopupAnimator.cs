@@ -3,7 +3,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Application.Sources.CommonServices.UiServices.System
+namespace Sources.CommonServices.UiServices.System
 {
     [RequireComponent(typeof(Image))]
     [RequireComponent(typeof(CanvasGroup))]

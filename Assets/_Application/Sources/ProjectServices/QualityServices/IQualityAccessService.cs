@@ -1,5 +1,5 @@
-using _Application.Sources.Utils.Di;
 using Sources.ProjectServices.BalanceServices;
+using Sources.Utils.Di;
 
 namespace Sources.ProjectServices.QualityServices
 {

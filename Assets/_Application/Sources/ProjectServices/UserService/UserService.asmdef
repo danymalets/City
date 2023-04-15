@@ -1,4 +1,21 @@
 {
-  "name": "UserService",
-  "references":[ "GUID:d265b201ff1f3441d8b0796de9a27b0c", "GUID:ec85a75ad10ea42a89a4d47619fe56d6", "GUID:1624372bf385b44d8b77b551bbc1a197", "GUID:065033b702764c8c875341b672b656a1", "GUID:5a7aa0571b4547daab86b95f0ab95f79", "GUID:ed5073641bfc74db7937853ff77bb625" ]
+    "name": "UserService",
+    "rootNamespace": "",
+    "references": [
+        "Sources.Utils.Di",
+        "Sources.App.Data",
+        "Sources.Utils.CommonUtils",
+        "Sources.CommonServices.JsonSerializerServices",
+        "Sources.CommonServices.PlayerPreferencesServices",
+        "Sources.CommonServices.ApplicationServices"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

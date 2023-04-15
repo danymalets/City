@@ -4,7 +4,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace _Application.Sources.CommonServices.SceneLoaderServices
+namespace Sources.CommonServices.SceneLoaderServices
 {
     public class EntryPointSceneStarter : MonoBehaviour
     {

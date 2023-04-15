@@ -1,7 +1,7 @@
-using _Application.Sources.App.Data.Points;
 using Scellecs.Morpeh;
+using Sources.App.Data.Points;
 
-namespace _Application.Sources.App.Core.Ecs.Components.Npc.NpcCar
+namespace Sources.App.Core.Ecs.Components.Npc.NpcCar
 {
     public struct NpcPointReachedEvent : IComponent
     {

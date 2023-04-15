@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using _Application.Sources.Utils.CommonUtils.Data;
 using Scellecs.Morpeh;
+using Sources.Utils.CommonUtils.Data;
 
-namespace _Application.Sources.Utils.MorpehWrapper
+namespace Sources.Utils.MorpehWrapper
 {
     public struct Collisions : IComponent
     {

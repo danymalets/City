@@ -1,15 +1,15 @@
 using System.Collections.Generic;
-using _Application.Sources.CommonServices.CoroutineRunnerServices;
-using _Application.Sources.CommonServices.FpsServices;
-using _Application.Sources.CommonServices.TimeServices;
-using _Application.Sources.Utils.CommonUtils.Libs;
-using _Application.Sources.Utils.Di;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.CustomSystems;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using Scellecs.Morpeh;
+using Sources.CommonServices.CoroutineRunnerServices;
+using Sources.CommonServices.FpsServices;
+using Sources.CommonServices.TimeServices;
+using Sources.Utils.CommonUtils.Libs;
+using Sources.Utils.Di;
+using Sources.Utils.MorpehWrapper.MorpehUtils.CustomSystems;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using UnityEngine;
 
-namespace _Application.Sources.Utils.MorpehWrapper.MorpehUtils
+namespace Sources.Utils.MorpehWrapper.MorpehUtils
 {
     public class DWorld : IService
     {

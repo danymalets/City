@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Application.Sources.CommonServices.PlayerPreferencesServices
+namespace Sources.CommonServices.PlayerPreferencesServices
 {
     public class PlayerPrefsService : IPlayerPrefsService
     {

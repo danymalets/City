@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using _Application.Sources.App.Data.Cars;
-using _Application.Sources.CommonServices.PoolServices;
-using _Application.Sources.Utils.MorpehWrapper;
-using _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Views;
+using Sources.App.Data.Cars;
+using Sources.CommonServices.PoolServices;
+using Sources.Utils.MorpehWrapper;
+using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using UnityEngine;
 
-namespace _Application.Sources.App.Data.MonoEntities
+namespace Sources.App.Data.MonoEntities
 {
     public interface ICarMonoEntity : IMonoEntity, IRespawnable
     {

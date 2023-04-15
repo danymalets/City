@@ -1,14 +1,14 @@
-using _Application.Sources.App.Core.Ecs.Components.Npc;
-using _Application.Sources.App.Core.Ecs.Components.Player;
-using _Application.Sources.App.Core.Ecs.Factories;
-using _Application.Sources.App.Data.MonoEntities;
-using _Application.Sources.Utils.Di;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Components.Npc;
+using Sources.App.Core.Ecs.Components.Player;
+using Sources.App.Core.Ecs.Factories;
+using Sources.App.Data.MonoEntities;
+using Sources.Utils.Di;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using UnityEngine;
 
-namespace _Application.Sources.App.Core.Ecs.Systems.Init
+namespace Sources.App.Core.Ecs.Systems.Init
 {
     public class PlayerDeathAnimationWarmUpSystem : DInitializer
     {

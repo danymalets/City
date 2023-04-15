@@ -1,19 +1,19 @@
 using System.Linq;
-using _Application.Sources.App.Core.Ecs.Components.Car;
-using _Application.Sources.App.Core.Ecs.Components.Npc;
-using _Application.Sources.App.Core.Ecs.Components.Player;
-using _Application.Sources.App.Core.Ecs.Components.Tags;
-using _Application.Sources.App.Data.Constants;
-using _Application.Sources.CommonServices.PhysicsServices;
-using _Application.Sources.Utils.CommonUtils.Extensions;
-using _Application.Sources.Utils.Di;
-using _Application.Sources.Utils.MorpehWrapper;
-using _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Views;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Components.Car;
+using Sources.App.Core.Ecs.Components.Npc;
+using Sources.App.Core.Ecs.Components.Player;
+using Sources.App.Core.Ecs.Components.Tags;
+using Sources.App.Data.Constants;
+using Sources.CommonServices.PhysicsServices;
+using Sources.Utils.CommonUtils.Extensions;
+using Sources.Utils.Di;
+using Sources.Utils.MorpehWrapper;
+using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
-namespace _Application.Sources.App.Core.Ecs.Systems.Update.NpcCar
+namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 {
     public class NpcCarMoveSystem : DUpdateSystem
     {

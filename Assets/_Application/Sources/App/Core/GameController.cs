@@ -1,16 +1,16 @@
-using _Application.Sources.App.Core.Services;
-using _Application.Sources.App.Data.Common;
-using _Application.Sources.App.UI.Screens;
-using _Application.Sources.App.UI.Screens.Input;
-using _Application.Sources.App.UI.Screens.Level;
-using _Application.Sources.App.UI.Screens.Map;
-using _Application.Sources.CommonServices.CoroutineRunnerServices;
-using _Application.Sources.CommonServices.FpsServices;
-using _Application.Sources.CommonServices.UiServices.System;
-using _Application.Sources.Utils.Di;
+using Sources.App.Core.Services;
+using Sources.App.Data.Common;
+using Sources.App.UI.Screens;
+using Sources.App.UI.Screens.Input;
+using Sources.App.UI.Screens.Level;
+using Sources.App.UI.Screens.Map;
+using Sources.CommonServices.CoroutineRunnerServices;
+using Sources.CommonServices.FpsServices;
+using Sources.CommonServices.UiServices.System;
 using Sources.ProjectServices.AudioServices;
+using Sources.Utils.Di;
 
-namespace _Application.Sources.App.Core
+namespace Sources.App.Core
 {
     public class GameController
     {

@@ -1,6 +1,6 @@
-using _Application.Sources.Utils.Di;
+using Sources.Utils.Di;
 
-namespace _Application.Sources.CommonServices.TimeServices
+namespace Sources.CommonServices.TimeServices
 {
     public interface ITimeService : IService
     {

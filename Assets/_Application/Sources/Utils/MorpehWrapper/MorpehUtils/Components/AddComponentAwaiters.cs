@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Scellecs.Morpeh;
 
-namespace _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Components
+namespace Sources.Utils.MorpehWrapper.MorpehUtils.Components
 {
     public struct AddComponentAwaiters : IComponent
     {

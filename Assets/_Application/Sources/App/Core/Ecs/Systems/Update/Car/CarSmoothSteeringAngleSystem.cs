@@ -1,12 +1,12 @@
-using _Application.Sources.App.Core.Ecs.Components.Car;
-using _Application.Sources.Utils.Di;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Components.Car;
 using Sources.ProjectServices.BalanceServices;
+using Sources.Utils.Di;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using UnityEngine;
 
-namespace _Application.Sources.App.Core.Ecs.Systems.Update.Car
+namespace Sources.App.Core.Ecs.Systems.Update.Car
 {
     public class CarSmoothSteeringAngleSystem : DUpdateSystem
     {

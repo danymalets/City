@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using _Application.Sources.Utils.CommonUtils.Extensions;
+using Sources.Utils.CommonUtils.Extensions;
 
-namespace _Application.Sources.Utils.CommonUtils.Libs
+namespace Sources.Utils.CommonUtils.Libs
 {
     public static class DValidate
     {

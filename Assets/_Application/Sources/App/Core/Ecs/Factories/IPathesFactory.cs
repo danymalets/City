@@ -1,8 +1,8 @@
-using _Application.Sources.App.Data.Pathes;
-using _Application.Sources.Utils.Di;
 using Scellecs.Morpeh;
+using Sources.App.Data.Pathes;
+using Sources.Utils.Di;
 
-namespace _Application.Sources.App.Core.Ecs.Factories
+namespace Sources.App.Core.Ecs.Factories
 {
     public interface IPathesFactory : IService
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Application.Sources.CommonServices.InstantiatorServices
+namespace Sources.CommonServices.InstantiatorServices
 {
     public class GameObjectService : IGameObjectService
     {

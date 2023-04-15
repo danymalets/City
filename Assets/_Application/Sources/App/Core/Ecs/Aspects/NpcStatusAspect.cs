@@ -1,15 +1,15 @@
 using System.Collections.Generic;
-using _Application.Sources.App.Core.Ecs.Components.Car;
-using _Application.Sources.App.Core.Ecs.Components.Npc;
-using _Application.Sources.App.Core.Ecs.Components.Npc.NpcCar;
-using _Application.Sources.App.Core.Ecs.Components.NpcPathes;
-using _Application.Sources.App.Data.Cars;
-using _Application.Sources.App.Data.Pathes;
-using _Application.Sources.Utils.MorpehWrapper.Aspects;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Components.Car;
+using Sources.App.Core.Ecs.Components.Npc;
+using Sources.App.Core.Ecs.Components.Npc.NpcCar;
+using Sources.App.Core.Ecs.Components.NpcPathes;
+using Sources.App.Data.Cars;
+using Sources.App.Data.Pathes;
+using Sources.Utils.MorpehWrapper.Aspects;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 
-namespace _Application.Sources.App.Core.Ecs.Aspects
+namespace Sources.App.Core.Ecs.Aspects
 {
     public struct NpcStatusAspect : IDAspect
     {

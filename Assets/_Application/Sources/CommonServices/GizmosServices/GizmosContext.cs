@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace _Application.Sources.CommonServices.GizmosServices
+namespace Sources.CommonServices.GizmosServices
 {
     public class GizmosContext
     {

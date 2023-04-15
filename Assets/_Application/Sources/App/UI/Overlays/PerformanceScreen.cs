@@ -1,12 +1,12 @@
-using _Application.Sources.CommonServices.ApplicationServices;
-using _Application.Sources.CommonServices.CoroutineRunnerServices;
-using _Application.Sources.CommonServices.FpsServices;
-using _Application.Sources.CommonServices.TimeServices;
-using _Application.Sources.Utils.Di;
+using Sources.CommonServices.ApplicationServices;
+using Sources.CommonServices.CoroutineRunnerServices;
+using Sources.CommonServices.FpsServices;
+using Sources.CommonServices.TimeServices;
+using Sources.Utils.Di;
 using TMPro;
 using UnityEngine;
 
-namespace _Application.Sources.App.UI.Overlays
+namespace Sources.App.UI.Overlays
 {
     public class PerformanceScreen : CommonServices.UiServices.WindowBase.Screens.Screen
     {

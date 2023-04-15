@@ -1,10 +1,10 @@
-using _Application.Sources.App.Data.MonoEntities;
-using _Application.Sources.App.Data.Pathes;
-using _Application.Sources.App.Data.Points;
-using _Application.Sources.CommonServices.SceneLoaderServices;
-using _Application.Sources.Utils.Di;
+using Sources.App.Data.MonoEntities;
+using Sources.App.Data.Pathes;
+using Sources.App.Data.Points;
+using Sources.CommonServices.SceneLoaderServices;
+using Sources.Utils.Di;
 
-namespace _Application.Sources.App.Data.Common
+namespace Sources.App.Data.Common
 {
     public interface ILevelContext : IService, ISceneContext
     {

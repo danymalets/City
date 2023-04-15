@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using _Application.Sources.CommonServices.UiServices.WindowBase;
-using _Application.Sources.CommonServices.UiServices.WindowBase.Popups;
-using _Application.Sources.CommonServices.UiServices.WindowBase.Screens;
-using _Application.Sources.Utils.CommonUtils.Extensions;
+using Sources.CommonServices.UiServices.WindowBase;
+using Sources.CommonServices.UiServices.WindowBase.Popups;
+using Sources.CommonServices.UiServices.WindowBase.Screens;
+using Sources.Utils.CommonUtils.Extensions;
 using UnityEngine;
 
-namespace _Application.Sources.CommonServices.UiServices.System
+namespace Sources.CommonServices.UiServices.System
 {
     public class UiSystemData : MonoBehaviour
     {

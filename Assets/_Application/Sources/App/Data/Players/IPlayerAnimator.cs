@@ -1,4 +1,4 @@
-namespace _Application.Sources.App.Data.Players
+namespace Sources.App.Data.Players
 {
     public interface IPlayerAnimator 
     {

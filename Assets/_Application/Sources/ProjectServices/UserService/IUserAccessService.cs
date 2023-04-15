@@ -1,4 +1,4 @@
-using _Application.Sources.Utils.Di;
+using Sources.Utils.Di;
 
 namespace Sources.ProjectServices.UserService
 {

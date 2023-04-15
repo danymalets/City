@@ -1,4 +1,4 @@
-namespace _Application.Sources.CommonServices.PoolServices
+namespace Sources.CommonServices.PoolServices
 {
     public class PoolConfig
     {

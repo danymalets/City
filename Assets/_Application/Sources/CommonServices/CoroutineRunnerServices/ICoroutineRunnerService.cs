@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
-using _Application.Sources.Utils.Di;
+using Sources.Utils.Di;
 using UnityEngine;
 
-namespace _Application.Sources.CommonServices.CoroutineRunnerServices
+namespace Sources.CommonServices.CoroutineRunnerServices
 {
     public interface ICoroutineRunnerService : IService
     {

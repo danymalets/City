@@ -1,4 +1,4 @@
-using _Application.Sources.App.Data.Points;
+using Sources.App.Data.Points;
 using UnityEngine;
 
 namespace Sources.Monos.Points

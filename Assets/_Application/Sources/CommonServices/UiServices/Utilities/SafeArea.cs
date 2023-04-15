@@ -1,8 +1,8 @@
-using _Application.Sources.CommonServices.ScreenServices;
-using _Application.Sources.Utils.Di;
+using Sources.CommonServices.ScreenServices;
+using Sources.Utils.Di;
 using UnityEngine;
 
-namespace _Application.Sources.CommonServices.UiServices.Utilities
+namespace Sources.CommonServices.UiServices.Utilities
 {
     public class SafeArea : MonoBehaviour
     {

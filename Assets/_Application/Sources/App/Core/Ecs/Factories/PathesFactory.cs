@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
-using _Application.Sources.App.Core.Ecs.Components.NpcPathes;
-using _Application.Sources.App.Core.Ecs.Components.Tags;
-using _Application.Sources.App.Data.Pathes;
-using _Application.Sources.App.Data.Points;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Components.NpcPathes;
+using Sources.App.Core.Ecs.Components.Tags;
+using Sources.App.Data.Pathes;
+using Sources.App.Data.Points;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 
-namespace _Application.Sources.App.Core.Ecs.Factories
+namespace Sources.App.Core.Ecs.Factories
 {
     public class PathesFactory : Factory, IPathesFactory
     {

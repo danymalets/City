@@ -1,4 +1,4 @@
-namespace _Application.Sources.CommonServices.UiServices.WindowBase
+namespace Sources.CommonServices.UiServices.WindowBase
 {
     public interface IWindow
     {

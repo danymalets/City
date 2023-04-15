@@ -1,8 +1,8 @@
-using _Application.Sources.Utils.CommonUtils.Data;
-using _Application.Sources.Utils.Di;
+using Sources.Utils.CommonUtils.Data;
+using Sources.Utils.Di;
 using UnityEngine;
 
-namespace _Application.Sources.CommonServices.PhysicsServices
+namespace Sources.CommonServices.PhysicsServices
 {
     public interface IPhysicsService : IService
     {

@@ -1,6 +1,6 @@
 using Sources.ProjectServices.UserService;
 
-namespace _Application.Sources.App.Core.Missions
+namespace Sources.App.Core.Missions
 {
     public abstract class Quest<TProgress> : SubMission<TProgress>
         where TProgress : SubMissionProgress, new()

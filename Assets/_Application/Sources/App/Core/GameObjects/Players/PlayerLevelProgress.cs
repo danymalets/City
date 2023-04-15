@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace _Application.Sources.App.Core.GameObjects.Players
+namespace Sources.App.Core.GameObjects.Players
 {
     public class PlayerLevelProgress : MonoBehaviour
     {

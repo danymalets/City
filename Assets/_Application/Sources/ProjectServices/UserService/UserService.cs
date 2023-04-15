@@ -1,7 +1,7 @@
-using _Application.Sources.CommonServices.ApplicationServices;
-using _Application.Sources.CommonServices.JsonSerializerServices;
-using _Application.Sources.CommonServices.PlayerPreferencesServices;
-using _Application.Sources.Utils.Di;
+using Sources.CommonServices.ApplicationServices;
+using Sources.CommonServices.JsonSerializerServices;
+using Sources.CommonServices.PlayerPreferencesServices;
+using Sources.Utils.Di;
 using UnityEngine;
 
 namespace Sources.ProjectServices.UserService

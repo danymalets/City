@@ -1,7 +1,7 @@
 using Scellecs.Morpeh;
 using UnityEngine;
 
-namespace _Application.Sources.App.Core.Ecs.Components.Car
+namespace Sources.App.Core.Ecs.Components.Car
 {
     public struct ForwardTrigger : IComponent
     {

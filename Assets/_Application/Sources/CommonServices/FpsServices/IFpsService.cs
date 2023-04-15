@@ -1,7 +1,7 @@
 using System;
-using _Application.Sources.Utils.Di;
+using Sources.Utils.Di;
 
-namespace _Application.Sources.CommonServices.FpsServices
+namespace Sources.CommonServices.FpsServices
 {
     public interface IFpsService : IService
     {

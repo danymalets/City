@@ -1,8 +1,8 @@
-using _Application.Sources.CommonServices.PhysicsServices;
-using _Application.Sources.Utils.Di;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
+using Sources.CommonServices.PhysicsServices;
+using Sources.Utils.Di;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
-namespace _Application.Sources.App.Core.Ecs.Systems.Update.Common
+namespace Sources.App.Core.Ecs.Systems.Update.Common
 {
     public class PhysicsUpdateSystem : DUpdateSystem
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Application.Sources.CommonServices.SceneLoaderServices
+namespace Sources.CommonServices.SceneLoaderServices
 {
 #if UNITY_EDITOR
     [RequireComponent(typeof(EntryPointSceneStarter))]

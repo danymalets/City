@@ -1,6 +1,6 @@
-using _Application.Sources.Utils.Di;
+using Sources.Utils.Di;
 
-namespace _Application.Sources.App.Core.Services
+namespace Sources.App.Core.Services
 {
     public interface ICarInputService : IService
     {

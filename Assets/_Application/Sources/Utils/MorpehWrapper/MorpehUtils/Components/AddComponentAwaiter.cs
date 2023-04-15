@@ -1,4 +1,4 @@
-namespace _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Components
+namespace Sources.Utils.MorpehWrapper.MorpehUtils.Components
 {
     public class AddComponentAwaiter
     {

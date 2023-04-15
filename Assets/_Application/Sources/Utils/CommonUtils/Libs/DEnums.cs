@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace _Application.Sources.Utils.CommonUtils.Libs
+namespace Sources.Utils.CommonUtils.Libs
 {
     public static class DEnums
     {

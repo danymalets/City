@@ -1,16 +1,16 @@
 using System.Linq;
-using _Application.Sources.App.Core.Ecs.Components.Car;
-using _Application.Sources.App.Core.Ecs.Components.Npc;
-using _Application.Sources.App.Core.Ecs.Components.Player;
-using _Application.Sources.App.Core.Ecs.Components.Tags;
-using _Application.Sources.App.Data.Cars;
-using _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Views;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Components.Car;
+using Sources.App.Core.Ecs.Components.Npc;
+using Sources.App.Core.Ecs.Components.Player;
+using Sources.App.Core.Ecs.Components.Tags;
+using Sources.App.Data.Cars;
+using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using UnityEngine;
 
-namespace _Application.Sources.App.Core.Ecs.Systems.Update.Player
+namespace Sources.App.Core.Ecs.Systems.Update.Player
 {
     public class PlayerCarExitSystem : DUpdateSystem
     {

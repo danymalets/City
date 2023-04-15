@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using _Application.Sources.App.Data.Pathes;
-using _Application.Sources.App.Data.Points;
 using Sirenix.OdinInspector;
+using Sources.App.Data.Pathes;
+using Sources.App.Data.Points;
 using UnityEngine;
 
 namespace Sources.Monos.Bootstrap.IdleCarSpawns

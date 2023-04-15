@@ -1,6 +1,6 @@
-using _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
+using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 
-namespace _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Views
+namespace Sources.Utils.MorpehWrapper.DefaultComponents.Views
 {
     public interface IRigidbodySwitcher
     {

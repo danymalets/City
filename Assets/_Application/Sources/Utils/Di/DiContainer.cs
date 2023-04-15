@@ -1,6 +1,6 @@
 using System;
 
-namespace _Application.Sources.Utils.Di
+namespace Sources.Utils.Di
 {
     public static class DiContainer
     {

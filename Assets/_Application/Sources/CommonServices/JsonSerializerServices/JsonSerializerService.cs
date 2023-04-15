@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace _Application.Sources.CommonServices.JsonSerializerServices
+namespace Sources.CommonServices.JsonSerializerServices
 {
     public class JsonSerializerService : IJsonSerializerService
     {

@@ -1,6 +1,6 @@
-using _Application.Sources.App.Data.Cars;
+using Sources.App.Data.Cars;
 
-namespace _Application.Sources.App.Core.Missions
+namespace Sources.App.Core.Missions
 {
     public class EnterCarQuest : BoolQuest<BoolQuestProgress>
     {

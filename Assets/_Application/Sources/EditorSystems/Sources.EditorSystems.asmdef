@@ -1,11 +1,21 @@
 {
-  "name": "Sources.EditorSystems",
-  "references": [
-    "GUID:2c092f0c3a7645eab95935b3459a4ba1",
-    "GUID:ec85a75ad10ea42a89a4d47619fe56d6",
-    "GUID:a8695e55197541b3b4754fb1ff0f1ed0",
-    "GUID:211a07a126b764a65ba039e6db9fb595",
-    "Sources.CommonServices.PoolServices",
-    "Sources.Utils.MorpehWrapper"
-  ]
+    "name": "Sources.EditorSystems",
+    "rootNamespace": "",
+    "references": [
+        "Monos",
+        "Sources.App.Data",
+        "MonoServices",
+        "Sources.ProjectServices.AssetsServices",
+        "Sources.CommonServices.PoolServices",
+        "Sources.Utils.MorpehWrapper"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

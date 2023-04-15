@@ -1,6 +1,6 @@
-using _Application.Sources.Utils.Di;
+using Sources.Utils.Di;
 
-namespace _Application.Sources.CommonServices.JsonSerializerServices
+namespace Sources.CommonServices.JsonSerializerServices
 {
     public interface IJsonSerializerService : IService
     {

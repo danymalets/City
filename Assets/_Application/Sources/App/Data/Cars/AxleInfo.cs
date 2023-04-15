@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace _Application.Sources.App.Data.Cars
+namespace Sources.App.Data.Cars
 {
     [Serializable]
     public class AxleInfo

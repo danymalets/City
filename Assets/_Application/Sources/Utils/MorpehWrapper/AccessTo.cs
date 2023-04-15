@@ -1,6 +1,6 @@
 using Scellecs.Morpeh;
 
-namespace _Application.Sources.Utils.MorpehWrapper
+namespace Sources.Utils.MorpehWrapper
 {
     public struct AccessTo<TTAccessible> : IComponent
     {

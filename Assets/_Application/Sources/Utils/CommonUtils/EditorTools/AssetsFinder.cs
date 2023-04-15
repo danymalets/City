@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace _Application.Sources.Utils.CommonUtils.EditorTools
+namespace Sources.Utils.CommonUtils.EditorTools
 {
     public static class AssetsFinder
     {

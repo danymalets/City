@@ -1,8 +1,8 @@
-using _Application.Sources.App.Core.Ecs.Aspects;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Aspects;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 
-namespace _Application.Sources.App.Core.Ecs.Despawners
+namespace Sources.App.Core.Ecs.Despawners
 {
     public class CarsDespawner : Despawner, ICarsDespawner
     {

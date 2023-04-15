@@ -1,8 +1,18 @@
 {
-  "name": "Sources.Core.Components",
-  "references": [
-    "GUID:ec85a75ad10ea42a89a4d47619fe56d6",
-    "GUID:1624372bf385b44d8b77b551bbc1a197",
-    "GUID:3377deebfb0acde45876d12c6e3d27cc"
-  ]
+    "name": "Sources.Core.Components",
+    "rootNamespace": "",
+    "references": [
+        "Sources.App.Data",
+        "Sources.Utils.CommonUtils",
+        "Scellecs.Morpeh"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

@@ -1,4 +1,4 @@
-namespace _Application.Sources.CommonServices.UiServices.WindowBase.Screens
+namespace Sources.CommonServices.UiServices.WindowBase.Screens
 {
     public abstract class ScreenBase : Window
     {

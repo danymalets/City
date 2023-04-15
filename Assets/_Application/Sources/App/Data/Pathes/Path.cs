@@ -1,11 +1,11 @@
 using System.Linq;
-using _Application.Sources.App.Data.Cars;
-using _Application.Sources.App.Data.Points;
-using _Application.Sources.Utils.CommonUtils.Extensions;
-using _Application.Sources.Utils.CommonUtils.Libs;
+using Sources.App.Data.Cars;
+using Sources.App.Data.Points;
+using Sources.Utils.CommonUtils.Extensions;
+using Sources.Utils.CommonUtils.Libs;
 using UnityEngine;
 
-namespace _Application.Sources.App.Data.Pathes
+namespace Sources.App.Data.Pathes
 {
     public class PathLine
     {

@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
-using _Application.Sources.App.Data.Cars;
-using _Application.Sources.App.Data.Pathes;
-using _Application.Sources.Utils.CommonUtils.Libs;
+using Sources.App.Data.Cars;
+using Sources.App.Data.Pathes;
+using Sources.Utils.CommonUtils.Libs;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace _Application.Sources.App.Data.Points
+namespace Sources.App.Data.Points
 {
     public class Point
     {

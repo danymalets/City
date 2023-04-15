@@ -1,7 +1,7 @@
-using _Application.Sources.Utils.Di;
+using Sources.Utils.Di;
 using UnityEngine;
 
-namespace _Application.Sources.App.Core.Services
+namespace Sources.App.Core.Services
 {
     public interface IPlayerInputService : IService
     {

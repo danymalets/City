@@ -1,7 +1,7 @@
-using _Application.Sources.Utils.CommonUtils.Data;
+using Sources.Utils.CommonUtils.Data;
 using UnityEngine;
 
-namespace _Application.Sources.CommonServices.PhysicsServices
+namespace Sources.CommonServices.PhysicsServices
 {
     public class PhysicsService : IPhysicsService
     {

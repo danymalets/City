@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Application.Sources.App.UI.Overlays
+namespace Sources.App.UI.Overlays
 {
     public class DebugMenuOverlayScreen : CommonServices.UiServices.WindowBase.Screens.Screen
     {

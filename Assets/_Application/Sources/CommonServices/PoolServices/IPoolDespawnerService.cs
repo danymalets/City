@@ -1,6 +1,6 @@
-using _Application.Sources.Utils.Di;
+using Sources.Utils.Di;
 
-namespace _Application.Sources.CommonServices.PoolServices
+namespace Sources.CommonServices.PoolServices
 {
     public interface IPoolDespawnerService : IService
     {

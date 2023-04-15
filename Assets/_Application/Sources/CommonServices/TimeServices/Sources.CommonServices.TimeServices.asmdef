@@ -1,4 +1,16 @@
 {
-  "name": "Sources.CommonServices.TimeServices",
-  "references":[ "GUID:d265b201ff1f3441d8b0796de9a27b0c" ]
+    "name": "Sources.CommonServices.TimeServices",
+    "rootNamespace": "",
+    "references": [
+        "Sources.Utils.Di"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

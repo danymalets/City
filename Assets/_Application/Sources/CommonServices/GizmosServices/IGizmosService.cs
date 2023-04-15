@@ -1,6 +1,6 @@
-using _Application.Sources.Utils.Di;
+using Sources.Utils.Di;
 
-namespace _Application.Sources.CommonServices.GizmosServices
+namespace Sources.CommonServices.GizmosServices
 {
     public interface IGizmosService : IService
     {

@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 
-namespace _Application.Sources.Utils.CommonUtils.Libs
+namespace Sources.Utils.CommonUtils.Libs
 {
     public static class DPerformance
     {

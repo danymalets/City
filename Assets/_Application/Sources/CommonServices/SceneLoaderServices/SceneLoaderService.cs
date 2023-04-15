@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
-using _Application.Sources.CommonServices.CoroutineRunnerServices;
-using _Application.Sources.Utils.CommonUtils.Libs;
+using Sources.CommonServices.CoroutineRunnerServices;
+using Sources.Utils.CommonUtils.Libs;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace _Application.Sources.CommonServices.SceneLoaderServices
+namespace Sources.CommonServices.SceneLoaderServices
 {
     public class SceneLoaderService : ISceneLoaderService
     {

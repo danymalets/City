@@ -1,15 +1,15 @@
 using System;
-using _Application.Sources.App.UI.Popups.Settings;
-using _Application.Sources.CommonServices.UiServices.WindowBase.Screens;
-using _Application.Sources.Utils.CommonUtils.Extensions;
-using _Application.Sources.Utils.Di;
+using Sources.App.UI.Popups.Settings;
+using Sources.CommonServices.UiServices.WindowBase.Screens;
 using Sources.ProjectServices.AudioServices;
+using Sources.Utils.CommonUtils.Extensions;
+using Sources.Utils.Di;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace _Application.Sources.App.UI.Screens.Level
+namespace Sources.App.UI.Screens.Level
 {
     public class LevelScreen : Screen<int>
     {

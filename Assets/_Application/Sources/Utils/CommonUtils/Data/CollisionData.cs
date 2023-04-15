@@ -1,6 +1,6 @@
 using Scellecs.Morpeh;
 
-namespace _Application.Sources.Utils.CommonUtils.Data
+namespace Sources.Utils.CommonUtils.Data
 {
     public class CollisionData
     {

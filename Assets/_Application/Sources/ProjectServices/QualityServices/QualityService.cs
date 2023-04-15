@@ -1,8 +1,8 @@
-using _Application.Sources.App.Data;
-using _Application.Sources.CommonServices.TimeServices;
-using _Application.Sources.Utils.Di;
+using Sources.App.Data;
+using Sources.CommonServices.TimeServices;
 using Sources.ProjectServices.BalanceServices;
 using Sources.ProjectServices.UserService;
+using Sources.Utils.Di;
 using UnityEngine;
 
 namespace Sources.ProjectServices.QualityServices

@@ -1,10 +1,10 @@
-using _Application.Sources.Utils.CommonUtils.Data.Live;
-using _Application.Sources.Utils.Di;
 using Sources.ProjectServices.AudioServices;
+using Sources.Utils.CommonUtils.Data.Live;
+using Sources.Utils.Di;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Application.Sources.App.UI.Popups.Settings
+namespace Sources.App.UI.Popups.Settings
 {
     [RequireComponent(typeof(Image))]
     [RequireComponent(typeof(Button))]

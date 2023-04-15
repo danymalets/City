@@ -1,7 +1,7 @@
-using _Application.Sources.Utils.Di;
 using Scellecs.Morpeh;
+using Sources.Utils.Di;
 
-namespace _Application.Sources.App.Core.Ecs.Despawners
+namespace Sources.App.Core.Ecs.Despawners
 {
     public interface IPlayersDespawner : IService
     {

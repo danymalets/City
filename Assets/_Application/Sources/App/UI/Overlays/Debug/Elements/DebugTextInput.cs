@@ -1,4 +1,4 @@
-namespace _Application.Sources.App.UI.Overlays.Debug.Elements
+namespace Sources.App.UI.Overlays.Debug.Elements
 {
     public class DebugTextInput : DebugElement
     {

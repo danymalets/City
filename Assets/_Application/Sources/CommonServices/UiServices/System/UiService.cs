@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
-using _Application.Sources.CommonServices.ApplicationServices;
-using _Application.Sources.CommonServices.UiServices.WindowBase;
-using _Application.Sources.CommonServices.UiServices.WindowBase.Popups;
-using _Application.Sources.CommonServices.UiServices.WindowBase.Screens;
-using _Application.Sources.Utils.Di;
+using Sources.CommonServices.ApplicationServices;
+using Sources.CommonServices.UiServices.WindowBase;
+using Sources.CommonServices.UiServices.WindowBase.Popups;
+using Sources.CommonServices.UiServices.WindowBase.Screens;
+using Sources.Utils.Di;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace _Application.Sources.CommonServices.UiServices.System
+namespace Sources.CommonServices.UiServices.System
 {
     public class UiService : MonoBehaviour, IUiService, IUiRefreshService, IUiCloseService, IInitializable
     {

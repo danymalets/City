@@ -1,4 +1,4 @@
-namespace _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Systems
+namespace Sources.Utils.MorpehWrapper.MorpehUtils.Systems
 {
     public abstract class DInitializer : DSystem
     {

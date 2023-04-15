@@ -1,8 +1,8 @@
 using System.Linq;
-using _Application.Sources.Utils.CommonUtils.Extensions;
+using Sources.Utils.CommonUtils.Extensions;
 using UnityEngine;
 
-namespace _Application.Sources.App.Core.GameObjects.Players.Ragdolls
+namespace Sources.App.Core.GameObjects.Players.Ragdolls
 {
     public class Ragdoll : MonoBehaviour
     {

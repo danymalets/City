@@ -1,4 +1,4 @@
-namespace _Application.Sources.CommonServices.UiServices.WindowBase.Popups
+namespace Sources.CommonServices.UiServices.WindowBase.Popups
 {
     public abstract class Popup : PopupBase, IWindow
     {

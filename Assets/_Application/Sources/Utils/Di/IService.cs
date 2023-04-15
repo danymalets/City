@@ -1,4 +1,4 @@
-namespace _Application.Sources.Utils.Di
+namespace Sources.Utils.Di
 {
     public interface IService
     {

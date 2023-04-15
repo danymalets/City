@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using _Application.Sources.Utils.CommonUtils.Data;
-using _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Views;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Scellecs.Morpeh;
+using Sources.Utils.CommonUtils.Data;
+using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using UnityEngine;
 
-namespace _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Monos
+namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
 {
     public class PhysicsEventsReceiver : MonoBehaviour, IEntityAccess
     {

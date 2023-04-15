@@ -1,26 +1,26 @@
-using _Application.Sources.App.Core.Ecs.Components.Car;
-using _Application.Sources.App.Core.Ecs.Components.Npc.NpcCar;
-using _Application.Sources.App.Core.Ecs.Components.Player;
-using _Application.Sources.App.Core.Ecs.Despawners;
-using _Application.Sources.App.Core.Ecs.Factories;
-using _Application.Sources.App.Core.Ecs.Systems.Init;
-using _Application.Sources.App.Core.Ecs.Systems.Update.Camera;
-using _Application.Sources.App.Core.Ecs.Systems.Update.Car;
-using _Application.Sources.App.Core.Ecs.Systems.Update.Common;
-using _Application.Sources.App.Core.Ecs.Systems.Update.Generation;
-using _Application.Sources.App.Core.Ecs.Systems.Update.Npc;
-using _Application.Sources.App.Core.Ecs.Systems.Update.NpcCar;
-using _Application.Sources.App.Core.Ecs.Systems.Update.NpcPathes;
-using _Application.Sources.App.Core.Ecs.Systems.Update.Player;
-using _Application.Sources.App.Core.Ecs.Systems.Update.PseudoEditor;
-using _Application.Sources.App.Core.Ecs.Systems.Update.User;
-using _Application.Sources.App.Core.Services;
-using _Application.Sources.Utils.Di;
-using _Application.Sources.Utils.MorpehWrapper;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.CustomSystems;
+using Sources.App.Core.Ecs.Components.Car;
+using Sources.App.Core.Ecs.Components.Npc.NpcCar;
+using Sources.App.Core.Ecs.Components.Player;
+using Sources.App.Core.Ecs.Despawners;
+using Sources.App.Core.Ecs.Factories;
+using Sources.App.Core.Ecs.Systems.Init;
+using Sources.App.Core.Ecs.Systems.Update.Camera;
+using Sources.App.Core.Ecs.Systems.Update.Car;
+using Sources.App.Core.Ecs.Systems.Update.Common;
+using Sources.App.Core.Ecs.Systems.Update.Generation;
+using Sources.App.Core.Ecs.Systems.Update.Npc;
+using Sources.App.Core.Ecs.Systems.Update.NpcCar;
+using Sources.App.Core.Ecs.Systems.Update.NpcPathes;
+using Sources.App.Core.Ecs.Systems.Update.Player;
+using Sources.App.Core.Ecs.Systems.Update.PseudoEditor;
+using Sources.App.Core.Ecs.Systems.Update.User;
+using Sources.App.Core.Services;
+using Sources.Utils.Di;
+using Sources.Utils.MorpehWrapper;
+using Sources.Utils.MorpehWrapper.MorpehUtils;
+using Sources.Utils.MorpehWrapper.MorpehUtils.CustomSystems;
 
-namespace _Application.Sources.App.Core.Ecs
+namespace Sources.App.Core.Ecs
 {
     public class Game
     {

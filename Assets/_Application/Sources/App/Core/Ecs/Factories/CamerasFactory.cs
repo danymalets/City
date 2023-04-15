@@ -1,11 +1,11 @@
-using _Application.Sources.App.Core.Ecs.Components.Camera;
-using _Application.Sources.App.Core.Ecs.Components.Tags;
-using _Application.Sources.App.Data.MonoEntities;
-using _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Views;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Components.Camera;
+using Sources.App.Core.Ecs.Components.Tags;
+using Sources.App.Data.MonoEntities;
+using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 
-namespace _Application.Sources.App.Core.Ecs.Factories
+namespace Sources.App.Core.Ecs.Factories
 {
     public class CamerasFactory : Factory, ICamerasFactory
     {

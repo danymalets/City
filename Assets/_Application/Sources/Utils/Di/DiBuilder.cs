@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace _Application.Sources.Utils.Di
+namespace Sources.Utils.Di
 {
     public class DiBuilder : IDiBuilder, IDisposable
     {

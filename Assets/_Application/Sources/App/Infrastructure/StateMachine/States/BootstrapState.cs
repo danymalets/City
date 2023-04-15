@@ -1,18 +1,18 @@
-using _Application.Sources.App.Data.MonoEntities;
-using _Application.Sources.App.Infrastructure.StateMachine.Machine;
-using _Application.Sources.App.Infrastructure.StateMachine.StateBase;
-using _Application.Sources.App.UI.Overlays;
-using _Application.Sources.CommonServices.ApplicationServices;
-using _Application.Sources.CommonServices.PhysicsServices;
-using _Application.Sources.CommonServices.PoolServices;
-using _Application.Sources.CommonServices.ScreenServices;
-using _Application.Sources.CommonServices.TimeServices;
-using _Application.Sources.CommonServices.UiServices.System;
-using _Application.Sources.Utils.Di;
+using Sources.App.Data.MonoEntities;
+using Sources.App.Infrastructure.StateMachine.Machine;
+using Sources.App.Infrastructure.StateMachine.StateBase;
+using Sources.App.UI.Overlays;
+using Sources.CommonServices.ApplicationServices;
+using Sources.CommonServices.PhysicsServices;
+using Sources.CommonServices.PoolServices;
+using Sources.CommonServices.ScreenServices;
+using Sources.CommonServices.TimeServices;
+using Sources.CommonServices.UiServices.System;
 using Sources.ProjectServices.AssetsServices;
+using Sources.Utils.Di;
 using UnityEngine;
 
-namespace _Application.Sources.App.Infrastructure.StateMachine.States
+namespace Sources.App.Infrastructure.StateMachine.States
 {
     public class BootstrapState : GameState
     {

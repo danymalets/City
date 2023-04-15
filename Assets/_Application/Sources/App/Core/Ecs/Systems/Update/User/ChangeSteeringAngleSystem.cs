@@ -1,12 +1,12 @@
-using _Application.Sources.App.Core.Ecs.Components.Car;
-using _Application.Sources.App.Core.Ecs.Components.Tags;
-using _Application.Sources.Utils.Di;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Components.Car;
+using Sources.App.Core.Ecs.Components.Tags;
 using Sources.ProjectServices.BalanceServices;
+using Sources.Utils.Di;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
-namespace _Application.Sources.App.Core.Ecs.Systems.Update.User
+namespace Sources.App.Core.Ecs.Systems.Update.User
 {
     public class ChangeSteeringAngleSystem : DUpdateSystem
     {

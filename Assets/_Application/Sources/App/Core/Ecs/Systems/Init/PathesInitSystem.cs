@@ -1,10 +1,10 @@
-using _Application.Sources.App.Core.Ecs.Components.Tags;
-using _Application.Sources.App.Core.Ecs.Factories;
-using _Application.Sources.App.Data.Common;
-using _Application.Sources.Utils.Di;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
+using Sources.App.Core.Ecs.Components.Tags;
+using Sources.App.Core.Ecs.Factories;
+using Sources.App.Data.Common;
+using Sources.Utils.Di;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
-namespace _Application.Sources.App.Core.Ecs.Systems.Init
+namespace Sources.App.Core.Ecs.Systems.Init
 {
     public class PathesInitSystem : DInitializer
     {

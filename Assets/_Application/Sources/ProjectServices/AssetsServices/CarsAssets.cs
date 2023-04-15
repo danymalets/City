@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using _Application.Sources.App.Data.Cars;
-using _Application.Sources.App.Data.MonoEntities;
-using _Application.Sources.Utils.CommonUtils.Libs;
+using Sources.App.Data.Cars;
+using Sources.App.Data.MonoEntities;
+using Sources.Utils.CommonUtils.Libs;
 using UnityEngine;
 
 namespace Sources.ProjectServices.AssetsServices

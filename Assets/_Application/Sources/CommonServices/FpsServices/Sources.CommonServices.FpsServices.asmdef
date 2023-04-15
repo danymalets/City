@@ -1,8 +1,18 @@
 {
-  "name": "Sources.CommonServices.FpsServices",
-  "references": [
-    "GUID:d265b201ff1f3441d8b0796de9a27b0c",
-    "GUID:2b9bb9f4ec804583bf5710b97a122825",
-    "GUID:704bc33e452444ac96cc254d2a5f6508"
-  ]
+    "name": "Sources.CommonServices.FpsServices",
+    "rootNamespace": "",
+    "references": [
+        "Sources.Utils.Di",
+        "Sources.CommonServices.CoroutineRunnerServices",
+        "Sources.CommonServices.TimeServices"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

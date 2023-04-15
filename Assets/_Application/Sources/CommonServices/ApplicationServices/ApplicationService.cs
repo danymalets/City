@@ -1,10 +1,10 @@
 using System;
-using _Application.Sources.CommonServices.ApplicationInputServices;
-using _Application.Sources.CommonServices.CoroutineRunnerServices;
-using _Application.Sources.Utils.Di;
+using Sources.CommonServices.ApplicationInputServices;
+using Sources.CommonServices.CoroutineRunnerServices;
+using Sources.Utils.Di;
 using UnityEngine;
 
-namespace _Application.Sources.CommonServices.ApplicationServices
+namespace Sources.CommonServices.ApplicationServices
 {
     public class ApplicationService : MonoBehaviour, IApplicationService, IInitializable
     {

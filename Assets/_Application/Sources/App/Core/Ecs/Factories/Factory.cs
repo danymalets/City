@@ -1,11 +1,11 @@
-using _Application.Sources.App.Data.Common;
-using _Application.Sources.CommonServices.PoolServices;
-using _Application.Sources.Utils.Di;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils;
+using Sources.App.Data.Common;
+using Sources.CommonServices.PoolServices;
 using Sources.ProjectServices.AssetsServices;
 using Sources.ProjectServices.BalanceServices;
+using Sources.Utils.Di;
+using Sources.Utils.MorpehWrapper.MorpehUtils;
 
-namespace _Application.Sources.App.Core.Ecs.Factories
+namespace Sources.App.Core.Ecs.Factories
 {
     public abstract class Factory
     {

@@ -1,22 +1,22 @@
 using System.Collections.Generic;
 using System.Linq;
-using _Application.Sources.App.Core.Ecs.Components.NpcPathes;
-using _Application.Sources.App.Core.Ecs.Components.Player;
-using _Application.Sources.App.Core.Ecs.Components.Tags;
-using _Application.Sources.App.Core.Ecs.Factories;
-using _Application.Sources.App.Data;
-using _Application.Sources.App.Data.MonoEntities;
-using _Application.Sources.App.Data.Points;
-using _Application.Sources.CommonServices.PhysicsServices;
-using _Application.Sources.Utils.CommonUtils.Extensions;
-using _Application.Sources.Utils.Di;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Components.NpcPathes;
+using Sources.App.Core.Ecs.Components.Player;
+using Sources.App.Core.Ecs.Components.Tags;
+using Sources.App.Core.Ecs.Factories;
+using Sources.App.Data;
+using Sources.App.Data.MonoEntities;
+using Sources.App.Data.Points;
+using Sources.CommonServices.PhysicsServices;
 using Sources.ProjectServices.AssetsServices;
 using Sources.ProjectServices.BalanceServices;
+using Sources.Utils.CommonUtils.Extensions;
+using Sources.Utils.Di;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
-namespace _Application.Sources.App.Core.Ecs.Systems.Update.Generation
+namespace Sources.App.Core.Ecs.Systems.Update.Generation
 {
     public class HorizonNpcSpawnSystem : DUpdateSystem
     {

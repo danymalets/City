@@ -1,5 +1,5 @@
-using _Application.Sources.App.Data;
-using _Application.Sources.Utils.CommonUtils.Data.Live;
+using Sources.App.Data;
+using Sources.Utils.CommonUtils.Data.Live;
 
 namespace Sources.ProjectServices.UserService
 {

@@ -1,7 +1,7 @@
-using _Application.Sources.CommonServices.PoolServices;
 using Scellecs.Morpeh;
+using Sources.CommonServices.PoolServices;
 
-namespace _Application.Sources.Utils.MorpehWrapper
+namespace Sources.Utils.MorpehWrapper
 {
     public interface IMonoEntity : IRespawnable
     {

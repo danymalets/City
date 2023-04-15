@@ -1,6 +1,6 @@
-using _Application.Sources.Utils.Di;
+using Sources.Utils.Di;
 
-namespace _Application.Sources.CommonServices.PlayerPreferencesServices
+namespace Sources.CommonServices.PlayerPreferencesServices
 {
     public interface IPlayerPrefsService : IService
     {

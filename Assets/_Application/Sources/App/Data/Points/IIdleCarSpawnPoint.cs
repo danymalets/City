@@ -1,8 +1,8 @@
-using _Application.Sources.App.Data.Cars;
 using Scellecs.Morpeh;
+using Sources.App.Data.Cars;
 using UnityEngine;
 
-namespace _Application.Sources.App.Data.Points
+namespace Sources.App.Data.Points
 {
     public interface IIdleCarSpawnPoint
     {

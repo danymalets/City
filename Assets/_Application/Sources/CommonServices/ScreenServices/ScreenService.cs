@@ -1,11 +1,11 @@
 using System;
 using System.Linq;
-using _Application.Sources.CommonServices.CoroutineRunnerServices;
-using _Application.Sources.Utils.CommonUtils.Libs;
-using _Application.Sources.Utils.Di;
+using Sources.CommonServices.CoroutineRunnerServices;
+using Sources.Utils.CommonUtils.Libs;
+using Sources.Utils.Di;
 using UnityEngine;
 
-namespace _Application.Sources.CommonServices.ScreenServices
+namespace Sources.CommonServices.ScreenServices
 {
     public class ScreenService : IInitializable, IScreenService
     {

@@ -1,8 +1,8 @@
-using _Application.Sources.CommonServices.ApplicationServices;
-using _Application.Sources.CommonServices.CoroutineRunnerServices;
-using _Application.Sources.CommonServices.GizmosServices;
-using _Application.Sources.CommonServices.PoolServices;
-using _Application.Sources.CommonServices.UiServices.System;
+using Sources.CommonServices.ApplicationServices;
+using Sources.CommonServices.CoroutineRunnerServices;
+using Sources.CommonServices.GizmosServices;
+using Sources.CommonServices.PoolServices;
+using Sources.CommonServices.UiServices.System;
 using Sources.ProjectServices.AssetsServices;
 using Sources.ProjectServices.AudioServices;
 using Sources.ProjectServices.BalanceServices;

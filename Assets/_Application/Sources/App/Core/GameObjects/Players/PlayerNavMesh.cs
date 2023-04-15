@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace _Application.Sources.App.Core.GameObjects.Players
+namespace Sources.App.Core.GameObjects.Players
 {
     public class PlayerNavMesh : MonoBehaviour
     {

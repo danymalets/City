@@ -1,8 +1,8 @@
 using System;
-using _Application.Sources.Utils.CommonUtils.Extensions;
+using Sources.Utils.CommonUtils.Extensions;
 using UnityEngine;
 
-namespace _Application.Sources.CommonServices.CoroutineRunnerServices
+namespace Sources.CommonServices.CoroutineRunnerServices
 {
     public class CoroutineRunnerService : MonoBehaviour, ICoroutineRunnerService
     {

@@ -1,6 +1,6 @@
-using _Application.Sources.App.Data.Points;
+using Sources.App.Data.Points;
 
-namespace _Application.Sources.App.Data.Missions
+namespace Sources.App.Data.Missions
 {
     public interface IMission1Context
     {

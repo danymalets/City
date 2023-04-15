@@ -1,8 +1,8 @@
-using _Application.Sources.Utils.CommonUtils.Data;
-using _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Views;
+using Sources.Utils.CommonUtils.Data;
+using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using UnityEngine;
 
-namespace _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Monos
+namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
 {
     [RequireComponent(typeof(BoxCollider))]
     public class SafeBoxCollider : SafeCollider<BoxCollider>, ISafeBoxCollider

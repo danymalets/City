@@ -1,4 +1,16 @@
 {
-  "name": "Sources.CommonServices.GizmosServices",
-  "references":[ "GUID:d265b201ff1f3441d8b0796de9a27b0c" ]
+    "name": "Sources.CommonServices.GizmosServices",
+    "rootNamespace": "",
+    "references": [
+        "Sources.Utils.Di"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

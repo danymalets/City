@@ -1,7 +1,7 @@
-using _Application.Sources.CommonServices.UiServices.WindowBase;
-using _Application.Sources.Utils.Di;
+using Sources.CommonServices.UiServices.WindowBase;
+using Sources.Utils.Di;
 
-namespace _Application.Sources.CommonServices.UiServices.System
+namespace Sources.CommonServices.UiServices.System
 {
     public interface IUiService : IService
     {

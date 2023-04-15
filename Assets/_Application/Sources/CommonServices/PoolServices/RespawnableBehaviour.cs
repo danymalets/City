@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Application.Sources.CommonServices.PoolServices
+namespace Sources.CommonServices.PoolServices
 {
     public class RespawnableBehaviour : MonoBehaviour, IRespawnable
     {

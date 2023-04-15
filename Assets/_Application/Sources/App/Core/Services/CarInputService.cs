@@ -1,9 +1,9 @@
-using _Application.Sources.App.UI.Screens.Input;
-using _Application.Sources.CommonServices.ApplicationInputServices;
-using _Application.Sources.CommonServices.UiServices.System;
-using _Application.Sources.Utils.Di;
+using Sources.App.UI.Screens.Input;
+using Sources.CommonServices.ApplicationInputServices;
+using Sources.CommonServices.UiServices.System;
+using Sources.Utils.Di;
 
-namespace _Application.Sources.App.Core.Services
+namespace Sources.App.Core.Services
 {
     public class CarInputService : ICarInputService
     {

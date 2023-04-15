@@ -1,4 +1,4 @@
-namespace _Application.Sources.CommonServices.SceneLoaderServices
+namespace Sources.CommonServices.SceneLoaderServices
 {
     public interface ISceneContext
     {

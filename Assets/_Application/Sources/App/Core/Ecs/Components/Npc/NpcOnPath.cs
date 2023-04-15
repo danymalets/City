@@ -1,7 +1,7 @@
-using _Application.Sources.App.Data.Pathes;
 using Scellecs.Morpeh;
+using Sources.App.Data.Pathes;
 
-namespace _Application.Sources.App.Core.Ecs.Components.Npc
+namespace Sources.App.Core.Ecs.Components.Npc
 {
     public struct NpcOnPath : IComponent
     {

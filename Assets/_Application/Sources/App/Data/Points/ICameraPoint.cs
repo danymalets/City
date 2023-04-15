@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Application.Sources.App.Data.Points
+namespace Sources.App.Data.Points
 {
     public interface ICameraPoint
     {

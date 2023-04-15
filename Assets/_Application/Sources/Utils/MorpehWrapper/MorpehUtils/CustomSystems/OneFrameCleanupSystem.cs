@@ -1,8 +1,8 @@
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using Scellecs.Morpeh;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
-namespace _Application.Sources.Utils.MorpehWrapper.MorpehUtils.CustomSystems
+namespace Sources.Utils.MorpehWrapper.MorpehUtils.CustomSystems
 {
     public class OneFrameCleanupSystem<TComponent> : DUpdateSystem where TComponent : struct, IComponent
     {

@@ -1,10 +1,10 @@
 using System;
-using _Application.Sources.CommonServices.UiServices.System;
-using _Application.Sources.Utils.CommonUtils.Extensions;
-using _Application.Sources.Utils.Di;
+using Sources.CommonServices.UiServices.System;
+using Sources.Utils.CommonUtils.Extensions;
+using Sources.Utils.Di;
 using UnityEngine;
 
-namespace _Application.Sources.CommonServices.UiServices.WindowBase
+namespace Sources.CommonServices.UiServices.WindowBase
 {
     [RequireComponent(typeof(Canvas))]
     public abstract class Window : MonoBehaviour, IService

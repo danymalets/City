@@ -1,8 +1,8 @@
-using _Application.Sources.CommonServices.PoolServices;
-using _Application.Sources.Utils.Di;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils;
+using Sources.CommonServices.PoolServices;
+using Sources.Utils.Di;
+using Sources.Utils.MorpehWrapper.MorpehUtils;
 
-namespace _Application.Sources.App.Core.Ecs.Despawners
+namespace Sources.App.Core.Ecs.Despawners
 {
     public abstract class Despawner
     {

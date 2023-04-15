@@ -1,6 +1,6 @@
 using Scellecs.Morpeh;
 
-namespace _Application.Sources.Utils.MorpehWrapper.Aspects
+namespace Sources.Utils.MorpehWrapper.Aspects
 {
     public interface IDAspectBase
     {

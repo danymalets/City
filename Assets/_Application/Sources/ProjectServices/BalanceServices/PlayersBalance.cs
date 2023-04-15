@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using _Application.Sources.App.Data;
-using _Application.Sources.Utils.CommonUtils.Extensions;
-using _Application.Sources.Utils.CommonUtils.Libs;
+using Sources.App.Data;
+using Sources.Utils.CommonUtils.Extensions;
+using Sources.Utils.CommonUtils.Libs;
 using UnityEngine;
 using UnityEngine.Serialization;
 

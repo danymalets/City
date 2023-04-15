@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Application.Sources.App.UI.Screens
+namespace Sources.App.UI.Screens
 {
     public class WinScreen : CommonServices.UiServices.WindowBase.Screens.Screen
     {

@@ -1,8 +1,8 @@
-using _Application.Sources.Utils.CommonUtils.Libs;
-using _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Views;
+using Sources.Utils.CommonUtils.Libs;
+using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using UnityEngine;
 
-namespace _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Monos
+namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
 {
     [RequireComponent(typeof(PhysicsEventsReceiver))]
     public class RigidbodySwitcher : MonoBehaviour, IRigidbodySwitcher

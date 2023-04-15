@@ -2,12 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using _Application.Sources.CommonServices.CoroutineRunnerServices;
-using _Application.Sources.CommonServices.TimeServices;
-using _Application.Sources.Utils.Di;
+using Sources.CommonServices.CoroutineRunnerServices;
+using Sources.CommonServices.TimeServices;
+using Sources.Utils.Di;
 using UnityEngine;
 
-namespace _Application.Sources.CommonServices.FpsServices
+namespace Sources.CommonServices.FpsServices
 {
     public class FpsService : IFpsService, IInitializable
     {

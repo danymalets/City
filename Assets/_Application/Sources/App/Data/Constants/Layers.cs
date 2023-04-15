@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Application.Sources.App.Data.Constants
+namespace Sources.App.Data.Constants
 {
     public static class Layers
     {

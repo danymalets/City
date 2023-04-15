@@ -1,12 +1,12 @@
-using _Application.Sources.App.Data.Cars;
-using _Application.Sources.Utils.MorpehWrapper.Aspects;
-using _Application.Sources.Utils.MorpehWrapper.DefaultComponents;
-using _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
-using _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Views;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Scellecs.Morpeh;
+using Sources.App.Data.Cars;
+using Sources.Utils.MorpehWrapper.Aspects;
+using Sources.Utils.MorpehWrapper.DefaultComponents;
+using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
+using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 
-namespace _Application.Sources.App.Core.Ecs.Aspects
+namespace Sources.App.Core.Ecs.Aspects
 {
     public struct SwitchableRigidbodyAspect : IDAspect
     {

@@ -1,6 +1,6 @@
-using _Application.Sources.App.Data;
+using Sources.App.Data;
 
-namespace _Application.Sources.App.Core.Missions
+namespace Sources.App.Core.Missions
 {
     public class DialogueCue
     {

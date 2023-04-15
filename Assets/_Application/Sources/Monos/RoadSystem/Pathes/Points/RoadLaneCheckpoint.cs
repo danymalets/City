@@ -1,6 +1,6 @@
-using _Application.Sources.App.Data.Pathes;
-using _Application.Sources.App.Data.Points;
-using _Application.Sources.Utils.CommonUtils.Extensions;
+using Sources.App.Data.Pathes;
+using Sources.App.Data.Points;
+using Sources.Utils.CommonUtils.Extensions;
 using UnityEngine;
 
 namespace Sources.Monos.RoadSystem.Pathes.Points

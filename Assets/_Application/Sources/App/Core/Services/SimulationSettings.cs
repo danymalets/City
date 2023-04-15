@@ -1,8 +1,8 @@
-using _Application.Sources.Utils.Di;
 using Sources.ProjectServices.BalanceServices;
 using Sources.ProjectServices.QualityServices;
+using Sources.Utils.Di;
 
-namespace _Application.Sources.App.Core.Services
+namespace Sources.App.Core.Services
 {
     public class SimulationSettings : IService
     {

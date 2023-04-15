@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using _Application.Sources.App.Data.Cars;
-using _Application.Sources.Utils.CommonUtils.Extensions;
-using _Application.Sources.Utils.CommonUtils.Libs;
-using _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
+using Sources.App.Data.Cars;
+using Sources.Utils.CommonUtils.Extensions;
+using Sources.Utils.CommonUtils.Libs;
+using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 using UnityEngine;
 
 namespace Sources.Monos.Cars

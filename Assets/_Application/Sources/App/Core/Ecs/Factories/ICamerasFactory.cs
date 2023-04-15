@@ -1,7 +1,7 @@
-using _Application.Sources.Utils.Di;
 using Scellecs.Morpeh;
+using Sources.Utils.Di;
 
-namespace _Application.Sources.App.Core.Ecs.Factories
+namespace Sources.App.Core.Ecs.Factories
 {
     public interface ICamerasFactory : IService
     {

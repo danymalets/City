@@ -1,8 +1,8 @@
 using System;
-using _Application.Sources.CommonServices.UiServices.WindowBase.Screens;
+using Sources.CommonServices.UiServices.WindowBase.Screens;
 using UnityEngine.EventSystems;
 
-namespace _Application.Sources.App.UI.Screens
+namespace Sources.App.UI.Screens
 {
     public class TapToStartScreen : Screen, IEndDragHandler, IPointerClickHandler
     {

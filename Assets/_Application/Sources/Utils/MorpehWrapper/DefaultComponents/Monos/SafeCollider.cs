@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Monos
+namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
 {
     public class SafeCollider<TCollider> : SafeColliderBase
         where TCollider : Collider

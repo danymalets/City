@@ -1,17 +1,17 @@
-using _Application.Sources.App.Data;
-using _Application.Sources.App.Data.Common;
-using _Application.Sources.App.Infrastructure.StateMachine.Machine;
-using _Application.Sources.App.Infrastructure.StateMachine.StateBase;
-using _Application.Sources.App.UI.Screens;
-using _Application.Sources.CommonServices.SceneLoaderServices;
-using _Application.Sources.CommonServices.UiServices.System;
-using _Application.Sources.Utils.Di;
+using Sources.App.Data;
+using Sources.App.Data.Common;
+using Sources.App.Infrastructure.StateMachine.Machine;
+using Sources.App.Infrastructure.StateMachine.StateBase;
+using Sources.App.UI.Screens;
+using Sources.CommonServices.SceneLoaderServices;
+using Sources.CommonServices.UiServices.System;
 using Sources.ProjectServices.AssetsServices;
 using Sources.ProjectServices.BalanceServices;
 using Sources.ProjectServices.UserService;
+using Sources.Utils.Di;
 using UnityEngine.SceneManagement;
 
-namespace _Application.Sources.App.Infrastructure.StateMachine.States
+namespace Sources.App.Infrastructure.StateMachine.States
 {
     public class LoadLevelState : GameState
     {

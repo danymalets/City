@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using _Application.Sources.App.Core.Ecs.Components.Npc.NpcCar;
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Components.Npc.NpcCar;
 
-namespace _Application.Sources.App.Core.Ecs.Components.Car
+namespace Sources.App.Core.Ecs.Components.Car
 {
     public struct TurnDecisions : IComponent
     {

@@ -1,13 +1,13 @@
 using System.Collections.Generic;
-using _Application.Sources.App.Core.Ecs.Components.NpcPathes;
-using _Application.Sources.App.Core.Ecs.Components.Tags;
-using _Application.Sources.App.Data.Pathes;
-using _Application.Sources.App.Data.Points;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Components.NpcPathes;
+using Sources.App.Core.Ecs.Components.Tags;
+using Sources.App.Data.Pathes;
+using Sources.App.Data.Points;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
-namespace _Application.Sources.App.Core.Ecs.Systems.Init
+namespace Sources.App.Core.Ecs.Systems.Init
 {
     public class PathesPointsFindSystem : DInitializer
     {

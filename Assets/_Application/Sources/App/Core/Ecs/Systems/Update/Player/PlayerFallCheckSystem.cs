@@ -1,16 +1,16 @@
 using System.Collections.Generic;
-using _Application.Sources.App.Core.Ecs.Components.Player;
-using _Application.Sources.App.Core.Ecs.Components.Tags;
-using _Application.Sources.Utils.CommonUtils.Data;
-using _Application.Sources.Utils.CommonUtils.Libs;
-using _Application.Sources.Utils.Di;
-using _Application.Sources.Utils.MorpehWrapper;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
-using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Components.Player;
+using Sources.App.Core.Ecs.Components.Tags;
 using Sources.ProjectServices.BalanceServices;
+using Sources.Utils.CommonUtils.Data;
+using Sources.Utils.CommonUtils.Libs;
+using Sources.Utils.Di;
+using Sources.Utils.MorpehWrapper;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
-namespace _Application.Sources.App.Core.Ecs.Systems.Update.Player
+namespace Sources.App.Core.Ecs.Systems.Update.Player
 {
     public class PlayerFallCheckSystem : DUpdateSystem
     {

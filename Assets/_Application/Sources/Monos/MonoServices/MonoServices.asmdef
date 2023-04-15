@@ -1,13 +1,23 @@
 {
-  "name": "MonoServices",
-  "references": [
-    "GUID:88f7185c0a46416ab6bda3217ad4df98",
-    "GUID:2b9bb9f4ec804583bf5710b97a122825",
-    "GUID:ed5073641bfc74db7937853ff77bb625",
-    "GUID:d62be4e906c349b4830104cd747da3a6",
-    "GUID:e48f73608491470da62cc9bd1fe0b2ce",
-    "GUID:211a07a126b764a65ba039e6db9fb595",
-    "GUID:f160941cd3534eafb66aac4f2ab60c74",
-    "GUID:284026d363b9462bb87f0810a0afb063"
-  ]
+    "name": "MonoServices",
+    "rootNamespace": "",
+    "references": [
+        "Sources.CommonServices.UiServices",
+        "Sources.CommonServices.CoroutineRunnerServices",
+        "Sources.CommonServices.ApplicationServices",
+        "Sources.CommonServices.PoolServices",
+        "Sources.ProjectServices.AudioServices",
+        "Sources.ProjectServices.AssetsServices",
+        "Sources.ProjectServices.BalanceServices",
+        "Sources.CommonServices.GizmosServices"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

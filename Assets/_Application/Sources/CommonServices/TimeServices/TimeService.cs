@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Application.Sources.CommonServices.TimeServices
+namespace Sources.CommonServices.TimeServices
 {
     public class TimeService : ITimeService
     {

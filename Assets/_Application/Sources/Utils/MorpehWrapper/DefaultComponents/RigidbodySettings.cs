@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Application.Sources.Utils.MorpehWrapper.DefaultComponents
+namespace Sources.Utils.MorpehWrapper.DefaultComponents
 {
     public class RigidbodySettings
     {
