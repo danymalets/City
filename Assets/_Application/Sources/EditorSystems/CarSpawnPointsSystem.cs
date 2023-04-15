@@ -22,7 +22,7 @@ namespace Sources.Editor
             Dictionary<IdleCarSpawnPoint, CarIdleData> existedVisuals =
                 CarIdleData.ToDictionary(d => d.IdleCarSpawnPoint, d => d);
             
-            return;
+            // return;
 
             foreach (IdleCarSpawnPoint spawnPoint in FindObjectsOfType<IdleCarSpawnPoint>())
             {

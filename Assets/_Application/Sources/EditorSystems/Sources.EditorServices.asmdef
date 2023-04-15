@@ -1,0 +1,11 @@
+{
+  "name": "Sources.EditorServices",
+  "references": [
+    "GUID:2c092f0c3a7645eab95935b3459a4ba1",
+    "GUID:ec85a75ad10ea42a89a4d47619fe56d6",
+    "GUID:a8695e55197541b3b4754fb1ff0f1ed0",
+    "AssetsManager",
+    "Pool",
+    "DMorpeh"
+  ]
+}

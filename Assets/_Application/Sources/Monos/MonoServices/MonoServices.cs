@@ -23,7 +23,6 @@ namespace Sources.Services.MonoServices
         private PoolService _poolService;
         [SerializeField]
         private AudioService _audioService;
-        [FormerlySerializedAs("_assetsService")]
         [SerializeField]
         private Assets _assets;
         [SerializeField]
