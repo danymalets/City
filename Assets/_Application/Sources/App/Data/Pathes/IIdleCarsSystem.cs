@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Sources.Data.Points;
+using _Application.Sources.App.Data.Points;
 
-namespace Sources.Data.Pathes
+namespace _Application.Sources.App.Data.Pathes
 {
     public interface IIdleCarsSystem
     {

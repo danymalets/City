@@ -1,5 +1,5 @@
-using Sources.Data.Missions;
-using Sources.Data.Points;
+using _Application.Sources.App.Data.Missions;
+using _Application.Sources.App.Data.Points;
 using Sources.Monos.Points;
 using UnityEngine;
 

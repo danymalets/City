@@ -1,8 +1,8 @@
-using Sources.Data.Players;
-using Sources.Utils.DMorpeh;
-using Sources.Utils.DMorpeh.DefaultComponents.Views;
+using _Application.Sources.App.Data.Players;
+using _Application.Sources.Utils.MorpehWrapper;
+using _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 
-namespace Sources.Data.MonoEntities
+namespace _Application.Sources.App.Data.MonoEntities
 {
     public interface IPlayerMonoEntity : IMonoEntity
     {

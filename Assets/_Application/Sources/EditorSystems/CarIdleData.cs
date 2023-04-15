@@ -1,9 +1,9 @@
 using System;
-using Sources.Data.MonoEntities;
+using _Application.Sources.App.Data.MonoEntities;
 using Sources.Monos.Bootstrap.IdleCarSpawns;
 using UnityEngine;
 
-namespace Sources.Editor
+namespace _Application.Sources.EditorSystems
 {
     [Serializable]
     public class CarIdleData

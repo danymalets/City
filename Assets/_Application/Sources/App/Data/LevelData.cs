@@ -1,6 +1,6 @@
-using Sources.Data.Common;
+using _Application.Sources.App.Data.Common;
 
-namespace Sources.Data
+namespace _Application.Sources.App.Data
 {
     public class LevelData
     {

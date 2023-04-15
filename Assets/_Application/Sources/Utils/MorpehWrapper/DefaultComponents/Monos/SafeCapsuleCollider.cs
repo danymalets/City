@@ -1,8 +1,8 @@
-using Sources.Utils.Data;
-using Sources.Utils.DMorpeh.DefaultComponents.Views;
+using _Application.Sources.Utils.CommonUtils.Data;
+using _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using UnityEngine;
 
-namespace Sources.Utils.DMorpeh.DefaultComponents.Monos
+namespace _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Monos
 {
     [RequireComponent(typeof(CapsuleCollider))]
     public class SafeCapsuleCollider : SafeCollider<CapsuleCollider>, ISafeMeshCollider

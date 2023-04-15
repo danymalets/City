@@ -1,11 +1,11 @@
+using _Application.Sources.App.Data.Constants;
+using _Application.Sources.App.Data.MonoEntities;
+using _Application.Sources.App.Data.Players;
+using _Application.Sources.Utils.MorpehWrapper;
+using _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
+using _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using Sirenix.OdinInspector;
-using Sources.Data.Constants;
-using Sources.Data.MonoEntities;
-using Sources.Data.Players;
 using Sources.Monos.Players;
-using Sources.Utils.DMorpeh;
-using Sources.Utils.DMorpeh.DefaultComponents.Monos;
-using Sources.Utils.DMorpeh.DefaultComponents.Views;
 using UnityEngine;
 #if UNITY_EDITOR
 #endif

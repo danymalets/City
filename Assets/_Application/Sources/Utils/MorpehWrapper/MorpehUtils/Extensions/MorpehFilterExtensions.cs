@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using Scellecs.Morpeh;
 
-namespace Sources.Utils.DMorpeh.MorpehUtils.Extensions
+namespace _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Extensions
 {
     public static class MorpehFilterExtensions
     {

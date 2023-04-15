@@ -1,10 +1,10 @@
-using Sources.Services.Audio;
-using Sources.Services.Di;
-using Sources.Services.Ui.WindowBase.Popups;
-using Sources.Services.UserService;
+using _Application.Sources.CommonServices.UiServices.WindowBase.Popups;
+using _Application.Sources.Utils.Di;
+using Sources.ProjectServices.AudioServices;
+using Sources.ProjectServices.UserService;
 using UnityEngine;
 
-namespace Sources.App.Game.UI.Popups.Settings
+namespace _Application.Sources.App.UI.Popups.Settings
 {
     public class SettingsPopup : Popup
     {

@@ -1,29 +1,29 @@
-using Sources.App.Infrastructure.StateMachine.Machine;
-using Sources.App.Infrastructure.StateMachine.StateBase;
-using Sources.Services.ApplicationCycle;
-using Sources.Services.ApplicationInput;
-using Sources.Services.AssetsManager;
-using Sources.Services.Audio;
-using Sources.Services.BalanceManager;
-using Sources.Services.CoroutineRunner;
-using Sources.Services.Di;
-using Sources.Services.Fps;
-using Sources.Services.Gizmoses;
-using Sources.Services.Instantiator;
-using Sources.Services.JsonSerializer;
-using Sources.Services.MonoServices;
-using Sources.Services.Physics;
-using Sources.Services.PlayerPreferences;
-using Sources.Services.Pool;
-using Sources.Services.Quality;
-using Sources.Services.SceneLoader;
-using Sources.Services.Screens;
-using Sources.Services.Times;
-using Sources.Services.Ui.System;
-using Sources.Services.UserService;
-using Sources.Services.Vibration;
+using _Application.Sources.App.Infrastructure.StateMachine.Machine;
+using _Application.Sources.App.Infrastructure.StateMachine.StateBase;
+using _Application.Sources.CommonServices.ApplicationInputServices;
+using _Application.Sources.CommonServices.ApplicationServices;
+using _Application.Sources.CommonServices.CoroutineRunnerServices;
+using _Application.Sources.CommonServices.FpsServices;
+using _Application.Sources.CommonServices.GizmosServices;
+using _Application.Sources.CommonServices.InstantiatorServices;
+using _Application.Sources.CommonServices.JsonSerializerServices;
+using _Application.Sources.CommonServices.PhysicsServices;
+using _Application.Sources.CommonServices.PlayerPreferencesServices;
+using _Application.Sources.CommonServices.PoolServices;
+using _Application.Sources.CommonServices.SceneLoaderServices;
+using _Application.Sources.CommonServices.ScreenServices;
+using _Application.Sources.CommonServices.TimeServices;
+using _Application.Sources.CommonServices.UiServices.System;
+using _Application.Sources.Utils.Di;
+using Sources.CommonServices.VibrationServices;
+using Sources.Monos.MonoServices;
+using Sources.ProjectServices.AssetsServices;
+using Sources.ProjectServices.AudioServices;
+using Sources.ProjectServices.BalanceServices;
+using Sources.ProjectServices.QualityServices;
+using Sources.ProjectServices.UserService;
 
-namespace Sources.App.Infrastructure.StateMachine.States
+namespace _Application.Sources.App.Infrastructure.StateMachine.States
 {
     public class RegistrationState : GameState<MonoServices>
     {

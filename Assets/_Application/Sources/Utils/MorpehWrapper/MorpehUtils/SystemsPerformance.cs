@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using Sources.Utils.DMorpeh.MorpehUtils.Systems;
-using Sources.Utils.Extensions;
+using _Application.Sources.Utils.CommonUtils.Extensions;
+using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using UnityEngine;
 
-namespace Sources.Utils.DMorpeh.MorpehUtils
+namespace _Application.Sources.Utils.MorpehWrapper.MorpehUtils
 {
     public class SystemsPerformance
     {

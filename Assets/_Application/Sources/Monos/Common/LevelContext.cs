@@ -1,13 +1,13 @@
-using Sources.Data.Common;
-using Sources.Data.MonoEntities;
-using Sources.Data.Pathes;
-using Sources.Data.Points;
+using _Application.Sources.App.Data.Common;
+using _Application.Sources.App.Data.MonoEntities;
+using _Application.Sources.App.Data.Pathes;
+using _Application.Sources.App.Data.Points;
+using _Application.Sources.CommonServices.SceneLoaderServices;
 using Sources.Monos.Bootstrap;
 using Sources.Monos.Bootstrap.IdleCarSpawns;
 using Sources.Monos.MonoEntities;
 using Sources.Monos.Points;
 using Sources.Monos.RoadSystem;
-using Sources.Services.SceneLoader;
 using UnityEngine;
 
 namespace Sources.Monos.Common

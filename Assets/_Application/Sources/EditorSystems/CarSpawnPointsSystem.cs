@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
-using Sources.Data.MonoEntities;
+using _Application.Sources.App.Data.MonoEntities;
+using _Application.Sources.CommonServices.PoolServices;
 using Sources.Monos.Bootstrap.IdleCarSpawns;
-using Sources.Monos.MonoEntities;
-using Sources.Services.MonoServices;
-using Sources.Services.Pool;
+using Sources.Monos.MonoServices;
 using UnityEngine;
 
-namespace Sources.Editor
+namespace _Application.Sources.EditorSystems
 {
     [ExecuteInEditMode]
     public class CarSpawnPointsSystem : MonoBehaviour

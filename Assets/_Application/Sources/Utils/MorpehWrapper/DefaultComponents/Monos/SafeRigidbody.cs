@@ -1,7 +1,7 @@
-using Sources.Utils.DMorpeh.DefaultComponents.Views;
+using _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using UnityEngine;
 
-namespace Sources.Utils.DMorpeh.DefaultComponents.Monos
+namespace _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Monos
 {
     public class SafeRigidbody : MonoBehaviour, IRigidbody
     {

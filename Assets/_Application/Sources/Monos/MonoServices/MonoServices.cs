@@ -1,15 +1,14 @@
-using Sources.Services.ApplicationCycle;
-using Sources.Services.AssetsManager;
-using Sources.Services.Audio;
-using Sources.Services.BalanceManager;
-using Sources.Services.CoroutineRunner;
-using Sources.Services.Gizmoses;
-using Sources.Services.Pool;
-using Sources.Services.Ui.System;
+using _Application.Sources.CommonServices.ApplicationServices;
+using _Application.Sources.CommonServices.CoroutineRunnerServices;
+using _Application.Sources.CommonServices.GizmosServices;
+using _Application.Sources.CommonServices.PoolServices;
+using _Application.Sources.CommonServices.UiServices.System;
+using Sources.ProjectServices.AssetsServices;
+using Sources.ProjectServices.AudioServices;
+using Sources.ProjectServices.BalanceServices;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Sources.Services.MonoServices
+namespace Sources.Monos.MonoServices
 {
     public class MonoServices : MonoBehaviour
     {
@@ -36,7 +35,7 @@ namespace Sources.Services.MonoServices
         public PoolService PoolService => _poolService;
         public AudioService AudioService => _audioService;
         public Assets Assets => _assets;
-        public Services.BalanceManager.Balance BalanceService => _balanceService;
+        public Balance BalanceService => _balanceService;
         public GizmosService GizmosService => _gizmosService;
     }
 }

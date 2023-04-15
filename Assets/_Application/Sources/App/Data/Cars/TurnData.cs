@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using Sources.Data.Pathes;
-using Sources.Data.Points;
+using _Application.Sources.App.Data.Pathes;
+using _Application.Sources.App.Data.Points;
 using UnityEngine.Assertions;
 
-namespace Sources.Data.Cars
+namespace _Application.Sources.App.Data.Cars
 {
     public class TurnData
     {

@@ -1,4 +1,4 @@
-namespace Sources.Data.Pathes
+namespace _Application.Sources.App.Data.Pathes
 {
     public interface IRoadLane
     {

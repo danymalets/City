@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Sources.Data.Points
+namespace _Application.Sources.App.Data.Points
 {
     public interface ISpawnPoint
     {

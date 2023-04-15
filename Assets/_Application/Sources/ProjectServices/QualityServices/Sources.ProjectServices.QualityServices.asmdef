@@ -1,0 +1,10 @@
+{
+  "name": "Sources.ProjectServices.QualityServices",
+  "references": [
+    "GUID:f160941cd3534eafb66aac4f2ab60c74",
+    "GUID:9877cf11fdcf49988f97f55195b97b19",
+    "GUID:704bc33e452444ac96cc254d2a5f6508",
+    "GUID:d265b201ff1f3441d8b0796de9a27b0c",
+    "GUID:ec85a75ad10ea42a89a4d47619fe56d6"
+  ]
+}

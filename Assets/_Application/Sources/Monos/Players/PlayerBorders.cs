@@ -1,5 +1,5 @@
-using Sources.Data.Players;
-using Sources.Utils.DMorpeh.DefaultComponents.Monos;
+using _Application.Sources.App.Data.Players;
+using _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 using UnityEngine;
 
 namespace Sources.Monos.Players

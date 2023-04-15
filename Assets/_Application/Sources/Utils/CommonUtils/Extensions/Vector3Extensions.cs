@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Sources.Utils.Extensions
+namespace _Application.Sources.Utils.CommonUtils.Extensions
 {
     public static class Vector3Extensions
     {

@@ -1,11 +1,10 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-using Screen = Sources.Services.Ui.WindowBase.Screens.Screen;
 
-namespace Sources.App.Game.UI.Screens
+namespace _Application.Sources.App.UI.Screens
 {
-    public class WinScreen : Screen
+    public class WinScreen : CommonServices.UiServices.WindowBase.Screens.Screen
     {
         public event Action NextButtonClicked = delegate { };
 

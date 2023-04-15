@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using Sources.Data;
-using Sources.Data.Pathes;
-using Sources.Utils.Libs;
+using _Application.Sources.App.Data.Pathes;
+using _Application.Sources.Utils.CommonUtils.Libs;
 using UnityEngine;
 
 namespace Sources.Monos.RoadSystem.Pathes

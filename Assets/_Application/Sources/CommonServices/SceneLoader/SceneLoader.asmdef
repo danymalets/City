@@ -1,8 +1,0 @@
-{
-  "name": "SceneLoader",
-  "references": [
-    "GUID:2b9bb9f4ec804583bf5710b97a122825",
-    "GUID:d265b201ff1f3441d8b0796de9a27b0c",
-    "GUID:1624372bf385b44d8b77b551bbc1a197"
-  ]
-}

@@ -1,7 +1,7 @@
-using Sources.Utils.Data;
+using _Application.Sources.Utils.CommonUtils.Data;
 using UnityEngine;
 
-namespace Sources.Utils.DMorpeh.DefaultComponents.Views
+namespace _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Views
 {
     public interface ISafeBoxCollider
     {

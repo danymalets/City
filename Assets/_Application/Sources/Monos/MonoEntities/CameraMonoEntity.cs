@@ -1,8 +1,8 @@
+using _Application.Sources.App.Data.MonoEntities;
+using _Application.Sources.Utils.MorpehWrapper;
+using _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
+using _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using Sirenix.OdinInspector;
-using Sources.Data.MonoEntities;
-using Sources.Utils.DMorpeh;
-using Sources.Utils.DMorpeh.DefaultComponents.Monos;
-using Sources.Utils.DMorpeh.DefaultComponents.Views;
 using UnityEngine;
 
 namespace Sources.Monos.MonoEntities

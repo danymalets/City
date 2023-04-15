@@ -1,6 +1,6 @@
-using Sources.Services.Di;
+using _Application.Sources.Utils.Di;
 
-namespace Sources.Services.UserService
+namespace Sources.ProjectServices.UserService
 {
     public interface IUserSaveService : IService
     {

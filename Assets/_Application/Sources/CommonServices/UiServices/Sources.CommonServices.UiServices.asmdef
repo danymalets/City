@@ -1,0 +1,4 @@
+{
+  "name": "Sources.CommonServices.UiServices",
+  "references":[ "GUID:d265b201ff1f3441d8b0796de9a27b0c", "GUID:547b4f48a80d94fefa91e64d48db2fe5", "GUID:1624372bf385b44d8b77b551bbc1a197", "GUID:ed5073641bfc74db7937853ff77bb625", "GUID:704bc33e452444ac96cc254d2a5f6508", "GUID:4ff09dde48f94f54b495433fafcce176" ]
+}

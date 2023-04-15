@@ -1,10 +1,9 @@
-using System;
 using System.Collections;
-using Sources.Services.SceneLoader;
+using _Application.Sources.CommonServices.SceneLoaderServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Sources.App
+namespace _Application.Sources.App.Infrastructure
 {
     [RequireComponent(typeof(SceneFirstChildUpdater))]
     public class SplashScreen : MonoBehaviour

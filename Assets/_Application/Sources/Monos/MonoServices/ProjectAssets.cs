@@ -1,6 +1,6 @@
 using UnityEditor;
 
-namespace Sources.Services.MonoServices
+namespace Sources.Monos.MonoServices
 {
     public class ProjectAssets
     {

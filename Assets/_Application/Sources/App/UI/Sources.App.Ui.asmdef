@@ -1,0 +1,20 @@
+{
+  "name": "Sources.App.Ui",
+  "references": [
+    "GUID:a3ae7bf209f1348288878d9eb75c91ad",
+    "GUID:88f7185c0a46416ab6bda3217ad4df98",
+    "GUID:9877cf11fdcf49988f97f55195b97b19",
+    "GUID:d265b201ff1f3441d8b0796de9a27b0c",
+    "GUID:ec85a75ad10ea42a89a4d47619fe56d6",
+    "GUID:e48f73608491470da62cc9bd1fe0b2ce",
+    "GUID:1624372bf385b44d8b77b551bbc1a197",
+    "GUID:1d1a485201bc4ee2a3d59b481d842d4c",
+    "GUID:2046ab223b6354193b0f3c6c9644a72f",
+    "GUID:6055be8ebefd69e48b49212b09b47b2f",
+    "GUID:f47ae6efe34b4939a8988e624e187114",
+    "GUID:2b9bb9f4ec804583bf5710b97a122825",
+    "GUID:ed5073641bfc74db7937853ff77bb625",
+    "GUID:704bc33e452444ac96cc254d2a5f6508",
+    "GUID:3377deebfb0acde45876d12c6e3d27cc"
+  ]
+}

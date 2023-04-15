@@ -1,11 +1,11 @@
+using _Application.Sources.App.Core.Ecs.Components.Player;
+using _Application.Sources.CommonServices.UiServices.WindowBase.Screens;
+using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Scellecs.Morpeh;
-using Sources.App.Game.Ecs.Components.Player;
-using Sources.Services.Ui.WindowBase.Screens;
-using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Sources.App.Game.UI.Screens.Input
+namespace _Application.Sources.App.UI.Screens.Input
 {
     public class CarInputScreen : Screen<Entity>
     {

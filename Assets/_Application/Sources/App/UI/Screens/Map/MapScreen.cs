@@ -1,8 +1,6 @@
-using Screen = Sources.Services.Ui.WindowBase.Screens.Screen;
-
-namespace Sources.App.Game.UI.Screens.Map
+namespace _Application.Sources.App.UI.Screens.Map
 {
-    public class MapScreen : Screen
+    public class MapScreen : CommonServices.UiServices.WindowBase.Screens.Screen
     {
         
     }

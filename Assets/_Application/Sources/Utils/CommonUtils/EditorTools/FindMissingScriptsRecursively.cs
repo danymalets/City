@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace Sources.Utils.PseudoEditor
+namespace _Application.Sources.Utils.CommonUtils.EditorTools
 {
     public static class FindMissingScriptsRecursively
     {

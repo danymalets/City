@@ -1,10 +1,8 @@
+using _Application.Sources.App.Data.Cars;
+using _Application.Sources.App.Data.Points;
 using Scellecs.Morpeh;
 using Sirenix.OdinInspector;
-using Sources.Data;
-using Sources.Data.Cars;
-using Sources.Data.Points;
 using Sources.Monos.MonoEntities;
-using Sources.Utils.DMorpeh.DefaultComponents.Views;
 using UnityEngine;
 #if UNITY_EDITOR
 #endif

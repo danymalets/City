@@ -1,4 +1,4 @@
-namespace Sources.Data
+namespace _Application.Sources.App.Data
 {
     public enum PlayerType
     {

@@ -1,5 +1,5 @@
 
-namespace Sources.App.Game.UI.Overlays.Debug.Menus
+namespace _Application.Sources.App.UI.Overlays.Debug.Menus
 {
     public class MainDebugMenu : DebugMenu
     {

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Sources.Utils.Libs
+namespace _Application.Sources.Utils.CommonUtils.Libs
 {
     public class DBox
     {

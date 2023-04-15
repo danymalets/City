@@ -1,9 +1,9 @@
-using Sources.Services.Di;
-using Sources.Services.UserService;
+using _Application.Sources.Utils.Di;
+using Sources.ProjectServices.UserService;
 using TMPro;
 using UnityEngine;
 
-namespace Sources.App.Game.UI.Screens.Level
+namespace _Application.Sources.App.UI.Screens.Level
 {
     public class CoinsView : MonoBehaviour
     {

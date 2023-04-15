@@ -1,6 +1,6 @@
-using Sources.Utils.Libs;
+using _Application.Sources.Utils.CommonUtils.Libs;
 
-namespace Sources.Data.Constants
+namespace _Application.Sources.App.Data.Constants
 {
     public static class LayerMasks
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace Sources.Services.UserService
+namespace Sources.ProjectServices.UserService
 {
     public class Wallet
     {

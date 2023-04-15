@@ -1,10 +1,10 @@
 using System.Collections.Generic;
+using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Components;
+using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
+using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using Scellecs.Morpeh;
-using Sources.Utils.DMorpeh.MorpehUtils.Components;
-using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
-using Sources.Utils.DMorpeh.MorpehUtils.Systems;
 
-namespace Sources.Utils.DMorpeh.MorpehUtils.CustomSystems
+namespace _Application.Sources.Utils.MorpehWrapper.MorpehUtils.CustomSystems
 {
     public class AddComponentWithDelaySystem : DUpdateSystem
     {

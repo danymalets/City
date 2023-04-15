@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Sources.Utils.Extensions
+namespace _Application.Sources.Utils.CommonUtils.Extensions
 {
     public static class MonoBehaviourCoroutineExtensions
     {

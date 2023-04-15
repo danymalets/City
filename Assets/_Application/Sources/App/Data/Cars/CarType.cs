@@ -1,4 +1,4 @@
-namespace Sources.Data.Cars
+namespace _Application.Sources.App.Data.Cars
 {
     public enum CarType
     {

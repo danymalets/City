@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Sources.Data.Pathes
+namespace _Application.Sources.App.Data.Pathes
 {
     public interface IRoad
     {

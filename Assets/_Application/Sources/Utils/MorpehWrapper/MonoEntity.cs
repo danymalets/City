@@ -1,11 +1,11 @@
+using _Application.Sources.CommonServices.PoolServices;
+using _Application.Sources.Utils.CommonUtils.Extensions;
+using _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 using Scellecs.Morpeh;
 using Sirenix.OdinInspector;
-using Sources.Services.Pool;
-using Sources.Utils.DMorpeh.DefaultComponents.Monos;
-using Sources.Utils.Extensions;
 using UnityEngine;
 
-namespace Sources.Utils.DMorpeh
+namespace _Application.Sources.Utils.MorpehWrapper
 {
     public abstract class MonoEntity : RespawnableBehaviour, IMonoEntity
     {

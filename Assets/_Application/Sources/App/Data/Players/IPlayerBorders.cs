@@ -1,6 +1,6 @@
-using Sources.Utils.DMorpeh.DefaultComponents.Monos;
+using _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 
-namespace Sources.Data.Players
+namespace _Application.Sources.App.Data.Players
 {
     public interface IPlayerBorders
     {

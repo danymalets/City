@@ -1,7 +1,7 @@
-using Sources.Data;
-using Sources.Utils.Data.Live;
+using _Application.Sources.App.Data;
+using _Application.Sources.Utils.CommonUtils.Data.Live;
 
-namespace Sources.Services.UserService
+namespace Sources.ProjectServices.UserService
 {
     public class Preferences
     {

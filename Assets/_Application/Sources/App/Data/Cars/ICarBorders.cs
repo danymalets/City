@@ -1,6 +1,6 @@
-using Sources.Utils.DMorpeh.DefaultComponents.Monos;
+using _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 
-namespace Sources.Data.Cars
+namespace _Application.Sources.App.Data.Cars
 {
     public interface ICarBorders
     {

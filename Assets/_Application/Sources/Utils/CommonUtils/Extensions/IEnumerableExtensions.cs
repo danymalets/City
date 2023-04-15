@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Sources.Utils.Libs;
+using _Application.Sources.Utils.CommonUtils.Libs;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Sources.Utils.Extensions
+namespace _Application.Sources.Utils.CommonUtils.Extensions
 {
     public static class IEnumerableExtensions
     {

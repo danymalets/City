@@ -1,6 +1,6 @@
 using Scellecs.Morpeh;
 
-namespace Sources.Utils.DMorpeh.DefaultComponents.Views
+namespace _Application.Sources.Utils.MorpehWrapper.DefaultComponents.Views
 {
     public interface IEntityAccess
     {

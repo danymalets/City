@@ -1,14 +1,14 @@
-using Sources.App.Game;
-using Sources.App.Game.UI.Screens;
-using Sources.App.Game.UI.Screens.Level;
-using Sources.App.Infrastructure.StateMachine.Machine;
-using Sources.App.Infrastructure.StateMachine.StateBase;
-using Sources.Data;
-using Sources.Data.Common;
-using Sources.Services.Di;
-using Sources.Services.Ui.System;
+using _Application.Sources.App.Core;
+using _Application.Sources.App.Data;
+using _Application.Sources.App.Data.Common;
+using _Application.Sources.App.Infrastructure.StateMachine.Machine;
+using _Application.Sources.App.Infrastructure.StateMachine.StateBase;
+using _Application.Sources.App.UI.Screens;
+using _Application.Sources.App.UI.Screens.Level;
+using _Application.Sources.CommonServices.UiServices.System;
+using _Application.Sources.Utils.Di;
 
-namespace Sources.App.Infrastructure.StateMachine.States
+namespace _Application.Sources.App.Infrastructure.StateMachine.States
 {
     public class LevelState : GameState<LevelData>
     {

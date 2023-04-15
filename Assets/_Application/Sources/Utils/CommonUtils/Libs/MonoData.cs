@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Sources.Utils.Libs
+namespace _Application.Sources.Utils.CommonUtils.Libs
 {
     public class MonoData : MonoBehaviour
     {

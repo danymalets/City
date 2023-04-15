@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Sources.App.Game.UI.Overlays.Debug
+namespace _Application.Sources.App.UI.Overlays.Debug
 {
     public class DebugMenuManager : MonoBehaviour
     {

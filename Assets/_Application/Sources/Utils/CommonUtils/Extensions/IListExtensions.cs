@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using Sources.Utils.Libs;
+using _Application.Sources.Utils.CommonUtils.Libs;
 using UnityEngine;
 
-namespace Sources.Utils.Extensions
+namespace _Application.Sources.Utils.CommonUtils.Extensions
 {
     public static class IListExtensions
     {

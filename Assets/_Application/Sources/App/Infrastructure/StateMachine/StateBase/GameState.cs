@@ -1,6 +1,6 @@
-using Sources.App.Infrastructure.StateMachine.Machine;
+using _Application.Sources.App.Infrastructure.StateMachine.Machine;
 
-namespace Sources.App.Infrastructure.StateMachine.StateBase
+namespace _Application.Sources.App.Infrastructure.StateMachine.StateBase
 {
     public abstract class GameState : GameStateBase
     {

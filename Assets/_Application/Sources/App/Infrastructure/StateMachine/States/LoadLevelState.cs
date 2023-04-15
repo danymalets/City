@@ -1,22 +1,22 @@
-using Sources.App.Game;
-using Sources.App.Game.UI.Screens;
-using Sources.App.Infrastructure.StateMachine.Machine;
-using Sources.App.Infrastructure.StateMachine.StateBase;
-using Sources.Data;
-using Sources.Data.Common;
-using Sources.Services.AssetsManager;
-using Sources.Services.Di;
-using Sources.Services.SceneLoader;
-using Sources.Services.Ui.System;
-using Sources.Services.UserService;
+using _Application.Sources.App.Data;
+using _Application.Sources.App.Data.Common;
+using _Application.Sources.App.Infrastructure.StateMachine.Machine;
+using _Application.Sources.App.Infrastructure.StateMachine.StateBase;
+using _Application.Sources.App.UI.Screens;
+using _Application.Sources.CommonServices.SceneLoaderServices;
+using _Application.Sources.CommonServices.UiServices.System;
+using _Application.Sources.Utils.Di;
+using Sources.ProjectServices.AssetsServices;
+using Sources.ProjectServices.BalanceServices;
+using Sources.ProjectServices.UserService;
 using UnityEngine.SceneManagement;
 
-namespace Sources.App.Infrastructure.StateMachine.States
+namespace _Application.Sources.App.Infrastructure.StateMachine.States
 {
     public class LoadLevelState : GameState
     {
         private ISceneLoaderService _sceneLoader;
-        private Services.BalanceManager.Balance _balanceService;
+        private Balance _balanceService;
         private LoadingScreen _loadingScreen;
 
         public LoadLevelState(IGameStateMachine stateMachine) : base(stateMachine)
@@ -28,7 +28,7 @@ namespace Sources.App.Infrastructure.StateMachine.States
             _loadingScreen = DiContainer.Resolve<IUiService>().Get<LoadingScreen>();
             
             _sceneLoader = DiContainer.Resolve<ISceneLoaderService>();
-            _balanceService = DiContainer.Resolve<Services.BalanceManager.Balance>();
+            _balanceService = DiContainer.Resolve<Balance>();
 
             int level = DiContainer.Resolve<IUserAccessService>()
                 .User.Progress.CurrentLevel;

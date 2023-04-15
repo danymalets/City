@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Sources.Data.Common
+namespace _Application.Sources.App.Data.Common
 {
     public interface IFog
     {

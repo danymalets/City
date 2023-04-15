@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Sources.Utils.Libs
+namespace _Application.Sources.Utils.CommonUtils.Libs
 {
     public static class CoroutineUtility
     {

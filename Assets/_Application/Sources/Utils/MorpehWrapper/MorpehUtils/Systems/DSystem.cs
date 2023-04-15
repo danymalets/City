@@ -1,9 +1,9 @@
 using System;
-using Sources.Services.Di;
-using Sources.Services.Gizmoses;
+using _Application.Sources.CommonServices.GizmosServices;
+using _Application.Sources.Utils.Di;
 using UnityEngine;
 
-namespace Sources.Utils.DMorpeh.MorpehUtils.Systems
+namespace _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Systems
 {
     public abstract class DSystem
     {

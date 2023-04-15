@@ -1,10 +1,10 @@
-using Sources.Services.ApplicationCycle;
-using Sources.Services.Di;
-using Sources.Services.JsonSerializer;
-using Sources.Services.PlayerPreferences;
+using _Application.Sources.CommonServices.ApplicationServices;
+using _Application.Sources.CommonServices.JsonSerializerServices;
+using _Application.Sources.CommonServices.PlayerPreferencesServices;
+using _Application.Sources.Utils.Di;
 using UnityEngine;
 
-namespace Sources.Services.UserService
+namespace Sources.ProjectServices.UserService
 {
     public class UserService : IUserAccessService, IUserSaveService, IInitializable
     {

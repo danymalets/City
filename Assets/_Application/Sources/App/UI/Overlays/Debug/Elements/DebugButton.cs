@@ -1,6 +1,6 @@
 using System;
 
-namespace Sources.App.Game.UI.Overlays.Debug.Elements
+namespace _Application.Sources.App.UI.Overlays.Debug.Elements
 {
     public class DebugButton : DebugElement
     {

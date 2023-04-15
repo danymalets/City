@@ -1,7 +1,7 @@
+using _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Scellecs.Morpeh;
-using Sources.Utils.DMorpeh.MorpehUtils.Extensions;
 
-namespace Sources.Utils.DMorpeh.MorpehUtils.Components
+namespace _Application.Sources.Utils.MorpehWrapper.MorpehUtils.Components
 {
     public class ComponentWrapper<T> : IComponentWrapper
         where T: struct, IComponent

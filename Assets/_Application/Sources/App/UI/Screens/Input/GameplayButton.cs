@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Sources.App.Game.UI.Screens.Input
+namespace _Application.Sources.App.UI.Screens.Input
 {
     public class GameplayButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
