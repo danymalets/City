@@ -14,8 +14,7 @@ namespace Sources.App.Game.UI.Screens.Level
         
         public void Setup()
         {
-            _coins = DiContainer.Resolve<IUserAccessService>()
-                .User.Wallet.Coins;
+            _coins = DiContainer.Resolve<IUserAccessService>().User.Wallet.Coins;
 
             _coinsValueText.text = _coins.Value.ToString();
             _coins.Changed += CoinsValueChanged;

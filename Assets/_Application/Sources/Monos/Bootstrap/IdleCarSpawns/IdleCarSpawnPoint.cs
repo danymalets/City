@@ -20,15 +20,9 @@ namespace Sources.Monos.Bootstrap.IdleCarSpawns
         [ReadOnly]
         [SerializeField]
         private CarMonoEntity _visual;
-#if UNITY_EDITOR
-        [OnValueChanged(nameof(TryUpdatePrefab))]
-#endif
         [SerializeField]
         private CarType _carType;
 
-#if UNITY_EDITOR
-        [OnValueChanged(nameof(TryUpdateColor))]
-#endif
         [ShowIf(nameof(ShowCarColorField))]
         [SerializeField]
         private CarColorType _carColor;
@@ -53,51 +47,51 @@ namespace Sources.Monos.Bootstrap.IdleCarSpawns
             }
         }
         
-#if UNITY_EDITOR
-        private void TryUpdatePrefab()
-        {
-            if (_visual != null)
-                DestroyImmediate(_visual.gameObject);
-
-            if (!_visualizationEnabled)
-                return;
-
-            // _visual = DEditor.InstantiatePrefab(ProjectAssets.EditorServices.Assets
-            //     .CarsAssets.GetCarPrefab(_carType), transform);
-
-            _visual.transform.localPosition -= _visual.RootOffset;
-
-            foreach (Collider collider in _visual.GetComponentsInChildren<Collider>())
-            {
-                collider.enabled = false;
-            }
-
-            foreach (IMeshRenderer meshRenderer in _visual.MeshRenderers)
-            {
-                meshRenderer.SharedMaterial = new Material(meshRenderer.SharedMaterial);
-            }
-
-            TryUpdateColor();
-        }
-
-        private void TryUpdateColor()
-        {
-            if (_visual == null)
-                return;
-
-            foreach (IMeshRenderer meshRenderer in _visual.MeshRenderers)
-            {
-                meshRenderer.SharedMaterial.SetInt("_TargetIndex", (int)_carColor);
-            }
-        }
-
-        public void SetVisualization(bool enabled)
-        {
-            _visualizationEnabled = enabled;
-
-            TryUpdatePrefab();
-        }
-
-#endif
+// #if UNITY_EDITOR
+//         private void TryUpdatePrefab()
+//         {
+//             if (_visual != null)
+//                 DestroyImmediate(_visual.gameObject);
+//
+//             if (!_visualizationEnabled)
+//                 return;
+//
+//             // _visual = DEditor.InstantiatePrefab(ProjectAssets.EditorServices.Assets
+//             //     .CarsAssets.GetCarPrefab(_carType), transform);
+//
+//             _visual.transform.localPosition -= _visual.RootOffset;
+//
+//             foreach (Collider collider in _visual.GetComponentsInChildren<Collider>())
+//             {
+//                 collider.enabled = false;
+//             }
+//
+//             foreach (IMeshRenderer meshRenderer in _visual.MeshRenderers)
+//             {
+//                 meshRenderer.SharedMaterial = new Material(meshRenderer.SharedMaterial);
+//             }
+//
+//             TryUpdateColor();
+//         }
+//
+//         private void TryUpdateColor()
+//         {
+//             if (_visual == null)
+//                 return;
+//
+//             foreach (IMeshRenderer meshRenderer in _visual.MeshRenderers)
+//             {
+//                 meshRenderer.SharedMaterial.SetInt("_TargetIndex", (int)_carColor);
+//             }
+//         }
+//
+//         public void SetVisualization(bool enabled)
+//         {
+//             _visualizationEnabled = enabled;
+//
+//             TryUpdatePrefab();
+//         }
+//
+// #endif
     }
 }

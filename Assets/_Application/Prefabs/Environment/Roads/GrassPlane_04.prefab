@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1092316738716806554}
   - component: {fileID: 1092316738715512250}
   - component: {fileID: 1092316738714382202}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GrassPlane_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}

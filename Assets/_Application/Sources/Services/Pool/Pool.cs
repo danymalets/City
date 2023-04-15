@@ -68,6 +68,7 @@ namespace Sources.Services.Pool
         {
             _instanceCount--;
 
+            respawnableBehaviour.gameObject.SetActive(false);
             respawnableBehaviour.transform.SetParent(transform);
             respawnableBehaviour.transform.localPosition = Vector3.zero;
 
