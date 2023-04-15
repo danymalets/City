@@ -1,22 +1,15 @@
 {
-    "name": "Sources.App.Ui",
+    "name": "Sources.MonoServices",
     "rootNamespace": "",
     "references": [
-        "Joystick",
         "Sources.CommonServices.UiServices",
-        "Sources.ProjectServices.UserServices",
-        "Sources.Utils.Di",
-        "Sources.App.Data",
-        "Sources.ProjectServices.AudioServices",
-        "Sources.Utils.CommonUtils",
-        "Sources.Core.Components",
-        "Sources.Utils.MorpehWrapper",
-        "Unity.TextMeshPro",
-        "Sources.CommonServices.FpsServices",
         "Sources.CommonServices.CoroutineRunnerServices",
         "Sources.CommonServices.ApplicationServices",
-        "Sources.CommonServices.TimeServices",
-        "Scellecs.Morpeh"
+        "Sources.CommonServices.PoolServices",
+        "Sources.ProjectServices.AudioServices",
+        "Sources.ProjectServices.AssetsServices",
+        "Sources.ProjectServices.BalanceServices",
+        "Sources.CommonServices.GizmosServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

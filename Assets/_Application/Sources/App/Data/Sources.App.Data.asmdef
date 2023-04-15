@@ -7,7 +7,8 @@
         "Sources.Utils.Di",
         "Scellecs.Morpeh",
         "Sources.CommonServices.SceneLoaderServices",
-        "Sources.CommonServices.PoolServices"
+        "Sources.CommonServices.PoolServices",
+        "Sources.ProjectServices.UserServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

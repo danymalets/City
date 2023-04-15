@@ -1,12 +1,10 @@
 {
-    "name": "Sources.ProjectServices.QualityServices",
+    "name": "Sources.CommonServices.VibrationServices",
     "rootNamespace": "",
     "references": [
-        "Sources.ProjectServices.BalanceServices",
         "Sources.ProjectServices.UserServices",
-        "Sources.CommonServices.TimeServices",
         "Sources.Utils.Di",
-        "Sources.App.Data"
+        "Sources.Utils.CommonUtils"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

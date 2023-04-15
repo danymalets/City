@@ -1,12 +1,12 @@
 {
-    "name": "Sources.ProjectServices.QualityServices",
+    "name": "Sources.ProjectServices.UserServices",
     "rootNamespace": "",
     "references": [
-        "Sources.ProjectServices.BalanceServices",
-        "Sources.ProjectServices.UserServices",
-        "Sources.CommonServices.TimeServices",
         "Sources.Utils.Di",
-        "Sources.App.Data"
+        "Sources.Utils.CommonUtils",
+        "Sources.CommonServices.JsonSerializerServices",
+        "Sources.CommonServices.PlayerPreferencesServices",
+        "Sources.CommonServices.ApplicationServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

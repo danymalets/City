@@ -1,4 +1,5 @@
 using Sources.App.Data;
+using Sources.ProjectServices.UserService.Data;
 using Sources.Utils.Di;
 
 namespace Sources.ProjectServices.QualityServices

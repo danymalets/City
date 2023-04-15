@@ -5,7 +5,8 @@
         "Sources.Utils.Di",
         "Sources.App.Data",
         "Sources.Utils.CommonUtils",
-        "Sources.CommonServices.PoolServices"
+        "Sources.CommonServices.PoolServices",
+        "Sources.ProjectServices.UserServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

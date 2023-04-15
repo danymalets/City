@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sources.App.Data;
+using Sources.ProjectServices.UserService.Data;
 using Sources.Utils.CommonUtils.Libs;
 using UnityEngine;
 
