@@ -12,6 +12,7 @@ namespace Sources.Services.Di
             
             Implementation<TService>.ServiceInstance = implementation;
             Implementation<TService>.ServiceRegistered?.Invoke(implementation);
+            Implementation<TService>.ServiceRegistered = null;
         }
 
         public static void InvokeWhenBind<TService>(Action<TService> serviceRegistered)

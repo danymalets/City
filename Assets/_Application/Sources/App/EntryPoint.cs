@@ -14,10 +14,9 @@ namespace Sources.App
 
         private void Awake()
         {
-            if (Application.isPlaying)
-                StartGameStateMachine();
+            StartGameStateMachine();
         }
-        
+
         private void StartGameStateMachine()
         {
             GameStateMachine gameStateMachine = new();
