@@ -53,8 +53,8 @@ namespace Sources.Monos.MonoEntities
 
         private void Awake()
         {
-            foreach (SafeMeshRenderer meshRenderer in _meshRenderers) 
-                meshRenderer.Material = new Material(meshRenderer.Material);
+            // foreach (SafeMeshRenderer meshRenderer in _meshRenderers) 
+            //     meshRenderer.Material = new Material(meshRenderer.Material);
         }
 
         [Button("Bake", ButtonSizes.Large)]

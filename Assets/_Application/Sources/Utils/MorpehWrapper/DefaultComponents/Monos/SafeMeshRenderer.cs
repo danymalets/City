@@ -21,6 +21,9 @@ namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
             set => _meshRenderer.sharedMaterial = value;
         }
 
+        public void SetPropertyBlock(MaterialPropertyBlock materialPropertyBlock) => 
+            _meshRenderer.SetPropertyBlock(materialPropertyBlock);
+
         private void OnValidate()
         {
             _meshRenderer = GetComponent<MeshRenderer>();

@@ -6,5 +6,6 @@ namespace Sources.Utils.MorpehWrapper.DefaultComponents.Views
     {
         Material Material { get; set; }
         Material SharedMaterial { get; set; }
+        void SetPropertyBlock(MaterialPropertyBlock materialPropertyBlock);
     }
 }
