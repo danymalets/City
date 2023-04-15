@@ -12,7 +12,6 @@
         "Sources.CommonServices.ApplicationServices",
         "Sources.ProjectServices.AudioServices",
         "Sources.CommonServices.GizmosServices",
-        "GUID:0bac2b86d5fa4e1dbd3d684c8aabbe2d",
         "Scellecs.Morpeh",
         "Sources.CommonServices.SceneLoaderServices"
     ],
