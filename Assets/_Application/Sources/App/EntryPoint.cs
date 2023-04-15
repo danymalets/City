@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Sources.App
 {
-    [DefaultExecutionOrder(-100)]
+    [DefaultExecutionOrder(-1000)]
     public class EntryPoint : SceneContext
     {
         [SerializeField]
