@@ -2,13 +2,13 @@
     "name": "Sources.App.Data",
     "rootNamespace": "",
     "references": [
-        "Sources.Utils.MorpehWrapper",
-        "Sources.Utils.CommonUtils",
-        "Sources.Utils.Di",
-        "Scellecs.Morpeh",
+        "Sources.ProjectServices.UserServices",
         "Sources.CommonServices.SceneLoaderServices",
         "Sources.CommonServices.PoolServices",
-        "Sources.ProjectServices.UserServices"
+        "Sources.Utils.Di",
+        "Sources.Utils.CommonUtils",
+        "Sources.Utils.MorpehWrapper",
+        "Scellecs.Morpeh"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

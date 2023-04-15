@@ -1,5 +1,5 @@
 {
-    "name": "Sources.Core.Components",
+    "name": "Sources.App.Core.Components",
     "rootNamespace": "",
     "references": [
         "Sources.App.Data",

@@ -2,11 +2,11 @@
     "name": "Sources.ProjectServices.AssetsServices",
     "rootNamespace": "",
     "references": [
-        "Sources.Utils.MorpehWrapper",
         "Sources.App.Data",
-        "Sources.Utils.CommonUtils",
-        "Sources.Utils.Di",
         "Sources.CommonServices.PoolServices",
+        "Sources.Utils.CommonUtils",
+        "Sources.Utils.MorpehWrapper",
+        "Sources.Utils.Di",
         "Monos"
     ],
     "includePlatforms": [],
