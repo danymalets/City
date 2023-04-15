@@ -2,7 +2,7 @@
     "name": "Sources.EditorSystems",
     "rootNamespace": "",
     "references": [
-        "Monos",
+        "Sources.Monos",
         "Sources.App.Data",
         "MonoServices",
         "Sources.ProjectServices.AssetsServices",

@@ -4,7 +4,7 @@
     "references": [
         "Sources.App.Data",
         "Sources.CommonServices.PoolServices",
-        "Monos",
+        "Sources.Monos",
         "Sources.Utils.CommonUtils",
         "Sources.Utils.MorpehWrapper",
         "Sources.Utils.Di"
