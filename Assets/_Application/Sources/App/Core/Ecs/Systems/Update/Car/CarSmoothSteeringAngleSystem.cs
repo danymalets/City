@@ -20,7 +20,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Car
             _carsBalance = DiContainer.Resolve<Balance>().CarsBalance;
         }
 
-        protected override void OnConstruct()
+        protected override void OnInitFilters()
         {
             _filter = _world.Filter<SteeringAngle, SmoothSteeringAngle>();
         }

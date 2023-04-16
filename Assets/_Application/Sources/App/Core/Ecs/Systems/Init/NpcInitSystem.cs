@@ -36,7 +36,7 @@ namespace Sources.App.Core.Ecs.Systems.Init
             _playersFactory = DiContainer.Resolve<IPlayersFactory>();
         }
 
-        protected override void OnConstruct()
+        protected override void OnInitFilters()
         {
             _npcPathesFilter = _world.Filter<NpcsPathesTag>();
         }

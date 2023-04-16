@@ -9,13 +9,8 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Systems
         {
         }
 
-        protected override void OnConstruct()
+        protected override void OnInitFilters()
         {
-        }
-
-        protected override void OnInitialize()
-        {
-            
         }
 
         public void Update(float deltaTime)

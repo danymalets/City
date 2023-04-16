@@ -32,7 +32,7 @@ namespace Sources.App.Core.Ecs.Systems.Init
             (+1, -2, -1), (+1, -1, -1), (+1, -1, -2),
         };
 
-        protected override void OnConstruct()
+        protected override void OnInitFilters()
         {
             _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
             _filter = _world.Filter<PathesTag>();

@@ -24,7 +24,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Npc
             _physics = DiContainer.Resolve<IPhysicsService>();
         }
 
-        protected override void OnConstruct()
+        protected override void OnInitFilters()
         {
             _filter = _world.Filter<NpcTag>().Without<PlayerInCar>();
         }

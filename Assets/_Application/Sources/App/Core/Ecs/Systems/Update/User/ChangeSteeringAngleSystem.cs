@@ -18,7 +18,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
             _carsBalance = DiContainer.Resolve<Balance>().CarsBalance;
         }
 
-        protected override void OnConstruct()
+        protected override void OnInitFilters()
         {
             _filter = _world.Filter<CarTag, ChangeSteeringAngleRequest>();
         }

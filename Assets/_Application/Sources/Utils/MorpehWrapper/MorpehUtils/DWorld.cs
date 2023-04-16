@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Scellecs.Morpeh;
 using Sources.CommonServices.CoroutineRunnerServices;
@@ -13,9 +14,8 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
 {
     public class DWorld : IService
     {
-        private const bool DebugPerformance = true;
-        private const float TimeScale = 10;
         private const float MinWorkableFps = 0;
+        private const bool DebugPerformance = true;
 
         private readonly World _world;
         private readonly CoroutineContext _coroutineContext;
@@ -30,6 +30,8 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
 
         public Filter Filter => _world.Filter;
 
+        public float TimeScale { get; set; } = 1;
+
         public Entity CreateEntity() =>
             _world.CreateEntity();
 
@@ -37,7 +39,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
         {
             _time = DiContainer.Resolve<ITimeService>();
             _fpsService = DiContainer.Resolve<IFpsService>();
-            
+
             _world = World.Create();
             _world.UpdateByUnity = false;
 
@@ -55,34 +57,35 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
             }
         }
 
+        public void RunSystems<TDSystem>(IEnumerable<TDSystem> systems,
+            Action<TDSystem> runner, Action<TDSystem, long> performanceSender)
+            where TDSystem : DSystem
+        {
+            foreach (TDSystem system in systems)
+            {
+                _world.Commit();
+                if (DebugPerformance && performanceSender != null)
+                {
+                    DPerformance.Execute(() => runner(system),
+                        ticks => performanceSender(system, ticks));
+                }
+                else
+                {
+                    runner(system);
+                }
+            }
+
+            _world.Commit();
+        }
+
         public void StartGame()
         {
-            foreach (DInitializer initializer in _initializers)
-            {
-                initializer.Setup(this);
-                initializer.Construct();
-                initializer.Initialize();
-                _world.Commit();
+            RunSystems(_initializers, ConstructSystem, null);
+            RunSystems(_updateSystems, ConstructSystem, null);
+            RunSystems(_fixedSystems, ConstructSystem, null);
 
-            }
-            
-            foreach (DUpdateSystem updateSystem in _updateSystems)
-            {
-                updateSystem.Setup(this);
-                updateSystem.Construct();
-                updateSystem.Initialize();
-                _world.Commit();
+            RunSystems(_initializers, s => s.Initialize(), null);
 
-            }
-            
-            foreach (DUpdateSystem fixedSystem in _fixedSystems)
-            {
-                fixedSystem.Setup(this);
-                fixedSystem.Construct();
-                fixedSystem.Initialize();
-                _world.Commit();
-            }
-            
             _coroutineContext.RunEachFrame(() =>
             {
                 if (_fpsService.FpsLastSecond >= MinWorkableFps)
@@ -113,55 +116,25 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
             });
         }
 
+        private void ConstructSystem<TDSystem>(TDSystem system)
+            where TDSystem : DSystem
+        {
+            system.Setup(this);
+            system.InitFilters();
+        }
+
         private void WorldUpdate(float deltaTime)
         {
-            foreach (DUpdateSystem updateSystem in _updateSystems)
-            {
-                if (DebugPerformance)
-                {
-                    long ticks = DPerformance.Execute(() =>
-                    {
-                        updateSystem.Update(deltaTime);
-                    });
-                    _systemsPerformance.WriteUpdateData(updateSystem, ticks);
-                }
-                else
-                {
-                    updateSystem.Update(deltaTime);
-                }
-
-                _world.Commit();
-            }
-
-            if (DebugPerformance)
-            {
-                _systemsPerformance.EndUpdate();
-            }
+            RunSystems(_updateSystems, s => s.Update(deltaTime),
+                (system, ticks) => _systemsPerformance.WriteUpdateData(system, ticks));
+            _systemsPerformance.EndUpdate();
         }
 
         private void WorldFixedUpdate(float fixedDeltaTime)
         {
-            foreach (DUpdateSystem fixedSystem in _fixedSystems)
-            {
-                if (DebugPerformance)
-                {
-                    long ticks = DPerformance.Execute(() =>
-                    {
-                        fixedSystem.Update(fixedDeltaTime);
-                    });
-                    _systemsPerformance.WriteFixedData(fixedSystem, ticks);
-                }
-                else
-                {
-                    fixedSystem.Update(fixedDeltaTime);
-                }
-                _world.Commit();
-            }
-            
-            if (DebugPerformance)
-            {
-                _systemsPerformance.EndFixed();
-            }
+            RunSystems(_fixedSystems, s => s.Update(fixedDeltaTime),
+                (system, ticks) => _systemsPerformance.WriteFixedData(system, ticks));
+            _systemsPerformance.EndFixed();
         }
 
         public void AddInitializer<TDInitializer>() where TDInitializer : DInitializer, new()
@@ -179,7 +152,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
             _fixedSystems.Add(new TDFixedUpdateSystem());
         }
 
-        public void AddOneFrame<TComponent>() where TComponent : struct, IComponent => 
+        public void AddOneFrame<TComponent>() where TComponent : struct, IComponent =>
             AddUpdateSystem<OneFrameCleanupSystem<TComponent>>();
 
         public void FinishGame()
@@ -188,7 +161,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
             _world.Dispose();
         }
 
-        public void AddFixedOneFrame<TComponent>() where TComponent : struct, IComponent => 
+        public void AddFixedOneFrame<TComponent>() where TComponent : struct, IComponent =>
             AddFixedSystem<OneFrameCleanupSystem<TComponent>>();
     }
 }

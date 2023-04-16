@@ -13,7 +13,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Npc
     {
         private Filter _filter;
 
-        protected override void OnConstruct()
+        protected override void OnInitFilters()
         {
             _filter = _world.Filter<NpcTag, NpcOnPath>().Without<PlayerInCar>();
         }

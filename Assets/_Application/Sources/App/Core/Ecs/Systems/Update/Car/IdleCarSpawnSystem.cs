@@ -37,7 +37,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Car
             _carsFactory = DiContainer.Resolve<ICarsFactory>();
         }
 
-        protected override void OnConstruct()
+        protected override void OnInitFilters()
         {
             _userFilter = _world.Filter<UserTag>();
         }

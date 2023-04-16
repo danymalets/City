@@ -25,7 +25,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
                 .SimulationBalance;
         }
 
-        protected override void OnConstruct()
+        protected override void OnInitFilters()
         {
             _filter = _world.Filter<CarTag>();
         }

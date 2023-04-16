@@ -30,7 +30,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcPathes
             _simulationSettings = DiContainer.Resolve<SimulationSettings>();
         }
 
-        protected override void OnConstruct()
+        protected override void OnInitFilters()
         {
             _userFilter = _world.Filter<UserTag>();
             _pathesFilter = _world.Filter<PathesTag>();

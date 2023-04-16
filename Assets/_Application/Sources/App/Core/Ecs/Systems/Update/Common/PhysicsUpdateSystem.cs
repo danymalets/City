@@ -13,7 +13,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Common
             _physics = DiContainer.Resolve<IPhysicsService>();
         }
 
-        protected override void OnConstruct()
+        protected override void OnInitFilters()
         {
         }
 

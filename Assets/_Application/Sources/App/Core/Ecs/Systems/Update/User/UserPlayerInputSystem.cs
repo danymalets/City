@@ -19,7 +19,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
             _playerInputService = DiContainer.Resolve<IPlayerInputService>();
         }
 
-        protected override void OnConstruct()
+        protected override void OnInitFilters()
         {
             _filter = _world.Filter<UserTag>().Without<PlayerInCar>();
         }

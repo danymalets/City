@@ -23,7 +23,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
             _carsBalance = DiContainer.Resolve<Balance>().CarsBalance;
         }
 
-        protected override void OnConstruct()
+        protected override void OnInitFilters()
         {
             _filter = _world.Filter<UserTag>().Without<PlayerInCar>();
             _carsFilter = _world.Filter<CarTag>();

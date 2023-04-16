@@ -28,7 +28,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Generation
             _carsDespawner = DiContainer.Resolve<ICarsDespawner>();
         }
 
-        protected override void OnConstruct()
+        protected override void OnInitFilters()
         {
             _userFilter = _world.Filter<UserTag>();
             _carFilter = _world.Filter<CarTag>();

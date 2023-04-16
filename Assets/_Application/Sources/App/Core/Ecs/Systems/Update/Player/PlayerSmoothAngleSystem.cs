@@ -12,7 +12,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
     {
         private Filter _filter;
 
-        protected override void OnConstruct()
+        protected override void OnInitFilters()
         {
             _filter = _world.Filter<PlayerTag>();
         }

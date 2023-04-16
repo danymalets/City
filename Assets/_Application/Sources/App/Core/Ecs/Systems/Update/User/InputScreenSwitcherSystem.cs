@@ -25,7 +25,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
             _playerInputScreen = ui.Get<PlayerInputScreen>();
         }
 
-        protected override void OnConstruct()
+        protected override void OnInitFilters()
         {
             _userWithCar = _world.Filter<UserTag, PlayerInCar>();
         }

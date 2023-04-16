@@ -30,7 +30,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Generation
             _playersFactory = DiContainer.Resolve<IPlayersFactory>();
         }
 
-        protected override void OnConstruct()
+        protected override void OnInitFilters()
         {
             _pathesFilter = _world.Filter<CarsPathesTag>();
             _npcWithCarsFilter = _world.Filter<NpcTag, PlayerInCar>();

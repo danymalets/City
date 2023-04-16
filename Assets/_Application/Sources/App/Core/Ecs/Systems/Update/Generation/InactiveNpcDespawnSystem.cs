@@ -27,7 +27,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Generation
             _playersDespawner = DiContainer.Resolve<IPlayersDespawner>();
         }
 
-        protected override void OnConstruct()
+        protected override void OnInitFilters()
         {
             _userFilter = _world.Filter<UserTag>();
             _npcFilter = _world.Filter<NpcTag>().Without<AlwaysActive>();

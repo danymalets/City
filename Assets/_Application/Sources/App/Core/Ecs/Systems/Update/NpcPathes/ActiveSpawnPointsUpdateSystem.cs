@@ -26,7 +26,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcPathes
             _simulationSettings = DiContainer.Resolve<SimulationSettings>();
         }
 
-        protected override void OnConstruct()
+        protected override void OnInitFilters()
         {
             _pathesFilter = _world.Filter<PathesTag>();
             _userFilter = _world.Filter<UserTag>();

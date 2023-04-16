@@ -18,25 +18,9 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Systems
             _updateGizmosContext = _gizmos.CreateContext();
         }
         
-        public void Construct() =>
-            OnConstruct();
+        public void InitFilters() =>
+            OnInitFilters();
 
-        protected abstract void OnConstruct();
-
-        public void Initialize()
-        {
-            try
-            {
-                OnInitialize();
-            }
-            catch (Exception exception)
-            {
-                Debug.LogException(exception);
-            }
-        }
-
-        protected virtual void OnInitialize()
-        {
-        }
+        protected abstract void OnInitFilters();
     }
 }

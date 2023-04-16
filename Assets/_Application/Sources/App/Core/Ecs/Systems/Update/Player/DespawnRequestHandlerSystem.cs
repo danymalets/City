@@ -18,7 +18,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
             _playersDespawner = DiContainer.Resolve<IPlayersDespawner>();
         }
 
-        protected override void OnConstruct()
+        protected override void OnInitFilters()
         {
             _filter = _world.Filter<NpcTag, DespawnRequest>();
         }

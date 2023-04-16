@@ -24,7 +24,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Npc
             _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
         }
 
-        protected override void OnConstruct()
+        protected override void OnInitFilters()
         {
             _filter = _world.Filter<NpcTag>();
         }
