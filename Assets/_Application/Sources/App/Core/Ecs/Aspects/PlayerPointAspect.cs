@@ -1,5 +1,6 @@
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Player;
+using Sources.App.Data.Cars;
 using Sources.Utils.MorpehWrapper.Aspects;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
@@ -13,7 +14,7 @@ namespace Sources.App.Core.Ecs.Aspects
 
         public readonly Vector3 GetPosition() =>
             Entity.TryGet(out PlayerInCar playerInCar)
-                ? playerInCar.Car.GetAccess<ITransform>().Position
+                ? playerInCar.Car.GetAccess<IWheelsSystem>().RootPosition
                 : Entity.GetAccess<ITransform>().Position;
         
         public readonly Quaternion GetRotation() =>

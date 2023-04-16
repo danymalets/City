@@ -142,5 +142,5 @@ MonoBehaviour:
   _maxEnterCarDistance: 1
   <MaxSpeed>k__BackingField: 7
   <MaxMotorTorque>k__BackingField: 350
-  <MaxSteeringAngle>k__BackingField: 40
+  <MaxSteeringAngle>k__BackingField: 45
   <Mass>k__BackingField: 800
