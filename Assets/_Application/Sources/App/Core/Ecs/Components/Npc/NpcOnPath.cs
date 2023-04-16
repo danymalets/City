@@ -7,8 +7,4 @@ namespace Sources.App.Core.Ecs.Components.Npc
     {
         public PathLine PathLine;
     }
-    
-    public struct AlwaysActive : IComponent
-    {
-    }
 }

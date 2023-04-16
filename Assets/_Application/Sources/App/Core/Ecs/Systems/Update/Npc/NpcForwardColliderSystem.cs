@@ -41,12 +41,13 @@ namespace Sources.App.Core.Ecs.Systems.Update.Npc
                 Quaternion triggerRotation = transform.Rotation.WithEulerY(angle.Value);
 
                 Vector3 triggerCenter = transform.Position + triggerRotation * (Vector3.forward * 
-                    (borders.Radius + _simulationBalance.NpcTriggerLength / 2));
+                    (borders.Radius + _simulationBalance.NpcTriggerLength / 2)) + 
+                                        triggerRotation * Vector3.up * borders.Height / 2;
 
                 forwardTrigger.Center = triggerCenter;
                 forwardTrigger.Rotation = triggerRotation;
                 forwardTrigger.Size = new Vector3(
-                    borders.Radius * 2, borders.Radius, _simulationBalance.NpcTriggerLength);
+                    borders.Radius * 2, borders.Height, _simulationBalance.NpcTriggerLength);
                 
                 _updateGizmosContext.DrawCube(
                     forwardTrigger.Center, forwardTrigger.Rotation, forwardTrigger.Size, Color.red);

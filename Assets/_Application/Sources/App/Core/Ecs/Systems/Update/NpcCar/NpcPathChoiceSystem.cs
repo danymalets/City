@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Components.Car;
 using Sources.App.Core.Ecs.Components.Npc;
 using Sources.App.Core.Ecs.Components.Npc.NpcCar;
@@ -45,7 +46,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 
                 float sqrReqDistance = DMath.Sqr(reqDistance);
                 
-                Vector3 position = npcEntity.Get<PlayerFollowTransform>().Position;
+                Vector3 position = npcEntity.GetAspect<PlayerPointAspect>().GetPosition();
                 Queue<TurnChoice> choices = npcEntity.Get<TurnDecisions>().Queue;
                 NpcOnPath npcOnPath = npcEntity.Get<NpcOnPath>();
 

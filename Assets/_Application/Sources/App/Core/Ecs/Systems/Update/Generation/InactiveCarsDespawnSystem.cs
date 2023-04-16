@@ -1,4 +1,5 @@
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Components.Car;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
@@ -35,15 +36,15 @@ namespace Sources.App.Core.Ecs.Systems.Update.Generation
 
         protected override void OnUpdate(float deltaTime)
         {
-            PlayerFollowTransform userTransform = _userFilter.GetSingleton().Get<PlayerFollowTransform>();
+            PlayerPointAspect playerPointAspect = _userFilter.GetSingleton().GetAspect<PlayerPointAspect>();
             
             foreach (Entity carEntity in _carFilter)
             {
                 ref CarPassengers carPassengers = ref carEntity.Get<CarPassengers>();
                 Vector3 carPosition = carEntity.GetAccess<IWheelsSystem>().RootPosition;
                 
-                Vector2 directionToEntity = (Quaternion.Inverse(userTransform.Rotation) *
-                                                     (carPosition - userTransform.Position)).GetXZ();
+                Vector2 directionToEntity = (Quaternion.Inverse(playerPointAspect.GetRotation()) *
+                                                     (carPosition - playerPointAspect.GetPosition())).GetXZ();
 
                 Vector2 maxSize = new(_simulationSettings.CarMaxActiveRadius, _simulationSettings.CarMaxActiveRadius);
 

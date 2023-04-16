@@ -45,24 +45,14 @@ namespace Sources.App.Core.Ecs.Factories
         {
             return CreateUser(playerPrefab, Vector3.zero, Quaternion.identity)
                 .SetupAccessible<EnableableGameObject>(g => g.Disable())
-                .Set(new PlayerInCar { Car = carEntity })
-                .Set(new PlayerFollowTransform
-                {
-                    Position = carEntity.GetAccess<IWheelsSystem>().RootPosition,
-                    Rotation = carEntity.GetAccess<ITransform>().Rotation
-                });
+                .Set(new PlayerInCar { Car = carEntity });
         }
 
         public Entity CreateUser(IPlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation) =>
             CreatePlayer(playerPrefab, position, rotation)
                 .Add<UserTag>()
                 .Add<UserCarInput>()
-                .Add<UserPlayerInput>()
-                .Set(new PlayerFollowTransform
-                {
-                    Position = position,
-                    Rotation = rotation
-                });
+                .Add<UserPlayerInput>();
 
         public Entity CreateNpc(IPlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation) =>
             CreatePlayer(playerPrefab, position, rotation)
@@ -133,7 +123,6 @@ namespace Sources.App.Core.Ecs.Factories
                 .Set(new PlayerTargetAngle { Value = rotation.eulerAngles.y })
                 .Set(new PlayerSmoothAngle { Value = rotation.eulerAngles.y })
                 .Set(new RotationSpeed { Value = 45f })
-                .Add<PlayerFollowTransform>()
                 .Add<PlayerTargetSpeed>()
                 .Add<PlayerSmoothSpeed>()
                 .Add<PlayerTag>();

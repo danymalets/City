@@ -48,7 +48,8 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
                 Quaternion triggerRotation = transform.Rotation.WithIncreasedEulerY(steeringAngle.Value);
 
                 Vector3 triggerCenter = wheels.RootPosition + triggerRotation * Vector3.forward * 
-                    (rootToForwardDistance + _simulationBalance.CarTriggerLength / 2);
+                    (rootToForwardDistance + _simulationBalance.CarTriggerLength / 2) +
+                    triggerRotation * Vector3.up * borders.HalfExtents.y;
 
                 forwardTrigger.Center = triggerCenter;
                 forwardTrigger.Rotation = triggerRotation;

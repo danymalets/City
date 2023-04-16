@@ -1,4 +1,5 @@
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Ecs.Factories;
@@ -45,23 +46,17 @@ namespace Sources.App.Core.Ecs.Systems.Init
         {
             float sqrMaxRadius = DMath.Sqr(_simulationSettings.NpcMaxActiveRadius);
 
-            Vector3 userPosition = _userFilter.GetSingleton().Get<PlayerFollowTransform>().Position;
+            Vector3 userPosition = _userFilter.GetSingleton()
+                .GetAspect<PlayerPointAspect>().GetPosition();
 
             foreach (IIdleCarSpawnPoint point in _idleCarsSystem.SpawnPoints)
             {
                 if (DVector3.SqrDistance(userPosition, point.Position) < sqrMaxRadius)
                 {
-                    ICarMonoEntity carPrefab = _assets.CarsAssets.GetCarPrefab(point.CarType);
-
-                    bool has = _physics.CheckBox(point.Position + point.Rotation *
-                        carPrefab.CenterRelatedRootPoint, carPrefab.HalfExtents, point.Rotation, LayerMasks.CarsAndPlayers);
-
-                    if (!has)
+                    if (_carsFactory.TryCreateCar(point.CarType, point.CarColor, point.Position,
+                            point.Rotation, out Entity createdCar))
                     {
-                        Entity car = _carsFactory.CreateCar(carPrefab, point.CarColor,
-                            point.Position - point.Rotation * carPrefab.RootOffset, point.Rotation);
-                        
-                        point.AliveCar = car;
+                        point.AliveCar = createdCar;
                     }
                 }
             }

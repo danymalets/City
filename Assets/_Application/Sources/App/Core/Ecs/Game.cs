@@ -33,7 +33,6 @@ namespace Sources.App.Core.Ecs
 
             _world = _diBuilder.Register<DWorld>();
             
-            // _diBuilder.Register(_world);
             _diBuilder.Register<IPlayersFactory>(new PlayersFactory());
             _diBuilder.Register<ICarsFactory>(new CarsFactory());
             _diBuilder.Register<IPathesFactory>(new PathesFactory());
@@ -41,7 +40,7 @@ namespace Sources.App.Core.Ecs
             
             _diBuilder.Register<IPlayersDespawner>(new PlayersDespawner());
             _diBuilder.Register<ICarsDespawner>(new CarsDespawner());
-            _diBuilder.Register(new SimulationSettings());
+            _diBuilder.Register<SimulationSettings>(new SimulationSettings());
 
             AddInitializers();
             AddUpdateSystems();
@@ -69,17 +68,54 @@ namespace Sources.App.Core.Ecs
             _world.AddInitializer<IdleCarsInitSystem>();
         }
 
+        private void AddUpdateSystems()
+        {
+            _world.AddUpdateSystem<UserTargetAngleAndSpeedSystem>();
+            _world.AddUpdateSystem<NpcSpeedSystem>();
+            
+            _world.AddUpdateSystem<UserMoveSystem>();
+            
+            _world.AddUpdateSystem<UserPlayerInputSystem>();
+            _world.AddUpdateSystem<UserCarInputSystem>();
+            _world.AddUpdateSystem<UserCarMoveSystem>();
+            
+            _world.AddUpdateSystem<UserFogUpdateSystem>();
+
+            _world.AddUpdateSystem<ChangeSteeringAngleSystem>();
+            
+            _world.AddUpdateSystem<WheelGeometrySystem>();
+
+            _world.AddUpdateSystem<InputScreenSwitcherSystem>();
+            
+            // camera
+            _world.AddUpdateSystem<CameraXAngleApplySystem>();
+            _world.AddUpdateSystem<CameraFieldOfViewApplySystem>();
+            
+            _world.AddUpdateSystem<CameraTargetDeltasSystem>();
+            _world.AddUpdateSystem<CameraSmoothDeltasSystem>();
+            
+            _world.AddUpdateSystem<CameraTargetXAngleSystem>();
+            _world.AddUpdateSystem<CameraSmoothXAngleSystem>();
+            
+            _world.AddUpdateSystem<CameraFollowXPositionSystem>();
+
+            _world.AddUpdateSystem<CameraFollowPlayerRotationSystem>();
+            _world.AddUpdateSystem<CameraFollowPlayerPositionSystem>();
+
+#if UNITY_EDITOR
+            _world.AddUpdateSystem<PathesGizmosSystem>();
+#endif
+
+            _world.AddOneFrame<ChangeSteeringAngleRequest>();
+        }
+
         private void AddFixedUpdateSystems()
         {
-            // physics
-            _world.AddFixedSystem<PhysicsUpdateSystem>();
-            
             // awaiters
             _world.AddFixedSystem<AddComponentWithDelaySystem>();
-
-            // follow transform
-            _world.AddFixedSystem<PlayerFollowTransformUpdateSystem>();
-            _world.AddFixedSystem<PlayerWithCarFollowTransformUpdateSystem>();
+            
+            // physics
+            _world.AddFixedSystem<PhysicsUpdateSystem>();
 
             //death
             _world.AddFixedSystem<PlayerFallCheckSystem>();
@@ -158,48 +194,6 @@ namespace Sources.App.Core.Ecs
             _world.AddFixedOneFrame<MakeKinematicRequest>();
             _world.AddFixedOneFrame<DespawnRequest>();
             _world.AddFixedOneFrame<Collisions>();
-        }
-
-        private void AddUpdateSystems()
-        {
-            _world.AddUpdateSystem<UserTargetAngleAndSpeedSystem>();
-            _world.AddUpdateSystem<NpcSpeedSystem>();
-            
-            _world.AddUpdateSystem<UserMoveSystem>();
-            
-            _world.AddUpdateSystem<UserPlayerInputSystem>();
-            _world.AddUpdateSystem<UserCarInputSystem>();
-            _world.AddUpdateSystem<UserCarMoveSystem>();
-            
-            _world.AddUpdateSystem<PlayerFollowTransformUpdateSystem>();
-            _world.AddUpdateSystem<PlayerWithCarFollowTransformUpdateSystem>();
-            _world.AddUpdateSystem<UserFogUpdateSystem>();
-
-            _world.AddUpdateSystem<ChangeSteeringAngleSystem>();
-            
-            _world.AddUpdateSystem<WheelGeometrySystem>();
-
-            _world.AddUpdateSystem<InputScreenSwitcherSystem>();
-            
-            _world.AddUpdateSystem<CameraXAngleApplySystem>();
-            _world.AddUpdateSystem<CameraFieldOfViewApplySystem>();
-            
-            _world.AddUpdateSystem<CameraTargetDeltasSystem>();
-            _world.AddUpdateSystem<CameraSmoothDeltasSystem>();
-            
-            _world.AddUpdateSystem<CameraTargetXAngleSystem>();
-            _world.AddUpdateSystem<CameraSmoothXAngleSystem>();
-            
-            _world.AddUpdateSystem<CameraFollowXPositionSystem>();
-
-            _world.AddUpdateSystem<CameraFollowPlayerRotationSystem>();
-            _world.AddUpdateSystem<CameraFollowPlayerPositionSystem>();
-
-#if UNITY_EDITOR
-            _world.AddUpdateSystem<PathesGizmosSystem>();
-#endif
-
-            _world.AddOneFrame<ChangeSteeringAngleRequest>();
         }
 
         public void StartGame() => 

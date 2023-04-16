@@ -3,6 +3,7 @@ using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Components.Car;
 using Sources.App.Core.Ecs.Components.Tags;
+using Sources.App.Core.GameObjects.Players.Ragdolls;
 using Sources.App.Data.Cars;
 using Sources.App.Data.Constants;
 using Sources.App.Data.MonoEntities;
@@ -38,26 +39,39 @@ namespace Sources.App.Core.Ecs.Factories
             CarColorData carColorData = _balance.CarsBalance.GetRandomCar();
             return CreateCar(carColorData, position, rotation);
         }
+        
+        public bool TryCreateCar(ICarMonoEntity carPrefab, CarColorType? carColorType,
+            Vector3 position, Quaternion rotation, out Entity createdCar)
+        {
+            if (CanCreateCar(carPrefab, position, rotation))
+            {
+                createdCar = CreateCar(carPrefab, carColorType,
+                    position - rotation * carPrefab.RootOffset, rotation);
+                return true;
+            }
+            else
+            {
+                createdCar = default;
+                return false;
+            }
+        }
+
+        public bool TryCreateCar(CarType carType, CarColorType? carColor, Vector3 position,
+            Quaternion rotation, out Entity createdCar) =>
+            TryCreateCar(_assets.CarsAssets.GetCarPrefab(carType), carColor, position,
+                rotation, out createdCar);
+
+        public bool CanCreateCar(ICarMonoEntity carPrefab, Vector3 position, Quaternion rotation)
+        {
+            return !_physics.CheckBox(position + rotation * carPrefab.CenterRelatedRootPoint,
+                carPrefab.HalfExtents, rotation, LayerMasks.CarsAndPlayers);
+        }
 
         public bool TryCreateRandomCarOnPath(Point point, out Entity createdCar)
         {
             CarColorData carColorData = _carsBalance.GetRandomCar();
             ICarMonoEntity carPrefab = _assets.CarsAssets.GetCarPrefab(carColorData.CarType);
-
-            bool has = _physics.CheckBox(point.Position + point.Rotation * carPrefab.CenterRelatedRootPoint,
-                carPrefab.HalfExtents,  point.Rotation , LayerMasks.CarsAndPlayers);
-
-            if (has)
-            {
-                createdCar = default;
-                return false;
-            }
-            else
-            {
-                createdCar = CreateCar(carPrefab, carColorData.CarColor,
-                    point.Position -  point.Rotation * carPrefab.RootOffset,  point.Rotation);
-                return true;
-            }
+            return TryCreateCar(carPrefab, carColorData.CarColor, point.Position, point.Rotation, out createdCar);
         }
 
         public Entity CreateCar(ICarMonoEntity carPrefab, CarColorType? colorType, Vector3 position, Quaternion rotation)

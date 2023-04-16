@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Components.NpcPathes;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
@@ -33,8 +34,8 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcPathes
 
         protected override void OnUpdate(float deltaTime)
         {
-            PlayerFollowTransform userTransform = _userFilter.GetSingleton().Get<PlayerFollowTransform>();
-
+            PlayerPointAspect playerPointAspect = _userFilter.GetSingleton().GetAspect<PlayerPointAspect>();
+            
             foreach (Entity pathEntity in _pathesFilter)
             {
                 float minRadius = pathEntity.Has<CarsPathesTag>() ?
@@ -62,8 +63,8 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcPathes
 
                 foreach (Point point in allSpawnPoints)
                 {
-                    Vector2 directionToEntity = (Quaternion.Inverse(userTransform.Rotation) *
-                                                 (point.Position - userTransform.Position)).GetXZ();
+                    Vector2 directionToEntity = (Quaternion.Inverse(playerPointAspect.GetRotation()) *
+                                                 (point.Position - playerPointAspect.GetPosition())).GetXZ();
 
                     Vector2 minSize = new(minRadius, minRadius);
                     Vector2 maxSize = new(maxRadius, maxRadius);

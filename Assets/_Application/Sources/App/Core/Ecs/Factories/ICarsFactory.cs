@@ -12,7 +12,9 @@ namespace Sources.App.Core.Ecs.Factories
         Entity CreateCar(CarColorData carColorData, Vector3 position, Quaternion rotation);
         Entity CreateCar(ICarMonoEntity carPrefab, CarColorType? colorType, Vector3 position, Quaternion rotation);
         Entity CreateRandomCar(Vector3 position, Quaternion rotation);
-
         bool TryCreateRandomCarOnPath(Point point, out Entity createdCar);
+        bool TryCreateCar(ICarMonoEntity carPrefab, CarColorType? carColorType,
+            Vector3 position, Quaternion rotation, out Entity createdCar);
+        bool TryCreateCar(CarType carType, CarColorType? carColor, Vector3 position, Quaternion rotation, out Entity createdCar);
     }
 }

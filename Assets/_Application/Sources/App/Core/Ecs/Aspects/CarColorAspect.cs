@@ -1,5 +1,6 @@
 using Scellecs.Morpeh;
 using Sources.App.Data.Cars;
+using Sources.App.Data.Constants;
 using Sources.Utils.MorpehWrapper.Aspects;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
@@ -17,7 +18,7 @@ namespace Sources.App.Core.Ecs.Aspects
             foreach (IMeshRenderer meshRenderer in MeshRenderers)
             {
                 MaterialPropertyBlock materialPropertyBlock = new();
-                materialPropertyBlock.SetInt("_TargetIndex", (int)carColorType);
+                materialPropertyBlock.SetInt(ShaderProperties.CarTargetIndex, (int)carColorType);
                 meshRenderer.SetPropertyBlock(
                     materialPropertyBlock);
             }

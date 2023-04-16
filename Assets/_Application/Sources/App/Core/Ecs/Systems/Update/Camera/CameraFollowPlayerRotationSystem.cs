@@ -1,4 +1,5 @@
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Components.Camera;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
@@ -45,7 +46,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Camera
             ITransform cameraTransform = cameraEntity.GetAccess<ITransform>();
             ref CameraYAngle cameraYAngle = ref cameraEntity.Get<CameraYAngle>();
 
-            Quaternion userRotation = userEntity.Get<PlayerFollowTransform>().Rotation;
+            Quaternion userRotation = userEntity.GetAspect<PlayerPointAspect>().GetRotation();
 
             float targetAngle = userRotation.eulerAngles.y;
 

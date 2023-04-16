@@ -73,7 +73,7 @@ Material:
     - _SourceIndex: 29
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _TargetIndex: 31
+    - _TargetIndex: 29
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:

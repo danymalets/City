@@ -1,4 +1,5 @@
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Components.Npc;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
@@ -34,14 +35,14 @@ namespace Sources.App.Core.Ecs.Systems.Update.Generation
 
         protected override void OnUpdate(float deltaTime)
         {
-            PlayerFollowTransform userTransform = _userFilter.GetSingleton().Get<PlayerFollowTransform>();
+            PlayerPointAspect playerPointAspect = _userFilter.GetSingleton().GetAspect<PlayerPointAspect>();
 
             foreach (Entity npcEntity in _npcFilter)
             {
-                Vector3 npcPosition = npcEntity.Get<PlayerFollowTransform>().Position;
+                Vector3 npcPosition = npcEntity.GetAspect<PlayerPointAspect>().GetPosition();
 
-                Vector2 directionToEntity = (Quaternion.Inverse(userTransform.Rotation) *
-                                             (npcPosition - userTransform.Position)).GetXZ();
+                Vector2 directionToEntity = (Quaternion.Inverse(playerPointAspect.GetRotation()) *
+                                             (npcPosition - playerPointAspect.GetPosition())).GetXZ();
 
                 if (npcEntity.Has<PlayerInCar>())
                 {

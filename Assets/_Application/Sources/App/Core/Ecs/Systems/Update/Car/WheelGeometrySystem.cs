@@ -37,8 +37,6 @@ namespace Sources.App.Core.Ecs.Systems.Update.Car
 
             geometry.position = position;
             geometry.rotation = rotation;
-            
-            geometry.localScale = geometry.localScale.WithX(isReverse ? -1 : 1);
         }
     }
 }

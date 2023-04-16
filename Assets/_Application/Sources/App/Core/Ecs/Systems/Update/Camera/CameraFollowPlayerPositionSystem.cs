@@ -1,4 +1,5 @@
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Components.Camera;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
@@ -45,7 +46,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Camera
             float cameraSmoothBackDistance = cameraEntity.Get<CameraSmoothBackDistance>().Value;
             float smoothFollowY = cameraEntity.Get<CameraSmoothFollowY>().Value;
 
-            Vector3 userPosition = userEntity.Get<PlayerFollowTransform>().Position;
+            Vector3 userPosition = userEntity.GetAspect<PlayerPointAspect>().GetPosition();
             
             Vector3 targetPosition = userPosition + Quaternion.AngleAxis(cameraAngle, Vector3.up) *
                 Vector3.back * cameraSmoothBackDistance + (smoothFollowY + cameraSmoothHeight) * Vector3.up;

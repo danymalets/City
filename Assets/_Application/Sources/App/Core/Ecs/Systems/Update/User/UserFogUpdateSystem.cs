@@ -1,4 +1,5 @@
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Data.Common;
@@ -27,10 +28,8 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
         protected override void OnUpdate(float deltaTime)
         {
             Entity userEntity = _filter.GetSingleton();
-
-            PlayerFollowTransform playerFollowTransform = userEntity.Get<PlayerFollowTransform>();
-
-            _fog.Position = playerFollowTransform.Position;
+            
+            _fog.Position = userEntity.GetAspect<PlayerPointAspect>().GetPosition();
         }
     }
 }

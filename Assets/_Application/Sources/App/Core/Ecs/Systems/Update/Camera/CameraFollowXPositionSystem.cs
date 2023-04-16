@@ -1,4 +1,5 @@
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Components.Camera;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
@@ -40,7 +41,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Camera
             
             ref var followY = ref cameraEntity.Get<CameraSmoothFollowY>();
             
-            Vector3 userPosition = userEntity.Get<PlayerFollowTransform>().Position;
+            Vector3 userPosition = userEntity.GetAspect<PlayerPointAspect>().GetPosition();
 
             followY.Value = Mathf.MoveTowards(followY.Value, userPosition.y, 
                 DMath.Distance(followY.Value, userPosition.y) *

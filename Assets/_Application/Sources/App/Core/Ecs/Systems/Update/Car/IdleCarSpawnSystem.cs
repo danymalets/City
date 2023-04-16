@@ -1,4 +1,5 @@
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Ecs.Factories;
@@ -46,7 +47,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Car
             float sqrMinRadius = DMath.Sqr(_simulationSettings.NpcMinActiveRadius);
             float sqrMaxRadius = DMath.Sqr(_simulationSettings.NpcMaxActiveRadius);
 
-            Vector3 userPosition = _userFilter.GetSingleton().Get<PlayerFollowTransform>().Position;
+            Vector3 userPosition = _userFilter.GetSingleton().GetAspect<PlayerPointAspect>().GetPosition();
 
             foreach (IIdleCarSpawnPoint point in _idleCarsSystem.SpawnPoints)
             {

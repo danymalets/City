@@ -22,5 +22,8 @@ namespace Sources.Utils.CommonUtils.Extensions
         
         public static Vector3 GetUp(this Quaternion rotation) =>
             rotation * Vector3.up;
+        
+        public static Quaternion WithAddEulerY(this Quaternion rotation, float y) => 
+            Quaternion.Euler(rotation.eulerAngles.x, rotation.eulerAngles.y + y, rotation.eulerAngles.z);
     }
 }
