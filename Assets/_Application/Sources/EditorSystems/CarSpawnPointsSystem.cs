@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+
 using System.Collections.Generic;
 using System.Linq;
 using Sources.App.Data.MonoEntities;
@@ -53,3 +55,5 @@ namespace Sources.EditorSystems
         }
     }
 }
+
+#endif

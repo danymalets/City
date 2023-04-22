@@ -1,12 +1,10 @@
 using System.Collections;
 using Sources.CommonServices.SceneLoaderServices;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Sources.App.Infrastructure
 {
-    [RequireComponent(typeof(SceneFirstChildUpdater))]
-    public class SplashScreen : MonoBehaviour
+    public class SplashScreen : SceneContext
     {
         private IEnumerator Start()
         {

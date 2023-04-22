@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+
 using UnityEditor;
 
 namespace Sources.Monos.MonoServices
@@ -10,3 +12,5 @@ namespace Sources.Monos.MonoServices
             AssetDatabase.LoadAssetAtPath<MonoServices>(MonoServicesPath);
     }
 }
+
+#endif

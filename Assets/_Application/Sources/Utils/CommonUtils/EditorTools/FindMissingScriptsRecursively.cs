@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
@@ -7,7 +9,6 @@ namespace Sources.Utils.CommonUtils.EditorTools
 {
     public static class FindMissingScriptsRecursively
     {
-#if UNITY_EDITOR
         [MenuItem("Auto/Remove Missing Scripts Recursively Visit Prefabs")]
         private static void FindAndRemoveMissingInSelected()
         {
@@ -65,7 +66,6 @@ namespace Sources.Utils.CommonUtils.EditorTools
             }
         }
         
-#endif
-
     }
 }
+#endif

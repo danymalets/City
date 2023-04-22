@@ -1,3 +1,5 @@
+#if UNITY_EDITOR
+
 using System;
 using Sources.App.Data.MonoEntities;
 using Sources.Monos.Bootstrap.IdleCarSpawns;
@@ -18,3 +20,5 @@ namespace Sources.EditorSystems
         }
     }
 }
+
+#endif
