@@ -1,5 +1,6 @@
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Camera;
+using Sources.App.Core.Ecs.Components.SimulationCamera;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Data.MonoEntities;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
@@ -24,6 +25,14 @@ namespace Sources.App.Core.Ecs.Factories
                 .Add<CameraXTargetAngle>()
                 .Add<CameraXSmoothAngle>()
                 .Add<CameraSmoothFollowY>();
+        }
+        
+        public Entity CreateSimulationCamera()
+        {
+            return _world.CreateEntity()
+                .Add<SimulationCameraTag>()
+                .Add<SimulationCameraPosition>()
+                .Add<SimulationCameraDirection>();
         }
     }
 }

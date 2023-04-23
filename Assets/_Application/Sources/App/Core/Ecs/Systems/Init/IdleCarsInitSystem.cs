@@ -25,12 +25,12 @@ namespace Sources.App.Core.Ecs.Systems.Init
         private readonly IIdleCarsSystem _idleCarsSystem;
         private readonly IPhysicsService _physics;
         private readonly Assets _assets;
-        private readonly SimulationSettings _simulationSettings;
+        private readonly ISimulationSettings _simulationSettings;
         private readonly ICarsFactory _carsFactory;
 
         public IdleCarsInitSystem()
         {
-            _simulationSettings = DiContainer.Resolve<SimulationSettings>();
+            _simulationSettings = DiContainer.Resolve<ISimulationSettings>();
             _idleCarsSystem = DiContainer.Resolve<ILevelContext>().IdleCarsSystem;
             _carsFactory = DiContainer.Resolve<ICarsFactory>();
             _physics = DiContainer.Resolve<IPhysicsService>();
@@ -44,7 +44,7 @@ namespace Sources.App.Core.Ecs.Systems.Init
 
         protected override void OnInitialize()
         {
-            float sqrMaxRadius = DMath.Sqr(_simulationSettings.NpcMaxActiveRadius);
+            float sqrMaxRadius = DMath.Sqr(_simulationSettings.CarsRadius);
 
             Vector3 userPosition = _userFilter.GetSingleton()
                 .GetAspect<PlayerPointAspect>().GetPosition();

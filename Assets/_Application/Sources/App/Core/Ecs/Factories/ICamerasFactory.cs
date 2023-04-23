@@ -6,5 +6,6 @@ namespace Sources.App.Core.Ecs.Factories
     public interface ICamerasFactory : IService
     {
         Entity CreateCamera();
+        Entity CreateSimulationCamera();
     }
 }

@@ -16,6 +16,7 @@ namespace Sources.App.Core.Ecs.Systems.Init
         protected override void OnInitialize()
         {
             _cameraFactory.CreateCamera();
+            _cameraFactory.CreateSimulationCamera();
         }
     }
 }

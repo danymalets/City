@@ -4,7 +4,9 @@ using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.NpcPathes;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
+using Sources.App.Core.Ecs.Components.WorldStatus;
 using Sources.App.Core.Ecs.Factories;
+using Sources.App.Core.Services;
 using Sources.App.Data;
 using Sources.App.Data.MonoEntities;
 using Sources.App.Data.Points;
@@ -18,30 +20,27 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Generation
 {
-    public class HorizonNpcSpawnSystem : DUpdateSystem
+    public class NpcsSpawnSystem : DUpdateSystem
     {
         private Filter _pathesFilter;
         private readonly SimulationBalance _simulationBalance;
         private Filter _npcFilter;
         private readonly IPhysicsService _physics;
-        private readonly Assets _assets;
-        private readonly PlayersBalance _playersBalance;
         private readonly IPlayersFactory _playersFactory;
+        private readonly ISimulationSettings _simulationSettings;
+        private Filter _worldStatusFilter;
 
-        public HorizonNpcSpawnSystem()
+        public NpcsSpawnSystem()
         {
-            Balance balance = DiContainer.Resolve<Balance>();
-
-            _simulationBalance = balance.SimulationBalance;
-            _playersBalance = balance.PlayersBalance;
+            _simulationSettings = DiContainer.Resolve<ISimulationSettings>();
 
             _physics = DiContainer.Resolve<IPhysicsService>();
-            _assets = DiContainer.Resolve<Assets>();
             _playersFactory = DiContainer.Resolve<IPlayersFactory>();
         }
 
         protected override void OnInitFilters()
         {
+            _worldStatusFilter = _world.Filter<WorldStatusTag>();
             _pathesFilter = _world.Filter<NpcsPathesTag>();
             _npcFilter = _world.Filter<NpcTag>().Without<PlayerInCar>();
         }
@@ -55,20 +54,23 @@ namespace Sources.App.Core.Ecs.Systems.Update.Generation
             List<Point> activePoints = pathesEntity.Get<ActiveSpawnPoints>().List;
             List<Point> horizonPoints = pathesEntity.Get<HorizonSpawnPoints>().List;
 
-            int reqNpcs = (activePoints.Count + horizonPoints.Count) * _simulationBalance.NpcCountPer1000SpawnPoints / 1000;
+            int reqNpcs = (activePoints.Count + horizonPoints.Count) * _simulationSettings.NpcsPer1000SpawnPoints / 1000;
 
-            // Debug.Log($"players: {reqCars}");
-
-            horizonPoints.RandomShuffle();
-
-            PlayerType playerType = _playersBalance.GetRandomPlayerType();
-            IPlayerMonoEntity playerPrefab = _assets.PlayersAssets.GetPlayerPrefab(playerType);
-
-            foreach (Point point in horizonPoints)
+            List<Point> spawnPoints = horizonPoints;
+            
+            if (_worldStatusFilter.GetSingleton()
+                .Has<ActiveSimulationOn>())
             {
-                if (npcs >= reqNpcs)
-                    return;
-                
+                spawnPoints.AddRange(activePoints);
+            }
+            
+            spawnPoints.RandomShuffle();
+
+            if (npcs >= reqNpcs)
+                return;
+            
+            foreach (Point point in spawnPoints)
+            {
                 if (_playersFactory.TryCreateRandomNpc(point, out Entity createdEntity))
                 {
                     _physics.SyncTransforms();

@@ -4,6 +4,6 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Components
 {
     public interface IComponentWrapper
     {
-        public void SetToEntity(Entity entity);
+        public void ProcessWithEntity(Entity entity);
     }
 }

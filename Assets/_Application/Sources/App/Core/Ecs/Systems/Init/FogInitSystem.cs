@@ -8,17 +8,17 @@ namespace Sources.App.Core.Ecs.Systems.Init
     public class FogInitSystem : DInitializer
     {
         private readonly ILevelContext _levelContext;
-        private readonly SimulationSettings _simulationSettings;
-
+        private readonly ISimulationSettings _simulationSettings;
+        
         public FogInitSystem()
         {
             _levelContext = DiContainer.Resolve<ILevelContext>();
-            _simulationSettings = DiContainer.Resolve<SimulationSettings>();
+            _simulationSettings = DiContainer.Resolve<ISimulationSettings>();
         }
 
         protected override void OnInitialize()
         {
-            _levelContext.Fog.SetRadius(_simulationSettings.NpcMinActiveRadius - 0.5f);
+            _levelContext.Fog.SetRadius(_simulationSettings.NpcsRadius - 0.5f);
         }
     }
 }

@@ -73,22 +73,49 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Extensions
         public static Entity AddWithDelay<TComponent>(this Entity entity, float delay)
             where TComponent : struct, IComponent =>
             entity.SetWithDelay(delay, new TComponent());
+
+        public static Entity AddForSeconds<TComponent>(this Entity entity, float duration)
+            where TComponent : struct, IComponent
+        {
+            entity.Add<TComponent>();
+            entity.RemoveWithDelay<TComponent>(duration);
+            return entity;
+        } 
         
+        public static Entity RemoveWithDelay<TComponent>(this Entity entity, float delay)
+            where TComponent : struct, IComponent
+        {
+            AddProcessAwaitersIfNotHas(entity);
+
+            entity.Get<ComponentProcessAwaiters>().List
+                .Add(new ComponentProcessAwaiter
+                {
+                    Delay = delay,
+                    ComponentWrapper = new RemoveComponentWrapper<TComponent>(),
+                });
+            return entity;
+        }
+
         public static Entity SetWithDelay<TComponent>(this  Entity entity, float delay, TComponent component)
             where TComponent : struct, IComponent
         {
-            if (entity.NotHas<AddComponentAwaiters>())
-            {
-                entity.Set(new AddComponentAwaiters { List = new List<AddComponentAwaiter>() });
-            }
+            AddProcessAwaitersIfNotHas(entity);
             
-            entity.Get<AddComponentAwaiters>().List
-                .Add(new AddComponentAwaiter
+            entity.Get<ComponentProcessAwaiters>().List
+                .Add(new ComponentProcessAwaiter
             {
                 Delay = delay,
-                ComponentWrapper = new ComponentWrapper<TComponent>(component),
+                ComponentWrapper = new SetComponentWrapper<TComponent>(component),
             });
             return entity;
+        }
+
+        private static void AddProcessAwaitersIfNotHas(Entity entity)
+        {
+            if (entity.NotHas<ComponentProcessAwaiters>())
+            {
+                entity.Set(new ComponentProcessAwaiters { List = new List<ComponentProcessAwaiter>() });
+            }
         }
 
         public static bool NotHas<TComponent>(this Entity entity) where TComponent : struct, IComponent =>

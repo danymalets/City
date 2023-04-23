@@ -6,40 +6,37 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.Utils.MorpehWrapper.MorpehUtils.CustomSystems
 {
-    public class AddComponentWithDelaySystem : DUpdateSystem
+    public class ComponentProcessSystem : DUpdateSystem
     {
         private Filter _filter;
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<AddComponentAwaiters>();
+            _filter = _world.Filter<ComponentProcessAwaiters>();
         }
 
         protected override void OnUpdate(float deltaTime)
         {
             foreach (Entity entity in _filter)
             {
-                List<AddComponentAwaiter> awaiters = entity.Get<AddComponentAwaiters>().List;
-                List<AddComponentAwaiter> awaitersToDelete = new();
+                List<ComponentProcessAwaiter> awaiters = entity.Get<ComponentProcessAwaiters>().List;
+                List<ComponentProcessAwaiter> awaitersToDelete = new();
 
-                foreach (AddComponentAwaiter awaiter in awaiters)
+                foreach (ComponentProcessAwaiter awaiter in awaiters)
                 {
                     awaiter.Delay -= deltaTime;
 
                     if (awaiter.Delay <= 0)
                     {
-                        awaiter.ComponentWrapper.SetToEntity(entity);
+                        awaiter.ComponentWrapper.ProcessWithEntity(entity);
                         awaitersToDelete.Add(awaiter);
                     }
                 }
 
-                foreach (AddComponentAwaiter awaiter in awaitersToDelete)
+                foreach (ComponentProcessAwaiter awaiter in awaitersToDelete)
                 {
                     awaiters.Remove(awaiter);
                 }
-                
-                // if (awaiters.Count == 0)
-                //     entity.RemoveList<AddComponentAwaiters, AddComponentAwaiter>();
             }
         }
     }

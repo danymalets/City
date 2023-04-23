@@ -20,14 +20,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Extensions
             return entity;
         }
 
-        public static ref TComponent GetSingleton<TComponent>(this DWorld world) where TComponent : struct, IComponent =>
-            ref world.GetSingletonEntity<TComponent>().Get<TComponent>();
-
-
-        public static Entity GetSingletonEntity<TComponent>(this DWorld world) where TComponent : struct, IComponent =>
+        public static Entity GetSingleton<TComponent>(this DWorld world) where TComponent : struct, IComponent =>
             world.Filter<TComponent>().GetSingleton();
-
-        public static TComponent GetAccessSingleton<TComponent>(this DWorld world) =>
-            world.GetSingleton<AccessTo<TComponent>>().AccessValue;
     }
 }

@@ -35,7 +35,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
             if (_userWithCar.Any())
             {
                 if (!_carInputScreen.IsOpened)
-                    _carInputScreen.Open(_world.GetSingletonEntity<UserTag>());
+                    _carInputScreen.Open(_world.GetSingleton<UserTag>());
 
                 if (_playerInputScreen.IsOpened)
                     _playerInputScreen.Close();
@@ -46,7 +46,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
                     _carInputScreen.Close();
 
                 if (!_playerInputScreen.IsOpened)
-                    _playerInputScreen.Open(_world.GetSingletonEntity<UserTag>());
+                    _playerInputScreen.Open(_world.GetSingleton<UserTag>());
             }
         }
     }

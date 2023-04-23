@@ -6,6 +6,8 @@ namespace Sources.App.Core.Ecs.Factories
 {
     public interface IPathesFactory : IService
     {
-        Entity CreatePathes<TTag>(IPathSystem pathSystem) where TTag : struct, IComponent;
+        Entity CreatePathes<TTag, TRelatedAreaTag>(IPathSystem pathSystem)
+            where TTag : struct, IComponent
+            where TRelatedAreaTag : struct, IComponent;
     }
 }

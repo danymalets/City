@@ -25,12 +25,12 @@ namespace Sources.App.Core.Ecs.Systems.Update.Car
         private readonly IIdleCarsSystem _idleCarsSystem;
         private readonly IPhysicsService _physics;
         private readonly Assets _assets;
-        private readonly SimulationSettings _simulationSettings;
+        private readonly ISimulationSettings _simulationSettings;
         private readonly ICarsFactory _carsFactory;
 
         public IdleCarsSpawnSystem()
         {
-            _simulationSettings = DiContainer.Resolve<SimulationSettings>();
+            _simulationSettings = DiContainer.Resolve<ISimulationSettings>();
             _idleCarsSystem = DiContainer.Resolve<ILevelContext>().IdleCarsSystem;
             _physics = DiContainer.Resolve<IPhysicsService>();
             _assets = DiContainer.Resolve<Assets>();
@@ -44,36 +44,36 @@ namespace Sources.App.Core.Ecs.Systems.Update.Car
 
         protected override void OnUpdate(float deltaTime)
         {
-            float sqrMinRadius = DMath.Sqr(_simulationSettings.NpcMinActiveRadius);
-            float sqrMaxRadius = DMath.Sqr(_simulationSettings.NpcMaxActiveRadius);
-
-            Vector3 userPosition = _userFilter.GetSingleton().GetAspect<PlayerPointAspect>().GetPosition();
-
-            foreach (IIdleCarSpawnPoint point in _idleCarsSystem.SpawnPoints)
-            {
-                if (!point.AliveCar.IsNullOrDisposed())
-                    continue;
-                
-                float sqrDistance = DVector3.SqrDistance(userPosition, point.Position);
-                if (sqrDistance > sqrMinRadius && sqrDistance < sqrMaxRadius)
-                {
-                    ICarMonoEntity carPrefab = _assets.CarsAssets.GetCarPrefab(point.CarType);
-
-                    bool has = _physics.CheckBox(point.Position + point.Rotation *
-                        carPrefab.CenterRelatedRootPoint, carPrefab.HalfExtents, point.Rotation, 
-                        LayerMasks.CarsAndPlayers);
-
-                    if (!has)
-                    {
-                        Entity car = _carsFactory.CreateCar(carPrefab, point.CarColor,
-                            point.Position - point.Rotation * carPrefab.RootOffset, point.Rotation);
-
-                        point.AliveCar = car;
-                        
-                        break;
-                    }
-                }
-            }
+            // float sqrMinRadius = DMath.Sqr(_simulationSettings.NpcsRadius);
+            // float sqrMaxRadius = DMath.Sqr(_simulationSettings.NpcMaxActiveRadius);
+            //
+            // Vector3 userPosition = _userFilter.GetSingleton().GetAspect<PlayerPointAspect>().GetPosition();
+            //
+            // foreach (IIdleCarSpawnPoint point in _idleCarsSystem.SpawnPoints)
+            // {
+            //     if (!point.AliveCar.IsNullOrDisposed())
+            //         continue;
+            //     
+            //     float sqrDistance = DVector3.SqrDistance(userPosition, point.Position);
+            //     if (sqrDistance > sqrMinRadius && sqrDistance < sqrMaxRadius)
+            //     {
+            //         ICarMonoEntity carPrefab = _assets.CarsAssets.GetCarPrefab(point.CarType);
+            //
+            //         bool has = _physics.CheckBox(point.Position + point.Rotation *
+            //             carPrefab.CenterRelatedRootPoint, carPrefab.HalfExtents, point.Rotation, 
+            //             LayerMasks.CarsAndPlayers);
+            //
+            //         if (!has)
+            //         {
+            //             Entity car = _carsFactory.CreateCar(carPrefab, point.CarColor,
+            //                 point.Position - point.Rotation * carPrefab.RootOffset, point.Rotation);
+            //
+            //             point.AliveCar = car;
+            //             
+            //             break;
+            //         }
+            //     }
+            // }
         }
     }
 }

@@ -6,13 +6,6 @@ namespace Sources.ProjectServices.BalanceServices
     [CreateAssetMenu(menuName = nameof(Balance) + "/" + nameof(SimulationBalance), fileName = nameof(SimulationBalance))]
     public class SimulationBalance : ScriptableObject
     {
-        [Header("Count")]
-        [SerializeField]
-        private int _carsCountPer1000SpawnPoints = 20;
-
-        [SerializeField]
-        private int _npcCountPer1000SpawnPoints = 20;
-
         [Header("Triggers")]
         [SerializeField]
         private float _carTriggerLength = 1.5f;
@@ -51,11 +44,7 @@ namespace Sources.ProjectServices.BalanceServices
         
         [field: Header("Generation")]
         [field: SerializeField]
-        public float CarActiveRadiusDelta { get; private set; } = 4f;
-
-        public int CarsCountPer1000SpawnPoints => _carsCountPer1000SpawnPoints;
-
-        public int NpcCountPer1000SpawnPoints => _npcCountPer1000SpawnPoints;
+        public float CarsDelta { get; private set; } = 4f;
 
         public float CarTriggerLength => _carTriggerLength;
 

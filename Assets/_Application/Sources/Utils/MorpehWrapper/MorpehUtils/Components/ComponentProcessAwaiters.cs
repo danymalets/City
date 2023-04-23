@@ -3,8 +3,8 @@ using Scellecs.Morpeh;
 
 namespace Sources.Utils.MorpehWrapper.MorpehUtils.Components
 {
-    public struct AddComponentAwaiters : IComponent
+    public struct ComponentProcessAwaiters : IComponent
     {
-        public List<AddComponentAwaiter> List { get; set; }
+        public List<ComponentProcessAwaiter> List { get; set; }
     }
 }

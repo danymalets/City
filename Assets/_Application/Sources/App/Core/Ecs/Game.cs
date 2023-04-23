@@ -33,24 +33,34 @@ namespace Sources.App.Core.Ecs
 
             _world = _diBuilder.Register<DWorld>();
             
-            _diBuilder.Register<IPlayersFactory>(new PlayersFactory());
-            _diBuilder.Register<ICarsFactory>(new CarsFactory());
-            _diBuilder.Register<IPathesFactory>(new PathesFactory());
-            _diBuilder.Register<ICamerasFactory>(new CamerasFactory());
-            
-            _diBuilder.Register<IPlayersDespawner>(new PlayersDespawner());
-            _diBuilder.Register<ICarsDespawner>(new CarsDespawner());
-            _diBuilder.Register<SimulationSettings>(new SimulationSettings());
+            RegisterGameServices();
 
             AddInitializers();
             AddUpdateSystems();
             AddFixedUpdateSystems();
         }
 
+        private void RegisterGameServices()
+        {
+            _diBuilder.Register<IPlayersFactory>(new PlayersFactory());
+            _diBuilder.Register<ICarsFactory>(new CarsFactory());
+            _diBuilder.Register<IPathesFactory>(new PathesFactory());
+            _diBuilder.Register<ICamerasFactory>(new CamerasFactory());
+            _diBuilder.Register<ISimulationAreasFactory>(new SimulationAreasFactory());
+
+            _diBuilder.Register<IPlayersDespawner>(new PlayersDespawner());
+            _diBuilder.Register<ICarsDespawner>(new CarsDespawner());
+            _diBuilder.Register<ISimulationSettings>(new SimulationSettings());
+        }
+
         private void AddInitializers()
         {
-            _world.AddInitializer<PlayerDeathAnimationWarmUpSystem>();
+            _world.AddInitializer<WorldStatusInitSystem>();
             
+            _world.AddInitializer<PlayerDeathAnimationWarmUpSystem>();
+
+            _world.AddInitializer<SimulationAreasInitSystem>();
+
             _world.AddInitializer<FogInitSystem>();
             _world.AddInitializer<PathesInitSystem>();
             _world.AddInitializer<RoadPathesGenerationSystem>();
@@ -61,10 +71,8 @@ namespace Sources.App.Core.Ecs
             _world.AddInitializer<UserInitSystem>();
             _world.AddInitializer<CameraInitSystem>();
             
-            _world.AddInitializer<ActiveSpawnPointsInitializeSystem>();
+            _world.AddInitializer<SimulationInitSystem>();
             
-            _world.AddInitializer<NpcInitSystem>();
-            _world.AddInitializer<NpcWithCarsInitSystem>();
             _world.AddInitializer<IdleCarsInitSystem>();
         }
 
@@ -112,7 +120,7 @@ namespace Sources.App.Core.Ecs
         private void AddFixedUpdateSystems()
         {
             // awaiters
-            _world.AddFixedSystem<AddComponentWithDelaySystem>();
+            _world.AddFixedSystem<ComponentProcessSystem>();
             
             // physics
             _world.AddFixedSystem<PhysicsUpdateSystem>();
@@ -130,13 +138,17 @@ namespace Sources.App.Core.Ecs
             _world.AddFixedSystem<PlayerCarEnterSystem>();
             
             // gen
+            _world.AddFixedSystem<CameraTargetDeltasSystem>();
+            _world.AddFixedSystem<SimulationCameraUpdateSystem>();
+            _world.AddFixedSystem<SimulationAreaUpdateSystem>();
+            
             _world.AddFixedSystem<ActiveSpawnPointsUpdateSystem>();
             
             _world.AddFixedSystem<InactiveNpcDespawnSystem>();
             _world.AddFixedSystem<InactiveCarsDespawnSystem>();
             
-            _world.AddFixedSystem<HorizonCarsSpawnSystem>();
-            _world.AddFixedSystem<HorizonNpcSpawnSystem>();
+            _world.AddFixedSystem<CarsSpawnSystem>();
+            _world.AddFixedSystem<NpcsSpawnSystem>();
             
             _world.AddFixedSystem<IdleCarsSpawnSystem>();
 

@@ -2,9 +2,11 @@ using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Components.Npc;
 using Sources.App.Core.Ecs.Components.Player;
+using Sources.App.Core.Ecs.Components.SimulationAreas;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Ecs.Despawners;
 using Sources.App.Core.Services;
+using Sources.App.Data;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.CommonUtils.Libs;
 using Sources.Utils.Di;
@@ -18,62 +20,41 @@ namespace Sources.App.Core.Ecs.Systems.Update.Generation
     {
         private Filter _npcFilter;
         private Filter _userFilter;
-        private readonly SimulationSettings _simulationSettings;
         private readonly IPlayersDespawner _playersDespawner;
+        private Filter _carsSimulationAreaFilter;
+        private Filter _npcsSimulationAreaFilter;
 
         public InactiveNpcDespawnSystem()
         {
-            _simulationSettings = DiContainer.Resolve<SimulationSettings>();
             _playersDespawner = DiContainer.Resolve<IPlayersDespawner>();
         }
 
         protected override void OnInitFilters()
         {
-            _userFilter = _world.Filter<UserTag>();
+            _npcsSimulationAreaFilter = _world.Filter<NpcsSimulationAreaTag>();
+            _carsSimulationAreaFilter = _world.Filter<CarsSimulationAreaTag>();
             _npcFilter = _world.Filter<NpcTag>().Without<AlwaysActive>();
         }
 
         protected override void OnUpdate(float deltaTime)
         {
-            PlayerPointAspect playerPointAspect = _userFilter.GetSingleton().GetAspect<PlayerPointAspect>();
+            SimulationAreaData npcsSimulationAreaData = _npcsSimulationAreaFilter.GetSingleton()
+                .Get<SimulationArea>().AreaData;
+            
+            SimulationAreaData carsSimulationAreaData = _carsSimulationAreaFilter.GetSingleton()
+                .Get<SimulationArea>().AreaData;
 
             foreach (Entity npcEntity in _npcFilter)
             {
                 Vector3 npcPosition = npcEntity.GetAspect<PlayerPointAspect>().GetPosition();
 
-                Vector2 directionToEntity = (Quaternion.Inverse(playerPointAspect.GetRotation()) *
-                                             (npcPosition - playerPointAspect.GetPosition())).GetXZ();
-
-                if (npcEntity.Has<PlayerInCar>())
+                SimulationAreaData simulationArea = npcEntity.Has<PlayerInCar>()
+                    ? carsSimulationAreaData
+                    : npcsSimulationAreaData;
+                
+                if (!simulationArea.IsInsideBig(npcPosition))
                 {
-                    Vector2 maxSize = new(_simulationSettings.CarMaxActiveRadius, _simulationSettings.CarMaxActiveRadius);
-
-                    if (directionToEntity.y < 0)
-                    {
-                        maxSize.y = _simulationSettings.BackCarMaxActiveRadius;
-                    }
-                    
-                    maxSize.x += 0.01f;
-                    maxSize.y += 0.01f;
-                    
-                    if (!DMath.InEllipse(directionToEntity, maxSize))
-                    {
-                        _playersDespawner.DespawnNpc(npcEntity);
-                    }
-                }
-                else
-                {
-                    Vector2 maxSize = new(_simulationSettings.NpcMaxActiveRadius, _simulationSettings.NpcMaxActiveRadius);
-
-                    if (directionToEntity.y < 0)
-                    {
-                        maxSize.y = _simulationSettings.BackNpcMaxActiveRadius;
-                    }
-                    
-                    if (!DMath.InEllipse(directionToEntity, maxSize))
-                    {
-                        _playersDespawner.DespawnNpc(npcEntity);
-                    }
+                    _playersDespawner.DespawnNpc(npcEntity);
                 }
             }
         }

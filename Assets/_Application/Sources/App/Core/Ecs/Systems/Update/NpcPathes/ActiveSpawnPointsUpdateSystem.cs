@@ -3,8 +3,11 @@ using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Components.NpcPathes;
 using Sources.App.Core.Ecs.Components.Player;
+using Sources.App.Core.Ecs.Components.SimulationAreas;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Services;
+using Sources.App.Data;
+using Sources.App.Data.Constants;
 using Sources.App.Data.Points;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.CommonUtils.Libs;
@@ -18,75 +21,68 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcPathes
     public class ActiveSpawnPointsUpdateSystem : DUpdateSystem
     {
         private Filter _pathesFilter;
-        private Filter _userFilter;
-        private readonly SimulationSettings _simulationSettings;
+        private readonly ISimulationSettings _simulationSettings;
 
         public ActiveSpawnPointsUpdateSystem()
         {
-            _simulationSettings = DiContainer.Resolve<SimulationSettings>();
+            _simulationSettings = DiContainer.Resolve<ISimulationSettings>();
         }
 
         protected override void OnInitFilters()
         {
             _pathesFilter = _world.Filter<PathesTag>();
-            _userFilter = _world.Filter<UserTag>();
         }
 
         protected override void OnUpdate(float deltaTime)
         {
-            PlayerPointAspect playerPointAspect = _userFilter.GetSingleton().GetAspect<PlayerPointAspect>();
-            
             foreach (Entity pathEntity in _pathesFilter)
             {
-                float minRadius = pathEntity.Has<CarsPathesTag>() ?
-                    _simulationSettings.CarMinActiveRadius :
-                    _simulationSettings.NpcMinActiveRadius;
-
-                float maxRadius = pathEntity.Has<CarsPathesTag>() ?
-                    _simulationSettings.CarMaxActiveRadius :
-                    _simulationSettings.NpcMaxActiveRadius;
-                
-                float backMinRadius = pathEntity.Has<CarsPathesTag>() ?
-                    _simulationSettings.BackCarMinActiveRadius :
-                    _simulationSettings.BackNpcMinActiveRadius;
-                
-                float backMaxRadius = pathEntity.Has<CarsPathesTag>() ?
-                    _simulationSettings.BackCarMaxActiveRadius :
-                    _simulationSettings.BackNpcMaxActiveRadius;
-                
-                List<Point> allSpawnPoints = pathEntity.Get<AllSpawnPoints>().List;
+                Dictionary<(int x, int y), List<Point>> allSpawnPointsGrid = pathEntity.Get<AllSpawnPointsGrid>().Grid;
                 List<Point> activePoints = pathEntity.Get<ActiveSpawnPoints>().List;
+                List<Point> allSpawnPoints = pathEntity.Get<AllSpawnPoints>().List;
                 List<Point> horizonPoints = pathEntity.Get<HorizonSpawnPoints>().List;
+                SimulationAreaData simulationAreaData = pathEntity.Get<RelatedSimulationArea>()
+                    .SimulationAreaEntity.Get<SimulationArea>().AreaData;
                 
                 activePoints.Clear();
                 horizonPoints.Clear();
 
-                foreach (Point point in allSpawnPoints)
+                Vector2 position = simulationAreaData.Center;
+
+                int centerX = DMath.Div(position.x, _simulationSettings.SimulationQuadWidth);
+                int centerY = DMath.Div(position.y, _simulationSettings.SimulationQuadWidth);
+
+                int debug = 0;
+                
+                
+                for (int x = centerX - Consts.SimulationOneSideQuadCount;
+                     x <= centerX + Consts.SimulationOneSideQuadCount; x++)
                 {
-                    Vector2 directionToEntity = (Quaternion.Inverse(playerPointAspect.GetRotation()) *
-                                                 (point.Position - playerPointAspect.GetPosition())).GetXZ();
-
-                    Vector2 minSize = new(minRadius, minRadius);
-                    Vector2 maxSize = new(maxRadius, maxRadius);
-
-                    if (directionToEntity.y < 0)
+                    for (int y = centerY - Consts.SimulationOneSideQuadCount;
+                         y <= centerY + Consts.SimulationOneSideQuadCount; y++)
                     {
-                        minSize.y = backMinRadius;
-                        maxSize.y = backMaxRadius;
-                    }
-                    
-                    if (DMath.InEllipse(directionToEntity, maxSize))
-                    {
-                        if (DMath.InEllipse(directionToEntity, minSize))
+                        if (allSpawnPointsGrid.TryGetValue((x, y), out List<Point> points))
                         {
-                            activePoints.Add(point);
-                        }
-                        else
-                        {
-                            horizonPoints.Add(point);
+                            foreach (Point point in points)
+                            {
+                                debug++;
+                                if (simulationAreaData.IsInsideBig(point.Position))
+                                {
+                                    if (simulationAreaData.IsInsideSmall(point.Position))
+                                    {
+                                        activePoints.Add(point);
+                                    }
+                                    else
+                                    {
+                                        horizonPoints.Add(point);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
+                
+                // Debug.Log($"all spawn {allSpawnPoints.Count} need {activePoints.Count + horizonPoints.Count} solve {debug}");
             }
         }
     }

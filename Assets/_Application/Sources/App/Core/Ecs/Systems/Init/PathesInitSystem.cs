@@ -19,8 +19,8 @@ namespace Sources.App.Core.Ecs.Systems.Init
 
         protected override void OnInitialize()
         {
-            _pathesFactory.CreatePathes<CarsPathesTag>(_levelContext.CarsPathSystem);
-            _pathesFactory.CreatePathes<NpcsPathesTag>(_levelContext.NpcPathSystem);
+            _pathesFactory.CreatePathes<CarsPathesTag, CarsSimulationAreaTag>(_levelContext.CarsPathSystem);
+            _pathesFactory.CreatePathes<NpcsPathesTag, NpcsSimulationAreaTag>(_levelContext.NpcPathSystem);
         }
     }
 }

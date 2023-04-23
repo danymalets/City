@@ -5,7 +5,9 @@ using Sources.App.Core.Ecs.Components.Car;
 using Sources.App.Core.Ecs.Components.NpcPathes;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
+using Sources.App.Core.Ecs.Components.WorldStatus;
 using Sources.App.Core.Ecs.Factories;
+using Sources.App.Core.Services;
 using Sources.App.Data.Points;
 using Sources.ProjectServices.BalanceServices;
 using Sources.Utils.CommonUtils.Extensions;
@@ -15,23 +17,25 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Generation
 {
-    public class HorizonCarsSpawnSystem : DUpdateSystem
+    public class CarsSpawnSystem : DUpdateSystem
     {
         private Filter _pathesFilter;
-        private readonly SimulationBalance _simulationBalance;
         private Filter _npcWithCarsFilter;
         private readonly ICarsFactory _carsFactory;
         private readonly IPlayersFactory _playersFactory;
+        private readonly ISimulationSettings _simulationSettings;
+        private Filter _worldStatusFilter;
 
-        public HorizonCarsSpawnSystem()
+        public CarsSpawnSystem()
         {
-            _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
             _carsFactory = DiContainer.Resolve<ICarsFactory>();
+            _simulationSettings = DiContainer.Resolve<ISimulationSettings>();
             _playersFactory = DiContainer.Resolve<IPlayersFactory>();
         }
 
         protected override void OnInitFilters()
         {
+            _worldStatusFilter = _world.Filter<WorldStatusTag>();
             _pathesFilter = _world.Filter<CarsPathesTag>();
             _npcWithCarsFilter = _world.Filter<NpcTag, PlayerInCar>();
         }
@@ -45,22 +49,30 @@ namespace Sources.App.Core.Ecs.Systems.Update.Generation
             List<Point> activePoints = pathesEntity.Get<ActiveSpawnPoints>().List;
             List<Point> horizonPoints = pathesEntity.Get<HorizonSpawnPoints>().List;
 
-            int reqCars = (activePoints.Count + horizonPoints.Count) * _simulationBalance.CarsCountPer1000SpawnPoints / 1000;
-            
-            horizonPoints.RandomShuffle();
+            int reqCars = (activePoints.Count + horizonPoints.Count) * _simulationSettings.CarsPer1000SpawnPoints / 1000;
 
-            foreach (Point point in horizonPoints)
+            List<Point> spawnPoints = horizonPoints;
+
+            if (_worldStatusFilter.GetSingleton()
+                .Has<ActiveSimulationOn>())
             {
-                if (cars >= reqCars)
-                    return;
-
+                spawnPoints.AddRange(activePoints);
+            }
+            
+            spawnPoints.RandomShuffle();
+            
+            if (cars >= reqCars)
+                return;
+            
+            foreach (Point point in spawnPoints)
+            {
                 if (_carsFactory.TryCreateRandomCarOnPath(point, out Entity car))
                 {
                     car.Set(new CarMaxSpeed { Value = 3f });
 
-                    Entity player = _playersFactory.CreateRandomNpcInCarOnPath(car, point);
+                    _playersFactory.CreateRandomNpcInCarOnPath(car, point);
                     cars++;
-
+                    
                     break;
                 }
             }
