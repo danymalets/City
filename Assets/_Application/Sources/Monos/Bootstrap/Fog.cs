@@ -5,6 +5,8 @@ namespace Sources.Monos.Bootstrap
 {
     public class Fog : MonoBehaviour, IFog
     {
+        private const float Height = 2.5f;
+        
         [SerializeField]
         private MeshRenderer _firstSphere;
 
@@ -19,8 +21,16 @@ namespace Sources.Monos.Bootstrap
 
         public void SetRadius(float radius)
         {
-            _firstSphere.material.SetFloat("_Radius", radius);
-            _secondSphere.material.SetFloat("_Radius", radius + 2.5f);
+            MaterialPropertyBlock materialPropertyBlock = new();
+            
+            materialPropertyBlock.SetFloat("_Height", Height / radius / 2);
+            _firstSphere.SetPropertyBlock(materialPropertyBlock);
+            
+            materialPropertyBlock.SetFloat("_Height",Height / (radius + 2.5f) / 2);
+            _secondSphere.SetPropertyBlock(materialPropertyBlock);
+            
+            _firstSphere.transform.localScale = Vector3.one * radius * 2;
+            _secondSphere.transform.localScale = Vector3.one * (radius + 2.5f) * 2;
         }
     }
 }

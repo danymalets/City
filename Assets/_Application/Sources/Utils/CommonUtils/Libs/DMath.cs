@@ -6,6 +6,7 @@ namespace Sources.Utils.CommonUtils.Libs
 {
     public static class DMath
     {
+        private const float Epsilon = 1.1754944E-38f;
         public static float Sqr(float value)
             => value * value;
         
@@ -18,7 +19,7 @@ namespace Sources.Utils.CommonUtils.Libs
         #region FLOAT_COMPARE
 
         public static bool Equals(float a, float b) =>
-            Mathf.Approximately(a, b);
+            Mathf.Abs(b - a) < Mathf.Max(1E-06f * Mathf.Max(Mathf.Abs(a), Mathf.Abs(b)), 0.00001f);
 
         public static bool NotEquals(float a, float b) =>
             !Equals(a, b);

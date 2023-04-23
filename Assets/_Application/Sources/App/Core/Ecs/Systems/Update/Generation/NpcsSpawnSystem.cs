@@ -56,7 +56,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Generation
 
             int reqNpcs = (activePoints.Count + horizonPoints.Count) * _simulationSettings.NpcsPer1000SpawnPoints / 1000;
 
-            List<Point> spawnPoints = horizonPoints;
+            List<Point> spawnPoints = new List<Point>(horizonPoints);
             
             if (_worldStatusFilter.GetSingleton()
                 .Has<ActiveSimulationOn>())

@@ -7,7 +7,6 @@ Shader "Custom/Fog"
         _MainTex ("Base (RGB) Alpha (A)", 2D) = "white" {}
         _Color("Color", Color) = (1,1,1,1)
         _Height("Height", float) = 20
-        _Radius("Radius", float) = 70
     }
 
     SubShader
@@ -33,7 +32,6 @@ Shader "Custom/Fog"
 
             fixed4 _Color;
             fixed _Height;
-            fixed _Radius;
 
             struct appdata_t
             {
@@ -55,7 +53,7 @@ Shader "Custom/Fog"
             v2f vert(appdata_t v)
             {
                 v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex * _Radius * 2.0);
+                o.vertex = UnityObjectToClipPos(v.vertex);
                 o.texcoord = TRANSFORM_TEX(v.texcoord, _MainTex);
                 o.localPos = v.vertex;
                 UNITY_TRANSFER_FOG(o, o.vertex);
@@ -66,7 +64,7 @@ Shader "Custom/Fog"
             {
                 fixed4 col = _Color;
 
-                fixed norm = i.localPos.y * _Radius * 2.0 / _Height;
+                fixed norm = i.localPos.y / _Height;
                 
                 col.a = col.a * (-norm*norm*norm+1);
                 UNITY_APPLY_FOG(i.fogCoord, col);

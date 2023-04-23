@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameQualitySettings:
   - <QualityType>k__BackingField: 0
-    <CarsPer1000SpawnPoints>k__BackingField: 70
-    <NpcsPer1000SpawnPoints>k__BackingField: 70
+    <CarsPer1000SpawnPoints>k__BackingField: 60
+    <NpcsPer1000SpawnPoints>k__BackingField: 60
     <NpcRadius>k__BackingField: 30
     <BackDistance>k__BackingField: 0
     <PhysicsUpdateCount>k__BackingField: 30
@@ -24,6 +24,6 @@ MonoBehaviour:
     <CarsPer1000SpawnPoints>k__BackingField: 100
     <NpcsPer1000SpawnPoints>k__BackingField: 100
     <NpcRadius>k__BackingField: 60
-    <BackDistance>k__BackingField: 60
+    <BackDistance>k__BackingField: 20
     <PhysicsUpdateCount>k__BackingField: 50
     <QualityLevelIndex>k__BackingField: 0

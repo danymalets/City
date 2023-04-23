@@ -1,15 +1,12 @@
 using System.Collections.Generic;
 using Scellecs.Morpeh;
-using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Components.NpcPathes;
-using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.SimulationAreas;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Services;
 using Sources.App.Data;
 using Sources.App.Data.Constants;
 using Sources.App.Data.Points;
-using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.CommonUtils.Libs;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
@@ -18,7 +15,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.NpcPathes
 {
-    public class ActiveSpawnPointsUpdateSystem : DUpdateSystem
+    public class ActiveSpawnPointsUpdateSystem : DIntervalUpdateSystem
     {
         private Filter _pathesFilter;
         private readonly ISimulationSettings _simulationSettings;
@@ -33,7 +30,9 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcPathes
             _pathesFilter = _world.Filter<PathesTag>();
         }
 
-        protected override void OnUpdate(float deltaTime)
+        protected override float Interval => (1f / 30f) * 3;
+
+        protected override void OnIntervalUpdate(float deltaTime)
         {
             foreach (Entity pathEntity in _pathesFilter)
             {
@@ -53,8 +52,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcPathes
                 int centerY = DMath.Div(position.y, _simulationSettings.SimulationQuadWidth);
 
                 int debug = 0;
-                
-                
+
                 for (int x = centerX - Consts.SimulationOneSideQuadCount;
                      x <= centerX + Consts.SimulationOneSideQuadCount; x++)
                 {

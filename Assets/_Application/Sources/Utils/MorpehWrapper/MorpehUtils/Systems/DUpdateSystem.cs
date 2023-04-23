@@ -5,10 +5,6 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Systems
 {
     public abstract class DUpdateSystem : DSystem
     {
-        protected DUpdateSystem()
-        {
-        }
-
         protected override void OnInitFilters()
         {
         }
