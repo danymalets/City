@@ -21,14 +21,14 @@ namespace Sources.Monos.Cars
             _safeBoxCollider = GetComponent<SafeBoxCollider>();
         }
 
-        public void SetupBounds(SafeColliderBase[] colliders)
+        public void SetupBounds(IEnumerable<SafeColliderBase> colliders)
         {
             IEnumerable<Bounds> allBounds = colliders.Select(c => c.Bounds);
 
             Bounds bounds = DBounds.CombineBounds(allBounds);
 
             bounds.min = bounds.min.WithY(0);
-            
+
             _safeBoxCollider.Center = bounds.center;
             _safeBoxCollider.Size = bounds.size;
         }

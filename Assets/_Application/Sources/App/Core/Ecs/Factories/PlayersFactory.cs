@@ -65,8 +65,7 @@ namespace Sources.App.Core.Ecs.Factories
             
             SafeCapsuleCollider capsule = playerPrefab.PlayerBorders.SafeCapsuleCollider;
 
-            bool has = _physics.CheckCapsule(capsule.Start + point.Position, capsule.End + point.Position,
-                capsule.Radius, LayerMasks.CarsAndPlayers);
+            bool has = !CanCreateNpc(point, capsule);
 
             if (has)
             {
@@ -79,6 +78,12 @@ namespace Sources.App.Core.Ecs.Factories
                     point.Targets.GetRandom().FirstPathLine);
                 return true;
             }
+        }
+
+        private bool CanCreateNpc(Point point, SafeCapsuleCollider capsule)
+        {
+            return !_physics.CheckCapsule(capsule.Start + point.Position, capsule.End + point.Position,
+                capsule.Radius, LayerMasks.CarsAndPlayers);
         }
 
         public Entity CreateNpcOnPath(IPlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation, PathLine pathLine)

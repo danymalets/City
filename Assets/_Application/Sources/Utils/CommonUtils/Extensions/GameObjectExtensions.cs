@@ -7,8 +7,7 @@ namespace Sources.Utils.CommonUtils.Extensions
 {
     public static class GameObjectExtensions
     {
-        public static bool HasComponent<T>(this GameObject gameObject)
-            where T : Component =>
+        public static bool HasComponent<T>(this GameObject gameObject) =>
             gameObject.GetComponent<T>() != null;
         
         public static void Enable(this GameObject gameObject) => 

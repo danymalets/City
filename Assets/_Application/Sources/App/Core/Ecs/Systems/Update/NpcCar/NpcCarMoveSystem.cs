@@ -41,8 +41,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 
                 Entity[] entities = _physics.OverlapBox(forwardTrigger.Center, forwardTrigger.Size / 2, 
                         forwardTrigger.Rotation, LayerMasks.CarsAndPlayers)
-                    .Select(c => c.transform.root.gameObject)
-                    .Where(r => r.HasComponent<MonoEntity>())
+                    .Where(r => r.HasComponent<IEntityAccess>())
                     .Select(r => r.GetComponent<IEntityAccess>().Entity)
                     .Where(e => e != carEntity)
                     .ToArray();

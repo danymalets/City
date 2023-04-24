@@ -83,7 +83,7 @@ namespace Sources.Monos.MonoEntities
             foreach (SafeColliderBase collider in _colliders) 
                 collider.Layer = Layers.Car;
 
-            _carBorders.SafeBoxCollider.IsTrigger = true;
+            _carBorders.SafeBoxCollider.IsTrigger = false;
             _carBorders.SafeBoxCollider.Layer = Layers.CarBorders;
         }
 
