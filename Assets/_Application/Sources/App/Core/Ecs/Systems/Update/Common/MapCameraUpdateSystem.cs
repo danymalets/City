@@ -9,12 +9,12 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Common
 {
-    public class MapUpdateSystem : DUpdateSystem
+    public class MapCameraUpdateSystem : DUpdateSystem
     {
         private Filter _userFiler;
         private readonly IMapCamera _mapCamera;
 
-        public MapUpdateSystem()
+        public MapCameraUpdateSystem()
         {
             _mapCamera = DiContainer.Resolve<ILevelContext>().MapCamera;
         }

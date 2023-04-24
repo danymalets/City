@@ -10,19 +10,15 @@ namespace Sources.ProjectServices.BalanceServices
     [CreateAssetMenu(menuName = nameof(Balance) + "/" + nameof(PlayersBalance), fileName = nameof(PlayersBalance))]
     public class PlayersBalance : ScriptableObject
     {
-        [FormerlySerializedAs("_fallImpulse")]
-        [SerializeField]
-        private float _minImpulseForFall = 200;
-
-        [SerializeField]
-        private float _maxRotationSpeed = 45f;
-
+        [field: SerializeField] public float MinImpulseForFall { get; private set; } = 200;
         [field: SerializeField] public float UserMaxSpeed { get; private set; } = 3;
+        [field: SerializeField] public float UserMaxRotationSpeed { get; private set; } = 90;
+        [field: SerializeField] public float UserNavPathRotationSpeed { get; private set; } = 90;
+        [field: SerializeField] public float NpcMaxRotationSpeed { get; private set; } = 90;
+        [field: SerializeField] public float Mass { get; private set; } = 70;
 
         [SerializeField]
         private List<PlayerBalance> _playersBalance;
-
-        [field: SerializeField] public float Mass { get; private set; } = 70;
 
         private void OnValidate()
         {
@@ -30,10 +26,6 @@ namespace Sources.ProjectServices.BalanceServices
                 pb => pb.PlayerType,
                 pb => new PlayerBalance(pb));
         }
-
-        public float MinImpulseForFall => _minImpulseForFall;
-
-        public float MaxRotationSpeed => _maxRotationSpeed;
         
         public PlayerType GetRandomPlayerType() =>
             _playersBalance.GetRandomWithWeights(pb => pb.Weight).PlayerType;

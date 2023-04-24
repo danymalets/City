@@ -33,7 +33,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
             {
                 ref RotationSpeed rotationSpeed = ref npcEntity.Get<RotationSpeed>();
             
-                rotationSpeed.Value = _playerBalance.MaxRotationSpeed;
+                rotationSpeed.Value = _playerBalance.NpcMaxRotationSpeed;
             }
         }
     }

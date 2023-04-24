@@ -1,6 +1,7 @@
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Car;
 using Sources.App.Core.Ecs.Components.Player;
+using Sources.App.Core.Ecs.Components.Tags;
 using Sources.Utils.CommonUtils.Libs;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
@@ -8,13 +9,13 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Player
 {
-    public class UserCarMoveSystem : DUpdateSystem
+    public class UserCarInputHandlerSystem : DUpdateSystem
     {
         private Filter _filter;
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<UserCarInput, PlayerInCar>();
+            _filter = _world.Filter<UserTag, PlayerInCar>();
         }
 
         protected override void OnUpdate(float deltaTime)
@@ -24,10 +25,13 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
                 ref UserCarInput userCarInput = ref playerEntity.Get<UserCarInput>();
                 
                 Entity carEntity = playerEntity.Get<PlayerInCar>().Car;
-
+                
                 float signedSpeed = carEntity.GetAccess<IRigidbody>().SignedSpeed;
-
-                carEntity.Set(new ChangeSteeringAngleRequest { AngleCoefficient = userCarInput.Horizontal });
+                
+                ref CarSteeringAngleCoefficient carSteeringAngleCoefficient = 
+                    ref playerEntity.Get<CarSteeringAngleCoefficient>();
+                
+                carSteeringAngleCoefficient.AngleCoefficient = userCarInput.Horizontal;
 
                 float motorCoefficient = userCarInput.Vertical;
 

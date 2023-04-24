@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94f496c4fd39436f9a21465383619df1, type: 3}
   m_Name: PlayersBalance
   m_EditorClassIdentifier: 
-  _minImpulseForFall: 200
-  _maxRotationSpeed: 90
+  <MinImpulseForFall>k__BackingField: 200
   <UserMaxSpeed>k__BackingField: 3.5
+  <UserMaxRotationSpeed>k__BackingField: 90
+  <UserNavPathRotationSpeed>k__BackingField: 90
+  <NpcMaxRotationSpeed>k__BackingField: 90
+  <Mass>k__BackingField: 50
   _playersBalance:
   - _playerType: 0
     _weight: 100
@@ -54,4 +57,3 @@ MonoBehaviour:
     _weight: 100
   - _playerType: 18
     _weight: 100
-  <Mass>k__BackingField: 70

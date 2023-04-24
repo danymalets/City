@@ -10,12 +10,12 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.User
 {
-    public class UserMoveSystem : DUpdateSystem
+    public class UserTargetMoveSpeedByInputSystem : DUpdateSystem
     {
         private Filter _filter;
         private readonly PlayersBalance _playersBalance;
 
-        public UserMoveSystem()
+        public UserTargetMoveSpeedByInputSystem()
         {
             _playersBalance = DiContainer.Resolve<Balance>().PlayersBalance;
         }

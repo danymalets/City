@@ -9,12 +9,12 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.User
 {
-    public class UserCarInputSystem : DUpdateSystem
+    public class UserWithCarInputReceiverSystem : DUpdateSystem
     {
         private Filter _filter;
         private readonly ICarInputService _carInputService;
 
-        public UserCarInputSystem()
+        public UserWithCarInputReceiverSystem()
         {
             _carInputService = DiContainer.Resolve<ICarInputService>();
         }

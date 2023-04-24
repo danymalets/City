@@ -52,6 +52,7 @@ namespace Sources.App.Core.Ecs.Factories
             CreatePlayer(playerPrefab, position, rotation)
                 .Add<UserTag>()
                 .Add<UserCarInput>()
+                .Add<CarSteeringAngleCoefficient>()
                 .Add<UserPlayerInput>();
 
         public Entity CreateNpc(IPlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation) =>
@@ -127,7 +128,7 @@ namespace Sources.App.Core.Ecs.Factories
                 .SetupAspect<SwitchableRigidbodyAspect>(pa => pa.EnablePhysicBody())
                 .Set(new PlayerTargetAngle { Value = rotation.eulerAngles.y })
                 .Set(new PlayerSmoothAngle { Value = rotation.eulerAngles.y })
-                .Set(new RotationSpeed { Value = 45f })
+                .Add<RotationSpeed>()
                 .Add<PlayerTargetSpeed>()
                 .Add<PlayerSmoothSpeed>()
                 .Add<PlayerTag>();
