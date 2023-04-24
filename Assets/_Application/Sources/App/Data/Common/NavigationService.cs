@@ -11,20 +11,25 @@ namespace Sources.App.Data.Common
 
         public void Initialize()
         {
-            _npcAgentId = GetNavMeshAgentID("Player");
+            _npcAgentId = GetNavMeshAgentID("Car");
+            Debug.Log($"_npcAgentId{_npcAgentId} ");
         }
 
-        public bool TryGetPath(Vector3 source, Vector3 target, out Vector3[] path)
+        public bool TryGetPath(Vector3 source, Vector3 target, out NavMeshPath path)
         {
             NavMeshPath navPath = new();
-            if (NavMesh.CalculatePath(source, target,NavMesh.AllAreas, navPath))
+            if (NavMesh.CalculatePath(source, target, new NavMeshQueryFilter()
+                {
+                    agentTypeID = _npcAgentId,
+                    areaMask = NavMesh.AllAreas
+                }, navPath))
             {
-                path = navPath.corners;
+                path = navPath;
                 return true;
             }
             else
             {
-                path = null;
+                path = default;
                 return false;
             }
         }

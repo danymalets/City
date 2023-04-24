@@ -14,5 +14,6 @@ namespace Sources.App.Data.Common
         IPathSystem NpcPathSystem { get; }
         IFog Fog { get; }
         IIdleCarsSystem IdleCarsSystem { get; }
+        IMapCamera MapCamera { get; }
     }
 }

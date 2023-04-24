@@ -10,6 +10,8 @@ using Sources.Utils.MorpehWrapper;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 namespace Sources.Monos.MonoEntities
 {
@@ -42,6 +44,9 @@ namespace Sources.Monos.MonoEntities
         [SerializeField]
         private SafeMeshRenderer[] _meshRenderers;
 
+        [SerializeField]
+        private CarObstacles _carObstacles;
+
         public IEnableableGameObject EnableableGameObject => _enableableGameObject;
         public IRigidbodySwitcher RigidbodySwitcher => _rigidbodySwitcher;
         public ITransform Transform => _transform;
@@ -69,6 +74,7 @@ namespace Sources.Monos.MonoEntities
             _enterPoints = GetComponentInChildren<CarEnterPoints>();
             _carBorders = GetComponentInChildren<CarBorders>();
             _meshRenderers = GetComponentsInChildren<SafeMeshRenderer>();
+            _carObstacles = GetComponentInChildren<CarObstacles>();
             _colliders = GetComponentsInChildren<SafeColliderBase>()
                 .ExceptOne(_carBorders.SafeBoxCollider).ToArray();
             
@@ -84,6 +90,10 @@ namespace Sources.Monos.MonoEntities
         [Button("Set auto borders (do not use multi-click on this button)", ButtonSizes.Large)]
         private void SetAutoBorders() => 
             _carBorders.SetupBounds(_colliders);
+        
+        [Button("Set auto obstacles (do not use multi-click on this button)", ButtonSizes.Large)]
+        private void SetAutoObstacles() => 
+            _carObstacles.SetupBounds(_colliders);
 
         public Vector3 CenterRelatedRootPoint => _carBorders.SafeBoxCollider.BoxColliderData.Center - RootOffset;
         public Vector3 HalfExtents => _carBorders.SafeBoxCollider.BoxColliderData.HalfExtents;

@@ -109,6 +109,8 @@ namespace Sources.App.Core.Ecs
 
             _world.AddUpdateSystem<CameraFollowPlayerRotationSystem>();
             _world.AddUpdateSystem<CameraFollowPlayerPositionSystem>();
+            
+            _world.AddUpdateSystem<MapUpdateSystem>();
 
 #if UNITY_EDITOR
             _world.AddUpdateSystem<PathesGizmosSystem>();

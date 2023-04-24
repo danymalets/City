@@ -24,6 +24,6 @@ MonoBehaviour:
     <CarsPer1000SpawnPoints>k__BackingField: 100
     <NpcsPer1000SpawnPoints>k__BackingField: 100
     <NpcRadius>k__BackingField: 60
-    <BackDistance>k__BackingField: 20
+    <BackDistance>k__BackingField: 15
     <PhysicsUpdateCount>k__BackingField: 50
     <QualityLevelIndex>k__BackingField: 0

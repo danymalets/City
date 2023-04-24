@@ -4,6 +4,7 @@ using Sources.CommonServices.GizmosServices;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.Di;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Sources.App.Data.Common
 {
@@ -14,7 +15,7 @@ namespace Sources.App.Data.Common
 
         [SerializeField]
         private Transform _target;
-        
+
         private GizmosContext _gizmosContext;
 
         private IEnumerator Start()
@@ -22,22 +23,37 @@ namespace Sources.App.Data.Common
             yield return new WaitForSeconds(1);
             _gizmosContext = DiContainer.Resolve<IGizmosService>().CreateContext();
 
-            this.RunEachSeconds(0.5f, () =>
+            NavigationService navigationService = new();
+            navigationService.Initialize();
+
+            this.RunEachSeconds(3f, () =>
             {
-                NavigationService navigationService = new ();
-                navigationService.Initialize();
-                _gizmosContext.ClearAll();
                 if (navigationService.TryGetPath(_source.position, _target.position,
-                        out Vector3[] path))
+                        out NavMeshPath navPath))
                 {
-                    for (int i = 0; i < path.Length-1; i++)
+                    _gizmosContext.ClearAll();
+
+                    var path = navPath.corners;
+
+                    Color color = Color.green;
+
+                    if (navPath.status == NavMeshPathStatus.PathInvalid)
+                        color = Color.red;
+                    else if (navPath.status == NavMeshPathStatus.PathPartial)
                     {
-                        _gizmosContext.DrawLine(path[i], path[i+1], Color.red);
+                        color = Color.blue;
+                    }
+
+                    Debug.Log($"path {path.Length} {navPath.status}");
+
+                    for (int i = 0; i < path.Length - 1; i++)
+                    {
+                        _gizmosContext.DrawLine(path[i], path[i + 1], color);
                     }
                 }
                 else
                 {
-                    Debug.Log($"not found");
+                    Debug.Log($"not ok");
                 }
             }, false);
         }

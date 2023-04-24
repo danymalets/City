@@ -9,6 +9,7 @@ using Sources.Monos.MonoEntities;
 using Sources.Monos.Points;
 using Sources.Monos.RoadSystem;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Sources.Monos.Common
 {
@@ -32,12 +33,16 @@ namespace Sources.Monos.Common
         [SerializeField]
         private IdleCarsSystem _idleCarsSystem;
 
-        public ISpawnPoint UserSpawnPoint => _userSpawnPoint;
+        [FormerlySerializedAs("_map")]
+        [SerializeField]
+        private MapCamera _mapCamera;
 
+        public ISpawnPoint UserSpawnPoint => _userSpawnPoint;
         public ICameraMonoEntity CameraMonoEntity => _cameraMonoEntity;
         public IPathSystem CarsPathSystem => _carsPathSystem;
         public IPathSystem NpcPathSystem => _npcPathSystem;
         public IFog Fog => _fog;
         public IIdleCarsSystem IdleCarsSystem => _idleCarsSystem;
+        public IMapCamera MapCamera => _mapCamera;
     }
 }
