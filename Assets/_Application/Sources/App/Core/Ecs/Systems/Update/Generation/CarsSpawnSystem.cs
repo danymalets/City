@@ -19,12 +19,13 @@ namespace Sources.App.Core.Ecs.Systems.Update.Generation
 {
     public class CarsSpawnSystem : DUpdateSystem
     {
-        private Filter _pathesFilter;
-        private Filter _npcWithCarsFilter;
         private readonly ICarsFactory _carsFactory;
         private readonly IPlayersFactory _playersFactory;
         private readonly ISimulationSettings _simulationSettings;
+        
+        private Filter _pathesFilter;
         private Filter _worldStatusFilter;
+        private Filter _npcWithCarsFilter;
 
         public CarsSpawnSystem()
         {
