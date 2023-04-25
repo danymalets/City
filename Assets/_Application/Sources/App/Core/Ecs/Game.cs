@@ -126,14 +126,13 @@ namespace Sources.App.Core.Ecs
             _world.AddFixedSystem<CarForwardColliderSystem>();
             
             _world.AddFixedSystem<NpcForwardColliderSystem>();
-            _world.AddFixedSystem<NpcMoveSystem>();
+            _world.AddFixedSystem<NpcTargetSpeedSystem>();
             
             // car
             _world.AddFixedSystem<NpcCarPathSteeringAngleSystem>();
             _world.AddFixedSystem<NpcCarMoveSystem>();
             
-            // paths
-            
+            // pathes
             _world.AddFixedSystem<NpcCarBreakOrMoveChoiceSystem>();
             _world.AddFixedSystem<NpcBreakOrMoveChoiceSystem>();
 
@@ -142,7 +141,9 @@ namespace Sources.App.Core.Ecs
             
             // npc apply
             _world.AddFixedSystem<PlayerSmoothSpeedSystem>();
+            _world.AddFixedSystem<PlayerMoveAngleCalculateSystem>();
             _world.AddFixedSystem<PlayerApplySpeedSystem>();
+            _world.AddFixedSystem<PlayerAnimatorSpeedSystem>();
 
             // car apply
             _world.AddFixedSystem<CarSmoothSteeringAngleSystem>();

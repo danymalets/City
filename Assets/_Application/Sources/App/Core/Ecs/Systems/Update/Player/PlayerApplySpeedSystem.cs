@@ -23,10 +23,8 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
         {
             foreach (Entity npcEntity in _filter)
             {
-                float speed = npcEntity.Get<PlayerSmoothSpeed>().Value;
                 float targetSpeed = npcEntity.Get<PlayerTargetSpeed>().Value;
-                float angle = npcEntity.Get<PlayerSmoothAngle>().Value;
-                IPlayerAnimator playerAnimator = npcEntity.GetAccess<IPlayerAnimator>();
+                float angle = npcEntity.Get<PlayerMoveAngle>().Value;
 
                 IRigidbody physicBody = npcEntity.GetAccess<IRigidbody>();
                 
@@ -34,8 +32,6 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
                 
                 physicBody.Velocity = (Quaternion.Euler(0,angle,0) * Vector3.forward * targetSpeed)
                     .WithY(ySpeed);
-          
-                playerAnimator.SetMoveSpeed(speed);
             }
         }
     }

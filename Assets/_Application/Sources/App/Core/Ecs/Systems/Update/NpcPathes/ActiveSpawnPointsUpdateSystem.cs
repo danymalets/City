@@ -30,7 +30,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcPathes
             _pathesFilter = _world.Filter<PathesTag>();
         }
 
-        protected override float Interval => (1f / 30f) * 3;
+        protected override float ExecuteInterval => (1f / 30f) * 3;
 
         protected override void OnIntervalUpdate(float deltaTime)
         {

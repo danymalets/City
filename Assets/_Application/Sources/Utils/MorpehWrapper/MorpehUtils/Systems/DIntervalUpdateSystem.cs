@@ -6,7 +6,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Systems
     public abstract class DIntervalUpdateSystem : DUpdateSystem
     {
         private float _remainingTime = 0;
-        protected abstract float Interval { get; }
+        protected abstract float ExecuteInterval { get; }
         
         protected sealed override void OnUpdate(float deltaTime)
         {
@@ -15,7 +15,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Systems
             if (DMath.LessOrEquals(_remainingTime, 0))
             {
                 OnIntervalUpdate(_remainingTime);
-                _remainingTime = Interval;
+                _remainingTime = ExecuteInterval;
             }
         }
 

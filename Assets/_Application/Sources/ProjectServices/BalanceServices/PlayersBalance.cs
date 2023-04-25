@@ -16,6 +16,8 @@ namespace Sources.ProjectServices.BalanceServices
         [field: SerializeField] public float UserNavPathRotationSpeed { get; private set; } = 90;
         [field: SerializeField] public float NpcMaxRotationSpeed { get; private set; } = 90;
         [field: SerializeField] public float Mass { get; private set; } = 70;
+        [field: SerializeField] public float Acceleration { get; private set; } = 6;
+        [field: SerializeField] public float AllowableMoveAngle { get; private set; } = 30;
 
         [SerializeField]
         private List<PlayerBalance> _playersBalance;

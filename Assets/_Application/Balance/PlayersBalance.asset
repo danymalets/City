@@ -18,6 +18,8 @@ MonoBehaviour:
   <UserNavPathRotationSpeed>k__BackingField: 90
   <NpcMaxRotationSpeed>k__BackingField: 90
   <Mass>k__BackingField: 50
+  <Acceleration>k__BackingField: 6
+  <AllowableMoveAngle>k__BackingField: 0
   _playersBalance:
   - _playerType: 0
     _weight: 100

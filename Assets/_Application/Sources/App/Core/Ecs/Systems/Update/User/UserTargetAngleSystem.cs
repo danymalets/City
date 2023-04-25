@@ -32,8 +32,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
             UserPlayerInput userPlayerInput = userEntity.Get<UserPlayerInput>();
             ITransform transform = userEntity.GetAccess<ITransform>();
             ref PlayerTargetAngle playerTargetAngle = ref userEntity.Get<PlayerTargetAngle>();
-
-
+            
             if (userPlayerInput.MoveInput != Vector2.zero)
             {
                 Vector3 input = new Vector3(userPlayerInput.MoveInput.x, 0, userPlayerInput.MoveInput.y);

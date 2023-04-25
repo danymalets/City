@@ -128,6 +128,7 @@ namespace Sources.App.Core.Ecs.Factories
                 .SetupAspect<SwitchableRigidbodyAspect>(pa => pa.EnablePhysicBody())
                 .Set(new PlayerTargetAngle { Value = rotation.eulerAngles.y })
                 .Set(new PlayerSmoothAngle { Value = rotation.eulerAngles.y })
+                .Set(new PlayerMoveAngle { Value = rotation.eulerAngles.y })
                 .Add<RotationSpeed>()
                 .Add<PlayerTargetSpeed>()
                 .Add<PlayerSmoothSpeed>()
