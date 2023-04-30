@@ -17,9 +17,9 @@ namespace Sources.App.Core.Ecs.Aspects
         public readonly bool HasPhysicBody() =>
             Entity.HasAccess<IRigidbody>();
 
-        public readonly SafeRigidbody EnablePhysicBody()
+        public readonly SafeRigidbody EnableRigidbody()
         {
-            SafeRigidbody safeRigidbody = RigidbodySwitcher.EnableRigidbody();
+            SafeRigidbody safeRigidbody = RigidbodySwitcher.EnableRigidbodyInternal();
             RigidbodySettings rigidbodySettings = RigidbodySettings;
             safeRigidbody.Mass = rigidbodySettings.Mass;
             safeRigidbody.Constraints = rigidbodySettings.RigidbodyConstraints;
@@ -35,11 +35,14 @@ namespace Sources.App.Core.Ecs.Aspects
             return safeRigidbody;
         }
 
-        public readonly void DisablePhysicBody()
+        public readonly void DisableRigidbody()
         {
             if (Entity.TryGetAccess(out IWheelsSystem wheelsSystem))
+            {
                 wheelsSystem.DisableSystem();
-            RigidbodySwitcher.DisableRigidbody();
+            }
+
+            RigidbodySwitcher.DisableRigidbodyInternal();
             Entity.RemoveAccess<IRigidbody>();
         }
     }

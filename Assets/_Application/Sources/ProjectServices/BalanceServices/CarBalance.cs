@@ -37,8 +37,8 @@ namespace Sources.ProjectServices.BalanceServices
             {
                 DValidate.OptimizeEnumsData(_carColorBalance,
                     cct => cct.CarColorColorType,
-                    cct => new CarColorBalance(cct)
-                    /*,new[] {  }*/);
+                    cct => new CarColorBalance(cct),
+                new []{CarColorType.None});
             }
             else
             {

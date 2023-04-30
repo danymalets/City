@@ -11,16 +11,14 @@ namespace Sources.ProjectServices.BalanceServices
     {
         [SerializeField]
         private List<CarBalance> _carBalance = new();
-
-        [SerializeField]
-        private float _maxEnterCarDistance = 2f;
-
-        public float MaxEnterCarDistance => _maxEnterCarDistance;
-
-        [field: SerializeField] public float MaxSpeed { get; set; } = 5;
-        [field: SerializeField] public float MaxMotorTorque { get; set; } = 350;
-        [field: SerializeField] public float MaxSteeringAngle { get; set; } = 40;
-        [field: SerializeField] public float Mass { get; set; } = 400;
+        
+        [field: SerializeField] public float MaxEnterCarDistance { get; private set; } = 1f;
+        [field: SerializeField] public float MaxSpeed { get; private set; } = 5;
+        [field: SerializeField] public float MaxMotorTorque { get; private set; } = 350;
+        [field: SerializeField] public float MaxSteeringAngle { get; private set; } = 40;
+        [field: SerializeField] public float Mass { get; private set; } = 400;
+        [field: SerializeField] public float EnableIdleCarRigidBodyDistance { get; private set; } = 10;
+        [field: SerializeField] public float DisableIdleCarRigidBodyDistance { get; private set; } = 15;
 
         private void OnValidate()
         {

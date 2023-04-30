@@ -67,7 +67,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Generation
             
             foreach (Point point in spawnPoints)
             {
-                if (_carsFactory.TryCreateRandomCarOnPath(point, out Entity car))
+                if (_carsFactory.TryCreateRandomCarOnPath(point, false, out Entity car))
                 {
                     car.Set(new CarMaxSpeed { Value = 3f });
 

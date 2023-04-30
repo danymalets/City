@@ -7,7 +7,8 @@
         "Sources.Monos",
         "Sources.Utils.CommonUtils",
         "Sources.Utils.MorpehWrapper",
-        "Sources.Utils.Di"
+        "Sources.Utils.Di",
+        "Sources.CommonServices.SceneLoaderServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

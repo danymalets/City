@@ -6,20 +6,9 @@ namespace Sources.ProjectServices.AssetsServices
     [CreateAssetMenu(menuName = nameof(Assets) + "/" + nameof(Assets), fileName = nameof(Assets))]
     public class Assets : ScriptableObject, IService
     {
-        [SerializeField]
-        private string _citySceneNameName;
-
-        [SerializeField]
-        private CarsAssets _carsAssets;
-
-        [SerializeField]
-        private PlayersAssets _playersAssets;
-
-        public string CitySceneName => _citySceneNameName;
-
-        public CarsAssets CarsAssets => _carsAssets;
-
-        public PlayersAssets PlayersAssets => _playersAssets;
+        [field: SerializeField] public string CitySceneName { get; private set; } = "City";
+        [field: SerializeField] public CarsAssets CarsAssets { get; private set; }
+        [field: SerializeField] public PlayersAssets PlayersAssets  { get; private set; }
 
         [field: SerializeField] public PhysicsAssets PhysicsAssets { get; private set; }
     }

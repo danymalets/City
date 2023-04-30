@@ -1,19 +1,25 @@
+#if UNITY_EDITOR
+
+using Sources.Utils.CommonUtils.EditorTools;
 using UnityEngine;
 
 namespace Sources.CommonServices.PoolServices
 {
-    public class EditorInstantiator
+    public static class EditorInstantiator
     {
-        public static T Instantiate<T>(T prefab, Vector3 position, Quaternion rotation, Transform parent)
+        public static TMono InstantiateAsPrefab<T, TMono>(T prefab, Transform parent)
             where T : class, IRespawnable
+            where TMono : MonoBehaviour, IRespawnable
         {
-            return GameObject.Instantiate(prefab.RespawnableBehaviour, position, rotation, parent) as T;
+            return DEditor.InstantiatePrefab(prefab.RespawnableBehaviour, parent) as TMono;
         }
 
-        public static void Destroy<T>(T obj)
+        public static void DestroyImmediate<T>(T obj)
             where T : class, IRespawnable
         {
-            GameObject.Destroy(obj.RespawnableBehaviour);
+            GameObject.DestroyImmediate(obj.RespawnableBehaviour);
         }
     }
 }
+
+#endif

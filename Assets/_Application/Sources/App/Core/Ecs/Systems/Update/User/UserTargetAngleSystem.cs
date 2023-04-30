@@ -44,8 +44,6 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
                 {
                     inputAngle = 179f;
                 }
-
-                Debug.Log($"target angle {inputAngle} {transform.Rotation.eulerAngles.y + inputAngle}");
                 
                 playerTargetAngle.Value = transform.Rotation.eulerAngles.y + inputAngle;
             }

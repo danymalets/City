@@ -29,7 +29,7 @@ namespace Sources.App.Core.Ecs.Factories
         private readonly PlayersBalance _playersBalance;
         private readonly IPhysicsService _physics;
 
-        public PlayersFactory() : base()
+        public PlayersFactory() 
         {
             _physics = DiContainer.Resolve<IPhysicsService>();
             _playersBalance = DiContainer.Resolve<Balance>().PlayersBalance;
@@ -65,19 +65,17 @@ namespace Sources.App.Core.Ecs.Factories
             IPlayerMonoEntity playerPrefab = GetRandomPlayerPrefab();
             
             SafeCapsuleCollider capsule = playerPrefab.PlayerBorders.SafeCapsuleCollider;
-
-            bool has = !CanCreateNpc(point, capsule);
-
-            if (has)
-            {
-                createdEntity = default;
-                return false;
-            }
-            else
+            
+            if (CanCreateNpc(point, capsule))
             {
                 createdEntity = CreateNpcOnPath(playerPrefab, point.Position, point.Rotation,
                     point.Targets.GetRandom().FirstPathLine);
                 return true;
+            }
+            else
+            {
+                createdEntity = default;
+                return false;
             }
         }
 
@@ -89,9 +87,8 @@ namespace Sources.App.Core.Ecs.Factories
 
         public Entity CreateNpcOnPath(IPlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation, PathLine pathLine)
         {
-            Entity npc = CreateNpc(playerPrefab, position, rotation);
-            
-            npc.GetAspect<NpcStatusAspect>().SetPath(pathLine);
+            Entity npc = CreateNpc(playerPrefab, position, rotation)
+                .SetupAspect<NpcStatusAspect>(nsa => nsa.SetPath(pathLine));
             
             return npc;
         }
@@ -100,9 +97,8 @@ namespace Sources.App.Core.Ecs.Factories
         {
             Entity npc = CreateNpc(playerPrefab, Vector3.zero, Quaternion.identity)
                 .SetupAccessible<IEnableableGameObject>(g => g.Disable())
-                .Set(new PlayerInCar { Car = carEntity, Place = 0 });
-            
-            npc.GetAspect<NpcStatusAspect>().SetPath(pathLine);
+                .Set(new PlayerInCar { Car = carEntity, Place = 0 })
+                .SetupAspect<NpcStatusAspect>(nsa => nsa.SetPath(pathLine));
 
             carEntity.Get<CarPassengers>().TakePlace(0, npc);
             
@@ -125,7 +121,7 @@ namespace Sources.App.Core.Ecs.Factories
                 .SetAccess<IPlayerAnimator>(new PlayerAnimator(playerMonoEntity.Animator))
                 .SetAccess<IPlayerBorders>(playerMonoEntity.PlayerBorders)
                 .SetupAccessible<IPlayerAnimator>(pa => pa.Setup())
-                .SetupAspect<SwitchableRigidbodyAspect>(pa => pa.EnablePhysicBody())
+                .SetupAspect<SwitchableRigidbodyAspect>(pa => pa.EnableRigidbody())
                 .Set(new PlayerTargetAngle { Value = rotation.eulerAngles.y })
                 .Set(new PlayerSmoothAngle { Value = rotation.eulerAngles.y })
                 .Set(new PlayerMoveAngle { Value = rotation.eulerAngles.y })

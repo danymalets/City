@@ -20,7 +20,7 @@ namespace Sources.App.Core.Ecs.Despawners
             SwitchableRigidbodyAspect switchableRigidbodyAspect = playerEntity.GetAspect<SwitchableRigidbodyAspect>();
             
             if (switchableRigidbodyAspect.HasPhysicBody())
-                switchableRigidbodyAspect.DisablePhysicBody();
+                switchableRigidbodyAspect.DisableRigidbody();
             
             playerEntity.DespawnMono();
             _poolDespawner.Despawn(playerEntity.GetMonoEntity());

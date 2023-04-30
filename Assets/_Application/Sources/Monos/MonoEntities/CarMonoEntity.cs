@@ -87,6 +87,18 @@ namespace Sources.Monos.MonoEntities
             _carBorders.SafeBoxCollider.Layer = Layers.CarBorders;
         }
 
+        [Button("Debug", ButtonSizes.Large)]
+        private void Go()
+        {
+            foreach (SafeMeshRenderer mr in _meshRenderers)
+            {
+                MaterialPropertyBlock materialPropertyBlock = new MaterialPropertyBlock();
+                materialPropertyBlock.SetInt(ShaderProperties.CarTargetIndex, (int)CarColorType.Brown);
+                mr.SetPropertyBlock(materialPropertyBlock);
+            }
+        }
+
+
         [Button("Set auto borders (do not use multi-click on this button)", ButtonSizes.Large)]
         private void SetAutoBorders() => 
             _carBorders.SetupBounds(_colliders);

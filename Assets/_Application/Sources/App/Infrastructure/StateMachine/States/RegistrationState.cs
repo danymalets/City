@@ -37,7 +37,7 @@ namespace Sources.App.Infrastructure.StateMachine.States
         {
             _diBuilder = DiBuilder.Create();
             
-            IGameObjectService gameObjectService =
+            IGameObjectService gameObjectService = 
                 _diBuilder.Register<GameObjectService, IGameObjectService>();
 
             _diBuilder.Register<PhysicsService, IPhysicsService>();

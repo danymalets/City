@@ -11,7 +11,7 @@ namespace Sources.App.Core.Ecs.Despawners
             SwitchableRigidbodyAspect switchableRigidbodyAspect = carEntity.GetAspect<SwitchableRigidbodyAspect>();
 
             if (switchableRigidbodyAspect.HasPhysicBody())
-                switchableRigidbodyAspect.DisablePhysicBody();
+                switchableRigidbodyAspect.DisableRigidbody();
             
             carEntity.DespawnMono();
             _poolDespawner.Despawn(carEntity.GetMonoEntity());

@@ -10,7 +10,7 @@ namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
         private Rigidbody _rigidbody;
         private SafeRigidbody _safeRigidbody;
 
-        public SafeRigidbody EnableRigidbody()
+        public SafeRigidbody EnableRigidbodyInternal()
         {
             DAssert.IsTrue(_rigidbody == null);
             DAssert.IsTrue(_safeRigidbody == null);
@@ -20,7 +20,7 @@ namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
             return _safeRigidbody = gameObject.AddComponent<SafeRigidbody>();
         }
 
-        public void DisableRigidbody()
+        public void DisableRigidbodyInternal()
         {
             DAssert.IsTrue(_rigidbody != null);
             DAssert.IsTrue(_safeRigidbody != null);

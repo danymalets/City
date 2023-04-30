@@ -1,0 +1,55 @@
+using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Aspects;
+using Sources.App.Core.Ecs.Components.Npc;
+using Sources.App.Core.Ecs.Components.Tags;
+using Sources.ProjectServices.BalanceServices;
+using Sources.Utils.CommonUtils.Libs;
+using Sources.Utils.Di;
+using Sources.Utils.MorpehWrapper;
+using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
+using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
+using UnityEngine;
+
+namespace Sources.App.Core.Ecs.Systems.Update.Car
+{
+    public class IdleCarDisableRigidbodySystem : DUpdateSystem
+    {
+        private readonly CarsBalance _carsBalance;
+
+        private Filter _carsFilter;
+        private Filter _userFilter;
+
+        public IdleCarDisableRigidbodySystem()
+        {
+            _carsBalance = DiContainer.Resolve<Balance>().CarsBalance;
+        }
+
+        protected override void OnInitFilters()
+        {
+            _userFilter = _world.Filter<UserTag>();
+            _carsFilter = _world.Filter<CarTag, Idle, AccessTo<IRigidbody>>();
+        }
+
+        protected override void OnUpdate(float fixedDeltaTime)
+        {
+            Vector3 userPosition = _userFilter.GetSingleton()
+                .GetAspect<PlayerPointAspect>().GetPosition();
+
+            float maxSqrDistance = DMath.Sqr(_carsBalance.DisableIdleCarRigidBodyDistance);
+
+            foreach (Entity carEntity in _carsFilter)
+            {
+                ITransform transform = carEntity.GetAccess<ITransform>();
+
+                if (DVector3.SqrDistance(userPosition, transform.Position) > maxSqrDistance)
+                {
+                    Debug.Log($"idle disable");
+                    
+                    SwitchableRigidbodyAspect rigidbodySwitcher = carEntity.GetAspect<SwitchableRigidbodyAspect>();
+                    rigidbodySwitcher.DisableRigidbody();
+                }
+            }
+        }
+    }
+}

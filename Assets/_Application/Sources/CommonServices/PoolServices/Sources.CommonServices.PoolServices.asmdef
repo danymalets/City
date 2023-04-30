@@ -2,7 +2,8 @@
     "name": "Sources.CommonServices.PoolServices",
     "rootNamespace": "",
     "references": [
-        "Sources.Utils.Di"
+        "Sources.Utils.Di",
+        "Sources.Utils.CommonUtils"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

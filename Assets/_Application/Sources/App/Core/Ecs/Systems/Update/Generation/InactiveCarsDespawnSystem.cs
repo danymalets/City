@@ -1,6 +1,7 @@
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Components.Car;
+using Sources.App.Core.Ecs.Components.Npc;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.SimulationAreas;
 using Sources.App.Core.Ecs.Components.Tags;
@@ -30,7 +31,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Generation
 
         protected override void OnInitFilters()
         {
-            _carFilter = _world.Filter<CarTag>();
+            _carFilter = _world.Filter<CarTag>().Without<AlwaysActive>();
             _carSimulationAreaFilter = _world.Filter<CarsSimulationAreaTag>();
         }
 

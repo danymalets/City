@@ -5,6 +5,6 @@ namespace Sources.App.Data.Pathes
 {
     public interface IIdleCarsSystem
     {
-        IEnumerable<IIdleCarSpawnPoint> SpawnPoints { get; }
+        IEnumerable<ICarSpawnPoint> SpawnPoints { get; }
     }
 }

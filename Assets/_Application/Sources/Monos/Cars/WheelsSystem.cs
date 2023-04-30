@@ -27,8 +27,8 @@ namespace Sources.Monos.Cars
         {
             foreach (AxleInfo axleInfo in _axleInfos)
             {
-                axleInfo.LeftWheelCollider.gameObject.SetActive(enabled);
-                axleInfo.RightWheelCollider.gameObject.SetActive(enabled);
+                axleInfo.LeftWheelCollider.enabled = enabled;
+                axleInfo.RightWheelCollider.enabled = enabled;
             }
         }
     }

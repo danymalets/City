@@ -2,6 +2,7 @@ namespace Sources.App.Data.Cars
 {
     public enum CarColorType
     {
+        None = 0,
         Brown = 32,
         Blue = 41,
         LightGrey = 34,

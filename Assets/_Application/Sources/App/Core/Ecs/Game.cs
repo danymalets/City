@@ -112,7 +112,6 @@ namespace Sources.App.Core.Ecs
             _world.AddFixedSystem<IdleCarsSpawnSystem>();
 
             // npc
-            
             _world.AddFixedSystem<NpcPathEndCheckSystem>();
             _world.AddFixedSystem<NpcCarPathEndCheckSystem>();
 
@@ -128,6 +127,10 @@ namespace Sources.App.Core.Ecs
             _world.AddFixedSystem<NpcForwardColliderSystem>();
             _world.AddFixedSystem<NpcTargetSpeedSystem>();
             
+            // idle car
+            _world.AddFixedSystem<IdleCarEnableRigidbodySystem>();
+            _world.AddFixedSystem<IdleCarDisableRigidbodySystem>();
+
             // car
             _world.AddFixedSystem<NpcCarPathSteeringAngleSystem>();
             _world.AddFixedSystem<NpcCarMoveSystem>();

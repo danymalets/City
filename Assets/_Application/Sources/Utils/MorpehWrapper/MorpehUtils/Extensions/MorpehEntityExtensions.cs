@@ -176,9 +176,25 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Extensions
             return entity;
         }
         
-        public static Entity SetupAccessibleIf<TAccessible>(this Entity entity, Func<bool> if_func, Action<TAccessible> accessValue) 
+        public static Entity AddIf<TComponent>(this Entity entity, Func<bool> ifFunc) 
+            where TComponent : struct, IComponent
         {
-            if (if_func())
+            if (ifFunc())
+                entity.Add<TComponent>();
+            return entity;
+        }
+        
+        public static Entity SetupAspectIf<TAspect>(this Entity entity, Func<bool> ifFunc, Action<TAspect> accessValue) 
+            where TAspect : struct, IDAspectBase
+        {
+            if (ifFunc())
+                accessValue(entity.GetAspect<TAspect>());
+            return entity;
+        }
+        
+        public static Entity SetupAccessibleIf<TAccessible>(this Entity entity, Func<bool> ifFunc, Action<TAccessible> accessValue) 
+        {
+            if (ifFunc())
                 entity.SetupAccessible(accessValue);
             return entity;
         }
