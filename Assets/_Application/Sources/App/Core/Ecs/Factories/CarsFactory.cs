@@ -4,7 +4,6 @@ using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Components.Car;
 using Sources.App.Core.Ecs.Components.Npc;
 using Sources.App.Core.Ecs.Components.Tags;
-using Sources.App.Core.GameObjects.Players.Ragdolls;
 using Sources.App.Data.Cars;
 using Sources.App.Data.Constants;
 using Sources.App.Data.MonoEntities;
