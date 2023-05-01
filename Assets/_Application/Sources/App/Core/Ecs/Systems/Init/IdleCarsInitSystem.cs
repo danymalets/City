@@ -1,16 +1,9 @@
 using Scellecs.Morpeh;
-using Sources.App.Core.Ecs.Aspects;
-using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Ecs.Factories;
-using Sources.App.Core.Services;
 using Sources.App.Data.Common;
 using Sources.App.Data.Pathes;
 using Sources.App.Data.Points;
-using Sources.CommonServices.PhysicsServices;
-using Sources.ProjectServices.AssetsServices;
-using Sources.Utils.CommonUtils.Libs;
 using Sources.Utils.Di;
-using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using UnityEngine;
 

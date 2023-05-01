@@ -1,7 +1,7 @@
 using Sources.App.Data.Cars;
 using UnityEngine;
 
-namespace Sources.Monos.Cars
+namespace Sources.ProjectServices.AssetsServices.Monos.Cars
 {
     public class WheelsSystem : MonoBehaviour, IWheelsSystem
     {

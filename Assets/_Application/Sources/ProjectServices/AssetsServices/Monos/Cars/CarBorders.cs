@@ -6,7 +6,7 @@ using Sources.Utils.CommonUtils.Libs;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 using UnityEngine;
 
-namespace Sources.Monos.Cars
+namespace Sources.ProjectServices.AssetsServices.Monos.Cars
 {
     [RequireComponent(typeof(SafeBoxCollider))]
     public class CarBorders : MonoBehaviour, ICarBorders

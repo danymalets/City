@@ -1,6 +1,6 @@
 using System;
 using Sources.App.Data.Cars;
-using Sources.Monos.MonoEntities;
+using Sources.ProjectServices.AssetsServices.Monos.MonoEntities;
 using UnityEngine;
 
 namespace Sources.ProjectServices.AssetsServices

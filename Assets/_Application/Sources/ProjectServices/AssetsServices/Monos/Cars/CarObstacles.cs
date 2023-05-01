@@ -6,7 +6,7 @@ using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Sources.Monos.Cars
+namespace Sources.ProjectServices.AssetsServices.Monos.Cars
 {
     public class CarObstacles : MonoBehaviour
     {

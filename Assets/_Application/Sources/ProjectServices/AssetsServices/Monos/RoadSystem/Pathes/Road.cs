@@ -4,7 +4,7 @@ using Sources.App.Data.Pathes;
 using Sources.Utils.CommonUtils.Libs;
 using UnityEngine;
 
-namespace Sources.Monos.RoadSystem.Pathes
+namespace Sources.ProjectServices.AssetsServices.Monos.RoadSystem.Pathes
 {
     public class Road : MonoBehaviour, IRoad
     {

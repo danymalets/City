@@ -3,12 +3,11 @@ using Sources.CommonServices.CoroutineRunnerServices;
 using Sources.CommonServices.GizmosServices;
 using Sources.CommonServices.PoolServices;
 using Sources.CommonServices.UiServices.System;
-using Sources.ProjectServices.AssetsServices;
 using Sources.ProjectServices.AudioServices;
 using Sources.ProjectServices.BalanceServices;
 using UnityEngine;
 
-namespace Sources.Monos.MonoServices
+namespace Sources.ProjectServices.AssetsServices.Monos.MonoServices
 {
     public class MonoServices : MonoBehaviour
     {

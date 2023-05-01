@@ -3,15 +3,14 @@ using Sources.App.Data.MonoEntities;
 using Sources.App.Data.Pathes;
 using Sources.App.Data.Points;
 using Sources.CommonServices.SceneLoaderServices;
-using Sources.Monos.Bootstrap;
-using Sources.Monos.MonoEntities;
-using Sources.Monos.Points;
-using Sources.Monos.RoadSystem;
-using Sources.ProjectServices.AssetsServices.IdleCarSpawns;
+using Sources.ProjectServices.AssetsServices.Monos.Bootstrap;
+using Sources.ProjectServices.AssetsServices.Monos.MonoEntities;
+using Sources.ProjectServices.AssetsServices.Monos.Points;
+using Sources.ProjectServices.AssetsServices.Monos.RoadSystem;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Sources.Monos.Common
+namespace Sources.ProjectServices.AssetsServices.IdleCarSpawns
 {
     public class LevelContext : SceneContext, ILevelContext
     {

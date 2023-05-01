@@ -4,16 +4,14 @@ using Sirenix.OdinInspector;
 using Sources.App.Data.Cars;
 using Sources.App.Data.Constants;
 using Sources.App.Data.MonoEntities;
-using Sources.Monos.Cars;
+using Sources.ProjectServices.AssetsServices.Monos.Cars;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.MorpehWrapper;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.Serialization;
 
-namespace Sources.Monos.MonoEntities
+namespace Sources.ProjectServices.AssetsServices.Monos.MonoEntities
 {
     [RequireComponent(typeof(EnableableGameObject))]
     [RequireComponent(typeof(SafeTransform))]

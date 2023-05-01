@@ -2,7 +2,7 @@ using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Sources.Monos.RoadSystem.Pathes.Generators
+namespace Sources.ProjectServices.AssetsServices.Monos.RoadSystem.Pathes.Generators
 {
     public class PathSystemGenerator : MonoBehaviour
     {

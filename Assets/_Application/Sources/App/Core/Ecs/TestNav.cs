@@ -1,12 +1,12 @@
-using System;
 using System.Collections;
+using Sources.App.Data.Common;
 using Sources.CommonServices.GizmosServices;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.Di;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Sources.App.Data.Common
+namespace Sources.App.Core.Ecs
 {
     public class TestNav : MonoBehaviour
     {

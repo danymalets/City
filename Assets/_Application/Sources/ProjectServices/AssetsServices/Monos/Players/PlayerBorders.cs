@@ -2,7 +2,7 @@ using Sources.App.Data.Players;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 using UnityEngine;
 
-namespace Sources.Monos.Players
+namespace Sources.ProjectServices.AssetsServices.Monos.Players
 {
     [RequireComponent(typeof(SafeCapsuleCollider))]
     public class PlayerBorders : MonoBehaviour, IPlayerBorders

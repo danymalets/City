@@ -25,7 +25,6 @@
         "Sources.CommonServices.ApplicationInputServices",
         "Sources.CommonServices.CoroutineRunnerServices",
         "Sources.CommonServices.InstantiatorServices",
-        "Sources.MonoServices",
         "Sources.Utils.Di",
         "Sources.Utils.MorpehWrapper"
     ],

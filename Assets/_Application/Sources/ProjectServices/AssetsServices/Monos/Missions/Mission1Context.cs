@@ -1,9 +1,9 @@
 using Sources.App.Data.Missions;
 using Sources.App.Data.Points;
-using Sources.Monos.Points;
+using Sources.ProjectServices.AssetsServices.Monos.Points;
 using UnityEngine;
 
-namespace Sources.Monos.Missions
+namespace Sources.ProjectServices.AssetsServices.Monos.Missions
 {
     public class Mission1Context : MonoBehaviour, IMission1Context
     {

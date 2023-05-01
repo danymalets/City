@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Sources.App.Data.Pathes;
-using Sources.Monos.RoadSystem.Pathes;
+using Sources.ProjectServices.AssetsServices.Monos.RoadSystem.Pathes;
 using UnityEngine;
 
-namespace Sources.Monos.RoadSystem
+namespace Sources.ProjectServices.AssetsServices.Monos.RoadSystem
 {
     public class PathSystem : MonoBehaviour, IPathSystem
     {

@@ -1,7 +1,7 @@
 using Sources.App.Data.Cars;
 using UnityEngine;
 
-namespace Sources.Monos.Points
+namespace Sources.ProjectServices.AssetsServices.Monos.Points
 {
     public class EnterPoint : MonoBehaviour, IEnterPoint
     {

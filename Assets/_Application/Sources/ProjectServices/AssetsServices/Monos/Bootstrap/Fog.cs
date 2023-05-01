@@ -1,7 +1,7 @@
 using Sources.App.Data.Common;
 using UnityEngine;
 
-namespace Sources.Monos.Bootstrap
+namespace Sources.ProjectServices.AssetsServices.Monos.Bootstrap
 {
     public class Fog : MonoBehaviour, IFog
     {

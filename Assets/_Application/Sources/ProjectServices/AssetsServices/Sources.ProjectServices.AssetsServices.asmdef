@@ -4,11 +4,16 @@
     "references": [
         "Sources.App.Data",
         "Sources.CommonServices.PoolServices",
-        "Sources.Monos",
         "Sources.Utils.CommonUtils",
         "Sources.Utils.MorpehWrapper",
         "Sources.Utils.Di",
-        "Sources.CommonServices.SceneLoaderServices"
+        "Sources.CommonServices.SceneLoaderServices",
+        "Sources.CommonServices.UiServices",
+        "Sources.CommonServices.CoroutineRunnerServices",
+        "Sources.CommonServices.ApplicationServices",
+        "Sources.ProjectServices.AudioServices",
+        "Sources.ProjectServices.BalanceServices",
+        "Sources.CommonServices.GizmosServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

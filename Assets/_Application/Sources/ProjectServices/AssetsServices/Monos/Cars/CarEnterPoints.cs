@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Sources.App.Data.Cars;
-using Sources.Monos.Points;
+using Sources.ProjectServices.AssetsServices.Monos.Points;
 using UnityEngine;
 
-namespace Sources.Monos.Cars
+namespace Sources.ProjectServices.AssetsServices.Monos.Cars
 {
     public class CarEnterPoints : MonoBehaviour, ICarEnterPoints
     {

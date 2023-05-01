@@ -2,13 +2,13 @@ using Sirenix.OdinInspector;
 using Sources.App.Data.Constants;
 using Sources.App.Data.MonoEntities;
 using Sources.App.Data.Players;
-using Sources.Monos.Players;
+using Sources.ProjectServices.AssetsServices.Monos.Players;
 using Sources.Utils.MorpehWrapper;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using UnityEngine;
 
-namespace Sources.Monos.MonoEntities
+namespace Sources.ProjectServices.AssetsServices.Monos.MonoEntities
 {
     [RequireComponent(typeof(EnableableGameObject))]
     [RequireComponent(typeof(SafeTransform))]

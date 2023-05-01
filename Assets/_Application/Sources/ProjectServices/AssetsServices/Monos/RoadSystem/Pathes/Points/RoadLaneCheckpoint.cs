@@ -3,7 +3,7 @@ using Sources.App.Data.Points;
 using Sources.Utils.CommonUtils.Extensions;
 using UnityEngine;
 
-namespace Sources.Monos.RoadSystem.Pathes.Points
+namespace Sources.ProjectServices.AssetsServices.Monos.RoadSystem.Pathes.Points
 {
     public class RoadLaneCheckpoint : MonoBehaviour, IRoadLaneCheckpoint
     {

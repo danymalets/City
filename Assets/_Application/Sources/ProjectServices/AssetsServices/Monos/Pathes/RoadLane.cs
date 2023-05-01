@@ -1,9 +1,9 @@
 using System;
 using Sources.App.Data.Pathes;
-using Sources.Monos.RoadSystem.Pathes.Points;
+using Sources.ProjectServices.AssetsServices.Monos.RoadSystem.Pathes.Points;
 using UnityEngine;
 
-namespace Sources.Monos.Pathes
+namespace Sources.ProjectServices.AssetsServices.Monos.Pathes
 {
     [Serializable]
     public class RoadLane : IRoadLane

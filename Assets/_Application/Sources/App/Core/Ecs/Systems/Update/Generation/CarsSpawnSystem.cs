@@ -9,7 +9,6 @@ using Sources.App.Core.Ecs.Components.WorldStatus;
 using Sources.App.Core.Ecs.Factories;
 using Sources.App.Core.Services;
 using Sources.App.Data.Points;
-using Sources.ProjectServices.BalanceServices;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;

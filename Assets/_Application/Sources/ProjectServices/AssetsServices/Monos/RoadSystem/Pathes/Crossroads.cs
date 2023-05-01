@@ -1,8 +1,7 @@
 using Sources.App.Data.Pathes;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Sources.Monos.RoadSystem.Pathes
+namespace Sources.ProjectServices.AssetsServices.Monos.RoadSystem.Pathes
 {
     public class Crossroads : MonoBehaviour, ICrossroads
     {

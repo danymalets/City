@@ -5,7 +5,7 @@ using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using UnityEngine;
 
-namespace Sources.Monos.MonoEntities
+namespace Sources.ProjectServices.AssetsServices.Monos.MonoEntities
 {
     [RequireComponent(typeof(SafeTransform))]
     [RequireComponent(typeof(SafeCamera))]

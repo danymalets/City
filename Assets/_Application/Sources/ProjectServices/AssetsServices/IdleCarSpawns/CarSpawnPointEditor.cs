@@ -5,7 +5,7 @@ using Sources.App.Data.Cars;
 using Sources.App.Data.Constants;
 using Sources.App.Data.MonoEntities;
 using Sources.CommonServices.PoolServices;
-using Sources.Monos.MonoEntities;
+using Sources.ProjectServices.AssetsServices.Monos.MonoEntities;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using UnityEngine;
