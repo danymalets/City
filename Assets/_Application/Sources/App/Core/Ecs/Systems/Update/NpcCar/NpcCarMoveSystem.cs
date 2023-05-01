@@ -40,11 +40,13 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
                 ref ForwardTrigger forwardTrigger = ref carEntity.Get<ForwardTrigger>();
 
                 Entity[] entities = _physics.OverlapBox(forwardTrigger.Center, forwardTrigger.Size / 2, 
-                        forwardTrigger.Rotation, LayerMasks.CarsAndPlayers)
+                        forwardTrigger.Rotation, LayerMasks.CarBordersPlayersEnvironment)
                     .Where(r => r.HasComponent<IEntityAccess>())
                     .Select(r => r.GetComponent<IEntityAccess>().Entity)
                     .Where(e => e != carEntity)
                     .ToArray();
+                
+                
                 
                 if (entities.Any())
                 {

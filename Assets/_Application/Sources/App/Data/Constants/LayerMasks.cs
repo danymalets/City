@@ -9,6 +9,6 @@ namespace Sources.App.Data.Constants
         public static readonly int EntityTrigger = DLayerMask.LayerToMask(Layers.Environment);
         public static readonly int CarsAndPlayers = DLayerMask.LayersToMask(Layers.Car, Layers.Player);
         public static readonly int CarsBordersAndPlayers = DLayerMask.LayersToMask(Layers.CarBorders, Layers.Player);
-        public static readonly int CarsPlayersEnvironment = DLayerMask.LayersToMask(Layers.Car, Layers.Player, Layers.Environment);
+        public static readonly int CarBordersPlayersEnvironment = DLayerMask.LayersToMask(Layers.CarBorders, Layers.Player, Layers.Environment);
     }
 }

@@ -23,8 +23,8 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
                 playerEntity.Add<Dead>();
                 playerEntity.GetAspect<NpcStatusAspect>().LeaveIfOnPath();
                 playerEntity.Add<FallAnimationRequest>();
-                playerEntity.AddWithDelay<DisableCollidersRequest>(0.5f);
-                playerEntity.AddWithDelay<MakeKinematicRequest>(0.5f);
+                playerEntity.AddWithDelay<SetFallenLayerRequest>(0.5f);
+                // playerEntity.AddWithDelay<MakeKinematicRequest>(0.5f);
                 //playerEntity.AddWithDelay<DespawnRequest>(2.5f);
             }
         }

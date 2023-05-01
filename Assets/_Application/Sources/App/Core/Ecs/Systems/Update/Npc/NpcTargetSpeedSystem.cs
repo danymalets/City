@@ -38,7 +38,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Npc
                 ref PlayerTargetSpeed playerTargetSpeed = ref npcEntity.Get<PlayerTargetSpeed>();
                 
                 Entity[] entities = _physics.OverlapBox(forwardTrigger.Center, forwardTrigger.Size / 2, 
-                        forwardTrigger.Rotation, LayerMasks.CarsBordersAndPlayers)
+                        forwardTrigger.Rotation, LayerMasks.CarBordersPlayersEnvironment)
                     .Where(r => r.HasComponent<IEntityAccess>())
                     .Select(r => r.GetComponent<IEntityAccess>().Entity)
                     .Where(e => e != npcEntity)

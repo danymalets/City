@@ -46,11 +46,8 @@ namespace Sources.App.Core.Ecs.Systems.Update.Npc
 
                 forwardTrigger.Center = triggerCenter;
                 forwardTrigger.Rotation = triggerRotation;
-                forwardTrigger.Size = new Vector3(
-                    borders.Radius * 2, borders.Height, _simulationBalance.NpcTriggerLength);
-                
-                _updateGizmosContext.DrawCube(
-                    forwardTrigger.Center, forwardTrigger.Rotation, forwardTrigger.Size, Color.red);
+                forwardTrigger.Size = new Vector3(borders.Radius * 2, borders.Height, 
+                    _simulationBalance.NpcTriggerLength);
             }
         }
     }

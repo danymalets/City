@@ -88,7 +88,7 @@ namespace Sources.App.Core.Ecs
             _world.AddFixedSystem<PlayerDeathHandlerSystem>();
             _world.AddFixedSystem<FallAnimationHandlerSystem>();
             _world.AddFixedSystem<MakeKinematicHandlerSystem>();
-            _world.AddFixedSystem<DisableCollidersRequestHandlerSystem>();
+            _world.AddFixedSystem<SetFallenLayerRequestHandlerSystem>();
             _world.AddFixedSystem<DespawnRequestHandlerSystem>();
 
             //car exit
@@ -162,7 +162,7 @@ namespace Sources.App.Core.Ecs
             _world.AddFixedOneFrame<PlayerWantsEnterCar>();
             _world.AddFixedOneFrame<DeadRequest>();
             _world.AddFixedOneFrame<FallAnimationRequest>();
-            _world.AddFixedOneFrame<DisableCollidersRequest>();
+            _world.AddFixedOneFrame<SetFallenLayerRequest>();
             _world.AddFixedOneFrame<MakeKinematicRequest>();
             _world.AddFixedOneFrame<DespawnRequest>();
             _world.AddFixedOneFrame<Collisions>();
@@ -214,6 +214,8 @@ namespace Sources.App.Core.Ecs
 
 #if UNITY_EDITOR
             _world.AddUpdateSystem<PathesGizmosSystem>();
+            _world.AddUpdateSystem<NpcForwardColliderGizmosSystem>();
+            _world.AddUpdateSystem<CarForwardColliderGizmosSystem>();
 #endif
         }
 

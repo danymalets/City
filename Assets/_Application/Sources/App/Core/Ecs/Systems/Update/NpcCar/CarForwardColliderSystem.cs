@@ -55,9 +55,6 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
                 forwardTrigger.Rotation = triggerRotation;
                 forwardTrigger.Size = new Vector3(
                     borders.HalfExtents.x * 2, borders.HalfExtents.y * 2, _simulationBalance.CarTriggerLength );
-                
-                _updateGizmosContext.DrawCube(
-                    forwardTrigger.Center, forwardTrigger.Rotation, forwardTrigger.Size, Color.red);
             }
         }
     }
