@@ -1,4 +1,4 @@
-using Sources.ProjectServices.UserService;
+using Sources.ProjectServices.UserServices;
 using Sources.Utils.CommonUtils.Data.Live;
 using Sources.Utils.Di;
 using UnityEngine;

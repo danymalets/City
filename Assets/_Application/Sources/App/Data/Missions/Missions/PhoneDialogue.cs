@@ -1,4 +1,4 @@
-using Sources.ProjectServices.UserService.Missions;
+using Sources.ProjectServices.UserServices.Missions;
 
 namespace Sources.App.Data.Missions.Missions
 {
@@ -17,6 +17,6 @@ namespace Sources.App.Data.Missions.Missions
         }
 
         public override bool IsCompleted() =>
-            Progress.QuestsSownCount >= Cues.Length;
+            Progress.QuestsShownCount >= Cues.Length;
     }
 }

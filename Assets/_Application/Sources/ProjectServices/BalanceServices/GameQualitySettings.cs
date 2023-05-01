@@ -1,6 +1,6 @@
 using System;
 using Sources.App.Data;
-using Sources.ProjectServices.UserService.Data;
+using Sources.ProjectServices.UserServices.Data;
 using UnityEngine;
 
 namespace Sources.ProjectServices.BalanceServices

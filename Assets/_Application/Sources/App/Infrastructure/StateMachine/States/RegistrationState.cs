@@ -20,7 +20,7 @@ using Sources.ProjectServices.AssetsServices;
 using Sources.ProjectServices.AudioServices;
 using Sources.ProjectServices.BalanceServices;
 using Sources.ProjectServices.QualityServices;
-using Sources.ProjectServices.UserService;
+using Sources.ProjectServices.UserServices;
 using Sources.Utils.Di;
 
 namespace Sources.App.Infrastructure.StateMachine.States

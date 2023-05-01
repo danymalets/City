@@ -1,5 +1,5 @@
 using Sources.App.Data.Points;
-using Sources.ProjectServices.UserService.Missions;
+using Sources.ProjectServices.UserServices.Missions;
 using UnityEngine;
 
 namespace Sources.App.Data.Missions.Missions

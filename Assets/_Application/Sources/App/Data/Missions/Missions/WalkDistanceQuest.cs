@@ -1,4 +1,4 @@
-using Sources.ProjectServices.UserService.Missions;
+using Sources.ProjectServices.UserServices.Missions;
 
 namespace Sources.App.Data.Missions.Missions
 {

@@ -1,0 +1,20 @@
+{
+    "name": "Sources.ProjectServices.UserServices",
+    "rootNamespace": "",
+    "references": [
+        "Sources.Utils.Di",
+        "Sources.Utils.CommonUtils",
+        "Sources.CommonServices.JsonSerializerServices",
+        "Sources.CommonServices.PlayerPreferencesServices",
+        "Sources.CommonServices.ApplicationServices"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

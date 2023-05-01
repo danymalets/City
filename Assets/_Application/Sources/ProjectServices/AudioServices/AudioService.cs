@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Sources.CommonServices.PoolServices;
-using Sources.ProjectServices.UserService;
+using Sources.ProjectServices.UserServices;
 using Sources.Utils.Di;
 using UnityEngine;
 using UnityEngine.Serialization;

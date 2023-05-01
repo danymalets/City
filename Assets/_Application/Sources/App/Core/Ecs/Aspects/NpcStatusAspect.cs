@@ -4,6 +4,7 @@ using Sources.App.Core.Ecs.Components.Car;
 using Sources.App.Core.Ecs.Components.Npc;
 using Sources.App.Core.Ecs.Components.Npc.NpcCar;
 using Sources.App.Core.Ecs.Components.NpcPathes;
+using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Data.Cars;
 using Sources.App.Data.Pathes;
 using Sources.Utils.MorpehWrapper.Aspects;
@@ -14,6 +15,9 @@ namespace Sources.App.Core.Ecs.Aspects
     public struct NpcStatusAspect : IDAspect
     {
         public Entity Entity { get; set; }
+
+        public Filter GetFilter(Filter filter) =>
+            filter.With<NpcTag>();
 
         public readonly bool IsOnPath => Entity.Has<NpcOnPath>();
 
