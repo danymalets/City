@@ -1,9 +1,8 @@
 {
-    "name": "Sources.ProjectServices.BalanceServices",
+    "name": "Sources.App.Services.AudioServices",
     "rootNamespace": "",
     "references": [
         "Sources.Utils.Di",
-        "Sources.App.Data",
         "Sources.Utils.CommonUtils",
         "Sources.CommonServices.PoolServices",
         "Sources.ProjectServices.UserServices"

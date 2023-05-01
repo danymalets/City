@@ -5,10 +5,6 @@
         "Sources.App.Ui",
         "Sources.App.Data",
         "Sources.App.Core.Components",
-        "Sources.ProjectServices.AssetsServices",
-        "Sources.ProjectServices.BalanceServices",
-        "Sources.ProjectServices.AudioServices",
-        "Sources.ProjectServices.QualityServices",
         "Sources.ProjectServices.UserServices",
         "Sources.CommonServices.CoroutineRunnerServices",
         "Sources.CommonServices.PhysicsServices",
@@ -31,7 +27,11 @@
         "ExternalAssets.Joystick",
         "DOTween.Modules",
         "Unity.TextMeshPro",
-        "Scellecs.Morpeh"
+        "Scellecs.Morpeh",
+        "Sources.App.Services.AssetsServices",
+        "Sources.App.Services.QualityServices",
+        "Sources.App.Services.BalanceServices",
+        "Sources.App.Services.AudioServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

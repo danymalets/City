@@ -24,7 +24,6 @@ namespace Sources.App.UI.Screens.Level
         [SerializeField]
         private Button _restartButton;
 
-        [FormerlySerializedAs("_uiCoinsObserver")]
         [SerializeField]
         private CoinsView _coinsView;
 

@@ -1,5 +1,5 @@
 {
-    "name": "Sources.ProjectServices.AssetsServices",
+    "name": "Sources.App.Services.AssetsServices",
     "rootNamespace": "",
     "references": [
         "Sources.App.Data",
@@ -13,7 +13,9 @@
         "Sources.CommonServices.ApplicationServices",
         "Sources.ProjectServices.AudioServices",
         "Sources.ProjectServices.BalanceServices",
-        "Sources.CommonServices.GizmosServices"
+        "Sources.CommonServices.GizmosServices",
+        "Sources.App.Services.BalanceServices",
+        "Sources.App.Services.AudioServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

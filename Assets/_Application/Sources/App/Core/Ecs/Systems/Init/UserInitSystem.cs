@@ -15,12 +15,10 @@ namespace Sources.App.Core.Ecs.Systems.Init
 
         private readonly Assets _assets;
         private readonly IPhysicsService _physics;
-        private readonly CarsBalance _carsBalance;
         private readonly IPlayersFactory _playersFactory;
 
         public UserInitSystem()
         {
-            _carsBalance = DiContainer.Resolve<Balance>().CarsBalance;
             _levelContext = DiContainer.Resolve<ILevelContext>();
             _physics = DiContainer.Resolve<IPhysicsService>();
             _assets = DiContainer.Resolve<Assets>();

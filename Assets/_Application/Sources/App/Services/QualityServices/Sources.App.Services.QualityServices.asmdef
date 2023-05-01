@@ -1,11 +1,13 @@
 {
-    "name": "Sources.ProjectServices.AudioServices",
+    "name": "Sources.App.Services.QualityServices",
     "rootNamespace": "",
     "references": [
+        "Sources.ProjectServices.BalanceServices",
+        "Sources.ProjectServices.UserServices",
+        "Sources.CommonServices.TimeServices",
         "Sources.Utils.Di",
-        "Sources.Utils.CommonUtils",
-        "Sources.CommonServices.PoolServices",
-        "Sources.ProjectServices.UserServices"
+        "Sources.App.Data",
+        "Sources.App.Services.BalanceServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

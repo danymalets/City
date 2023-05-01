@@ -1,4 +1,3 @@
-using Sources.App.Core.Ecs.Components.Car;
 using Sources.App.Core.Ecs.Components.Npc.NpcCar;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Despawners;
@@ -109,8 +108,6 @@ namespace Sources.App.Core.Ecs
             _world.AddFixedSystem<CarsSpawnSystem>();
             _world.AddFixedSystem<NpcsSpawnSystem>();
             
-            _world.AddFixedSystem<IdleCarsSpawnSystem>();
-
             // npc
             _world.AddFixedSystem<NpcPathEndCheckSystem>();
             _world.AddFixedSystem<NpcCarPathEndCheckSystem>();

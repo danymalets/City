@@ -16,7 +16,8 @@
         "ExternalAssets.Joystick",
         "Sources.Utils.Di",
         "Unity.TextMeshPro",
-        "Scellecs.Morpeh"
+        "Scellecs.Morpeh",
+        "Sources.App.Services.AudioServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

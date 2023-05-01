@@ -44,7 +44,7 @@ namespace Sources.App.Core.Ecs
                         color = Color.blue;
                     }
 
-                    Debug.Log($"path {path.Length} {navPath.status}");
+                    // Debug.Log($"path {path.Length} {navPath.status}");
 
                     for (int i = 0; i < path.Length - 1; i++)
                     {
