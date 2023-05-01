@@ -1,6 +1,7 @@
 using System.Linq;
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Car;
+using Sources.App.Core.Ecs.Components.Npc;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Data.Constants;
@@ -14,12 +15,12 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Npc
 {
-    public class NpcTargetSpeedSystem : DUpdateSystem
+    public class NpcCheckTriggerSystem : DUpdateSystem
     {
         private Filter _filter;
         private readonly IPhysicsService _physics;
 
-        public NpcTargetSpeedSystem()
+        public NpcCheckTriggerSystem()
         {
             _physics = DiContainer.Resolve<IPhysicsService>();
         }
@@ -44,7 +45,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Npc
                     .Where(e => e != npcEntity)
                     .ToArray();
 
-                if (entities.Any())
+                if (entities.Any() || !npcEntity.Has<NpcOnPath>())
                 {
                     playerTargetSpeed.Value = 0;
                 }

@@ -122,7 +122,7 @@ namespace Sources.App.Core.Ecs
             _world.AddFixedSystem<CarForwardColliderSystem>();
             
             _world.AddFixedSystem<NpcForwardColliderSystem>();
-            _world.AddFixedSystem<NpcTargetSpeedSystem>();
+            _world.AddFixedSystem<NpcCheckTriggerSystem>();
             
             // idle car
             _world.AddFixedSystem<IdleCarEnableRigidbodySystem>();

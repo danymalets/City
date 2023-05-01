@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
 {
-    public abstract class SafeColliderBase : PhysicsEventsReceiver, IEntityAccess
+    public abstract class SafeColliderBase : PhysicsEventsReceiver, ICollider, IEntityAccess
     {
         public abstract bool IsTrigger { get; set; }
         public abstract Bounds Bounds { get; }

@@ -1,5 +1,6 @@
 using System.Linq;
 using Scellecs.Morpeh;
+using Sirenix.Utilities;
 using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Components.Car;
 using Sources.App.Core.Ecs.Components.Npc;
@@ -21,6 +22,7 @@ using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using UnityEngine;
+using ICollider = Sources.Utils.MorpehWrapper.DefaultComponents.Monos.ICollider;
 
 namespace Sources.App.Core.Ecs.Factories
 {
@@ -29,7 +31,7 @@ namespace Sources.App.Core.Ecs.Factories
         private readonly PlayersBalance _playersBalance;
         private readonly IPhysicsService _physics;
 
-        public PlayersFactory() 
+        public PlayersFactory()
         {
             _physics = DiContainer.Resolve<IPhysicsService>();
             _playersBalance = DiContainer.Resolve<Balance>().PlayersBalance;
@@ -63,9 +65,9 @@ namespace Sources.App.Core.Ecs.Factories
         public bool TryCreateRandomNpc(Point point, out Entity createdEntity)
         {
             IPlayerMonoEntity playerPrefab = GetRandomPlayerPrefab();
-            
+
             SafeCapsuleCollider capsule = playerPrefab.PlayerBorders.SafeCapsuleCollider;
-            
+
             if (CanCreateNpc(point, capsule))
             {
                 createdEntity = CreateNpcOnPath(playerPrefab, point.Position, point.Rotation,
@@ -89,7 +91,7 @@ namespace Sources.App.Core.Ecs.Factories
         {
             Entity npc = CreateNpc(playerPrefab, position, rotation)
                 .SetupAspect<NpcStatusAspect>(nsa => nsa.SetPath(pathLine));
-            
+
             return npc;
         }
 
@@ -101,11 +103,11 @@ namespace Sources.App.Core.Ecs.Factories
                 .SetupAspect<NpcStatusAspect>(nsa => nsa.SetPath(pathLine));
 
             carEntity.Get<CarPassengers>().TakePlace(0, npc);
-            
+
             return npc;
         }
 
-        public Entity CreateRandomNpcInCarOnPath(Entity car, Point point) => 
+        public Entity CreateRandomNpcInCarOnPath(Entity car, Point point) =>
             CreateNpcInCarOnPath(GetRandomPlayerPrefab(), car, point.Targets.First().FirstPathLine);
 
         private Entity CreatePlayer(IPlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation)
@@ -115,11 +117,14 @@ namespace Sources.App.Core.Ecs.Factories
             return _world.CreateFromMono(playerMonoEntity)
                 .SetAccess<IEnableableGameObject>(playerMonoEntity.EnableableGameObject)
                 .SetAccess<IRigidbodySwitcher>(playerMonoEntity.RigidbodySwitcher)
-                .SetAccess<RigidbodySettings>(new RigidbodySettings(_playersBalance.Mass, 
+                .SetAccess<RigidbodySettings>(new RigidbodySettings(_playersBalance.Mass,
                     RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ, null))
                 .SetAccess<ITransform>(playerMonoEntity.Transform)
                 .SetAccess<IPlayerAnimator>(new PlayerAnimator(playerMonoEntity.Animator))
                 .SetAccess<IPlayerBorders>(playerMonoEntity.PlayerBorders)
+                .SetAccess<ICollider[]>(new ICollider[]
+                    { playerMonoEntity.PlayerBorders.SafeCapsuleCollider })
+                .SetupAccessible<ICollider[]>(cs => cs.ForEach(c => c.Layer = Layers.Player))
                 .SetupAccessible<IPlayerAnimator>(pa => pa.Setup())
                 .SetupAspect<SwitchableRigidbodyAspect>(pa => pa.EnableRigidbody())
                 .Set(new PlayerTargetAngle { Value = rotation.eulerAngles.y })

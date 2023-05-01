@@ -10,5 +10,6 @@ namespace Sources.App.Data.Constants
         public static readonly int Environment = LayerMask.NameToLayer(nameof(Environment));
         public static readonly int Ground = LayerMask.NameToLayer(nameof(Ground));
         public static readonly int Props = LayerMask.NameToLayer(nameof(Props));
+        public static readonly int Fallen = LayerMask.NameToLayer(nameof(Fallen));
     }
 }
