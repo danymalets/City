@@ -1,4 +1,4 @@
-using Sources.App.UI.Screens.Input;
+using Sources.App.Ui.Screens.Input;
 using Sources.Services.ApplicationInputServices;
 using Sources.Services.UiServices.System;
 using Sources.Utils.Di;

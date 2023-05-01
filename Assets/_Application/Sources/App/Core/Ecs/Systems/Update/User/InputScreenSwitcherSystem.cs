@@ -2,7 +2,7 @@ using System.Linq;
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
-using Sources.App.UI.Screens.Input;
+using Sources.App.Ui.Screens.Input;
 using Sources.Services.UiServices.System;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;

@@ -3,8 +3,8 @@ using Sources.App.Data;
 using Sources.App.Data.Common;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
-using Sources.App.UI.Screens;
-using Sources.App.UI.Screens.Level;
+using Sources.App.Ui.Screens;
+using Sources.App.Ui.Screens.Level;
 using Sources.Services.UiServices.System;
 using Sources.Utils.Di;
 

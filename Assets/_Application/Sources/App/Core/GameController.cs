@@ -1,10 +1,10 @@
 using Sources.App.Core.Services;
 using Sources.App.Data.Common;
 using Sources.App.Services.AudioServices;
-using Sources.App.UI.Screens;
-using Sources.App.UI.Screens.Input;
-using Sources.App.UI.Screens.Level;
-using Sources.App.UI.Screens.Map;
+using Sources.App.Ui.Screens;
+using Sources.App.Ui.Screens.Input;
+using Sources.App.Ui.Screens.Level;
+using Sources.App.Ui.Screens.Map;
 using Sources.Services.CoroutineRunnerServices;
 using Sources.Services.FpsServices;
 using Sources.Services.UiServices.System;

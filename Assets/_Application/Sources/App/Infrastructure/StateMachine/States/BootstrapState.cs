@@ -2,7 +2,7 @@ using Sources.App.Data.MonoEntities;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.App.Services.AssetsServices;
-using Sources.App.UI.Overlays;
+using Sources.App.Ui.Overlays;
 using Sources.Services.ApplicationServices;
 using Sources.Services.PhysicsServices;
 using Sources.Services.PoolServices;
