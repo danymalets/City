@@ -7,7 +7,7 @@ using Sources.App.UI.Screens.Map;
 using Sources.CommonServices.CoroutineRunnerServices;
 using Sources.CommonServices.FpsServices;
 using Sources.CommonServices.UiServices.System;
-using Sources.ProjectServices.AudioServices;
+using Sources.Services.AudioServices;
 using Sources.Utils.Di;
 
 namespace Sources.App.Core

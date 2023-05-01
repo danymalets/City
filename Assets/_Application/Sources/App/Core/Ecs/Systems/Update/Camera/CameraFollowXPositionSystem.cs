@@ -3,7 +3,7 @@ using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Components.Camera;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
-using Sources.ProjectServices.BalanceServices;
+using Sources.Services.BalanceServices;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.CommonUtils.Libs;
 using Sources.Utils.Di;

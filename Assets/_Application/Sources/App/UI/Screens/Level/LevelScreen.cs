@@ -1,7 +1,7 @@
 using System;
 using Sources.App.UI.Popups.Settings;
 using Sources.CommonServices.UiServices.WindowBase.Screens;
-using Sources.ProjectServices.AudioServices;
+using Sources.Services.AudioServices;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.Di;
 using TMPro;

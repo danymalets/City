@@ -6,7 +6,6 @@ using Sources.Utils.MorpehWrapper.DefaultComponents;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
-using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 
 namespace Sources.App.Core.Ecs.Aspects
 {

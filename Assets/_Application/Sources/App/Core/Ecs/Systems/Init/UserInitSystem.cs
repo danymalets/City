@@ -2,8 +2,8 @@ using Sources.App.Core.Ecs.Factories;
 using Sources.App.Data;
 using Sources.App.Data.Common;
 using Sources.CommonServices.PhysicsServices;
-using Sources.ProjectServices.AssetsServices;
-using Sources.ProjectServices.BalanceServices;
+using Sources.Services.AssetsServices;
+using Sources.Services.BalanceServices;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 

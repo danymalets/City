@@ -10,7 +10,7 @@ using Sources.App.Data.MonoEntities;
 using Sources.App.Data.Pathes;
 using Sources.App.Data.Points;
 using Sources.CommonServices.PhysicsServices;
-using Sources.ProjectServices.AssetsServices;
+using Sources.Services.AssetsServices;
 using Sources.Utils.CommonUtils.Libs;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;

@@ -2,7 +2,7 @@ using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Car;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Data.Cars;
-using Sources.ProjectServices.BalanceServices;
+using Sources.Services.BalanceServices;
 using Sources.Utils.CommonUtils.Data;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.Di;

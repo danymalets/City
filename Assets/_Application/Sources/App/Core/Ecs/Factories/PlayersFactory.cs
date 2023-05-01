@@ -13,7 +13,7 @@ using Sources.App.Data.Pathes;
 using Sources.App.Data.Players;
 using Sources.App.Data.Points;
 using Sources.CommonServices.PhysicsServices;
-using Sources.ProjectServices.BalanceServices;
+using Sources.Services.BalanceServices;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.DefaultComponents;

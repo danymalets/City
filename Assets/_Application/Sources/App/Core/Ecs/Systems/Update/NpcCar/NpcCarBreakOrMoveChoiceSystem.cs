@@ -8,7 +8,7 @@ using Sources.App.Core.Ecs.Components.NpcPathes;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Data.Cars;
-using Sources.ProjectServices.BalanceServices;
+using Sources.Services.BalanceServices;
 using Sources.Utils.CommonUtils.Libs;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;

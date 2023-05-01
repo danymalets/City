@@ -8,7 +8,7 @@ using Sources.CommonServices.PoolServices;
 using Sources.CommonServices.ScreenServices;
 using Sources.CommonServices.TimeServices;
 using Sources.CommonServices.UiServices.System;
-using Sources.ProjectServices.AssetsServices;
+using Sources.Services.AssetsServices;
 using Sources.Utils.Di;
 using UnityEngine;
 

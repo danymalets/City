@@ -5,9 +5,9 @@ using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.App.UI.Screens;
 using Sources.CommonServices.SceneLoaderServices;
 using Sources.CommonServices.UiServices.System;
-using Sources.ProjectServices.AssetsServices;
-using Sources.ProjectServices.BalanceServices;
-using Sources.ProjectServices.UserServices;
+using Sources.Services.AssetsServices;
+using Sources.Services.BalanceServices;
+using Sources.Services.UserServices;
 using Sources.Utils.Di;
 using UnityEngine.SceneManagement;
 

@@ -15,12 +15,12 @@ using Sources.CommonServices.ScreenServices;
 using Sources.CommonServices.TimeServices;
 using Sources.CommonServices.UiServices.System;
 using Sources.CommonServices.VibrationServices;
-using Sources.ProjectServices.AssetsServices;
-using Sources.ProjectServices.AssetsServices.Monos.MonoServices;
-using Sources.ProjectServices.AudioServices;
-using Sources.ProjectServices.BalanceServices;
-using Sources.ProjectServices.QualityServices;
-using Sources.ProjectServices.UserServices;
+using Sources.Services.AssetsServices;
+using Sources.Services.AssetsServices.Monos.MonoServices;
+using Sources.Services.AudioServices;
+using Sources.Services.BalanceServices;
+using Sources.Services.QualityServices;
+using Sources.Services.UserServices;
 using Sources.Utils.Di;
 
 namespace Sources.App.Infrastructure.StateMachine.States
