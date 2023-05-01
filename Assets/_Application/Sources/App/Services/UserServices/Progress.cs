@@ -1,0 +1,8 @@
+namespace Sources.App.Services.UserServices
+{
+    public class Progress
+    {
+        public int CurrentLevel { get; set; } = 0;
+        public StoryProgress StoryProgress { get; set; } = new();
+    }
+}

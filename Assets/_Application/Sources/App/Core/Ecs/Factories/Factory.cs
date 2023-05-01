@@ -1,7 +1,7 @@
 using Sources.App.Data.Common;
+using Sources.App.Services.AssetsServices;
+using Sources.App.Services.BalanceServices;
 using Sources.CommonServices.PoolServices;
-using Sources.Services.AssetsServices;
-using Sources.Services.BalanceServices;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils;
 

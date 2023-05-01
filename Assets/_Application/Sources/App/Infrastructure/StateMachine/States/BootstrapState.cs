@@ -1,6 +1,7 @@
 using Sources.App.Data.MonoEntities;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
+using Sources.App.Services.AssetsServices;
 using Sources.App.UI.Overlays;
 using Sources.CommonServices.ApplicationServices;
 using Sources.CommonServices.PhysicsServices;
@@ -8,7 +9,6 @@ using Sources.CommonServices.PoolServices;
 using Sources.CommonServices.ScreenServices;
 using Sources.CommonServices.TimeServices;
 using Sources.CommonServices.UiServices.System;
-using Sources.Services.AssetsServices;
 using Sources.Utils.Di;
 using UnityEngine;
 

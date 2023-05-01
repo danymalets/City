@@ -2,12 +2,12 @@ using Sources.App.Data;
 using Sources.App.Data.Common;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
+using Sources.App.Services.AssetsServices;
+using Sources.App.Services.BalanceServices;
+using Sources.App.Services.UserServices;
 using Sources.App.UI.Screens;
 using Sources.CommonServices.SceneLoaderServices;
 using Sources.CommonServices.UiServices.System;
-using Sources.Services.AssetsServices;
-using Sources.Services.BalanceServices;
-using Sources.Services.UserServices;
 using Sources.Utils.Di;
 using UnityEngine.SceneManagement;
 

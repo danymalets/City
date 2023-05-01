@@ -1,6 +1,6 @@
 using Sources.App.Data.Constants;
-using Sources.Services.BalanceServices;
-using Sources.Services.QualityServices;
+using Sources.App.Services.BalanceServices;
+using Sources.App.Services.QualityServices;
 using Sources.Utils.Di;
 
 namespace Sources.App.Core.Services

@@ -9,7 +9,7 @@ using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Data.Cars;
 using Sources.App.Data.Points;
-using Sources.Services.BalanceServices;
+using Sources.App.Services.BalanceServices;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.CommonUtils.Libs;
 using Sources.Utils.Di;

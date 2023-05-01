@@ -1,5 +1,11 @@
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
+using Sources.App.Services.AssetsServices;
+using Sources.App.Services.AssetsServices.Monos.MonoServices;
+using Sources.App.Services.AudioServices;
+using Sources.App.Services.BalanceServices;
+using Sources.App.Services.QualityServices;
+using Sources.App.Services.UserServices;
 using Sources.CommonServices.ApplicationInputServices;
 using Sources.CommonServices.ApplicationServices;
 using Sources.CommonServices.CoroutineRunnerServices;
@@ -15,12 +21,6 @@ using Sources.CommonServices.ScreenServices;
 using Sources.CommonServices.TimeServices;
 using Sources.CommonServices.UiServices.System;
 using Sources.CommonServices.VibrationServices;
-using Sources.Services.AssetsServices;
-using Sources.Services.AssetsServices.Monos.MonoServices;
-using Sources.Services.AudioServices;
-using Sources.Services.BalanceServices;
-using Sources.Services.QualityServices;
-using Sources.Services.UserServices;
 using Sources.Utils.Di;
 
 namespace Sources.App.Infrastructure.StateMachine.States
