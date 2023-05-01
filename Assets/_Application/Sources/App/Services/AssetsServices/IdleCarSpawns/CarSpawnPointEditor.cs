@@ -50,7 +50,7 @@ namespace Sources.App.Services.AssetsServices.IdleCarSpawns
 
             ICarMonoEntity carMonoEntity = EditorAssets.Assets.CarsAssets.GetCarPrefab(_spawnPoint.CarType);
             _visualModel = EditorInstantiator.InstantiateAsPrefab<ICarMonoEntity, CarMonoEntity>(carMonoEntity, transform);
-            _visualModel.transform.localPosition -= _visualModel.RootOffset;
+            _visualModel.transform.localPosition -= _visualModel.WheelsSystem.RootOffset;
             _visualModel.gameObject.hideFlags = HideFlags.HideAndDontSave;
         }
 

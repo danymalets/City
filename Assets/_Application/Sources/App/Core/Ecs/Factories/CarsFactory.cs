@@ -49,7 +49,7 @@ namespace Sources.App.Core.Ecs.Factories
             if (CanCreateCar(carPrefab, position, rotation))
             {
                 createdCar = CreateCar(carPrefab, carColorType,
-                    position - rotation * carPrefab.RootOffset, rotation, isIdle);
+                    position - rotation * carPrefab.WheelsSystem.RootOffset, rotation, isIdle);
                 return true;
             }
             else
@@ -61,8 +61,9 @@ namespace Sources.App.Core.Ecs.Factories
 
         private bool CanCreateCar(ICarMonoEntity carPrefab, Vector3 position, Quaternion rotation)
         {
-            return !_physics.CheckBox(position + rotation * carPrefab.CenterRelatedRootPoint,
-                carPrefab.HalfExtents, rotation, LayerMasks.CarsAndPlayers);
+            return !_physics.CheckBox(position + rotation * carPrefab.BorderCollider
+                                          .SafeBoxCollider.BoxColliderData.Center - carPrefab.WheelsSystem.RootOffset,
+                carPrefab.BorderCollider.SafeBoxCollider.BoxColliderData.HalfExtents, rotation, LayerMasks.CarsAndPlayers);
         }
 
         private Entity CreateCar(CarColorData carColorData, Vector3 position, Quaternion rotation, bool isIdle) =>
@@ -85,7 +86,7 @@ namespace Sources.App.Core.Ecs.Factories
                 .SetAccess<IMeshRenderer[]>(carMonoEntity.MeshRenderers.ToArray())
                 .SetAccess<RigidbodySettings>(new RigidbodySettings(_carsBalance.Mass, RigidbodyConstraints.None,
                     carMonoEntity.BorderCollider.SafeBoxCollider.Center
-                        .WithY(carMonoEntity.HalfExtents.y * 2) * (1f / 3f)))
+                        .WithY(carMonoEntity.BorderCollider.SafeBoxCollider.BoxColliderData.HalfExtents.y * 2) * (1f / 3f)))
                 .SetupAspectIf<CarColorAspect>(() => colorType != null, 
                     cc => cc.SetupColor(colorType!.Value))
                 .SetupAspectIf<SwitchableRigidbodyAspect>(() => !isIdle,

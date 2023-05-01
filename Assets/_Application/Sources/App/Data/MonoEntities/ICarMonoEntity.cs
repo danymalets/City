@@ -17,8 +17,5 @@ namespace Sources.App.Data.MonoEntities
         ICarBorders BorderCollider { get; }
         IEnumerable<IEntityAccess> Colliders { get; }
         IEnumerable<IMeshRenderer> MeshRenderers { get; }
-        Vector3 CenterRelatedRootPoint { get; }
-        Vector3 HalfExtents { get; }
-        Vector3 RootOffset { get; }
     }
 }

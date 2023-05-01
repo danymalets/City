@@ -54,12 +54,6 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities
         public IEnumerable<IEntityAccess> Colliders => _colliders;
         public IEnumerable<IMeshRenderer> MeshRenderers => _meshRenderers;
 
-        private void Awake()
-        {
-            // foreach (SafeMeshRenderer meshRenderer in _meshRenderers) 
-            //     meshRenderer.Material = new Material(meshRenderer.Material);
-        }
-
         [Button("Bake", ButtonSizes.Large)]
         private void Bake()
         {
@@ -85,18 +79,6 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities
             _carBorders.SafeBoxCollider.Layer = Layers.CarBorders;
         }
 
-        [Button("Debug", ButtonSizes.Large)]
-        private void Go()
-        {
-            foreach (SafeMeshRenderer mr in _meshRenderers)
-            {
-                MaterialPropertyBlock materialPropertyBlock = new MaterialPropertyBlock();
-                materialPropertyBlock.SetInt(ShaderProperties.CarTargetIndex, (int)CarColorType.Brown);
-                mr.SetPropertyBlock(materialPropertyBlock);
-            }
-        }
-
-
         [Button("Set auto borders (do not use multi-click on this button)", ButtonSizes.Large)]
         private void SetAutoBorders() => 
             _carBorders.SetupBounds(_colliders);
@@ -104,9 +86,5 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities
         [Button("Set auto obstacles (do not use multi-click on this button)", ButtonSizes.Large)]
         private void SetAutoObstacles() => 
             _carObstacles.SetupBounds(_colliders);
-
-        public Vector3 CenterRelatedRootPoint => _carBorders.SafeBoxCollider.BoxColliderData.Center - RootOffset;
-        public Vector3 HalfExtents => _carBorders.SafeBoxCollider.BoxColliderData.HalfExtents;
-        public Vector3 RootOffset => _wheelsSystem.RootOffset;
     }
 }
