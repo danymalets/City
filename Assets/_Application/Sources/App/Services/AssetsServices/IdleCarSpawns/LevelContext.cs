@@ -6,7 +6,7 @@ using Sources.App.Services.AssetsServices.Monos.Bootstrap;
 using Sources.App.Services.AssetsServices.Monos.MonoEntities;
 using Sources.App.Services.AssetsServices.Monos.Points;
 using Sources.App.Services.AssetsServices.Monos.RoadSystem;
-using Sources.CommonServices.SceneLoaderServices;
+using Sources.Services.SceneLoaderServices;
 using UnityEngine;
 using UnityEngine.Serialization;
 

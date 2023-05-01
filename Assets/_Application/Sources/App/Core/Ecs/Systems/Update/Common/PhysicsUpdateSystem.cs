@@ -1,4 +1,4 @@
-using Sources.CommonServices.PhysicsServices;
+using Sources.Services.PhysicsServices;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 

@@ -5,7 +5,7 @@ using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.App.UI.Screens;
 using Sources.App.UI.Screens.Level;
-using Sources.CommonServices.UiServices.System;
+using Sources.Services.UiServices.System;
 using Sources.Utils.Di;
 
 namespace Sources.App.Infrastructure.StateMachine.States

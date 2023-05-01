@@ -1,6 +1,6 @@
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Player;
-using Sources.CommonServices.UiServices.WindowBase.Screens;
+using Sources.Services.UiServices.WindowBase.Screens;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using UnityEngine;
 using UnityEngine.UI;

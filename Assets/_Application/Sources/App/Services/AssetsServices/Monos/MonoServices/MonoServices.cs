@@ -1,10 +1,10 @@
 using Sources.App.Services.AudioServices;
 using Sources.App.Services.BalanceServices;
-using Sources.CommonServices.ApplicationServices;
-using Sources.CommonServices.CoroutineRunnerServices;
-using Sources.CommonServices.GizmosServices;
-using Sources.CommonServices.PoolServices;
-using Sources.CommonServices.UiServices.System;
+using Sources.Services.ApplicationServices;
+using Sources.Services.CoroutineRunnerServices;
+using Sources.Services.GizmosServices;
+using Sources.Services.PoolServices;
+using Sources.Services.UiServices.System;
 using UnityEngine;
 
 namespace Sources.App.Services.AssetsServices.Monos.MonoServices

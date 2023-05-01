@@ -2,7 +2,7 @@
     "name": "ExternalAssets.Joystick.Editor",
     "rootNamespace": "",
     "references": [
-        "ExternalAssets.Joystick"
+        "GUID:a3ae7bf209f1348288878d9eb75c91ad"
     ],
     "includePlatforms": [
         "Editor"

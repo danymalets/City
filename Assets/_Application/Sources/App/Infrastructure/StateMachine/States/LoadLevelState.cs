@@ -6,8 +6,8 @@ using Sources.App.Services.AssetsServices;
 using Sources.App.Services.BalanceServices;
 using Sources.App.Services.UserServices;
 using Sources.App.UI.Screens;
-using Sources.CommonServices.SceneLoaderServices;
-using Sources.CommonServices.UiServices.System;
+using Sources.Services.SceneLoaderServices;
+using Sources.Services.UiServices.System;
 using Sources.Utils.Di;
 using UnityEngine.SceneManagement;
 

@@ -1,6 +1,6 @@
 using Sources.App.UI.Screens.Input;
-using Sources.CommonServices.ApplicationInputServices;
-using Sources.CommonServices.UiServices.System;
+using Sources.Services.ApplicationInputServices;
+using Sources.Services.UiServices.System;
 using Sources.Utils.Di;
 using UnityEngine;
 

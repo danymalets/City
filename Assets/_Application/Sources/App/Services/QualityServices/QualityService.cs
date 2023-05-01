@@ -1,7 +1,7 @@
 using Sources.App.Services.BalanceServices;
 using Sources.App.Services.UserServices;
 using Sources.App.Services.UserServices.Data;
-using Sources.CommonServices.TimeServices;
+using Sources.Services.TimeServices;
 using Sources.Utils.Di;
 using UnityEngine;
 

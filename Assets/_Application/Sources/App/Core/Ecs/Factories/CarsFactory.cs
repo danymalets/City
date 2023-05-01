@@ -9,7 +9,7 @@ using Sources.App.Data.Constants;
 using Sources.App.Data.MonoEntities;
 using Sources.App.Data.Points;
 using Sources.App.Services.BalanceServices;
-using Sources.CommonServices.PhysicsServices;
+using Sources.Services.PhysicsServices;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.DefaultComponents;

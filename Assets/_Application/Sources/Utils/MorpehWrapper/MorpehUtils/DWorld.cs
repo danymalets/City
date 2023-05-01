@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Scellecs.Morpeh;
-using Sources.CommonServices.CoroutineRunnerServices;
-using Sources.CommonServices.FpsServices;
-using Sources.CommonServices.TimeServices;
+using Sources.Services.CoroutineRunnerServices;
+using Sources.Services.FpsServices;
+using Sources.Services.TimeServices;
 using Sources.Utils.CommonUtils.Libs;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.CustomSystems;

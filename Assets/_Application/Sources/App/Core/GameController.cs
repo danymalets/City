@@ -5,9 +5,9 @@ using Sources.App.UI.Screens;
 using Sources.App.UI.Screens.Input;
 using Sources.App.UI.Screens.Level;
 using Sources.App.UI.Screens.Map;
-using Sources.CommonServices.CoroutineRunnerServices;
-using Sources.CommonServices.FpsServices;
-using Sources.CommonServices.UiServices.System;
+using Sources.Services.CoroutineRunnerServices;
+using Sources.Services.FpsServices;
+using Sources.Services.UiServices.System;
 using Sources.Utils.Di;
 
 namespace Sources.App.Core

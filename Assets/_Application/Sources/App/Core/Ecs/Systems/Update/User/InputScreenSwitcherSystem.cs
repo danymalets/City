@@ -3,7 +3,7 @@ using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.UI.Screens.Input;
-using Sources.CommonServices.UiServices.System;
+using Sources.Services.UiServices.System;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;

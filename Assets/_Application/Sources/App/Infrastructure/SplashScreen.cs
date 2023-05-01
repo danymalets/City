@@ -1,5 +1,5 @@
 using System.Collections;
-using Sources.CommonServices.SceneLoaderServices;
+using Sources.Services.SceneLoaderServices;
 using UnityEngine.SceneManagement;
 
 namespace Sources.App.Infrastructure

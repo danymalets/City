@@ -1,6 +1,6 @@
 using System.Collections;
 using Sources.App.Data.Common;
-using Sources.CommonServices.GizmosServices;
+using Sources.Services.GizmosServices;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.Di;
 using UnityEngine;

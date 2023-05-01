@@ -1,5 +1,5 @@
 using System;
-using Sources.CommonServices.UiServices.WindowBase.Screens;
+using Sources.Services.UiServices.WindowBase.Screens;
 using UnityEngine.EventSystems;
 
 namespace Sources.App.UI.Screens

@@ -1,0 +1,16 @@
+{
+    "name": "Sources.Services.JsonSerializerServices",
+    "rootNamespace": "",
+    "references": [
+        "GUID:d265b201ff1f3441d8b0796de9a27b0c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
