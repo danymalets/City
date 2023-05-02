@@ -7,7 +7,7 @@ namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
     [RequireComponent(typeof(CapsuleCollider))]
     public class SafeCapsuleCollider : SafeCollider<CapsuleCollider>, ISafeMeshCollider
     {
-        public CapsuleData CapsuleData => new CapsuleData(Start, End, Radius);
+        public CapsuleData CapsuleData => new(Start, End, Radius);
 
         public Vector3 Start => Center - Vector3.down * StartEndDistance / 2;
         public Vector3 End => Center + Vector3.down * StartEndDistance / 2;

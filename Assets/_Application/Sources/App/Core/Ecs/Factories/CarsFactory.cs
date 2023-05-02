@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Aspects;
@@ -62,7 +63,7 @@ namespace Sources.App.Core.Ecs.Factories
         private bool CanCreateCar(ICarMonoEntity carPrefab, Vector3 position, Quaternion rotation)
         {
             return !_physics.CheckBox(position + rotation * carPrefab.BorderCollider
-                                          .SafeBoxCollider.BoxColliderData.Center - carPrefab.WheelsSystem.RootOffset,
+                    .SafeBoxCollider.BoxColliderData.Center - carPrefab.WheelsSystem.RootOffset,
                 carPrefab.BorderCollider.SafeBoxCollider.BoxColliderData.HalfExtents, rotation, LayerMasks.CarsAndPlayers);
         }
 
@@ -70,24 +71,24 @@ namespace Sources.App.Core.Ecs.Factories
             CreateCar(_assets.CarsAssets.GetCarPrefab(carColorData.CarType), carColorData.CarColor,
                 position, rotation, isIdle);
 
-        private Entity CreateCar(ICarMonoEntity carPrefab, CarColorType? colorType, 
+        private Entity CreateCar(ICarMonoEntity carPrefab, CarColorType? colorType,
             Vector3 position, Quaternion rotation, bool isIdle)
         {
             ICarMonoEntity carMonoEntity = _poolSpawner.Spawn(carPrefab, position, rotation);
-            
+
             return _world.CreateFromMono(carMonoEntity)
                 .Add<CarTag>()
                 .SetAccess<IEnableableGameObject>(carMonoEntity.EnableableGameObject)
                 .SetAccess<ITransform>(carMonoEntity.Transform)
                 .SetAccess<IRigidbodySwitcher>(carMonoEntity.RigidbodySwitcher)
-                .SetAccess<ICarEnterPoints>(carMonoEntity.EnterPoints)
                 .SetAccess<ICarBorders>(carMonoEntity.BorderCollider)
                 .SetAccess<IWheelsSystem>(carMonoEntity.WheelsSystem)
+                .SetAccess<IEnterPoint[]>(carMonoEntity.EnterPoints.EnterPoints.ToArray())
                 .SetAccess<IMeshRenderer[]>(carMonoEntity.MeshRenderers.ToArray())
                 .SetAccess<RigidbodySettings>(new RigidbodySettings(_carsBalance.Mass, RigidbodyConstraints.None,
                     carMonoEntity.BorderCollider.SafeBoxCollider.Center
                         .WithY(carMonoEntity.BorderCollider.SafeBoxCollider.BoxColliderData.HalfExtents.y * 2) * (1f / 3f)))
-                .SetupAspectIf<CarColorAspect>(() => colorType != null, 
+                .SetupAspectIf<CarColorAspect>(() => colorType != null,
                     cc => cc.SetupColor(colorType!.Value))
                 .SetupAspectIf<SwitchableRigidbodyAspect>(() => !isIdle,
                     pa => pa.EnableRigidbody())
@@ -98,7 +99,7 @@ namespace Sources.App.Core.Ecs.Factories
                 .Add<SteeringAngle>()
                 .Add<ForwardTrigger>()
                 .Add<SmoothSteeringAngle>()
-                .Set(new CarPassengers(4))
+                .Set(new CarPassengers { Passengers = Enumerable.Repeat<Entity>(null, 4).ToList() })
                 .Set(new CarMaxSpeed { Value = Mathf.Infinity });
         }
 

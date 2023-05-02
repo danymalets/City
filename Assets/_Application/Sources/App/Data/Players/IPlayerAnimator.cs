@@ -5,5 +5,7 @@ namespace Sources.App.Data.Players
         void SetMoveSpeed(float speed);
         void SetDie();
         void Setup();
+        void SetInCarLeft(bool value);
+        void SetInCarRight(bool value);
     }
 }

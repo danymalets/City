@@ -1,5 +1,5 @@
 using Scellecs.Morpeh;
-using Sources.App.Core.Ecs.Components.Car;
+using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Data.Cars;
@@ -34,41 +34,36 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
             foreach (Entity playerEntity in _filter)
             {
                 ITransform playerTransform = playerEntity.GetAccess<ITransform>();
-                IEnableableGameObject enableableEntity = playerEntity.GetAccess<IEnableableGameObject>();
-
+                
                 Entity enterCar = null;
                 float curMinSqrDistance = 0;
-                
+
                 foreach (Entity carEntity in _carsFilter)
                 {
-                    if (carEntity.Get<CarPassengers>().IsNoPassengers)
+                    if (carEntity.GetAspect<CarPassengersAspect>().IsNoPassengers)
                     {
-                        ICarEnterPoints carEnterPoints = carEntity.GetAccess<ICarEnterPoints>();
+                        IEnterPoint[] carEnterPoints = carEntity.GetAccess<IEnterPoint[]>();
 
-                        foreach (IEnterPoint enterPoint in carEnterPoints.EnterPoints)
+                        IEnterPoint enterPoint = carEnterPoints[0];
+
+                        float sqrDistance = DVector3.SqrDistance(enterPoint.Position, playerTransform.Position);
+                        if (sqrDistance <= DMath.Sqr(_carsBalance.MaxEnterCarDistance) &&
+                            (enterCar == null || sqrDistance < curMinSqrDistance))
                         {
-                            float sqrDistance = DVector3.SqrDistance(enterPoint.Position, playerTransform.Position);
-                            if (sqrDistance <= DMath.Sqr(_carsBalance.MaxEnterCarDistance) &&
-                                (enterCar == null || sqrDistance < curMinSqrDistance))
-                            {
-                                enterCar = carEntity;
-                                curMinSqrDistance = sqrDistance;
-                            }
+                            enterCar = carEntity;
+                            curMinSqrDistance = sqrDistance;
                         }
                     }
                 }
 
                 if (enterCar != null)
                 {
-                    if (playerEntity.Has<PlayerWantsEnterCar>())
-                    {
-                        enableableEntity.Disable();
-                        playerEntity.Set(new PlayerInCar { Car = enterCar });
-                        enterCar.Get<CarPassengers>().TakePlace(0, playerEntity);
-                    }
+                    playerEntity.Set(new CarInputPossibility { CarEntity = enterCar });
                 }
-
-                playerEntity.SetEnable<CarInputPossibility>(enterCar != null);
+                else
+                {
+                    playerEntity.RemoveIfHas<CarInputPossibility>();
+                }
             }
         }
     }

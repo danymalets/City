@@ -26,7 +26,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
             foreach (Entity npc in _filter)
             {
                 ref NpcOnPath npcOnPath = ref npc.Get<NpcOnPath>();
-                Entity carEntity = npc.Get<PlayerInCar>().Car;
+                Entity carEntity = npc.Get<PlayerInCar>().CarPlaceData.Car;
                 IWheelsSystem carWheels = carEntity.GetAccess<IWheelsSystem>();
                 ITransform carTransform = carEntity.GetAccess<ITransform>();
                 

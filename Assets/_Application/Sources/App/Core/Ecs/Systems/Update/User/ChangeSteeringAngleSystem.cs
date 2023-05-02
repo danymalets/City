@@ -30,7 +30,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
             {
                 float maxSteeringAngle = _carsBalance.MaxSteeringAngle;
                 float angleCoefficient = playerEntity.Get<CarSteeringAngleCoefficient>().AngleCoefficient;
-                Entity carEntity = playerEntity.Get<PlayerInCar>().Car;
+                Entity carEntity = playerEntity.Get<PlayerInCar>().CarPlaceData.Car;
                 
                 carEntity.Get<SteeringAngle>().Value = angleCoefficient * maxSteeringAngle;
             }

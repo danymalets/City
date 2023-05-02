@@ -1,5 +1,6 @@
 using System.Linq;
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Components.Car;
 using Sources.App.Core.Ecs.Components.Npc;
 using Sources.App.Core.Ecs.Components.Player;
@@ -18,7 +19,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<PlayerTag, PlayerInCar, PlayerWantsExitCar>();
+            _filter = _world.Filter<PlayerTag, PlayerInCar, PlayerExitCarEvent>();
         }
 
         protected override void OnUpdate(float deltaTime)
@@ -28,24 +29,13 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
                 ITransform playerTransform = playerEntity.GetAccess<ITransform>();
                 ref PlayerTargetAngle playerTargetAngle = ref playerEntity.Get<PlayerTargetAngle>();
                 ref PlayerSmoothAngle playerSmoothAngle = ref playerEntity.Get<PlayerSmoothAngle>();
-                IEnableableGameObject enableableEntity = playerEntity.GetAccess<IEnableableGameObject>();
                 PlayerInCar playerInCar = playerEntity.Get<PlayerInCar>();
-                Entity carEntity = playerInCar.Car;
-                int place = playerInCar.Place;
-                CarPassengers carPassengers = carEntity.Get<CarPassengers>();
-                IEnterPoint enterPoint = carEntity.GetAccess<ICarEnterPoints>().EnterPoints.First();
+                CarPlaceData carPlaceData = playerInCar.CarPlaceData;
+                CarPassengersAspect carPassengers = carPlaceData.Car.GetAspect<CarPassengersAspect>();
+                IEnterPoint enterPoint = carPlaceData.Car.GetAccess<IEnterPoint[]>()[0];
 
-                carPassengers.FreeUpPlace(place, playerEntity);
+                carPassengers.FreeUpPlace(carPlaceData.Place, playerEntity);
                 playerEntity.Remove<PlayerInCar>();
-
-                playerTransform.Position = enterPoint.Position + Vector3.up * 0.0f;
-
-                float angle = enterPoint.Rotation.eulerAngles.y;
-                playerTransform.Rotation = Quaternion.Euler(0, angle, 0);
-                playerTargetAngle.Value = angle;
-                playerSmoothAngle.Value = angle;
-
-                enableableEntity.Enable();
             }
         }
     }

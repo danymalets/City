@@ -21,6 +21,12 @@ namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
             get => _collider.material;
             set => _collider.material = value;
         }
+        
+        public override bool Enabled
+        {
+            get => _collider.enabled;
+            set => _collider.enabled = value;
+        }
 
         private void OnValidate()
         {

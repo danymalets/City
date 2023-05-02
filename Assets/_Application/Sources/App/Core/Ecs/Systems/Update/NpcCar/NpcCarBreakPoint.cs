@@ -29,7 +29,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
         {
             foreach (Entity npcEntity in _filter)
             {
-                Entity carEntity = npcEntity.Get<PlayerInCar>().Car;
+                Entity carEntity = npcEntity.Get<PlayerInCar>().CarPlaceData.Car;
                 
                 //ITransform transform = npcEntity.GetMono<ITransform>();
                 IWheelsSystem wheels = carEntity.GetAccess<IWheelsSystem>();

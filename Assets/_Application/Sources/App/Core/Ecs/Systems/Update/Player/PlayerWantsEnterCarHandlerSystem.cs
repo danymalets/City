@@ -1,31 +1,28 @@
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
-using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
+using Sources.App.Data.Cars;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
-using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Player
 {
-    public class SmoothAngleApplySystem : DUpdateSystem
+    public class PlayerWantsEnterCarHandlerSystem : DUpdateSystem
     {
         private Filter _filter;
+        private Filter _carsFilter;
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<PlayerTag>()
-                .Without<PlayerInCar>();
+            _filter = _world.Filter<PlayerTag, PlayerWantsEnterCarEvent>();
         }
 
         protected override void OnUpdate(float deltaTime)
         {
             foreach (Entity playerEntity in _filter)
             {
-                IRigidbody physicBody = playerEntity.GetAccess<IRigidbody>();
-                PlayerSmoothAngle playerSmoothAngle = playerEntity.Get<PlayerSmoothAngle>();
-                
-                physicBody.MoveRotation(Quaternion.Euler(0, playerSmoothAngle.Value, 0));
+                CarPlaceData carPlaceData = playerEntity.Get<PlayerWantsEnterCarEvent>().CarPlaceData;
+                playerEntity.Set(new PlayerEnterCarEvent { CarPlaceData = carPlaceData });
             }
         }
     }

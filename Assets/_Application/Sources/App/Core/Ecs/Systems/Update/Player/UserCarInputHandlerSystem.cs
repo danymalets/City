@@ -24,7 +24,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
             {
                 ref UserCarInput userCarInput = ref playerEntity.Get<UserCarInput>();
                 
-                Entity carEntity = playerEntity.Get<PlayerInCar>().Car;
+                Entity carEntity = playerEntity.Get<PlayerInCar>().CarPlaceData.Car;
                 
                 float signedSpeed = carEntity.GetAccess<IRigidbody>().SignedSpeed;
                 

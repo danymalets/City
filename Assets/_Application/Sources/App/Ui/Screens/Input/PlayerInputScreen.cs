@@ -1,13 +1,18 @@
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Player;
+using Sources.App.Core.Ecs.Components.Tags;
+using Sources.App.Data.Cars;
 using Sources.Services.UiServices.WindowBase.Screens;
+using Sources.Utils.Di;
+using Sources.Utils.MorpehWrapper.MorpehUtils;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using UnityEngine;
 using UnityEngine.UI;
+using Screen = Sources.Services.UiServices.WindowBase.Screens.Screen;
 
 namespace Sources.App.Ui.Screens.Input
 {
-    public class PlayerInputScreen : Screen<Entity>
+    public class PlayerInputScreen : Screen
     {
         [SerializeField]
         private Joystick _joystick;
@@ -25,24 +30,29 @@ namespace Sources.App.Ui.Screens.Input
 
         private void OnEnterCarButtonClicked()
         {
-            _userEntity.Add<PlayerWantsEnterCar>();
+            if (_userEntity.TryGet(out CarInputPossibility carInputPossibility))
+            {
+                _userEntity.Set(new PlayerWantsEnterCarEvent
+                {
+                    CarPlaceData = new CarPlaceData(carInputPossibility.CarEntity, 0)
+                });
+            }
         }
-        
-        
 
         private void Update()
         {
             if (UnityEngine.Input.GetKeyDown(KeyCode.E))
             {
-                _userEntity.Add<PlayerWantsEnterCar>();
+                OnEnterCarButtonClicked();
             }
 
             _enterCarButton.gameObject.SetActive(_userEntity.Has<CarInputPossibility>());
         }
 
-        protected override void OnOpen(Entity userEntity)
+        protected override void OnOpen()
         {
-            _userEntity = userEntity;
+            DWorld world = DiContainer.Resolve<DWorld>();
+            _userEntity = world.GetSingleton<UserTag>();
         }
 
         protected override void OnClose()

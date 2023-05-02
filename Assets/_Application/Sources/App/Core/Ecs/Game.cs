@@ -14,6 +14,7 @@ using Sources.App.Core.Ecs.Systems.Update.Player;
 using Sources.App.Core.Ecs.Systems.Update.PseudoEditor;
 using Sources.App.Core.Ecs.Systems.Update.User;
 using Sources.App.Core.Services;
+using Sources.App.Data.Common;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper;
 using Sources.Utils.MorpehWrapper.MorpehUtils;
@@ -41,15 +42,16 @@ namespace Sources.App.Core.Ecs
 
         private void RegisterGameServices()
         {
-            _diBuilder.Register<IPlayersFactory>(new PlayersFactory());
-            _diBuilder.Register<ICarsFactory>(new CarsFactory());
-            _diBuilder.Register<IPathesFactory>(new PathesFactory());
-            _diBuilder.Register<ICamerasFactory>(new CamerasFactory());
-            _diBuilder.Register<ISimulationAreasFactory>(new SimulationAreasFactory());
-
-            _diBuilder.Register<IPlayersDespawner>(new PlayersDespawner());
-            _diBuilder.Register<ICarsDespawner>(new CarsDespawner());
-            _diBuilder.Register<ISimulationSettings>(new SimulationSettings());
+            _diBuilder.Register<PlayersFactory, IPlayersFactory>();
+            _diBuilder.Register<CarsFactory, ICarsFactory>();
+            _diBuilder.Register<PathesFactory, IPathesFactory>();
+            _diBuilder.Register<CamerasFactory, ICamerasFactory>();
+            _diBuilder.Register<SimulationAreasFactory, ISimulationAreasFactory>();
+            
+            _diBuilder.Register<PlayersDespawner, IPlayersDespawner>();
+            _diBuilder.Register<CarsDespawner, ICarsDespawner>();
+            _diBuilder.Register<SimulationSettings, ISimulationSettings>();
+            _diBuilder.Register<NavigationService, INavigationService>();
         }
 
         private void AddInitializers()
@@ -91,9 +93,11 @@ namespace Sources.App.Core.Ecs
             _world.AddFixedSystem<SetFallenLayerRequestHandlerSystem>();
             _world.AddFixedSystem<DespawnRequestHandlerSystem>();
 
-            //car exit
+            //car enter or exit
             _world.AddFixedSystem<PlayerCarExitSystem>();
             _world.AddFixedSystem<PlayerCarEnterSystem>();
+            _world.AddFixedSystem<PlayerWantsEnterCarHandlerSystem>();
+            _world.AddFixedSystem<PlayerEnterCarHandlerSystem>();
             
             // gen
             _world.AddFixedSystem<CameraTargetDeltasSystem>();
@@ -155,11 +159,13 @@ namespace Sources.App.Core.Ecs
             _world.AddFixedSystem<CarMotorApplySystem>();
             _world.AddFixedSystem<SteeringAngleApplySystem>();
 
+            // on frames
             _world.AddFixedOneFrame<NpcPointReachedEvent>();
+            _world.AddFixedOneFrame<PlayerEnterCarEvent>();
             _world.AddFixedOneFrame<NpcBreakRequest>();
             _world.AddFixedOneFrame<NpcCarBreakRequest>();
-            _world.AddFixedOneFrame<PlayerWantsExitCar>();
-            _world.AddFixedOneFrame<PlayerWantsEnterCar>();
+            _world.AddFixedOneFrame<PlayerExitCarEvent>();
+            _world.AddFixedOneFrame<PlayerWantsEnterCarEvent>();
             _world.AddFixedOneFrame<DeadRequest>();
             _world.AddFixedOneFrame<FallAnimationRequest>();
             _world.AddFixedOneFrame<SetFallenLayerRequest>();
@@ -188,7 +194,7 @@ namespace Sources.App.Core.Ecs
             // fog
             _world.AddUpdateSystem<UserFogUpdateSystem>();
             
-            // geometry
+            // wheels geometry
             _world.AddUpdateSystem<WheelGeometrySystem>();
 
             // ui
@@ -211,6 +217,9 @@ namespace Sources.App.Core.Ecs
             
             // map camera
             _world.AddUpdateSystem<MapCameraUpdateSystem>();
+            
+            // player in car position
+            _world.AddUpdateSystem<PlayerInCarPositionUpdaterSystem>();
 
 #if UNITY_EDITOR
             _world.AddUpdateSystem<PathesGizmosSystem>();

@@ -13,6 +13,9 @@ namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
             get => gameObject.layer;
             set => gameObject.layer = value;
         }
+
+        public abstract bool Enabled { get; set; }
+
         public abstract PhysicMaterial PhysicsMaterial { get; set; }
     }
 }

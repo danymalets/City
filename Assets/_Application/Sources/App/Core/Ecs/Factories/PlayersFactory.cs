@@ -47,7 +47,7 @@ namespace Sources.App.Core.Ecs.Factories
         {
             return CreateUser(playerPrefab, Vector3.zero, Quaternion.identity)
                 .SetupAccessible<EnableableGameObject>(g => g.Disable())
-                .Set(new PlayerInCar { Car = carEntity });
+                .Set(new PlayerInCar { CarPlaceData = new CarPlaceData(carEntity, 0) });
         }
 
         public Entity CreateUser(IPlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation) =>
@@ -99,10 +99,10 @@ namespace Sources.App.Core.Ecs.Factories
         {
             Entity npc = CreateNpc(playerPrefab, Vector3.zero, Quaternion.identity)
                 .SetupAccessible<IEnableableGameObject>(g => g.Disable())
-                .Set(new PlayerInCar { Car = carEntity, Place = 0 })
+                .Set(new PlayerInCar { CarPlaceData = new CarPlaceData(carEntity, 0)})
                 .SetupAspect<NpcStatusAspect>(nsa => nsa.SetPath(pathLine));
 
-            carEntity.Get<CarPassengers>().TakePlace(0, npc);
+            carEntity.GetAspect<CarPassengersAspect>().TakePlace(0, npc);
 
             return npc;
         }

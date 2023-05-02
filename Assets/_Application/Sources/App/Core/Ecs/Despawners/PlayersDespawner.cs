@@ -14,7 +14,7 @@ namespace Sources.App.Core.Ecs.Despawners
             
             if (playerEntity.TryGet(out PlayerInCar playerInCar))
             {
-                playerInCar.Car.Get<CarPassengers>().FreeUpPlace(playerInCar.Place, playerEntity);
+                playerInCar.CarPlaceData.Car.GetAspect<CarPassengersAspect>().FreeUpPlace(playerInCar.CarPlaceData.Place, playerEntity);
             }
 
             SwitchableRigidbodyAspect switchableRigidbodyAspect = playerEntity.GetAspect<SwitchableRigidbodyAspect>();

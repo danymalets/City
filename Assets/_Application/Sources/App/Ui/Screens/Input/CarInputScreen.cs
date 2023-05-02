@@ -1,13 +1,17 @@
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Player;
+using Sources.App.Core.Ecs.Components.Tags;
 using Sources.Services.UiServices.WindowBase.Screens;
+using Sources.Utils.Di;
+using Sources.Utils.MorpehWrapper.MorpehUtils;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using UnityEngine;
 using UnityEngine.UI;
+using Screen = Sources.Services.UiServices.WindowBase.Screens.Screen;
 
 namespace Sources.App.Ui.Screens.Input
 {
-    public class CarInputScreen : Screen<Entity>
+    public class CarInputScreen : Screen
     {
         [SerializeField]
         private GameplayButton _upButton;
@@ -31,21 +35,22 @@ namespace Sources.App.Ui.Screens.Input
             _exitCarButton.onClick.AddListener(OnExitCarButtonClicked);
         }
 
-        protected override void OnOpen(Entity userEntity)
+        protected override void OnOpen()
         {
-            _userEntity = userEntity;
+            DWorld world = DiContainer.Resolve<DWorld>();
+            _userEntity = world.GetSingleton<UserTag>();
         }
 
         private void OnExitCarButtonClicked()
         {
-            _userEntity.Add<PlayerWantsExitCar>();
+            _userEntity.Add<PlayerExitCarEvent>();
         }
 
         private void Update()
         {
             if (UnityEngine.Input.GetKeyDown(KeyCode.R))
             {
-                _userEntity.Add<PlayerWantsExitCar>();
+                OnExitCarButtonClicked();
             }
         }
 

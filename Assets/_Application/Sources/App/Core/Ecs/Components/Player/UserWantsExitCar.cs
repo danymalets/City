@@ -2,7 +2,7 @@ using Scellecs.Morpeh;
 
 namespace Sources.App.Core.Ecs.Components.Player
 {
-    public struct PlayerWantsExitCar : IComponent
+    public struct PlayerExitCarEvent : IComponent
     {
         
     }

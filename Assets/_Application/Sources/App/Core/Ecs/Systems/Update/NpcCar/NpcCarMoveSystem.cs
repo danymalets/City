@@ -34,7 +34,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
         {
             foreach (Entity npcEntity in _filter)
             {
-                Entity carEntity = npcEntity.Get<PlayerInCar>().Car;
+                Entity carEntity = npcEntity.Get<PlayerInCar>().CarPlaceData.Car;
                 ref CarMotorCoefficient carMotorCoefficient = ref carEntity.Get<CarMotorCoefficient>();
                 ref CarBreak carBreak = ref carEntity.Get<CarBreak>();
                 ref ForwardTrigger forwardTrigger = ref carEntity.Get<ForwardTrigger>();

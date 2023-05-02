@@ -38,7 +38,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
             {
                 Point breakPoint = npcEntity.Get<NpcCarBreakRequest>().Point;
                 
-                Entity carEntity = npcEntity.Get<PlayerInCar>().Car;
+                Entity carEntity = npcEntity.Get<PlayerInCar>().CarPlaceData.Car;
 
                 //ITransform transform = npcEntity.GetMono<ITransform>();
                 IWheelsSystem wheels = carEntity.GetAccess<IWheelsSystem>();

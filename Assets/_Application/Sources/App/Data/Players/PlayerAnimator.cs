@@ -22,7 +22,17 @@ namespace Sources.App.Data.Players
             
             _animator.Play(Names.MoveBlendTree, _baseLayer, Random.value);
         }
-        
+
+        public void SetInCarLeft(bool value)
+        {
+            _animator.SetBool(Parameters.InCarLeft, value);
+        }
+
+        public void SetInCarRight(bool value)
+        {
+            _animator.SetBool(Parameters.InCarRight, value);
+        }
+
         public void SetMoveSpeed(float speed)
         {
             _animator.SetFloat(Parameters.Speed, speed);
@@ -48,6 +58,8 @@ namespace Sources.App.Data.Players
         {
             public static int Speed = Animator.StringToHash(nameof(Speed));
             public static int Die = Animator.StringToHash(nameof(Die));
+            public static int InCarLeft = Animator.StringToHash(nameof(InCarLeft));
+            public static int InCarRight = Animator.StringToHash(nameof(InCarRight));
         }
     }
 }

@@ -6,5 +6,6 @@ namespace Sources.App.Data.Cars
     {
         Vector3 Position { get; }
         Quaternion Rotation { get; }
+        EnterPointSideType SideType { get; }
     }
 }

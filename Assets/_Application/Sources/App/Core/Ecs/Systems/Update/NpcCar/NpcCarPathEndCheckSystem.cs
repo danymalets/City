@@ -23,7 +23,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
             foreach (Entity npcEntity in _filter)
             {
                 ref NpcOnPath npcOnPath = ref npcEntity.Get<NpcOnPath>();
-                Entity carEntity = npcEntity.Get<PlayerInCar>().Car;
+                Entity carEntity = npcEntity.Get<PlayerInCar>().CarPlaceData.Car;
                 IWheelsSystem carWheels = carEntity.GetAccess<IWheelsSystem>();
 
                 if (npcOnPath.PathLine.IsEnded(carWheels.RootPosition))

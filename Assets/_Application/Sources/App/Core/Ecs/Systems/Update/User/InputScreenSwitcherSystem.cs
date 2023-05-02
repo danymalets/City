@@ -12,11 +12,12 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
 {
     public class InputScreenSwitcherSystem : DUpdateSystem
     {
-        private Filter _userWithCar;
-        
+
         private readonly CarInputScreen _carInputScreen;
         private readonly PlayerInputScreen _playerInputScreen;
 
+        private Filter _userWithCarFilter;
+        private Filter _userWithoutCarFilter;
         public InputScreenSwitcherSystem()
         {
             IUiService ui = DiContainer.Resolve<IUiService>();
@@ -27,26 +28,32 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
 
         protected override void OnInitFilters()
         {
-            _userWithCar = _world.Filter<UserTag, PlayerInCar>();
+            _userWithCarFilter = _world.Filter<UserTag, PlayerFullyInCar>();
+            _userWithoutCarFilter = _world.Filter<UserTag>().Without<PlayerInCar>();
         }
 
         protected override void OnUpdate(float deltaTime)
         {
-            if (_userWithCar.Any())
+            if (_userWithCarFilter.Any())
             {
                 if (!_carInputScreen.IsOpened)
-                    _carInputScreen.Open(_world.GetSingleton<UserTag>());
-
-                if (_playerInputScreen.IsOpened)
-                    _playerInputScreen.Close();
+                    _carInputScreen.Open();
             }
             else
             {
+                if (!_playerInputScreen.IsOpened)
+                    _playerInputScreen.Open();
+            }
+            
+            if (_userWithoutCarFilter.Any())
+            {
                 if (_carInputScreen.IsOpened)
                     _carInputScreen.Close();
-
-                if (!_playerInputScreen.IsOpened)
-                    _playerInputScreen.Open(_world.GetSingleton<UserTag>());
+            }
+            else
+            {
+                if (_playerInputScreen.IsOpened)
+                    _playerInputScreen.Close();
             }
         }
     }
