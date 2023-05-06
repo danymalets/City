@@ -1,5 +1,6 @@
 using System.Linq;
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Data.Cars;
@@ -25,12 +26,12 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
             {
                 ITransform transform = playerEntity.GetRef<ITransform>();
                 CarPlaceData carPlaceData = playerEntity.Get<PlayerInCar>().CarPlaceData;
-
-                IEnterPoint enterPoint = carPlaceData.Car
-                    .GetRef<IEnterPoint[]>()[carPlaceData.Place];
                 
-                transform.Position = enterPoint.Position;
-                transform.Rotation = enterPoint.Rotation;
+                CarPassengersAspect carPassengersAspect = carPlaceData.Car.GetAspect<CarPassengersAspect>();
+                IEnterPoint placeEnterPoint = carPassengersAspect.GetPlaceEnterPoint(carPlaceData.Place);
+
+                transform.Position = placeEnterPoint.Position;
+                transform.Rotation = placeEnterPoint.Rotation;
             }
         }
     }

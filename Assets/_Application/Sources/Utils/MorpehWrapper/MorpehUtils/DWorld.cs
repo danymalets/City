@@ -15,7 +15,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
     public class DWorld : IService
     {
         private const float MinWorkableFps = 0;
-        private const bool DebugPerformance = true;
+        private const bool DebugPerformance = false;
 
         private readonly World _world;
         private readonly CoroutineContext _coroutineContext;

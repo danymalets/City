@@ -17,20 +17,18 @@ namespace Sources.App.Data.Common
             _carAgentId = NavMeshUtility.GetNavMeshAgentID("Car");
         }
 
-        public bool TryGetPlayerPath(Vector3 source, Vector3 target,
-            float maxDistanceToTarget, out Vector3[] path)
+        public bool TryGetPlayerPath(Vector3 source, Vector3 target, out Vector3[] path)
         {
-            return TryGetPath(_playerAgentId, source, target, maxDistanceToTarget, out path);
+            return TryGetPath(_playerAgentId, source, target, 0.5f, 0.5f, out path);
         }
 
-        public bool TryGetCarPath(Vector3 source, Vector3 target,
-            float maxDistanceToTarget, out Vector3[] path)
+        public bool TryGetCarPath(Vector3 source, Vector3 target, out Vector3[] path)
         {
-            return TryGetPath(_carAgentId, source, target, maxDistanceToTarget, out path);
+            return TryGetPath(_carAgentId, source, target, 0.5f, 0.5f, out path);
         }
 
-        private bool TryGetPath(int agentId, Vector3 source, 
-            Vector3 target, float maxDistanceToTarget, out Vector3[] path)
+        private bool TryGetPath(int agentId, Vector3 source, Vector3 target,
+            float maxDistanceFromSource, float maxDistanceToTarget, out Vector3[] path)
         {
             return TryGetPathInternal(agentId, source, target, maxDistanceToTarget, out path);
         }
@@ -46,7 +44,7 @@ namespace Sources.App.Data.Common
             return result;
         }
 
-        private bool TryGetPathInternal(int agentId, Vector3 source, Vector3 target, 
+        private bool TryGetPathInternal(int agentId, Vector3 source, Vector3 target,
             float maxDistanceToTarget, out Vector3[] path)
         {
             NavMeshPath navPath = new();

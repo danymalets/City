@@ -2,8 +2,7 @@ using Scellecs.Morpeh;
 
 namespace Sources.App.Core.Ecs.Components.Player
 {
-    public struct SetFallenLayerRequest : IComponent
+    public struct PlayerInputInCarOn : IComponent
     {
-        
     }
 }

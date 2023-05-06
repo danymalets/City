@@ -5,10 +5,8 @@ namespace Sources.App.Data.Common
 {
     public interface INavigationService : IService
     {
-        bool TryGetPlayerPath(Vector3 source, Vector3 target,
-            float maxDistanceToTarget, out Vector3[] path);
+        bool TryGetPlayerPath(Vector3 source, Vector3 target, out Vector3[] path);
 
-        bool TryGetCarPath(Vector3 source, Vector3 target,
-            float maxDistanceToTarget, out Vector3[] path);
+        bool TryGetCarPath(Vector3 source, Vector3 target, out Vector3[] path);
     }
 }

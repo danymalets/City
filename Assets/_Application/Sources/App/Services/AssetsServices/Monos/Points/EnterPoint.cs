@@ -8,11 +8,11 @@ namespace Sources.App.Services.AssetsServices.Monos.Points
         public Vector3 Position => transform.position;
         public Quaternion Rotation => transform.rotation;
 
-        [field: SerializeField] public EnterPointSideType SideType { get; private set; }
+        [field: SerializeField] public CarSideType SideType { get; private set; }
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = SideType == EnterPointSideType.Left ? Color.green : Color.blue;
+            Gizmos.color = SideType == CarSideType.Left ? Color.green : Color.blue;
             Gizmos.DrawSphere(Position, 0.4f);
             Gizmos.DrawSphere(Position + Rotation * Vector3.forward * 0.4f, 0.2f);
         }

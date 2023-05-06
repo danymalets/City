@@ -17,5 +17,8 @@ namespace Sources.Services.CoroutineRunnerServices
 
         public Coroutine RunEachSeconds(float period, Action action, bool andNow = false) =>
             MonoBehaviourCoroutineExtensions.RunEachSeconds(this, period, action, andNow);
+
+        public Coroutine RunNextFixedUpdate(Action action) => 
+            MonoBehaviourCoroutineExtensions.RunNextFixedUpdate(this, action);
     }
 }

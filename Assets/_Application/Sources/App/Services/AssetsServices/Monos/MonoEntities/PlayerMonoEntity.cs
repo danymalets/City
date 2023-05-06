@@ -7,6 +7,7 @@ using Sources.Utils.MorpehWrapper;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Sources.App.Services.AssetsServices.Monos.MonoEntities
 {
@@ -29,12 +30,16 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities
 
         [SerializeField]
         private SafeAnimator _animator;
+        
+        [SerializeField]
+        private NavMeshObstacle _navMeshAgent;
 
         public IEnableableGameObject EnableableGameObject => _enableableGameObject;
         public IRigidbodySwitcher RigidbodySwitcher => _rigidbodySwitcher;
         public ITransform Transform => _transform;
         public IPlayerBorders PlayerBorders => _playerBorders;
         public IAnimator Animator => _animator;
+        public NavMeshObstacle NavMeshObstacle => _navMeshAgent;
 
 #if UNITY_EDITOR
         [Button("Bake", ButtonSizes.Large)]
@@ -47,6 +52,7 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities
             _rigidbodySwitcher = GetComponent<RigidbodySwitcher>();
             _playerBorders = GetComponentInChildren<PlayerBorders>();
             _animator = GetComponentInChildren<SafeAnimator>();
+            _navMeshAgent = GetComponentInChildren<NavMeshObstacle>();
             
             _playerBorders.SafeCapsuleCollider.Layer = Layers.Player;
         }

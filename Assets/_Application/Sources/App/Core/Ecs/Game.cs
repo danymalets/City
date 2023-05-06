@@ -1,3 +1,4 @@
+using Sources.App.Core.Ecs.Components.NavPathes;
 using Sources.App.Core.Ecs.Components.Npc.NpcCar;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Despawners;
@@ -93,12 +94,26 @@ namespace Sources.App.Core.Ecs
             _world.AddFixedSystem<SetFallenLayerRequestHandlerSystem>();
             _world.AddFixedSystem<DespawnRequestHandlerSystem>();
 
-            //car enter or exit
-            _world.AddFixedSystem<PlayerCarExitSystem>();
-            _world.AddFixedSystem<PlayerCarEnterSystem>();
+            //car enter
+            _world.AddFixedSystem<UserNearbyCarsCheckSystem>();
+            
             _world.AddFixedSystem<PlayerWantsEnterCarHandlerSystem>();
+            
+            _world.AddFixedSystem<PlayerNavPathRotationSpeedSystem>();
+            _world.AddFixedSystem<PlayerNavigationMoveSystem>();
+            
+            _world.AddFixedSystem<PlayerNavigationFailedHandlerSystem>();
+            _world.AddFixedSystem<PlayerNavigationCompletedHandlerSystem>();
+            _world.AddFixedSystem<PlayerNavToCarFailedReceiverSystem>();
+            _world.AddFixedSystem<PlayerNavToCarCompletedReceiverSystem>();
+            _world.AddFixedSystem<PlayerNavToCarCompletedHandlerSystem>();
+            
             _world.AddFixedSystem<PlayerEnterCarHandlerSystem>();
             
+            //car exit
+            _world.AddFixedSystem<PlayerCarExitSystem>();
+            _world.AddFixedSystem<PlayerCarFullyExitSystem>();
+
             // gen
             _world.AddFixedSystem<CameraTargetDeltasSystem>();
             _world.AddFixedSystem<SimulationCameraUpdateSystem>();
@@ -161,14 +176,19 @@ namespace Sources.App.Core.Ecs
 
             // on frames
             _world.AddFixedOneFrame<NpcPointReachedEvent>();
+            _world.AddFixedOneFrame<OnNavFailedEvent>();
+            _world.AddFixedOneFrame<OnNavToCarFailedEvent>();
+            _world.AddFixedOneFrame<NavPathCompletedEvent>();
+            _world.AddFixedOneFrame<NavToCarCompletedEvent>();
             _world.AddFixedOneFrame<PlayerEnterCarEvent>();
             _world.AddFixedOneFrame<NpcBreakRequest>();
             _world.AddFixedOneFrame<NpcCarBreakRequest>();
             _world.AddFixedOneFrame<PlayerExitCarEvent>();
             _world.AddFixedOneFrame<PlayerWantsEnterCarEvent>();
+            _world.AddFixedOneFrame<PlayerFullyExitCarEvent>();
             _world.AddFixedOneFrame<DeadRequest>();
             _world.AddFixedOneFrame<FallAnimationRequest>();
-            _world.AddFixedOneFrame<SetFallenLayerRequest>();
+            _world.AddFixedOneFrame<SetLayerRequest>();
             _world.AddFixedOneFrame<MakeKinematicRequest>();
             _world.AddFixedOneFrame<DespawnRequest>();
             _world.AddFixedOneFrame<Collisions>();

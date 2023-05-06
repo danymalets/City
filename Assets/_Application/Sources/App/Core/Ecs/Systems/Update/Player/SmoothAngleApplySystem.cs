@@ -14,8 +14,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<PlayerTag>()
-                .Without<PlayerInCar>();
+            _filter = _world.Filter<PlayerTag>().Without<PlayerInCar>();
         }
 
         protected override void OnUpdate(float deltaTime)

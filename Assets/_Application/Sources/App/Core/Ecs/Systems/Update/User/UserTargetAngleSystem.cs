@@ -1,4 +1,5 @@
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Components.NavPathes;
 using Sources.App.Core.Ecs.Components.Npc;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
@@ -17,7 +18,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<UserTag>().Without<PlayerInCar>();
+            _filter = _world.Filter<UserTag>().Without<PlayerInCar, OnNavPath>();
         }
 
         protected override void OnUpdate(float deltaTime)
@@ -33,7 +34,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
             
             if (userPlayerInput.MoveInput != Vector2.zero)
             {
-                Vector3 input = new Vector3(userPlayerInput.MoveInput.x, 0, userPlayerInput.MoveInput.y);
+                Vector3 input = new(userPlayerInput.MoveInput.x, 0, userPlayerInput.MoveInput.y);
 
                 float inputAngle = Vector3.SignedAngle(Vector3.forward, input, Vector3.up);
 

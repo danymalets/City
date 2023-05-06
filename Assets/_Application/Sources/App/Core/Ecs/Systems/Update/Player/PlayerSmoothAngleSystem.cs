@@ -24,7 +24,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
                 ref PlayerTargetAngle playerTargetAngle = ref entity.Get<PlayerTargetAngle>();
                 ref PlayerSmoothAngle playerSmoothAngle = ref entity.Get<PlayerSmoothAngle>();
                 RotationSpeed rotationSpeed = entity.Get<RotationSpeed>();
-
+                
                 playerSmoothAngle.Value = Mathf.MoveTowardsAngle(
                     playerSmoothAngle.Value, playerTargetAngle.Value, deltaTime * rotationSpeed.Value);
             }

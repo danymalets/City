@@ -17,9 +17,10 @@ namespace Sources.App.Services.BalanceServices
         [SerializeField]
         private float _weight = 100;
 
+        // ReSharper disable once UnusedMember.Local
         private bool Show => _carType.IsColorable();
         
-        [ShowIf("Show")]
+        [ShowIf(nameof(Show))]
         [SerializeField]
         private List<CarColorBalance> _carColorBalance = new();
         

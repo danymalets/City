@@ -22,6 +22,7 @@ using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using UnityEngine;
+using UnityEngine.AI;
 using ICollider = Sources.Utils.MorpehWrapper.DefaultComponents.Monos.ICollider;
 
 namespace Sources.App.Core.Ecs.Factories
@@ -116,6 +117,7 @@ namespace Sources.App.Core.Ecs.Factories
 
             return _world.CreateFromMono(playerMonoEntity)
                 .SetRef<IEnableableGameObject>(playerMonoEntity.EnableableGameObject)
+                .SetRef<NavMeshObstacle>(playerMonoEntity.NavMeshObstacle)
                 .SetRef<IRigidbodySwitcher>(playerMonoEntity.RigidbodySwitcher)
                 .SetRef<RigidbodySettings>(new RigidbodySettings(_playersBalance.Mass,
                     RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ, null))

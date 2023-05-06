@@ -62,9 +62,9 @@ namespace Sources.App.Core.Ecs.Factories
 
         private bool CanCreateCar(ICarMonoEntity carPrefab, Vector3 position, Quaternion rotation)
         {
-            return !_physics.CheckBox(position + rotation * carPrefab.BorderCollider
-                    .SafeBoxCollider.BoxColliderData.Center - carPrefab.WheelsSystem.RootOffset,
-                carPrefab.BorderCollider.SafeBoxCollider.BoxColliderData.HalfExtents, rotation, LayerMasks.CarsAndPlayers);
+            return !_physics.CheckBox(position + rotation * (carPrefab.BorderCollider
+                    .SafeBoxCollider.BoxColliderData.Center - carPrefab.WheelsSystem.RootOffset),
+                carPrefab.BorderCollider.SafeBoxCollider.BoxColliderData.HalfExtents + Vector3.one * 0.1f, rotation, LayerMasks.CarsAndPlayers);
         }
 
         private Entity CreateCar(CarColorData carColorData, Vector3 position, Quaternion rotation, bool isIdle) =>

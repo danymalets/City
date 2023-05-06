@@ -207,7 +207,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: InCarLeft 0
+  - m_Name: InCarRight
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -282,7 +282,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CarEnterLeft
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 8135950171405846742}
@@ -362,7 +362,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CarExitLeft
-  m_Speed: -1
+  m_Speed: -1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -525652831549068535}
@@ -447,7 +447,7 @@ AnimatorStateMachine:
     m_Position: {x: 364.78607, y: 518.92194, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2451491187883812868}
-    m_Position: {x: -120, y: 130, z: 0}
+    m_Position: {x: -110, y: 130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6009591925784542716}
     m_Position: {x: -120, y: -160, z: 0}

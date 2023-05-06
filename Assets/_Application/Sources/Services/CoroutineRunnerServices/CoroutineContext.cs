@@ -59,5 +59,12 @@ namespace Sources.Services.CoroutineRunnerServices
             _runningCoroutines.Add(coroutine);
             return coroutine;
         }
+
+        public Coroutine RunNextFixedUpdate(Action action)
+        {
+            Coroutine coroutine = _coroutineRunner.RunNextFixedUpdate(action);
+            _runningCoroutines.Add(coroutine);
+            return coroutine;
+        }
     }
 }

@@ -1,4 +1,5 @@
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Components.NavPathes;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Services.BalanceServices;
@@ -21,7 +22,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<NpcTag>().Without<PlayerInCar>();
+            _filter = _world.Filter<NpcTag>().Without<PlayerInCar, OnNavPath>();
         }
 
         protected override void OnUpdate(float deltaTime)

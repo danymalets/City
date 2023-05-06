@@ -2,10 +2,10 @@ using Scellecs.Morpeh;
 
 namespace Sources.App.Data.Cars
 {
-    public class CarPlaceData
+    public struct CarPlaceData
     {
-        public Entity Car;
-        public int Place;
+        public Entity Car { get; }
+        public int Place { get; }
 
         public CarPlaceData(Entity car, int place)
         {

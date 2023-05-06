@@ -2,6 +2,7 @@ using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
+using Sources.App.Data.Constants;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
@@ -23,8 +24,8 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
                 playerEntity.Add<Dead>();
                 playerEntity.GetAspect<NpcStatusAspect>().LeaveIfOnPath();
                 playerEntity.Add<FallAnimationRequest>();
-                
-                playerEntity.AddWithDelay<SetFallenLayerRequest>(0.4f);
+
+                playerEntity.SetWithDelay(0.4f, new SetLayerRequest { Layer = Layers.Fallen });
             }
         }
     }

@@ -1,6 +1,7 @@
 using Sources.App.Data.Players;
 using Sources.Utils.MorpehWrapper;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
+using UnityEngine.AI;
 
 namespace Sources.App.Data.MonoEntities
 {
@@ -11,5 +12,6 @@ namespace Sources.App.Data.MonoEntities
         ITransform Transform { get; }
         IPlayerBorders PlayerBorders { get; }
         IAnimator Animator { get; }
+        NavMeshObstacle NavMeshObstacle { get; }
     }
 }

@@ -30,11 +30,15 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
                 SwitchableRigidbodyAspect switchableRigidbodyAspect = playerEntity.GetAspect<SwitchableRigidbodyAspect>();
                 IPlayerAnimator playerAnimator = playerEntity.GetRef<IPlayerAnimator>();
                 ICollider[] colliders = playerEntity.GetRef<ICollider[]>();
-                CarPlaceData carPlaceData = playerEntity.Get<PlayerEnterCarEvent>().CarPlaceData;
+                ref CarPlaceData carPlaceData = ref playerEntity.Get<PlayerEnterCarEvent>().CarPlaceData;
                 
                 playerEntity.Set(new PlayerInCar { CarPlaceData = carPlaceData});
-                carPlaceData.Car.GetAspect<CarPassengersAspect>().TakePlace(0, playerEntity);
-                playerAnimator.SetInCarLeft(true);
+                CarPassengersAspect carPassengersAspect = carPlaceData.Car.GetAspect<CarPassengersAspect>();
+                carPassengersAspect.TakePlace(carPlaceData.Place, playerEntity);
+
+                IEnterPoint placeEnterPoint = carPassengersAspect.GetPlaceEnterPoint(carPlaceData.Place);
+
+                playerAnimator.EnterCar(placeEnterPoint.SideType);
 
                 foreach (ICollider collider in colliders)
                 {
@@ -42,6 +46,11 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
                 }
 
                 playerEntity.AddWithDelay<PlayerFullyInCar>(Consts.EnterCarAnimationDuration);
+
+                if (carPlaceData.Place == 0)
+                {
+                    playerEntity.AddWithDelay<PlayerInputInCarOn>(Consts.EnterCarAnimationDuration - 1.2f);
+                }
                 
                 switchableRigidbodyAspect.DisableRigidbody();
             }

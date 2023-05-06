@@ -31,7 +31,8 @@
         "GUID:211a07a126b764a65ba039e6db9fb595",
         "GUID:2bf6ec45c7fa4ba3a07a8cf0af2d9777",
         "GUID:f160941cd3534eafb66aac4f2ab60c74",
-        "GUID:e48f73608491470da62cc9bd1fe0b2ce"
+        "GUID:e48f73608491470da62cc9bd1fe0b2ce",
+        "Unity.AI.Navigation"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

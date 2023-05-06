@@ -1362,6 +1362,7 @@ MonoBehaviour:
   _rigidbodySwitcher: {fileID: 6595243964895780816}
   _playerBorders: {fileID: 3334528673123609333}
   _animator: {fileID: 878702120926459759}
+  _navMeshAgent: {fileID: 8136061976425947154}
 --- !u!1 &173072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1936,6 +1937,11 @@ PrefabInstance:
 --- !u!4 &6759296807376572659 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1834947268761705695, guid: 0b114d2da308e40b1b7d599e66665c99, type: 3}
+  m_PrefabInstance: {fileID: 4952502135485991980}
+  m_PrefabAsset: {fileID: 0}
+--- !u!208 &8136061976425947154 stripped
+NavMeshObstacle:
+  m_CorrespondingSourceObject: {fileID: 3770580724897279038, guid: 0b114d2da308e40b1b7d599e66665c99, type: 3}
   m_PrefabInstance: {fileID: 4952502135485991980}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8752062870924384140

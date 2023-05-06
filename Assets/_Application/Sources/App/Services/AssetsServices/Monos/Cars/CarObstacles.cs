@@ -10,7 +10,7 @@ namespace Sources.App.Services.AssetsServices.Monos.Cars
 {
     public class CarObstacles : MonoBehaviour
     {
-        private const float ForwardDistance = 1.5f;
+        private const float ForwardDistance = 0.3f;
 
         [SerializeField]
         private NavMeshObstacle _navMeshObstacle;

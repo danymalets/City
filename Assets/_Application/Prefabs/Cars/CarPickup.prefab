@@ -281,7 +281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8741569287612002571, guid: 0ed1e79d7b42446d4adb109fd8d087a0, type: 3}
       propertyPath: m_Center.z
-      value: 0.7714355
+      value: 0.1714355
       objectReference: {fileID: 0}
     - target: {fileID: 8741569287612002571, guid: 0ed1e79d7b42446d4adb109fd8d087a0, type: 3}
       propertyPath: m_Extents.x
@@ -293,7 +293,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8741569287612002571, guid: 0ed1e79d7b42446d4adb109fd8d087a0, type: 3}
       propertyPath: m_Extents.z
-      value: 2.3643067
+      value: 1.7643067
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ed1e79d7b42446d4adb109fd8d087a0, type: 3}

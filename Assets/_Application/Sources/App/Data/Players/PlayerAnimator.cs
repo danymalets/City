@@ -1,3 +1,4 @@
+using Sources.App.Data.Cars;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -23,14 +24,16 @@ namespace Sources.App.Data.Players
             _animator.Play(Names.MoveBlendTree, _baseLayer, Random.value);
         }
 
-        public void SetInCarLeft(bool value)
+        public void EnterCar(CarSideType sideType)
         {
-            _animator.SetBool(Parameters.InCarLeft, value);
+            _animator.SetBool(sideType == CarSideType.Left ?
+                Parameters.InCarLeft : Parameters.InCarRight, true);
         }
 
-        public void SetInCarRight(bool value)
+        public void ExitCar()
         {
-            _animator.SetBool(Parameters.InCarRight, value);
+            _animator.SetBool(Parameters.InCarLeft, false);
+            _animator.SetBool(Parameters.InCarRight, false);
         }
 
         public void SetMoveSpeed(float speed)
@@ -38,7 +41,7 @@ namespace Sources.App.Data.Players
             _animator.SetFloat(Parameters.Speed, speed);
         }
 
-        public void SetDie()
+        public void Die()
         {
             _animator.SetBool(Parameters.Die, true);
         }

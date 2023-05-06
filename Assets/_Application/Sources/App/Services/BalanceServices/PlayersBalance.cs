@@ -17,7 +17,8 @@ namespace Sources.App.Services.BalanceServices
         [field: SerializeField] public float Mass { get; private set; } = 70;
         [field: SerializeField] public float Acceleration { get; private set; } = 6;
         [field: SerializeField] public float AllowableMoveAngle { get; private set; } = 30;
-
+        [field: SerializeField] public float NavRotationSpeed { get; private set; } = 45;
+        
         [SerializeField]
         private List<PlayerBalance> _playersBalance;
 

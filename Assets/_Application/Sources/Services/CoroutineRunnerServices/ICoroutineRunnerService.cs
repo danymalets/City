@@ -15,5 +15,6 @@ namespace Sources.Services.CoroutineRunnerServices
         Coroutine RunEachFrame(Action action, bool andNow = false);
         Coroutine RunEachFixedUpdate(Action action);
         Coroutine RunEachSeconds(float period, Action action, bool andNow = false);
+        Coroutine RunNextFixedUpdate(Action action);
     }
 }

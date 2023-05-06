@@ -139,7 +139,7 @@ MonoBehaviour:
       _weight: 100
     - _carColorType: 44
       _weight: 50
-  <MaxEnterCarDistance>k__BackingField: 1
+  <MaxEnterCarDistance>k__BackingField: 5
   <MaxSpeed>k__BackingField: 8
   <MaxMotorTorque>k__BackingField: 350
   <MaxSteeringAngle>k__BackingField: 45

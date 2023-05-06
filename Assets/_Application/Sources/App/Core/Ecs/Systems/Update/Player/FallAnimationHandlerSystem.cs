@@ -21,7 +21,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
             foreach (Entity playerEntity in _filter)
             {
                 IPlayerAnimator playerAnimator = playerEntity.GetRef<IPlayerAnimator>();
-                playerAnimator.SetDie();
+                playerAnimator.Die();
             }
         }
     }

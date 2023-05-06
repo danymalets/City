@@ -12,13 +12,13 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Player
 {
-    public class PlayerCarEnterSystem : DUpdateSystem
+    public class UserNearbyCarsCheckSystem : DUpdateSystem
     {
         private Filter _filter;
         private Filter _carsFilter;
         private readonly CarsBalance _carsBalance;
 
-        public PlayerCarEnterSystem()
+        public UserNearbyCarsCheckSystem()
         {
             _carsBalance = DiContainer.Resolve<Balance>().CarsBalance;
         }

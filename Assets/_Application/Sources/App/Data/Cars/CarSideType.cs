@@ -1,6 +1,6 @@
 namespace Sources.App.Data.Cars
 {
-    public enum EnterPointSideType
+    public enum CarSideType
     {
         Left,
         Right,

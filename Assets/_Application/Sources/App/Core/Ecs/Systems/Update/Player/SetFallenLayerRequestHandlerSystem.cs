@@ -16,18 +16,19 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<PlayerTag, SetFallenLayerRequest>();
+            _filter = _world.Filter<PlayerTag, SetLayerRequest>();
         }
 
         protected override void OnUpdate(float deltaTime)
         {
-            foreach (Entity playerEntity in _filter)
+            foreach (Entity entity in _filter)
             {
-                ICollider[] colliders = playerEntity.GetRef<ICollider[]>();
+                int layer = entity.Get<SetLayerRequest>().Layer;
+                ICollider[] colliders = entity.GetRef<ICollider[]>();
 
                 foreach (ICollider collider in colliders)
                 {
-                    collider.Layer = Layers.Fallen;
+                    collider.Layer = layer;
                 }
             }
         }
