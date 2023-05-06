@@ -35,8 +35,8 @@ namespace Sources.App.Core.Ecs.Systems.Update.Npc
             {
                 ref ForwardTrigger forwardTrigger = ref npcEntity.Get<ForwardTrigger>();
                 ref PlayerSmoothAngle angle = ref npcEntity.Get<PlayerSmoothAngle>();
-                ITransform transform = npcEntity.GetAccess<ITransform>();
-                CapsuleData borders = npcEntity.GetAccess<IPlayerBorders>().SafeCapsuleCollider.CapsuleData;
+                ITransform transform = npcEntity.GetRef<ITransform>();
+                CapsuleData borders = npcEntity.GetRef<IPlayerBorders>().SafeCapsuleCollider.CapsuleData;
 
                 Quaternion triggerRotation = transform.Rotation.WithEulerY(angle.Value);
 

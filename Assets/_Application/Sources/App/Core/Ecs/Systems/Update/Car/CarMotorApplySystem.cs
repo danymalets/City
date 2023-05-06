@@ -29,7 +29,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Car
         {
             foreach (Entity carEntity in _filter)
             {
-                IWheelsSystem carWheels = carEntity.GetAccess<IWheelsSystem>();
+                IWheelsSystem carWheels = carEntity.GetRef<IWheelsSystem>();
                 float motorCoefficient = carEntity.Get<CarMotorCoefficient>().Coefficient;
                 
                 int motorAxesCount = carWheels.AxleInfo.Count(ai => ai.Motor);

@@ -17,12 +17,12 @@ namespace Sources.App.Core.Ecs.Aspects
         
         public readonly Vector3 GetPosition() =>
             Entity.TryGet(out PlayerInCar playerInCar)
-                ? playerInCar.CarPlaceData.Car.GetAccess<IWheelsSystem>().RootPosition
-                : Entity.GetAccess<ITransform>().Position;
+                ? playerInCar.CarPlaceData.Car.GetRef<IWheelsSystem>().RootPosition
+                : Entity.GetRef<ITransform>().Position;
         
         public readonly Quaternion GetRotation() =>
             Entity.TryGet(out PlayerInCar playerInCar)
-                ? playerInCar.CarPlaceData.Car.GetAccess<ITransform>().Rotation
-                : Entity.GetAccess<ITransform>().Rotation;
+                ? playerInCar.CarPlaceData.Car.GetRef<ITransform>().Rotation
+                : Entity.GetRef<ITransform>().Rotation;
     }
 }

@@ -20,7 +20,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Car
         {
             foreach (Entity carEntity in _filter)
             {
-                IWheelsSystem carWheels = carEntity.GetAccess<IWheelsSystem>();
+                IWheelsSystem carWheels = carEntity.GetRef<IWheelsSystem>();
                 float steeringAngle = carEntity.Get<SmoothSteeringAngle>().Value;
 
                 AxleInfo axleInfo = carWheels.AxleInfo[0];

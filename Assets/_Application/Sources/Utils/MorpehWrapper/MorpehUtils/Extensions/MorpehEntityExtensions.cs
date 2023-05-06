@@ -28,16 +28,16 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Extensions
             }
         }
         
-        public static bool TryGetAccess<TAccess>(this Entity entity, out TAccess access)
+        public static bool TryGetRef<TRef>(this Entity entity, out TRef reference) where TRef : class
         {
-            if (entity.Has<AccessTo<TAccess>>())
+            if (entity.HasRef<TRef>())
             {
-                access = entity.GetAccess<TAccess>();
+                reference = entity.GetRef<TRef>();
                 return true;
             }
             else
             {
-                access = default;
+                reference = default;
                 return false;
             }
         }
@@ -151,21 +151,22 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Extensions
             return entity;
         }
 
-        public static TAccessible GetAccess<TAccessible>(this Entity entity) =>
-            entity.Get<AccessTo<TAccessible>>().AccessValue;
+        public static TRef GetRef<TRef>(this Entity entity) where TRef : class =>
+            entity.Get<Ref<TRef>>().Reference;
         
-        public static void RemoveAccess<TAccessible>(this Entity entity) =>
-            entity.Remove<AccessTo<TAccessible>>();
+        public static void RemoveRef<TRef>(this Entity entity) where TRef : class =>
+            entity.Remove<Ref<TRef>>();
         
-        public static bool HasAccess<TAccessible>(this Entity entity) =>
-            entity.Has<AccessTo<TAccessible>>();
+        public static bool HasRef<TRef>(this Entity entity) where TRef : class =>
+            entity.Has<Ref<TRef>>();
 
-        public static Entity SetAccess<TAccessible>(this Entity entity, TAccessible accessValue) => 
-            entity.Set(new AccessTo<TAccessible> {AccessValue = accessValue});
+        public static Entity SetRef<TRef>(this Entity entity, TRef accessValue) where TRef : class => 
+            entity.Set(new Ref<TRef> {Reference = accessValue});
         
-        public static Entity SetupAccessible<TAccessible>(this Entity entity, Action<TAccessible> accessValue) 
+        public static Entity SetupRef<TRef>(this Entity entity, Action<TRef> accessValue) 
+            where TRef : class
         {
-            accessValue(entity.GetAccess<TAccessible>());
+            accessValue(entity.GetRef<TRef>());
             return entity;
         }
         
@@ -192,10 +193,11 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Extensions
             return entity;
         }
         
-        public static Entity SetupAccessibleIf<TAccessible>(this Entity entity, Func<bool> ifFunc, Action<TAccessible> accessValue) 
+        public static Entity SetupRefIf<TRef>(this Entity entity,
+            Func<bool> ifFunc, Action<TRef> accessValue) where TRef : class
         {
             if (ifFunc())
-                entity.SetupAccessible(accessValue);
+                entity.SetupRef(accessValue);
             return entity;
         }
 

@@ -27,8 +27,8 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
             {
                 ref NpcOnPath npcOnPath = ref npc.Get<NpcOnPath>();
                 Entity carEntity = npc.Get<PlayerInCar>().CarPlaceData.Car;
-                IWheelsSystem carWheels = carEntity.GetAccess<IWheelsSystem>();
-                ITransform carTransform = carEntity.GetAccess<ITransform>();
+                IWheelsSystem carWheels = carEntity.GetRef<IWheelsSystem>();
+                ITransform carTransform = carEntity.GetRef<ITransform>();
                 
                 float signedAngle = Vector3.SignedAngle(carTransform.Rotation.GetForward().WithY(0),
                     (npcOnPath.PathLine.Target.Position - carWheels.RootPosition).WithY(0), Vector3.up);

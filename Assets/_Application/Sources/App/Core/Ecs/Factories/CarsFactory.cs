@@ -78,14 +78,14 @@ namespace Sources.App.Core.Ecs.Factories
 
             return _world.CreateFromMono(carMonoEntity)
                 .Add<CarTag>()
-                .SetAccess<IEnableableGameObject>(carMonoEntity.EnableableGameObject)
-                .SetAccess<ITransform>(carMonoEntity.Transform)
-                .SetAccess<IRigidbodySwitcher>(carMonoEntity.RigidbodySwitcher)
-                .SetAccess<ICarBorders>(carMonoEntity.BorderCollider)
-                .SetAccess<IWheelsSystem>(carMonoEntity.WheelsSystem)
-                .SetAccess<IEnterPoint[]>(carMonoEntity.EnterPoints.EnterPoints.ToArray())
-                .SetAccess<IMeshRenderer[]>(carMonoEntity.MeshRenderers.ToArray())
-                .SetAccess<RigidbodySettings>(new RigidbodySettings(_carsBalance.Mass, RigidbodyConstraints.None,
+                .SetRef<IEnableableGameObject>(carMonoEntity.EnableableGameObject)
+                .SetRef<ITransform>(carMonoEntity.Transform)
+                .SetRef<IRigidbodySwitcher>(carMonoEntity.RigidbodySwitcher)
+                .SetRef<ICarBorders>(carMonoEntity.BorderCollider)
+                .SetRef<IWheelsSystem>(carMonoEntity.WheelsSystem)
+                .SetRef<IEnterPoint[]>(carMonoEntity.EnterPoints.EnterPoints.ToArray())
+                .SetRef<IMeshRenderer[]>(carMonoEntity.MeshRenderers.ToArray())
+                .SetRef<RigidbodySettings>(new RigidbodySettings(_carsBalance.Mass, RigidbodyConstraints.None,
                     carMonoEntity.BorderCollider.SafeBoxCollider.Center
                         .WithY(carMonoEntity.BorderCollider.SafeBoxCollider.BoxColliderData.HalfExtents.y * 2) * (1f / 3f)))
                 .SetupAspectIf<CarColorAspect>(() => colorType != null,

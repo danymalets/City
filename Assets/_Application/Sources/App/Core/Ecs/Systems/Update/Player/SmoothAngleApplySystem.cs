@@ -22,7 +22,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
         {
             foreach (Entity playerEntity in _filter)
             {
-                IRigidbody physicBody = playerEntity.GetAccess<IRigidbody>();
+                IRigidbody physicBody = playerEntity.GetRef<IRigidbody>();
                 PlayerSmoothAngle playerSmoothAngle = playerEntity.Get<PlayerSmoothAngle>();
                 
                 physicBody.MoveRotation(Quaternion.Euler(0, playerSmoothAngle.Value, 0));

@@ -23,7 +23,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Npc
             foreach (Entity npc in _filter)
             {
                 ref NpcOnPath npcOnPath = ref npc.Get<NpcOnPath>();
-                ITransform transform = npc.GetAccess<ITransform>();
+                ITransform transform = npc.GetRef<ITransform>();
 
                 float targetAngle =
                     Quaternion.LookRotation(npcOnPath.PathLine.Target.Position - transform.Position,

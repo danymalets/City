@@ -26,7 +26,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
                 float targetSpeed = npcEntity.Get<PlayerTargetSpeed>().Value;
                 float angle = npcEntity.Get<PlayerMoveAngle>().Value;
 
-                IRigidbody physicBody = npcEntity.GetAccess<IRigidbody>();
+                IRigidbody physicBody = npcEntity.GetRef<IRigidbody>();
                 
                 float ySpeed = physicBody.Velocity.y;
                 

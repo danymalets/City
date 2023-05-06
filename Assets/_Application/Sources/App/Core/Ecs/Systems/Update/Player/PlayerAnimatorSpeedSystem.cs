@@ -21,7 +21,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
             foreach (Entity npcEntity in _filter)
             {
                 float speed = npcEntity.Get<PlayerSmoothSpeed>().Value;
-                IPlayerAnimator playerAnimator = npcEntity.GetAccess<IPlayerAnimator>();
+                IPlayerAnimator playerAnimator = npcEntity.GetRef<IPlayerAnimator>();
 
                 playerAnimator.SetMoveSpeed(speed);
             }

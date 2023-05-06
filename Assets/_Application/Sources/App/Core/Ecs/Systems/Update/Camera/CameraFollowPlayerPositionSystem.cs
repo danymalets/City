@@ -39,7 +39,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Camera
             Entity cameraEntity = _cameraFilter.GetSingleton();
             Entity userEntity = _userFilter.GetSingleton();
 
-            ITransform cameraTransform = cameraEntity.GetAccess<ITransform>();
+            ITransform cameraTransform = cameraEntity.GetRef<ITransform>();
             float cameraAngle = cameraEntity.Get<CameraYAngle>().Value;
             
             float cameraSmoothHeight = cameraEntity.Get<CameraSmoothHeight>().Value;

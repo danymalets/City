@@ -26,7 +26,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
                 
                 Entity carEntity = playerEntity.Get<PlayerInCar>().CarPlaceData.Car;
                 
-                float signedSpeed = carEntity.GetAccess<IRigidbody>().SignedSpeed;
+                float signedSpeed = carEntity.GetRef<IRigidbody>().SignedSpeed;
                 
                 ref CarSteeringAngleCoefficient carSteeringAngleCoefficient = 
                     ref playerEntity.Get<CarSteeringAngleCoefficient>();

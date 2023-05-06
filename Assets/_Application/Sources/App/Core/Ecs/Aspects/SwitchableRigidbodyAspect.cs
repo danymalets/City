@@ -13,13 +13,13 @@ namespace Sources.App.Core.Ecs.Aspects
     {
         public Entity Entity { get; set; }
         public Filter GetFilter(Filter filter) => filter
-            .With<AccessTo<IRigidbodySwitcher>, AccessTo<RigidbodySettings>>();
+            .With<Ref<IRigidbodySwitcher>, Ref<RigidbodySettings>>();
         
-        public readonly IRigidbodySwitcher RigidbodySwitcher => Entity.GetAccess<IRigidbodySwitcher>();
-        public readonly RigidbodySettings RigidbodySettings => Entity.GetAccess<RigidbodySettings>();
+        public readonly IRigidbodySwitcher RigidbodySwitcher => Entity.GetRef<IRigidbodySwitcher>();
+        public readonly RigidbodySettings RigidbodySettings => Entity.GetRef<RigidbodySettings>();
 
         public readonly bool HasPhysicBody() =>
-            Entity.HasAccess<IRigidbody>();
+            Entity.HasRef<IRigidbody>();
 
         public readonly SafeRigidbody EnableRigidbody()
         {
@@ -29,9 +29,9 @@ namespace Sources.App.Core.Ecs.Aspects
             safeRigidbody.Constraints = rigidbodySettings.RigidbodyConstraints;
             if (rigidbodySettings.CenterOfMass != null)
                 safeRigidbody.CenterMass = rigidbodySettings.CenterOfMass.Value;
-            Entity.SetAccess<IRigidbody>(safeRigidbody);
+            Entity.SetRef<IRigidbody>(safeRigidbody);
 
-            if (Entity.TryGetAccess(out IWheelsSystem wheelsSystem))
+            if (Entity.TryGetRef(out IWheelsSystem wheelsSystem))
             {
                 wheelsSystem.EnableSystem();
             }
@@ -41,13 +41,13 @@ namespace Sources.App.Core.Ecs.Aspects
 
         public readonly void DisableRigidbody()
         {
-            if (Entity.TryGetAccess(out IWheelsSystem wheelsSystem))
+            if (Entity.TryGetRef(out IWheelsSystem wheelsSystem))
             {
                 wheelsSystem.DisableSystem();
             }
 
             RigidbodySwitcher.DisableRigidbodyInternal();
-            Entity.RemoveAccess<IRigidbody>();
+            Entity.RemoveRef<IRigidbody>();
         }
     }
 }

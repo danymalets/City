@@ -43,7 +43,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Camera
             Entity cameraEntity = _cameraFilter.GetSingleton();
             Entity userEntity = _userFilter.GetSingleton();
 
-            ITransform cameraTransform = cameraEntity.GetAccess<ITransform>();
+            ITransform cameraTransform = cameraEntity.GetRef<ITransform>();
             ref CameraYAngle cameraYAngle = ref cameraEntity.Get<CameraYAngle>();
 
             Quaternion userRotation = userEntity.GetAspect<PlayerPointAspect>().GetRotation();

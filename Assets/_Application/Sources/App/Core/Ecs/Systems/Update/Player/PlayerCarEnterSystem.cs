@@ -33,7 +33,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
         {
             foreach (Entity playerEntity in _filter)
             {
-                ITransform playerTransform = playerEntity.GetAccess<ITransform>();
+                ITransform playerTransform = playerEntity.GetRef<ITransform>();
                 
                 Entity enterCar = null;
                 float curMinSqrDistance = 0;
@@ -42,7 +42,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
                 {
                     if (carEntity.GetAspect<CarPassengersAspect>().IsNoPassengers)
                     {
-                        IEnterPoint[] carEnterPoints = carEntity.GetAccess<IEnterPoint[]>();
+                        IEnterPoint[] carEnterPoints = carEntity.GetRef<IEnterPoint[]>();
 
                         IEnterPoint enterPoint = carEnterPoints[0];
 

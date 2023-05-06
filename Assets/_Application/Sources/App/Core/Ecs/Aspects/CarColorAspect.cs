@@ -25,6 +25,6 @@ namespace Sources.App.Core.Ecs.Aspects
             }
         }
 
-        private readonly IMeshRenderer[] MeshRenderers => Entity.GetAccess<IMeshRenderer[]>();
+        private readonly IMeshRenderer[] MeshRenderers => Entity.GetRef<IMeshRenderer[]>();
     }
 }

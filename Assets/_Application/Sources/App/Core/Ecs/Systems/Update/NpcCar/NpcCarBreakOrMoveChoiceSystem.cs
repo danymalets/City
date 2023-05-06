@@ -40,7 +40,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
             foreach (Entity npcEntity in _filter)
             {
                 Entity carEntity = npcEntity.Get<PlayerInCar>().CarPlaceData.Car;
-                IWheelsSystem wheels = carEntity.GetAccess<IWheelsSystem>();
+                IWheelsSystem wheels = carEntity.GetRef<IWheelsSystem>();
                 Queue<TurnChoice> choices = npcEntity.Get<TurnDecisions>().Queue;
                 List<TurnData> npcTurns = npcEntity.Get<ActiveTurns>().List;
                 

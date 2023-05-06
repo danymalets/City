@@ -31,7 +31,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Camera
             
             Entity cameraEntity = _cameraFilter.GetSingleton();
 
-            ICamera cameraData = cameraEntity.GetAccess<ICamera>();
+            ICamera cameraData = cameraEntity.GetRef<ICamera>();
 
             cameraData.FieldOfView = _cameraBalance.CameraFieldOfView;
         }

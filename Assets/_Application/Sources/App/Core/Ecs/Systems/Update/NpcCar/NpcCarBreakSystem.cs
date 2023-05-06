@@ -41,8 +41,8 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
                 Entity carEntity = npcEntity.Get<PlayerInCar>().CarPlaceData.Car;
 
                 //ITransform transform = npcEntity.GetMono<ITransform>();
-                IWheelsSystem wheels = carEntity.GetAccess<IWheelsSystem>();
-                IRigidbody physicBody = carEntity.GetAccess<IRigidbody>();
+                IWheelsSystem wheels = carEntity.GetRef<IWheelsSystem>();
+                IRigidbody physicBody = carEntity.GetRef<IRigidbody>();
                 CarMaxSpeed maxSpeed = carEntity.Get<CarMaxSpeed>();
                 ref CarBreak carBreak = ref carEntity.Get<CarBreak>();
                 ref CarMotorCoefficient carMotorCoefficient = ref carEntity.Get<CarMotorCoefficient>();

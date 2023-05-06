@@ -23,7 +23,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
         {
             foreach (Entity playerEntity in _filter)
             {
-                ICollider[] colliders = playerEntity.GetAccess<ICollider[]>();
+                ICollider[] colliders = playerEntity.GetRef<ICollider[]>();
 
                 foreach (ICollider collider in colliders)
                 {

@@ -26,13 +26,13 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
         {
             foreach (Entity playerEntity in _filter)
             {
-                ITransform playerTransform = playerEntity.GetAccess<ITransform>();
+                ITransform playerTransform = playerEntity.GetRef<ITransform>();
                 ref PlayerTargetAngle playerTargetAngle = ref playerEntity.Get<PlayerTargetAngle>();
                 ref PlayerSmoothAngle playerSmoothAngle = ref playerEntity.Get<PlayerSmoothAngle>();
                 PlayerInCar playerInCar = playerEntity.Get<PlayerInCar>();
                 CarPlaceData carPlaceData = playerInCar.CarPlaceData;
                 CarPassengersAspect carPassengers = carPlaceData.Car.GetAspect<CarPassengersAspect>();
-                IEnterPoint enterPoint = carPlaceData.Car.GetAccess<IEnterPoint[]>()[0];
+                IEnterPoint enterPoint = carPlaceData.Car.GetRef<IEnterPoint[]>()[0];
 
                 carPassengers.FreeUpPlace(carPlaceData.Place, playerEntity);
                 playerEntity.Remove<PlayerInCar>();

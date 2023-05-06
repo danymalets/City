@@ -46,7 +46,7 @@ namespace Sources.App.Core.Ecs.Factories
         public Entity CreateUserInCar(IPlayerMonoEntity playerPrefab, Entity carEntity)
         {
             return CreateUser(playerPrefab, Vector3.zero, Quaternion.identity)
-                .SetupAccessible<EnableableGameObject>(g => g.Disable())
+                .SetupRef<EnableableGameObject>(g => g.Disable())
                 .Set(new PlayerInCar { CarPlaceData = new CarPlaceData(carEntity, 0) });
         }
 
@@ -98,7 +98,7 @@ namespace Sources.App.Core.Ecs.Factories
         public Entity CreateNpcInCarOnPath(IPlayerMonoEntity playerPrefab, Entity carEntity, PathLine pathLine)
         {
             Entity npc = CreateNpc(playerPrefab, Vector3.zero, Quaternion.identity)
-                .SetupAccessible<IEnableableGameObject>(g => g.Disable())
+                .SetupRef<IEnableableGameObject>(g => g.Disable())
                 .Set(new PlayerInCar { CarPlaceData = new CarPlaceData(carEntity, 0)})
                 .SetupAspect<NpcStatusAspect>(nsa => nsa.SetPath(pathLine));
 
@@ -115,17 +115,17 @@ namespace Sources.App.Core.Ecs.Factories
             IPlayerMonoEntity playerMonoEntity = _poolSpawner.Spawn(playerPrefab, position, rotation);
 
             return _world.CreateFromMono(playerMonoEntity)
-                .SetAccess<IEnableableGameObject>(playerMonoEntity.EnableableGameObject)
-                .SetAccess<IRigidbodySwitcher>(playerMonoEntity.RigidbodySwitcher)
-                .SetAccess<RigidbodySettings>(new RigidbodySettings(_playersBalance.Mass,
+                .SetRef<IEnableableGameObject>(playerMonoEntity.EnableableGameObject)
+                .SetRef<IRigidbodySwitcher>(playerMonoEntity.RigidbodySwitcher)
+                .SetRef<RigidbodySettings>(new RigidbodySettings(_playersBalance.Mass,
                     RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ, null))
-                .SetAccess<ITransform>(playerMonoEntity.Transform)
-                .SetAccess<IPlayerAnimator>(new PlayerAnimator(playerMonoEntity.Animator))
-                .SetAccess<IPlayerBorders>(playerMonoEntity.PlayerBorders)
-                .SetAccess<ICollider[]>(new ICollider[]
+                .SetRef<ITransform>(playerMonoEntity.Transform)
+                .SetRef<IPlayerAnimator>(new PlayerAnimator(playerMonoEntity.Animator))
+                .SetRef<IPlayerBorders>(playerMonoEntity.PlayerBorders)
+                .SetRef<ICollider[]>(new ICollider[]
                     { playerMonoEntity.PlayerBorders.SafeCapsuleCollider })
-                .SetupAccessible<ICollider[]>(cs => cs.ForEach(c => c.Layer = Layers.Player))
-                .SetupAccessible<IPlayerAnimator>(pa => pa.Setup())
+                .SetupRef<ICollider[]>(cs => cs.ForEach(c => c.Layer = Layers.Player))
+                .SetupRef<IPlayerAnimator>(pa => pa.Setup())
                 .SetupAspect<SwitchableRigidbodyAspect>(pa => pa.EnableRigidbody())
                 .Set(new PlayerTargetAngle { Value = rotation.eulerAngles.y })
                 .Set(new PlayerSmoothAngle { Value = rotation.eulerAngles.y })

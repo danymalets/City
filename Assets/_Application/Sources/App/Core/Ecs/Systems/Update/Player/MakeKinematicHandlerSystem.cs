@@ -20,7 +20,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
         {
             foreach (Entity playerEntity in _filter)
             {
-                IRigidbody physicBody = playerEntity.GetAccess<IRigidbody>();
+                IRigidbody physicBody = playerEntity.GetRef<IRigidbody>();
                 physicBody.MakeKinematic();
             }
         }

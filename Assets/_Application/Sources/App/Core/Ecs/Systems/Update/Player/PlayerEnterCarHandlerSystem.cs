@@ -28,8 +28,8 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
             foreach (Entity playerEntity in _filter)
             {
                 SwitchableRigidbodyAspect switchableRigidbodyAspect = playerEntity.GetAspect<SwitchableRigidbodyAspect>();
-                IPlayerAnimator playerAnimator = playerEntity.GetAccess<IPlayerAnimator>();
-                ICollider[] colliders = playerEntity.GetAccess<ICollider[]>();
+                IPlayerAnimator playerAnimator = playerEntity.GetRef<IPlayerAnimator>();
+                ICollider[] colliders = playerEntity.GetRef<ICollider[]>();
                 CarPlaceData carPlaceData = playerEntity.Get<PlayerEnterCarEvent>().CarPlaceData;
                 
                 playerEntity.Set(new PlayerInCar { CarPlaceData = carPlaceData});

@@ -15,14 +15,14 @@ namespace Sources.App.Core.Ecs.Systems.Update.Car
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<CarTag, AccessTo<IRigidbody>>();
+            _filter = _world.Filter<CarTag, Ref<IRigidbody>>();
         }
 
         protected override void OnUpdate(float fixedDeltaTime)
         {
             foreach (Entity carEntity in _filter)
             {
-                IRigidbody physicBody = carEntity.GetAccess<IRigidbody>();
+                IRigidbody physicBody = carEntity.GetRef<IRigidbody>();
                 ref CarBreak carBreak = ref carEntity.Get<CarBreak>();
 
                 if (physicBody.Velocity == Vector3.zero)

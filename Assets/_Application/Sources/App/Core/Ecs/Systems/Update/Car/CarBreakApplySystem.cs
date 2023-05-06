@@ -24,7 +24,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Car
         {
             foreach (Entity carEntity in _filter)
             {
-                AxleInfo[] axleInfos = carEntity.GetAccess<IWheelsSystem>().AxleInfo;
+                AxleInfo[] axleInfos = carEntity.GetRef<IWheelsSystem>().AxleInfo;
                 BreakType breakType = carEntity.Get<CarBreak>().BreakType;
 
                 for (int i = 0; i < axleInfos.Length; i++)

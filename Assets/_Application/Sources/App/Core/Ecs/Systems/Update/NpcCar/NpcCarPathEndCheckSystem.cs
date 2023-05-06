@@ -24,7 +24,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
             {
                 ref NpcOnPath npcOnPath = ref npcEntity.Get<NpcOnPath>();
                 Entity carEntity = npcEntity.Get<PlayerInCar>().CarPlaceData.Car;
-                IWheelsSystem carWheels = carEntity.GetAccess<IWheelsSystem>();
+                IWheelsSystem carWheels = carEntity.GetRef<IWheelsSystem>();
 
                 if (npcOnPath.PathLine.IsEnded(carWheels.RootPosition))
                 {

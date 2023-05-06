@@ -24,7 +24,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Npc
             foreach (Entity npcEntity in _filter)
             {
                 ref NpcOnPath npcOnPath = ref npcEntity.Get<NpcOnPath>();
-                Vector3 position = npcEntity.GetAccess<ITransform>().Position;
+                Vector3 position = npcEntity.GetRef<ITransform>().Position;
 
                 if (npcOnPath.PathLine.IsEnded(position))
                 {

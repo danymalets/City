@@ -28,7 +28,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Car
         protected override void OnInitFilters()
         {
             _userFilter = _world.Filter<UserTag>();
-            _carsFilter = _world.Filter<CarTag, Idle>().Without<AccessTo<IRigidbody>>();
+            _carsFilter = _world.Filter<CarTag, Idle>().Without<Ref<IRigidbody>>();
         }
 
         protected override void OnUpdate(float fixedDeltaTime)
@@ -40,7 +40,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Car
 
             foreach (Entity carEntity in _carsFilter)
             {
-                ITransform transform = carEntity.GetAccess<ITransform>();
+                ITransform transform = carEntity.GetRef<ITransform>();
 
                 if (DVector3.SqrDistance(userPosition, transform.Position) < minSqrDistance)
                 {

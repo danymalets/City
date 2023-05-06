@@ -21,8 +21,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 
         public CarForwardColliderSystem()
         {
-            _simulationBalance = DiContainer.Resolve<Balance>()
-                .SimulationBalance;
+            _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
         }
 
         protected override void OnInitFilters()
@@ -36,9 +35,9 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
             {
                 ref ForwardTrigger forwardTrigger = ref carEntity.Get<ForwardTrigger>();
                 ref SmoothSteeringAngle steeringAngle = ref carEntity.Get<SmoothSteeringAngle>();
-                ITransform transform = carEntity.GetAccess<ITransform>();
-                IWheelsSystem wheels = carEntity.GetAccess<IWheelsSystem>();
-                SafeBoxCollider safeBoxCollider = carEntity.GetAccess<ICarBorders>().SafeBoxCollider;
+                ITransform transform = carEntity.GetRef<ITransform>();
+                IWheelsSystem wheels = carEntity.GetRef<IWheelsSystem>();
+                SafeBoxCollider safeBoxCollider = carEntity.GetRef<ICarBorders>().SafeBoxCollider;
                 
                 BoxColliderData borders = safeBoxCollider.BoxColliderData;
                 

@@ -14,8 +14,8 @@ namespace Sources.App.Core.Ecs.Factories
         {
             ICameraMonoEntity cameraMonoEntity = _levelContext.CameraMonoEntity;
             return _world.CreateFromMono(cameraMonoEntity)
-                .SetAccess<ITransform>(cameraMonoEntity.Transform)
-                .SetAccess<ICamera>(cameraMonoEntity.Camera)
+                .SetRef<ITransform>(cameraMonoEntity.Transform)
+                .SetRef<ICamera>(cameraMonoEntity.Camera)
                 .Add<CameraTag>()
                 .Add<CameraYAngle>()
                 .Add<CameraTargetBackDistance>()

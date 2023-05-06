@@ -28,7 +28,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
             Entity userEntity = _filter.GetSingleton();
 
             UserPlayerInput userPlayerInput = userEntity.Get<UserPlayerInput>();
-            ITransform transform = userEntity.GetAccess<ITransform>();
+            ITransform transform = userEntity.GetRef<ITransform>();
             ref PlayerTargetAngle playerTargetAngle = ref userEntity.Get<PlayerTargetAngle>();
             
             if (userPlayerInput.MoveInput != Vector2.zero)

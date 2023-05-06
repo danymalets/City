@@ -12,13 +12,6 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Extensions
             entity.Set(new MonoEntityAccess{MonoEntity = monoEntity});
             return entity;
         }
-        
-        public static Entity CreateWithSingleMono<TMonoComponent>(this DWorld world, TMonoComponent monoComponent)
-        {
-            Entity entity = world.CreateEntity();
-            entity.SetAccess<TMonoComponent>(monoComponent);
-            return entity;
-        }
 
         public static Entity GetSingleton<TComponent>(this DWorld world) where TComponent : struct, IComponent =>
             world.Filter<TComponent>().GetSingleton();

@@ -42,7 +42,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Generation
 
             foreach (Entity carEntity in _carFilter)
             {
-                Vector3 carPosition = carEntity.GetAccess<IWheelsSystem>().RootPosition;
+                Vector3 carPosition = carEntity.GetRef<IWheelsSystem>().RootPosition;
                 
                 if (!simulationAreaData.IsInsideBig(carPosition))
                 {

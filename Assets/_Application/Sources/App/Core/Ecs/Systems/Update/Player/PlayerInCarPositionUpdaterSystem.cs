@@ -23,11 +23,11 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
         {
             foreach (Entity playerEntity in _filter)
             {
-                ITransform transform = playerEntity.GetAccess<ITransform>();
+                ITransform transform = playerEntity.GetRef<ITransform>();
                 CarPlaceData carPlaceData = playerEntity.Get<PlayerInCar>().CarPlaceData;
 
                 IEnterPoint enterPoint = carPlaceData.Car
-                    .GetAccess<IEnterPoint[]>()[carPlaceData.Place];
+                    .GetRef<IEnterPoint[]>()[carPlaceData.Place];
                 
                 transform.Position = enterPoint.Position;
                 transform.Rotation = enterPoint.Rotation;

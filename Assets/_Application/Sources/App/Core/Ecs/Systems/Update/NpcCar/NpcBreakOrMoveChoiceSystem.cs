@@ -38,7 +38,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 
             foreach (Entity npcEntity in _filter)
             {
-                ITransform transform = npcEntity.GetAccess<ITransform>();
+                ITransform transform = npcEntity.GetRef<ITransform>();
                 Queue<TurnChoice> choices = npcEntity.Get<TurnDecisions>().Queue;
                 List<TurnData> carTurns = npcEntity.Get<ActiveTurns>().List;
 

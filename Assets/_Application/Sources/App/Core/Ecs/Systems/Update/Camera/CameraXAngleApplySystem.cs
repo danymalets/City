@@ -32,7 +32,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Camera
             
             Entity cameraEntity = _cameraFilter.GetSingleton();
 
-            ITransform transform = cameraEntity.GetAccess<ITransform>();
+            ITransform transform = cameraEntity.GetRef<ITransform>();
             float xAngle = cameraEntity.Get<CameraXSmoothAngle>().Value;
 
             transform.Rotation = transform.Rotation.WithEulerX(xAngle);
