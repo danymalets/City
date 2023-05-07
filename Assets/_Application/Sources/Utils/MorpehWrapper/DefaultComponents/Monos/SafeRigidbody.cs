@@ -73,6 +73,9 @@ namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
             set => _rigidBody.centerOfMass = value;
         }
 
+        public void ResetCenterOfMass() =>
+            _rigidBody.ResetCenterOfMass();
+
         public RigidbodyConstraints Constraints
         {
             get => _rigidBody.constraints;

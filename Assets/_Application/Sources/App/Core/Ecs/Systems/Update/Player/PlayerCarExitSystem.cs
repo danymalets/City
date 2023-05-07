@@ -29,7 +29,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
                 IPlayerAnimator playerAnimator = playerEntity.GetRef<IPlayerAnimator>();
                 
                 playerEntity.Remove<PlayerFullyInCar>();
-                playerEntity.AddWithDelay<PlayerFullyExitCarEvent>(Consts.ExitCarAnimationDuration + 1f);
+                playerEntity.AddWithFixedDelay<PlayerFullyExitCarEvent>(Consts.ExitCarAnimationDuration + 1f);
                 playerAnimator.ExitCar();
                 Debug.Log($"exit car anim");
             }

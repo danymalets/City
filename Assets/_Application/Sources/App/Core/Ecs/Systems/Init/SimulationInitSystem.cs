@@ -18,7 +18,7 @@ namespace Sources.App.Core.Ecs.Systems.Init
         protected override void OnInitialize()
         {
             _worldStatusFilter.GetSingleton()
-                .AddForSeconds<ActiveSimulationOn>(2f);
+                .AddForFixedSeconds<ActiveSimulationOn>(2f);
         }
     }
 }

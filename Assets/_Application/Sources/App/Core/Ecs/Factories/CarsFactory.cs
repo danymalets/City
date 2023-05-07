@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Aspects;
@@ -32,9 +31,11 @@ namespace Sources.App.Core.Ecs.Factories
         }
 
         public bool TryCreateCar(CarType carType, CarColorType? carColor, Vector3 position,
-            Quaternion rotation, bool isIdle, out Entity createdCar) =>
-            TryCreateCar(_assets.CarsAssets.GetCarPrefab(carType), carColor, position,
+            Quaternion rotation, bool isIdle, out Entity createdCar)
+        {
+            return TryCreateCar(_assets.CarsAssets.GetCarPrefab(carType), carColor, position,
                 rotation, isIdle, out createdCar);
+        }
 
         public bool TryCreateRandomCarOnPath(Point point, bool isIdle, out Entity createdCar)
         {
@@ -64,12 +65,9 @@ namespace Sources.App.Core.Ecs.Factories
         {
             return !_physics.CheckBox(position + rotation * (carPrefab.BorderCollider
                     .SafeBoxCollider.BoxColliderData.Center - carPrefab.WheelsSystem.RootOffset),
-                carPrefab.BorderCollider.SafeBoxCollider.BoxColliderData.HalfExtents + Vector3.one * 0.1f, rotation, LayerMasks.CarsAndPlayers);
+                carPrefab.BorderCollider.SafeBoxCollider.BoxColliderData.HalfExtents + 
+                Vector3.one * 0.1f, rotation, LayerMasks.CarsAndPlayers);
         }
-
-        private Entity CreateCar(CarColorData carColorData, Vector3 position, Quaternion rotation, bool isIdle) =>
-            CreateCar(_assets.CarsAssets.GetCarPrefab(carColorData.CarType), carColorData.CarColor,
-                position, rotation, isIdle);
 
         private Entity CreateCar(ICarMonoEntity carPrefab, CarColorType? colorType,
             Vector3 position, Quaternion rotation, bool isIdle)
@@ -101,12 +99,6 @@ namespace Sources.App.Core.Ecs.Factories
                 .Add<SmoothSteeringAngle>()
                 .Set(new CarPassengers { Passengers = Enumerable.Repeat<Entity>(null, 4).ToList() })
                 .Set(new CarMaxSpeed { Value = Mathf.Infinity });
-        }
-
-        private Entity CreateRandomCar(Vector3 position, Quaternion rotation, bool isIdle)
-        {
-            CarColorData carColorData = _balance.CarsBalance.GetRandomCar();
-            return CreateCar(carColorData, position, rotation, isIdle);
         }
     }
 }

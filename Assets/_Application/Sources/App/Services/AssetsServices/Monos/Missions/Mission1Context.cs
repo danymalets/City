@@ -12,27 +12,27 @@ namespace Sources.App.Services.AssetsServices.Monos.Missions
         private CameraPoint _houseCameraPoint;
         
         [SerializeField]
-        private SpawnPoint _dadSpawnPoint;
+        private MonoPoint _dadSpawnPoint;
         
         [SerializeField]
-        private SpawnPoint _mumSpawnPoint;
+        private MonoPoint _mumSpawnPoint;
         
         [Header("Uncle Scene")]
         [SerializeField]
         private CameraPoint _uncleHouseCameraPoint;
         
         [SerializeField]
-        private SpawnPoint _uncleSpawnPoint; 
+        private MonoPoint _uncleSpawnPoint; 
         
         [SerializeField]
-        private SpawnPoint _taxiSpawnPoint;
+        private MonoPoint _taxiSpawnPoint;
 
         public ICameraPoint HouseCameraPoint => _houseCameraPoint;
-        public ISpawnPoint DadSpawnPoint => _dadSpawnPoint;
-        public ISpawnPoint MumSpawnPoint => _mumSpawnPoint;
-        public ISpawnPoint UncleSpawnPoint => _uncleSpawnPoint;
-        public ISpawnPoint TaxiSpawnPoint => _taxiSpawnPoint;
-        public ISpawnPoint SedanSpawnPoint { get; set; }
+        public IPoint DadSpawnPoint => _dadSpawnPoint;
+        public IPoint MumSpawnPoint => _mumSpawnPoint;
+        public IPoint UncleSpawnPoint => _uncleSpawnPoint;
+        public IPoint TaxiSpawnPoint => _taxiSpawnPoint;
+        public IPoint SedanSpawnPoint { get; set; }
         public ICameraPoint UncleCameraPoint => _uncleHouseCameraPoint;
     }
 }

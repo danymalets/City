@@ -12,6 +12,7 @@ using Sources.App.Core.Ecs.Systems.Update.Npc;
 using Sources.App.Core.Ecs.Systems.Update.NpcCar;
 using Sources.App.Core.Ecs.Systems.Update.NpcPathes;
 using Sources.App.Core.Ecs.Systems.Update.Player;
+using Sources.App.Core.Ecs.Systems.Update.Props;
 using Sources.App.Core.Ecs.Systems.Update.PseudoEditor;
 using Sources.App.Core.Ecs.Systems.Update.User;
 using Sources.App.Core.Services;
@@ -47,6 +48,7 @@ namespace Sources.App.Core.Ecs
             _diBuilder.Register<CarsFactory, ICarsFactory>();
             _diBuilder.Register<PathesFactory, IPathesFactory>();
             _diBuilder.Register<CamerasFactory, ICamerasFactory>();
+            _diBuilder.Register<PropsFactory, IPropsFactory>();
             _diBuilder.Register<SimulationAreasFactory, ISimulationAreasFactory>();
             
             _diBuilder.Register<PlayersDespawner, IPlayersDespawner>();
@@ -58,6 +60,8 @@ namespace Sources.App.Core.Ecs
         private void AddInitializers()
         {
             _world.AddInitializer<WorldStatusInitSystem>();
+            
+            _world.AddInitializer<PropsInitSystem>();
             
             _world.AddInitializer<PlayerDeathAnimationWarmUpSystem>();
 
@@ -81,7 +85,7 @@ namespace Sources.App.Core.Ecs
         private void AddFixedUpdateSystems()
         {
             // awaiters
-            _world.AddFixedSystem<ComponentProcessSystem>();
+            _world.AddFixedSystem<FixedAwaitersProcessSystem>();
             
             // physics
             _world.AddFixedSystem<PhysicsUpdateSystem>();
@@ -90,8 +94,6 @@ namespace Sources.App.Core.Ecs
             _world.AddFixedSystem<PlayerFallCheckSystem>();
             _world.AddFixedSystem<PlayerDeathHandlerSystem>();
             _world.AddFixedSystem<FallAnimationHandlerSystem>();
-            _world.AddFixedSystem<MakeKinematicHandlerSystem>();
-            _world.AddFixedSystem<SetFallenLayerRequestHandlerSystem>();
             _world.AddFixedSystem<DespawnRequestHandlerSystem>();
 
             //car enter
@@ -173,6 +175,18 @@ namespace Sources.App.Core.Ecs
             _world.AddFixedSystem<CarBreakApplySystem>();
             _world.AddFixedSystem<CarMotorApplySystem>();
             _world.AddFixedSystem<SteeringAngleApplySystem>();
+            
+            //props
+            _world.AddFixedSystem<PropsRigidbodyEnableSystem>();
+            _world.AddFixedSystem<PropsRigidbodyDisableSystem>();
+            _world.AddFixedSystem<PropsFallSystem>();
+            _world.AddFixedSystem<PropsFallenCheckSystemSystem>();
+
+            // set layer
+            _world.AddFixedSystem<SetFallenLayerRequestHandlerSystem>();
+
+            // clear collisions
+            _world.AddFixedSystem<CollisionsClearSystem>();
 
             // on frames
             _world.AddFixedOneFrame<NpcPointReachedEvent>();
@@ -189,13 +203,13 @@ namespace Sources.App.Core.Ecs
             _world.AddFixedOneFrame<DeadRequest>();
             _world.AddFixedOneFrame<FallAnimationRequest>();
             _world.AddFixedOneFrame<SetLayerRequest>();
-            _world.AddFixedOneFrame<MakeKinematicRequest>();
             _world.AddFixedOneFrame<DespawnRequest>();
-            _world.AddFixedOneFrame<Collisions>();
         }
 
         private void AddUpdateSystems()
         {
+            _world.AddUpdateSystem<UpdateAwaitersProcessSystem>();
+
             // user
             _world.AddUpdateSystem<NpcSpeedSystem>();
             

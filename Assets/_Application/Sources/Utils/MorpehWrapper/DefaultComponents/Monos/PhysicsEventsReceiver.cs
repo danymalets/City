@@ -13,16 +13,12 @@ namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (Entity == null)
-                return;
-            
-            List<CollisionData> collisions = 
-                (Entity.TryGet(out Collisions cc) ? cc : 
-                    Entity.SetAndGet(new Collisions{List = new List<CollisionData>()})).List;
-            
-            if (collision.transform.TryGetComponent(out IEntityAccess another))
+            if (Entity.TryGet(out Collisions collisions) &&
+                collision.transform.TryGetComponent(out IEntityAccess another))
             {
-                collisions.Add(new CollisionData(another.Entity, collision.impulse.sqrMagnitude));
+                collisions.List.Add(new CollisionData(
+                    another.Entity, 
+                    collision.impulse.sqrMagnitude));
             }
         }
     }

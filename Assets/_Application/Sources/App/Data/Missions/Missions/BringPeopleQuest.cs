@@ -9,9 +9,9 @@ namespace Sources.App.Data.Missions.Missions
     {
         private const float DistanceToCompete = 3f;
         
-        private readonly ISpawnPoint _target;
+        private readonly IPoint _target;
 
-        public MoveToPointByCarQuest(ISpawnPoint target)
+        public MoveToPointByCarQuest(IPoint target)
         {
             _target = target;
         }
@@ -36,7 +36,7 @@ namespace Sources.App.Data.Missions.Missions
         private readonly int _requiredBrought;
         private const float DistanceToCompete = 3f;
         
-        private readonly ISpawnPoint _target;
+        private readonly IPoint _target;
 
         public BringPeopleQuest(int requiredBrought)
         {

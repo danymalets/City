@@ -20,6 +20,7 @@ MonoBehaviour:
   <Mass>k__BackingField: 50
   <Acceleration>k__BackingField: 6
   <AllowableMoveAngle>k__BackingField: 0
+  <NavRotationSpeed>k__BackingField: 720
   _playersBalance:
   - _playerType: 0
     _weight: 100

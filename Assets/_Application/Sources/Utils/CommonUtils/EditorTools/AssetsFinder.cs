@@ -8,22 +8,22 @@ namespace Sources.Utils.CommonUtils.EditorTools
 {
     public static class AssetsFinder
     {
-        public static List<T> FindAssetsByType<T>() where T : UnityEngine.Object
+        public static IEnumerable<T> FindAssetsByType<T>() where T : Object
         {
-            List<T> assets = new List<T>();
-            string[] guids = AssetDatabase.FindAssets("", new[]{"Assets/Ref"});
+            string[] guids = AssetDatabase.FindAssets("", new[]{"Assets"}); // or Assets/
+           
             Debug.Log(guids.Length);
-            for (int i = 0; i < guids.Length; i++)
+            
+            foreach (string guid in guids)
             {
-                string assetPath = AssetDatabase.GUIDToAssetPath(guids[i]);
+                string assetPath = AssetDatabase.GUIDToAssetPath(guid);
                 T asset = AssetDatabase.LoadAssetAtPath<T>(assetPath);
+                
                 if (asset != null)
                 {
-                    assets.Add(asset);
+                    yield return asset;
                 }
             }
-
-            return assets;
         }
     }
 }

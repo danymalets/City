@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Sources.Utils.CommonUtils.Data
 {
-    public struct CapsuleData
+    public readonly struct CapsuleData
     {
         public Vector3 Start { get; }
         public Vector3 End { get; }

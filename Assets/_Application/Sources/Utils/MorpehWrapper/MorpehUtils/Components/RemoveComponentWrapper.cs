@@ -6,7 +6,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Components
     public class RemoveComponentWrapper<T> : IComponentWrapper
         where T: struct, IComponent
     {
-        public void ProcessWithEntity(Entity entity) => 
+        public void ProcessEntity(Entity entity) => 
             entity.Remove<T>();
     }
 }

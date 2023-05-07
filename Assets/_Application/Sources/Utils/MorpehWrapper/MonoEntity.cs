@@ -35,6 +35,7 @@ namespace Sources.Utils.MorpehWrapper
         {
             AddRequired<SafeBoxCollider, BoxCollider>();
             AddRequired<SafeCapsuleCollider, CapsuleCollider>();
+            AddRequired<SafeSphereCollider, SphereCollider>();
             AddRequired<SafeAnimator, Animator>();
             AddRequired<SafeMeshRenderer, MeshRenderer>();
             AddRequired<SafeCamera, Camera>();
@@ -44,7 +45,7 @@ namespace Sources.Utils.MorpehWrapper
             where TRequired : Component
             where TExist : Component
         {
-            foreach (TExist component in GetComponentsInChildren<TExist>())
+            foreach (TExist component in GetComponentsInChildren<TExist>(true))
             {
                 if (!component.HasComponent<TRequired>())
                     component.gameObject.AddComponent<TRequired>();

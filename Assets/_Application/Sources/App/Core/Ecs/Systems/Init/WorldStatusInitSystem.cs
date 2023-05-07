@@ -13,6 +13,7 @@ namespace Sources.App.Core.Ecs.Systems.Init
         protected override void OnInitialize()
         {
             _world.CreateEntity()
+                .AllowFixedAwaiters()
                 .Add<WorldStatusTag>();
         }
     }

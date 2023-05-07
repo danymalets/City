@@ -15,9 +15,9 @@ TagManager:
   - Car
   - Player
   - CarBorders
-  - 
+  - Props
   - Environment
-  - Fallen
+  - Falling
   - Ground
   - 
   - 

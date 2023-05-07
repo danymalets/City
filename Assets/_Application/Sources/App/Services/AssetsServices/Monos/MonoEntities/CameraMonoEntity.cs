@@ -9,7 +9,7 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities
 {
     [RequireComponent(typeof(SafeTransform))]
     [RequireComponent(typeof(SafeCamera))]
-    public class CameraMonoEntity : MonoEntity, ICameraMonoEntity
+    public partial class CameraMonoEntity : MonoEntity, ICameraMonoEntity
     {
         [SerializeField]
         private SafeTransform _transform;
@@ -19,14 +19,5 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities
         
         public ITransform Transform => _transform;
         public ICamera Camera => _camera;
-
-        [Button("Bake", ButtonSizes.Large)]
-        private void Bake()
-        {
-            base.OnValidate();
-            
-            _transform = GetComponent<SafeTransform>();
-            _camera = GetComponent<SafeCamera>();
-        }
     }
 }

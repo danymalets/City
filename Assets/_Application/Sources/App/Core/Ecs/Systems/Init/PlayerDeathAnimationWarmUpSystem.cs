@@ -26,7 +26,7 @@ namespace Sources.App.Core.Ecs.Systems.Init
 
             npcEntity.Add<AlwaysActive>();
             npcEntity.Add<DeadRequest>();
-            npcEntity.AddWithDelay<DespawnRequest>(3f);
+            npcEntity.AddWithFixedDelay<DespawnRequest>(3f);
         }
     }
 }

@@ -12,7 +12,6 @@ namespace Sources.App.Services.BalanceServices
         [field: SerializeField] public float MinImpulseForFall { get; private set; } = 200;
         [field: SerializeField] public float UserMaxSpeed { get; private set; } = 3;
         [field: SerializeField] public float UserMaxRotationSpeed { get; private set; } = 90;
-        [field: SerializeField] public float UserNavPathRotationSpeed { get; private set; } = 90;
         [field: SerializeField] public float NpcMaxRotationSpeed { get; private set; } = 90;
         [field: SerializeField] public float Mass { get; private set; } = 70;
         [field: SerializeField] public float Acceleration { get; private set; } = 6;

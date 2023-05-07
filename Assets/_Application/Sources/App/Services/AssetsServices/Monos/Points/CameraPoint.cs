@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Sources.App.Services.AssetsServices.Monos.Points
 {
-    public class CameraPoint : SpawnPoint, ICameraPoint
+    public class CameraPoint : MonoPoint, ICameraPoint
     {
         [SerializeField] public float _fieldOfView = 50;
 

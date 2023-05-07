@@ -9,15 +9,11 @@ namespace Sources.Utils.MorpehWrapper.DefaultComponents.Views
         Vector3 LocalVelocity { get; set; }
         Vector3 Position { get; set; }
         Quaternion Rotation { get; set; }
-        bool DetectCollisions { get; set; }
-        bool IsKinematic { get; set; }
         Vector3 CenterMass { get; set; }
-        
+        void ResetCenterOfMass();
         RigidbodyConstraints Constraints { get; set; }
         float Mass { get; set; }
         RigidbodyInterpolation Interpolation { get; set; }
-        void MakeKinematic();
-        void MakePhysical();
         void MoveRotation(Quaternion rotation);
     }
 }

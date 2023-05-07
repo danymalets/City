@@ -5,11 +5,11 @@ namespace Sources.App.Data.Missions
     public interface IMission1Context
     {
         ICameraPoint HouseCameraPoint { get; }
-        ISpawnPoint DadSpawnPoint { get; }
-        ISpawnPoint MumSpawnPoint { get; }
-        ISpawnPoint UncleSpawnPoint { get; }
-        ISpawnPoint TaxiSpawnPoint { get; }
-        ISpawnPoint SedanSpawnPoint { get; set; }
+        IPoint DadSpawnPoint { get; }
+        IPoint MumSpawnPoint { get; }
+        IPoint UncleSpawnPoint { get; }
+        IPoint TaxiSpawnPoint { get; }
+        IPoint SedanSpawnPoint { get; set; }
         ICameraPoint UncleCameraPoint { get; }
     }
 }

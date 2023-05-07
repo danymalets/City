@@ -30,7 +30,7 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities
 
         [SerializeField]
         private SafeAnimator _animator;
-        
+
         [SerializeField]
         private NavMeshObstacle _navMeshAgent;
 
@@ -40,22 +40,5 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities
         public IPlayerBorders PlayerBorders => _playerBorders;
         public IAnimator Animator => _animator;
         public NavMeshObstacle NavMeshObstacle => _navMeshAgent;
-
-#if UNITY_EDITOR
-        [Button("Bake", ButtonSizes.Large)]
-        private void Bake()
-        {
-            base.OnValidate();
-
-            _transform = GetComponent<SafeTransform>();
-            _enableableGameObject = GetComponent<EnableableGameObject>();
-            _rigidbodySwitcher = GetComponent<RigidbodySwitcher>();
-            _playerBorders = GetComponentInChildren<PlayerBorders>();
-            _animator = GetComponentInChildren<SafeAnimator>();
-            _navMeshAgent = GetComponentInChildren<NavMeshObstacle>();
-            
-            _playerBorders.SafeCapsuleCollider.Layer = Layers.Player;
-        }
-#endif
     }
 }

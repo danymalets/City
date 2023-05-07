@@ -25,7 +25,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
                 playerEntity.GetAspect<NpcStatusAspect>().LeaveIfOnPath();
                 playerEntity.Add<FallAnimationRequest>();
 
-                playerEntity.SetWithDelay(0.4f, new SetLayerRequest { Layer = Layers.Fallen });
+                playerEntity.SetWithFixedDelay(0.4f, new SetLayerRequest { Layer = Layers.Falling });
             }
         }
     }

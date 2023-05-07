@@ -45,11 +45,11 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
                     collider.Enabled = false;
                 }
 
-                playerEntity.AddWithDelay<PlayerFullyInCar>(Consts.EnterCarAnimationDuration);
+                playerEntity.AddWithFixedDelay<PlayerFullyInCar>(Consts.EnterCarAnimationDuration);
 
                 if (carPlaceData.Place == 0)
                 {
-                    playerEntity.AddWithDelay<PlayerInputInCarOn>(Consts.EnterCarAnimationDuration - 1.2f);
+                    playerEntity.AddWithFixedDelay<PlayerInputInCarOn>(Consts.EnterCarAnimationDuration - 1.2f);
                 }
                 
                 switchableRigidbodyAspect.DisableRigidbody();

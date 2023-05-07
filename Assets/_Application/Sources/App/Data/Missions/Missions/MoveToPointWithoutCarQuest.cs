@@ -8,9 +8,9 @@ namespace Sources.App.Data.Missions.Missions
     {
         private const float DistanceToCompete = 3f;
         
-        private readonly ISpawnPoint _target;
+        private readonly IPoint _target;
 
-        public MoveToPointWithoutCarQuest(ISpawnPoint target)
+        public MoveToPointWithoutCarQuest(IPoint target)
         {
             _target = target;
         }

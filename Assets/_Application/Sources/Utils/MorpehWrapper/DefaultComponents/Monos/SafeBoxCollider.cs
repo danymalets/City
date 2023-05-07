@@ -12,7 +12,7 @@ namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
             _collider.size / 2,
             transform.rotation);
 
-        public Vector3 LocalCenter => _collider.center;
+        public Vector3 LocalCenter => _collider.center; // todo: delete
 
         public Vector3 Center
         {

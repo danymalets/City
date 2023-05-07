@@ -13,7 +13,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Components
             _component = component;
         }
 
-        public void ProcessWithEntity(Entity entity) => 
+        public void ProcessEntity(Entity entity) => 
             entity.Set(_component);
     }
 }

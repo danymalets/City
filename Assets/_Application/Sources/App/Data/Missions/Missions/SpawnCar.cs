@@ -6,9 +6,9 @@ namespace Sources.App.Data.Missions.Missions
     public class SpawnCar : SubMissionAction
     {
         public CarType CarType { get; }
-        public ISpawnPoint SpawnPoint { get; }
+        public IPoint SpawnPoint { get; }
 
-        public SpawnCar(CarType carType, ISpawnPoint spawnPoint)
+        public SpawnCar(CarType carType, IPoint spawnPoint)
         {
             CarType = carType;
             SpawnPoint = spawnPoint;

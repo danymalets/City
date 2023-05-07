@@ -116,11 +116,14 @@ namespace Sources.App.Core.Ecs.Factories
             IPlayerMonoEntity playerMonoEntity = _poolSpawner.Spawn(playerPrefab, position, rotation);
 
             return _world.CreateFromMono(playerMonoEntity)
+                .AllowFixedAwaiters()
+                .TrackCollisions()
                 .SetRef<IEnableableGameObject>(playerMonoEntity.EnableableGameObject)
                 .SetRef<NavMeshObstacle>(playerMonoEntity.NavMeshObstacle)
                 .SetRef<IRigidbodySwitcher>(playerMonoEntity.RigidbodySwitcher)
                 .SetRef<RigidbodySettings>(new RigidbodySettings(_playersBalance.Mass,
-                    RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ, null))
+                    RigidbodyConstraints.FreezeRotationX |
+                    RigidbodyConstraints.FreezeRotationZ, null))
                 .SetRef<ITransform>(playerMonoEntity.Transform)
                 .SetRef<IPlayerAnimator>(new PlayerAnimator(playerMonoEntity.Animator))
                 .SetRef<IPlayerBorders>(playerMonoEntity.PlayerBorders)

@@ -25,10 +25,10 @@ namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
             set => _transform.rotation = value;
         }
 
-        public Vector3 TransformPoint(Vector3 point) => 
+        public Vector3 PointLocalToWorld(Vector3 point) => 
             _transform.TransformPoint(point);
 
-        public Vector3 InverseTransformPoint(Vector3 point) => 
+        public Vector3 PointWorldToLocal(Vector3 point) => 
             _transform.InverseTransformPoint(point);
     }
 }

@@ -6,25 +6,13 @@ namespace Sources.App.Services.BalanceServices
     [CreateAssetMenu(menuName = nameof(Balance) + "/" + nameof(Balance), fileName = nameof(Balance))]
     public class Balance : ScriptableObject, IService
     {
-        [SerializeField]
-        private CameraBalance _cameraBalance;
+        [field: SerializeField] public CameraBalance CameraBalance { get; private set; }
+        [field: SerializeField] public SimulationBalance SimulationBalance { get; private set; }
 
-        [SerializeField]
-        private SimulationBalance _simulationBalance;
-
-        [SerializeField]
-        private PlayersBalance _playersBalance;
-
-        [SerializeField]
-        private CarsBalance _carsBalance;
-
-        public CameraBalance CameraBalance => _cameraBalance;
-        public SimulationBalance SimulationBalance => _simulationBalance;
-
-        public PlayersBalance PlayersBalance => _playersBalance;
-        public CarsBalance CarsBalance => _carsBalance;
+        [field: SerializeField] public PlayersBalance PlayersBalance { get; private set; }
+        [field: SerializeField] public CarsBalance CarsBalance { get; private set; }
 
         [field: SerializeField] public QualityBalance QualityBalance { get; private set; }
-        
+        [field: SerializeField] public CommonBalance CommonBalance { get; private set; }
     }
 }

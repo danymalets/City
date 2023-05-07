@@ -5,9 +5,9 @@ namespace Sources.App.Data.Missions.Missions
     public class SpawnNpc : SubMissionAction
     {
         public PlayerType PlayerType { get; }
-        public ISpawnPoint SpawnPoint { get; }
+        public IPoint SpawnPoint { get; }
 
-        public SpawnNpc(PlayerType playerType, ISpawnPoint spawnPoint)
+        public SpawnNpc(PlayerType playerType, IPoint spawnPoint)
         {
             PlayerType = playerType;
             SpawnPoint = spawnPoint;

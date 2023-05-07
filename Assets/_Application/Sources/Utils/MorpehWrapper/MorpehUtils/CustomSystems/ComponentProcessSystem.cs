@@ -6,34 +6,35 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.Utils.MorpehWrapper.MorpehUtils.CustomSystems
 {
-    public class ComponentProcessSystem : DUpdateSystem
+    public abstract class ComponentProcessSystem<TAwaiter> : DUpdateSystem
+        where TAwaiter : struct, IAwaiters, IComponent
     {
         private Filter _filter;
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<ComponentProcessAwaiters>();
+            _filter = _world.Filter<TAwaiter>();
         }
 
         protected override void OnUpdate(float deltaTime)
         {
             foreach (Entity entity in _filter)
             {
-                List<ComponentProcessAwaiter> awaiters = entity.Get<ComponentProcessAwaiters>().List;
-                List<ComponentProcessAwaiter> awaitersToDelete = new();
+                List<ComponentAwaiter> awaiters = entity.Get<TAwaiter>().List;
+                List<ComponentAwaiter> awaitersToDelete = new();
 
-                foreach (ComponentProcessAwaiter awaiter in awaiters)
+                foreach (ComponentAwaiter awaiter in awaiters)
                 {
                     awaiter.Delay -= deltaTime;
 
                     if (awaiter.Delay <= 0)
                     {
-                        awaiter.ComponentWrapper.ProcessWithEntity(entity);
+                        awaiter.ComponentWrapper.ProcessEntity(entity);
                         awaitersToDelete.Add(awaiter);
                     }
                 }
 
-                foreach (ComponentProcessAwaiter awaiter in awaitersToDelete)
+                foreach (ComponentAwaiter awaiter in awaitersToDelete)
                 {
                     awaiters.Remove(awaiter);
                 }
