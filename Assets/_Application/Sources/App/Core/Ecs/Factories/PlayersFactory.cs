@@ -14,6 +14,7 @@ using Sources.App.Data.Pathes;
 using Sources.App.Data.Players;
 using Sources.App.Data.Points;
 using Sources.App.Services.BalanceServices;
+using Sources.Services.CoroutineRunnerServices;
 using Sources.Services.PhysicsServices;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.Di;
@@ -47,7 +48,6 @@ namespace Sources.App.Core.Ecs.Factories
         public Entity CreateUserInCar(IPlayerMonoEntity playerPrefab, Entity carEntity)
         {
             return CreateUser(playerPrefab, Vector3.zero, Quaternion.identity)
-                .SetupRef<EnableableGameObject>(g => g.Disable())
                 .Set(new PlayerInCar { CarPlaceData = new CarPlaceData(carEntity, 0) });
         }
 
@@ -60,7 +60,6 @@ namespace Sources.App.Core.Ecs.Factories
 
         public Entity CreateNpc(IPlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation) =>
             CreatePlayer(playerPrefab, position, rotation)
-                .Add<ForwardTrigger>()
                 .Add<NpcTag>();
 
         public bool TryCreateRandomNpc(Point point, out Entity createdEntity)
@@ -99,11 +98,10 @@ namespace Sources.App.Core.Ecs.Factories
         public Entity CreateNpcInCarOnPath(IPlayerMonoEntity playerPrefab, Entity carEntity, PathLine pathLine)
         {
             Entity npc = CreateNpc(playerPrefab, Vector3.zero, Quaternion.identity)
-                .SetupRef<IEnableableGameObject>(g => g.Disable())
-                .Set(new PlayerInCar { CarPlaceData = new CarPlaceData(carEntity, 0)})
-                .SetupAspect<NpcStatusAspect>(nsa => nsa.SetPath(pathLine));
-
-            carEntity.GetAspect<CarPassengersAspect>().TakePlace(0, npc);
+                .Set(new PlayerInCar { CarPlaceData = new CarPlaceData(carEntity, 0) })
+                .SetupAspect<NpcStatusAspect>(nsa => nsa.SetPath(pathLine))
+                .SetupAspect<PlayerCarPossibilityAspect>(pca =>
+                    pca.EnterCar(new CarPlaceData(carEntity, 0), true));
 
             return npc;
         }
@@ -114,6 +112,11 @@ namespace Sources.App.Core.Ecs.Factories
         private Entity CreatePlayer(IPlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation)
         {
             IPlayerMonoEntity playerMonoEntity = _poolSpawner.Spawn(playerPrefab, position, rotation);
+
+            new CoroutineContext().RunWithDelay(1f, () =>
+            {
+                playerMonoEntity.RootTransform.LocalScale = Vector3.one;
+            });
 
             return _world.CreateFromMono(playerMonoEntity)
                 .AllowFixedAwaiters()
@@ -130,7 +133,7 @@ namespace Sources.App.Core.Ecs.Factories
                 .SetRef<ICollider[]>(new ICollider[]
                     { playerMonoEntity.PlayerBorders.SafeCapsuleCollider })
                 .SetupRef<ICollider[]>(cs => cs.ForEach(c => c.Layer = Layers.Player))
-                .SetupRef<IPlayerAnimator>(pa => pa.Setup())
+                .SetupRef<IPlayerAnimator>(pa => pa.SetMoveSpeed(0, true))
                 .SetupAspect<SwitchableRigidbodyAspect>(pa => pa.EnableRigidbody())
                 .Set(new PlayerTargetAngle { Value = rotation.eulerAngles.y })
                 .Set(new PlayerSmoothAngle { Value = rotation.eulerAngles.y })

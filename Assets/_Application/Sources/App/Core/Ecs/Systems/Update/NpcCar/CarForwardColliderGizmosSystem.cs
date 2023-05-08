@@ -1,5 +1,6 @@
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Car;
+using Sources.App.Core.Ecs.Components.Npc;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Services.BalanceServices;
 using Sources.Utils.Di;
@@ -27,13 +28,13 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 
         protected override void OnUpdate(float deltaTime)
         {
-            foreach (Entity carEntity in _filter)
-            {
-                ref ForwardTrigger forwardTrigger = ref carEntity.Get<ForwardTrigger>();
-                
-                _updateGizmosContext.DrawCube(
-                    forwardTrigger.Center, forwardTrigger.Rotation, forwardTrigger.Size, Color.red);
-            }
+            // foreach (Entity carEntity in _filter)
+            // {
+            //     ref CheckForwardTriggerRequest checkForwardTriggerRequest = ref carEntity.Get<CheckForwardTriggerRequest>();
+            //     
+            //     _updateGizmosContext.DrawCube(
+            //         checkForwardTriggerRequest.Center, checkForwardTriggerRequest.Rotation, checkForwardTriggerRequest.Size, Color.red);
+            // }
         }
     }
 }

@@ -1,6 +1,8 @@
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Aspects;
+using Sources.App.Core.Ecs.Components.Car;
 using Sources.App.Core.Ecs.Components.Npc;
+using Sources.App.Core.Ecs.Components.Npc.NpcCar;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Data.Cars;
@@ -27,11 +29,13 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
             foreach (Entity playerEntity in _filter)
             {
                 IPlayerAnimator playerAnimator = playerEntity.GetRef<IPlayerAnimator>();
-                
+
+                playerEntity.Get<PlayerInCar>().CarPlaceData.Car
+                    .Set(new CarBreak { BreakType = BreakType.Max });
                 playerEntity.Remove<PlayerFullyInCar>();
+                playerEntity.Remove<PlayerInputInCarOn>();
                 playerEntity.AddWithFixedDelay<PlayerFullyExitCarEvent>(Consts.ExitCarAnimationDuration + 1f);
                 playerAnimator.ExitCar();
-                Debug.Log($"exit car anim");
             }
         }
     }

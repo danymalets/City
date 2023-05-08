@@ -23,6 +23,8 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
             {
                 playerEntity.Add<Dead>();
                 playerEntity.GetAspect<NpcStatusAspect>().LeaveIfOnPath();
+                playerEntity.Get<PlayerTargetSpeed>().Value = 0;
+                playerEntity.Get<PlayerSmoothSpeed>().Value = 0;
                 playerEntity.Add<FallAnimationRequest>();
 
                 playerEntity.SetWithFixedDelay(0.4f, new SetLayerRequest { Layer = Layers.Falling });

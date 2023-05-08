@@ -30,7 +30,7 @@ namespace Sources.App.Ui.Screens.Input
 
         private void OnEnterCarButtonClicked()
         {
-            if (_userEntity.TryGet(out CarInputPossibility carInputPossibility))
+            if (_userEntity.NotHas<PlayerInCar>() && _userEntity.TryGet(out CarInputPossibility carInputPossibility))
             {
                 _userEntity.Set(new PlayerWantsEnterCarEvent
                 {

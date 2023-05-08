@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3fd9ec727c49c091d638d40c358149, type: 3}
   m_Name: CommonBalance
   m_EditorClassIdentifier: 
-  <PropsRigidbodyEnableDistance>k__BackingField: 10
-  <PropsRigidbodyDisableDistance>k__BackingField: 12
+  <PropsRigidbodyEnableDistance>k__BackingField: 6
+  <PropsRigidbodyDisableDistance>k__BackingField: 7
   <PropsAngleToFallenLayer>k__BackingField: 45

@@ -12,7 +12,6 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
 {
     public class InputScreenSwitcherSystem : DUpdateSystem
     {
-
         private readonly CarInputScreen _carInputScreen;
         private readonly PlayerInputScreen _playerInputScreen;
 
@@ -28,7 +27,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
 
         protected override void OnInitFilters()
         {
-            _userWithCarFilter = _world.Filter<UserTag, PlayerFullyInCar>();
+            _userWithCarFilter = _world.Filter<UserTag, PlayerInputInCarOn>();
             _userWithoutCarFilter = _world.Filter<UserTag>().Without<PlayerInCar>();
         }
 
@@ -41,14 +40,15 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
             }
             else
             {
-                if (!_playerInputScreen.IsOpened)
-                    _playerInputScreen.Open();
+                if (_carInputScreen.IsOpened)
+                    _carInputScreen.Close();
+
             }
             
             if (_userWithoutCarFilter.Any())
             {
-                if (_carInputScreen.IsOpened)
-                    _carInputScreen.Close();
+                if (!_playerInputScreen.IsOpened)
+                    _playerInputScreen.Open();
             }
             else
             {

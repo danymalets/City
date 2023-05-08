@@ -55,7 +55,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
                     path[onNavPath.LastCompetedPoint + 1]);
                 
                 ref PlayerTargetSpeed playerTargetSpeed = ref playerEntity.Get<PlayerTargetSpeed>();
-                playerTargetSpeed.Value = 2;
+                playerTargetSpeed.Value = 3.5f;
             }
         }
 

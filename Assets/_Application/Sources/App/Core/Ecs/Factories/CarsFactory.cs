@@ -95,7 +95,6 @@ namespace Sources.App.Core.Ecs.Factories
                 .Add<CarMotorCoefficient>()
                 .Add<CarBreak>()
                 .Add<SteeringAngle>()
-                .Add<ForwardTrigger>()
                 .Add<SmoothSteeringAngle>()
                 .Set(new CarPassengers { Passengers = Enumerable.Repeat<Entity>(null, 4).ToList() })
                 .Set(new CarMaxSpeed { Value = Mathf.Infinity });

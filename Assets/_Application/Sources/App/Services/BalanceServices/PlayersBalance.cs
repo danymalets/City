@@ -10,6 +10,7 @@ namespace Sources.App.Services.BalanceServices
     public class PlayersBalance : ScriptableObject
     {
         [field: SerializeField] public float MinImpulseForFall { get; private set; } = 200;
+        [field: SerializeField] public float NpcOnPathMaxSpeed { get; private set; } = 1;
         [field: SerializeField] public float UserMaxSpeed { get; private set; } = 3;
         [field: SerializeField] public float UserMaxRotationSpeed { get; private set; } = 90;
         [field: SerializeField] public float NpcMaxRotationSpeed { get; private set; } = 90;

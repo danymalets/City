@@ -34,7 +34,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 
         protected override void OnUpdate(float deltaTime)
         {
-            float reqDistance = _simulationBalance.MaxNpcRadius + _simulationBalance.NpcDistanceAfterBreak;
+            float sqrReqDistance = DMath.Sqr(_simulationBalance.MaxNpcRadius + _simulationBalance.NpcDistanceAfterBreak);
 
             foreach (Entity npcEntity in _filter)
             {
@@ -46,15 +46,12 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
                 {
                     if (!choiceData.IsForceMove)
                     {
-                        if (DVector3.SqrDistance(choiceData.Point.Position, transform.Position) <=
-                            DMath.Sqr(reqDistance))
+                        if (DVector3.SqrDistance(choiceData.Point.Position, 
+                                transform.Position) <= sqrReqDistance)
                         {
                             if (choiceData.TurnData.IsBlocked())
                             {
-                                _updateGizmosContext.DrawLine(transform.Position, 
-                                    choiceData.Point.Position, Color.red);
-                                
-                                npcEntity.Set(new NpcBreakRequest());
+                                npcEntity.Set(new PathBlockerRequest());
                             }
                             else
                             {

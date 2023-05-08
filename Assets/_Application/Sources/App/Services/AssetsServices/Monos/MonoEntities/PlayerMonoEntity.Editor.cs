@@ -1,7 +1,9 @@
+using System.Linq;
 using Sirenix.OdinInspector;
 using Sources.App.Data.Constants;
 using Sources.App.Services.AssetsServices.Monos.Players;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
+using UnityEngine;
 using UnityEngine.AI;
 
 namespace Sources.App.Services.AssetsServices.Monos.MonoEntities
@@ -22,6 +24,10 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities
             _navMeshAgent = GetComponentInChildren<NavMeshObstacle>();
 
             _playerBorders.SafeCapsuleCollider.Layer = Layers.Player;
+
+            _rootTransform = GetComponentsInChildren<Transform>()
+                .First(t => t.gameObject.name == "Root")
+                .gameObject.AddComponent<SafeTransform>();
         }
 #endif
     }

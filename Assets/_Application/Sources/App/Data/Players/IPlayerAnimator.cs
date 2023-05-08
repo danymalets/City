@@ -4,10 +4,9 @@ namespace Sources.App.Data.Players
 {
     public interface IPlayerAnimator 
     {
-        void Setup();
-        void SetMoveSpeed(float speed);
+        void SetMoveSpeed(float speed, bool isForce = false);
         void Die();
-        void EnterCar(CarSideType sideType);
+        void EnterCar(CarSideType sideType, bool isForce);
         void ExitCar();
     }
 }

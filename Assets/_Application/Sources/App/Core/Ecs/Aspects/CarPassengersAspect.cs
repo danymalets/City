@@ -16,7 +16,7 @@ namespace Sources.App.Core.Ecs.Aspects
 
         public Filter GetFilter(Filter filter) => filter.With<CarTag>();
 
-        public void TakePlace(int place, Entity player)
+        public void TakePlaceInternal(int place, Entity player)
         {
 #if FORCE_DEBUG
             DAssert.IsTrue(IsFree(place));
@@ -24,7 +24,7 @@ namespace Sources.App.Core.Ecs.Aspects
             Passengers[place] = player;
         }
 
-        public readonly void FreeUpPlace(int place, Entity entity)
+        public readonly void FreeUpPlaceInternal(int place, Entity entity)
         {
 #if FORCE_DEBUG
             DAssert.IsTrue(Passengers[place] == entity);
@@ -44,10 +44,6 @@ namespace Sources.App.Core.Ecs.Aspects
         public readonly bool IsNoPassengers =>
             PassengersCount == 0;
 
-        public readonly IEnterPoint GetPlaceEnterPoint(int place) =>
-            EnterPoints[place];
-        
         public readonly List<Entity> Passengers => Entity.Get<CarPassengers>().Passengers;
-        public readonly IEnterPoint[] EnterPoints => Entity.GetRef<IEnterPoint[]>();
     }
 }

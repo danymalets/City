@@ -39,7 +39,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
                 CarPassengersAspect carPassengers = carPlaceData.Car.GetAspect<CarPassengersAspect>();
                 ICollider[] colliders = playerEntity.GetRef<ICollider[]>();
 
-                IEnterPoint enterPoint = carPassengers.GetPlaceEnterPoint(playerInCar.CarPlaceData.Place);
+                IEnterPoint enterPoint = carPlaceData.Car.GetRef<IEnterPoint[]>()[carPlaceData.Place];
 
                 Vector3 position = enterPoint.Position;
                 
@@ -52,15 +52,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
                 playerTransform.Position = position;
                 playerTransform.Rotation = Quaternion.identity.WithEulerY(angle);
                 
-                carPassengers.FreeUpPlace(carPlaceData.Place, playerEntity);
-                playerEntity.Remove<PlayerInCar>();
-
-                foreach (ICollider collider in colliders)
-                {
-                    collider.Enabled = true;
-                }
-                
-                switchableRigidbodyAspect.EnableRigidbody();
+                playerEntity.GetAspect<PlayerCarPossibilityAspect>().ExitCar(position, angle);
             }
         }
     }

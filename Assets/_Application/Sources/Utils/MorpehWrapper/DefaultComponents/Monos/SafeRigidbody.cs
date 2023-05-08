@@ -1,91 +1,85 @@
+using System;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using UnityEngine;
 
 namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
 {
-    public class SafeRigidbody : MonoBehaviour, IRigidbody
+    [RequireComponent(typeof(Rigidbody))]
+    public class SafeRigidbody : SafeComponent<Rigidbody>, IRigidbody
     {
-        [SerializeField]
-        private Rigidbody _rigidBody;
-
-        private void Awake()
-        {
-            _rigidBody = GetComponent<Rigidbody>();
-        }
-
-        public float SignedSpeed => 
+        public float SignedSpeed =>
             LocalVelocity.z;
 
         public Vector3 Velocity
         {
-            get => _rigidBody.velocity;
-            set => _rigidBody.velocity = value;
+            get => Unsafe.velocity;
+            set => Unsafe.velocity = value;
         }
 
         public Vector3 LocalVelocity
         {
-            get => _rigidBody.transform.InverseTransformDirection(_rigidBody.velocity);
-            set => _rigidBody.velocity = _rigidBody.transform.TransformDirection(value);
+            get => Unsafe.transform.InverseTransformDirection(Unsafe.velocity);
+            set => Unsafe.velocity = Unsafe.transform.TransformDirection(value);
         }
 
         public Vector3 Position
         {
-            get => _rigidBody.position;
-            set => _rigidBody.position = value;
+            get => Unsafe.position;
+            set => Unsafe.position = value;
         }
 
         public Quaternion Rotation
         {
-            get => _rigidBody.rotation;
-            set => _rigidBody.rotation = value;
+            get => Unsafe.rotation;
+            set => Unsafe.rotation = value;
         }
-        
+
         public RigidbodyInterpolation Interpolation
         {
-            get => _rigidBody.interpolation;
-            set => _rigidBody.interpolation = value;
+            get => Unsafe.interpolation;
+            set => Unsafe.interpolation = value;
         }
 
         public bool DetectCollisions
         {
-            get => _rigidBody.detectCollisions;
-            set => _rigidBody.detectCollisions = value;
+            get => Unsafe.detectCollisions;
+            set => Unsafe.detectCollisions = value;
         }
 
         public bool IsKinematic
         {
-            get => _rigidBody.isKinematic;
-            set => _rigidBody.isKinematic = value;
+            get => Unsafe.isKinematic;
+            set => Unsafe.isKinematic = value;
         }
 
         public void MakeKinematic() =>
-            _rigidBody.isKinematic = true;
+            Unsafe.isKinematic = true;
 
         public void MakePhysical() =>
-            _rigidBody.isKinematic = false;
+            Unsafe.isKinematic = false;
 
         public void MoveRotation(Quaternion rotation) =>
-            _rigidBody.MoveRotation(rotation);
+            Unsafe.MoveRotation(rotation);
 
         public Vector3 CenterMass
         {
-            get => _rigidBody.centerOfMass;
-            set => _rigidBody.centerOfMass = value;
+            get => Unsafe.centerOfMass;
+            set => Unsafe.centerOfMass = value;
         }
 
         public void ResetCenterOfMass() =>
-            _rigidBody.ResetCenterOfMass();
+            Unsafe.ResetCenterOfMass();
 
         public RigidbodyConstraints Constraints
         {
-            get => _rigidBody.constraints;
-            set => _rigidBody.constraints = value;
+            get => Unsafe.constraints;
+            set => Unsafe.constraints = value;
         }
-        
+
         public float Mass
         {
-            get => _rigidBody.mass;
-            set => _rigidBody.mass = value;
+            get => Unsafe.mass;
+            set => Unsafe.mass = value;
         }
     }
 }

@@ -1,4 +1,5 @@
 using Sources.App.Core.Ecs.Components.NavPathes;
+using Sources.App.Core.Ecs.Components.Npc;
 using Sources.App.Core.Ecs.Components.Npc.NpcCar;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Despawners;
@@ -116,7 +117,7 @@ namespace Sources.App.Core.Ecs
             _world.AddFixedSystem<PlayerCarExitSystem>();
             _world.AddFixedSystem<PlayerCarFullyExitSystem>();
 
-            // gen
+            // generation
             _world.AddFixedSystem<CameraTargetDeltasSystem>();
             _world.AddFixedSystem<SimulationCameraUpdateSystem>();
             _world.AddFixedSystem<SimulationAreaUpdateSystem>();
@@ -139,26 +140,28 @@ namespace Sources.App.Core.Ecs
             _world.AddFixedSystem<NpcPathRotateSystem>();
             _world.AddFixedSystem<PlayerSmoothAngleSystem>();
             _world.AddFixedSystem<SmoothAngleApplySystem>();
+            
+            _world.AddFixedSystem<NpcOnPathForwardColliderRequestSystem>();
+            _world.AddFixedSystem<PlayerOnNavPathForwardColliderRequestSystem>();
+            
+            _world.AddFixedSystem<PlayerForwardColliderCalculateSystem>();
+            _world.AddFixedSystem<PlayerCheckForwardTriggerSystem>();
 
-            _world.AddFixedSystem<CarForwardColliderSystem>();
-            
-            _world.AddFixedSystem<NpcForwardColliderSystem>();
-            _world.AddFixedSystem<NpcCheckTriggerSystem>();
-            
             // idle car
             _world.AddFixedSystem<IdleCarEnableRigidbodySystem>();
             _world.AddFixedSystem<IdleCarDisableRigidbodySystem>();
 
             // car
             _world.AddFixedSystem<NpcCarPathSteeringAngleSystem>();
-            _world.AddFixedSystem<NpcCarMoveSystem>();
+            _world.AddFixedSystem<CarForwardColliderCalculateSystem>();
+            _world.AddFixedSystem<NpcCarCheckForwardTriggerSystem>();
             
             // pathes
             _world.AddFixedSystem<NpcCarBreakOrMoveChoiceSystem>();
             _world.AddFixedSystem<NpcBreakOrMoveChoiceSystem>();
 
             _world.AddFixedSystem<NpcCarBreakSystem>();
-            _world.AddFixedSystem<NpcBreakSystem>();
+            _world.AddFixedSystem<NpcOnPathMoveSystem>();
             
             // npc apply
             _world.AddFixedSystem<PlayerSmoothSpeedSystem>();
@@ -195,7 +198,8 @@ namespace Sources.App.Core.Ecs
             _world.AddFixedOneFrame<NavPathCompletedEvent>();
             _world.AddFixedOneFrame<NavToCarCompletedEvent>();
             _world.AddFixedOneFrame<PlayerEnterCarEvent>();
-            _world.AddFixedOneFrame<NpcBreakRequest>();
+            _world.AddFixedOneFrame<PathBlockerRequest>();
+            _world.AddFixedOneFrame<ForwardBlockerRequest>();
             _world.AddFixedOneFrame<NpcCarBreakRequest>();
             _world.AddFixedOneFrame<PlayerExitCarEvent>();
             _world.AddFixedOneFrame<PlayerWantsEnterCarEvent>();
@@ -204,6 +208,7 @@ namespace Sources.App.Core.Ecs
             _world.AddFixedOneFrame<FallAnimationRequest>();
             _world.AddFixedOneFrame<SetLayerRequest>();
             _world.AddFixedOneFrame<DespawnRequest>();
+            _world.AddFixedOneFrame<CheckForwardTriggerRequest>();
         }
 
         private void AddUpdateSystems()

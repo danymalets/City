@@ -44,8 +44,6 @@ namespace Sources.App.Core.Ecs.Systems.Update.Car
 
                 if (DVector3.SqrDistance(userPosition, transform.Position) < minSqrDistance)
                 {
-                    Debug.Log($"idle enable");
-
                     SwitchableRigidbodyAspect rigidbodySwitcher = carEntity.GetAspect<SwitchableRigidbodyAspect>();
                     rigidbodySwitcher.EnableRigidbody();
                 }

@@ -11,16 +11,10 @@ namespace Sources.App.Core.Ecs.Despawners
         public void DespawnNpc(Entity playerEntity)
         {
             playerEntity.GetAspect<NpcStatusAspect>().LeaveIfOnPath();
-            
-            if (playerEntity.TryGet(out PlayerInCar playerInCar))
-            {
-                playerInCar.CarPlaceData.Car.GetAspect<CarPassengersAspect>().FreeUpPlace(playerInCar.CarPlaceData.Place, playerEntity);
-            }
 
-            SwitchableRigidbodyAspect switchableRigidbodyAspect = playerEntity.GetAspect<SwitchableRigidbodyAspect>();
-            
-            if (switchableRigidbodyAspect.HasPhysicBody())
-                switchableRigidbodyAspect.DisableRigidbody();
+            playerEntity.GetAspect<PlayerCarPossibilityAspect>().TryForceExit();
+
+            playerEntity.GetAspect<SwitchableRigidbodyAspect>().TryDisableRigidbody();
             
             playerEntity.DespawnMono();
             _poolDespawner.Despawn(playerEntity.GetMonoEntity());

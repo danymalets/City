@@ -27,8 +27,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
                 ITransform transform = playerEntity.GetRef<ITransform>();
                 CarPlaceData carPlaceData = playerEntity.Get<PlayerInCar>().CarPlaceData;
                 
-                CarPassengersAspect carPassengersAspect = carPlaceData.Car.GetAspect<CarPassengersAspect>();
-                IEnterPoint placeEnterPoint = carPassengersAspect.GetPlaceEnterPoint(carPlaceData.Place);
+                IEnterPoint placeEnterPoint = carPlaceData.Car.GetRef<IEnterPoint[]>()[carPlaceData.Place];
 
                 transform.Position = placeEnterPoint.Position;
                 transform.Rotation = placeEnterPoint.Rotation;

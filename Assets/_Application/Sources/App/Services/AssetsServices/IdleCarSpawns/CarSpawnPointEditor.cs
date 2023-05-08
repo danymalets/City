@@ -44,7 +44,6 @@ namespace Sources.App.Services.AssetsServices.IdleCarSpawns
         {
             TryForceDestroy();
 
-            Debug.Log($"inst new");
             _carType = _spawnPoint.CarType;
             _carColor = _spawnPoint.CarColor;
 

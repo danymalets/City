@@ -12,9 +12,11 @@ namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
 
         public SafeRigidbody EnableRigidbodyInternal()
         {
+#if FORCE_DEBUG
             DAssert.IsTrue(_rigidbody == null);
             DAssert.IsTrue(_safeRigidbody == null);
-            
+#endif
+
             _rigidbody = gameObject.AddComponent<Rigidbody>();
             _rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
             return _safeRigidbody = gameObject.AddComponent<SafeRigidbody>();
@@ -22,14 +24,16 @@ namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
 
         public void DisableRigidbodyInternal()
         {
+#if FORCE_DEBUG
             DAssert.IsTrue(_rigidbody != null);
             DAssert.IsTrue(_safeRigidbody != null);
-            
+#endif
+
             _rigidbody.interpolation = RigidbodyInterpolation.None;
-            DestroyImmediate(_rigidbody);
             DestroyImmediate(_safeRigidbody);
-            _rigidbody = null;
+            DestroyImmediate(_rigidbody);
             _safeRigidbody = null;
+            _rigidbody = null;
         }
     }
 }

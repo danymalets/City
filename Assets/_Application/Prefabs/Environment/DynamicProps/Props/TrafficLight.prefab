@@ -333,7 +333,7 @@ MonoBehaviour:
   - {fileID: 1009354183953155045}
   - {fileID: 7695249923387406922}
   _derivedProps: []
-  _mass: 50
+  _mass: 400
   _colliders:
   - {fileID: 1009354183953155045}
   - {fileID: 7695249923387406922}

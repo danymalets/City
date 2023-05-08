@@ -21,6 +21,9 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities
 
         [SerializeField]
         private SafeTransform _transform;
+        
+        [SerializeField]
+        private SafeTransform _rootTransform;
 
         [SerializeField]
         private RigidbodySwitcher _rigidbodySwitcher;
@@ -40,5 +43,6 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities
         public IPlayerBorders PlayerBorders => _playerBorders;
         public IAnimator Animator => _animator;
         public NavMeshObstacle NavMeshObstacle => _navMeshAgent;
+        public ITransform RootTransform => _rootTransform;
     }
 }

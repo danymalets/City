@@ -25,6 +25,12 @@ namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
             set => _transform.rotation = value;
         }
 
+        public Vector3 LocalScale
+        {
+            get => _transform.localScale;
+            set => _transform.localScale = value;
+        }
+
         public Vector3 PointLocalToWorld(Vector3 point) => 
             _transform.TransformPoint(point);
 

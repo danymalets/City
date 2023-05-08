@@ -40,7 +40,6 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
                 
                 Entity carEntity = npcEntity.Get<PlayerInCar>().CarPlaceData.Car;
 
-                //ITransform transform = npcEntity.GetMono<ITransform>();
                 IWheelsSystem wheels = carEntity.GetRef<IWheelsSystem>();
                 IRigidbody physicBody = carEntity.GetRef<IRigidbody>();
                 CarMaxSpeed maxSpeed = carEntity.Get<CarMaxSpeed>();
@@ -48,13 +47,9 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
                 ref CarMotorCoefficient carMotorCoefficient = ref carEntity.Get<CarMotorCoefficient>();
 
                 float distance = Vector3.Distance(wheels.RootPosition, breakPoint.Position);
-
-                //Debug.Log($"dist: {distance}");
                 
                 distance -= reqDistance;
-
-                // Debug.Log($"dist {distance} reqdist{reqDistance}");
-
+                
                 if (distance < 0)
                 {
                     carBreak.BreakType = BreakType.Max;
@@ -64,12 +59,9 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
                 {
                     float progress = distance / _simulationBalance.MaxBreakingDistance;
                     float mxSpeed = maxSpeed.Value * progress;
-
-                    //Debug.Log($"progress {progress} cur speed {physicBody.SignedSpeed} max speed {mxSpeed}");
                     
                     if (physicBody.SignedSpeed > mxSpeed)
                     {
-                        //Debug.Log($"break");
                         carBreak.BreakType = BreakType.Max;
                         carMotorCoefficient.Coefficient = 0;
                     }

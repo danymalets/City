@@ -43,7 +43,8 @@ namespace Sources.App.Ui.Screens.Input
 
         private void OnExitCarButtonClicked()
         {
-            _userEntity.Add<PlayerExitCarEvent>();
+            if (_userEntity.Has<PlayerFullyInCar>())
+                _userEntity.Add<PlayerExitCarEvent>();
         }
 
         private void Update()
@@ -52,6 +53,8 @@ namespace Sources.App.Ui.Screens.Input
             {
                 OnExitCarButtonClicked();
             }
+            
+            _exitCarButton.interactable = _userEntity.Has<PlayerFullyInCar>();
         }
 
         public int VerticalInput => GetInputValue(_upButton, _downButton);

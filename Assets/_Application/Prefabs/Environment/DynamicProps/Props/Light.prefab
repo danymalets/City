@@ -370,7 +370,7 @@ MonoBehaviour:
   - {fileID: 3708708889379707278}
   - {fileID: 2985976583739462469}
   _derivedProps: []
-  _mass: 50
+  _mass: 400
   _colliders:
   - {fileID: 3708708889379707278}
   - {fileID: 2985976583739462469}

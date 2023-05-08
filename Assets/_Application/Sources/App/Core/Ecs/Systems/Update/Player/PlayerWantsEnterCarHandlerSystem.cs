@@ -37,8 +37,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
 
                 CarPlaceData carPlaceData = playerEntity.Get<PlayerWantsEnterCarEvent>().CarPlaceData;
 
-                IEnterPoint enterPoint = carPlaceData.Car.GetAspect<CarPassengersAspect>()
-                    .GetPlaceEnterPoint(carPlaceData.Place);
+                IEnterPoint enterPoint = carPlaceData.Car.GetRef<IEnterPoint[]>()[carPlaceData.Place];
 
                 if (_navigationService.TryGetPlayerPath(
                         playerEntity.GetRef<IRigidbody>().Position,
