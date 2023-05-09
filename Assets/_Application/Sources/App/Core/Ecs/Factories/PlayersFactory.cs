@@ -100,8 +100,8 @@ namespace Sources.App.Core.Ecs.Factories
             Entity npc = CreateNpc(playerPrefab, Vector3.zero, Quaternion.identity)
                 .Set(new PlayerInCar { CarPlaceData = new CarPlaceData(carEntity, 0) })
                 .SetupAspect<NpcStatusAspect>(nsa => nsa.SetPath(pathLine))
-                .SetupAspect<PlayerCarPossibilityAspect>(pca =>
-                    pca.EnterCar(new CarPlaceData(carEntity, 0), true));
+                .SetupAspect<PlayerEnterCarAspect>(pca =>
+                    pca.ForceEnterCar(new CarPlaceData(carEntity, 0)));
 
             return npc;
         }

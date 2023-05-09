@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Sources.App.Data.Common
+namespace Sources.App.Services.AssetsServices.IdleCarSpawns.Common
 {
     public interface IFog
     {

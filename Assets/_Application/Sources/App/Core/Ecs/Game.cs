@@ -13,13 +13,12 @@ using Sources.App.Core.Ecs.Systems.Update.Npc;
 using Sources.App.Core.Ecs.Systems.Update.NpcCar;
 using Sources.App.Core.Ecs.Systems.Update.NpcPathes;
 using Sources.App.Core.Ecs.Systems.Update.Player;
+using Sources.App.Core.Ecs.Systems.Update.Player.NavToCar;
 using Sources.App.Core.Ecs.Systems.Update.Props;
 using Sources.App.Core.Ecs.Systems.Update.PseudoEditor;
 using Sources.App.Core.Ecs.Systems.Update.User;
 using Sources.App.Core.Services;
-using Sources.App.Data.Common;
 using Sources.Utils.Di;
-using Sources.Utils.MorpehWrapper;
 using Sources.Utils.MorpehWrapper.MorpehUtils;
 using Sources.Utils.MorpehWrapper.MorpehUtils.CustomSystems;
 
@@ -108,13 +107,13 @@ namespace Sources.App.Core.Ecs
             _world.AddFixedSystem<PlayerNavigationFailedHandlerSystem>();
             _world.AddFixedSystem<PlayerNavigationCompletedHandlerSystem>();
             _world.AddFixedSystem<PlayerNavToCarFailedReceiverSystem>();
-            _world.AddFixedSystem<PlayerNavToCarCompletedReceiverSystem>();
+            _world.AddFixedSystem<PlayerNavToCarCheckCompleteSystem>();
             _world.AddFixedSystem<PlayerNavToCarCompletedHandlerSystem>();
             
             _world.AddFixedSystem<PlayerEnterCarHandlerSystem>();
             
             //car exit
-            _world.AddFixedSystem<PlayerCarExitSystem>();
+            _world.AddFixedSystem<PlayerCarStartExitSystem>();
             _world.AddFixedSystem<PlayerCarFullyExitSystem>();
 
             // generation
@@ -201,9 +200,9 @@ namespace Sources.App.Core.Ecs
             _world.AddFixedOneFrame<PathBlockerRequest>();
             _world.AddFixedOneFrame<ForwardBlockerRequest>();
             _world.AddFixedOneFrame<NpcCarBreakRequest>();
-            _world.AddFixedOneFrame<PlayerExitCarEvent>();
+            _world.AddFixedOneFrame<PlayerStartExitCarRequest>();
             _world.AddFixedOneFrame<PlayerWantsEnterCarEvent>();
-            _world.AddFixedOneFrame<PlayerFullyExitCarEvent>();
+            _world.AddFixedOneFrame<PlayerFullyExitCarRequest>();
             _world.AddFixedOneFrame<DeadRequest>();
             _world.AddFixedOneFrame<FallAnimationRequest>();
             _world.AddFixedOneFrame<SetLayerRequest>();

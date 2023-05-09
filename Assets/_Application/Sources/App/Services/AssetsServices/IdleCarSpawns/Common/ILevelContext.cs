@@ -6,7 +6,7 @@ using Sources.App.Services.AssetsServices.Monos.MonoEntities;
 using Sources.Services.SceneLoaderServices;
 using Sources.Utils.Di;
 
-namespace Sources.App.Data.Common
+namespace Sources.App.Services.AssetsServices.IdleCarSpawns.Common
 {
     public interface ILevelContext : IService, ISceneContext
     {

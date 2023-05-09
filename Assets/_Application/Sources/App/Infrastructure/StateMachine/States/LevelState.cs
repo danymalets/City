@@ -1,8 +1,8 @@
 using Sources.App.Core;
 using Sources.App.Data;
-using Sources.App.Data.Common;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
+using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
 using Sources.App.Ui.Screens;
 using Sources.App.Ui.Screens.Level;
 using Sources.Services.UiServices.System;

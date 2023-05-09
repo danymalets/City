@@ -22,7 +22,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<NpcTag>().Without<PlayerInCar, OnNavPath>();
+            _filter = _world.Filter<NpcTag>().Without<PlayerInCar, PLayerOnNavPath>();
         }
 
         protected override void OnUpdate(float deltaTime)

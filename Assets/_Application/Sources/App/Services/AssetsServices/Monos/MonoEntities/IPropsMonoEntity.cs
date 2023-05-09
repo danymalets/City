@@ -15,7 +15,7 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities
         IRigidbodySwitcher RigidbodySwitcher { get; }
         ITransform Transform { get; }
         IPoint CenterOfMassPoint { get; }
-        IPoint TopPoint { get; }
+        IPoint VerticalPoint { get; }
         bool IsVertical { get; }
     }
 }

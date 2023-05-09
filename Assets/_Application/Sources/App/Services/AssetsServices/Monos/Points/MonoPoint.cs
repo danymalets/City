@@ -7,5 +7,6 @@ namespace Sources.App.Services.AssetsServices.Monos.Points
     {
         public Vector3 Position => transform.position;
         public Quaternion Rotation => transform.rotation;
+        public Vector3 Forward => transform.forward;
     }
 }

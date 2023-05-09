@@ -1,7 +1,7 @@
 using Sources.App.Core.Ecs.Factories;
 using Sources.App.Data;
-using Sources.App.Data.Common;
 using Sources.App.Services.AssetsServices;
+using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
 using Sources.Services.PhysicsServices;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;

@@ -15,27 +15,20 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Player
 {
-    public class PlayerCarExitSystem : DUpdateSystem
+    public class PlayerCarStartExitSystem : DUpdateSystem
     {
         private Filter _filter;
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<PlayerTag, PlayerInCar, PlayerExitCarEvent>();
+            _filter = _world.Filter<PlayerTag, PlayerInCar, PlayerStartExitCarRequest>();
         }
 
         protected override void OnUpdate(float deltaTime)
         {
             foreach (Entity playerEntity in _filter)
             {
-                IPlayerAnimator playerAnimator = playerEntity.GetRef<IPlayerAnimator>();
-
-                playerEntity.Get<PlayerInCar>().CarPlaceData.Car
-                    .Set(new CarBreak { BreakType = BreakType.Max });
-                playerEntity.Remove<PlayerFullyInCar>();
-                playerEntity.Remove<PlayerInputInCarOn>();
-                playerEntity.AddWithFixedDelay<PlayerFullyExitCarEvent>(Consts.ExitCarAnimationDuration + 1f);
-                playerAnimator.ExitCar();
+                playerEntity.GetAspect<PlayerExitCarAspect>().StartExitCar();
             }
         }
     }

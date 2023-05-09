@@ -1,5 +1,8 @@
+using Sources.App.Core.Ecs;
 using Sources.App.Core.Services;
-using Sources.App.Data.Common;
+using Sources.App.Data.Constants;
+using Sources.App.Services.AssetsServices.IdleCarSpawns;
+using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
 using Sources.App.Services.AudioServices;
 using Sources.App.Ui.Screens;
 using Sources.App.Ui.Screens.Input;
@@ -7,6 +10,7 @@ using Sources.App.Ui.Screens.Level;
 using Sources.App.Ui.Screens.Map;
 using Sources.Services.CoroutineRunnerServices;
 using Sources.Services.FpsServices;
+using Sources.Services.SceneLoaderServices;
 using Sources.Services.UiServices.System;
 using Sources.Utils.Di;
 
@@ -22,7 +26,7 @@ namespace Sources.App.Core
         private readonly IAudioService _audio;
         private readonly int _level;
         private readonly IUiCloseService _uiClose;
-        private readonly Ecs.Game _game;
+        private Game _game;
         private readonly IDiBuilder _diBuilder;
         private readonly LoadingScreen _loadingScreen;
         private readonly IFpsService _fpsService;
@@ -31,11 +35,9 @@ namespace Sources.App.Core
 
         public GameController()
         {
-        
             IUiService ui = DiContainer.Resolve<IUiService>();
             _fpsService = DiContainer.Resolve<IFpsService>();
-
-
+            
             _diBuilder = DiBuilder.Create();
 
             _diBuilder.Register<CarInputService, ICarInputService>();
@@ -66,7 +68,12 @@ namespace Sources.App.Core
 
             _game.StartGame();
             
-            _coroutineContext.RunWithDelay(5f, () =>
+            // _fpsService.RunWhenFpsStabilizes(() =>
+            // {
+            //     _loadingScreen.Close();
+            // });
+            
+            _coroutineContext.RunWithDelay(3f, () =>
             {
                 _loadingScreen.Close();
             });

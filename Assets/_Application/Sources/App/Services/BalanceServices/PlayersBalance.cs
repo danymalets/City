@@ -16,8 +16,10 @@ namespace Sources.App.Services.BalanceServices
         [field: SerializeField] public float NpcMaxRotationSpeed { get; private set; } = 90;
         [field: SerializeField] public float Mass { get; private set; } = 70;
         [field: SerializeField] public float Acceleration { get; private set; } = 6;
-        [field: SerializeField] public float AllowableMoveAngle { get; private set; } = 30;
+        [field: SerializeField] public float AllowableMoveAngle { get; private set; } = 0;
+        [field: SerializeField] public float NavAllowableMoveAngle { get; private set; } = 45;
         [field: SerializeField] public float NavRotationSpeed { get; private set; } = 45;
+        [field: SerializeField] public float DistanceToEnterCar { get; private set; } = 0.5f;
         
         [SerializeField]
         private List<PlayerBalance> _playersBalance;

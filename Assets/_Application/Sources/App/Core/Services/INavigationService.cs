@@ -1,7 +1,7 @@
 using Sources.Utils.Di;
 using UnityEngine;
 
-namespace Sources.App.Data.Common
+namespace Sources.App.Core.Services
 {
     public interface INavigationService : IService
     {

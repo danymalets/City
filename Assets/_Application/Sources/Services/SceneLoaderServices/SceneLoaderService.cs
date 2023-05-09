@@ -33,6 +33,7 @@ namespace Sources.Services.SceneLoaderServices
             
             while (!operation.isDone)
             {
+                Debug.Log($"operation.progress {operation.progress}");
                 onProgressChanged?.Invoke(operation.progress);
                 yield return null;
             }

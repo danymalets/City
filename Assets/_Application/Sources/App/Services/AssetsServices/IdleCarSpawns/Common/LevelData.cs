@@ -1,6 +1,4 @@
-using Sources.App.Data.Common;
-
-namespace Sources.App.Data
+namespace Sources.App.Services.AssetsServices.IdleCarSpawns.Common
 {
     public class LevelData
     {

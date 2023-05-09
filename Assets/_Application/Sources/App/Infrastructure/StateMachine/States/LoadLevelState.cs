@@ -1,8 +1,8 @@
 using Sources.App.Data;
-using Sources.App.Data.Common;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.App.Services.AssetsServices;
+using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
 using Sources.App.Services.BalanceServices;
 using Sources.App.Services.UserServices;
 using Sources.App.Ui.Screens;
@@ -43,8 +43,9 @@ namespace Sources.App.Infrastructure.StateMachine.States
             
             SceneManager.LoadScene($"Empty");
             
-            _sceneLoader.LoadScene<ILevelContext>(cityScene, levelContext => 
-                EnterLevelState(new LevelData(level, levelContext)));
+            _sceneLoader.LoadScene<ILevelContext>(cityScene, 
+                progress => _loadingScreen.SetProgress(progress),
+                levelContext => EnterLevelState(new LevelData(level, levelContext)));
         }
 
         private void EnterLevelState(LevelData levelData)

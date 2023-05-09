@@ -49,7 +49,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Extensions
         public static Entity Add<TComponent>(this Entity entity) where TComponent : struct, IComponent
         {
 #if FORCE_DEBUG
-            DAssert.IsTrue(entity.NotHas<TComponent>());
+            DAssert.IsTrue(entity.NotHas<TComponent>(), "Cannot add, entity also has this component");
 #endif
             entity.AddComponent<TComponent>();
             return entity;

@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: PlayersBalance
   m_EditorClassIdentifier: 
   <MinImpulseForFall>k__BackingField: 150
+  <NpcOnPathMaxSpeed>k__BackingField: 1
   <UserMaxSpeed>k__BackingField: 3.5
   <UserMaxRotationSpeed>k__BackingField: 90
-  <UserNavPathRotationSpeed>k__BackingField: 90
   <NpcMaxRotationSpeed>k__BackingField: 90
   <Mass>k__BackingField: 50
   <Acceleration>k__BackingField: 6
   <AllowableMoveAngle>k__BackingField: 0
-  <NavRotationSpeed>k__BackingField: 720
+  <NavRotationSpeed>k__BackingField: 200
+  <DistanceToEnterCar>k__BackingField: 0.5
   _playersBalance:
   - _playerType: 0
     _weight: 100

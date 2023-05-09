@@ -9,7 +9,7 @@ using Screen = Sources.Services.UiServices.WindowBase.Screens.Screen;
 
 namespace Sources.App.Ui.Overlays
 {
-    public class PerformanceScreen : Screen
+    public class PerformanceScreen : Sources.Services.UiServices.WindowBase.Screens.Screen
     {
         private const string FpsPattern = "Fps: {0}";
         private const string DeviceNamePattern = "Device Name: {0}";

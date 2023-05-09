@@ -1,15 +1,10 @@
 using Scellecs.Morpeh;
-using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Components.NavPathes;
-using Sources.App.Core.Ecs.Components.Npc;
-using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
-using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
-using UnityEngine;
 
-namespace Sources.App.Core.Ecs.Systems.Update.Player
+namespace Sources.App.Core.Ecs.Systems.Update.Player.NavToCar
 {
     public class PlayerNavigationCompletedHandlerSystem : DUpdateSystem
     {
@@ -24,7 +19,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
         {
             foreach (Entity playerEntity in _playerFilter)
             {
-                playerEntity.Remove<OnNavPath>();
+                playerEntity.Remove<PLayerOnNavPath>();
             }
         }
     }

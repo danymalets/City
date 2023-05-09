@@ -1,7 +1,6 @@
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
-using Sources.Services.UiServices.WindowBase.Screens;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
@@ -11,7 +10,7 @@ using Screen = Sources.Services.UiServices.WindowBase.Screens.Screen;
 
 namespace Sources.App.Ui.Screens.Input
 {
-    public class CarInputScreen : Screen
+    public class CarInputScreen : Sources.Services.UiServices.WindowBase.Screens.Screen
     {
         [SerializeField]
         private GameplayButton _upButton;
@@ -44,7 +43,7 @@ namespace Sources.App.Ui.Screens.Input
         private void OnExitCarButtonClicked()
         {
             if (_userEntity.Has<PlayerFullyInCar>())
-                _userEntity.Add<PlayerExitCarEvent>();
+                _userEntity.Add<PlayerStartExitCarRequest>();
         }
 
         private void Update()

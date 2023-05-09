@@ -2,7 +2,6 @@ using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Data.Cars;
-using Sources.Services.UiServices.WindowBase.Screens;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
@@ -12,7 +11,7 @@ using Screen = Sources.Services.UiServices.WindowBase.Screens.Screen;
 
 namespace Sources.App.Ui.Screens.Input
 {
-    public class PlayerInputScreen : Screen
+    public class PlayerInputScreen : Sources.Services.UiServices.WindowBase.Screens.Screen
     {
         [SerializeField]
         private Joystick _joystick;

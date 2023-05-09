@@ -35,9 +35,10 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities
         [SerializeField]
         private bool _isVertical;
 
+        [FormerlySerializedAs("_topPoint")]
         [ShowIf(nameof(_isVertical))]
         [SerializeField]
-        private MonoPoint _topPoint;
+        private MonoPoint _supportPoint;
 
 
         public IEnumerable<IPropsMonoEntity> DerivedProps => _derivedProps;
@@ -47,7 +48,7 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities
         public ITransform Transform => _safeTransform;
         public IPoint CenterOfMassPoint => _centerOfMassPoint;
         public bool IsVertical => _isVertical;
-        public IPoint TopPoint => _topPoint;
+        public IPoint VerticalPoint => _supportPoint;
 
         [Button("Force Validate", ButtonSizes.Large)]
         protected override void OnValidate()

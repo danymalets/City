@@ -36,7 +36,7 @@ namespace Sources.App.Infrastructure.StateMachine.States
             
             ui.Open<PerformanceScreen>();
 
-            _stateMachine.Enter<LoadLevelState>();
+            _stateMachine.Enter<MainUiState>();
         }
         
         private void PreparePool()

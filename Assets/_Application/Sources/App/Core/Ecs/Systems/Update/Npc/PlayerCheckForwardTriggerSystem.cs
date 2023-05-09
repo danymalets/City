@@ -36,8 +36,10 @@ namespace Sources.App.Core.Ecs.Systems.Update.Npc
             {
                 CheckForwardTriggerRequest checkForwardTriggerRequest = playerEntity.Get<CheckForwardTriggerRequest>();
                 
-                Entity[] entities = _physics.OverlapBox(checkForwardTriggerRequest.Center, checkForwardTriggerRequest.Size / 2, 
-                        checkForwardTriggerRequest.Rotation, LayerMasks.CarBordersPlayersEnvironment)
+                Entity[] entities = _physics.OverlapBox(checkForwardTriggerRequest.Center,
+                        checkForwardTriggerRequest.Size / 2, 
+                        checkForwardTriggerRequest.Rotation, 
+                        LayerMasks.CarBordersPlayersEnvironment)
                     .Where(r => r.HasComponent<IEntityAccess>())
                     .Select(r => r.GetComponent<IEntityAccess>().Entity)
                     .Where(e => e != playerEntity)

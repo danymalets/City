@@ -5,7 +5,7 @@ using Screen = Sources.Services.UiServices.WindowBase.Screens.Screen;
 
 namespace Sources.App.Ui.Screens
 {
-    public class WinScreen : Screen
+    public class WinScreen : Sources.Services.UiServices.WindowBase.Screens.Screen
     {
         public event Action NextButtonClicked = delegate { };
 

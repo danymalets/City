@@ -16,7 +16,7 @@ namespace Sources.App.Data.Players
             _animator.KeepAnimatorControllerStateOnDisable = true;
             _baseLayer = _animator.GetLayerIndex(Layers.BaseLayer);
         }
-        public void EnterCar(CarSideType sideType, bool isForce)
+        public void EnterCar(CarSideType sideType, bool isForce = false)
         {
             _animator.SetBool(
                 sideType == CarSideType.Left
@@ -32,10 +32,15 @@ namespace Sources.App.Data.Players
             }
         }
 
-        public void ExitCar()
+        public void ExitCar(bool isForce)
         {
             _animator.SetBool(Parameters.InCarLeft, false);
             _animator.SetBool(Parameters.InCarRight, false);
+
+            if (isForce)
+            {
+                SetMoveSpeed(0, true);
+            }
         }
 
         public void SetMoveSpeed(float speed, bool isForce = false)

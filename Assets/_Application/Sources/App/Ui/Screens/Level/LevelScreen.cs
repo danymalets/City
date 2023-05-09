@@ -23,9 +23,6 @@ namespace Sources.App.Ui.Screens.Level
         [SerializeField]
         private Button _restartButton;
 
-        [SerializeField]
-        private CoinsView _coinsView;
-
         private IAudioService _audio;
         private SettingsPopup _settingsPopup;
 
@@ -50,14 +47,11 @@ namespace Sources.App.Ui.Screens.Level
             _levelText.text = string.Format(LevelTextPattern, level);
 
             DisableRestartButton();
-            
-            _coinsView.Setup();
         }
 
         protected override void OnClose()
         {
             
-            _coinsView.Cleanup();
         }
 
         public void EnableRestartButton() => 
@@ -77,7 +71,5 @@ namespace Sources.App.Ui.Screens.Level
             _audio.PlayOnce(SoundEffectType.ButtonClick);
             _settingsPopup.Open();
         }
-
-        protected override bool MakeTopOnLoad => true;
     }
 }

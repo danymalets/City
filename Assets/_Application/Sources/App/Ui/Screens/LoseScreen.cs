@@ -5,7 +5,7 @@ using Screen = Sources.Services.UiServices.WindowBase.Screens.Screen;
 
 namespace Sources.App.Ui.Screens
 {
-    public class LoseScreen : Screen
+    public class LoseScreen : Sources.Services.UiServices.WindowBase.Screens.Screen
     {
         public event Action RetryButtonClicked = delegate { };
 

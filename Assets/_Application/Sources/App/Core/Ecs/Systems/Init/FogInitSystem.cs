@@ -1,5 +1,5 @@
 using Sources.App.Core.Services;
-using Sources.App.Data.Common;
+using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 

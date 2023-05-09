@@ -1,4 +1,4 @@
-using Sources.App.Data.Common;
+using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
 using UnityEngine;
 
 namespace Sources.App.Services.AssetsServices.Monos.Bootstrap

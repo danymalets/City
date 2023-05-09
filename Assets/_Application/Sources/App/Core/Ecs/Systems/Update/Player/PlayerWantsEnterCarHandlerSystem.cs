@@ -3,8 +3,8 @@ using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Components.NavPathes;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
+using Sources.App.Core.Services;
 using Sources.App.Data.Cars;
-using Sources.App.Data.Common;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
@@ -43,7 +43,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
                         playerEntity.GetRef<IRigidbody>().Position,
                         enterPoint.Position, out Vector3[] path))
                 {
-                    playerEntity.Set(new OnNavPath
+                    playerEntity.Set(new PLayerOnNavPath
                     {
                         Path = path,
                         LastCompetedPoint = 0,

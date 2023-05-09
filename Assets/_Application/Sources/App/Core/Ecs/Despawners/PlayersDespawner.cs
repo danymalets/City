@@ -12,7 +12,7 @@ namespace Sources.App.Core.Ecs.Despawners
         {
             playerEntity.GetAspect<NpcStatusAspect>().LeaveIfOnPath();
 
-            playerEntity.GetAspect<PlayerCarPossibilityAspect>().TryForceExit();
+            playerEntity.GetAspect<PlayerExitCarAspect>().TryForceExit();
 
             playerEntity.GetAspect<SwitchableRigidbodyAspect>().TryDisableRigidbody();
             

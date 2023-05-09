@@ -6,7 +6,7 @@ namespace Sources.App.Data.Players
     {
         void SetMoveSpeed(float speed, bool isForce = false);
         void Die();
-        void EnterCar(CarSideType sideType, bool isForce);
-        void ExitCar();
+        void EnterCar(CarSideType sideType, bool isForce = false);
+        void ExitCar(bool isForce = false);
     }
 }

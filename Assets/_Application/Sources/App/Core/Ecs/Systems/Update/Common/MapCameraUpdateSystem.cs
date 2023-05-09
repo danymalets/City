@@ -1,7 +1,7 @@
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Components.Tags;
-using Sources.App.Data.Common;
+using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;

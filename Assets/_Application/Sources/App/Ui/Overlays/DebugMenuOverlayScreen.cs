@@ -4,7 +4,7 @@ using Screen = Sources.Services.UiServices.WindowBase.Screens.Screen;
 
 namespace Sources.App.Ui.Overlays
 {
-    public class DebugMenuOverlayScreen : Screen
+    public class DebugMenuOverlayScreen : Sources.Services.UiServices.WindowBase.Screens.Screen
     {
         [SerializeField]
         private Button _openDebugMenuButton;

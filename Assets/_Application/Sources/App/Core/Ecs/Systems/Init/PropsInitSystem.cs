@@ -1,7 +1,7 @@
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Ecs.Factories;
-using Sources.App.Data.Common;
 using Sources.App.Services.AssetsServices.IdleCarSpawns;
+using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
 using Sources.App.Services.AssetsServices.Monos.MonoEntities;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;

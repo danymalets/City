@@ -20,8 +20,8 @@ namespace Sources.App.Core.Ecs.Factories
                 .TrackCollisions()
                 .Add<PropsTag>()
                 .AddIf<VerticalPropsTag>(() => propsMonoEntity.IsVertical)
-                .SetIf(() => propsMonoEntity.IsVertical, new TopPoint
-                    { Point = propsMonoEntity.TopPoint })
+                .SetIf(() => propsMonoEntity.IsVertical, new VerticalPoint
+                    { Point = propsMonoEntity.VerticalPoint })
                 .SetRef<ITransform>(propsMonoEntity.Transform)
                 .SetRef<ICollider[]>(propsMonoEntity.Colliders.ToArray())
                 .SetRef<IRigidbodySwitcher>(propsMonoEntity.RigidbodySwitcher)

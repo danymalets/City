@@ -21,7 +21,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<PlayerTag, OnNavPath>();
+            _filter = _world.Filter<PlayerTag, PLayerOnNavPath>();
         }
 
         protected override void OnUpdate(float deltaTime)

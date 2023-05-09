@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 namespace Sources.App.Core.Ecs.Components.Props
 {
-    public struct TopPoint : IComponent
+    public struct VerticalPoint : IComponent
     {
         public IPoint Point;
     }

@@ -1,10 +1,9 @@
-using System;
 using Sources.Utils.CommonUtils.Libs;
 using Sources.Utils.Di;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Sources.App.Data.Common
+namespace Sources.App.Core.Services
 {
     public class NavigationService : INavigationService, IInitializable
     {
@@ -19,7 +18,7 @@ namespace Sources.App.Data.Common
 
         public bool TryGetPlayerPath(Vector3 source, Vector3 target, out Vector3[] path)
         {
-            return TryGetPath(_playerAgentId, source, target, 0.5f, 0.5f, out path);
+            return TryGetPath(_playerAgentId, source, target, 0.5f, 10f, out path);
         }
 
         public bool TryGetCarPath(Vector3 source, Vector3 target, out Vector3[] path)

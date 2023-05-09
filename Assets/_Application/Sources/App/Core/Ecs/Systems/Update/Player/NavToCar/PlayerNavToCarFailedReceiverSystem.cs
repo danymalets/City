@@ -4,7 +4,7 @@ using Sources.App.Core.Ecs.Components.Tags;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
-namespace Sources.App.Core.Ecs.Systems.Update.Player
+namespace Sources.App.Core.Ecs.Systems.Update.Player.NavToCar
 {
     public class PlayerNavToCarFailedReceiverSystem : DUpdateSystem
     {

@@ -1,4 +1,5 @@
 using Scellecs.Morpeh;
+using Sources.App.Core.Ecs.Components.NavPathes;
 using Sources.App.Core.Ecs.Components.Npc;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
@@ -29,15 +30,16 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
 
         protected override void OnUpdate(float deltaTime)
         {
-            foreach (Entity npcEntity in _filter)
+            foreach (Entity playerEntity in _filter)
             {
-                float targetAngle = npcEntity.Get<PlayerTargetAngle>().Value;
-                float angle = npcEntity.Get<PlayerSmoothAngle>().Value;
-                ref PlayerMoveAngle playerMoveAngle = ref npcEntity.Get<PlayerMoveAngle>();
+                float targetAngle = playerEntity.Get<PlayerTargetAngle>().Value;
+                float angle = playerEntity.Get<PlayerSmoothAngle>().Value;
+                ref PlayerMoveAngle playerMoveAngle = ref playerEntity.Get<PlayerMoveAngle>();
 
-                playerMoveAngle.Value = angle;
                 playerMoveAngle.Value = Mathf.MoveTowardsAngle(angle, targetAngle,
-                    _playersBalance.AllowableMoveAngle);
+                    playerEntity.Has<PLayerOnNavPath>() ?
+                        _playersBalance.NavAllowableMoveAngle :
+                        _playersBalance.AllowableMoveAngle);
             }
         }
     }

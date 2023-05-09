@@ -23,7 +23,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<PlayerTag, PlayerInCar, PlayerFullyExitCarEvent>();
+            _filter = _world.Filter<PlayerTag, PlayerInCar, PlayerFullyExitCarRequest>();
         }
 
         protected override void OnUpdate(float deltaTime)
@@ -52,7 +52,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
                 playerTransform.Position = position;
                 playerTransform.Rotation = Quaternion.identity.WithEulerY(angle);
                 
-                playerEntity.GetAspect<PlayerCarPossibilityAspect>().ExitCar(position, angle);
+                playerEntity.GetAspect<PlayerExitCarAspect>().FullyExitCar(position, angle);
             }
         }
     }

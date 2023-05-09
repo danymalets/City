@@ -1,7 +1,7 @@
 using Sources.Utils.CommonUtils.Extensions;
 using UnityEngine;
 
-namespace Sources.App.Data.Common
+namespace Sources.App.Services.AssetsServices.IdleCarSpawns.Common
 {
     public class MapCamera : MonoBehaviour, IMapCamera
     {

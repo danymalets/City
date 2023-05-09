@@ -5,12 +5,11 @@ using Sources.App.Core.Ecs.Components.Npc;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.Utils.CommonUtils.Extensions;
-using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using UnityEngine;
 
-namespace Sources.App.Core.Ecs.Systems.Update.Player
+namespace Sources.App.Core.Ecs.Systems.Update.Player.NavToCar
 {
     public class PlayerNavigationMoveSystem : DUpdateSystem
     {
@@ -18,7 +17,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
         
         protected override void OnInitFilters()
         {
-            _playerFilter = _world.Filter<PlayerTag, OnNavPath>();
+            _playerFilter = _world.Filter<PlayerTag, PLayerOnNavPath>();
         }
 
         protected override void OnUpdate(float deltaTime)
@@ -27,32 +26,32 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
             {
                 Vector3 position = playerEntity.GetAspect<PlayerPointAspect>()
                     .GetPosition();
-                ref OnNavPath onNavPath = ref playerEntity.Get<OnNavPath>();
+                ref PLayerOnNavPath pLayerOnNavPath = ref playerEntity.Get<PLayerOnNavPath>();
                 ref PlayerTargetAngle playerTargetAngle = ref playerEntity.Get<PlayerTargetAngle>();
 
-                Vector3[] path = onNavPath.Path;
+                Vector3[] path = pLayerOnNavPath.Path;
 
-                if (onNavPath.LastCompetedPoint == path.Length - 1)
+                if (pLayerOnNavPath.LastCompetedPoint == path.Length - 1)
                 {
                     playerEntity.Add<NavPathCompletedEvent>();
                     continue;
                 }
 
-                if (IsEnded(path[onNavPath.LastCompetedPoint],
-                        path[onNavPath.LastCompetedPoint + 1], 
+                if (IsEnded(path[pLayerOnNavPath.LastCompetedPoint],
+                        path[pLayerOnNavPath.LastCompetedPoint + 1], 
                         position))
                 {
-                    onNavPath.LastCompetedPoint++;
+                    pLayerOnNavPath.LastCompetedPoint++;
                     
-                    if (onNavPath.LastCompetedPoint == path.Length - 1)
+                    if (pLayerOnNavPath.LastCompetedPoint == path.Length - 1)
                     {
                         playerEntity.Add<NavPathCompletedEvent>();
                         continue;
                     }
                 }
 
-                playerTargetAngle.Value = GetAngle(path[onNavPath.LastCompetedPoint],
-                    path[onNavPath.LastCompetedPoint + 1]);
+                playerTargetAngle.Value = GetAngle(path[pLayerOnNavPath.LastCompetedPoint],
+                    path[pLayerOnNavPath.LastCompetedPoint + 1]);
                 
                 ref PlayerTargetSpeed playerTargetSpeed = ref playerEntity.Get<PlayerTargetSpeed>();
                 playerTargetSpeed.Value = 3.5f;
