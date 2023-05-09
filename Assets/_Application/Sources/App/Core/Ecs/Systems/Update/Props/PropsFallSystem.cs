@@ -34,9 +34,9 @@ namespace Sources.App.Core.Ecs.Systems.Update.Props
             {
                 IRigidbody rigidbody = propsEntity.GetRef<IRigidbody>();
 
-                Vector3 forward = propsEntity.Get<VerticalPoint>().Point.Forward;
+                Vector3 up = propsEntity.Get<VerticalPoint>().Point.Up;
 
-                float angle = Vector3.Angle(forward, Vector3.up);
+                float angle = Vector3.Angle(up, Vector3.up);
 
                 if (angle > _commonBalance.PropsAngleToFallenLayer &&
                     rigidbody.Velocity != Vector3.zero)
