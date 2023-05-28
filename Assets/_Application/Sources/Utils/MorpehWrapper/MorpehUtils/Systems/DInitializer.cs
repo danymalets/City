@@ -22,8 +22,6 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Systems
             }
         }
 
-        protected virtual void OnInitialize()
-        {
-        }
+        protected abstract void OnInitialize();
     }
 }

@@ -1,6 +1,9 @@
+using Sources.App.Data.Constants;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
+using Sources.App.Services.AssetsServices.IdleCarSpawns;
 using Sources.App.Ui.Screens.Level;
+using Sources.Services.SceneLoaderServices;
 using Sources.Services.UiServices.System;
 using Sources.Utils.Di;
 
@@ -19,9 +22,14 @@ namespace Sources.App.Infrastructure.StateMachine.States
         {
             _mainScreen = DiContainer.Resolve<IUiService>().Get<MainScreen>();
             _uiCloseService = DiContainer.Resolve<IUiCloseService>();
-            _mainScreen.Open();
+            ISceneLoaderService sceneLoader = DiContainer.Resolve<ISceneLoaderService>();
 
-            _mainScreen.PlayClicked += OnPlayClicked;
+            _mainScreen.Open();
+            
+            sceneLoader.LoadScene<EmptySceneContext>(Consts.EmptySceneName, _ =>
+            {
+                _mainScreen.PlayClicked += OnPlayClicked;
+            });
         }
 
         private void OnPlayClicked()

@@ -27,7 +27,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
         {
             foreach (Entity playerEntity in _filter)
             {
-                _playersDespawner.DespawnNpc(playerEntity);
+                _playersDespawner.DespawnPlayer(playerEntity);
             }
         }
     }

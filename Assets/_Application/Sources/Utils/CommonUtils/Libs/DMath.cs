@@ -102,6 +102,14 @@ namespace Sources.Utils.CommonUtils.Libs
 
         public static bool InEllipse(Vector2 point, Vector2 size) => 
             Sqr(point.x / size.x) + Sqr(point.y / size.y) <= 1;
-        
+
+        public static void Divide(float a, float b, Action<float> runner)
+        {
+            while (Greater(a, 0))
+            {
+                runner?.Invoke(Mathf.Min(a, b));
+                a -= b;
+            }
+        }
     }
 }

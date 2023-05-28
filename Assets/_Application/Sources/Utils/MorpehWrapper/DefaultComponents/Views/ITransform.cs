@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Sources.Utils.MorpehWrapper.DefaultComponents.Views
 {
-    public interface ITransform 
+    public interface ITransform
     {
         Vector3 Position { get; set; }
         Quaternion Rotation { get; set; }

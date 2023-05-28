@@ -5,7 +5,7 @@ namespace Sources.Services.FpsServices
 {
     public interface IFpsService : IService
     {
-        int FpsLastSecond { get; }
+        float FpsLastSecond { get; }
         void RunWhenFpsStabilizes(Action action);
     }
 }

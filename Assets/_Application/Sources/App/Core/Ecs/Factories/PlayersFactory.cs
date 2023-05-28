@@ -113,11 +113,6 @@ namespace Sources.App.Core.Ecs.Factories
         {
             IPlayerMonoEntity playerMonoEntity = _poolSpawner.Spawn(playerPrefab, position, rotation);
 
-            new CoroutineContext().RunWithDelay(1f, () =>
-            {
-                playerMonoEntity.RootTransform.LocalScale = Vector3.one;
-            });
-
             return _world.CreateFromMono(playerMonoEntity)
                 .AllowFixedAwaiters()
                 .TrackCollisions()

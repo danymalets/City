@@ -54,7 +54,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Generation
                 
                 if (!simulationArea.IsInsideBig(npcPosition))
                 {
-                    _playersDespawner.DespawnNpc(npcEntity);
+                    _playersDespawner.DespawnPlayer(npcEntity);
                 }
             }
         }

@@ -1,6 +1,6 @@
 namespace Sources.Services.UiServices.WindowBase.Screens
 {
-    public abstract class Screen : ScreenBase, IWindow
+    public abstract class GameScreen : ScreenBase, IWindow
     {
         public Window Open()
         {
@@ -14,7 +14,7 @@ namespace Sources.Services.UiServices.WindowBase.Screens
         }
     }
     
-    public abstract class Screen<TPayload> : ScreenBase, IWindow<TPayload>
+    public abstract class GameScreen<TPayload> : ScreenBase, IWindow<TPayload>
     {
         public Window Open(TPayload payload)
         {

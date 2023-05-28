@@ -1,10 +1,10 @@
+using Sources.Services.UiServices.WindowBase.Screens;
 using UnityEngine;
 using UnityEngine.UI;
-using Screen = Sources.Services.UiServices.WindowBase.Screens.Screen;
 
 namespace Sources.App.Ui.Screens
 {
-    public class LoadingScreen : Screen
+    public class LoadingScreen : GameScreen
     {
         [SerializeField]
         private Slider _progress;

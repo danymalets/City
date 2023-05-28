@@ -1,20 +1,22 @@
 using System;
+using Sources.Services.UiServices.WindowBase.Screens;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
-using Screen = Sources.Services.UiServices.WindowBase.Screens.Screen;
 
 namespace Sources.App.Ui.Screens.Level
 {
-    public class MainScreen : Screen
+    public class MainScreen : GameScreen
     {
-        [SerializeField]
-        private Button _playButton;
+        [field : SerializeField] public Button PlayButton { get; private set; }
+        [field : SerializeField] public TextMeshProUGUI PlayButtonText { get; private set; }
 
         public event Action PlayClicked;
         
         private void Awake()
         {
-            _playButton.onClick.AddListener(OnPlayButtonClicked);
+            PlayButton.onClick.AddListener(OnPlayButtonClicked);
         }
 
         private void OnPlayButtonClicked()

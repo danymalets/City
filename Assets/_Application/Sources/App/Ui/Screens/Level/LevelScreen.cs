@@ -10,9 +10,12 @@ using UnityEngine.UI;
 
 namespace Sources.App.Ui.Screens.Level
 {
-    public class LevelScreen : Screen<int>
+    public class LevelScreen : GameScreen<int>
     {
         private const string LevelTextPattern = "LEVEL {0}";
+
+        [field: SerializeField] public Button ExitButton { get; private set; }
+        [field: SerializeField] public CoinsView CoinsView { get; private set; }
 
         [SerializeField]
         private TextMeshProUGUI _levelText;
@@ -27,6 +30,7 @@ namespace Sources.App.Ui.Screens.Level
         private SettingsPopup _settingsPopup;
 
         public event Action RestartButtonClicked = delegate { };
+        public event Action ExitButtonClicked = delegate { };
         
         protected override void OnSetup()
         {
@@ -34,6 +38,12 @@ namespace Sources.App.Ui.Screens.Level
 
             _settingsButton.onClick.AddListener(OnSettingsButtonClicked);
             _restartButton.onClick.AddListener(OnRestartButtonClicked);
+            ExitButton.onClick.AddListener(OnExitButtonClicked);
+        }
+
+        private void OnExitButtonClicked()
+        {
+            ExitButtonClicked?.Invoke();
         }
 
         protected override void OnRefresh()
@@ -45,8 +55,6 @@ namespace Sources.App.Ui.Screens.Level
             _audio = DiContainer.Resolve<IAudioService>();
             
             _levelText.text = string.Format(LevelTextPattern, level);
-
-            DisableRestartButton();
         }
 
         protected override void OnClose()
@@ -54,21 +62,13 @@ namespace Sources.App.Ui.Screens.Level
             
         }
 
-        public void EnableRestartButton() => 
-            _restartButton.gameObject.Enable();
-
-        public void DisableRestartButton() => 
-            _restartButton.gameObject.Disable();
-
         private void OnRestartButtonClicked()
         {
-            _audio.PlayOnce(SoundEffectType.ButtonClick);
             RestartButtonClicked();
         }
 
         private void OnSettingsButtonClicked()
         {
-            _audio.PlayOnce(SoundEffectType.ButtonClick);
             _settingsPopup.Open();
         }
     }

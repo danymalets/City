@@ -20,6 +20,7 @@ namespace Sources.Utils.Di
             return Register(new TService());
         }
 
+
         public TService Register<TService>(TService implementation)
             where TService : class, IService
         {

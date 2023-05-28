@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
 {
     [RequireComponent(typeof(Transform))]
-    public class SafeTransform : MonoBehaviour, ITransform
+    public class SafeTransform : MonoBehaviour, ITransform, IReadonlyTransform
     {
         private Transform _transform;
 

@@ -15,7 +15,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.NpcPathes
 {
-    public class ActiveSpawnPointsUpdateSystem : DIntervalUpdateSystem
+    public class ActiveSpawnPointsUpdateSystem : DPeriodUpdateSystem
     {
         private Filter _pathesFilter;
         private readonly ISimulationSettings _simulationSettings;
@@ -30,15 +30,14 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcPathes
             _pathesFilter = _world.Filter<PathesTag>();
         }
 
-        protected override float ExecuteInterval => (1f / 30f) * 3;
+        protected override int Period => 3;
 
-        protected override void OnIntervalUpdate(float deltaTime)
+        protected override void OnPeriodUpdate(float deltaTime)
         {
             foreach (Entity pathEntity in _pathesFilter)
             {
                 Dictionary<(int x, int y), List<Point>> allSpawnPointsGrid = pathEntity.Get<AllSpawnPointsGrid>().Grid;
                 List<Point> activePoints = pathEntity.Get<ActiveSpawnPoints>().List;
-                List<Point> allSpawnPoints = pathEntity.Get<AllSpawnPoints>().List;
                 List<Point> horizonPoints = pathEntity.Get<HorizonSpawnPoints>().List;
                 SimulationAreaData simulationAreaData = pathEntity.Get<RelatedSimulationArea>()
                     .SimulationAreaEntity.Get<SimulationArea>().AreaData;
@@ -50,9 +49,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcPathes
 
                 int centerX = DMath.Div(position.x, _simulationSettings.SimulationQuadWidth);
                 int centerY = DMath.Div(position.y, _simulationSettings.SimulationQuadWidth);
-
-                int debug = 0;
-
+                
                 for (int x = centerX - Consts.SimulationOneSideQuadCount;
                      x <= centerX + Consts.SimulationOneSideQuadCount; x++)
                 {
@@ -63,7 +60,6 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcPathes
                         {
                             foreach (Point point in points)
                             {
-                                debug++;
                                 if (simulationAreaData.IsInsideBig(point.Position))
                                 {
                                     if (simulationAreaData.IsInsideSmall(point.Position))
@@ -79,8 +75,6 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcPathes
                         }
                     }
                 }
-                
-                // Debug.Log($"all spawn {allSpawnPoints.Count} need {activePoints.Count + horizonPoints.Count} solve {debug}");
             }
         }
     }

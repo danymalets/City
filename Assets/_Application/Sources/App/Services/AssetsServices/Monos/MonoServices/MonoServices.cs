@@ -6,6 +6,7 @@ using Sources.Services.GizmosServices;
 using Sources.Services.PoolServices;
 using Sources.Services.UiServices.System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Sources.App.Services.AssetsServices.Monos.MonoServices
 {
@@ -13,8 +14,9 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoServices
     {
         [SerializeField]
         private UiService _uiService;
+        [FormerlySerializedAs("_coroutineRunnerService")]
         [SerializeField]
-        private CoroutineRunnerService _coroutineRunnerService;
+        private CoroutineService _coroutineService;
         [SerializeField]
         private ApplicationService _applicationService;
         [SerializeField]
@@ -29,7 +31,7 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoServices
         private GizmosService _gizmosService;
 
         public UiService UiService => _uiService;
-        public CoroutineRunnerService CoroutineRunnerService => _coroutineRunnerService;
+        public CoroutineService CoroutineService => _coroutineService;
         public ApplicationService ApplicationService => _applicationService;
         public PoolService PoolService => _poolService;
         public AudioService AudioService => _audioService;

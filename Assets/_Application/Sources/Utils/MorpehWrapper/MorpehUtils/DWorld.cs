@@ -9,6 +9,7 @@ using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.CustomSystems;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 namespace Sources.Utils.MorpehWrapper.MorpehUtils
 {
@@ -26,8 +27,9 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
         private readonly List<DInitializer> _initializers = new();
         private readonly List<DUpdateSystem> _updateSystems = new();
         private readonly List<DUpdateSystem> _fixedSystems = new();
+        private readonly List<DDisposer> _disposers = new();
         private readonly SystemsPerformance _systemsPerformance;
-
+        
         public Filter Filter => _world.Filter;
 
         public float TimeScale { get; set; } = 1;
@@ -43,7 +45,8 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
             _world = World.Create();
             _world.UpdateByUnity = false;
 
-            _coroutineContext = new CoroutineContext();
+            _coroutineContext = DiContainer.Resolve<ICoroutineContextCreatorService>()
+                .CreateCoroutineContext();
 
             _systemsPerformance = new SystemsPerformance();
 
@@ -83,6 +86,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
             RunSystems(_initializers, ConstructSystem, null);
             RunSystems(_updateSystems, ConstructSystem, null);
             RunSystems(_fixedSystems, ConstructSystem, null);
+            RunSystems(_disposers, ConstructSystem, null);
 
             RunSystems(_initializers, s => s.Initialize(), null);
 
@@ -90,28 +94,14 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
             {
                 if (_fpsService.FpsLastSecond >= MinWorkableFps)
                 {
-                    float totalDeltaTime = TimeScale * _time.DeltaTime;
-
-                    while (DMath.Greater(totalDeltaTime, 0))
-                    {
-                        float deltaTime = Mathf.Min(totalDeltaTime, _time.FixedDeltaTime);
-                        WorldUpdate(deltaTime);
-                        totalDeltaTime -= deltaTime;
-                    }
+                    DMath.Divide(TimeScale * _time.DeltaTime, _time.DeltaTime, WorldUpdate);
                 }
             }, true);
             _coroutineContext.RunEachFixedUpdate(() =>
             {
                 if (_fpsService.FpsLastSecond >= MinWorkableFps)
                 {
-                    float totalDeltaTime = TimeScale * _time.FixedDeltaTime;
-
-                    while (DMath.Greater(totalDeltaTime, 0))
-                    {
-                        float deltaTime = Mathf.Min(totalDeltaTime, _time.FixedDeltaTime);
-                        WorldFixedUpdate(deltaTime);
-                        totalDeltaTime -= deltaTime;
-                    }
+                    DMath.Divide(TimeScale * _time.DeltaTime, _time.DeltaTime, WorldFixedUpdate);
                 }
             });
         }
@@ -137,31 +127,31 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
             _systemsPerformance.EndFixed();
         }
 
-        public void AddInitializer<TDInitializer>() where TDInitializer : DInitializer, new()
-        {
-            _initializers.Add(new TDInitializer());
-        }
+        public void AddInitializer<TDInitializer>() where TDInitializer : DInitializer, new() => 
+            _initializers.Add(new TDInitializer());    
+        
+        public void AddDisposer<TDDisposer>() where TDDisposer : DDisposer, new() => 
+            _disposers.Add(new TDDisposer());
 
-        public void AddUpdateSystem<TDUpdateSystem>() where TDUpdateSystem : DUpdateSystem, new()
-        {
+        public void AddUpdateSystem<TDUpdateSystem>() where TDUpdateSystem : DUpdateSystem, new() => 
             _updateSystems.Add(new TDUpdateSystem());
-        }
 
-        public void AddFixedSystem<TDFixedUpdateSystem>() where TDFixedUpdateSystem : DUpdateSystem, new()
-        {
+        public void AddFixedSystem<TDFixedUpdateSystem>() where TDFixedUpdateSystem : DUpdateSystem, new() => 
             _fixedSystems.Add(new TDFixedUpdateSystem());
-        }
 
         public void AddOneFrame<TComponent>() where TComponent : struct, IComponent =>
             AddUpdateSystem<OneFrameCleanupSystem<TComponent>>();
 
+        public void AddFixedOneFrame<TComponent>() where TComponent : struct, IComponent =>
+            AddFixedSystem<OneFrameCleanupSystem<TComponent>>();
+
         public void FinishGame()
         {
             _coroutineContext.StopAllCoroutines();
+
+            RunSystems(_disposers, s => s.Dispose(), null);
+
             _world.Dispose();
         }
-
-        public void AddFixedOneFrame<TComponent>() where TComponent : struct, IComponent =>
-            AddFixedSystem<OneFrameCleanupSystem<TComponent>>();
     }
 }

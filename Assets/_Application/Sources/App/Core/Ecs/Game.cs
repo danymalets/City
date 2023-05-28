@@ -4,6 +4,7 @@ using Sources.App.Core.Ecs.Components.Npc.NpcCar;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Despawners;
 using Sources.App.Core.Ecs.Factories;
+using Sources.App.Core.Ecs.Systems.Dispose;
 using Sources.App.Core.Ecs.Systems.Init;
 using Sources.App.Core.Ecs.Systems.Update.Camera;
 using Sources.App.Core.Ecs.Systems.Update.Car;
@@ -40,6 +41,7 @@ namespace Sources.App.Core.Ecs
             AddInitializers();
             AddUpdateSystems();
             AddFixedUpdateSystems();
+            AddDisposers();
         }
 
         private void RegisterGameServices()
@@ -50,6 +52,9 @@ namespace Sources.App.Core.Ecs
             _diBuilder.Register<CamerasFactory, ICamerasFactory>();
             _diBuilder.Register<PropsFactory, IPropsFactory>();
             _diBuilder.Register<SimulationAreasFactory, ISimulationAreasFactory>();
+            
+            _diBuilder.Register<CarInputService, ICarInputService>();
+            _diBuilder.Register<PlayerInputService, IPlayerInputService>();
             
             _diBuilder.Register<PlayersDespawner, IPlayersDespawner>();
             _diBuilder.Register<CarsDespawner, ICarsDespawner>();
@@ -264,6 +269,12 @@ namespace Sources.App.Core.Ecs
             _world.AddUpdateSystem<NpcForwardColliderGizmosSystem>();
             _world.AddUpdateSystem<CarForwardColliderGizmosSystem>();
 #endif
+        }
+
+        private void AddDisposers()
+        {
+            _world.AddDisposer<PlayersDisposeSystem>();
+            _world.AddDisposer<CarsDisposeSystem>();
         }
 
         public void StartGame() => 

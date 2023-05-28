@@ -9,7 +9,7 @@ namespace Sources.App.Services.UserServices
         public LiveBool SoundsOn { get; private set; } = new (true);
         public LiveBool VibrationsOn { get; private set; } = new (true);
         
-        public QualityType? BestQualityForDevice { get; set; } = null;
-        public QualityType SelectedQuality { get; set; } = QualityType.Low;
+        public QualityType? BestQualityForDevice { get; set; }
+        public QualityType SelectedQuality { get; set; }
     }
 }

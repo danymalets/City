@@ -40,11 +40,11 @@ namespace Sources.App.Infrastructure.StateMachine.States
             //LevelBalance balance = _balanceService.GetLevelBalance(realLevel);
             
             _loadingScreen.Open();
+            _loadingScreen.SetProgress(0.04f);
             
             SceneManager.LoadScene($"Empty");
             
             _sceneLoader.LoadScene<ILevelContext>(cityScene, 
-                progress => _loadingScreen.SetProgress(progress),
                 levelContext => EnterLevelState(new LevelData(level, levelContext)));
         }
 

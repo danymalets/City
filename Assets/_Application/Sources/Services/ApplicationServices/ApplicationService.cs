@@ -30,7 +30,8 @@ namespace Sources.Services.ApplicationServices
 
         public void Initialize()
         {
-            _coroutineContext = new CoroutineContext();
+            _coroutineContext = DiContainer.Resolve<ICoroutineContextCreatorService>()
+                .CreateCoroutineContext();;
 
             _applicationInput = DiContainer.Resolve<IApplicationInputService>();
             

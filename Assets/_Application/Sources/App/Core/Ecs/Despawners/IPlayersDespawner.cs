@@ -5,6 +5,6 @@ namespace Sources.App.Core.Ecs.Despawners
 {
     public interface IPlayersDespawner : IService
     {
-        void DespawnNpc(Entity playerEntity);
+        void DespawnPlayer(Entity playerEntity);
     }
 }

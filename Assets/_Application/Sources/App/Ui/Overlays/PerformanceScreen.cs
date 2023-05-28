@@ -2,14 +2,14 @@ using Sources.Services.ApplicationServices;
 using Sources.Services.CoroutineRunnerServices;
 using Sources.Services.FpsServices;
 using Sources.Services.TimeServices;
+using Sources.Services.UiServices.WindowBase.Screens;
 using Sources.Utils.Di;
 using TMPro;
 using UnityEngine;
-using Screen = Sources.Services.UiServices.WindowBase.Screens.Screen;
 
 namespace Sources.App.Ui.Overlays
 {
-    public class PerformanceScreen : Sources.Services.UiServices.WindowBase.Screens.Screen
+    public class PerformanceScreen : GameScreen
     {
         private const string FpsPattern = "Fps: {0}";
         private const string DeviceNamePattern = "Device Name: {0}";
@@ -50,13 +50,15 @@ namespace Sources.App.Ui.Overlays
             _application = DiContainer.Resolve<IApplicationService>();
             _time = DiContainer.Resolve<ITimeService>();
 
-            _coroutineContext = new CoroutineContext();
+            _coroutineContext = DiContainer.Resolve<ICoroutineContextCreatorService>()
+                .CreateCoroutineContext();
+            
             _coroutineContext.RunEachSeconds(1, OnUpdate, true);
         }
 
         private void OnUpdate()
         {
-            _fpsText.text = string.Format(FpsPattern, _fpsService.FpsLastSecond);
+            _fpsText.text = string.Format(FpsPattern, $"{_fpsService.FpsLastSecond:F1}");
             _targetFpsText.text = string.Format(TargetFpsPattern, _application.TargetFrameRate);
             _physicsUpdateCountText.text = string.Format(PhysicsUpdateCountPattern, _time.PhysicsUpdateCount);
             _deviceNameText.text = string.Format(DeviceNamePattern, _application.DeviceName);

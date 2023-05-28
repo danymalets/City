@@ -252,7 +252,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: becd1e9aadb345c2a30b91887530192f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playButton: {fileID: 6359671631187036726}
+  <PlayButton>k__BackingField: {fileID: 6359671631187036726}
+  <PlayButtonText>k__BackingField: {fileID: 6555531032642317325}
 --- !u!1 &9161040727447474550
 GameObject:
   m_ObjectHideFlags: 0

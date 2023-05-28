@@ -8,7 +8,7 @@ namespace Sources.App.Core.Ecs.Despawners
 {
     public class PlayersDespawner : Despawner, IPlayersDespawner
     {
-        public void DespawnNpc(Entity playerEntity)
+        public void DespawnPlayer(Entity playerEntity)
         {
             playerEntity.GetAspect<NpcStatusAspect>().LeaveIfOnPath();
 

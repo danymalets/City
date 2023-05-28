@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 namespace Sources.App.Ui.Screens
 {
-    public class TapToStartScreen : Screen, IEndDragHandler, IPointerClickHandler
+    public class TapToStartScreen : GameScreen, IEndDragHandler, IPointerClickHandler
     {
         public event Action Tapped;
 

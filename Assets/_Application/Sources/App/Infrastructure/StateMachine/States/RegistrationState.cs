@@ -41,7 +41,7 @@ namespace Sources.App.Infrastructure.StateMachine.States
                 _diBuilder.Register<GameObjectService, IGameObjectService>();
 
             _diBuilder.Register<PhysicsService, IPhysicsService>();
-            _diBuilder.Register<ICoroutineRunnerService>(monoServices.CoroutineRunnerService);
+            _diBuilder.Register<CoroutineService, ICoroutineRunnerService, ICoroutineContextCreatorService>(monoServices.CoroutineService);
             _diBuilder.Register<ApplicationInputService, IApplicationInputService>();
             _diBuilder.Register<IApplicationService>(monoServices.ApplicationService);
             _diBuilder.Register<SceneLoaderService, ISceneLoaderService>();

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Sources.Services.CoroutineRunnerServices
 {
-    public class CoroutineRunnerService : MonoBehaviour, ICoroutineRunnerService
+    public partial class CoroutineService : MonoBehaviour, ICoroutineContextCreatorService, ICoroutineRunnerService
     {
         public Coroutine RunWithDelay(float delay, Action action) => 
             MonoBehaviourCoroutineExtensions.RunWithDelay(this, delay, action);
@@ -20,5 +20,8 @@ namespace Sources.Services.CoroutineRunnerServices
 
         public Coroutine RunNextFixedUpdate(Action action) => 
             MonoBehaviourCoroutineExtensions.RunNextFixedUpdate(this, action);
+
+        public CoroutineContext CreateCoroutineContext() =>
+            new CoroutineContext();
     }
 }

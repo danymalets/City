@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Sources.Services.CoroutineRunnerServices;
 using Sources.Utils.CommonUtils.Libs;
+using Sources.Utils.Di;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,39 +14,28 @@ namespace Sources.Services.SceneLoaderServices
 
         public SceneLoaderService()
         {
-            _coroutineContext = new CoroutineContext();
+            _coroutineContext = DiContainer.Resolve<ICoroutineContextCreatorService>()
+                .CreateCoroutineContext();;
         }
 
         public void LoadScene<T>(string scene, Action<T> onComplete = null)
-            where T : ISceneContext =>
-            LoadScene(scene, null, onComplete);
-
-        public void LoadScene<T>(string scene, Action<float> onProgressChanged, Action<T> onComplete) 
-            where T : ISceneContext => 
-            _coroutineContext.StartCoroutine(LoadSceneCoroutine(scene, onProgressChanged, onComplete));
-
-        private IEnumerator LoadSceneCoroutine<T>(
-            string scene, 
-            Action<float> onProgressChanged, 
-            Action<T> onComplete) where T : ISceneContext
+            where T : ISceneContext
         {
-            AsyncOperation operation = SceneManager.LoadSceneAsync(scene);
-            
-            while (!operation.isDone)
+            LoadScene(scene, () =>
             {
-                Debug.Log($"operation.progress {operation.progress}");
-                onProgressChanged?.Invoke(operation.progress);
-                yield return null;
-            }
-
-            yield return null;
-
-            T sceneContext = GameObject.FindObjectOfType<SceneContext>()
-                .gameObject.GetComponent<T>();
+                T sceneContext = GameObject.FindObjectOfType<SceneContext>()
+                    .gameObject.GetComponent<T>();
+                
+                DAssert.IsTrue(sceneContext != null);
             
-            DAssert.IsTrue(sceneContext != null);
-            
-            onComplete?.Invoke(sceneContext);
+                onComplete?.Invoke(sceneContext);
+            });
+        }
+
+        public void LoadScene(string scene, Action onComplete = null)
+        {
+            SceneManager.LoadScene(scene);
+            _coroutineContext.RunNextFrame(onComplete);
         }
     }
 }

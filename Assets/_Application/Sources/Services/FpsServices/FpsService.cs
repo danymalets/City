@@ -11,15 +11,15 @@ namespace Sources.Services.FpsServices
 {
     public class FpsService : IFpsService, IInitializable
     {
-        public int FpsLastSecond { get; private set; }
-        
+        public float FpsLastSecond { get; private set; }
+
         private ITimeService _timeService;
 
         private readonly Queue<float> _deltaTimes = new(150);
 
         private float _sumDeltaTimes = 0;
         private ICoroutineRunnerService _coroutineRunner;
-        
+
         public void Initialize()
         {
             _timeService = DiContainer.Resolve<ITimeService>();
@@ -37,7 +37,7 @@ namespace Sources.Services.FpsServices
                 _sumDeltaTimes -= _deltaTimes.Dequeue();
             }
 
-            FpsLastSecond = Mathf.RoundToInt(_deltaTimes.Count + 1);
+            FpsLastSecond = _deltaTimes.Count / _sumDeltaTimes;
         }
 
         public void RunWhenFpsStabilizes(Action action) =>
@@ -45,18 +45,17 @@ namespace Sources.Services.FpsServices
 
         private IEnumerator RunWhenFpsStabilizesCoroutine(Action action)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(2f);
 
-            int fps;
+            float fps;
             do
             {
                 fps = FpsLastSecond;
-                Debug.Log($"fps: {fps}");
+                Debug.Log($"fps: {fps:F1}");
                 yield return new WaitForSeconds(0.5f);
-            } 
-            while (FpsLastSecond > fps);
-            
-            Debug.Log($"fps: {FpsLastSecond} - stable");
+            } while (FpsLastSecond > fps);
+
+            Debug.Log($"fps: {FpsLastSecond:F1} - stable");
 
             action();
         }

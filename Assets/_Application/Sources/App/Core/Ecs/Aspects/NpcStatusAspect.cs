@@ -17,7 +17,7 @@ namespace Sources.App.Core.Ecs.Aspects
         public Entity Entity { get; set; }
 
         public Filter GetFilter(Filter filter) =>
-            filter.With<NpcTag>();
+            filter.With<PlayerTag>();
 
         public readonly bool IsOnPath => Entity.Has<NpcOnPath>();
 

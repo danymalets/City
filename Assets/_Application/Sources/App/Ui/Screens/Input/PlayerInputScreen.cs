@@ -7,11 +7,10 @@ using Sources.Utils.MorpehWrapper.MorpehUtils;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using UnityEngine;
 using UnityEngine.UI;
-using Screen = Sources.Services.UiServices.WindowBase.Screens.Screen;
 
 namespace Sources.App.Ui.Screens.Input
 {
-    public class PlayerInputScreen : Sources.Services.UiServices.WindowBase.Screens.Screen
+    public class PlayerInputScreen : Sources.Services.UiServices.WindowBase.Screens.GameScreen
     {
         [SerializeField]
         private Joystick _joystick;

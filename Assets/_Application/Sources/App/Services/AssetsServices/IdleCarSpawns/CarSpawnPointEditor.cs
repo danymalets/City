@@ -1,5 +1,3 @@
-#if UNITY_EDITOR
-
 using Sirenix.OdinInspector;
 using Sources.App.Data.Cars;
 using Sources.App.Data.Constants;
@@ -28,8 +26,9 @@ namespace Sources.App.Services.AssetsServices.IdleCarSpawns
         
         [ReadOnly]
         [SerializeField]
-        private CarColorType _carColor; 
-        
+        private CarColorType _carColor;
+
+#if UNITY_EDITOR
         private void Awake()
         {
             if (Application.isPlaying)
@@ -93,7 +92,6 @@ namespace Sources.App.Services.AssetsServices.IdleCarSpawns
             InstantiateNew();
             UpdateColor();
         }
+#endif
     }
 }
-
-#endif

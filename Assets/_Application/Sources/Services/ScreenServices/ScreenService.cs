@@ -31,7 +31,8 @@ namespace Sources.Services.ScreenServices
         {
             UpdateResolution();
 
-            _coroutineContext = new CoroutineContext();
+            _coroutineContext = DiContainer.Resolve<ICoroutineContextCreatorService>()
+                .CreateCoroutineContext();
 
             _coroutineContext.RunEachSeconds(0.5f, () =>
             {
