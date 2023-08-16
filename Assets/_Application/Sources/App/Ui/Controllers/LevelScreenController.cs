@@ -1,44 +1,45 @@
+using System;
 using Sources.App.Ui.Screens.Level;
 
 namespace Sources.App.Ui.Controllers
 {
-    public class LevelScreenController : ScreenController
+    public class LevelScreenController : ScreenController<int>
     {
-        private readonly LevelScreen _gameScreen;
+        private readonly LevelScreen _levelScreen;
+        
+        public event Action RestartButtonClicked;
+        public event Action ExitButtonClicked;
 
-        public CoinsViewController CoinsViewController { get; private set; }
-
-        public LevelScreenController(LevelScreen gameScreen) : 
-            base(new DefaultPopupAnimator(gameScreen))
+        public LevelScreenController(LevelScreen levelScreen) 
+            : base(levelScreen, new ToogleAnimator(levelScreen))
         {
-            _gameScreen = gameScreen;
-
-            CoinsViewController = new CoinsViewController(gameScreen.CoinsView);
+            _levelScreen = levelScreen;
         }
-
-        protected override void OnOpen()
+        
+        protected override void OnOpen(int level)
         {
-            
+            _levelScreen.RestartButton.onClick.AddListener(OnRestartButtonClicked);
+            _levelScreen.ExitButton.onClick.AddListener(OnExitButtonClicked);
         }
 
         protected override void OnClose()
         {
-            
+            _levelScreen.RestartButton.onClick.RemoveListener(OnRestartButtonClicked);
+            _levelScreen.ExitButton.onClick.RemoveListener(OnExitButtonClicked);
         }
 
         protected override void OnRefresh()
         {
-            
         }
-    }
 
-    public class CoinsViewController
-    {
-        private readonly CoinsView _coinsView;
-        
-        public CoinsViewController(CoinsView coinsView)
+        private void OnRestartButtonClicked()
         {
-            _coinsView = coinsView;
+            RestartButtonClicked();
+        }
+
+        private void OnExitButtonClicked()
+        {
+            ExitButtonClicked?.Invoke();
         }
     }
 }

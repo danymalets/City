@@ -12,8 +12,10 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoServices
 {
     public class MonoServices : MonoBehaviour
     {
+        [FormerlySerializedAs("_uiViewsService")]
+        [FormerlySerializedAs("_uiService")]
         [SerializeField]
-        private UiService _uiService;
+        private UiViews _uiViews;
         [FormerlySerializedAs("_coroutineRunnerService")]
         [SerializeField]
         private CoroutineService _coroutineService;
@@ -30,7 +32,7 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoServices
         [SerializeField]
         private GizmosService _gizmosService;
 
-        public UiService UiService => _uiService;
+        public UiViews UiViews => _uiViews;
         public CoroutineService CoroutineService => _coroutineService;
         public ApplicationService ApplicationService => _applicationService;
         public PoolService PoolService => _poolService;

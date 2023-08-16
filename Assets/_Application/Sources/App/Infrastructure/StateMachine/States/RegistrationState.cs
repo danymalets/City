@@ -6,6 +6,7 @@ using Sources.App.Services.AudioServices;
 using Sources.App.Services.BalanceServices;
 using Sources.App.Services.QualityServices;
 using Sources.App.Services.UserServices;
+using Sources.App.Ui.Controllers;
 using Sources.Services.ApplicationInputServices;
 using Sources.Services.ApplicationServices;
 using Sources.Services.CoroutineRunnerServices;
@@ -56,7 +57,8 @@ namespace Sources.App.Infrastructure.StateMachine.States
             _diBuilder.Register<FpsService, IFpsService>();
             _diBuilder.Register<IAudioService>(monoServices.AudioService);
             _diBuilder.Register<Balance>(monoServices.BalanceService);
-            _diBuilder.Register<UiService, IUiService, IUiRefreshService, IUiCloseService>(monoServices.UiService);
+            _diBuilder.Register<IUiViewsService>(new UiViewsService(monoServices.UiViews));
+            _diBuilder.Register<UiControllersService, IUiControllersService, IUiRefreshService, IUiCloseService>();
             _diBuilder.Register<IGizmosService>(monoServices.GizmosService);
             _diBuilder.Register<QualityService, IQualityAccessService, IQualityChangerService>();
 

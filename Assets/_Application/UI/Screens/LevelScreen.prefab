@@ -1375,6 +1375,7 @@ GameObject:
   - component: {fileID: 1449212051943694750}
   - component: {fileID: 6001950576269490676}
   - component: {fileID: 4326285191958717691}
+  - component: {fileID: 1914125761323784262}
   m_Layer: 5
   m_Name: LevelScreen
   m_TagString: Untagged
@@ -1461,7 +1462,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c4c578daec04814a353d1836fd0b1aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <SafeArea>k__BackingField: {fileID: 4277044441707901926}
+  <CanvasGroup>k__BackingField: {fileID: 1914125761323784262}
+  <CloseButtons>k__BackingField: []
   <ExitButton>k__BackingField: {fileID: 332574974829752814}
-  _levelText: {fileID: 5438615078011749135}
-  _settingsButton: {fileID: 3677042373800245455}
-  _restartButton: {fileID: 4123892481476439107}
+  <RestartButton>k__BackingField: {fileID: 4123892481476439107}
+  <CoinsView>k__BackingField: {fileID: 0}
+--- !u!225 &1914125761323784262
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8825134713493080395}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

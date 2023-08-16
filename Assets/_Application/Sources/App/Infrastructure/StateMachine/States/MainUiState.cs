@@ -2,6 +2,7 @@ using Sources.App.Data.Constants;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.App.Services.AssetsServices.IdleCarSpawns;
+using Sources.App.Ui.Controllers;
 using Sources.App.Ui.Screens.Level;
 using Sources.Services.SceneLoaderServices;
 using Sources.Services.UiServices.System;
@@ -11,24 +12,24 @@ namespace Sources.App.Infrastructure.StateMachine.States
 {
     public class MainUiState : GameState
     {
-        private MainScreen _mainScreen;
+        private MainScreenController _mainScreenController;
         private IUiCloseService _uiCloseService;
-
+        
         public MainUiState(IGameStateMachine stateMachine) : base(stateMachine)
         {
         }
 
         protected override void OnEnter()
         {
-            _mainScreen = DiContainer.Resolve<IUiService>().Get<MainScreen>();
+            _mainScreenController = DiContainer.Resolve<IUiControllersService>().Get<MainScreenController>();
             _uiCloseService = DiContainer.Resolve<IUiCloseService>();
             ISceneLoaderService sceneLoader = DiContainer.Resolve<ISceneLoaderService>();
 
-            _mainScreen.Open();
+            _mainScreenController.Open();
             
             sceneLoader.LoadScene<EmptySceneContext>(Consts.EmptySceneName, _ =>
             {
-                _mainScreen.PlayClicked += OnPlayClicked;
+                _mainScreenController.PlayClicked += OnPlayClicked;
             });
         }
 
@@ -39,10 +40,10 @@ namespace Sources.App.Infrastructure.StateMachine.States
         
         protected override void OnExit()
         {
-            _mainScreen.PlayClicked -= OnPlayClicked;
+            _mainScreenController.PlayClicked -= OnPlayClicked;
 
             _uiCloseService.CloseAll();
-            _mainScreen = null;
+            _mainScreenController = null;
             _uiCloseService = null;
         }
     }

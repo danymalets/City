@@ -1,8 +1,11 @@
+using Sources.Services.UiServices.WindowBase.Screens;
+
 namespace Sources.App.Ui.Controllers
 {
     public abstract class ScreenController<TPayload> : ScreenControllerBase
     {
-        protected ScreenController(ScreenAnimator animator) : base(animator)
+        protected ScreenController(GameScreen gameScreen, ScreenAnimator animator) 
+            : base(gameScreen, animator)
         {
         }
 
@@ -17,6 +20,11 @@ namespace Sources.App.Ui.Controllers
 
     public abstract class ScreenController : ScreenControllerBase
     {
+        protected ScreenController(GameScreen gameScreen, ScreenAnimator animator) 
+            : base(gameScreen, animator)
+        {
+        }
+
         public void Open()
         {
             OnOpenInternal();
@@ -24,9 +32,5 @@ namespace Sources.App.Ui.Controllers
         }
 
         protected abstract void OnOpen();
-
-        protected ScreenController(ScreenAnimator animator) : base(animator)
-        {
-        }
     }
 }

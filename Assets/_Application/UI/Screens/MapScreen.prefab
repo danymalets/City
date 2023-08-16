@@ -324,6 +324,7 @@ GameObject:
   - component: {fileID: 8301668440684019716}
   - component: {fileID: 1449212051943694750}
   - component: {fileID: 7803458386189321609}
+  - component: {fileID: 1914125761323784262}
   - component: {fileID: 2123950582284653350}
   m_Layer: 5
   m_Name: MapScreen
@@ -412,6 +413,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &1914125761323784262
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8825134713493080395}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!114 &2123950582284653350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,3 +437,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daecf87002cd433e9e124610b5124351, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <SafeArea>k__BackingField: {fileID: 4277044441707901926}
+  <CloseButtons>k__BackingField: []
+  <CanvasGroup>k__BackingField: {fileID: 1914125761323784262}

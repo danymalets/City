@@ -10,7 +10,7 @@ namespace Sources.App.Ui.Controllers
         public event Action PlayClicked = delegate { };
 
         public MainScreenController(MainScreen mainScreen) :
-            base(new DefaultPopupAnimator(mainScreen))
+            base(mainScreen, new ToogleAnimator(mainScreen))
         {
             _mainScreen = mainScreen;
         }

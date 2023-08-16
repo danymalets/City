@@ -17,7 +17,6 @@ namespace Sources.App.Data
                 borders.Radius + borders.Delta, borders.BackDistance + borders.Delta);
         }
 
-
         public bool IsInsideSmall(Vector3 point) =>
             _smallShape.IsInside(point.GetXZ());
         

@@ -2,6 +2,7 @@ using Sources.App.Data.MonoEntities;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.App.Services.AssetsServices;
+using Sources.App.Ui.Controllers;
 using Sources.App.Ui.Overlays;
 using Sources.Services.ApplicationServices;
 using Sources.Services.PhysicsServices;
@@ -26,7 +27,7 @@ namespace Sources.App.Infrastructure.StateMachine.States
             IPhysicsService physics = DiContainer.Resolve<IPhysicsService>();
             IScreenService screen = DiContainer.Resolve<IScreenService>();
             ITimeService time = DiContainer.Resolve<ITimeService>();
-            IUiService ui = DiContainer.Resolve<IUiService>();
+            IUiControllersService uiControllers = DiContainer.Resolve<IUiControllersService>();
             
             application.TargetFrameRate = Mathf.Min(60, screen.MaxDeviceFrameRate);
             physics.AutoSimulation = false;
@@ -34,7 +35,7 @@ namespace Sources.App.Infrastructure.StateMachine.States
 
             PreparePool();
             
-            ui.Open<PerformanceScreen>();
+            uiControllers.Get<PerformanceScreenController>().Open();
 
             _stateMachine.Enter<MainUiState>();
         }

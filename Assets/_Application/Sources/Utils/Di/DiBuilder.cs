@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Sources.Utils.Di
 {
@@ -24,8 +25,8 @@ namespace Sources.Utils.Di
         public TService Register<TService>(TService implementation)
             where TService : class, IService
         {
-            Initialize(implementation);
             Bind<TService>(implementation);
+            Initialize(implementation);
             return implementation;
         }
 
@@ -49,9 +50,9 @@ namespace Sources.Utils.Di
             where TService2 : class, IService
             where TImplementation : class, TService1, TService2
         {
-            Initialize(implementation);
             Bind<TService1>(implementation);
             Bind<TService2>(implementation);
+            Initialize(implementation);
             return implementation;
         }
 
@@ -61,7 +62,7 @@ namespace Sources.Utils.Di
             where TService3 : class, IService
             where TImplementation : class, TService1, TService2, TService3, new()
         {
-            return Register<TImplementation, TService1, TService2>(new TImplementation());
+            return Register<TImplementation, TService1, TService2, TService3>(new TImplementation());
         }
 
         public TImplementation Register<TImplementation, TService1, TService2, TService3>(TImplementation implementation)
@@ -70,10 +71,10 @@ namespace Sources.Utils.Di
             where TService3 : class, IService
             where TImplementation : class, TService1, TService2, TService3
         {
-            Initialize(implementation);
             Bind<TService1>(implementation);
             Bind<TService2>(implementation);
             Bind<TService3>(implementation);
+            Initialize(implementation);
             return implementation;
         }
 
@@ -91,7 +92,7 @@ namespace Sources.Utils.Di
 
         private void Bind<TService>(TService implementation) where TService : class, IService
         {
-            _serviceWrappers.Add(new ServiceWrapper<TService>());
+            _serviceWrappers.Add(new ServiceWrapper<TService>(implementation));
             DiContainer.Bind<TService>(implementation);
         }
 
@@ -99,19 +100,32 @@ namespace Sources.Utils.Di
         {
             foreach (ServiceWrapperBase serviceWrapper in _serviceWrappers)
             {
-                serviceWrapper.Unbind();
+                serviceWrapper.DisposeAndUnbind();
             }
         }
 
         private class ServiceWrapper<TService> : ServiceWrapperBase where TService : class, IService
         {
-            public override void Unbind() =>
+            private readonly TService _service;
+            
+            public ServiceWrapper(TService service)
+            {
+                _service = service;
+            }
+
+            public override void DisposeAndUnbind()
+            {
+                if (_service is IDisposable disposable)
+                {
+                    disposable.Dispose();
+                }
                 DiContainer.Unbind<TService>();
+            }
         }
         
         private abstract class ServiceWrapperBase
         {
-            public abstract void Unbind();
+            public abstract void DisposeAndUnbind();
         }
     }
 }

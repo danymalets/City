@@ -1,3 +1,4 @@
+using Sources.App.Ui.Controllers;
 using Sources.App.Ui.Screens.Input;
 using Sources.Services.ApplicationInputServices;
 using Sources.Services.UiServices.System;
@@ -8,13 +9,13 @@ namespace Sources.App.Core.Services
     public class CarInputService : ICarInputService
     {
         private readonly IApplicationInputService _applicationInput;
-        private readonly CarInputScreen _carInputScreen;
+        private readonly CarInputScreenController _carInputScreen;
 
         public CarInputService()
         {
             _applicationInput = DiContainer.Resolve<IApplicationInputService>();
-            _carInputScreen = DiContainer.Resolve<IUiService>()
-                .Get<CarInputScreen>();
+            _carInputScreen = DiContainer.Resolve<IUiControllersService>()
+                .Get<CarInputScreenController>();
         }
 
         public int Vertical =>

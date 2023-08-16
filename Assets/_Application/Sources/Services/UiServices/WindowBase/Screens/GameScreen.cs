@@ -1,28 +1,22 @@
+using System;
+using System.Collections.Generic;
+using Sources.Services.UiServices.Utilities;
+using UnityEngine;
+using UnityEngine.UI;
+
 namespace Sources.Services.UiServices.WindowBase.Screens
 {
-    public abstract class GameScreen : ScreenBase, IWindow
+    [RequireComponent(typeof(CanvasGroup))]
+    public abstract class GameScreen : MonoBehaviour
     {
-        public Window Open()
-        {
-            OpenInternal();
-            OnOpen();
-            return this;
-        }
+        [field: SerializeField] public SafeArea SafeArea { get; private set; }
+        [field: SerializeField] public CanvasGroup CanvasGroup { get; private set; }
+        [field: SerializeField] public Button[] CloseButtons { get; private set; }
 
-        protected virtual void OnOpen()
+        private void OnValidate()
         {
+            CanvasGroup = GetComponent<CanvasGroup>();
+            SafeArea = GetComponentInChildren<SafeArea>();
         }
-    }
-    
-    public abstract class GameScreen<TPayload> : ScreenBase, IWindow<TPayload>
-    {
-        public Window Open(TPayload payload)
-        {
-            OpenInternal();
-            OnOpen(payload);
-            return this;
-        }
-
-        protected abstract void OnOpen(TPayload payload);
     }
 }

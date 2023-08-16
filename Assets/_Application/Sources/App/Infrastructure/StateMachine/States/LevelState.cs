@@ -1,11 +1,8 @@
 using Sources.App.Core;
-using Sources.App.Data;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
-using Sources.App.Ui.Screens;
-using Sources.App.Ui.Screens.Level;
-using Sources.Services.UiServices.System;
+using Sources.App.Ui.Controllers;
 using Sources.Utils.Di;
 
 namespace Sources.App.Infrastructure.StateMachine.States
@@ -14,7 +11,7 @@ namespace Sources.App.Infrastructure.StateMachine.States
     {
         private GameController _gameController;
         
-        private LevelScreen _levelScreen;
+        private LevelScreenController _levelScreen;
         private IDiBuilder _diBuilder;
 
         public LevelState(IGameStateMachine stateMachine) : base(stateMachine)
@@ -28,9 +25,9 @@ namespace Sources.App.Infrastructure.StateMachine.States
             _diBuilder.Register<ILevelContext>(levelData.LevelContext);
             _gameController = new GameController();
             
-            IUiService ui = DiContainer.Resolve<IUiService>();
+            IUiControllersService uiControllers = DiContainer.Resolve<IUiControllersService>();
             
-            _levelScreen = ui.Get<LevelScreen>();
+            _levelScreen = uiControllers.Get<LevelScreenController>();
             
             _levelScreen.RestartButtonClicked += LevelScreen_OnRestartButtonClicked;
             _levelScreen.ExitButtonClicked += LevelScreen_OnExitButtonClicked;

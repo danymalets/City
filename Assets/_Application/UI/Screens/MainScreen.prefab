@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 4310931090443284639}
   - component: {fileID: 1429066220236128673}
   - component: {fileID: 3526445167486521926}
+  - component: {fileID: 4324951711924001307}
   - component: {fileID: 5874535913208836676}
   m_Layer: 5
   m_Name: MainScreen
@@ -240,6 +241,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &4324951711924001307
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3868029059035235765}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!114 &5874535913208836676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,6 +265,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: becd1e9aadb345c2a30b91887530192f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <SafeArea>k__BackingField: {fileID: 0}
+  <CloseButtons>k__BackingField: []
+  <CanvasGroup>k__BackingField: {fileID: 4324951711924001307}
   <PlayButton>k__BackingField: {fileID: 6359671631187036726}
   <PlayButtonText>k__BackingField: {fileID: 6555531032642317325}
 --- !u!1 &9161040727447474550

@@ -627,6 +627,7 @@ GameObject:
   - component: {fileID: 572842050415339901}
   - component: {fileID: 3632986765277801773}
   - component: {fileID: 7102722259876163916}
+  - component: {fileID: 6750128592340444736}
   m_Layer: 5
   m_Name: CarInputScreen
   m_TagString: Untagged
@@ -744,11 +745,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c9ae5a533248a79b3ef38ce51af7f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _upButton: {fileID: 2872524928226663006}
-  _downButton: {fileID: 3889307387632190637}
-  _leftButton: {fileID: 5346971111610374137}
-  _rightButton: {fileID: 3064259923303159898}
-  _exitCarButton: {fileID: 355056258495616568}
+  <SafeArea>k__BackingField: {fileID: 0}
+  <CanvasGroup>k__BackingField: {fileID: 6750128592340444736}
+  <CloseButtons>k__BackingField: []
+  <UpButton>k__BackingField: {fileID: 2872524928226663006}
+  <DownButton>k__BackingField: {fileID: 3889307387632190637}
+  <LeftButton>k__BackingField: {fileID: 5346971111610374137}
+  <RightButton>k__BackingField: {fileID: 3064259923303159898}
+  <ExitCarButton>k__BackingField: {fileID: 355056258495616568}
+--- !u!225 &6750128592340444736
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6436507177558121780}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &3026219702773337299
 PrefabInstance:
   m_ObjectHideFlags: 0

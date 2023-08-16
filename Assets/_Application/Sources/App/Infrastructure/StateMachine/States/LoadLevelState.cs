@@ -5,7 +5,9 @@ using Sources.App.Services.AssetsServices;
 using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
 using Sources.App.Services.BalanceServices;
 using Sources.App.Services.UserServices;
+using Sources.App.Ui.Controllers;
 using Sources.App.Ui.Screens;
+using Sources.App.Ui.ToMove.LoadingScreens;
 using Sources.Services.SceneLoaderServices;
 using Sources.Services.UiServices.System;
 using Sources.Utils.Di;
@@ -17,7 +19,7 @@ namespace Sources.App.Infrastructure.StateMachine.States
     {
         private ISceneLoaderService _sceneLoader;
         private Balance _balanceService;
-        private LoadingScreen _loadingScreen;
+        private LoadingScreenController _loadingScreenController;
 
         public LoadLevelState(IGameStateMachine stateMachine) : base(stateMachine)
         {
@@ -25,7 +27,7 @@ namespace Sources.App.Infrastructure.StateMachine.States
 
         protected override void OnEnter()
         {
-            _loadingScreen = DiContainer.Resolve<IUiService>().Get<LoadingScreen>();
+            _loadingScreenController = DiContainer.Resolve<IUiControllersService>().Get<LoadingScreenController>();
             
             _sceneLoader = DiContainer.Resolve<ISceneLoaderService>();
             _balanceService = DiContainer.Resolve<Balance>();
@@ -35,12 +37,7 @@ namespace Sources.App.Infrastructure.StateMachine.States
 
             string cityScene = DiContainer.Resolve<Assets>().CitySceneName;
 
-            //int realLevel = GetRealLevel(level, _balanceService.LevelsCount);
-
-            //LevelBalance balance = _balanceService.GetLevelBalance(realLevel);
-            
-            _loadingScreen.Open();
-            _loadingScreen.SetProgress(0.04f);
+            _loadingScreenController.Open();
             
             SceneManager.LoadScene($"Empty");
             
