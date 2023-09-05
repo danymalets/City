@@ -38,11 +38,11 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player.NavToCar
                 IEnterPoint enterPoint = carPlaceData.Car.GetAspect<CarEnterPointsAspect>()
                     .GetEnterPoint(carPlaceData.Place);
 
+                playerEntity.Remove<OnNavToCar>();
+                
                 if (DVector3.SqrDistance(playerEntity.GetRef<ITransform>().Position,
                         enterPoint.Position) <= sqrDistance)
                 {
-                    playerEntity.Add<NavPathCompletedEvent>();
-                    
                     playerEntity.Set(new NavToCarCompletedEvent
                     {
                         PlaceData = carPlaceData

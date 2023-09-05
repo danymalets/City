@@ -29,7 +29,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
             {
                 ref CarPlaceData carPlaceData = ref playerEntity.Get<PlayerEnterCarEvent>().CarPlaceData;
                 
-                playerEntity.GetAspect<PlayerEnterCarAspect>().StartEnterCar(carPlaceData);
+                playerEntity.GetAspect<PlayerEnterCarAspect>().StartEnterCarWithAnimation(carPlaceData);
             }
         }
     }

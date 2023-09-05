@@ -33,33 +33,34 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
         {
             foreach (Entity playerEntity in _filter)
             {
-                Debug.Log($"player wants");
-
                 CarPlaceData carPlaceData = playerEntity.Get<PlayerWantsEnterCarEvent>().CarPlaceData;
 
-                IEnterPoint enterPoint = carPlaceData.Car.GetRef<IEnterPoint[]>()[carPlaceData.Place];
+                // IEnterPoint enterPoint = carPlaceData.Car.GetRef<IEnterPoint[]>()[carPlaceData.Place];
+                // if (_navigationService.TryGetPlayerPath(
+                //         playerEntity.GetRef<IRigidbody>().Position,
+                //         enterPoint.Position, out Vector3[] path))
+                // {
+                //     playerEntity.Set(new PLayerOnNavPath
+                //     {
+                //         Path = path,
+                //         LastCompetedPoint = 0,
+                //     });
+                //
+                //     playerEntity.Set(new OnNavToCar
+                //     {
+                //         PlaceData = carPlaceData
+                //     });
+                //     // Debug.Log($"path start:{Vector3.Distance(playerEntity.GetRef<IRigidbody>().Position, path[0])} " +
+                //     //           $"end:{Vector3.Distance(path[^1], enterPoint.Position)}");
+                // }
+                // else
+                // {
+                //     playerEntity.Add<OnNavToCarFailedEvent>();
+                // }
 
-                if (_navigationService.TryGetPlayerPath(
-                        playerEntity.GetRef<IRigidbody>().Position,
-                        enterPoint.Position, out Vector3[] path))
-                {
-                    playerEntity.Set(new PLayerOnNavPath
-                    {
-                        Path = path,
-                        LastCompetedPoint = 0,
-                    });
-
-                    playerEntity.Set(new OnNavToCar
-                    {
-                        PlaceData = carPlaceData
-                    });
-                    // Debug.Log($"path start:{Vector3.Distance(playerEntity.GetRef<IRigidbody>().Position, path[0])} " +
-                    //           $"end:{Vector3.Distance(path[^1], enterPoint.Position)}");
-                }
-                else
-                {
-                    playerEntity.Add<OnNavToCarFailedEvent>();
-                }
+                PlayerEnterCarAspect playerEnterCarAspect = playerEntity.GetAspect<PlayerEnterCarAspect>();
+                
+                playerEnterCarAspect.ForceEnterCar(carPlaceData);
             }
         }
     }

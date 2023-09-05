@@ -24,7 +24,7 @@ namespace Sources.App.Core.Ecs.Aspects
         public readonly void ForceEnterCar(CarPlaceData carPlaceData) =>
             StartEnterCar(carPlaceData, true);
         
-        public readonly void StartEnterCar(CarPlaceData carPlaceData) =>
+        public readonly void StartEnterCarWithAnimation(CarPlaceData carPlaceData) =>
             StartEnterCar(carPlaceData, false);
 
         private readonly void StartEnterCar(CarPlaceData carPlaceData, bool isForceEndEnter)

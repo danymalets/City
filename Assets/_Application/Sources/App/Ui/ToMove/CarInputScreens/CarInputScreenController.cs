@@ -15,7 +15,7 @@ namespace Sources.App.Ui.Screens.Input
         private readonly CarInputScreen _carInputScreen;
 
         public CarInputScreenController(CarInputScreen carInputScreen) 
-            : base(carInputScreen, null)
+            : base(carInputScreen, new ToogleAnimator(carInputScreen))
         {
             _carInputScreen = carInputScreen;
         }
@@ -25,6 +25,15 @@ namespace Sources.App.Ui.Screens.Input
             DWorld world = DiContainer.Resolve<DWorld>();
             _userEntity = world.GetSingleton<UserTag>();
             _coroutineContext.RunEachFrame(Update, true);
+            
+            _carInputScreen.ExitCarButton.onClick.AddListener(OnExitCarButtonClicked);
+        }
+
+        protected override void OnClose()
+        {
+            _carInputScreen.ExitCarButton.onClick.RemoveListener(OnExitCarButtonClicked);
+
+            _userEntity = null;
         }
 
         private void OnExitCarButtonClicked()
@@ -46,7 +55,7 @@ namespace Sources.App.Ui.Screens.Input
         public int VerticalInput => 
             GetInputValue(_carInputScreen.UpButton,
                 _carInputScreen.DownButton);
-        
+
         public int HorizontalInput =>
             GetInputValue(_carInputScreen.RightButton, 
                 _carInputScreen.LeftButton);
@@ -56,11 +65,6 @@ namespace Sources.App.Ui.Screens.Input
 
         protected override void OnRefresh()
         {
-        }
-
-        protected override void OnClose()
-        {
-            _userEntity = null;
         }
     }
 }
