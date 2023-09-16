@@ -1,3 +1,4 @@
+using System;
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
@@ -5,6 +6,7 @@ using Sources.App.Ui.Controllers;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
+using Sources.Utils.Utils;
 using UnityEngine;
 
 namespace Sources.App.Ui.Screens.Input
@@ -14,8 +16,10 @@ namespace Sources.App.Ui.Screens.Input
         private Entity _userEntity;
         private readonly CarInputScreen _carInputScreen;
 
+        public event Action ExitCarButtonClicked;
+        
         public CarInputScreenController(CarInputScreen carInputScreen) 
-            : base(carInputScreen, new ToogleAnimator(carInputScreen))
+            : base(carInputScreen, new ToggleAnimator(carInputScreen))
         {
             _carInputScreen = carInputScreen;
         }
@@ -38,30 +42,22 @@ namespace Sources.App.Ui.Screens.Input
 
         private void OnExitCarButtonClicked()
         {
-            if (_userEntity.Has<PlayerFullyInCar>())
-                _userEntity.Add<PlayerStartExitCarRequest>();
+            ExitCarButtonClicked();
+
+            // if (_userEntity.Has<PlayerFullyInCar>())
+            //     _userEntity.Add<PlayerStartExitCarRequest>();
         }
 
         private void Update()
         {
-            if (UnityEngine.Input.GetKeyDown(KeyCode.R))
-            {
-                OnExitCarButtonClicked();
-            }
-
             _carInputScreen.ExitCarButton.interactable = _userEntity.Has<PlayerFullyInCar>();
         }
 
-        public int VerticalInput => 
-            GetInputValue(_carInputScreen.UpButton,
-                _carInputScreen.DownButton);
-
-        public int HorizontalInput =>
-            GetInputValue(_carInputScreen.RightButton, 
-                _carInputScreen.LeftButton);
-
-        private int GetInputValue(GameplayButton positiveButton, GameplayButton negativeButton) =>
-            positiveButton.PressValue - negativeButton.PressValue;
+        public Vector2 InputDirection => 
+            new (UiUtils.GetInputValue(_carInputScreen.UpButton,
+                _carInputScreen.DownButton),
+                UiUtils.GetInputValue(_carInputScreen.RightButton, 
+                _carInputScreen.LeftButton));
 
         protected override void OnRefresh()
         {

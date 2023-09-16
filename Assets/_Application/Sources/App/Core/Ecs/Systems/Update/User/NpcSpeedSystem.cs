@@ -27,9 +27,6 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
 
         protected override void OnUpdate(float deltaTime)
         {
-            if (_filter.NoOne())
-                return;
-
             foreach (Entity npcEntity in _filter)
             {
                 ref RotationSpeed rotationSpeed = ref npcEntity.Get<RotationSpeed>();

@@ -10,6 +10,7 @@ using Sources.App.Core.Ecs.Systems.Update.Camera;
 using Sources.App.Core.Ecs.Systems.Update.Car;
 using Sources.App.Core.Ecs.Systems.Update.Common;
 using Sources.App.Core.Ecs.Systems.Update.Generation;
+using Sources.App.Core.Ecs.Systems.Update.Input;
 using Sources.App.Core.Ecs.Systems.Update.Npc;
 using Sources.App.Core.Ecs.Systems.Update.NpcCar;
 using Sources.App.Core.Ecs.Systems.Update.NpcPathes;
@@ -19,6 +20,7 @@ using Sources.App.Core.Ecs.Systems.Update.Props;
 using Sources.App.Core.Ecs.Systems.Update.PseudoEditor;
 using Sources.App.Core.Ecs.Systems.Update.User;
 using Sources.App.Core.Services;
+using Sources.App.Core.Services.Input;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils;
 using Sources.Utils.MorpehWrapper.MorpehUtils.CustomSystems;
@@ -53,8 +55,7 @@ namespace Sources.App.Core.Ecs
             _diBuilder.Register<PropsFactory, IPropsFactory>();
             _diBuilder.Register<SimulationAreasFactory, ISimulationAreasFactory>();
             
-            _diBuilder.Register<CarInputService, ICarInputService>();
-            _diBuilder.Register<PlayerInputService, IPlayerInputService>();
+            _diBuilder.Register<GameplayInputService, IGameplayInputService, IGameplayInputAccessService>();
             
             _diBuilder.Register<PlayersDespawner, IPlayersDespawner>();
             _diBuilder.Register<CarsDespawner, ICarsDespawner>();
@@ -218,6 +219,8 @@ namespace Sources.App.Core.Ecs
         private void AddUpdateSystems()
         {
             _world.AddUpdateSystem<UpdateAwaitersProcessSystem>();
+            
+            _world.AddUpdateSystem<GameplayInputUpdateSystem>();
 
             // user
             _world.AddUpdateSystem<NpcSpeedSystem>();
@@ -269,6 +272,8 @@ namespace Sources.App.Core.Ecs
             _world.AddUpdateSystem<NpcForwardColliderGizmosSystem>();
             _world.AddUpdateSystem<CarForwardColliderGizmosSystem>();
 #endif
+            
+            _world.AddUpdateSystem<GameplayInputResetSystem>();
         }
 
         private void AddDisposers()

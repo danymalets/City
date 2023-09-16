@@ -7,7 +7,7 @@ namespace Sources.App.Ui.Screens.Map
         private readonly MapScreen _mapScreen;
 
         public MapScreenController(MapScreen mapScreen)
-            : base(mapScreen, new ToogleAnimator(mapScreen))
+            : base(mapScreen, new ToggleAnimator(mapScreen))
         {
             _mapScreen = mapScreen;
         }

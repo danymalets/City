@@ -5,8 +5,9 @@ namespace Sources.Services.ApplicationInputServices
 {
     public interface IApplicationInputService : IService
     {
-        int VerticalInput { get; }
-        int HorizontalInput { get; }
+        float VerticalInput { get; }
+        float HorizontalInput { get; }
+        Vector2 DirectionInput { get; }
         bool GetKeyDown(KeyCode escape);
     }
 }

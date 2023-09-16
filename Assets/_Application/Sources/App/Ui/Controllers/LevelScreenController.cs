@@ -11,7 +11,7 @@ namespace Sources.App.Ui.Controllers
         public event Action ExitButtonClicked;
 
         public LevelScreenController(LevelScreen levelScreen) 
-            : base(levelScreen, new ToogleAnimator(levelScreen))
+            : base(levelScreen, new ToggleAnimator(levelScreen))
         {
             _levelScreen = levelScreen;
         }

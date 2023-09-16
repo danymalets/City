@@ -4,8 +4,9 @@ namespace Sources.Services.ApplicationInputServices
 {
     public class ApplicationInputService : IApplicationInputService
     {
-        public int VerticalInput => (int)Input.GetAxisRaw("Vertical");
-        public int HorizontalInput => (int)Input.GetAxisRaw("Horizontal");
+        public float VerticalInput => Input.GetAxisRaw("Vertical");
+        public float HorizontalInput => Input.GetAxisRaw("Horizontal");
+        public Vector2 DirectionInput => new(HorizontalInput, VerticalInput);
         public bool GetKeyDown(KeyCode keyCode) => Input.GetKeyDown(keyCode);
     }
 }

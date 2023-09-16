@@ -3,9 +3,9 @@ using Sources.Services.UiServices.WindowBase.Screens;
 
 namespace Sources.App.Ui.Controllers
 {
-    public class ToogleAnimator : ScreenAnimator
+    public class ToggleAnimator : ScreenAnimator
     {
-        public ToogleAnimator(GameScreen gameScreen) : base(gameScreen)
+        public ToggleAnimator(GameScreen gameScreen) : base(gameScreen)
         {
         }
 

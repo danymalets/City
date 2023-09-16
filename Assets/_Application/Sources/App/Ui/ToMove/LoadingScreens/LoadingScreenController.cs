@@ -9,7 +9,7 @@ namespace Sources.App.Ui.ToMove.LoadingScreens
         private readonly LoadingScreen _loadingScreen;
 
         public LoadingScreenController(LoadingScreen loadingScreen) 
-            : base(loadingScreen, new ToogleAnimator(loadingScreen))
+            : base(loadingScreen, new ToggleAnimator(loadingScreen))
         {
             _loadingScreen = loadingScreen;
         }

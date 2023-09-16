@@ -17,7 +17,8 @@
         "GUID:6055be8ebefd69e48b49212b09b47b2f",
         "GUID:3377deebfb0acde45876d12c6e3d27cc",
         "GUID:e48f73608491470da62cc9bd1fe0b2ce",
-        "GUID:547b4f48a80d94fefa91e64d48db2fe5"
+        "GUID:547b4f48a80d94fefa91e64d48db2fe5",
+        "Sources.Utils.UiUtils"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
