@@ -2,8 +2,8 @@
     "name": "Sources.Services.PhysicsServices",
     "rootNamespace": "",
     "references": [
-        "GUID:1624372bf385b44d8b77b551bbc1a197",
-        "GUID:d265b201ff1f3441d8b0796de9a27b0c"
+        "Sources.Utils.CommonUtils",
+        "Sources.Utils.Di"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

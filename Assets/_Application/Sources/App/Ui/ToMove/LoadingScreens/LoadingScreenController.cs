@@ -1,4 +1,5 @@
 using Sources.App.Ui.Controllers;
+using Sources.App.Ui.Controllers.Animators;
 using Sources.App.Ui.Screens;
 using Sources.Services.UiServices.WindowBase.Screens;
 

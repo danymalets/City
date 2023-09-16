@@ -1,5 +1,6 @@
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Player;
+using Sources.App.Core.Ecs.Components.Player.InCar;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;

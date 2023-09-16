@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using Scellecs.Morpeh;
-using Sources.App.Core.Ecs.Components.NpcPathes;
+using Sources.App.Core.Ecs.Components.Player.Npc.NpcPathes;
 using Sources.App.Core.Ecs.Components.SimulationAreas;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Services;
+using Sources.App.Core.Services.Simulation;
 using Sources.App.Data;
 using Sources.App.Data.Constants;
 using Sources.App.Data.Points;

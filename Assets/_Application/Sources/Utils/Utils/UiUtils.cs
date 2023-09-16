@@ -1,4 +1,4 @@
-namespace Sources.Utils.Utils
+namespace _Application.Sources.Utils.Utils
 {
     public static class UiUtils
     {

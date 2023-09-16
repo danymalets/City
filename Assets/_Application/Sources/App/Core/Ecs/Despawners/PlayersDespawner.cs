@@ -1,5 +1,7 @@
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Aspects;
+using Sources.App.Core.Ecs.Aspects.Common;
+using Sources.App.Core.Ecs.Aspects.Player;
 using Sources.App.Core.Ecs.Components.Car;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;

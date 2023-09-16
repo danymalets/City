@@ -1,13 +1,8 @@
-using Sources.Services.ApplicationServices;
-using Sources.Services.CoroutineRunnerServices;
-using Sources.Services.FpsServices;
-using Sources.Services.TimeServices;
 using Sources.Services.UiServices.WindowBase.Screens;
-using Sources.Utils.Di;
 using TMPro;
 using UnityEngine;
 
-namespace Sources.App.Ui.Overlays
+namespace Sources.App.Ui.ToMove.PerformanceScreens
 {
     public class PerformanceScreen : GameScreen
     {

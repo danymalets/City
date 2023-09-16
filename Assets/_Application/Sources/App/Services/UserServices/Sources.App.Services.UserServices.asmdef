@@ -2,11 +2,11 @@
     "name": "Sources.App.Services.UserServices",
     "rootNamespace": "",
     "references": [
-        "GUID:d265b201ff1f3441d8b0796de9a27b0c",
-        "GUID:1624372bf385b44d8b77b551bbc1a197",
-        "GUID:065033b702764c8c875341b672b656a1",
-        "GUID:5a7aa0571b4547daab86b95f0ab95f79",
-        "GUID:ed5073641bfc74db7937853ff77bb625"
+        "Sources.Utils.Di",
+        "Sources.Utils.CommonUtils",
+        "Sources.Services.JsonSerializerServices",
+        "Sources.Services.PlayerPreferencesServices",
+        "Sources.Services.ApplicationServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

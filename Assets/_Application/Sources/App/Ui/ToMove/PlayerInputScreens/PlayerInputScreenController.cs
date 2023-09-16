@@ -1,14 +1,9 @@
 using System;
-using Scellecs.Morpeh;
-using Sources.App.Core.Ecs.Components.Player;
-using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Ui.Controllers;
-using Sources.Utils.Di;
-using Sources.Utils.MorpehWrapper.MorpehUtils;
-using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
+using Sources.App.Ui.Controllers.Animators;
 using UnityEngine;
 
-namespace Sources.App.Ui.Screens.Input
+namespace Sources.App.Ui.ToMove.PlayerInputScreens
 {
     public class PlayerInputScreenController : ScreenController
     {

@@ -1,9 +1,8 @@
 using DG.Tweening;
 using Sources.Services.UiServices.WindowBase.Screens;
 using Sources.Utils.CommonUtils.Extensions;
-using UnityEngine;
 
-namespace Sources.App.Ui.Controllers
+namespace Sources.App.Ui.Controllers.Animators
 {
     public abstract class ScreenAnimator
     {

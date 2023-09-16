@@ -1,5 +1,6 @@
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Aspects;
+using Sources.App.Core.Ecs.Aspects.Car;
 using Sources.App.Core.Ecs.Components.NavPathes;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Data.Cars;

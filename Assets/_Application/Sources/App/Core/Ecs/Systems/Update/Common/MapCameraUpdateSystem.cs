@@ -1,5 +1,6 @@
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Aspects;
+using Sources.App.Core.Ecs.Aspects.Player;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
 using Sources.Utils.CommonUtils.Extensions;

@@ -2,14 +2,14 @@
     "name": "Sources.Utils.UiUtils",
     "rootNamespace": "",
     "references": [
-        "GUID:3377deebfb0acde45876d12c6e3d27cc",
-        "GUID:1624372bf385b44d8b77b551bbc1a197",
-        "GUID:d265b201ff1f3441d8b0796de9a27b0c",
-        "GUID:d62be4e906c349b4830104cd747da3a6",
-        "GUID:2b9bb9f4ec804583bf5710b97a122825",
-        "GUID:704bc33e452444ac96cc254d2a5f6508",
-        "GUID:f47ae6efe34b4939a8988e624e187114",
-        "GUID:284026d363b9462bb87f0810a0afb063"
+        "Scellecs.Morpeh",
+        "Sources.Utils.CommonUtils",
+        "Sources.Utils.Di",
+        "Sources.Services.PoolServices",
+        "Sources.Services.CoroutineRunnerServices",
+        "Sources.Services.TimeServices",
+        "Sources.Services.FpsServices",
+        "Sources.Services.GizmosServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

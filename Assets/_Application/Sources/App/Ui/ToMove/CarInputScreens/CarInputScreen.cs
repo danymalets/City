@@ -1,9 +1,9 @@
+using _Application.Sources.Utils.Utils;
 using Sources.Services.UiServices.WindowBase.Screens;
-using Sources.Utils.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Sources.App.Ui.Screens.Input
+namespace Sources.App.Ui.ToMove.CarInputScreens
 {
     public class CarInputScreen : GameScreen
     {

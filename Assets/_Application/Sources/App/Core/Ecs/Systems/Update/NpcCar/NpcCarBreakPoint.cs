@@ -1,6 +1,7 @@
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Car;
 using Sources.App.Core.Ecs.Components.Player;
+using Sources.App.Core.Ecs.Components.Player.InCar;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Data.Cars;
 using Sources.Services.PhysicsServices;

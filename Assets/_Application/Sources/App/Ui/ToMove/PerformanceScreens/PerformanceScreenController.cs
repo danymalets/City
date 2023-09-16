@@ -1,12 +1,12 @@
 using Sources.App.Ui.Controllers;
+using Sources.App.Ui.Controllers.Animators;
 using Sources.Services.ApplicationServices;
-using Sources.Services.CoroutineRunnerServices;
 using Sources.Services.FpsServices;
 using Sources.Services.TimeServices;
 using Sources.Utils.Di;
 using UnityEngine;
 
-namespace Sources.App.Ui.Overlays
+namespace Sources.App.Ui.ToMove.PerformanceScreens
 {
     public class PerformanceScreenController : ScreenController
     {

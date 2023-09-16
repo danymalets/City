@@ -1,8 +1,9 @@
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Car;
-using Sources.App.Core.Ecs.Components.Npc;
-using Sources.App.Core.Ecs.Components.Npc.NpcCar;
 using Sources.App.Core.Ecs.Components.Player;
+using Sources.App.Core.Ecs.Components.Player.InCar;
+using Sources.App.Core.Ecs.Components.Player.Npc;
+using Sources.App.Core.Ecs.Components.Player.Npc.NpcCar;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Data.Cars;
 using Sources.App.Data.Points;

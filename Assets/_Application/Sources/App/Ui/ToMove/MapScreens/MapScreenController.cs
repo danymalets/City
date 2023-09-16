@@ -1,6 +1,7 @@
 using Sources.App.Ui.Controllers;
+using Sources.App.Ui.Controllers.Animators;
 
-namespace Sources.App.Ui.Screens.Map
+namespace Sources.App.Ui.ToMove.MapScreens
 {
     public class MapScreenController : ScreenController
     {

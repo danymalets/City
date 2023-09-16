@@ -1,6 +1,7 @@
 using Scellecs.Morpeh;
-using Sources.App.Core.Ecs.Components.Npc;
+using Sources.App.Core.Ecs.Components.Common;
 using Sources.App.Core.Ecs.Components.Player;
+using Sources.App.Core.Ecs.Components.Player.Npc;
 using Sources.App.Core.Ecs.Factories;
 using Sources.App.Data.MonoEntities;
 using Sources.Utils.Di;

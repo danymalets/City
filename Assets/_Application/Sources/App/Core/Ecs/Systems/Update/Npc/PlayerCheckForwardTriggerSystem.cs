@@ -1,8 +1,8 @@
 using System.Linq;
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Car;
-using Sources.App.Core.Ecs.Components.Npc;
 using Sources.App.Core.Ecs.Components.Player;
+using Sources.App.Core.Ecs.Components.Player.Npc;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Data.Constants;
 using Sources.Services.PhysicsServices;

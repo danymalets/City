@@ -1,12 +1,9 @@
-using System;
-using Sources.App.Services.AudioServices;
+using Sources.App.Ui.Screens.Level;
 using Sources.Services.UiServices.WindowBase.Screens;
-using Sources.Utils.Di;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Sources.App.Ui.Screens.Level
+namespace Sources.App.Ui.ToMove.LevelScreens
 {
     public class LevelScreen : GameScreen
     {

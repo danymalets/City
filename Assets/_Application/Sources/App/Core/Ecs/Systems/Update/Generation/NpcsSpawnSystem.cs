@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using Scellecs.Morpeh;
-using Sources.App.Core.Ecs.Components.NpcPathes;
 using Sources.App.Core.Ecs.Components.Player;
+using Sources.App.Core.Ecs.Components.Player.InCar;
+using Sources.App.Core.Ecs.Components.Player.Npc.NpcPathes;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Ecs.Components.WorldStatus;
 using Sources.App.Core.Ecs.Factories;
 using Sources.App.Core.Services;
+using Sources.App.Core.Services.Simulation;
 using Sources.App.Data;
 using Sources.App.Data.MonoEntities;
 using Sources.App.Data.Points;

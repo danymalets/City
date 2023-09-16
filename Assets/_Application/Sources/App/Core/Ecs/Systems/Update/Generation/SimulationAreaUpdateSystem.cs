@@ -1,6 +1,5 @@
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Aspects;
-using Sources.App.Core.Ecs.Components.Npc;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.SimulationAreas;
 using Sources.App.Core.Ecs.Components.SimulationCamera;
