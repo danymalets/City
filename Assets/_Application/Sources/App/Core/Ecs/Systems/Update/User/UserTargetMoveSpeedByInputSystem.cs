@@ -30,16 +30,14 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
 
         protected override void OnUpdate(float deltaTime)
         {
-            if (_filter.NoOne())
-                return;
+            foreach (Entity userEntity in _filter)
+            {
+                UserPlayerInput userPlayerInput = userEntity.Get<UserPlayerInput>();
+                ref PlayerTargetSpeed playerTargetSpeed = ref userEntity.Get<PlayerTargetSpeed>();
 
-            Entity userEntity = _filter.GetSingleton();
-
-            UserPlayerInput userPlayerInput = userEntity.Get<UserPlayerInput>();
-            ref PlayerTargetSpeed playerTargetSpeed = ref userEntity.Get<PlayerTargetSpeed>();
-            
-            playerTargetSpeed.Value = _playersBalance.UserMaxSpeed * userPlayerInput.MoveInput.magnitude * 
-                                      Vector2.Angle(Vector2.down, userPlayerInput.MoveInput) / 180f;
+                playerTargetSpeed.Value = _playersBalance.UserMaxSpeed * userPlayerInput.MoveInput.magnitude *
+                    Vector2.Angle(Vector2.down, userPlayerInput.MoveInput) / 180f;
+            }
         }
     }
 }

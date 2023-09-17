@@ -231,8 +231,7 @@ namespace Sources.App.Core.Ecs
             // user
             _world.AddUpdateSystem<NpcSpeedSystem>();
             
-            _world.AddUpdateSystem<UserWithoutCarInputReceiverSystem>();
-            _world.AddUpdateSystem<UserWithCarInputReceiverSystem>();
+            _world.AddUpdateSystem<GameplayInputHandlerSystem>();
             
             _world.AddUpdateSystem<UserTargetMoveSpeedByInputSystem>();
 

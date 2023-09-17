@@ -34,26 +34,24 @@ namespace Sources.App.Core.Ecs.Systems.Update.Camera
 
         protected override void OnUpdate(float deltaTime)
         {
-            if (_userFilter.NoOne())
-                return;
-            
-            Entity cameraEntity = _cameraFilter.GetSingleton();
-            Entity userEntity = _userFilter.GetSingleton();
+            if (_cameraFilter.TryGetSingle(out Entity cameraEntity) &&
+                _userFilter.TryGetSingle(out Entity userEntity))
+            {
+                ITransform cameraTransform = cameraEntity.GetRef<ITransform>();
+                float cameraAngle = cameraEntity.Get<CameraYAngle>().Value;
 
-            ITransform cameraTransform = cameraEntity.GetRef<ITransform>();
-            float cameraAngle = cameraEntity.Get<CameraYAngle>().Value;
-            
-            float cameraSmoothHeight = cameraEntity.Get<CameraSmoothHeight>().Value;
-            float cameraSmoothBackDistance = cameraEntity.Get<CameraSmoothBackDistance>().Value;
-            float smoothFollowY = cameraEntity.Get<CameraSmoothFollowY>().Value;
+                float cameraSmoothHeight = cameraEntity.Get<CameraSmoothHeight>().Value;
+                float cameraSmoothBackDistance = cameraEntity.Get<CameraSmoothBackDistance>().Value;
+                float smoothFollowY = cameraEntity.Get<CameraSmoothFollowY>().Value;
 
-            Vector3 userPosition = userEntity.GetAspect<PlayerPointAspect>().GetPosition();
-            
-            Vector3 targetPosition = userPosition + Quaternion.AngleAxis(cameraAngle, Vector3.up) *
-                Vector3.back * cameraSmoothBackDistance + (smoothFollowY + cameraSmoothHeight) * Vector3.up;
+                Vector3 userPosition = userEntity.GetAspect<PlayerPointAspect>().GetPosition();
 
-            cameraTransform.Position = Vector3.MoveTowards(cameraTransform.Position, targetPosition,
-                _cameraBalance.CameraSpeed * deltaTime);
+                Vector3 targetPosition = userPosition + Quaternion.AngleAxis(cameraAngle, Vector3.up) *
+                    Vector3.back * cameraSmoothBackDistance + (smoothFollowY + cameraSmoothHeight) * Vector3.up;
+
+                cameraTransform.Position = Vector3.MoveTowards(cameraTransform.Position, targetPosition,
+                    _cameraBalance.CameraSpeed * deltaTime);
+            }
         }
     }
 }

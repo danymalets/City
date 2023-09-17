@@ -38,38 +38,36 @@ namespace Sources.App.Core.Ecs.Systems.Update.Camera
 
         protected override void OnUpdate(float deltaTime)
         {
-            if (_userFilter.NoOne())
-                return;
-
-            Entity cameraEntity = _cameraFilter.GetSingleton();
-            Entity userEntity = _userFilter.GetSingleton();
-
-            ITransform cameraTransform = cameraEntity.GetRef<ITransform>();
-            ref CameraYAngle cameraYAngle = ref cameraEntity.Get<CameraYAngle>();
-
-            Quaternion userRotation = userEntity.GetAspect<PlayerPointAspect>().GetRotation();
-
-            float targetAngle = userRotation.eulerAngles.y;
-
-            float signedDistance = DMath.SignedNearestAngle(targetAngle, cameraYAngle.Value);
-
-            float distance = Mathf.Abs(signedDistance);
-            float speed = (distance - _cameraBalance.DeadAngle) * _cameraBalance.CameraRotationCoeff;
-
-            if (signedDistance > _cameraBalance.DeadAngle)
+            if (_cameraFilter.TryGetSingle(out Entity cameraEntity) &&
+                _userFilter.TryGetSingle(out Entity userEntity))
             {
-                cameraYAngle.Value = Mathf.MoveTowardsAngle(cameraYAngle.Value, 
-                    targetAngle + _cameraBalance.DeadAngle,
-                    speed * deltaTime);
+                ITransform cameraTransform = cameraEntity.GetRef<ITransform>();
+                ref CameraYAngle cameraYAngle = ref cameraEntity.Get<CameraYAngle>();
+
+                Quaternion userRotation = userEntity.GetAspect<PlayerPointAspect>().GetRotation();
+
+                float targetAngle = userRotation.eulerAngles.y;
+
+                float signedDistance = DMath.SignedNearestAngle(targetAngle, cameraYAngle.Value);
+
+                float distance = Mathf.Abs(signedDistance);
+                float speed = (distance - _cameraBalance.DeadAngle) * _cameraBalance.CameraRotationCoeff;
+
+                if (signedDistance > _cameraBalance.DeadAngle)
+                {
+                    cameraYAngle.Value = Mathf.MoveTowardsAngle(cameraYAngle.Value,
+                        targetAngle + _cameraBalance.DeadAngle,
+                        speed * deltaTime);
+                }
+                else if (signedDistance < -_cameraBalance.DeadAngle)
+                {
+                    cameraYAngle.Value = Mathf.MoveTowardsAngle(cameraYAngle.Value,
+                        targetAngle - _cameraBalance.DeadAngle,
+                        speed * deltaTime);
+                }
+
+                cameraTransform.Rotation = cameraTransform.Rotation.WithEulerY(cameraYAngle.Value);
             }
-            else if (signedDistance < -_cameraBalance.DeadAngle)
-            {
-                cameraYAngle.Value = Mathf.MoveTowardsAngle(cameraYAngle.Value, 
-                    targetAngle - _cameraBalance.DeadAngle,
-                    speed * deltaTime);
-            }
-            
-            cameraTransform.Rotation = cameraTransform.Rotation.WithEulerY(cameraYAngle.Value);
         }
     }
 }

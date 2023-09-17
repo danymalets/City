@@ -26,14 +26,12 @@ namespace Sources.App.Core.Ecs.Systems.Update.Camera
 
         protected override void OnUpdate(float deltaTime)
         {
-            if (_cameraFilter.NoOne())
-                return;
-            
-            Entity cameraEntity = _cameraFilter.GetSingleton();
+            if (_cameraFilter.TryGetSingle(out Entity cameraEntity))
+            {
+                ICamera cameraData = cameraEntity.GetRef<ICamera>();
 
-            ICamera cameraData = cameraEntity.GetRef<ICamera>();
-
-            cameraData.FieldOfView = _cameraBalance.CameraFieldOfView;
+                cameraData.FieldOfView = _cameraBalance.CameraFieldOfView;
+            }
         }
     }
 }

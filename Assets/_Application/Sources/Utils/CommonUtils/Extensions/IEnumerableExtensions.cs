@@ -97,6 +97,23 @@ namespace Sources.Utils.CommonUtils.Extensions
             !enumerable.Any();
 
         public static bool NoOne<T>(this IEnumerable<T> enumerable, Func<T, bool> predicate) =>
-            enumerable ==null || !enumerable.Any(predicate);
+            enumerable == null || !enumerable.Any(predicate);
+
+        public static bool TryGetSingle<T>(this IEnumerable<T> enumerable, out T value)
+        {
+            value = default;
+            bool wasAns = false;
+            foreach (var tmp in enumerable)
+            {
+                if (wasAns)
+                {
+                    return false;
+                }
+                    
+                value = tmp;
+                wasAns = true;
+            }
+            return wasAns;
+        }
     }
 }

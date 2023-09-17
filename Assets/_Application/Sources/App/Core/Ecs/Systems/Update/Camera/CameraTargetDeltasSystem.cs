@@ -30,20 +30,19 @@ namespace Sources.App.Core.Ecs.Systems.Update.Camera
 
         protected override void OnUpdate(float deltaTime)
         {
-            if (_cameraFilter.NoOne())
-                return;
-            
-            Entity cameraEntity = _cameraFilter.GetSingleton();
-            Entity userEntity = _userFilter.GetSingleton();
+            if (_cameraFilter.TryGetSingle(out Entity cameraEntity) &&
+                _userFilter.TryGetSingle(out Entity userEntity))
+            {
+                ref var cameraTargetHeight = ref cameraEntity.Get<CameraTargetHeight>();
+                ref var cameraTargetBackDistance = ref cameraEntity.Get<CameraTargetBackDistance>();
 
-            ref var cameraTargetHeight = ref cameraEntity.Get<CameraTargetHeight>();
-            ref var cameraTargetBackDistance = ref cameraEntity.Get<CameraTargetBackDistance>();
+                cameraTargetHeight.Value =
+                    userEntity.Has<PlayerInCar>() ? _cameraBalance.CameraCarHeight : _cameraBalance.CameraPlayerHeight;
 
-            cameraTargetHeight.Value = userEntity.Has<PlayerInCar>() ? 
-                _cameraBalance.CameraCarHeight : _cameraBalance.CameraPlayerHeight;
-            
-            cameraTargetBackDistance.Value = userEntity.Has<PlayerInCar>() ? 
-                _cameraBalance.CameraCarBackDistance : _cameraBalance.CameraPlayerBackDistance;
+                cameraTargetBackDistance.Value = userEntity.Has<PlayerInCar>()
+                    ? _cameraBalance.CameraCarBackDistance
+                    : _cameraBalance.CameraPlayerBackDistance;
+            }
         }
     }
 }

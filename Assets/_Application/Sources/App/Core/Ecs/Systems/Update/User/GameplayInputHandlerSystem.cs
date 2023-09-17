@@ -12,32 +12,34 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.User
 {
-    public class UserWithCarInputReceiverSystem : DUpdateSystem
+    public class GameplayInputHandlerSystem : DUpdateSystem
     {
         private Filter _filter;
         private readonly IGameplayInputAccessService _gameplayInputAccessService;
 
-        public UserWithCarInputReceiverSystem()
+        public GameplayInputHandlerSystem()
         {
             _gameplayInputAccessService = DiContainer.Resolve<IGameplayInputAccessService>();
         }
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<UserTag, PlayerInputInCarOn>();
+            _filter = _world.Filter<UserTag>();
         }
 
         protected override void OnUpdate(float deltaTime)
         {
-            if (_filter.NoOne())
-                return;
+            foreach (Entity userEntity in _filter)
+            {
+                ref UserCarInput userCarInput = ref userEntity.Get<UserCarInput>();
 
-            Entity userEntity = _filter.GetSingleton();
+                ref UserPlayerInput userPlayerInput = ref userEntity.Get<UserPlayerInput>();
 
-            ref UserCarInput userCarInput = ref userEntity.Get<UserCarInput>();
+                userPlayerInput.MoveInput = _gameplayInputAccessService.GameplayInputData.PlayerMoveDirection;
 
-            userCarInput.Vertical = _gameplayInputAccessService.GameplayInputData.CarMoveDirection.y;
-            userCarInput.Horizontal = _gameplayInputAccessService.GameplayInputData.CarMoveDirection.x;
+                userCarInput.Vertical = _gameplayInputAccessService.GameplayInputData.CarMoveDirection.y;
+                userCarInput.Horizontal = _gameplayInputAccessService.GameplayInputData.CarMoveDirection.x;
+            }
         }
     }
 }

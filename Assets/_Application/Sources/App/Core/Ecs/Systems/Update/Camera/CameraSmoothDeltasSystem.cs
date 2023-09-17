@@ -27,24 +27,22 @@ namespace Sources.App.Core.Ecs.Systems.Update.Camera
 
         protected override void OnUpdate(float deltaTime)
         {
-            if (_cameraFilter.NoOne())
-                return;
-            
-            Entity cameraEntity = _cameraFilter.GetSingleton();
+            if (_cameraFilter.TryGetSingle(out Entity cameraEntity))
+            {
+                float cameraTargetHeight = cameraEntity.Get<CameraTargetHeight>().Value;
+                float cameraTargetBackDistance = cameraEntity.Get<CameraTargetBackDistance>().Value;
 
-            float cameraTargetHeight = cameraEntity.Get<CameraTargetHeight>().Value;
-            float cameraTargetBackDistance = cameraEntity.Get<CameraTargetBackDistance>().Value;
-            
-            ref var cameraSmoothHeight = ref cameraEntity.Get<CameraSmoothHeight>();
-            ref var cameraSmoothBackDistance = ref cameraEntity.Get<CameraSmoothBackDistance>();
+                ref var cameraSmoothHeight = ref cameraEntity.Get<CameraSmoothHeight>();
+                ref var cameraSmoothBackDistance = ref cameraEntity.Get<CameraSmoothBackDistance>();
 
-            Vector2 newDelta = Vector2.MoveTowards(new(cameraSmoothHeight.Value, 
-                    cameraSmoothBackDistance.Value),
-                new Vector2(cameraTargetHeight, cameraTargetBackDistance),
-                _cameraBalance.CameraDeltaSpeed * deltaTime);
-            
-            cameraSmoothHeight.Value = newDelta.x;
-            cameraSmoothBackDistance.Value = newDelta.y;
+                Vector2 newDelta = Vector2.MoveTowards(new Vector2(cameraSmoothHeight.Value,
+                        cameraSmoothBackDistance.Value),
+                    new Vector2(cameraTargetHeight, cameraTargetBackDistance),
+                    _cameraBalance.CameraDeltaSpeed * deltaTime);
+
+                cameraSmoothHeight.Value = newDelta.x;
+                cameraSmoothBackDistance.Value = newDelta.y;
+            }
         }
     }
 }

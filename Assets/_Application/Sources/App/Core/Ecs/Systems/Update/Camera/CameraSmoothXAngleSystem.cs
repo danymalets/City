@@ -27,17 +27,15 @@ namespace Sources.App.Core.Ecs.Systems.Update.Camera
 
         protected override void OnUpdate(float deltaTime)
         {
-            if (_cameraFilter.NoOne())
-                return;
-            
-            Entity cameraEntity = _cameraFilter.GetSingleton();
+            if (_cameraFilter.TryGetSingle(out Entity cameraEntity))
+            {
+                float cameraTargetXAngle = cameraEntity.Get<CameraXTargetAngle>().Value;
 
-            float cameraTargetXAngle = cameraEntity.Get<CameraXTargetAngle>().Value;
-            
-            ref var cameraSmoothXAngle = ref cameraEntity.Get<CameraXSmoothAngle>();
-            
-            cameraSmoothXAngle.Value = Mathf.MoveTowardsAngle(cameraSmoothXAngle.Value, 
-                cameraTargetXAngle, _cameraBalance.CameraXAngleSpeed);
+                ref var cameraSmoothXAngle = ref cameraEntity.Get<CameraXSmoothAngle>();
+
+                cameraSmoothXAngle.Value = Mathf.MoveTowardsAngle(cameraSmoothXAngle.Value,
+                    cameraTargetXAngle, _cameraBalance.CameraXAngleSpeed);
+            }
         }
     }
 }

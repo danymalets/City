@@ -34,19 +34,17 @@ namespace Sources.App.Core.Ecs.Systems.Update.Camera
 
         protected override void OnUpdate(float deltaTime)
         {
-            if (_userFilter.NoOne())
-                return;
-            
-            Entity cameraEntity = _cameraFilter.GetSingleton();
-            Entity userEntity = _userFilter.GetSingleton();
-            
-            ref var followY = ref cameraEntity.Get<CameraSmoothFollowY>();
-            
-            Vector3 userPosition = userEntity.GetAspect<PlayerPointAspect>().GetPosition();
+            if (_cameraFilter.TryGetSingle(out Entity cameraEntity) &&
+                _userFilter.TryGetSingle(out Entity userEntity))
+            {
+                ref var followY = ref cameraEntity.Get<CameraSmoothFollowY>();
 
-            followY.Value = Mathf.MoveTowards(followY.Value, userPosition.y, 
-                DMath.Distance(followY.Value, userPosition.y) *
-                _cameraBalance.CameraFollowYSpeedCoeff * deltaTime);
+                Vector3 userPosition = userEntity.GetAspect<PlayerPointAspect>().GetPosition();
+
+                followY.Value = Mathf.MoveTowards(followY.Value, userPosition.y,
+                    DMath.Distance(followY.Value, userPosition.y) *
+                    _cameraBalance.CameraFollowYSpeedCoeff * deltaTime);
+            }
         }
     }
 }

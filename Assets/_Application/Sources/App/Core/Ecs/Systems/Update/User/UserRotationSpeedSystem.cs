@@ -34,26 +34,24 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
 
         protected override void OnUpdate(float deltaTime)
         {
-            if (_filter.NoOne())
-                return;
-
-            Entity userEntity = _filter.GetSingleton();
-
-            UserPlayerInput userPlayerInput = userEntity.Get<UserPlayerInput>();
-            ref RotationSpeed rotationSpeed = ref userEntity.Get<RotationSpeed>();
-
-            Vector3 input = new Vector3(userPlayerInput.MoveInput.x, 0, userPlayerInput.MoveInput.y);
-
-            if (userPlayerInput.MoveInput != Vector2.zero)
+            if (_filter.TryGetSingle(out Entity userEntity))
             {
-                float inputAngle = Vector3.SignedAngle(Vector3.forward, input, Vector3.up);
+                UserPlayerInput userPlayerInput = userEntity.Get<UserPlayerInput>();
+                ref RotationSpeed rotationSpeed = ref userEntity.Get<RotationSpeed>();
 
-                rotationSpeed.Value = Mathf.Min(Mathf.Abs(inputAngle), MaxInputAngle) *
-                    _playerBalance.UserMaxRotationSpeed / MaxInputAngle;
-            }
-            else
-            {
-                rotationSpeed.Value = 0;
+                Vector3 input = new Vector3(userPlayerInput.MoveInput.x, 0, userPlayerInput.MoveInput.y);
+
+                if (userPlayerInput.MoveInput != Vector2.zero)
+                {
+                    float inputAngle = Vector3.SignedAngle(Vector3.forward, input, Vector3.up);
+
+                    rotationSpeed.Value = Mathf.Min(Mathf.Abs(inputAngle), MaxInputAngle) *
+                        _playerBalance.UserMaxRotationSpeed / MaxInputAngle;
+                }
+                else
+                {
+                    rotationSpeed.Value = 0;
+                }
             }
         }
     }
