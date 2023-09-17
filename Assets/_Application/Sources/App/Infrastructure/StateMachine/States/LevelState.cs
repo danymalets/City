@@ -4,7 +4,9 @@ using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Screens.LevelScreens;
+using Sources.Services.AdsServices;
 using Sources.Utils.Di;
+using UnityEngine;
 
 namespace Sources.App.Infrastructure.StateMachine.States
 {
@@ -14,6 +16,7 @@ namespace Sources.App.Infrastructure.StateMachine.States
         
         private LevelScreenController _levelScreen;
         private IDiBuilder _diBuilder;
+        private IAdsService _adsService;
 
         public LevelState(IGameStateMachine stateMachine) : base(stateMachine)
         {
@@ -25,7 +28,9 @@ namespace Sources.App.Infrastructure.StateMachine.States
 
             _diBuilder.Register<ILevelContext>(levelData.LevelContext);
             _gameController = new GameController();
-            
+
+            _adsService = DiContainer.Resolve<IAdsService>();
+
             IUiControllersService uiControllers = DiContainer.Resolve<IUiControllersService>();
             
             _levelScreen = uiControllers.Get<LevelScreenController>();
@@ -51,7 +56,14 @@ namespace Sources.App.Infrastructure.StateMachine.States
         private void LevelScreen_OnExitButtonClicked()
         {
             FinishGame();
-            _stateMachine.Enter<MainUiState>();
+            _adsService.ShowRewarded(() =>
+            {
+                Debug.Log($"suc");
+                _stateMachine.Enter<LoadLevelState>();
+            }, () =>
+            {
+                Debug.Log($"fail");
+            });
         }
 
         private void LevelScreen_OnRestartButtonClicked()

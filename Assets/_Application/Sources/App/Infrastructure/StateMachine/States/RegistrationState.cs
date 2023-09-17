@@ -7,6 +7,7 @@ using Sources.App.Services.BalanceServices;
 using Sources.App.Services.QualityServices;
 using Sources.App.Services.UserServices;
 using Sources.App.Ui.Base;
+using Sources.Services.AdsServices;
 using Sources.Services.ApplicationInputServices;
 using Sources.Services.ApplicationServices;
 using Sources.Services.CoroutineRunnerServices;
@@ -61,6 +62,7 @@ namespace Sources.App.Infrastructure.StateMachine.States
             _diBuilder.Register<UiControllersService, IUiControllersService, IUiRefreshService, IUiCloseService>();
             _diBuilder.Register<IGizmosService>(monoServices.GizmosService);
             _diBuilder.Register<QualityService, IQualityAccessService, IQualityChangerService>();
+            _diBuilder.Register<AdsService, IAdsService>();
 
             gameObjectService.DontDestroyOnLoad(monoServices.gameObject);
 

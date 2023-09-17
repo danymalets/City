@@ -692,7 +692,7 @@ PlayerSettings:
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
     Android: ODIN_INSPECTOR;ODIN_INSPECTOR_3;MORPEH;FORCE_DEBUG;PERFORMANCE
-    Standalone: ODIN_INSPECTOR;ODIN_INSPECTOR_3
+    Standalone: ODIN_INSPECTOR;ODIN_INSPECTOR_3;MORPEH
     iPhone: FORCE_DEBUG;PERFORMANCE
   additionalCompilerArguments: {}
   platformArchitecture: {}

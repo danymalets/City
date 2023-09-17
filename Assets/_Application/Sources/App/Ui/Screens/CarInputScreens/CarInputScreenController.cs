@@ -1,5 +1,4 @@
 using System;
-using _Application.Sources.Utils.Utils;
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Player.InCar;
 using Sources.App.Core.Ecs.Components.Tags;
@@ -8,6 +7,7 @@ using Sources.App.Ui.Base.Animators;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
+using Sources.Utils.Utils;
 using UnityEngine;
 
 namespace Sources.App.Ui.Screens.CarInputScreens

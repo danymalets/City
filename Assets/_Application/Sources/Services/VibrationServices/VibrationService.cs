@@ -17,8 +17,10 @@ namespace Sources.Services.VibrationServices
 
         public void Vibrate()
         {
+#if UNITY_IOS || UNITY_ANDROID
             if (_vibrationOn.Value)
                 Handheld.Vibrate();
+#endif
         }
     }
 }
