@@ -52,8 +52,7 @@ namespace Sources.App.Core
 
             _audio = DiContainer.Resolve<IAudioService>();
 
-            _coroutineContext = DiContainer.Resolve<ICoroutineContextCreatorService>()
-                .CreateCoroutineContext();
+            _coroutineContext = new CoroutineContext();
         }
         
         public void StartGame()

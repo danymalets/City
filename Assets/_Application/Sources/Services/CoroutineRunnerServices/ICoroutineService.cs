@@ -5,13 +5,11 @@ using UnityEngine;
 
 namespace Sources.Services.CoroutineRunnerServices
 {
-    public interface ICoroutineRunnerService : IService
+    public interface ICoroutineService : IService
     {
         Coroutine StartCoroutine(IEnumerator coroutine);
         void StopCoroutine(Coroutine coroutine);
-        
         Coroutine RunWithDelay(float delay, Action action);
-        
         Coroutine RunEachFrame(Action action, bool andNow = false);
         Coroutine RunEachFixedUpdate(Action action);
         Coroutine RunEachSeconds(float period, Action action, bool andNow = false);

@@ -45,8 +45,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
             _world = World.Create();
             _world.UpdateByUnity = false;
 
-            _coroutineContext = DiContainer.Resolve<ICoroutineContextCreatorService>()
-                .CreateCoroutineContext();
+            _coroutineContext = new CoroutineContext();
 
             _systemsPerformance = new SystemsPerformance();
 

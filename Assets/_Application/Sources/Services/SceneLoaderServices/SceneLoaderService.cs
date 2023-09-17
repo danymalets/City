@@ -14,8 +14,7 @@ namespace Sources.Services.SceneLoaderServices
 
         public SceneLoaderService()
         {
-            _coroutineContext = DiContainer.Resolve<ICoroutineContextCreatorService>()
-                .CreateCoroutineContext();;
+            _coroutineContext = new CoroutineContext();
         }
 
         public void LoadScene<T>(string scene, Action<T> onComplete = null)

@@ -18,13 +18,13 @@ namespace Sources.Services.FpsServices
         private readonly Queue<float> _deltaTimes = new(150);
 
         private float _sumDeltaTimes = 0;
-        private ICoroutineRunnerService _coroutineRunner;
+        private ICoroutineService _coroutine;
 
         public void Initialize()
         {
             _timeService = DiContainer.Resolve<ITimeService>();
-            _coroutineRunner = DiContainer.Resolve<ICoroutineRunnerService>();
-            _coroutineRunner.RunEachFrame(OnUpdate);
+            _coroutine = DiContainer.Resolve<ICoroutineService>();
+            _coroutine.RunEachFrame(OnUpdate);
         }
 
         private void OnUpdate()
@@ -41,7 +41,7 @@ namespace Sources.Services.FpsServices
         }
 
         public void RunWhenFpsStabilizes(Action action) =>
-            _coroutineRunner.StartCoroutine(RunWhenFpsStabilizesCoroutine(action));
+            _coroutine.StartCoroutine(RunWhenFpsStabilizesCoroutine(action));
 
         private IEnumerator RunWhenFpsStabilizesCoroutine(Action action)
         {

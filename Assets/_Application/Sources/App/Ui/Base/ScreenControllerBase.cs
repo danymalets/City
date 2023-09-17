@@ -25,8 +25,7 @@ namespace Sources.App.Ui.Base
             IsAlwaysOpen = isAlwaysOpen;
             _gameScreen = gameScreen;
             _screenAnimator = screenAnimator;
-            _coroutineContext = DiContainer.Resolve<ICoroutineContextCreatorService>()
-                .CreateCoroutineContext();
+            _coroutineContext = new CoroutineContext();
         }
 
         internal void OnOpenInternal()

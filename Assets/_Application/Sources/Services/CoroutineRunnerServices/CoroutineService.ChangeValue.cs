@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Sources.Services.CoroutineRunnerServices
 {
-    public partial class CoroutineService : MonoBehaviour, ICoroutineContextCreatorService, ICoroutineRunnerService
+    public partial class CoroutineService 
     {
         public Coroutine ChangeValue(float valueFrom, float valueTo, float seconds, Action<float> action) =>
             StartCoroutine(IncreaseNormalValueCoroutine(seconds, normalValue => 
