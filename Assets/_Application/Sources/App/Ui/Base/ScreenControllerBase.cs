@@ -13,13 +13,16 @@ namespace Sources.App.Ui.Base
         private readonly ScreenAnimator _screenAnimator;
         protected readonly CoroutineContext _coroutineContext;
 
+        public readonly bool IsAlwaysOpen;
+        
         public bool IsOpen { get; private set; }
 
         public event Action<ScreenControllerBase> Opened; // Анимация открытия началась
         public event Action<ScreenControllerBase> Closed; // Анимация закрытия началась
-        
-        protected ScreenControllerBase(GameScreen gameScreen, ScreenAnimator screenAnimator)
+
+        protected ScreenControllerBase(GameScreen gameScreen, ScreenAnimator screenAnimator, bool isAlwaysOpen)
         {
+            IsAlwaysOpen = isAlwaysOpen;
             _gameScreen = gameScreen;
             _screenAnimator = screenAnimator;
             _coroutineContext = DiContainer.Resolve<ICoroutineContextCreatorService>()

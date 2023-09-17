@@ -5,8 +5,8 @@ namespace Sources.App.Ui.Base
 {
     public abstract class ScreenController<TPayload> : ScreenControllerBase
     {
-        protected ScreenController(GameScreen gameScreen, ScreenAnimator animator) 
-            : base(gameScreen, animator)
+        protected ScreenController(GameScreen gameScreen, ScreenAnimator animator, bool isAlwaysOpen = false) 
+            : base(gameScreen, animator, isAlwaysOpen)
         {
         }
 
@@ -21,8 +21,8 @@ namespace Sources.App.Ui.Base
 
     public abstract class ScreenController : ScreenControllerBase
     {
-        protected ScreenController(GameScreen gameScreen, ScreenAnimator animator) 
-            : base(gameScreen, animator)
+        protected ScreenController(GameScreen gameScreen, ScreenAnimator animator, bool isAlwaysOpen = false) 
+            : base(gameScreen, animator, isAlwaysOpen)
         {
         }
 

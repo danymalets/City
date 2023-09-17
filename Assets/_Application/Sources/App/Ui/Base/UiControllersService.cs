@@ -68,7 +68,10 @@ namespace Sources.App.Ui.Base
         {
             foreach (ScreenControllerBase screenController in _openedWindows.ToArray())
             {
-                screenController.Close(true);
+                if (!screenController.IsAlwaysOpen)
+                {
+                    screenController.Close(true);
+                }
             }
         }
 

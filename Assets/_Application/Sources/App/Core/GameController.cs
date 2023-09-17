@@ -19,7 +19,6 @@ namespace Sources.App.Core
     public class GameController
     {
         private readonly LevelScreenController _levelScreen;
-        private readonly CarInputScreenController _carInputScreen;
 
         private readonly ILevelContext _levelContext;
 
@@ -48,7 +47,6 @@ namespace Sources.App.Core
             
             _levelScreen = uiControllers.Get<LevelScreenController>();
             _loadingScreen = uiControllers.Get<LoadingScreenController>();
-            _carInputScreen = uiControllers.Get<CarInputScreenController>();
 
             _uiClose = DiContainer.Resolve<IUiCloseService>();
 
@@ -56,7 +54,6 @@ namespace Sources.App.Core
 
             _coroutineContext = DiContainer.Resolve<ICoroutineContextCreatorService>()
                 .CreateCoroutineContext();
-
         }
         
         public void StartGame()
@@ -72,7 +69,7 @@ namespace Sources.App.Core
 
             _game.StartGame();
 
-            _coroutineContext.ChangeValue(0.05f, 0.95f, 3f, value => 
+            _coroutineContext.ChangeValue(0f, 1f, 3f, value => 
                 _loadingScreen.SetProgress(value));
             
             _fpsService.RunWhenFpsStabilizes(() =>
