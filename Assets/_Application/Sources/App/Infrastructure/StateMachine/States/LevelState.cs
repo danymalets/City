@@ -2,7 +2,8 @@ using Sources.App.Core;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
-using Sources.App.Ui.Controllers;
+using Sources.App.Ui.Base;
+using Sources.App.Ui.Screens.LevelScreens;
 using Sources.Utils.Di;
 
 namespace Sources.App.Infrastructure.StateMachine.States

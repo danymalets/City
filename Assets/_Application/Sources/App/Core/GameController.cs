@@ -5,11 +5,10 @@ using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
 using Sources.App.Services.AudioServices;
 using Sources.App.Services.UserServices;
 using Sources.App.Services.UserServices.Data;
-using Sources.App.Ui.Controllers;
-using Sources.App.Ui.Screens;
-using Sources.App.Ui.ToMove.CarInputScreens;
-using Sources.App.Ui.ToMove.LoadingScreens;
-using Sources.App.Ui.ToMove.MapScreens;
+using Sources.App.Ui.Base;
+using Sources.App.Ui.Screens.CarInputScreens;
+using Sources.App.Ui.Screens.LevelScreens;
+using Sources.App.Ui.Screens.LoadingScreens;
 using Sources.Services.CoroutineRunnerServices;
 using Sources.Services.FpsServices;
 using Sources.Services.UiServices.System;
@@ -32,7 +31,6 @@ namespace Sources.App.Core
         private readonly LoadingScreenController _loadingScreen;
         private readonly IFpsService _fpsService;
         private readonly CoroutineContext _coroutineContext;
-        private readonly MapScreenController _mapScreen;
         private readonly Preferences _userPreferences;
 
         public event Action ForceReloadRequest; 
@@ -49,7 +47,6 @@ namespace Sources.App.Core
             _game = new Game();
             
             _levelScreen = uiControllers.Get<LevelScreenController>();
-            _mapScreen = uiControllers.Get<MapScreenController>();
             _loadingScreen = uiControllers.Get<LoadingScreenController>();
             _carInputScreen = uiControllers.Get<CarInputScreenController>();
 
@@ -72,7 +69,6 @@ namespace Sources.App.Core
             }
             
             _levelScreen.Open(_level);
-            _mapScreen.Open();
 
             _game.StartGame();
 

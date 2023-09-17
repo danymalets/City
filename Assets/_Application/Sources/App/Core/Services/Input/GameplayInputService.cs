@@ -1,7 +1,7 @@
 using System;
-using Sources.App.Ui.Controllers;
-using Sources.App.Ui.ToMove.CarInputScreens;
-using Sources.App.Ui.ToMove.PlayerInputScreens;
+using Sources.App.Ui.Base;
+using Sources.App.Ui.Screens.CarInputScreens;
+using Sources.App.Ui.Screens.PlayerInputScreens;
 using Sources.Services.ApplicationInputServices;
 using Sources.Utils.Di;
 using UnityEngine;
