@@ -51,11 +51,10 @@ namespace Sources.Services.FpsServices
             do
             {
                 fps = FpsLastSecond;
-                Debug.Log($"fps: {fps:F1}");
                 yield return new WaitForSeconds(0.5f);
             } while (FpsLastSecond > fps);
 
-            Debug.Log($"fps: {FpsLastSecond:F1} - stable");
+            Debug.Log($"[FpsService] Fps: {FpsLastSecond:F1} - stable");
 
             action();
         }

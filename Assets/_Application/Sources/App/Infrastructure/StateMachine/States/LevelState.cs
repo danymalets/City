@@ -13,7 +13,7 @@ namespace Sources.App.Infrastructure.StateMachine.States
     public class LevelState : GameState<LevelData>
     {
         private GameController _gameController;
-        
+
         private LevelScreenController _levelScreen;
         private IDiBuilder _diBuilder;
         private IAdsService _adsService;
@@ -32,13 +32,13 @@ namespace Sources.App.Infrastructure.StateMachine.States
             _adsService = DiContainer.Resolve<IAdsService>();
 
             IUiControllersService uiControllers = DiContainer.Resolve<IUiControllersService>();
-            
+
             _levelScreen = uiControllers.Get<LevelScreenController>();
-            
+
             _levelScreen.RestartButtonClicked += LevelScreen_OnRestartButtonClicked;
             _levelScreen.ExitButtonClicked += LevelScreen_OnExitButtonClicked;
             _gameController.ForceReloadRequested += GameControllerForceReloadRequested;
-            
+
             StartGame();
         }
 
@@ -52,28 +52,18 @@ namespace Sources.App.Infrastructure.StateMachine.States
         {
             _gameController.StartGame();
         }
-        
+
         private void LevelScreen_OnExitButtonClicked()
         {
             FinishGame();
 
-            if (_adsService.IsRewardedAvailable)
+            _adsService.ShowRewarded(() =>
             {
-                _adsService.ShowRewarded(() =>
-                {
-                    Debug.Log($"suc");
-                    EnterMainUi();
-                }, () =>
-                {
-                    Debug.Log($"fail");
-                    EnterMainUi();
-                });
-            }
-            else
-            {
-                Debug.Log($"reward not available");
                 EnterMainUi();
-            }
+            }, () =>
+            {
+                EnterMainUi();
+            });
         }
 
         private void EnterMainUi()

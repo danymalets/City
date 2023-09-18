@@ -5,7 +5,7 @@ namespace Sources.Services.AdsServices
 {
     public interface IAdsService : IService
     {
-        bool IsRewardedAvailable { get; }
+        bool IsRewardedAvailable();
         void ShowRewarded(Action onSuccess, Action onFailed);
     }
 }

@@ -8,6 +8,7 @@ namespace Sources.Services.AnalyticsServices
         private readonly IAnalyticsAdapter[] _analyticsAdapters = 
         {
             new GameAnalyticsAdapter(),
+            new FirebaseAnalyticsAdapter(),
         };
 
         public void Initialize()
