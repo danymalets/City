@@ -29,7 +29,8 @@
         "Sources.App.Services.QualityServices",
         "Sources.App.Services.BalanceServices",
         "Sources.App.Services.AudioServices",
-        "Sources.Services.AdsServices"
+        "Sources.Services.AdsServices",
+        "Sources.Services.AnalyticsServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

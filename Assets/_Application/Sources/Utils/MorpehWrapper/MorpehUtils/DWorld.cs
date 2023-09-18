@@ -49,14 +49,13 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
 
             _systemsPerformance = new SystemsPerformance();
 
-            if (DebugPerformance)
-            {
+#if FORCE_DEBUG
                 _coroutineContext.RunEachSeconds(3f, () =>
                 {
                     _systemsPerformance.LogData();
                     _systemsPerformance.Reset();
                 });
-            }
+#endif
         }
 
         public void RunSystems<TDSystem>(IEnumerable<TDSystem> systems,

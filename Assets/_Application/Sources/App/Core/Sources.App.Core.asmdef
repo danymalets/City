@@ -33,7 +33,8 @@
         "Sources.App.Services.BalanceServices",
         "Sources.App.Services.AudioServices",
         "Unity.AI.Navigation",
-        "Unity.InputSystem"
+        "Unity.InputSystem",
+        "Sources.Services.AnalyticsServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

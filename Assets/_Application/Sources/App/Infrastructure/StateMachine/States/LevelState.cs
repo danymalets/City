@@ -37,12 +37,12 @@ namespace Sources.App.Infrastructure.StateMachine.States
             
             _levelScreen.RestartButtonClicked += LevelScreen_OnRestartButtonClicked;
             _levelScreen.ExitButtonClicked += LevelScreen_OnExitButtonClicked;
-            _gameController.ForceReloadRequest += GameController_ForceReloadRequest;
+            _gameController.ForceReloadRequested += GameControllerForceReloadRequested;
             
             StartGame();
         }
 
-        private void GameController_ForceReloadRequest()
+        private void GameControllerForceReloadRequested()
         {
             FinishGame();
             _stateMachine.Enter<LoadLevelState>();
@@ -56,14 +56,29 @@ namespace Sources.App.Infrastructure.StateMachine.States
         private void LevelScreen_OnExitButtonClicked()
         {
             FinishGame();
-            _adsService.ShowRewarded(() =>
+
+            if (_adsService.IsRewardedAvailable)
             {
-                Debug.Log($"suc");
-                _stateMachine.Enter<LoadLevelState>();
-            }, () =>
+                _adsService.ShowRewarded(() =>
+                {
+                    Debug.Log($"suc");
+                    EnterMainUi();
+                }, () =>
+                {
+                    Debug.Log($"fail");
+                    EnterMainUi();
+                });
+            }
+            else
             {
-                Debug.Log($"fail");
-            });
+                Debug.Log($"reward not available");
+                EnterMainUi();
+            }
+        }
+
+        private void EnterMainUi()
+        {
+            _stateMachine.Enter<MainUiState>();
         }
 
         private void LevelScreen_OnRestartButtonClicked()
@@ -81,7 +96,7 @@ namespace Sources.App.Infrastructure.StateMachine.States
         {
             _levelScreen.RestartButtonClicked -= LevelScreen_OnRestartButtonClicked;
             _levelScreen.ExitButtonClicked -= LevelScreen_OnExitButtonClicked;
-            _gameController.ForceReloadRequest -= GameController_ForceReloadRequest;
+            _gameController.ForceReloadRequested -= GameControllerForceReloadRequested;
 
             _gameController = null;
 

@@ -6,9 +6,9 @@ using Sources.App.Services.AudioServices;
 using Sources.App.Services.UserServices;
 using Sources.App.Services.UserServices.Data;
 using Sources.App.Ui.Base;
-using Sources.App.Ui.Screens.CarInputScreens;
 using Sources.App.Ui.Screens.LevelScreens;
 using Sources.App.Ui.Screens.LoadingScreens;
+using Sources.Services.AnalyticsServices;
 using Sources.Services.CoroutineRunnerServices;
 using Sources.Services.FpsServices;
 using Sources.Services.UiServices.System;
@@ -31,8 +31,9 @@ namespace Sources.App.Core
         private readonly IFpsService _fpsService;
         private readonly CoroutineContext _coroutineContext;
         private readonly Preferences _userPreferences;
+        private readonly IAnalyticsService _analytics;
 
-        public event Action ForceReloadRequest; 
+        public event Action ForceReloadRequested; 
 
         public GameController()
         {
@@ -40,6 +41,7 @@ namespace Sources.App.Core
                 uiControllers = DiContainer.Resolve<IUiControllersService>();
             _fpsService = DiContainer.Resolve<IFpsService>();
             _userPreferences = DiContainer.Resolve<IUserAccessService>().User.Preferences;
+            _analytics = DiContainer.Resolve<IAnalyticsService>();
 
             _diBuilder = DiBuilder.Create();
 
@@ -57,12 +59,12 @@ namespace Sources.App.Core
         
         public void StartGame()
         {
-            //_audio.PlayMusic(MusicType.RoadNoise);
-
             if (_userPreferences.BestQualityForDevice == null)
             {
                 _userPreferences.SelectedQuality = QualityType.High;
             }
+            
+            _analytics.SendLevelStarted(1);
             
             _levelScreen.Open(_level);
 
@@ -88,7 +90,7 @@ namespace Sources.App.Core
                         _userPreferences.BestQualityForDevice = QualityType.Low;
                         _userPreferences.SelectedQuality = QualityType.Low;
                         
-                        ForceReloadRequest?.Invoke();
+                        ForceReloadRequested?.Invoke();
                     }
                 }
             });

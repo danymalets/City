@@ -1,4 +1,4 @@
-#if UNITY_EDITOR
+
 
 
 using UnityEngine;
@@ -8,6 +8,7 @@ namespace Sources.Services.SceneLoaderServices
 {
     public class EntryPointSceneStarter : MonoBehaviour
     {
+#if UNITY_EDITOR
         private static bool s_isGameStarted;
 
         private void Awake()
@@ -24,6 +25,6 @@ namespace Sources.Services.SceneLoaderServices
             }
         }
     }
+#endif
 }
 
-#endif

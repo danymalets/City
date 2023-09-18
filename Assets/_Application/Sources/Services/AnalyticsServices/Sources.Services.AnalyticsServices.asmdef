@@ -4,7 +4,8 @@
     "references": [
         "Sources.Utils.Di",
         "ExternalAssets.IronSource",
-        "Sources.Services.ApplicationServices"
+        "Sources.Services.ApplicationServices",
+        "ExternalAssets.GameAnalytics"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -14,7 +14,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
         private readonly Dictionary<DUpdateSystem, long> _fixedData = new();
         private int _fixeds;
         private int _updates;
-        
+
         public void WriteFixedData(DUpdateSystem fixedUpdateSystem, long ticks)
         {
             _fixedData.IncreaseValue(fixedUpdateSystem, ticks);
@@ -36,7 +36,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
             string text = $"Fixed(avg={fixedMs}ms):\n\n{GetDebugText(_fixedData)}\n\n" +
                           $"Update(avg={updateMs}ms):\n\n{GetDebugText(_updateData)}";
             
-            Debug.Log(text);
+            // Debug.Log(text);
         }
 
         private string GetDebugText(Dictionary<DUpdateSystem, long> data) => 
