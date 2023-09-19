@@ -18,7 +18,6 @@ namespace Sources.App.Infrastructure.StateMachine.Machine
                 [typeof(RegistrationState)] = new RegistrationState(this),
                 [typeof(BootstrapState)] = new BootstrapState(this),
                 [typeof(MainUiState)] = new MainUiState(this),
-                [typeof(LoadLevelState)] = new LoadLevelState(this),
                 [typeof(LevelState)] = new LevelState(this),
             };
         }

@@ -3,6 +3,7 @@ using Sources.App.Core.Ecs;
 using Sources.App.Data.Constants;
 using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
 using Sources.App.Services.AudioServices;
+using Sources.App.Services.QualityServices;
 using Sources.App.Services.UserServices;
 using Sources.App.Services.UserServices.Data;
 using Sources.App.Ui.Base;
@@ -59,11 +60,6 @@ namespace Sources.App.Core
         
         public void StartGame()
         {
-            if (_userPreferences.BestQualityForDevice == null)
-            {
-                _userPreferences.SelectedQuality = QualityType.High;
-            }
-            
             _analytics.SendLevelStarted(1);
             
             _levelScreen.Open(_level);

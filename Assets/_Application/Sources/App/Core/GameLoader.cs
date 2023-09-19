@@ -1,37 +1,33 @@
-using Sources.App.Data;
-using Sources.App.Infrastructure.StateMachine.Machine;
-using Sources.App.Infrastructure.StateMachine.StateBase;
+using System;
 using Sources.App.Services.AssetsServices;
+using Sources.App.Services.AssetsServices.IdleCarSpawns;
 using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
 using Sources.App.Services.BalanceServices;
 using Sources.App.Services.UserServices;
 using Sources.App.Ui.Base;
-using Sources.App.Ui.Screens;
 using Sources.App.Ui.Screens.LoadingScreens;
 using Sources.Services.SceneLoaderServices;
-using Sources.Services.UiServices.System;
 using Sources.Utils.Di;
 using UnityEngine.SceneManagement;
 
-namespace Sources.App.Infrastructure.StateMachine.States
+namespace Sources.App.Core
 {
-    public class LoadLevelState : GameState
+    public class GameLoader
     {
-        private ISceneLoaderService _sceneLoader;
-        private Balance _balanceService;
-        private LoadingScreenController _loadingScreenController;
+        private readonly ISceneLoaderService _sceneLoader;
+        private readonly LoadingScreenController _loadingScreenController;
+        private readonly Balance _balanceService;
 
-        public LoadLevelState(IGameStateMachine stateMachine) : base(stateMachine)
-        {
-        }
-
-        protected override void OnEnter()
+        public GameLoader()
         {
             _loadingScreenController = DiContainer.Resolve<IUiControllersService>().Get<LoadingScreenController>();
-            
+
             _sceneLoader = DiContainer.Resolve<ISceneLoaderService>();
             _balanceService = DiContainer.Resolve<Balance>();
+        }
 
+        public void LoadGame(Action<LevelData> onLoaded)
+        {
             int level = DiContainer.Resolve<IUserAccessService>()
                 .User.Progress.CurrentLevel;
 
@@ -42,15 +38,7 @@ namespace Sources.App.Infrastructure.StateMachine.States
             SceneManager.LoadScene($"Empty");
             
             _sceneLoader.LoadScene<ILevelContext>(cityScene, 
-                levelContext => EnterLevelState(new LevelData(level, levelContext)));
+                levelContext => onLoaded(new LevelData(level, levelContext)));
         }
-
-        private void EnterLevelState(LevelData levelData)
-        {
-            _stateMachine.Enter<LevelState, LevelData>(levelData);
-        }
-
-        private int GetRealLevel(int level, int levelsCount) => 
-            (level - 1) % levelsCount + 1;
     }
 }

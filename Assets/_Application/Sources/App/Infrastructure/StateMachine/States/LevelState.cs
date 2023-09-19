@@ -2,6 +2,8 @@ using Sources.App.Core;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
+using Sources.App.Services.QualityServices;
+using Sources.App.Services.UserServices;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Screens.LevelScreens;
 using Sources.Services.AdsServices;
@@ -10,47 +12,55 @@ using UnityEngine;
 
 namespace Sources.App.Infrastructure.StateMachine.States
 {
-    public class LevelState : GameState<LevelData>
+    public class LevelState : GameState
     {
         private GameController _gameController;
 
         private LevelScreenController _levelScreen;
         private IDiBuilder _diBuilder;
         private IAdsService _adsService;
+        private IQualityChangerService _qualityChanger;
+        private IUserAccessService _userAccess;
 
         public LevelState(IGameStateMachine stateMachine) : base(stateMachine)
         {
         }
 
-        protected override void OnEnter(LevelData levelData)
+        protected override void OnEnter()
         {
             _diBuilder = DiBuilder.Create();
+            
+            _qualityChanger = DiContainer.Resolve<IQualityChangerService>();
+            _userAccess = DiContainer.Resolve<IUserAccessService>();
 
-            _diBuilder.Register<ILevelContext>(levelData.LevelContext);
-            _gameController = new GameController();
-
+            _qualityChanger.SetQuality(_userAccess.User.Preferences.SelectedQuality);
+            
             _adsService = DiContainer.Resolve<IAdsService>();
+            
+            _levelScreen = DiContainer.Resolve<IUiControllersService>().Get<LevelScreenController>();
 
-            IUiControllersService uiControllers = DiContainer.Resolve<IUiControllersService>();
+            new GameLoader().LoadGame(levelData =>
+            {
+                _diBuilder.Register<ILevelContext>(levelData.LevelContext);
+                StartGame();
+            });
+        }
 
-            _levelScreen = uiControllers.Get<LevelScreenController>();
-
+        private void StartGame()
+        {
+            _gameController = new GameController();
+            
             _levelScreen.RestartButtonClicked += LevelScreen_OnRestartButtonClicked;
             _levelScreen.ExitButtonClicked += LevelScreen_OnExitButtonClicked;
             _gameController.ForceReloadRequested += GameControllerForceReloadRequested;
 
-            StartGame();
+            _gameController.StartGame();
         }
 
         private void GameControllerForceReloadRequested()
         {
             FinishGame();
-            _stateMachine.Enter<LoadLevelState>();
-        }
-
-        private void StartGame()
-        {
-            _gameController.StartGame();
+            _stateMachine.Enter<LevelState>();
         }
 
         private void LevelScreen_OnExitButtonClicked()
@@ -74,7 +84,7 @@ namespace Sources.App.Infrastructure.StateMachine.States
         private void LevelScreen_OnRestartButtonClicked()
         {
             FinishGame();
-            _stateMachine.Enter<LoadLevelState>();
+            _stateMachine.Enter<LevelState>();
         }
 
         private void FinishGame()

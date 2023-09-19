@@ -35,7 +35,7 @@ namespace Sources.App.Infrastructure.StateMachine.States
 
         private void OnPlayClicked()
         {
-            _stateMachine.Enter<LoadLevelState>();
+            _stateMachine.Enter<LevelState>();
         }
         
         protected override void OnExit()
