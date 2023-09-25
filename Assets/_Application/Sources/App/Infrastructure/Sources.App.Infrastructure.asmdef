@@ -30,7 +30,9 @@
         "Sources.App.Services.BalanceServices",
         "Sources.App.Services.AudioServices",
         "Sources.Services.AdsServices",
-        "Sources.Services.AnalyticsServices"
+        "Sources.Services.AnalyticsServices",
+        "Sources.Services.IapServices",
+        "Sources.Services.LocalizationServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

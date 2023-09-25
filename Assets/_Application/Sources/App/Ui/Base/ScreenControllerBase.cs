@@ -1,6 +1,8 @@
 using System;
+using Sources.App.Services.AssetsServices.Localizations;
 using Sources.App.Ui.Base.Animators;
 using Sources.Services.CoroutineRunnerServices;
+using Sources.Services.LocalizationServices;
 using Sources.Services.UiServices.WindowBase.Screens;
 using Sources.Utils.Di;
 using UnityEngine.UI;
@@ -14,7 +16,8 @@ namespace Sources.App.Ui.Base
         protected readonly CoroutineContext _coroutineContext;
 
         public readonly bool IsAlwaysOpen;
-        
+        private readonly ILocalizationService _localizationService;
+
         public bool IsOpen { get; private set; }
 
         public event Action<ScreenControllerBase> Opened; // Анимация открытия началась
@@ -26,6 +29,17 @@ namespace Sources.App.Ui.Base
             _gameScreen = gameScreen;
             _screenAnimator = screenAnimator;
             _coroutineContext = new CoroutineContext();
+            _localizationService = DiContainer.Resolve<ILocalizationService>();
+        }
+
+        internal void Prepare()
+        {
+            OnPrepare();
+        }
+
+        protected virtual void OnPrepare()
+        {
+            
         }
 
         internal void OnOpenInternal()
@@ -39,7 +53,7 @@ namespace Sources.App.Ui.Base
 
         public void Refresh()
         {
-            OnRefresh();
+            OnRefresh(_localizationService.CurrentStrings);
         }
         
         private void SubscribeCloseButtons()
@@ -64,7 +78,7 @@ namespace Sources.App.Ui.Base
         {
         }
 
-        protected abstract void OnRefresh();
+        protected abstract void OnRefresh(StringsAsset strings);
         
         public void Close(bool isForce = false)
         {        

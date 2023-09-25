@@ -1,14 +1,18 @@
 using System;
+using Sources.App.Services.AssetsServices.Localizations;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Base.Animators;
+using Sources.App.Ui.Screens.IapScreens;
+using Sources.Utils.Di;
 
 namespace Sources.App.Ui.Screens.MainScreens
 {
     public class MainScreenController : ScreenController
     {
         private readonly MainScreen _mainScreen;
+        private ShopScreenController _shopScreenController;
         
-        public event Action PlayClicked = delegate { };
+        public event Action PlayButtonClicked;
 
         public MainScreenController(MainScreen mainScreen) :
             base(mainScreen, new ToggleAnimator(mainScreen))
@@ -18,22 +22,50 @@ namespace Sources.App.Ui.Screens.MainScreens
 
         protected override void OnOpen()
         {
-            _mainScreen.PlayButton.onClick.AddListener(OnPlayButtonClicked);
+            IUiControllersService uiControllers = DiContainer.Resolve<IUiControllersService>();
+            _shopScreenController = uiControllers.Get<ShopScreenController>();
+
+            _mainScreen.PlayTextButton.Button.onClick.AddListener(OnPlayButtonClicked);
+            _mainScreen.ShopTextButton.Button.onClick.AddListener(OnShopButtonClicked);
+            _mainScreen.SettingsTextButton.Button.onClick.AddListener(OnSettingsButtonClicked);
+            _mainScreen.RateUsTextButton.Button.onClick.AddListener(OnRateUsButtonClicked);
         }
 
         protected override void OnClose()
         {
-            _mainScreen.PlayButton.onClick.RemoveListener(OnPlayButtonClicked);
+            _mainScreen.PlayTextButton.Button.onClick.RemoveListener(OnPlayButtonClicked);
+            _mainScreen.ShopTextButton.Button.onClick.RemoveListener(OnShopButtonClicked);
+            _mainScreen.SettingsTextButton.Button.onClick.RemoveListener(OnSettingsButtonClicked);
+            _mainScreen.RateUsTextButton.Button.onClick.RemoveListener(OnRateUsButtonClicked);
+
+            _shopScreenController = null;
         }
 
-        protected override void OnRefresh()
+        protected override void OnRefresh(StringsAsset strings)
         {
-            _mainScreen.PlayButtonText.text = "Play";
+            _mainScreen.PlayTextButton.Text.text = strings.Play;
+            _mainScreen.ShopTextButton.Text.text = strings.Shop;
+            _mainScreen.SettingsTextButton.Text.text = strings.Settings;
+            _mainScreen.RateUsTextButton.Text.text = strings.RateUs;
         }
 
         private void OnPlayButtonClicked()
         {
-            PlayClicked();
+            PlayButtonClicked?.Invoke();
+        }
+
+        private void OnShopButtonClicked()
+        {
+            _shopScreenController.Open();
+        }
+
+        private void OnSettingsButtonClicked()
+        {
+        }
+
+        private void OnRateUsButtonClicked()
+        {
+            
         }
     }
 }

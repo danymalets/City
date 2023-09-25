@@ -1,0 +1,21 @@
+{
+    "name": "Sources.Services.IapServices",
+    "rootNamespace": "",
+    "references": [
+        "Sources.Utils.Di",
+        "UnityEngine.Purchasing",
+        "UnityEngine.Purchasing.Stores",
+        "Sources.Utils.CommonUtils",
+        "Sources.App.Services.UserServices",
+        "Sources.Services.ApplicationServices"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

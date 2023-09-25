@@ -2,11 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sources.App.Ui.Screens.CarInputScreens;
+using Sources.App.Ui.Screens.CurrencyScreens;
+using Sources.App.Ui.Screens.IapScreens;
 using Sources.App.Ui.Screens.LevelScreens;
 using Sources.App.Ui.Screens.LoadingScreens;
 using Sources.App.Ui.Screens.MainScreens;
 using Sources.App.Ui.Screens.PerformanceScreens;
 using Sources.App.Ui.Screens.PlayerInputScreens;
+using Sources.Services.LocalizationServices;
 using Sources.Services.UiServices.System;
 using Sources.Utils.CommonUtils;
 using Sources.Utils.Di;
@@ -19,10 +22,12 @@ namespace Sources.App.Ui.Base
         private readonly IUiViewsService _uiViews;
         private readonly TypeDictionary<ScreenControllerBase> _screenControllers = new();
         private readonly HashSet<ScreenControllerBase> _openedWindows = new();
+        private readonly ILocalizationService _localizationService;
 
         public UiControllersService()
         {
             _uiViews = DiContainer.Resolve<IUiViewsService>();
+            _localizationService = DiContainer.Resolve<ILocalizationService>();
         }
 
         void IInitializable.Initialize()
@@ -30,6 +35,8 @@ namespace Sources.App.Ui.Base
             _screenControllers.AddRange(new ScreenControllerBase[]
             {
                 new MainScreenController(_uiViews.Get<MainScreen>()),
+                new ShopScreenController(_uiViews.Get<ShopScreen>()),
+                new CurrencyScreenController(_uiViews.Get<CurrencyScreen>()),
                 new LevelScreenController(_uiViews.Get<LevelScreen>()),
                 new CarInputScreenController(_uiViews.Get<CarInputScreen>()),
                 new PlayerInputScreenController(_uiViews.Get<PlayerInputScreen>()),
@@ -39,6 +46,8 @@ namespace Sources.App.Ui.Base
 
             foreach (ScreenControllerBase screenController in _screenControllers.Values)
             {
+                screenController.Prepare();
+                
                 screenController.Opened += ScreenController_OnOpened;
                 screenController.Closed += ScreenController_OnClosed;
             }

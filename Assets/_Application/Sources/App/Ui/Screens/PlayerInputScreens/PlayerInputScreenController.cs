@@ -1,4 +1,5 @@
 using System;
+using Sources.App.Services.AssetsServices.Localizations;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Base.Animators;
 using UnityEngine;
@@ -40,7 +41,7 @@ namespace Sources.App.Ui.Screens.PlayerInputScreens
 
         public Vector2 InputDirection => _playerInputScreen.Joystick.Direction;
 
-        protected override void OnRefresh()
+        protected override void OnRefresh(StringsAsset strings)
         {
         }
 

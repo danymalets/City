@@ -6,13 +6,9 @@ namespace Sources.App.Services.UserServices
     {
         public Currency Coins { get; } = new();
         public Currency Gems { get; } = new();
-
-        public event Action<CurrencyType, long> CurrencyValueChanged;
         
         public Wallet()
         {
-            Coins.Changed += value => CurrencyValueChanged(CurrencyType.Coins, value);
-            Gems.Changed += value => CurrencyValueChanged(CurrencyType.Gems, value);
         }
 
         public bool TrySpend(CurrencyType currencyType, long spendValue) =>

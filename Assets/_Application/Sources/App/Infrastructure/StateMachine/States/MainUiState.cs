@@ -3,6 +3,7 @@ using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.App.Services.AssetsServices.IdleCarSpawns;
 using Sources.App.Ui.Base;
+using Sources.App.Ui.Screens.CurrencyScreens;
 using Sources.App.Ui.Screens.MainScreens;
 using Sources.Services.SceneLoaderServices;
 using Sources.Services.UiServices.System;
@@ -14,33 +15,39 @@ namespace Sources.App.Infrastructure.StateMachine.States
     {
         private MainScreenController _mainScreenController;
         private IUiCloseService _uiCloseService;
-        
+        private CurrencyScreenController _currencyScreenController;
+
         public MainUiState(IGameStateMachine stateMachine) : base(stateMachine)
         {
         }
 
         protected override void OnEnter()
         {
-            _mainScreenController = DiContainer.Resolve<IUiControllersService>().Get<MainScreenController>();
+            IUiControllersService uiControllers = DiContainer.Resolve<IUiControllersService>();
+            
+            _mainScreenController = uiControllers.Get<MainScreenController>();
+            _currencyScreenController = uiControllers.Get<CurrencyScreenController>();
+
             _uiCloseService = DiContainer.Resolve<IUiCloseService>();
             ISceneLoaderService sceneLoader = DiContainer.Resolve<ISceneLoaderService>();
 
             _mainScreenController.Open();
+            _currencyScreenController.Open();
             
             sceneLoader.LoadScene<EmptySceneContext>(Consts.EmptySceneName, _ =>
             {
-                _mainScreenController.PlayClicked += OnPlayClicked;
+                _mainScreenController.PlayButtonClicked += OnPlayButtonClicked;
             });
         }
 
-        private void OnPlayClicked()
+        private void OnPlayButtonClicked()
         {
             _stateMachine.Enter<LevelState>();
         }
         
         protected override void OnExit()
         {
-            _mainScreenController.PlayClicked -= OnPlayClicked;
+            _mainScreenController.PlayButtonClicked -= OnPlayButtonClicked;
 
             _uiCloseService.CloseAll();
             _mainScreenController = null;

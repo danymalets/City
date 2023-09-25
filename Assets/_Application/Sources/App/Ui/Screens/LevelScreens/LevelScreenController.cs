@@ -1,4 +1,5 @@
 using System;
+using Sources.App.Services.AssetsServices.Localizations;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Base.Animators;
 using UnityEngine;
@@ -30,7 +31,7 @@ namespace Sources.App.Ui.Screens.LevelScreens
             _levelScreen.ExitButton.onClick.RemoveListener(OnExitButtonClicked);
         }
 
-        protected override void OnRefresh()
+        protected override void OnRefresh(StringsAsset strings)
         {
         }
 

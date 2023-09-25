@@ -24,7 +24,7 @@ namespace Sources.Services.SceneLoaderServices
                     SceneManager.LoadScene(0);
             }
         }
-    }
 #endif
+    }
 }
 

@@ -1,24 +1,41 @@
 fileFormatVersion: 2
 guid: 3f481e5372ce84e879d760b70c7249e2
-timeCreated: 1565687811
-licenseType: Pro
 PluginImporter:
-  serializedVersion: 1
+  externalObjects: {}
+  serializedVersion: 2
   iconMap: {}
   executionOrder: {}
+  defineConstraints: []
   isPreloaded: 0
+  isOverridable: 1
+  isExplicitlyReferenced: 0
+  validateReferences: 1
   platformData:
-    Any:
+  - first:
+      Any: 
+    second:
       enabled: 0
       settings: {}
-    Editor:
+  - first:
+      Editor: Editor
+    second:
       enabled: 0
       settings:
         DefaultValueInitialized: true
-    iOS:
+  - first:
+      Windows Store Apps: WindowsStoreApps
+    second:
+      enabled: 0
+      settings:
+        CPU: AnyCPU
+  - first:
+      iPhone: iOS
+    second:
       enabled: 0
       settings: {}
-    tvOS:
+  - first:
+      tvOS: tvOS
+    second:
       enabled: 1
       settings: {}
   userData: 

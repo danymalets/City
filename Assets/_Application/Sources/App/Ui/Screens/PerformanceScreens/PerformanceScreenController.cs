@@ -1,3 +1,4 @@
+using Sources.App.Services.AssetsServices.Localizations;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Base.Animators;
 using Sources.Services.ApplicationServices;
@@ -49,7 +50,7 @@ namespace Sources.App.Ui.Screens.PerformanceScreens
                     string.Format(RigidbodyCountPattern, GameObject.FindObjectsOfType<Rigidbody>().Length));
         }
 
-        protected override void OnRefresh()
+        protected override void OnRefresh(StringsAsset strings)
         {
             
         }

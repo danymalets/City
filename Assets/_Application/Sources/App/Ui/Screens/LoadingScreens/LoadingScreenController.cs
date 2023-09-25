@@ -1,3 +1,4 @@
+using Sources.App.Services.AssetsServices.Localizations;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Base.Animators;
 
@@ -22,7 +23,7 @@ namespace Sources.App.Ui.Screens.LoadingScreens
         {
         }
 
-        protected override void OnRefresh()
+        protected override void OnRefresh(StringsAsset strings)
         {
         }
 

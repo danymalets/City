@@ -1,3 +1,4 @@
+using Sources.App.Ui.Common;
 using Sources.Services.UiServices.WindowBase.Screens;
 using TMPro;
 using UnityEngine;
@@ -7,7 +8,9 @@ namespace Sources.App.Ui.Screens.MainScreens
 {
     public class MainScreen : GameScreen
     {
-        [field : SerializeField] public Button PlayButton { get; private set; }
-        [field : SerializeField] public TextMeshProUGUI PlayButtonText { get; private set; }
+        [field: SerializeField] public TextButton PlayTextButton { get; private set; }
+        [field: SerializeField] public TextButton ShopTextButton { get; private set; }
+        [field: SerializeField] public TextButton SettingsTextButton { get; private set; }
+        [field: SerializeField] public TextButton RateUsTextButton { get; private set; }
     }
 }

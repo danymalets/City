@@ -18,7 +18,12 @@
         "Scellecs.Morpeh",
         "Sources.App.Services.AudioServices",
         "DOTween.Modules",
-        "Sources.Utils.UiUtils"
+        "Sources.Utils.UiUtils",
+        "UnityEngine.Purchasing.Codeless",
+        "UnityEngine.Purchasing",
+        "Sources.Services.IapServices",
+        "Sources.App.Services.AssetsServices",
+        "Sources.Services.LocalizationServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

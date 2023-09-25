@@ -2,6 +2,7 @@ using System;
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Player.InCar;
 using Sources.App.Core.Ecs.Components.Tags;
+using Sources.App.Services.AssetsServices.Localizations;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Base.Animators;
 using Sources.Utils.Di;
@@ -60,7 +61,7 @@ namespace Sources.App.Ui.Screens.CarInputScreens
                 UiUtils.GetInputValue(_carInputScreen.RightButton, 
                 _carInputScreen.LeftButton));
 
-        protected override void OnRefresh()
+        protected override void OnRefresh(StringsAsset strings)
         {
         }
     }

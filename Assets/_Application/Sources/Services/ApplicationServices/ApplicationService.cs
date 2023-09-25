@@ -10,7 +10,11 @@ namespace Sources.Services.ApplicationServices
     {
         public event Action BackButtonClicked;
         public event Action<bool> FocusStatusChanged;
+        public event Action Focused;
+        public event Action Unfocused;
         public event Action<bool> PauseStatusChanged;
+        public event Action Paused;
+        public event Action Unpaused;
         public event Action ApplicationQuit;
 
         private CoroutineContext _coroutineContext;
@@ -24,9 +28,14 @@ namespace Sources.Services.ApplicationServices
 
         public string DeviceName =>
             SystemInfo.deviceName;
-        
+
+        public RuntimePlatform ApplicationPlatform => Application.platform;
+
         public string DeviceModel =>
             SystemInfo.deviceModel;
+
+        public bool HasInternet => Application.internetReachability != NetworkReachability.NotReachable;
+        public SystemLanguage SystemLanguage => Application.systemLanguage;
 
         public void Initialize()
         {
@@ -41,14 +50,19 @@ namespace Sources.Services.ApplicationServices
             }, true);
         }
 
-        private void OnApplicationFocus(bool hasFocus) =>
+        private void OnApplicationFocus(bool hasFocus)
+        {
             FocusStatusChanged?.Invoke(hasFocus);
+            Debug.Log($"hasFocus {hasFocus}");
+        }
 
-        private void OnApplicationPause(bool pauseStatus) =>
+        private void OnApplicationPause(bool pauseStatus)
+        {
             PauseStatusChanged?.Invoke(pauseStatus);
+            Debug.Log($"pauseStatus {pauseStatus}");
+        }
 
         private void OnApplicationQuit() =>
             ApplicationQuit?.Invoke();
-
     }
 }

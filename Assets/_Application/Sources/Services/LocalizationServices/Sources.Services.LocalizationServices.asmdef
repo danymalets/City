@@ -1,0 +1,21 @@
+{
+    "name": "Sources.Services.LocalizationServices",
+    "rootNamespace": "",
+    "references": [
+        "Sources.Utils.Di",
+        "Sources.App.Services.AssetsServices",
+        "Sources.Services.ApplicationServices",
+        "Sources.App.Services.UserServices",
+        "Sources.App.Data",
+        "Sources.Utils.CommonUtils"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

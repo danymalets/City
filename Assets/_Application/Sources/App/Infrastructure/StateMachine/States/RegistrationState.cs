@@ -14,8 +14,10 @@ using Sources.Services.ApplicationServices;
 using Sources.Services.CoroutineRunnerServices;
 using Sources.Services.FpsServices;
 using Sources.Services.GizmosServices;
+using Sources.Services.IapServices;
 using Sources.Services.InstantiatorServices;
 using Sources.Services.JsonSerializerServices;
+using Sources.Services.LocalizationServices;
 using Sources.Services.PhysicsServices;
 using Sources.Services.PlayerPreferencesServices;
 using Sources.Services.PoolServices;
@@ -59,12 +61,16 @@ namespace Sources.App.Infrastructure.StateMachine.States
             _diBuilder.Register<FpsService, IFpsService>();
             _diBuilder.Register<IAudioService>(monoServices.AudioService);
             _diBuilder.Register<Balance>(monoServices.BalanceService);
+            _diBuilder.Register<LocalizationService, ILocalizationService>();
             _diBuilder.Register<IUiViewsService>(new UiViewsService(monoServices.UiViews));
-            _diBuilder.Register<UiControllersService, IUiControllersService, IUiRefreshService, IUiCloseService>();
             _diBuilder.Register<IGizmosService>(monoServices.GizmosService);
             _diBuilder.Register<QualityService, IQualityAccessService, IQualityChangerService>();
+            
             _diBuilder.Register<AdsService, IAdsService>();
             _diBuilder.Register<AnalyticsService, IAnalyticsService>();
+            _diBuilder.Register<IapService, IIapService>();
+            
+            _diBuilder.Register<UiControllersService, IUiControllersService, IUiRefreshService, IUiCloseService>();
 
             gameObjectService.DontDestroyOnLoad(monoServices.gameObject);
 

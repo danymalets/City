@@ -15,7 +15,8 @@
         "Sources.ProjectServices.BalanceServices",
         "Sources.Services.GizmosServices",
         "Sources.App.Services.BalanceServices",
-        "Sources.App.Services.AudioServices"
+        "Sources.App.Services.AudioServices",
+        "Sources.App.Services.UserServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
