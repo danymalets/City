@@ -3,6 +3,7 @@ using UnityEngine;
 namespace Sources.Services.SceneLoaderServices
 {
     [ExecuteInEditMode]
+    [DefaultExecutionOrder(-1000)]
     public class SceneFirstChildUpdater : MonoBehaviour
     {
 #if UNITY_EDITOR
