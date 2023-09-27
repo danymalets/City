@@ -23,7 +23,7 @@ namespace Sources.App.Ui.Screens.LoadingScreens
         {
         }
 
-        protected override void OnRefresh(StringsAsset strings)
+        protected override void OnRefresh()
         {
         }
 

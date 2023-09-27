@@ -29,13 +29,20 @@ namespace Sources.Services.ApplicationServices
         public string DeviceName =>
             SystemInfo.deviceName;
 
-        public RuntimePlatform ApplicationPlatform => Application.platform;
+        public RuntimePlatform ApplicationPlatform => 
+            Application.platform;
 
         public string DeviceModel =>
             SystemInfo.deviceModel;
 
-        public bool HasInternet => Application.internetReachability != NetworkReachability.NotReachable;
-        public SystemLanguage SystemLanguage => Application.systemLanguage;
+        public bool HasInternet => 
+            Application.internetReachability != NetworkReachability.NotReachable;
+        
+        public SystemLanguage SystemLanguage =>
+            Application.systemLanguage;
+        
+        public void OpenUrl(string url) =>
+            Application.OpenURL(url);
 
         public void Initialize()
         {
@@ -52,8 +59,16 @@ namespace Sources.Services.ApplicationServices
 
         private void OnApplicationFocus(bool hasFocus)
         {
+            if (hasFocus)
+            {
+                Focused?.Invoke();
+            }
+            else
+            {
+                Unfocused?.Invoke();
+            }
+            
             FocusStatusChanged?.Invoke(hasFocus);
-            Debug.Log($"hasFocus {hasFocus}");
         }
 
         private void OnApplicationPause(bool pauseStatus)

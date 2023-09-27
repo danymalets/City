@@ -31,7 +31,7 @@ namespace Sources.App.Ui.Screens.LevelScreens
             _levelScreen.ExitButton.onClick.RemoveListener(OnExitButtonClicked);
         }
 
-        protected override void OnRefresh(StringsAsset strings)
+        protected override void OnRefresh()
         {
         }
 

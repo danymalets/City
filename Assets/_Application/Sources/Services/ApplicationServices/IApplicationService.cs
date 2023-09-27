@@ -20,5 +20,6 @@ namespace Sources.Services.ApplicationServices
         string DeviceModel { get; }
         bool HasInternet { get; }
         SystemLanguage SystemLanguage { get; }
+        void OpenUrl(string url);
     }
 }

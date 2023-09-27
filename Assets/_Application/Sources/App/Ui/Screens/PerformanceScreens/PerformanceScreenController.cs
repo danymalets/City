@@ -50,7 +50,7 @@ namespace Sources.App.Ui.Screens.PerformanceScreens
                     string.Format(RigidbodyCountPattern, GameObject.FindObjectsOfType<Rigidbody>().Length));
         }
 
-        protected override void OnRefresh(StringsAsset strings)
+        protected override void OnRefresh()
         {
             
         }

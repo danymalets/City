@@ -127,8 +127,8 @@ namespace GameAnalyticsSDK.Setup
         [System.NonSerialized]
         public List<GameAnalyticsSDK.Setup.Organization> Organizations;
 
-        public bool InfoLogEditor = true;
-        public bool InfoLogBuild = true;
+        public bool InfoLogEditor = false;
+        public bool InfoLogBuild = false;
         public bool VerboseLogBuild = false;
         public bool UseManualSessionHandling = false;
         public bool SendExampleGameDataToMyGame = false;

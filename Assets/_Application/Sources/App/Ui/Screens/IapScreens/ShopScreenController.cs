@@ -66,17 +66,17 @@ namespace Sources.App.Ui.Screens.IapScreens
             _iapService.PurchaseProcessed -= IapService_OnPurchaseProcessed;
         }
         
-        protected override void OnRefresh(StringsAsset strings)
+        protected override void OnRefresh()
         {
-            _shopScreen.ShopTitle.text = strings.Shop;
+            _shopScreen.ShopTitle.text = Strings.Shop;
             
-            _shopScreen.Buy500CoinsButton.TitleText.text = string.Format(strings.CoinsPattern, 500);
-            _shopScreen.Buy1000CoinsButton.TitleText.text = string.Format(strings.CoinsPattern, 1000);
-            _shopScreen.BuyRedCarButton.TitleText.text = strings.RedCar;
-            _shopScreen.BuyGreenCarButton.TitleText.text = strings.GreenCar;
-            _shopScreen.RemoveAdsButton.TitleText.text = strings.RemoveAds;
+            _shopScreen.Buy500CoinsButton.TitleText.text = string.Format(Strings.CoinsPattern, 500);
+            _shopScreen.Buy1000CoinsButton.TitleText.text = string.Format(Strings.CoinsPattern, 1000);
+            _shopScreen.BuyRedCarButton.TitleText.text = Strings.RedCar;
+            _shopScreen.BuyGreenCarButton.TitleText.text = Strings.GreenCar;
+            _shopScreen.RemoveAdsButton.TitleText.text = Strings.RemoveAds;
             
-            _shopScreen.RestorePurchasesTextButton.Text.text = strings.RestorePurchases;
+            _shopScreen.RestorePurchasesTextButton.Text.text = Strings.RestorePurchases;
 
             _shopScreen.BuyRedCarButton.BoughtPanel.SetActive(_userAccessService.User.Progress.IsRedCarUnlocked);
             _shopScreen.BuyGreenCarButton.BoughtPanel.SetActive(_userAccessService.User.Progress.IsGreenCarUnlocked);
@@ -84,7 +84,7 @@ namespace Sources.App.Ui.Screens.IapScreens
 
             foreach (IapItemController iapItemController in _iapItemsControllers)
             {
-                iapItemController.OnRefresh(strings);
+                iapItemController.OnRefresh(Strings);
             }
         }
 

@@ -150,7 +150,7 @@ MonoBehaviour:
   <CanvasGroup>k__BackingField: {fileID: 4324951711924001307}
   <CloseButtons>k__BackingField:
   - {fileID: 8938833271445763189}
-  <ShopTitle>k__BackingField: {fileID: 0}
+  <ShopTitle>k__BackingField: {fileID: 7610399869005462459}
   <Buy500CoinsButton>k__BackingField: {fileID: 483470825888043545}
   <Buy1000CoinsButton>k__BackingField: {fileID: 103532490367298894}
   <BuyRedCarButton>k__BackingField: {fileID: 6446139224172492795}
@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 6213540877135799581}
   - component: {fileID: 7610399869005462459}
   m_Layer: 5
-  m_Name: Handle
+  m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -547,7 +547,6 @@ GameObject:
   - component: {fileID: 7815043944754862463}
   - component: {fileID: 6758786092139100613}
   - component: {fileID: 2186697592577550021}
-  - component: {fileID: 6013764169941051681}
   - component: {fileID: 1734048884323439137}
   m_Layer: 5
   m_Name: RestoreButton
@@ -659,34 +658,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6013764169941051681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7497569880429668931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b79b5624d944058bd39aad2b90fb275, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  productId: 
-  buttonType: 1
-  consumePurchase: 1
-  onTransactionsRestored:
-    m_PersistentCalls:
-      m_Calls: []
-  onPurchaseComplete:
-    m_PersistentCalls:
-      m_Calls: []
-  onPurchaseFailed:
-    m_PersistentCalls:
-      m_Calls: []
-  onProductFetched:
-    m_PersistentCalls:
-      m_Calls: []
-  button: {fileID: 2186697592577550021}
 --- !u!114 &1734048884323439137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -699,8 +670,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 819aa908abbe4c489cda3ca28ecef41e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Button>k__BackingField: {fileID: 0}
-  <Text>k__BackingField: {fileID: 0}
+  <Button>k__BackingField: {fileID: 2186697592577550021}
+  <Text>k__BackingField: {fileID: 2081594062794703102}
 --- !u!1001 &3153156158962851343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1062,7 +1033,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8367555836507840329, guid: c5db4203bc9a74b55b9f2699d7387992, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c5db4203bc9a74b55b9f2699d7387992, type: 3}
 --- !u!224 &1775493277683577908 stripped
 RectTransform:

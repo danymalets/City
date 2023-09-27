@@ -22,7 +22,7 @@ namespace Sources.App.Ui.Screens.SettingsScreens
             
         }
 
-        protected override void OnRefresh(StringsAsset strings)
+        protected override void OnRefresh()
         {
             
         }

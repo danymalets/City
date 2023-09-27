@@ -33,7 +33,7 @@ namespace Sources.App.Ui.Screens.CurrencyScreens
             _coinsItemController.OnClose();
         }
 
-        protected override void OnRefresh(StringsAsset strings)
+        protected override void OnRefresh()
         {
             
         }

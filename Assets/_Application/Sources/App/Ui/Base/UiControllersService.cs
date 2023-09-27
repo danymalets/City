@@ -9,6 +9,7 @@ using Sources.App.Ui.Screens.LoadingScreens;
 using Sources.App.Ui.Screens.MainScreens;
 using Sources.App.Ui.Screens.PerformanceScreens;
 using Sources.App.Ui.Screens.PlayerInputScreens;
+using Sources.App.Ui.Screens.SettingsScreens;
 using Sources.Services.LocalizationServices;
 using Sources.Services.UiServices.System;
 using Sources.Utils.CommonUtils;
@@ -35,6 +36,7 @@ namespace Sources.App.Ui.Base
             _screenControllers.AddRange(new ScreenControllerBase[]
             {
                 new MainScreenController(_uiViews.Get<MainScreen>()),
+                new SettingsScreenController(_uiViews.Get<SettingsScreen>()),
                 new ShopScreenController(_uiViews.Get<ShopScreen>()),
                 new CurrencyScreenController(_uiViews.Get<CurrencyScreen>()),
                 new LevelScreenController(_uiViews.Get<LevelScreen>()),

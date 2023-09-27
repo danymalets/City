@@ -15,4 +15,5 @@ MonoBehaviour:
   <CitySceneName>k__BackingField: City
   <CarsAssets>k__BackingField: {fileID: 11400000, guid: 51b0d9f63d86b40c0ba4b353fa43e4e8, type: 2}
   <PlayersAssets>k__BackingField: {fileID: 11400000, guid: 9c0fb30d4ea92457c831401b70a66a1d, type: 2}
+  <LocalizationAssets>k__BackingField: {fileID: 11400000, guid: 61288bf727735446c883fef8da205c5e, type: 2}
   <PhysicsAssets>k__BackingField: {fileID: 11400000, guid: 57374a55d5d864ebb9885d85f698e07c, type: 2}

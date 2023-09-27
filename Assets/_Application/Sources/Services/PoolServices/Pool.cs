@@ -8,8 +8,7 @@ namespace Sources.Services.PoolServices
     {
         private PoolConfig _config;
 
-        private readonly Stack<RespawnableBehaviour> _freeObjects =
-            new Stack<RespawnableBehaviour>();
+        private readonly Stack<RespawnableBehaviour> _freeObjects = new();
 
         private int _maxInstance = 0;
         private int _instanceCount;

@@ -61,7 +61,7 @@ namespace Sources.App.Ui.Screens.CarInputScreens
                 UiUtils.GetInputValue(_carInputScreen.RightButton, 
                 _carInputScreen.LeftButton));
 
-        protected override void OnRefresh(StringsAsset strings)
+        protected override void OnRefresh()
         {
         }
     }

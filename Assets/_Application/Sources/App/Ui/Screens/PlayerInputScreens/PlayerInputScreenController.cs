@@ -41,7 +41,7 @@ namespace Sources.App.Ui.Screens.PlayerInputScreens
 
         public Vector2 InputDirection => _playerInputScreen.Joystick.Direction;
 
-        protected override void OnRefresh(StringsAsset strings)
+        protected override void OnRefresh()
         {
         }
 

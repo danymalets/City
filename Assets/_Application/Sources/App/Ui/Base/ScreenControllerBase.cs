@@ -18,6 +18,8 @@ namespace Sources.App.Ui.Base
         public readonly bool IsAlwaysOpen;
         private readonly ILocalizationService _localizationService;
 
+        protected StringsAsset Strings => _localizationService.CurrentStrings;
+
         public bool IsOpen { get; private set; }
 
         public event Action<ScreenControllerBase> Opened; // Анимация открытия началась
@@ -53,7 +55,7 @@ namespace Sources.App.Ui.Base
 
         public void Refresh()
         {
-            OnRefresh(_localizationService.CurrentStrings);
+            OnRefresh();
         }
         
         private void SubscribeCloseButtons()
@@ -78,7 +80,7 @@ namespace Sources.App.Ui.Base
         {
         }
 
-        protected abstract void OnRefresh(StringsAsset strings);
+        protected abstract void OnRefresh();
         
         public void Close(bool isForce = false)
         {        

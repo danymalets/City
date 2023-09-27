@@ -9,7 +9,6 @@ using Sources.Services.PhysicsServices;
 using Sources.Services.PoolServices;
 using Sources.Services.ScreenServices;
 using Sources.Services.TimeServices;
-using Sources.Services.UiServices.System;
 using Sources.Utils.Di;
 using UnityEngine;
 
