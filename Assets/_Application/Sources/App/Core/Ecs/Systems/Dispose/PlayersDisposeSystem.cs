@@ -18,7 +18,7 @@ namespace Sources.App.Core.Ecs.Systems.Dispose
         }
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<PlayerTag>();
+            _filter = _world.Filter<PlayerTag>().Build();
         }
 
         protected override void OnDispose()

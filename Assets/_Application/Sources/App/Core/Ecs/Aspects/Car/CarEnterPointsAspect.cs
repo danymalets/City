@@ -10,7 +10,7 @@ namespace Sources.App.Core.Ecs.Aspects.Car
     {
         public Entity Entity { get; set; }
 
-        public Filter GetFilter(Filter filter) =>
+        public FilterBuilder GetFilter(FilterBuilder filter) =>
             filter.With<CarTag>();
 
         public readonly IEnterPoint GetEnterPoint(int place) =>

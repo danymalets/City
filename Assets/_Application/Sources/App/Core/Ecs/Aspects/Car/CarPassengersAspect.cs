@@ -13,9 +13,9 @@ namespace Sources.App.Core.Ecs.Aspects.Car
     {
         public Entity Entity { get; set; }
 
-        public Filter GetFilter(Filter filter) => filter.With<CarTag>();
+        public FilterBuilder GetFilter(FilterBuilder filter) => filter.With<CarTag>();
 
-        public void TakePlaceInternal(int place, Entity player)
+        public readonly void TakePlaceInternal(int place, Entity player)
         {
 #if FORCE_DEBUG
             DAssert.IsTrue(IsFree(place));

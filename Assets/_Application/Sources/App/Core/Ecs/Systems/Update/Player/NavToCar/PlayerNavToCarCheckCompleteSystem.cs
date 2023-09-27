@@ -25,7 +25,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player.NavToCar
 
         protected override void OnInitFilters()
         {
-            _playerFilter = _world.Filter<PlayerTag, OnNavToCar>();
+            _playerFilter = _world.Filter<PlayerTag, OnNavToCar>().Build();
         }
 
         protected override void OnUpdate(float deltaTime)

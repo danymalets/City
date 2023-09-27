@@ -28,8 +28,8 @@ namespace Sources.App.Core.Ecs.Systems.Update.Props
 
         protected override void OnInitFilters()
         {
-            _userFilter = _world.Filter<UserTag>();
-            _filter = _world.Filter<PropsTag>().Without<Ref<IRigidbody>, FallenProps>();
+            _userFilter = _world.Filter<UserTag>().Build();
+            _filter = _world.Filter<PropsTag>().Without<Ref<IRigidbody>, FallenProps>().Build();
         }
 
         protected override void OnUpdate(float deltaTime)

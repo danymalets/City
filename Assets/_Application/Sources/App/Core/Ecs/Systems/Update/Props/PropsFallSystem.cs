@@ -26,7 +26,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Props
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<VerticalPropsTag, Ref<IRigidbody>>().Without<FallingProps>();
+            _filter = _world.Filter<VerticalPropsTag, Ref<IRigidbody>>().Without<FallingProps>().Build();
         }
 
         protected override void OnUpdate(float deltaTime)

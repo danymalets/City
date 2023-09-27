@@ -4,6 +4,6 @@ namespace Sources.Utils.MorpehWrapper.Aspects
 {
     public interface IDAspect : IDAspectBase
     {
-        Filter GetFilter(Filter filter);
+        FilterBuilder GetFilter(FilterBuilder filter);
     }
 }

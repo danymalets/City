@@ -22,7 +22,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Common
 
         protected override void OnInitFilters()
         {
-            _userFiler = _world.Filter<UserTag>();
+            _userFiler = _world.Filter<UserTag>().Build();
         }
 
         protected override void OnUpdate(float deltaTime)

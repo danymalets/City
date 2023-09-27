@@ -27,7 +27,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Npc
 
         protected override void OnInitFilters()
         {
-            _npcOnPathfilter = _world.Filter<NpcTag, CheckForwardTriggerRequest>();
+            _npcOnPathfilter = _world.Filter<NpcTag, CheckForwardTriggerRequest>().Build();
         }
 
         protected override void OnUpdate(float deltaTime)

@@ -12,7 +12,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player.NavToCar
         
         protected override void OnInitFilters()
         {
-            _playerFilter = _world.Filter<PlayerTag, OnNavToCar, OnNavFailedEvent>();
+            _playerFilter = _world.Filter<PlayerTag, OnNavToCar, OnNavFailedEvent>().Build();
         }
 
         protected override void OnUpdate(float deltaTime)

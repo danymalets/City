@@ -32,8 +32,8 @@ namespace Sources.App.Core.Ecs.Systems.Update.Generation
 
         protected override void OnInitFilters()
         {
-            _carFilter = _world.Filter<CarTag>().Without<AlwaysActive>();
-            _carSimulationAreaFilter = _world.Filter<CarsSimulationAreaTag>();
+            _carFilter = _world.Filter<CarTag>().Without<AlwaysActive>().Build();
+            _carSimulationAreaFilter = _world.Filter<CarsSimulationAreaTag>().Build();
         }
 
         protected override void OnUpdate(float deltaTime)

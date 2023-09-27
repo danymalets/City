@@ -1,3 +1,4 @@
+using System;
 using Scellecs.Morpeh;
 
 namespace Sources.Utils.MorpehWrapper.MorpehUtils.Extensions
@@ -13,7 +14,16 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Extensions
             return entity;
         }
 
-        public static Entity GetSingleton<TComponent>(this DWorld world) where TComponent : struct, IComponent =>
-            world.Filter<TComponent>().GetSingleton();
+        public static Entity GetSingleton<TComponent>(this DWorld world) where TComponent : struct, IComponent
+        {
+            if (world.Filter<TComponent>().Build().TryGetSingle(out Entity entity))
+            {
+                return entity;
+            }
+            else
+            {
+                throw new InvalidOperationException($"Not single: length:{world.Filter<TComponent>().Build()}");
+            }
+        }
     }
 }

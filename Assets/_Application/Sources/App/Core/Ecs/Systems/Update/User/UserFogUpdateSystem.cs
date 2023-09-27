@@ -24,7 +24,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<SimulationCameraTag>();
+            _filter = _world.Filter<SimulationCameraTag>().Build();
         }
 
         protected override void OnUpdate(float deltaTime)

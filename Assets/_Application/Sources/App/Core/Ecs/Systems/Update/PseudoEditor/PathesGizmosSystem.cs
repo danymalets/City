@@ -18,7 +18,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.PseudoEditor
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<PathesTag>();
+            _filter = _world.Filter<PathesTag>().Build();
         }
 
         protected override void OnUpdate(float deltaTime)

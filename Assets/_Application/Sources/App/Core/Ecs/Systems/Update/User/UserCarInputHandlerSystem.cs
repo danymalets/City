@@ -16,7 +16,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<UserTag, PlayerInCar>();
+            _filter = _world.Filter<UserTag, PlayerInCar>().Build();
         }
 
         protected override void OnUpdate(float deltaTime)

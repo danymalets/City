@@ -23,7 +23,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<NpcTag, PlayerInCar>();
+            _filter = _world.Filter<NpcTag, PlayerInCar>().Build();
         }
 
         protected override void OnUpdate(float deltaTime)

@@ -6,25 +6,25 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Extensions
 {
     public static class MorpehFilterExtensions
     {
-        public static Filter Without<TComponent1, TComponent2>(this Filter filter)
+        public static FilterBuilder Without<TComponent1, TComponent2>(this FilterBuilder filter)
             where TComponent1 : struct, IComponent 
             where TComponent2 : struct, IComponent =>
             filter.Without<TComponent1>().Without<TComponent2>();
         
-        public static Filter Without<TComponent1, TComponent2, TComponent3>(this Filter filter)
+        public static FilterBuilder Without<TComponent1, TComponent2, TComponent3>(this FilterBuilder filter)
             where TComponent1 : struct, IComponent 
             where TComponent2 : struct, IComponent
             where TComponent3 : struct, IComponent =>
             filter.Without<TComponent1>().Without<TComponent2>().Without<TComponent3>();
         
-        public static Filter Without<TComponent1, TComponent2, TComponent3, TComponent4>(this Filter filter)
+        public static FilterBuilder Without<TComponent1, TComponent2, TComponent3, TComponent4>(this FilterBuilder filter)
             where TComponent1 : struct, IComponent 
             where TComponent2 : struct, IComponent
             where TComponent3 : struct, IComponent
             where TComponent4 : struct, IComponent =>
             filter.Without<TComponent1>().Without<TComponent2>().Without<TComponent3>().Without<TComponent4>();
         
-        public static Filter Without<TComponent1, TComponent2, TComponent3, TComponent4, TComponent5>(this Filter filter)
+        public static FilterBuilder Without<TComponent1, TComponent2, TComponent3, TComponent4, TComponent5>(this FilterBuilder filter)
             where TComponent1 : struct, IComponent 
             where TComponent2 : struct, IComponent
             where TComponent3 : struct, IComponent
@@ -34,14 +34,40 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Extensions
 
         public static void ShouldBeAtLeast(this Filter filter, int minCount)
         {
-            if (filter.Count() < minCount)
+            if (filter.GetLengthSlow() < minCount)
                 throw new InvalidOperationException();
         }
         
         public static void ShouldBe(this Filter filter, int count)
         {
-            if (filter.Count() != count)
+            if (filter.GetLengthSlow() != count)
                 throw new InvalidOperationException();
+        } 
+        
+        public static bool Any(this Filter filter)
+        {
+            foreach (Entity entity in filter)
+            {
+                return true;
+            }
+            return false;
+        }
+        
+        public static bool TryGetSingle(this Filter filter, out Entity entityAnswer)
+        {
+            entityAnswer = default;
+            bool wasAns = false;
+            foreach (var tmp in filter)
+            {
+                if (wasAns)
+                {
+                    return false;
+                }
+                    
+                entityAnswer = tmp;
+                wasAns = true;
+            }
+            return wasAns;
         }
 
         public static Entity GetSingleton(this Filter filter)

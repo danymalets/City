@@ -37,16 +37,16 @@ namespace Sources.App.Core.Ecs.Systems.Update.Generation
 
         protected override void OnInitFilters()
         {
-            _worldStatusFilter = _world.Filter<WorldStatusTag>();
-            _pathesFilter = _world.Filter<CarsPathesTag>();
-            _npcWithCarsFilter = _world.Filter<NpcTag, PlayerInCar>();
+            _worldStatusFilter = _world.Filter<WorldStatusTag>().Build();
+            _pathesFilter = _world.Filter<CarsPathesTag>().Build();
+            _npcWithCarsFilter = _world.Filter<NpcTag, PlayerInCar>().Build();
         }
 
         protected override void OnUpdate(float deltaTime)
         {
             Entity pathesEntity = _pathesFilter.GetSingleton();
 
-            int cars = _npcWithCarsFilter.Count();
+            int cars = _npcWithCarsFilter.GetLengthSlow();
 
             List<Point> activePoints = pathesEntity.Get<ActiveSpawnPoints>().List;
             List<Point> horizonPoints = pathesEntity.Get<HorizonSpawnPoints>().List;

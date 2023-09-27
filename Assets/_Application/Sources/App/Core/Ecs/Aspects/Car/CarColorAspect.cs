@@ -13,7 +13,7 @@ namespace Sources.App.Core.Ecs.Aspects.Car
     {
         public Entity Entity { get; set; }
         
-        public Filter GetFilter(Filter filter) => filter.With<CarTag>();
+        public FilterBuilder GetFilter(FilterBuilder filter) => filter.With<CarTag>();
 
         public readonly void SetupColor(CarColorType carColorType)
         {

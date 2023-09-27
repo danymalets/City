@@ -24,7 +24,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<UserTag>();
+            _filter = _world.Filter<UserTag>().Build();
         }
 
         protected override void OnUpdate(float deltaTime)

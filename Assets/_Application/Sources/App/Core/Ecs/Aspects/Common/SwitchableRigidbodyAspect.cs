@@ -14,7 +14,7 @@ namespace Sources.App.Core.Ecs.Aspects.Common
     {
         public Entity Entity { get; set; }
 
-        public Filter GetFilter(Filter filter) => filter
+        public FilterBuilder GetFilter(FilterBuilder filter) => filter
             .With<Ref<IRigidbodySwitcher>, Ref<RigidbodySettings>>();
 
         public readonly IRigidbodySwitcher RigidbodySwitcher => Entity.GetRef<IRigidbodySwitcher>();

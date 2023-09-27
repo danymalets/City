@@ -19,7 +19,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<NpcTag, NpcOnPath, NpcPointReachedEvent>();
+            _filter = _world.Filter<NpcTag, NpcOnPath, NpcPointReachedEvent>().Build();
         }
 
         protected override void OnUpdate(float deltaTime)

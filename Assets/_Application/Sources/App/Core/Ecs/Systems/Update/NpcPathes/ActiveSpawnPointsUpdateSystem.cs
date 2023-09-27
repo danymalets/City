@@ -29,7 +29,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcPathes
 
         protected override void OnInitFilters()
         {
-            _pathesFilter = _world.Filter<PathesTag>();
+            _pathesFilter = _world.Filter<PathesTag>().Build();
         }
 
         protected override int Period => 3;

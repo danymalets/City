@@ -28,7 +28,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<NpcTag, PlayerInCar, NpcOnPath, NpcCarBreakRequest>();
+            _filter = _world.Filter<NpcTag, PlayerInCar, NpcOnPath, NpcCarBreakRequest>().Build();
         }
 
         protected override void OnUpdate(float deltaTime)

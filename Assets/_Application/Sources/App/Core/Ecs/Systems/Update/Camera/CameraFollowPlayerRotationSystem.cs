@@ -32,8 +32,8 @@ namespace Sources.App.Core.Ecs.Systems.Update.Camera
 
         protected override void OnInitFilters()
         {
-            _userFilter = _world.Filter<UserTag>();
-            _cameraFilter = _world.Filter<CameraTag>();
+            _userFilter = _world.Filter<UserTag>().Build();
+            _cameraFilter = _world.Filter<CameraTag>().Build();
         }
 
         protected override void OnUpdate(float deltaTime)

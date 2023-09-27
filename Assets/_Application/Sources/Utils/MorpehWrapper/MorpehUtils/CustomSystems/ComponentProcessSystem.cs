@@ -13,7 +13,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.CustomSystems
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<TAwaiter>();
+            _filter = _world.Filter<TAwaiter>().Build();
         }
 
         protected override void OnUpdate(float deltaTime)

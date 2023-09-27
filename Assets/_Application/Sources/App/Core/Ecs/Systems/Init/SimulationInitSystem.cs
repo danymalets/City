@@ -12,7 +12,7 @@ namespace Sources.App.Core.Ecs.Systems.Init
 
         protected override void OnInitFilters()
         {
-            _worldStatusFilter = _world.Filter<WorldStatusTag>();
+            _worldStatusFilter = _world.Filter<WorldStatusTag>().Build();
         }
 
         protected override void OnInitialize()

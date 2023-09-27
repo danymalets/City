@@ -30,8 +30,8 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
 
         protected override void OnInitFilters()
         {
-            _userWithCarFilter = _world.Filter<UserTag, PlayerInputInCarOn>();
-            _userWithoutCarFilter = _world.Filter<UserTag>().Without<PlayerInCar>();
+            _userWithCarFilter = _world.Filter<UserTag, PlayerInputInCarOn>().Build();
+            _userWithoutCarFilter = _world.Filter<UserTag>().Without<PlayerInCar>().Build();
         }
 
         protected override void OnUpdate(float deltaTime)

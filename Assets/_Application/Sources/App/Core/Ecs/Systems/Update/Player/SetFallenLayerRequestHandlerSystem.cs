@@ -17,7 +17,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<SetLayerRequest>();
+            _filter = _world.Filter<SetLayerRequest>().Build();
         }
 
         protected override void OnUpdate(float deltaTime)

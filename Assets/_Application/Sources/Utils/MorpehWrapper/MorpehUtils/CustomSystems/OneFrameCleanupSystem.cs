@@ -10,7 +10,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.CustomSystems
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<TComponent>();
+            _filter = _world.Filter<TComponent>().Build();
         }
         
         protected override void OnUpdate(float deltaTime)

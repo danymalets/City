@@ -30,7 +30,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
         private readonly List<DDisposer> _disposers = new();
         private readonly SystemsPerformance _systemsPerformance;
         
-        public Filter Filter => _world.Filter;
+        public FilterBuilder Filter => _world.Filter;
 
         public float TimeScale { get; set; } = 1;
 

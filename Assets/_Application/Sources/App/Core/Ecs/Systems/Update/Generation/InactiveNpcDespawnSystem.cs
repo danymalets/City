@@ -34,9 +34,9 @@ namespace Sources.App.Core.Ecs.Systems.Update.Generation
 
         protected override void OnInitFilters()
         {
-            _npcsSimulationAreaFilter = _world.Filter<NpcsSimulationAreaTag>();
-            _carsSimulationAreaFilter = _world.Filter<CarsSimulationAreaTag>();
-            _npcFilter = _world.Filter<NpcTag>().Without<AlwaysActive>();
+            _npcsSimulationAreaFilter = _world.Filter<NpcsSimulationAreaTag>().Build();
+            _carsSimulationAreaFilter = _world.Filter<CarsSimulationAreaTag>().Build();
+            _npcFilter = _world.Filter<NpcTag>().Without<AlwaysActive>().Build();
         }
 
         protected override void OnUpdate(float deltaTime)

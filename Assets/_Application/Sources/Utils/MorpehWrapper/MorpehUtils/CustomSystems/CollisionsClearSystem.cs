@@ -14,7 +14,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.CustomSystems
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<Collisions>();
+            _filter = _world.Filter<Collisions>().Build();
         }
         
         protected override void OnUpdate(float deltaTime)

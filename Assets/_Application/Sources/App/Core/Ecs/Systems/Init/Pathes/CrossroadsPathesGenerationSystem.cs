@@ -35,7 +35,7 @@ namespace Sources.App.Core.Ecs.Systems.Init.Pathes
         protected override void OnInitFilters()
         {
             _simulationBalance = DiContainer.Resolve<Balance>().SimulationBalance;
-            _filter = _world.Filter<PathesTag>();
+            _filter = _world.Filter<PathesTag>().Build();
         }
 
         protected override void OnInitialize()

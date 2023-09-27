@@ -29,7 +29,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<PlayerTag, PlayerInCar, CheckForwardTriggerRequest>();
+            _filter = _world.Filter<PlayerTag, PlayerInCar, CheckForwardTriggerRequest>().Build();
         }
 
         protected override void OnUpdate(float deltaTime)

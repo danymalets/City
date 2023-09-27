@@ -22,9 +22,9 @@ namespace Sources.App.Core.Ecs.Systems.Update.Generation
 
         protected override void OnInitFilters()
         {
-            _simulationCameraFilter = _world.Filter<SimulationCameraTag>();
-            _cameraFilter = _world.Filter<CameraTag>();
-            _userFilter = _world.Filter<UserTag>();
+            _simulationCameraFilter = _world.Filter<SimulationCameraTag>().Build();
+            _cameraFilter = _world.Filter<CameraTag>().Build();
+            _userFilter = _world.Filter<UserTag>().Build();
         }
 
         protected override void OnUpdate(float deltaTime)

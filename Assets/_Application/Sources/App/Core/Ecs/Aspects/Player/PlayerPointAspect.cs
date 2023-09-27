@@ -12,7 +12,7 @@ namespace Sources.App.Core.Ecs.Aspects.Player
     public struct PlayerPointAspect : IDAspect
     {
         public Entity Entity { get; set; }
-        public Filter GetFilter(Filter filter) => 
+        public FilterBuilder GetFilter(FilterBuilder filter) => 
             filter.With<PlayerTag>();
         
         public readonly Vector3 GetPosition() =>

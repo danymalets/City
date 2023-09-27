@@ -24,7 +24,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<NpcTag, Collisions>().Without<Dead>();
+            _filter = _world.Filter<NpcTag, Collisions>().Without<Dead>().Build();
         }
 
         protected override void OnUpdate(float deltaTime)

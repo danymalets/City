@@ -17,7 +17,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Car
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<CarTag, Ref<IRigidbody>>();
+            _filter = _world.Filter<CarTag, Ref<IRigidbody>>().Build();
         }
 
         protected override void OnUpdate(float deltaTime)

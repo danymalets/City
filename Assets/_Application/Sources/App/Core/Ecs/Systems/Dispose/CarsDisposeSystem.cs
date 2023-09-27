@@ -19,7 +19,7 @@ namespace Sources.App.Core.Ecs.Systems.Dispose
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<CarTag>();
+            _filter = _world.Filter<CarTag>().Build();
         }
 
         protected override void OnDispose()
