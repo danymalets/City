@@ -10,12 +10,16 @@ namespace Sources.Services.SceneLoaderServices
 {
     public class SceneLoaderService : ISceneLoaderService
     {
+        private const string EmptySceneName = "Empty";
         private readonly CoroutineContext _coroutineContext;
 
         public SceneLoaderService()
         {
             _coroutineContext = new CoroutineContext();
         }
+
+        public void LoadEmptyScene(Action onComplete = null) => 
+            LoadScene(EmptySceneName, onComplete);
 
         public void LoadScene<T>(string scene, Action<T> onComplete = null)
             where T : ISceneContext

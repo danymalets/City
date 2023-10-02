@@ -34,7 +34,7 @@ namespace Sources.App.Infrastructure.StateMachine.States
             _mainScreenController.Open();
             _currencyScreenController.Open();
             
-            sceneLoader.LoadScene<EmptySceneContext>(Consts.EmptySceneName, _ =>
+            sceneLoader.LoadEmptyScene(() =>
             {
                 _mainScreenController.PlayButtonClicked += OnPlayButtonClicked;
             });

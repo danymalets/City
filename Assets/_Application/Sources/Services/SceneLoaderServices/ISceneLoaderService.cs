@@ -5,6 +5,7 @@ namespace Sources.Services.SceneLoaderServices
 {
     public interface ISceneLoaderService : IService
     {
+        void LoadEmptyScene(Action onComplete = null);
         void LoadScene<T>(string scene, Action<T> onComplete = null) where T : ISceneContext;
         void LoadScene(string scene, Action onComplete = null);
     }

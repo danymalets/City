@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace Sources.App.Services.AssetsServices.IdleCarSpawns
 {
-    public partial class LevelContext : SceneContext, ILevelContext
+    public partial class LevelSceneContext : SceneContext, ILevelContext
     {
         [SerializeField]
         private MonoPoint _userSpawnPoint;

@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 namespace Sources.App.Infrastructure
 {
-    public class SplashScreen : SceneContext
+    public class SplashScreenSceneContext : SceneContext
     {
         private IEnumerator Start()
         {

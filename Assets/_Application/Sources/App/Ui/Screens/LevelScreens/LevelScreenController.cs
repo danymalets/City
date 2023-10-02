@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Sources.App.Ui.Screens.LevelScreens
 {
-    public class LevelScreenController : ScreenController<int>
+    public class LevelScreenController : ScreenController
     {
         private readonly LevelScreen _levelScreen;
         
@@ -19,7 +19,7 @@ namespace Sources.App.Ui.Screens.LevelScreens
             _levelScreen = levelScreen;
         }
         
-        protected override void OnOpen(int level)
+        protected override void OnOpen()
         {
             _levelScreen.RestartButton.onClick.AddListener(OnRestartButtonClicked);
             _levelScreen.ExitButton.onClick.AddListener(OnExitButtonClicked);

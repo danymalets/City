@@ -8,38 +8,38 @@ namespace Sources.Services.CoroutineRunnerServices
 {
     public class CoroutineContext
     {
-        private readonly ICoroutineService _coroutine;
+        private readonly ICoroutineService _coroutineService;
         private readonly List<Coroutine> _runningCoroutines = new List<Coroutine>();
 
         public CoroutineContext()
         {
-            _coroutine = DiContainer.Resolve<ICoroutineService>();
+            _coroutineService = DiContainer.Resolve<ICoroutineService>();
         }
 
         public Coroutine StartCoroutine(IEnumerator coroutineMethod)
         {
-            Coroutine coroutine = _coroutine.StartCoroutine(coroutineMethod);
+            Coroutine coroutine = _coroutineService.StartCoroutine(coroutineMethod);
             _runningCoroutines.Add(coroutine);
             return coroutine;
         }
 
         public Coroutine RunWithDelay(float delay, Action action)
         {
-            Coroutine coroutine = _coroutine.RunWithDelay(delay, action);
+            Coroutine coroutine = _coroutineService.RunWithDelay(delay, action);
             _runningCoroutines.Add(coroutine);
             return coroutine;
         }
         
         public Coroutine RunEachFrame(Action action, bool andNow = false)
         {
-            Coroutine coroutine = _coroutine.RunEachFrame(action, andNow);
+            Coroutine coroutine = _coroutineService.RunEachFrame(action, andNow);
             _runningCoroutines.Add(coroutine);
             return coroutine;
         }
         
         public Coroutine RunEachFixedUpdate(Action action)
         {
-            Coroutine coroutine = _coroutine.RunEachFixedUpdate(action);
+            Coroutine coroutine = _coroutineService.RunEachFixedUpdate(action);
             _runningCoroutines.Add(coroutine);
             return coroutine;
         }
@@ -47,47 +47,54 @@ namespace Sources.Services.CoroutineRunnerServices
         public void StopAllCoroutines()
         {
             foreach (Coroutine coroutine in _runningCoroutines)
-                _coroutine.StopCoroutine(coroutine);
+                _coroutineService.StopCoroutine(coroutine);
         }
 
         public Coroutine RunEachSeconds(float period, Action action, bool andNow = false)
         {
-            Coroutine coroutine = _coroutine.RunEachSeconds(period, action, andNow);
+            Coroutine coroutine = _coroutineService.RunEachSeconds(period, action, andNow);
             _runningCoroutines.Add(coroutine);
             return coroutine;
         }
 
         public Coroutine RunNextFixedUpdate(Action action)
         {
-            Coroutine coroutine = _coroutine.RunNextFixedUpdate(action);
+            Coroutine coroutine = _coroutineService.RunNextFixedUpdate(action);
             _runningCoroutines.Add(coroutine);
             return coroutine;
         }
 
         public Coroutine RunWithFrameDelay(int frames, Action action)
         {
-            Coroutine coroutine = _coroutine.RunWithFrameDelay(frames, action);
+            Coroutine coroutine = _coroutineService.RunWithFrameDelay(frames, action);
             _runningCoroutines.Add(coroutine);
             return coroutine;
         }
         
         public Coroutine RunNextFrame(Action action)
         {
-            Coroutine coroutine = _coroutine.RunNextFrame(action);
+            Coroutine coroutine = _coroutineService.RunNextFrame(action);
             _runningCoroutines.Add(coroutine);
             return coroutine;
         }
 
         public Coroutine IncreaseNormalValue(float seconds, Action<float> action)
         {
-            Coroutine coroutine = _coroutine.IncreaseNormalValue(seconds, action);
+            Coroutine coroutine = _coroutineService.IncreaseNormalValue(seconds, action);
             _runningCoroutines.Add(coroutine);
             return coroutine;
         }
         
         public Coroutine ChangeValue(float valueFrom, float valueTo, float seconds, Action<float> action)
         {
-            Coroutine coroutine = _coroutine.ChangeValue(valueFrom, valueTo, seconds, action);
+            Coroutine coroutine = _coroutineService.ChangeValue(valueFrom, valueTo, seconds, action);
+            _runningCoroutines.Add(coroutine);
+            return coroutine;
+        }
+
+        public Coroutine RunWhen(Func<bool> shouldRun, Action action)
+        {
+            Coroutine coroutine = _coroutineService.RunWhen(shouldRun, action);
             _runningCoroutines.Add(coroutine);
             return coroutine;
         }

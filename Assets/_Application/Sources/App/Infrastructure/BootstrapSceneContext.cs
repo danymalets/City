@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Sources.App.Infrastructure
 {
     [DefaultExecutionOrder(-100)]
-    public class EntryPoint : SceneContext
+    public class BootstrapSceneContext : SceneContext
     {
         [SerializeField]
         private MonoServices _monoServices;

@@ -20,7 +20,7 @@ namespace Sources.Services.SceneLoaderServices
             {
                 s_isGameStarted = true;
                 
-                if (SceneManager.GetActiveScene().buildIndex != 0)
+                if (SceneManager.GetActiveScene().buildIndex > 1)
                     SceneManager.LoadScene(0);
             }
         }

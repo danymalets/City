@@ -25,7 +25,7 @@ namespace Sources.Services.AnalyticsServices
             });
         }
 
-        public void SendLevelCompleted(int level, float time)
+        public void SendLevelFinished(int level, float time)
         {
             _analyticsFacade.SendEvent("level_completed", new Dictionary<string, string>
             {

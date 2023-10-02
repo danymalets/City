@@ -1,44 +1,109 @@
 using System;
+using Sources.App.Data.Constants;
 using Sources.App.Services.AssetsServices;
-using Sources.App.Services.AssetsServices.IdleCarSpawns;
 using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
 using Sources.App.Services.BalanceServices;
 using Sources.App.Services.UserServices;
+using Sources.App.Services.UserServices.Data;
 using Sources.App.Ui.Base;
+using Sources.App.Ui.Screens.LevelScreens;
 using Sources.App.Ui.Screens.LoadingScreens;
+using Sources.Services.CoroutineRunnerServices;
+using Sources.Services.FpsServices;
 using Sources.Services.SceneLoaderServices;
+using Sources.Services.TimeServices;
 using Sources.Utils.Di;
-using UnityEngine.SceneManagement;
 
 namespace Sources.App.Core
 {
     public class GameLoader
     {
-        private readonly ISceneLoaderService _sceneLoader;
+        private readonly IFpsService _fpsService;
+        private readonly Preferences _userPreferences;
+        private readonly ITimeService _timeService;
+        private readonly CoroutineContext _coroutineContext;
+        private object _loadingCoroutineContext;
+        private readonly LevelScreenController _levelScreen;
         private readonly LoadingScreenController _loadingScreenController;
-        private readonly Balance _balanceService;
+        private readonly ISceneLoaderService _sceneLoader;
 
         public GameLoader()
         {
-            _loadingScreenController = DiContainer.Resolve<IUiControllersService>().Get<LoadingScreenController>();
+            _fpsService = DiContainer.Resolve<IFpsService>();
+            _timeService = DiContainer.Resolve<ITimeService>();
+            _userPreferences = DiContainer.Resolve<IUserAccessService>().User.Preferences;
+            IUiControllersService uiControllers = DiContainer.Resolve<IUiControllersService>();
 
+            _levelScreen = uiControllers.Get<LevelScreenController>();
+            _loadingScreenController = uiControllers.Get<LoadingScreenController>();
+            
             _sceneLoader = DiContainer.Resolve<ISceneLoaderService>();
-            _balanceService = DiContainer.Resolve<Balance>();
+            _coroutineContext = new CoroutineContext();
         }
 
-        public void LoadGame(Action<LevelData> onLoaded)
+        public void StartLoadGame(Action<ILevelContext> onSceneLoaded, Action onLoaded, Action onReloadRequest)
         {
-            int level = DiContainer.Resolve<IUserAccessService>()
-                .User.Progress.CurrentLevel;
-
+            LoadGameScene(levelContext =>
+            {
+                onSceneLoaded?.Invoke(levelContext);
+                StartFpsStabilizer(3f, onLoaded, onReloadRequest);
+            });
+        }
+        
+        private void LoadGameScene(Action<ILevelContext> onSceneLoaded)
+        {
             string cityScene = DiContainer.Resolve<Assets>().CitySceneName;
 
             _loadingScreenController.Open();
+
+            _coroutineContext.RunNextFrame(() =>
+            {
+                _sceneLoader.LoadScene<ILevelContext>(cityScene,
+                    levelContext => onSceneLoaded?.Invoke(levelContext));
+            });
+        }
+
+        private void StartFpsStabilizer(float minTime, Action onLoaded, Action onReloadRequest)
+        {
+            _levelScreen.Open();
+            float time = _timeService.Time;
             
-            SceneManager.LoadScene($"Empty");
+            _coroutineContext.ChangeValue(0f, 1f, minTime, value => 
+                _loadingScreenController.SetProgress(value));
             
-            _sceneLoader.LoadScene<ILevelContext>(cityScene, 
-                levelContext => onLoaded(new LevelData(level, levelContext)));
+            _fpsService.RunWhenFpsStabilizes(() =>
+            {
+                _coroutineContext.RunWhen(() => _timeService.Time >= time + minTime, () =>
+                {
+                    _loadingScreenController.Close();
+                    
+                    bool shouldReload = false;
+                    
+                    if (_userPreferences.BestQualityForDevice == null)
+                    {
+                        if (_fpsService.FpsLastSecond > Consts.MinFpsForHighQuality)
+                        {
+                            _userPreferences.BestQualityForDevice = QualityType.High;
+                        }
+                        else
+                        {
+                            _userPreferences.BestQualityForDevice = QualityType.Low;
+                            _userPreferences.SelectedQuality = QualityType.Low;
+
+                            shouldReload = true;
+                        }
+
+                        if (shouldReload)
+                        {
+                            onReloadRequest?.Invoke();
+                        }
+                        else
+                        {
+                            onLoaded?.Invoke();
+                        }
+                    }
+                });
+            });
         }
     }
 }

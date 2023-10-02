@@ -15,10 +15,7 @@ namespace Sources.App.Infrastructure.StateMachine.States
     public class LevelState : GameState
     {
         private GameController _gameController;
-
         private LevelScreenController _levelScreen;
-        private IDiBuilder _diBuilder;
-        private IAdsService _adsService;
         private IQualityChangerService _qualityChanger;
         private IUserAccessService _userAccess;
 
@@ -28,26 +25,13 @@ namespace Sources.App.Infrastructure.StateMachine.States
 
         protected override void OnEnter()
         {
-            _diBuilder = DiBuilder.Create();
-            
             _qualityChanger = DiContainer.Resolve<IQualityChangerService>();
             _userAccess = DiContainer.Resolve<IUserAccessService>();
 
             _qualityChanger.SetQuality(_userAccess.User.Preferences.SelectedQuality);
             
-            _adsService = DiContainer.Resolve<IAdsService>();
-            
             _levelScreen = DiContainer.Resolve<IUiControllersService>().Get<LevelScreenController>();
 
-            new GameLoader().LoadGame(levelData =>
-            {
-                _diBuilder.Register<ILevelContext>(levelData.LevelContext);
-                StartGame();
-            });
-        }
-
-        private void StartGame()
-        {
             _gameController = new GameController();
             
             _levelScreen.RestartButtonClicked += LevelScreen_OnRestartButtonClicked;
@@ -60,20 +44,13 @@ namespace Sources.App.Infrastructure.StateMachine.States
         private void GameControllerForceReloadRequested()
         {
             FinishGame();
-            _stateMachine.Enter<LevelState>();
+            EnterMainUi();
         }
 
         private void LevelScreen_OnExitButtonClicked()
         {
             FinishGame();
-
-            _adsService.ShowRewarded(() =>
-            {
-                EnterMainUi();
-            }, () =>
-            {
-                EnterMainUi();
-            });
+            EnterMainUi();
         }
 
         private void EnterMainUi()
@@ -84,7 +61,7 @@ namespace Sources.App.Infrastructure.StateMachine.States
         private void LevelScreen_OnRestartButtonClicked()
         {
             FinishGame();
-            _stateMachine.Enter<LevelState>();
+            EnterMainUi();
         }
 
         private void FinishGame()
@@ -99,8 +76,6 @@ namespace Sources.App.Infrastructure.StateMachine.States
             _gameController.ForceReloadRequested -= GameControllerForceReloadRequested;
 
             _gameController = null;
-
-            _diBuilder.Dispose();
         }
     }
 }
