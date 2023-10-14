@@ -1,5 +1,5 @@
 using System;
-using Sources.App.Services.UserServices.Data;
+using Sources.App.Services.UserServices.Users.PreferencesData;
 using UnityEngine;
 
 namespace Sources.App.Services.BalanceServices

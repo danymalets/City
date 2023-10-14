@@ -22,7 +22,7 @@ namespace Sources.App.Services.BalanceServices
 
         private void OnValidate()
         {
-            DValidate.OptimizeEnumsData(_carBalance,
+            DValidate.ValidateEnumsData(_carBalance,
                 cb => cb.CarType, carType => new CarBalance(carType));
 
             foreach (CarBalance carBalance in _carBalance)

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Sources.App.Data.Cars;
 using Sources.App.Data.MonoEntities;
+using Sources.App.Services.AssetsServices.Monos.AssetsData;
 using Sources.Utils.CommonUtils.Libs;
 using UnityEngine;
 
@@ -18,7 +19,7 @@ namespace Sources.App.Services.AssetsServices
 
         private void OnValidate()
         {
-            DValidate.OptimizeEnumsData(_carData, 
+            DValidate.ValidateEnumsData(_carData, 
                 cd => cd.CarType, 
                 cd => new CarAsset(cd));
         }

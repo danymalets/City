@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Sources.App.Services.UserServices.Missions
+namespace Sources.App.Services.UserServices.Users.Missions
 {
     public class MoveToPointProgress : SubMissionProgress
     {

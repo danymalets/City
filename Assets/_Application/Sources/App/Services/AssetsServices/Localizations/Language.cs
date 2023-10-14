@@ -1,5 +1,6 @@
 using System;
 using Sources.App.Services.UserServices;
+using Sources.App.Services.UserServices.Users.PreferencesData;
 using UnityEngine;
 
 namespace Sources.App.Services.AssetsServices.Localizations

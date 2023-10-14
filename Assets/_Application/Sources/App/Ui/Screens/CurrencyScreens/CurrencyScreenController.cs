@@ -1,5 +1,6 @@
 using Sources.App.Services.AssetsServices.Localizations;
 using Sources.App.Services.UserServices;
+using Sources.App.Services.UserServices.Users.Wallets;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Base.Animators;
 using Sources.App.Ui.Screens.CurrencyScreens.CurrencyItems;

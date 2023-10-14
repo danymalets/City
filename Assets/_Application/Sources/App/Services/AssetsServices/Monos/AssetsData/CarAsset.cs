@@ -3,7 +3,7 @@ using Sources.App.Data.Cars;
 using Sources.App.Services.AssetsServices.Monos.MonoEntities;
 using UnityEngine;
 
-namespace Sources.App.Services.AssetsServices
+namespace Sources.App.Services.AssetsServices.Monos.AssetsData
 {
     [Serializable]
     public class CarAsset

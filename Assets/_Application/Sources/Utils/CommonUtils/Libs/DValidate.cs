@@ -7,7 +7,7 @@ namespace Sources.Utils.CommonUtils.Libs
 {
     public static class DValidate
     {
-        public static void OptimizeEnumsData<T, TEnum>(List<T> list, Func<T, TEnum> getEnum, Func<TEnum, T> creatEnum,
+        public static void ValidateEnumsData<T, TEnum>(List<T> list, Func<T, TEnum> getEnum, Func<TEnum, T> creatEnum,
             TEnum[] except = null)
             where TEnum : Enum
         {

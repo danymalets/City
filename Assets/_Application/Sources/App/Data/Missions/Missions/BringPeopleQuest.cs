@@ -1,6 +1,6 @@
 using Sources.App.Data.Points;
 using Sources.App.Services.UserServices;
-using Sources.App.Services.UserServices.Missions;
+using Sources.App.Services.UserServices.Users.Missions;
 using UnityEngine;
 
 namespace Sources.App.Data.Missions.Missions

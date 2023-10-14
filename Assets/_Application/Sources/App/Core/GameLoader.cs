@@ -4,7 +4,7 @@ using Sources.App.Services.AssetsServices;
 using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
 using Sources.App.Services.BalanceServices;
 using Sources.App.Services.UserServices;
-using Sources.App.Services.UserServices.Data;
+using Sources.App.Services.UserServices.Users.PreferencesData;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Screens.LevelScreens;
 using Sources.App.Ui.Screens.LoadingScreens;

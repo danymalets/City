@@ -19,7 +19,7 @@ namespace Sources.App.Services.AssetsServices
 
         private void OnValidate()
         {
-            DValidate.OptimizeEnumsData(_playerData, 
+            DValidate.ValidateEnumsData(_playerData, 
                 pd => pd.PlayerType, 
                 pd => new PlayerAsset(pd));
         }

@@ -27,7 +27,7 @@ namespace Sources.App.Services.BalanceServices
 
         private void OnValidate()
         {
-            DValidate.OptimizeEnumsData(_playersBalance,
+            DValidate.ValidateEnumsData(_playersBalance,
                 pb => pb.PlayerType,
                 pb => new PlayerBalance(pb));
         }

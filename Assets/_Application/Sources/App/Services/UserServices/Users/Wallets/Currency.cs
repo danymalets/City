@@ -1,7 +1,7 @@
 using System;
 using UnityEngine.Assertions;
 
-namespace Sources.App.Services.UserServices
+namespace Sources.App.Services.UserServices.Users.Wallets
 {
     public class Currency
     {

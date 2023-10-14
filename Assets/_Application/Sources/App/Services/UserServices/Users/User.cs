@@ -1,4 +1,8 @@
-namespace Sources.App.Services.UserServices
+using Sources.App.Services.UserServices.Users.PreferencesData;
+using Sources.App.Services.UserServices.Users.Progresses;
+using Sources.App.Services.UserServices.Users.Wallets;
+
+namespace Sources.App.Services.UserServices.Users
 {
     public class User
     {

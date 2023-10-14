@@ -1,7 +1,7 @@
-using Sources.App.Services.UserServices.Data;
+using Sources.App.Services.UserServices.Users.PreferencesData;
 using Sources.Utils.Di;
 
-namespace Sources.App.Services.QualityServices
+namespace Sources.App.Core.Services.Quality
 {
     public interface IQualityChangerService : IService
     {

@@ -1,11 +1,11 @@
 using Sources.App.Services.BalanceServices;
 using Sources.App.Services.UserServices;
-using Sources.App.Services.UserServices.Data;
+using Sources.App.Services.UserServices.Users.PreferencesData;
 using Sources.Services.TimeServices;
 using Sources.Utils.Di;
 using UnityEngine;
 
-namespace Sources.App.Services.QualityServices
+namespace Sources.App.Core.Services.Quality
 {
     public class QualityService : IQualityAccessService, IQualityChangerService, IInitializable
     {

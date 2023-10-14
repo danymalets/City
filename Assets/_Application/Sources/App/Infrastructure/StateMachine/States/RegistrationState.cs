@@ -1,10 +1,10 @@
+using Sources.App.Core.Services.Quality;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.App.Services.AssetsServices;
 using Sources.App.Services.AssetsServices.Monos.MonoServices;
 using Sources.App.Services.AudioServices;
 using Sources.App.Services.BalanceServices;
-using Sources.App.Services.QualityServices;
 using Sources.App.Services.UserServices;
 using Sources.App.Ui.Base;
 using Sources.Services.AdsServices;

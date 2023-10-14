@@ -1,4 +1,5 @@
 using Sources.App.Services.UserServices;
+using Sources.App.Services.UserServices.Users.Wallets;
 
 namespace Sources.App.Ui.Screens.CurrencyScreens.CurrencyItems
 {

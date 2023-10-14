@@ -1,4 +1,4 @@
-namespace Sources.App.Services.UserServices.Missions
+namespace Sources.App.Services.UserServices.Users.Missions
 {
     public class WalkDistanceProgress : SubMissionProgress
     {

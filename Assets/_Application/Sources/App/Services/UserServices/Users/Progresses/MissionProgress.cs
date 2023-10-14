@@ -1,4 +1,6 @@
-namespace Sources.App.Services.UserServices
+using Sources.App.Services.UserServices.Users.Missions;
+
+namespace Sources.App.Services.UserServices.Users.Progresses
 {
     public class MissionProgress
     {

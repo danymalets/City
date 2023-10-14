@@ -1,4 +1,4 @@
-namespace Sources.App.Services.UserServices
+namespace Sources.App.Services.UserServices.Users.Wallets
 {
     public enum CurrencyType
     {

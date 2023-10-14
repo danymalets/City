@@ -1,8 +1,8 @@
 using Sources.App.Core;
+using Sources.App.Core.Services.Quality;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
-using Sources.App.Services.QualityServices;
 using Sources.App.Services.UserServices;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Screens.LevelScreens;
