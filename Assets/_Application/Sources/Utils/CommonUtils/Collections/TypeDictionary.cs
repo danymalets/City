@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Sources.Utils.CommonUtils
+namespace Sources.Utils.CommonUtils.Collections
 {
     public class TypeDictionary<TBase> : IEnumerable<KeyValuePair<Type, TBase>>
         where TBase : class

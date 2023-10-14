@@ -2,7 +2,7 @@
 
 using UnityEditor;
 
-namespace Sources.App.Services.AssetsServices
+namespace Sources.App.Services.AssetsServices.Monos.AssetsData
 {
     internal class EditorAssets
     {

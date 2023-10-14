@@ -1,3 +1,4 @@
+using System;
 using Sources.App.Services.AssetsServices.Localizations;
 using Sources.App.Services.UserServices;
 using Sources.App.Services.UserServices.Users.PreferencesData;
@@ -9,6 +10,7 @@ namespace Sources.Services.LocalizationServices
     {
         Language CurrentLanguage { get; }
         StringsAsset CurrentStrings { get; }
+        event Action LocalizationChanged;
         void ChangeLanguage(LanguageType languageType);
     }
 }

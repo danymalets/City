@@ -1,6 +1,4 @@
-using Sources.Utils.UiUtils;
-
-namespace Sources.Utils.Utils
+namespace Sources.Utils.UiUtils
 {
     public static class UiUtils
     {

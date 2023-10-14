@@ -1,5 +1,5 @@
 using DG.Tweening;
-using Sources.Services.UiServices.WindowBase.Screens;
+using Sources.App.Ui.Base.Views;
 
 namespace Sources.App.Ui.Base.Animators
 {

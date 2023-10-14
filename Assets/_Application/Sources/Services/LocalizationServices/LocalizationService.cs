@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Sources.App.Services.AssetsServices;
 using Sources.App.Services.AssetsServices.Localizations;
@@ -18,6 +19,7 @@ namespace Sources.Services.LocalizationServices
 
         public Language CurrentLanguage { get; private set; }
         public StringsAsset CurrentStrings => CurrentLanguage.Strings;
+        public event Action LocalizationChanged;
 
         public LocalizationService()
         {
@@ -47,6 +49,7 @@ namespace Sources.Services.LocalizationServices
         {
             _userAccessService.User.Preferences.SelectedLanguage = languageType;
             CurrentLanguage = GetLanguage(languageType);
+            LocalizationChanged?.Invoke();
         }
 
         private LanguageType GetLanguageType()

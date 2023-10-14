@@ -1,7 +1,7 @@
 using Sources.App.Services.AssetsServices.Localizations;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Base.Animators;
-using Sources.Services.UiServices.WindowBase.Screens;
+using Sources.App.Ui.Base.Controllers;
 
 namespace Sources.App.Ui.Screens.SettingsScreens
 {

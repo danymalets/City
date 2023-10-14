@@ -1,3 +1,4 @@
+using Sources.App.Ui.Base.Controllers;
 using Sources.Utils.Di;
 
 namespace Sources.App.Ui.Base

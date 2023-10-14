@@ -30,7 +30,8 @@ namespace Sources.App.Services.UserServices
             InitializeUser();
 
             IApplicationService application = DiContainer.Resolve<IApplicationService>();
-            application.PauseStatusChanged += ApplicationCycle_OnPauseStatusChanged;
+            application.Unfocused += ApplicationCycle_OnUnfocused;
+            application.Paused += ApplicationCycle_Paused;
             application.ApplicationQuit += ApplicationCycle_OnApplicationQuit;
         }
 
@@ -64,16 +65,21 @@ namespace Sources.App.Services.UserServices
             else
             {
                 CreateNewUser();
+                Debug.LogError($"Cannot deserialize user. New Created.");
             }
         }
 
         private void CreateNewUser() =>
             User = new User();
 
-        private void ApplicationCycle_OnPauseStatusChanged(bool paused)
+        private void ApplicationCycle_Paused()
         {
-            if (paused)
-                Save();
+            Save();
+        }
+
+        private void ApplicationCycle_OnUnfocused()
+        {
+            Save();
         }
 
         private void ApplicationCycle_OnApplicationQuit()

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Sources.App.Services.AssetsServices
+namespace Sources.App.Services.AssetsServices.Monos.AssetsData
 {
     [CreateAssetMenu(menuName = nameof(Assets) + "/" + nameof(PhysicsAssets), fileName = nameof(PhysicsAssets))]
     public class PhysicsAssets : ScriptableObject

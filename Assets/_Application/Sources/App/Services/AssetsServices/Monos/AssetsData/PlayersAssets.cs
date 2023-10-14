@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
-using Sources.App.Data;
 using Sources.App.Data.MonoEntities;
 using Sources.App.Data.Players;
 using Sources.Utils.CommonUtils.Libs;
 using UnityEngine;
 
-namespace Sources.App.Services.AssetsServices
+namespace Sources.App.Services.AssetsServices.Monos.AssetsData
 {
     [CreateAssetMenu(menuName = nameof(Assets) + "/" + nameof(PlayersAssets), fileName = nameof(PlayersAssets))]
     public class PlayersAssets : ScriptableObject

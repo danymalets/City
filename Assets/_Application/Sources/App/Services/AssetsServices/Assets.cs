@@ -1,4 +1,5 @@
 using Sources.App.Services.AssetsServices.Localizations;
+using Sources.App.Services.AssetsServices.Monos.AssetsData;
 using Sources.Utils.Di;
 using UnityEngine;
 

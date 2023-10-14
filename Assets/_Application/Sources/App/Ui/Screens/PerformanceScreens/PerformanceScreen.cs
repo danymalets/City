@@ -1,4 +1,4 @@
-using Sources.Services.UiServices.WindowBase.Screens;
+using Sources.App.Ui.Base.Views;
 using TMPro;
 using UnityEngine;
 

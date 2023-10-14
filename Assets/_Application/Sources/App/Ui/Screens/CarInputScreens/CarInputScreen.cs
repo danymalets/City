@@ -1,6 +1,5 @@
-using Sources.Services.UiServices.WindowBase.Screens;
+using Sources.App.Ui.Base.Views;
 using Sources.Utils.UiUtils;
-using Sources.Utils.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 

@@ -2,6 +2,7 @@ using System;
 using Sources.App.Services.AssetsServices.Localizations;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Base.Animators;
+using Sources.App.Ui.Base.Controllers;
 using UnityEngine;
 
 namespace Sources.App.Ui.Screens.PlayerInputScreens

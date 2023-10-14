@@ -3,9 +3,9 @@ using Sources.App.Core.Ecs;
 using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
 using Sources.App.Services.AudioServices;
 using Sources.App.Services.UserServices;
+using Sources.App.Ui.Base;
 using Sources.Services.AnalyticsServices;
 using Sources.Services.FpsServices;
-using Sources.Services.UiServices.System;
 using Sources.Utils.Di;
 
 namespace Sources.App.Core

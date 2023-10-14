@@ -2,8 +2,9 @@ using System;
 using Sources.App.Services.AssetsServices.Localizations;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Base.Animators;
-using Sources.App.Ui.Screens.IapScreens;
+using Sources.App.Ui.Base.Controllers;
 using Sources.App.Ui.Screens.SettingsScreens;
+using Sources.App.Ui.Screens.ShopScreens;
 using Sources.Services.ApplicationServices;
 using Sources.Utils.Di;
 

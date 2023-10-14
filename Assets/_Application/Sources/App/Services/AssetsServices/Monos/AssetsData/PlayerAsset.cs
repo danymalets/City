@@ -1,10 +1,9 @@
 using System;
-using Sources.App.Data;
 using Sources.App.Data.Players;
 using Sources.App.Services.AssetsServices.Monos.MonoEntities;
 using UnityEngine;
 
-namespace Sources.App.Services.AssetsServices
+namespace Sources.App.Services.AssetsServices.Monos.AssetsData
 {
     [Serializable]
     public class PlayerAsset

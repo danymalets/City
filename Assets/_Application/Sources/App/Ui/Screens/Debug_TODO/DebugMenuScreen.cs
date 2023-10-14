@@ -1,4 +1,4 @@
-using Sources.Services.UiServices.WindowBase.Screens;
+using Sources.App.Ui.Base.Views;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,22 +6,6 @@ namespace Sources.App.Ui.Screens.Debug_TODO
 {
     public class DebugMenuScreen : GameScreen
     {
-        [SerializeField]
-        private Button _openDebugMenuButton;
-
-        private void Awake()
-        {
-            _openDebugMenuButton.onClick.AddListener(OnOpenDebugMenuButtonClicked);
-        }
-
-        private void OnOpenDebugMenuButtonClicked()
-        {
-            OpenDebugMenu();
-        }
-
-        private void OpenDebugMenu()
-        {
-            
-        }
+        [field: SerializeField] public Button OpenDebugMenuButton { get; private set; }
     }
 }

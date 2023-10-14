@@ -22,7 +22,6 @@ namespace Sources.App.Core
         private readonly Preferences _userPreferences;
         private readonly ITimeService _timeService;
         private readonly CoroutineContext _coroutineContext;
-        private object _loadingCoroutineContext;
         private readonly LevelScreenController _levelScreen;
         private readonly LoadingScreenController _loadingScreenController;
         private readonly ISceneLoaderService _sceneLoader;
@@ -92,15 +91,15 @@ namespace Sources.App.Core
 
                             shouldReload = true;
                         }
-
-                        if (shouldReload)
-                        {
-                            onReloadRequest?.Invoke();
-                        }
-                        else
-                        {
-                            onLoaded?.Invoke();
-                        }
+                    }
+                    
+                    if (shouldReload)
+                    {
+                        onReloadRequest?.Invoke();
+                    }
+                    else
+                    {
+                        onLoaded?.Invoke();
                     }
                 });
             });
