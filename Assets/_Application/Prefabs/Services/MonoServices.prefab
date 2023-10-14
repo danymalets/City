@@ -328,7 +328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3000947106566746418, guid: ca6eddae376b142448d24a292e6918bd, type: 3}
       propertyPath: m_Name
-      value: UiService
+      value: UiViews
       objectReference: {fileID: 0}
     - target: {fileID: 4042174168775093479, guid: ca6eddae376b142448d24a292e6918bd, type: 3}
       propertyPath: m_AnchorMax.y
@@ -424,6 +424,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5124154011302912160, guid: ca6eddae376b142448d24a292e6918bd, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5202973768091929331, guid: ca6eddae376b142448d24a292e6918bd, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5202973768091929331, guid: ca6eddae376b142448d24a292e6918bd, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5755672069587621174, guid: ca6eddae376b142448d24a292e6918bd, type: 3}
