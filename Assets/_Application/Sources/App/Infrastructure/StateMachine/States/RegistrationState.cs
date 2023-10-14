@@ -70,7 +70,8 @@ namespace Sources.App.Infrastructure.StateMachine.States
             _diBuilder.Register<AnalyticsService, IAnalyticsService>();
             _diBuilder.Register<IapService, IIapService>();
             
-            _diBuilder.Register<UiControllersService, IUiControllersService, IUiRefreshService, IUiCloseService>();
+            _diBuilder.Register<UiControllersService, IUiControllersService, IUiRefreshService, IUiCloseService>(
+                new UiControllersService(monoServices.UiViews));
 
             gameObjectService.DontDestroyOnLoad(monoServices.gameObject);
 

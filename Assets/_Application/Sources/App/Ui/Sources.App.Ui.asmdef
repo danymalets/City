@@ -23,7 +23,8 @@
         "UnityEngine.Purchasing",
         "Sources.Services.IapServices",
         "Sources.App.Services.AssetsServices",
-        "Sources.Services.LocalizationServices"
+        "Sources.Services.LocalizationServices",
+        "Sources.Services.ScreenServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -12,6 +12,7 @@ using Sources.App.Ui.Screens.PlayerInputScreens;
 using Sources.App.Ui.Screens.SettingsScreens;
 using Sources.Services.LocalizationServices;
 using Sources.Services.UiServices.System;
+using Sources.Services.UiServices.WindowBase.Screens;
 using Sources.Utils.CommonUtils;
 using Sources.Utils.Di;
 
@@ -20,14 +21,14 @@ namespace Sources.App.Ui.Base
     public class UiControllersService : IUiControllersService, IUiRefreshService, IUiCloseService,
         IInitializable, IDisposable
     {
-        private readonly IUiViewsService _uiViews;
         private readonly TypeDictionary<ScreenControllerBase> _screenControllers = new();
+        private readonly TypeDictionary<GameScreen> _screens = new();
         private readonly HashSet<ScreenControllerBase> _openedWindows = new();
         private readonly ILocalizationService _localizationService;
 
-        public UiControllersService()
+        public UiControllersService(UiViews uiViews)
         {
-            _uiViews = DiContainer.Resolve<IUiViewsService>();
+            _screens.AddRange(uiViews.GameScreens);
             _localizationService = DiContainer.Resolve<ILocalizationService>();
         }
 
@@ -35,15 +36,15 @@ namespace Sources.App.Ui.Base
         {
             _screenControllers.AddRange(new ScreenControllerBase[]
             {
-                new MainScreenController(_uiViews.Get<MainScreen>()),
-                new SettingsScreenController(_uiViews.Get<SettingsScreen>()),
-                new ShopScreenController(_uiViews.Get<ShopScreen>()),
-                new CurrencyScreenController(_uiViews.Get<CurrencyScreen>()),
-                new LevelScreenController(_uiViews.Get<LevelScreen>()),
-                new CarInputScreenController(_uiViews.Get<CarInputScreen>()),
-                new PlayerInputScreenController(_uiViews.Get<PlayerInputScreen>()),
-                new LoadingScreenController(_uiViews.Get<LoadingScreen>()),
-                new PerformanceScreenController(_uiViews.Get<PerformanceScreen>()),
+                new MainScreenController(_screens.Get<MainScreen>()),
+                new SettingsScreenController(_screens.Get<SettingsScreen>()),
+                new ShopScreenController(_screens.Get<ShopScreen>()),
+                new CurrencyScreenController(_screens.Get<CurrencyScreen>()),
+                new LevelScreenController(_screens.Get<LevelScreen>()),
+                new CarInputScreenController(_screens.Get<CarInputScreen>()),
+                new PlayerInputScreenController(_screens.Get<PlayerInputScreen>()),
+                new LoadingScreenController(_screens.Get<LoadingScreen>()),
+                new PerformanceScreenController(_screens.Get<PerformanceScreen>()),
             });
 
             foreach (ScreenControllerBase screenController in _screenControllers.Values)

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Sources.Utils.Utils
+namespace Sources.Utils.UiUtils
 {
     public class GameplayButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {

@@ -46,9 +46,9 @@ namespace Sources.Utils.CommonUtils
             }
         }
 
-        public void AddRange(IEnumerable<TBase> screenControllers)
+        public void AddRange(IEnumerable<TBase> elements)
         {
-            foreach (TBase screenController in screenControllers)
+            foreach (TBase screenController in elements)
             {
                 Add(screenController);
             }

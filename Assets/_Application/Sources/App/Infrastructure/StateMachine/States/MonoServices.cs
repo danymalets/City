@@ -12,11 +12,8 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoServices
 {
     public class MonoServices : MonoBehaviour
     {
-        [FormerlySerializedAs("_uiViewsService")]
-        [FormerlySerializedAs("_uiService")]
         [SerializeField]
         private UiViews _uiViews;
-        [FormerlySerializedAs("_coroutineRunnerService")]
         [SerializeField]
         private CoroutineService _coroutineService;
         [SerializeField]
