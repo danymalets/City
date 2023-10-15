@@ -2,8 +2,7 @@ using UnityEngine;
 
 namespace Sources.Services.PoolServices
 {
-    public class RespawnableBehaviour : MonoBehaviour, IRespawnable
+    public class RespawnableBehaviour : MonoBehaviour
     {
-        RespawnableBehaviour IRespawnable.RespawnableBehaviour => this;
     }
 }

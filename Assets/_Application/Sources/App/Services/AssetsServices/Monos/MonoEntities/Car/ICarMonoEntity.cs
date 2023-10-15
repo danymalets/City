@@ -6,7 +6,7 @@ using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 
 namespace Sources.App.Services.AssetsServices.Monos.MonoEntities.Car
 {
-    public interface ICarMonoEntity : IMonoEntity, IRespawnable
+    public interface ICarMonoEntity : IMonoEntity
     {
         IEnableableGameObject EnableableGameObject { get; }
         IRigidbodySwitcher RigidbodySwitcher { get; }

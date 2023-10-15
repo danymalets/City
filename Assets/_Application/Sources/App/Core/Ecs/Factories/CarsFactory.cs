@@ -43,12 +43,12 @@ namespace Sources.App.Core.Ecs.Factories
         public bool TryCreateRandomCarOnPath(Point point, bool isIdle, out Entity createdCar)
         {
             CarColorData carColorData = _carsBalance.GetRandomCar();
-            ICarMonoEntity carPrefab = _assets.CarsAssets.GetCarPrefab(carColorData.CarType);
+            CarMonoEntity carPrefab = _assets.CarsAssets.GetCarPrefab(carColorData.CarType);
             return TryCreateCar(carPrefab, carColorData.CarColor, point.Position, point.Rotation,
                 isIdle, out createdCar);
         }
 
-        private bool TryCreateCar(ICarMonoEntity carPrefab, CarColorType? carColorType,
+        private bool TryCreateCar(CarMonoEntity carPrefab, CarColorType? carColorType,
             Vector3 position, Quaternion rotation, bool isIdle, out Entity createdCar)
         {
             if (CanCreateCar(carPrefab, position, rotation))
@@ -72,12 +72,12 @@ namespace Sources.App.Core.Ecs.Factories
                 Vector3.one * 0.1f, rotation, LayerMasks.CarsAndPlayers);
         }
 
-        private Entity CreateCar(ICarMonoEntity carPrefab, CarColorType? colorType,
+        private Entity CreateCar(CarMonoEntity carPrefab, CarColorType? colorType,
             Vector3 position, Quaternion rotation, bool isIdle)
         {
-            ICarMonoEntity carMonoEntity = _poolSpawner.Spawn(carPrefab, position, rotation);
-
-            return _world.CreateFromMono(carMonoEntity)
+            CarMonoEntity carMonoEntity = _poolSpawner.Spawn(carPrefab, position, rotation);
+            
+            return _world.CreateFromRespawnableMono(carMonoEntity)
                 .Add<CarTag>()
                 .SetRef<IEnableableGameObject>(carMonoEntity.EnableableGameObject)
                 .SetRef<ITransform>(carMonoEntity.Transform)

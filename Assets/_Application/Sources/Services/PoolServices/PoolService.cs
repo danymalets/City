@@ -4,73 +4,58 @@ using UnityEngine;
 
 namespace Sources.Services.PoolServices
 {
-    public class PoolService : MonoBehaviour, IPoolCreatorService, IPoolSpawnerService, IPoolDespawnerService
+    public partial class PoolService : IPoolCreatorService, IPoolSpawnerService, IPoolDespawnerService
     {
         private List<PoolConfig> _poolConfigs;
         
-        private readonly Dictionary<IRespawnable, Pool> _pools = new();
-        private readonly Dictionary<IRespawnable, IRespawnable> _prefabsRefs = new();
+        private readonly Dictionary<RespawnableBehaviour, PoolGroup> _poolGroups = new();
+        private readonly Dictionary<RespawnableBehaviour, RespawnableBehaviour> _prefabsRefs = new();
+        private readonly Transform _poolRoot;
         
-        public Pool CreatePool(PoolConfig poolConfig)
+        public PoolService(Transform poolRoot)
         {
-            Pool pool = new GameObject($"{poolConfig.Prefab.RespawnableBehaviour.name} Pool").AddComponent<Pool>();
-            pool.transform.SetParent(transform);
+            _poolRoot = poolRoot;
+        }
 
-            pool.Setup(poolConfig);
+        public void CreatePool(PoolConfig poolConfig)
+        {
+            PoolGroup poolGroup = new(_poolRoot, poolConfig.Prefab, poolConfig.Size, poolConfig.ForceParent);
 
-            foreach (IRespawnable respawnable in pool.Initialize())
+            foreach (RespawnableBehaviour respawnable in poolGroup.Initialize())
             {
                 _prefabsRefs.Add(respawnable, poolConfig.Prefab);
             }
 
-            if (_pools.ContainsKey(poolConfig.Prefab))
-                throw new InvalidOperationException($"{poolConfig.Prefab.RespawnableBehaviour.gameObject.name} has been added");
+            if (_poolGroups.ContainsKey(poolConfig.Prefab))
+                throw new InvalidOperationException($"{poolConfig.Prefab.gameObject.name} has been added");
             
-            _pools.Add(poolConfig.Prefab, pool);
-
-            return pool;
+            _poolGroups.Add(poolConfig.Prefab, poolGroup);
         }
 
-        public void DestroyPool(IRespawnable respawnable)
+        public void CleanupPool(RespawnableBehaviour respawnable)
         {
-            _pools[respawnable].Destroy();
-            _pools.Remove(respawnable);
+            _poolGroups[respawnable].Cleanup();
+            _poolGroups.Remove(respawnable);
         }
 
-        public T Spawn<T>(T prefab)
-            where T : IRespawnable => 
-            Spawn(prefab, null, Vector3.zero, Quaternion.identity);
-
-        public T Spawn<T>(T prefab, Vector3 at)
-            where T : IRespawnable =>
-            Spawn(prefab, null, at, Quaternion.identity);
-
-        public T Spawn<T>(T prefab, Vector3 at, Quaternion rotation)
-            where T : IRespawnable =>
-            Spawn(prefab, null, at, rotation);
-
-        public T Spawn<T>(T prefab, Transform parent)
-            where T : IRespawnable =>
-            Spawn<T>(prefab, parent, Vector3.zero, Quaternion.identity);
-
-        public T Spawn<T>(T prefab, Transform parent, Vector3 position, Quaternion rotation) where T : IRespawnable
+        public T Spawn<T>(T prefab) where T : RespawnableBehaviour
         {
-            if (_pools.TryGetValue(prefab, out Pool pool))
+            if (_poolGroups.TryGetValue(prefab, out PoolGroup pool))
             {
-                return pool.Get<T>(parent, position, rotation);
+                RespawnableBehaviour t = pool.Get();
+                T respawnable = t as T;
+                return respawnable;
             }
             else
             {
-                Debug.LogWarning($"{prefab} pool not exists");
-                return CreatePool(new PoolConfig(prefab, 10)).Get<T>(parent, position, rotation);
+                throw new InvalidOperationException($"{prefab} pool not exists");
             }
         }
 
-        public void Despawn<T>(T instance) where T : IRespawnable
+        public void Despawn<T>(T instance) where T : RespawnableBehaviour
         {
-            IRespawnable prefab = _prefabsRefs[instance];
-            Pool pool = _pools[prefab];
-            pool.OnDespawned(instance as RespawnableBehaviour ?? throw new InvalidOperationException());
+            RespawnableBehaviour prefab = _prefabsRefs[instance];
+            _poolGroups[prefab].Return(instance);
         }
     }
 }

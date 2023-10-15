@@ -14,7 +14,7 @@ namespace Sources.App.Services.AssetsServices.Monos.AssetsData
         [SerializeField]
         private List<PlayerAsset> _playerData;
 
-        public IEnumerable<IPlayerMonoEntity> PlayerPrefabs =>
+        public IEnumerable<PlayerMonoEntity> PlayerPrefabs =>
             _playerData.Select(d => d.PlayerPrefab);
 
         private void OnValidate()
@@ -24,7 +24,7 @@ namespace Sources.App.Services.AssetsServices.Monos.AssetsData
                 pd => new PlayerAsset(pd));
         }
 
-        public IPlayerMonoEntity GetPlayerPrefab(PlayerType playerType) =>
+        public PlayerMonoEntity GetPlayerPrefab(PlayerType playerType) =>
             _playerData.First(pd => pd.PlayerType == playerType).PlayerPrefab;
     }
 }

@@ -47,14 +47,14 @@ namespace Sources.App.Infrastructure.StateMachine.States.BootstrapStates
             IPoolCreatorService poolCreatorService = DiContainer.Resolve<IPoolCreatorService>();
             Assets assets = DiContainer.Resolve<Assets>();
 
-            foreach (ICarMonoEntity carPrefab in assets.CarsAssets.CarPrefabs)
+            foreach (CarMonoEntity carPrefab in assets.CarsAssets.CarPrefabs)
             {
-                poolCreatorService.CreatePool(new PoolConfig(carPrefab, 40));
+                poolCreatorService.CreatePool(new PoolConfig(carPrefab, 10));
             }
 
-            foreach (IPlayerMonoEntity playerPrefab in assets.PlayersAssets.PlayerPrefabs)
+            foreach (PlayerMonoEntity playerPrefab in assets.PlayersAssets.PlayerPrefabs)
             {
-                poolCreatorService.CreatePool(new PoolConfig(playerPrefab, 40));
+                poolCreatorService.CreatePool(new PoolConfig(playerPrefab, 20));
             }
         }
     }

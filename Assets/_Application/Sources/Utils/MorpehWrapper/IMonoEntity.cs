@@ -3,7 +3,7 @@ using Sources.Services.PoolServices;
 
 namespace Sources.Utils.MorpehWrapper
 {
-    public interface IMonoEntity : IRespawnable
+    public interface IMonoEntity
     {
         void Setup(Entity entity);
         void Cleanup();

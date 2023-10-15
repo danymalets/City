@@ -3,7 +3,8 @@
     "rootNamespace": "",
     "references": [
         "Sources.Utils.Di",
-        "Sources.Utils.CommonUtils"
+        "Sources.Utils.CommonUtils",
+        "Sources.Services.InstantiatorServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

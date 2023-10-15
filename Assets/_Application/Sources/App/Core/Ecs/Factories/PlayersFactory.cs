@@ -21,6 +21,7 @@ using Sources.App.Services.AssetsServices.Monos.MonoEntities.Player;
 using Sources.App.Services.BalanceServices;
 using Sources.Services.CoroutineRunnerServices;
 using Sources.Services.PhysicsServices;
+using Sources.Services.PoolServices;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.DefaultComponents;
@@ -44,32 +45,32 @@ namespace Sources.App.Core.Ecs.Factories
             _playersBalance = DiContainer.Resolve<Balance>().PlayersBalance;
         }
 
-        public IPlayerMonoEntity GetRandomPlayerPrefab()
+        public PlayerMonoEntity GetRandomPlayerPrefab()
         {
             PlayerType playerType = _balance.PlayersBalance.GetRandomPlayerType();
             return _assets.PlayersAssets.GetPlayerPrefab(playerType);
         }
 
-        public Entity CreateUserInCar(IPlayerMonoEntity playerPrefab, Entity carEntity)
+        public Entity CreateUserInCar(PlayerMonoEntity playerPrefab, Entity carEntity)
         {
             return CreateUser(playerPrefab, Vector3.zero, Quaternion.identity)
                 .Set(new PlayerInCar { CarPlaceData = new CarPlaceData(carEntity, 0) });
         }
 
-        public Entity CreateUser(IPlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation) =>
+        public Entity CreateUser(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation) =>
             CreatePlayer(playerPrefab, position, rotation)
                 .Add<UserTag>()
                 .Add<UserCarInput>()
                 .Add<CarSteeringAngleCoefficient>()
                 .Add<UserPlayerInput>();
 
-        public Entity CreateNpc(IPlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation) =>
+        public Entity CreateNpc(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation) =>
             CreatePlayer(playerPrefab, position, rotation)
                 .Add<NpcTag>();
 
         public bool TryCreateRandomNpc(Point point, out Entity createdEntity)
         {
-            IPlayerMonoEntity playerPrefab = GetRandomPlayerPrefab();
+            PlayerMonoEntity playerPrefab = GetRandomPlayerPrefab();
 
             SafeCapsuleCollider capsule = playerPrefab.PlayerBorders.SafeCapsuleCollider;
 
@@ -92,7 +93,7 @@ namespace Sources.App.Core.Ecs.Factories
                 capsule.Radius, LayerMasks.CarsAndPlayers);
         }
 
-        public Entity CreateNpcOnPath(IPlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation, PathLine pathLine)
+        public Entity CreateNpcOnPath(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation, PathLine pathLine)
         {
             Entity npc = CreateNpc(playerPrefab, position, rotation)
                 .SetupAspect<NpcStatusAspect>(nsa => nsa.SetPath(pathLine));
@@ -100,7 +101,7 @@ namespace Sources.App.Core.Ecs.Factories
             return npc;
         }
 
-        public Entity CreateNpcInCarOnPath(IPlayerMonoEntity playerPrefab, Entity carEntity, PathLine pathLine)
+        public Entity CreateNpcInCarOnPath(PlayerMonoEntity playerPrefab, Entity carEntity, PathLine pathLine)
         {
             Entity npc = CreateNpc(playerPrefab, Vector3.zero, Quaternion.identity)
                 .Set(new PlayerInCar { CarPlaceData = new CarPlaceData(carEntity, 0) })
@@ -114,11 +115,11 @@ namespace Sources.App.Core.Ecs.Factories
         public Entity CreateRandomNpcInCarOnPath(Entity car, Point point) =>
             CreateNpcInCarOnPath(GetRandomPlayerPrefab(), car, point.Targets.First().FirstPathLine);
 
-        private Entity CreatePlayer(IPlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation)
-        {
-            IPlayerMonoEntity playerMonoEntity = _poolSpawner.Spawn(playerPrefab, position, rotation);
+        private Entity CreatePlayer(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation)
+        { 
+            PlayerMonoEntity playerMonoEntity = _poolSpawner.Spawn(playerPrefab, position, rotation);
 
-            return _world.CreateFromMono(playerMonoEntity)
+            return _world.CreateFromRespawnableMono(playerMonoEntity)
                 .AllowFixedAwaiters()
                 .TrackCollisions()
                 .SetRef<IEnableableGameObject>(playerMonoEntity.EnableableGameObject)

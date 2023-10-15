@@ -47,8 +47,8 @@ namespace Sources.App.Services.AssetsServices.IdleCarSpawns
             _carType = _spawnPoint.CarType;
             _carColor = _spawnPoint.CarColor;
 
-            ICarMonoEntity carMonoEntity = EditorAssets.Assets.CarsAssets.GetCarPrefab(_spawnPoint.CarType);
-            _visualModel = EditorInstantiator.InstantiateAsPrefab<ICarMonoEntity, CarMonoEntity>(carMonoEntity, transform);
+            CarMonoEntity carMonoEntity = EditorAssets.Assets.CarsAssets.GetCarPrefab(_spawnPoint.CarType);
+            _visualModel = GameObject.Instantiate(carMonoEntity, transform);
             _visualModel.transform.localPosition -= _visualModel.WheelsSystem.RootOffset;
             _visualModel.gameObject.hideFlags = HideFlags.HideAndDontSave;
         }

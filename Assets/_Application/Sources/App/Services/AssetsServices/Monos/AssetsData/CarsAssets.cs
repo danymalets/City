@@ -13,8 +13,8 @@ namespace Sources.App.Services.AssetsServices.Monos.AssetsData
     {
         [SerializeField]
         private List<CarAsset> _carData = new();
-
-        public IEnumerable<ICarMonoEntity> CarPrefabs => 
+        
+        public IEnumerable<CarMonoEntity> CarPrefabs => 
             _carData.Select(d => d.CarPrefab);
 
         private void OnValidate()
@@ -24,7 +24,7 @@ namespace Sources.App.Services.AssetsServices.Monos.AssetsData
                 cd => new CarAsset(cd));
         }
         
-        public ICarMonoEntity GetCarPrefab(CarType carType) =>
+        public CarMonoEntity GetCarPrefab(CarType carType) =>
             _carData.First(cd => cd.CarType == carType).CarPrefab;
     }
 }

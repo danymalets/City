@@ -23,7 +23,7 @@ namespace Sources.App.Core.Ecs.Systems.Init
 
         protected override void OnInitialize()
         {
-            IPlayerMonoEntity playerPrefab = _playersFactory.GetRandomPlayerPrefab();
+            PlayerMonoEntity playerPrefab = _playersFactory.GetRandomPlayerPrefab();
             Entity npcEntity = _playersFactory.CreateNpc(playerPrefab, new Vector3(100, 0, 100), Quaternion.identity);
 
             npcEntity.Add<AlwaysActive>();

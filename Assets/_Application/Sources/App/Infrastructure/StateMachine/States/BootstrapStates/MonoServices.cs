@@ -19,7 +19,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.BootstrapStates
         [SerializeField]
         private ApplicationService _applicationService;
         [SerializeField]
-        private PoolService _poolService;
+        private Transform _poolRoot;
         [SerializeField]
         private AudioService _audioService;
         [SerializeField]
@@ -32,7 +32,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.BootstrapStates
         public UiViews UiViews => _uiViews;
         public CoroutineService CoroutineService => _coroutineService;
         public ApplicationService ApplicationService => _applicationService;
-        public PoolService PoolService => _poolService;
+        public Transform PoolRoot => _poolRoot;
         public AudioService AudioService => _audioService;
         public Assets Assets => _assets;
         public Balance BalanceService => _balanceService;

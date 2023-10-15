@@ -55,7 +55,8 @@ namespace Sources.App.Infrastructure.StateMachine.States.RegistationStates
             _diBuilder.Register<UserService, IUserAccessService, IUserSaveService>();
             _diBuilder.Register<VibrationService, IVibrationService>();
             _diBuilder.Register<Assets>(monoServices.Assets);
-            _diBuilder.Register<PoolService, IPoolCreatorService, IPoolSpawnerService, IPoolDespawnerService>(monoServices.PoolService);
+            _diBuilder.Register<PoolService, IPoolCreatorService, IPoolSpawnerService, IPoolDespawnerService>(
+                new PoolService(monoServices.PoolRoot));
             _diBuilder.Register<TimeService, ITimeService>();
             _diBuilder.Register<FpsService, IFpsService>();
             _diBuilder.Register<IAudioService>(monoServices.AudioService);
