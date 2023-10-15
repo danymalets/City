@@ -1,11 +1,9 @@
-using Sirenix.OdinInspector;
-using Sources.App.Data.MonoEntities;
 using Sources.Utils.MorpehWrapper;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using UnityEngine;
 
-namespace Sources.App.Services.AssetsServices.Monos.MonoEntities
+namespace Sources.App.Services.AssetsServices.Monos.MonoEntities.Camera
 {
     [RequireComponent(typeof(SafeTransform))]
     [RequireComponent(typeof(SafeCamera))]

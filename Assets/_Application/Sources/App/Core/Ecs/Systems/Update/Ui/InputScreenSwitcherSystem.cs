@@ -1,6 +1,4 @@
-using System.Linq;
 using Scellecs.Morpeh;
-using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Player.InCar;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Ui.Base;
@@ -11,7 +9,7 @@ using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
-namespace Sources.App.Core.Ecs.Systems.Update.User
+namespace Sources.App.Core.Ecs.Systems.Update.Ui
 {
     public class InputScreenSwitcherSystem : DUpdateSystem
     {

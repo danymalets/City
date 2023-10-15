@@ -8,6 +8,7 @@ using Sources.App.Ui.Screens.DebugMenuScreens;
 using Sources.App.Ui.Screens.LevelScreens;
 using Sources.App.Ui.Screens.LoadingScreens;
 using Sources.App.Ui.Screens.MainScreens;
+using Sources.App.Ui.Screens.PausePopups;
 using Sources.App.Ui.Screens.PerformanceScreens;
 using Sources.App.Ui.Screens.SettingsScreens;
 using Sources.App.Ui.Screens.ShopScreens;
@@ -21,8 +22,8 @@ namespace Sources.App.Ui.Base
     public class UiControllersService : IUiControllersService, IUiRefreshService, IUiCloseService,
         IInitializable, IDisposable
     {
-        private readonly TypeDictionary<ScreenControllerBase> _screenControllers = new();
         private readonly TypeDictionary<GameScreen> _screens = new();
+        private readonly TypeDictionary<ScreenControllerBase> _screenControllers = new();
         private readonly HashSet<ScreenControllerBase> _openedWindows = new();
         private readonly ILocalizationService _localizationService;
 
@@ -38,15 +39,18 @@ namespace Sources.App.Ui.Base
             {
                 screen.gameObject.Disable();
             }
-            
+
             _screenControllers.AddRange(new ScreenControllerBase[]
             {
                 new MainScreenController(_screens.Get<MainScreen>()),
-                new SettingsScreenController(_screens.Get<SettingsScreen>()),
                 new ShopScreenController(_screens.Get<ShopScreen>()),
                 new CurrencyScreenController(_screens.Get<CurrencyScreen>()),
                 new LevelScreenController(_screens.Get<LevelScreen>()),
                 new LoadingScreenController(_screens.Get<LoadingScreen>()),
+                new SettingsScreenController(_screens.Get<SettingsScreen>()),
+                
+                new PausePopupController(_screens.Get<PausePopup>()),
+                
                 new PerformanceScreenController(_screens.Get<PerformanceScreen>()),
                 new DebugMenuScreenController(_screens.Get<DebugMenuScreen>()),
             });

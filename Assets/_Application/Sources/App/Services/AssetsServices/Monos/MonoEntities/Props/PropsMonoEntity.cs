@@ -8,7 +8,7 @@ using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Sources.App.Services.AssetsServices.Monos.MonoEntities
+namespace Sources.App.Services.AssetsServices.Monos.MonoEntities.Props
 {
     [RequireComponent(typeof(SafeTransform))]
     [RequireComponent(typeof(RigidbodySwitcher))]

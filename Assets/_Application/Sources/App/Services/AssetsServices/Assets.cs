@@ -12,7 +12,6 @@ namespace Sources.App.Services.AssetsServices
         [field: SerializeField] public CarsAssets CarsAssets { get; private set; }
         [field: SerializeField] public PlayersAssets PlayersAssets { get; private set; }
         [field: SerializeField] public LocalizationAssets LocalizationAssets { get; private set; }
-
         [field: SerializeField] public PhysicsAssets PhysicsAssets { get; private set; }
     }
 }

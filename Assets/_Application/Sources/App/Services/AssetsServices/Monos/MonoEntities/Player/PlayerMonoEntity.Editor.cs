@@ -6,7 +6,7 @@ using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Sources.App.Services.AssetsServices.Monos.MonoEntities
+namespace Sources.App.Services.AssetsServices.Monos.MonoEntities.Player
 {
     public partial class PlayerMonoEntity
     {

@@ -3,6 +3,7 @@ using Sources.App.Core.Ecs.Factories;
 using Sources.App.Services.AssetsServices.IdleCarSpawns;
 using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
 using Sources.App.Services.AssetsServices.Monos.MonoEntities;
+using Sources.App.Services.AssetsServices.Monos.MonoEntities.Props;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;

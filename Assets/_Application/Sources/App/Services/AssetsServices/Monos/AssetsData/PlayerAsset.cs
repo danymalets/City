@@ -1,6 +1,7 @@
 using System;
 using Sources.App.Data.Players;
 using Sources.App.Services.AssetsServices.Monos.MonoEntities;
+using Sources.App.Services.AssetsServices.Monos.MonoEntities.Player;
 using UnityEngine;
 
 namespace Sources.App.Services.AssetsServices.Monos.AssetsData

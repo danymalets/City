@@ -1,17 +1,12 @@
 using System.Collections.Generic;
-using System.Linq;
-using Sirenix.OdinInspector;
 using Sources.App.Data.Cars;
-using Sources.App.Data.Constants;
-using Sources.App.Data.MonoEntities;
 using Sources.App.Services.AssetsServices.Monos.Cars;
-using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.MorpehWrapper;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using UnityEngine;
 
-namespace Sources.App.Services.AssetsServices.Monos.MonoEntities
+namespace Sources.App.Services.AssetsServices.Monos.MonoEntities.Car
 {
     [RequireComponent(typeof(EnableableGameObject))]
     [RequireComponent(typeof(SafeTransform))]

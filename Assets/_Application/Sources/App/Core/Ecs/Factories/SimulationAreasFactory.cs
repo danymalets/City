@@ -3,7 +3,6 @@ using Sources.App.Core.Ecs.Components.Camera;
 using Sources.App.Core.Ecs.Components.SimulationAreas;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Data;
-using Sources.App.Data.MonoEntities;
 using Sources.App.Data.Simulations;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;

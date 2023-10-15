@@ -1,8 +1,10 @@
-using Sources.App.Data.MonoEntities;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.App.Infrastructure.StateMachine.States.MainUiStates;
 using Sources.App.Services.AssetsServices;
+using Sources.App.Services.AssetsServices.Monos.MonoEntities;
+using Sources.App.Services.AssetsServices.Monos.MonoEntities.Car;
+using Sources.App.Services.AssetsServices.Monos.MonoEntities.Player;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Screens.DebugMenuScreens;
 using Sources.App.Ui.Screens.PerformanceScreens;

@@ -3,9 +3,8 @@ using Sources.App.Data.Cars;
 using Sources.Services.PoolServices;
 using Sources.Utils.MorpehWrapper;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
-using UnityEngine;
 
-namespace Sources.App.Data.MonoEntities
+namespace Sources.App.Services.AssetsServices.Monos.MonoEntities.Car
 {
     public interface ICarMonoEntity : IMonoEntity, IRespawnable
     {

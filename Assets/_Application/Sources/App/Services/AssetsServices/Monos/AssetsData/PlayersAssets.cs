@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using Sources.App.Data.MonoEntities;
 using Sources.App.Data.Players;
+using Sources.App.Services.AssetsServices.Monos.MonoEntities;
+using Sources.App.Services.AssetsServices.Monos.MonoEntities.Player;
 using Sources.Utils.CommonUtils.Libs;
 using UnityEngine;
 

@@ -2,7 +2,8 @@ using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Camera;
 using Sources.App.Core.Ecs.Components.SimulationCamera;
 using Sources.App.Core.Ecs.Components.Tags;
-using Sources.App.Data.MonoEntities;
+using Sources.App.Services.AssetsServices.Monos.MonoEntities;
+using Sources.App.Services.AssetsServices.Monos.MonoEntities.Camera;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 

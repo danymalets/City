@@ -1,10 +1,11 @@
 using System.Collections.Generic;
-using Sources.App.Data.MonoEntities;
 using Sources.App.Data.Pathes;
 using Sources.App.Data.Points;
 using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
 using Sources.App.Services.AssetsServices.Monos.Bootstrap;
 using Sources.App.Services.AssetsServices.Monos.MonoEntities;
+using Sources.App.Services.AssetsServices.Monos.MonoEntities.Camera;
+using Sources.App.Services.AssetsServices.Monos.MonoEntities.Props;
 using Sources.App.Services.AssetsServices.Monos.Points;
 using Sources.App.Services.AssetsServices.Monos.RoadSystem;
 using Sources.Services.SceneLoaderServices;

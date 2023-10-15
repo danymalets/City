@@ -1,14 +1,17 @@
 using System;
+using Sources.App.Services.AudioServices;
 using Sources.App.Ui.Base.Animators;
 using Sources.App.Ui.Base.Controllers;
 using Sources.App.Ui.Screens.LevelScreens.CarInputScreens;
 using Sources.App.Ui.Screens.LevelScreens.PlayerInputScreens;
+using Sources.Utils.Di;
 
 namespace Sources.App.Ui.Screens.LevelScreens
 {
     public class LevelScreenController : ScreenController
     {
         private readonly LevelScreen _levelScreen;
+        private readonly IAudioService _audioService;
 
         public CarInputViewController CarInputViewController { get; private set; }
         public PlayerInputViewController PlayerInputViewController { get; private set; }
@@ -23,6 +26,7 @@ namespace Sources.App.Ui.Screens.LevelScreens
             _levelScreen = levelScreen;
             CarInputViewController = new CarInputViewController(_levelScreen.CarInputView);
             PlayerInputViewController = new PlayerInputViewController(_levelScreen.PlayerInputView);
+            _audioService = DiContainer.Resolve<IAudioService>();
         }
 
         protected override void OnRefresh()
@@ -33,6 +37,7 @@ namespace Sources.App.Ui.Screens.LevelScreens
         {
             _levelScreen.RestartButton.onClick.AddListener(OnRestartButtonClicked);
             _levelScreen.ExitButton.onClick.AddListener(OnExitButtonClicked);
+            _levelScreen.PauseButton.onClick.AddListener(OnPauseButtonClicked);
 
             CarInputViewController.OnOpen();
             PlayerInputViewController.OnOpen();
@@ -42,6 +47,7 @@ namespace Sources.App.Ui.Screens.LevelScreens
         {
             _levelScreen.RestartButton.onClick.RemoveListener(OnRestartButtonClicked);
             _levelScreen.ExitButton.onClick.RemoveListener(OnExitButtonClicked);
+            _levelScreen.PauseButton.onClick.RemoveListener(OnPauseButtonClicked);
             
             CarInputViewController.OnClose();
             PlayerInputViewController.OnClose();
@@ -49,12 +55,17 @@ namespace Sources.App.Ui.Screens.LevelScreens
 
         private void OnRestartButtonClicked()
         {
-            RestartButtonClicked();
+            RestartButtonClicked?.Invoke();
         }
 
         private void OnExitButtonClicked()
         {
             ExitButtonClicked?.Invoke();
+        }
+
+        private void OnPauseButtonClicked()
+        {
+            _audioService.PlayOnce(SoundEffectType.ButtonClick);
         }
     }
 }

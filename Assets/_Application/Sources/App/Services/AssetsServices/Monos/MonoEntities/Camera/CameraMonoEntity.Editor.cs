@@ -1,7 +1,7 @@
 using Sirenix.OdinInspector;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 
-namespace Sources.App.Services.AssetsServices.Monos.MonoEntities
+namespace Sources.App.Services.AssetsServices.Monos.MonoEntities.Camera
 {
     public partial class CameraMonoEntity
     {

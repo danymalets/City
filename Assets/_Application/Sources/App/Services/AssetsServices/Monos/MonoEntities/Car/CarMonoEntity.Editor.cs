@@ -5,7 +5,7 @@ using Sources.App.Services.AssetsServices.Monos.Cars;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 
-namespace Sources.App.Services.AssetsServices.Monos.MonoEntities
+namespace Sources.App.Services.AssetsServices.Monos.MonoEntities.Car
 {
     public partial class CarMonoEntity
     {

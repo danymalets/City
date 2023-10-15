@@ -3,6 +3,7 @@ using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Props;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Services.AssetsServices.Monos.MonoEntities;
+using Sources.App.Services.AssetsServices.Monos.MonoEntities.Props;
 using Sources.Utils.MorpehWrapper.DefaultComponents;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;

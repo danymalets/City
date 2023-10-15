@@ -10,7 +10,6 @@ using Sources.App.Core.Ecs.Factories;
 using Sources.App.Core.Services;
 using Sources.App.Core.Services.Simulation;
 using Sources.App.Data;
-using Sources.App.Data.MonoEntities;
 using Sources.App.Data.Points;
 using Sources.App.Services.BalanceServices;
 using Sources.Services.PhysicsServices;

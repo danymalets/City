@@ -3,9 +3,8 @@ using Sources.App.Data.Points;
 using Sources.Utils.MorpehWrapper;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
-using UnityEngine;
 
-namespace Sources.App.Services.AssetsServices.Monos.MonoEntities
+namespace Sources.App.Services.AssetsServices.Monos.MonoEntities.Props
 {
     public interface IPropsMonoEntity : IMonoEntity
     {

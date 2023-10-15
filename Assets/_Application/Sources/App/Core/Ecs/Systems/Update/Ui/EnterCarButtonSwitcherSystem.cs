@@ -10,7 +10,7 @@ using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
-namespace Sources.App.Core.Ecs.Systems.Update.User
+namespace Sources.App.Core.Ecs.Systems.Update.Ui
 {
     public class EnterCarButtonSwitcherSystem : DUpdateSystem
     {

@@ -62,4 +62,8 @@ MonoBehaviour:
   - _type: 0
     _clip: {fileID: 0}
     _volume: 1
-  _soundEffectData: []
+  _soundEffectData:
+  - _type: 0
+    _clip: {fileID: 8300000, guid: e6cab2dcd38140eabf6a07daf9433e2f, type: 3}
+    _volume: 1
+    _stopable: 1
