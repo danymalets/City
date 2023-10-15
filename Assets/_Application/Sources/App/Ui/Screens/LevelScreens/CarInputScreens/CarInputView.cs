@@ -3,9 +3,9 @@ using Sources.Utils.UiUtils;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Sources.App.Ui.Screens.CarInputScreens
+namespace Sources.App.Ui.Screens.LevelScreens.CarInputScreens
 {
-    public class CarInputScreen : GameScreen
+    public class CarInputView : GameScreen
     {
         [field: SerializeField] public GameplayButton UpButton { get; private set; }
 

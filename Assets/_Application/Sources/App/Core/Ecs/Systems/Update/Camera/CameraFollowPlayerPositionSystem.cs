@@ -48,9 +48,12 @@ namespace Sources.App.Core.Ecs.Systems.Update.Camera
 
                 Vector3 targetPosition = userPosition + Quaternion.AngleAxis(cameraAngle, Vector3.up) *
                     Vector3.back * cameraSmoothBackDistance + (smoothFollowY + cameraSmoothHeight) * Vector3.up;
+                
+                float distanceToTarget = Vector3.Distance(cameraTransform.Position, targetPosition);
 
-                cameraTransform.Position = Vector3.MoveTowards(cameraTransform.Position, targetPosition,
-                    _cameraBalance.CameraSpeed * deltaTime);
+                float delta = Mathf.Max(distanceToTarget - _cameraBalance.CameraMaxDistance, _cameraBalance.CameraSpeed * deltaTime);
+
+                cameraTransform.Position = Vector3.MoveTowards(cameraTransform.Position, targetPosition, delta);
             }
         }
     }

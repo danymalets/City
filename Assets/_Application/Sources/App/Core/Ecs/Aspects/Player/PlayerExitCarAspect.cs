@@ -34,7 +34,7 @@ namespace Sources.App.Core.Ecs.Aspects.Player
 
             if (Entity.Has<PlayerInCar>())
             {
-                FullyExitCar();
+                FullyExitCarInternal();
             }
         }
 
@@ -59,18 +59,25 @@ namespace Sources.App.Core.Ecs.Aspects.Player
             Entity.GetRef<IPlayerAnimator>().ExitCar();
         }
 
-        public readonly void FullyExitCar(Vector3 position, float angle)
+        public readonly void FullyExitCar()
         {
+            CarPlaceData carPlaceData = Entity.Get<PlayerInCar>().CarPlaceData;
+
+            IEnterPoint enterPoint = carPlaceData.Car.GetRef<IEnterPoint[]>()[carPlaceData.Place];
+            
+            float angle = Vector3.SignedAngle(Vector3.left,
+                Vector3.Cross(enterPoint.Rotation.GetForward(), Vector3.up), Vector3.up);
+            
             Entity.Get<PlayerSmoothAngle>().Value = angle;
             Entity.Get<PlayerTargetAngle>().Value = angle;
                 
-            Entity.GetRef<ITransform>().Position = position;
+            Entity.GetRef<ITransform>().Position = enterPoint.Position;
             Entity.GetRef<ITransform>().Rotation = Quaternion.identity.WithEulerY(angle);
 
-            FullyExitCar();
+            FullyExitCarInternal();
         }
 
-        private readonly void FullyExitCar()
+        private readonly void FullyExitCarInternal()
         {
             CarPlaceData carPlaceData = Entity.Get<PlayerInCar>().CarPlaceData;
             

@@ -1,21 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using PlasticGui.WorkspaceWindow;
 using Sources.App.Ui.Base.Controllers;
 using Sources.App.Ui.Base.Views;
-using Sources.App.Ui.Screens.CarInputScreens;
 using Sources.App.Ui.Screens.CurrencyScreens;
-using Sources.App.Ui.Screens.Debug_TODO;
+using Sources.App.Ui.Screens.DebugMenuScreens;
 using Sources.App.Ui.Screens.LevelScreens;
 using Sources.App.Ui.Screens.LoadingScreens;
 using Sources.App.Ui.Screens.MainScreens;
 using Sources.App.Ui.Screens.PerformanceScreens;
-using Sources.App.Ui.Screens.PlayerInputScreens;
 using Sources.App.Ui.Screens.SettingsScreens;
 using Sources.App.Ui.Screens.ShopScreens;
 using Sources.Services.LocalizationServices;
-using Sources.Utils.CommonUtils;
 using Sources.Utils.CommonUtils.Collections;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.Di;
@@ -50,8 +46,6 @@ namespace Sources.App.Ui.Base
                 new ShopScreenController(_screens.Get<ShopScreen>()),
                 new CurrencyScreenController(_screens.Get<CurrencyScreen>()),
                 new LevelScreenController(_screens.Get<LevelScreen>()),
-                new CarInputScreenController(_screens.Get<CarInputScreen>()),
-                new PlayerInputScreenController(_screens.Get<PlayerInputScreen>()),
                 new LoadingScreenController(_screens.Get<LoadingScreen>()),
                 new PerformanceScreenController(_screens.Get<PerformanceScreen>()),
                 new DebugMenuScreenController(_screens.Get<DebugMenuScreen>()),

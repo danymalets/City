@@ -6,6 +6,8 @@ namespace Sources.App.Services.BalanceServices
     [CreateAssetMenu(menuName = nameof(Balance) + "/" + nameof(CameraBalance), fileName = nameof(CameraBalance))]
     public class CameraBalance : ScriptableObject
     {
+        [field: SerializeField] public float CameraMaxDistance { get; private set; } = 1f;
+        
         [Header("Switch System")]
         [SerializeField]
         private float _cameraDeltaSpeed = 3f;

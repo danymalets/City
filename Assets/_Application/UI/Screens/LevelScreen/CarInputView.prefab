@@ -628,7 +628,7 @@ GameObject:
   - component: {fileID: 7102722259876163916}
   - component: {fileID: 6750128592340444736}
   m_Layer: 5
-  m_Name: CarInputScreen
+  m_Name: CarInputView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -21,6 +21,7 @@ namespace Sources.App.Services.BalanceServices
         [field: SerializeField] public float NavAllowableMoveAngle { get; private set; } = 45;
         [field: SerializeField] public float NavRotationSpeed { get; private set; } = 45;
         [field: SerializeField] public float DistanceToEnterCar { get; private set; } = 0.5f;
+        [field: SerializeField] public float JumpChangeUpVelocity { get; private set; } = 5;
         
         [SerializeField]
         private List<PlayerBalance> _playersBalance;

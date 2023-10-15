@@ -41,9 +41,13 @@ namespace Sources.App.Core.Ecs.Systems.Update.Camera
 
                 Vector3 userPosition = userEntity.GetAspect<PlayerPointAspect>().GetPosition();
 
+                float distanceToTarget = DMath.Distance(userPosition.y, followY.Value);
+                
+                float delta = Mathf.Max(distanceToTarget - _cameraBalance.CameraMaxDistance, _cameraBalance.CameraFollowYSpeedCoeff * deltaTime);
+                
                 followY.Value = Mathf.MoveTowards(followY.Value, userPosition.y,
                     DMath.Distance(followY.Value, userPosition.y) *
-                    _cameraBalance.CameraFollowYSpeedCoeff * deltaTime);
+                    delta);
             }
         }
     }

@@ -17,7 +17,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Extensions
 
         public static TAspect GetAspect<TAspect>(this Entity entity) where TAspect : struct, IDAspectBase =>
             new TAspect(){Entity = entity};
-
+        
         public static bool TryGet<TComponent>(this Entity entity, out TComponent component) where TComponent : struct, IComponent
         {
             if (entity.Has<TComponent>())

@@ -47,16 +47,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player
 
                 Vector3 position = enterPoint.Position;
                 
-                float angle = Vector3.SignedAngle(Vector3.left,
-                    Vector3.Cross(enterPoint.Rotation.GetForward(), Vector3.up), Vector3.up);
-                
-                playerTargetAngle.Value = angle;
-                playerSmoothAngle.Value = angle;
-                
-                playerTransform.Position = position;
-                playerTransform.Rotation = Quaternion.identity.WithEulerY(angle);
-                
-                playerEntity.GetAspect<PlayerExitCarAspect>().FullyExitCar(position, angle);
+                playerEntity.GetAspect<PlayerExitCarAspect>().FullyExitCar();
             }
         }
     }

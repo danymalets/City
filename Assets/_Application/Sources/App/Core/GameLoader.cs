@@ -13,6 +13,7 @@ using Sources.Services.FpsServices;
 using Sources.Services.SceneLoaderServices;
 using Sources.Services.TimeServices;
 using Sources.Utils.Di;
+using UnityEngine;
 
 namespace Sources.App.Core
 {
@@ -95,6 +96,7 @@ namespace Sources.App.Core
                     
                     if (shouldReload)
                     {
+                        Debug.Log($"force req");
                         onReloadRequest?.Invoke();
                     }
                     else

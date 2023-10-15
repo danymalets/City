@@ -1,7 +1,8 @@
 using System;
 using Sources.App.Ui.Base;
-using Sources.App.Ui.Screens.CarInputScreens;
-using Sources.App.Ui.Screens.PlayerInputScreens;
+using Sources.App.Ui.Screens.LevelScreens;
+using Sources.App.Ui.Screens.LevelScreens.CarInputScreens;
+using Sources.App.Ui.Screens.LevelScreens.PlayerInputScreens;
 using Sources.Services.ApplicationInputServices;
 using Sources.Utils.Di;
 using UnityEngine;
@@ -11,69 +12,79 @@ namespace Sources.App.Core.Services.Input
     public class GameplayInputService : IInitializable, IDisposable, IGameplayInputAccessService, IGameplayInputService
     {
         private readonly IApplicationInputService _applicationInput;
-        private readonly CarInputScreenController _carInputScreen;
-        private readonly PlayerInputScreenController _playerInputScreen;
+        private readonly CarInputViewController _carInputView;
+        private readonly PlayerInputViewController _playerInputView;
 
         public GameplayInputData GameplayInputData { get; } = new();
 
         public GameplayInputService()
         {
             _applicationInput = DiContainer.Resolve<IApplicationInputService>();
-            _carInputScreen = DiContainer.Resolve<IUiControllersService>()
-                .Get<CarInputScreenController>();
-            _playerInputScreen = DiContainer.Resolve<IUiControllersService>()
-                .Get<PlayerInputScreenController>();
-        }
 
-        void IDisposable.Dispose()
-        {
-            _playerInputScreen.EnterCarButtonClicked += OnEnterCarButtonClicked;
-            _carInputScreen.ExitCarButtonClicked += OnExitCarButtonClicked;
+            LevelScreenController levelScreenController = DiContainer.Resolve<IUiControllersService>()
+                .Get<LevelScreenController>();
+
+            _carInputView = levelScreenController.CarInputViewController;
+            _playerInputView = levelScreenController.PlayerInputViewController;
         }
 
         void IInitializable.Initialize()
         {
-            _playerInputScreen.EnterCarButtonClicked += OnEnterCarButtonClicked;
-            _carInputScreen.ExitCarButtonClicked += OnExitCarButtonClicked;
+            _playerInputView.EnterCarButtonClicked += OnEnterCarButtonClicked;
+            _playerInputView.JumpButtonClicked += OnJumpButtonClicked;
+            _carInputView.ExitCarButtonClicked += OnExitCarButtonClicked;
+        }
+
+        void IDisposable.Dispose()
+        {
+            _playerInputView.EnterCarButtonClicked -= OnEnterCarButtonClicked;
+            _playerInputView.JumpButtonClicked -= OnJumpButtonClicked;
+            _carInputView.ExitCarButtonClicked -= OnExitCarButtonClicked;
+        }
+
+        private void OnJumpButtonClicked()
+        {
+            GameplayInputData.WasJumpPressed = true;
         }
 
         private void OnEnterCarButtonClicked()
         {
-            GameplayInputData.WasCarEnterButtonClicked = true;
+            GameplayInputData.WasCarEnterButtonPressed = true;
         }
 
         private void OnExitCarButtonClicked()
         {
-            GameplayInputData.WasCarExitButtonClicked = true;
+            GameplayInputData.WasCarExitButtonPressed = true;
         }
 
         void IGameplayInputService.Update()
         {
             GameplayInputData.PlayerMoveDirection = 
-                _playerInputScreen.InputDirection != Vector2.zero ?
-                    _playerInputScreen.InputDirection : 
+                _playerInputView.InputDirection != Vector2.zero ?
+                    _playerInputView.InputDirection : 
                     _applicationInput.DirectionInput;
             
             GameplayInputData.CarMoveDirection = 
-                _carInputScreen.InputDirection != Vector2.zero ?
-                    _carInputScreen.InputDirection : 
+                _carInputView.InputDirection != Vector2.zero ?
+                    _carInputView.InputDirection : 
                     _applicationInput.DirectionInput;
 
             if (_applicationInput.GetKeyDown(KeyCode.E))
             {
-                GameplayInputData.WasCarEnterButtonClicked = true;
+                GameplayInputData.WasCarEnterButtonPressed = true;
             }
             
             if (_applicationInput.GetKeyDown(KeyCode.R))
             {
-                GameplayInputData.WasCarExitButtonClicked = true;
+                GameplayInputData.WasCarExitButtonPressed = true;
             }
         }
 
         void IGameplayInputService.Reset()
         {
-            GameplayInputData.WasCarEnterButtonClicked = false;
-            GameplayInputData.WasCarExitButtonClicked = false;
+            GameplayInputData.WasCarEnterButtonPressed = false;
+            GameplayInputData.WasCarExitButtonPressed = false;
+            GameplayInputData.WasJumpPressed = false;
         }
     }
 }

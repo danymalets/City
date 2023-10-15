@@ -129,8 +129,7 @@ namespace Sources.App.Core.Ecs.Factories
                 .SetRef<ITransform>(playerMonoEntity.Transform)
                 .SetRef<IPlayerAnimator>(new PlayerAnimator(playerMonoEntity.Animator))
                 .SetRef<IPlayerBorders>(playerMonoEntity.PlayerBorders)
-                .SetRef<ICollider[]>(new ICollider[]
-                    { playerMonoEntity.PlayerBorders.SafeCapsuleCollider })
+                .SetRef<ICollider[]>(new ICollider[] { playerMonoEntity.PlayerBorders.SafeCapsuleCollider })
                 .SetupRef<ICollider[]>(cs => cs.ForEach(c => c.Layer = Layers.Player))
                 .SetupRef<IPlayerAnimator>(pa => pa.SetMoveSpeed(0, true))
                 .SetupAspect<SwitchableRigidbodyAspect>(pa => pa.EnableRigidbody())

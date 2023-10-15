@@ -4,12 +4,12 @@ using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.App.Infrastructure.StateMachine.States.MainUiStates;
 using Sources.App.Services.AssetsServices;
 using Sources.App.Ui.Base;
+using Sources.App.Ui.Screens.DebugMenuScreens;
 using Sources.App.Ui.Screens.PerformanceScreens;
 using Sources.Services.ApplicationServices;
 using Sources.Services.PhysicsServices;
 using Sources.Services.PoolServices;
 using Sources.Services.ScreenServices;
-using Sources.Services.TimeServices;
 using Sources.Utils.Di;
 using UnityEngine;
 
@@ -26,7 +26,6 @@ namespace Sources.App.Infrastructure.StateMachine.States.BootstrapStates
             IApplicationService application = DiContainer.Resolve<IApplicationService>();
             IPhysicsService physics = DiContainer.Resolve<IPhysicsService>();
             IScreenService screen = DiContainer.Resolve<IScreenService>();
-            ITimeService time = DiContainer.Resolve<ITimeService>();
             IUiControllersService uiControllers = DiContainer.Resolve<IUiControllersService>();
             
             application.TargetFrameRate = Mathf.Min(60, screen.MaxDeviceFrameRate);
@@ -36,6 +35,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.BootstrapStates
             PreparePool();
             
             uiControllers.Get<PerformanceScreenController>().Open();
+            uiControllers.Get<DebugMenuScreenController>().Open();
 
             _stateMachine.Enter<MainUiState>();
         }

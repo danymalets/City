@@ -34,12 +34,12 @@ namespace Sources.App.Infrastructure.StateMachine.States.LevelStates
             
             _levelScreen.RestartButtonClicked += LevelScreen_OnRestartButtonClicked;
             _levelScreen.ExitButtonClicked += LevelScreen_OnExitButtonClicked;
-            _gameController.ForceReloadRequested += GameControllerForceReloadRequested;
+            _gameController.ForceReloadRequested += GameController_OnForceReloadRequested;
 
             _gameController.StartGame();
         }
 
-        private void GameControllerForceReloadRequested()
+        private void GameController_OnForceReloadRequested()
         {
             FinishGame();
             EnterMainUi();
@@ -71,7 +71,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.LevelStates
         {
             _levelScreen.RestartButtonClicked -= LevelScreen_OnRestartButtonClicked;
             _levelScreen.ExitButtonClicked -= LevelScreen_OnExitButtonClicked;
-            _gameController.ForceReloadRequested -= GameControllerForceReloadRequested;
+            _gameController.ForceReloadRequested -= GameController_OnForceReloadRequested;
 
             _gameController = null;
         }

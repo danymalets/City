@@ -26,6 +26,7 @@ using Sources.App.Core.Ecs.Systems.Update.User;
 using Sources.App.Core.Services;
 using Sources.App.Core.Services.Input;
 using Sources.App.Core.Services.Navigation;
+using Sources.App.Core.Services.Quality;
 using Sources.App.Core.Services.Simulation;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils;
@@ -65,6 +66,7 @@ namespace Sources.App.Core.Ecs
             
             _diBuilder.Register<PlayersDespawner, IPlayersDespawner>();
             _diBuilder.Register<CarsDespawner, ICarsDespawner>();
+            
             _diBuilder.Register<SimulationSettings, ISimulationSettings>();
             _diBuilder.Register<NavigationService, INavigationService>();
         }
@@ -141,6 +143,9 @@ namespace Sources.App.Core.Ecs
             _world.AddFixedSystem<CarsSpawnSystem>();
             _world.AddFixedSystem<NpcsSpawnSystem>();
             
+            //player
+            _world.AddFixedSystem<JumpRequestHandlerSystem>();
+
             // npc
             _world.AddFixedSystem<NpcPathEndCheckSystem>();
             _world.AddFixedSystem<NpcCarPathEndCheckSystem>();
@@ -220,6 +225,7 @@ namespace Sources.App.Core.Ecs
             _world.AddFixedOneFrame<SetLayerRequest>();
             _world.AddFixedOneFrame<DespawnRequest>();
             _world.AddFixedOneFrame<CheckForwardTriggerRequest>();
+            _world.AddFixedOneFrame<JumpRequest>();
         }
 
         private void AddUpdateSystems()
@@ -250,6 +256,7 @@ namespace Sources.App.Core.Ecs
 
             // ui
             _world.AddUpdateSystem<InputScreenSwitcherSystem>();
+            _world.AddUpdateSystem<EnterCarButtonSwitcherSystem>();
             
             // camera
             _world.AddUpdateSystem<CameraXAngleApplySystem>();
