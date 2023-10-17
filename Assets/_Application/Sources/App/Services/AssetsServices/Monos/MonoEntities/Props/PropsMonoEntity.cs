@@ -12,7 +12,7 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities.Props
 {
     [RequireComponent(typeof(SafeTransform))]
     [RequireComponent(typeof(RigidbodySwitcher))]
-    public class PropsMonoEntity : MonoEntity, IPropsMonoEntity, IMonoEntity
+    public class PropsMonoEntity : MonoEntity
     {
         [SerializeField]
         private PropsMonoEntity[] _derivedProps;
@@ -41,7 +41,7 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities.Props
         private MonoPoint _supportPoint;
 
 
-        public IEnumerable<IPropsMonoEntity> DerivedProps => _derivedProps;
+        public IEnumerable<PropsMonoEntity> DerivedProps => _derivedProps;
         public IRigidbodySwitcher RigidbodySwitcher => _rigidbodySwitcher;
         public float Mass => _mass;
         public IEnumerable<ICollider> Colliders => _colliders;

@@ -40,12 +40,12 @@ namespace Sources.App.Services.AssetsServices.IdleCarSpawns
         private PropsMonoEntity[] _props;
         
         public IPoint UserSpawnPoint => _userSpawnPoint;
-        public ICameraMonoEntity CameraMonoEntity => _cameraMonoEntity;
+        public CameraMonoEntity CameraMonoEntity => _cameraMonoEntity;
         public IPathSystem CarsPathSystem => _carsPathSystem;
         public IPathSystem NpcPathSystem => _npcPathSystem;
         public IFog Fog => _fog;
         public IIdleCarsSystem IdleCarsSystem => _idleCarsSystem;
         public IMapCamera MapCamera => _mapCamera;
-        public IEnumerable<IPropsMonoEntity> Props => _props;
+        public IEnumerable<PropsMonoEntity> Props => _props;
     }
 }

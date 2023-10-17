@@ -6,18 +6,13 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Extensions
 {
     public static class MorpehWorldExtensions
     {
-        public static Entity CreateFromMono(this DWorld world, IMonoEntity monoEntity)
+        public static Entity CreateFromMono(this DWorld world, MonoEntity monoEntity)
         {
             Entity entity = world.CreateEntity();
             monoEntity.Setup(entity);
-            entity.SetRef<IMonoEntity>(monoEntity);
+            entity.SetRef<MonoEntity>(monoEntity);
+            entity.SetRef<RespawnableBehaviour>(monoEntity);
             return entity;
-        }
-        
-        public static Entity CreateFromRespawnableMono(this DWorld world, MonoEntity monoEntity)
-        {
-            return world.CreateFromMono(monoEntity)
-                .SetRef<RespawnableBehaviour>(monoEntity);
         }
 
         public static Entity GetSingleton<TComponent>(this DWorld world) where TComponent : struct, IComponent

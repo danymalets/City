@@ -12,12 +12,12 @@ namespace Sources.App.Services.AssetsServices.IdleCarSpawns.Common
     public interface ILevelContext : IService, ISceneContext
     {
         IPoint UserSpawnPoint { get; }
-        ICameraMonoEntity CameraMonoEntity { get; }
+        CameraMonoEntity CameraMonoEntity { get; }
         IPathSystem CarsPathSystem { get; }
         IPathSystem NpcPathSystem { get; }
         IFog Fog { get; }
         IIdleCarsSystem IdleCarsSystem { get; }
         IMapCamera MapCamera { get; } 
-        IEnumerable<IPropsMonoEntity> Props { get; }
+        IEnumerable<PropsMonoEntity> Props { get; }
     }
 }

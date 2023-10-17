@@ -119,7 +119,7 @@ namespace Sources.App.Core.Ecs.Factories
         { 
             PlayerMonoEntity playerMonoEntity = _poolSpawner.Spawn(playerPrefab, position, rotation);
 
-            return _world.CreateFromRespawnableMono(playerMonoEntity)
+            return _world.CreateFromMono(playerMonoEntity)
                 .AllowFixedAwaiters()
                 .TrackCollisions()
                 .SetRef<IEnableableGameObject>(playerMonoEntity.EnableableGameObject)

@@ -9,7 +9,6 @@ namespace Sources.Services.PoolServices
         private List<PoolConfig> _poolConfigs;
         
         private readonly Dictionary<RespawnableBehaviour, PoolGroup> _poolGroups = new();
-        private readonly Dictionary<RespawnableBehaviour, RespawnableBehaviour> _prefabsRefs = new();
         private readonly Transform _poolRoot;
         
         public PoolService(Transform poolRoot)
@@ -21,20 +20,22 @@ namespace Sources.Services.PoolServices
         {
             PoolGroup poolGroup = new(_poolRoot, poolConfig.Prefab, poolConfig.Size, poolConfig.ForceParent);
 
-            foreach (RespawnableBehaviour respawnable in poolGroup.Initialize())
-            {
-                _prefabsRefs.Add(respawnable, poolConfig.Prefab);
-            }
+            poolGroup.ObjectInstantiated += PoolGroup_OnObjectInstantiated;
+            poolGroup.ObjectDestroyed += PoolGroup_OnObjectDestroyed;
+            poolGroup.Initialize();
 
             if (_poolGroups.ContainsKey(poolConfig.Prefab))
                 throw new InvalidOperationException($"{poolConfig.Prefab.gameObject.name} has been added");
             
             _poolGroups.Add(poolConfig.Prefab, poolGroup);
         }
-
+        
         public void CleanupPool(RespawnableBehaviour respawnable)
         {
-            _poolGroups[respawnable].Cleanup();
+            PoolGroup group = _poolGroups[respawnable];
+            group.Cleanup();
+            group.ObjectInstantiated -= PoolGroup_OnObjectInstantiated;
+            group.ObjectDestroyed -= PoolGroup_OnObjectDestroyed;
             _poolGroups.Remove(respawnable);
         }
 
@@ -54,8 +55,18 @@ namespace Sources.Services.PoolServices
 
         public void Despawn<T>(T instance) where T : RespawnableBehaviour
         {
-            RespawnableBehaviour prefab = _prefabsRefs[instance];
-            _poolGroups[prefab].Return(instance);
+            PoolGroup group = _poolGroups[instance];
+            group.Return(instance);
+        }
+        
+        private void PoolGroup_OnObjectInstantiated(RespawnableBehaviour respawnable, PoolGroup group)
+        {
+            _poolGroups[respawnable] = group;
+        }
+
+        private void PoolGroup_OnObjectDestroyed(RespawnableBehaviour respawnable, PoolGroup group)
+        {
+            _poolGroups.Remove(respawnable);
         }
     }
 }

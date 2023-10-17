@@ -23,7 +23,7 @@ namespace Sources.App.Core.Ecs.Systems.Init
 
         protected override void OnInitialize()
         {
-            foreach (IPropsMonoEntity propsMonoEntity in _levelContext.Props)
+            foreach (PropsMonoEntity propsMonoEntity in _levelContext.Props)
             {
                 _propsFactory.Create(propsMonoEntity);
             }

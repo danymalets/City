@@ -14,7 +14,7 @@ namespace Sources.App.Core.Ecs.Factories
 {
     public class PropsFactory : Factory, IPropsFactory
     {
-        public Entity Create(IPropsMonoEntity propsMonoEntity)
+        public Entity Create(PropsMonoEntity propsMonoEntity)
         {
             return _world.CreateFromMono(propsMonoEntity)
                 .AllowFixedAwaiters()

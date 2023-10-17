@@ -7,6 +7,6 @@ namespace Sources.App.Core.Ecs.Factories
 {
     public interface IPropsFactory : IService
     {
-        Entity Create(IPropsMonoEntity propsMonoEntity);
+        Entity Create(PropsMonoEntity propsMonoEntity);
     }
 }

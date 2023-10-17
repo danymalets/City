@@ -29,5 +29,8 @@ namespace Sources.Services.InstantiatorServices
 
         public void DontDestroyOnLoad(GameObject obj) =>
             GameObject.DontDestroyOnLoad(obj);
+
+        public void Destroy(GameObject obj) =>
+            GameObject.Destroy(obj);
     }
 }

@@ -20,5 +20,6 @@ namespace Sources.Services.InstantiatorServices
             where T : MonoBehaviour;
 
         void DontDestroyOnLoad(GameObject obj);
+        void Destroy(GameObject obj);
     }
 }

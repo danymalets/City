@@ -64,7 +64,7 @@ namespace Sources.App.Core.Ecs.Factories
             }
         }
 
-        private bool CanCreateCar(ICarMonoEntity carPrefab, Vector3 position, Quaternion rotation)
+        private bool CanCreateCar(CarMonoEntity carPrefab, Vector3 position, Quaternion rotation)
         {
             return !_physics.CheckBox(position + rotation * (carPrefab.BorderCollider
                     .SafeBoxCollider.BoxColliderData.Center - carPrefab.WheelsSystem.RootOffset),
@@ -77,7 +77,7 @@ namespace Sources.App.Core.Ecs.Factories
         {
             CarMonoEntity carMonoEntity = _poolSpawner.Spawn(carPrefab, position, rotation);
             
-            return _world.CreateFromRespawnableMono(carMonoEntity)
+            return _world.CreateFromMono(carMonoEntity)
                 .Add<CarTag>()
                 .SetRef<IEnableableGameObject>(carMonoEntity.EnableableGameObject)
                 .SetRef<ITransform>(carMonoEntity.Transform)

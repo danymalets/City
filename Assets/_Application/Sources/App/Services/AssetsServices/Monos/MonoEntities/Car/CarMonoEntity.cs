@@ -11,7 +11,7 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities.Car
     [RequireComponent(typeof(EnableableGameObject))]
     [RequireComponent(typeof(SafeTransform))]
     [RequireComponent(typeof(RigidbodySwitcher))]
-    public partial class CarMonoEntity : MonoEntity, ICarMonoEntity
+    public partial class CarMonoEntity : MonoEntity
     {
         [SerializeField]
         private EnableableGameObject _enableableGameObject;

@@ -5,6 +5,7 @@ using Sources.App.Core.Ecs.Aspects.Player;
 using Sources.App.Core.Ecs.Components.Car;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.Services.PoolServices;
+using Sources.Utils.MorpehWrapper;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 
 namespace Sources.App.Core.Ecs.Despawners
@@ -19,8 +20,10 @@ namespace Sources.App.Core.Ecs.Despawners
 
             playerEntity.GetAspect<SwitchableRigidbodyAspect>().TryDisableRigidbody();
             
-            playerEntity.DespawnMono();
+            playerEntity.GetRef<MonoEntity>().Cleanup();
+            
             _poolDespawner.Despawn(playerEntity.GetRef<RespawnableBehaviour>());
+            
             playerEntity.Dispose();
         }
     }

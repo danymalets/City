@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Sources.Utils.MorpehWrapper
 {
-    public abstract class MonoEntity : RespawnableBehaviour, IMonoEntity
+    public abstract class MonoEntity : RespawnableBehaviour
     {
         [ReadOnly]
         [SerializeField]

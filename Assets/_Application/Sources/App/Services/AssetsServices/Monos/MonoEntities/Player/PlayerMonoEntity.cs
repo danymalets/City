@@ -11,7 +11,7 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities.Player
     [RequireComponent(typeof(EnableableGameObject))]
     [RequireComponent(typeof(SafeTransform))]
     [RequireComponent(typeof(RigidbodySwitcher))]
-    public partial class PlayerMonoEntity : MonoEntity, IPlayerMonoEntity
+    public partial class PlayerMonoEntity : MonoEntity
     {
         [SerializeField]
         private EnableableGameObject _enableableGameObject;

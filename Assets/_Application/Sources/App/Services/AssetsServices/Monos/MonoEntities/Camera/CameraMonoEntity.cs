@@ -7,7 +7,7 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities.Camera
 {
     [RequireComponent(typeof(SafeTransform))]
     [RequireComponent(typeof(SafeCamera))]
-    public partial class CameraMonoEntity : MonoEntity, ICameraMonoEntity
+    public partial class CameraMonoEntity : MonoEntity
     {
         [SerializeField]
         private SafeTransform _transform;

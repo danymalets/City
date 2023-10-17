@@ -2,6 +2,7 @@ using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Aspects.Common;
 using Sources.Services.PoolServices;
+using Sources.Utils.MorpehWrapper;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 
 namespace Sources.App.Core.Ecs.Despawners
@@ -15,8 +16,10 @@ namespace Sources.App.Core.Ecs.Despawners
             if (switchableRigidbodyAspect.HasPhysicBody())
                 switchableRigidbodyAspect.DisableRigidbody();
             
-            carEntity.DespawnMono();
+            carEntity.GetRef<MonoEntity>().Cleanup();
+            
             _poolDespawner.Despawn(carEntity.GetRef<RespawnableBehaviour>());
+            
             carEntity.Dispose();
         }
     }

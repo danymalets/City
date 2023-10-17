@@ -13,7 +13,7 @@ namespace Sources.App.Core.Ecs.Factories
     {
         public Entity CreateCamera()
         {
-            ICameraMonoEntity cameraMonoEntity = _levelContext.CameraMonoEntity;
+            CameraMonoEntity cameraMonoEntity = _levelContext.CameraMonoEntity;
             return _world.CreateFromMono(cameraMonoEntity)
                 .SetRef<ITransform>(cameraMonoEntity.Transform)
                 .SetRef<ICamera>(cameraMonoEntity.Camera)
