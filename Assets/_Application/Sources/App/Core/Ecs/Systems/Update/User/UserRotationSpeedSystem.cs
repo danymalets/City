@@ -34,7 +34,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
 
         protected override void OnUpdate(float deltaTime)
         {
-            if (_filter.TryGetSingle(out Entity userEntity))
+            if (_filter.TryGetSingleton(out Entity userEntity))
             {
                 UserPlayerInput userPlayerInput = userEntity.Get<UserPlayerInput>();
                 ref RotationSpeed rotationSpeed = ref userEntity.Get<RotationSpeed>();

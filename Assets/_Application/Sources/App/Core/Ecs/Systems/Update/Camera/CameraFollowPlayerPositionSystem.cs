@@ -34,8 +34,8 @@ namespace Sources.App.Core.Ecs.Systems.Update.Camera
 
         protected override void OnUpdate(float deltaTime)
         {
-            if (_cameraFilter.TryGetSingle(out Entity cameraEntity) &&
-                _userFilter.TryGetSingle(out Entity userEntity))
+            if (_cameraFilter.TryGetSingleton(out Entity cameraEntity) &&
+                _userFilter.TryGetSingleton(out Entity userEntity))
             {
                 ITransform cameraTransform = cameraEntity.GetRef<ITransform>();
                 float cameraAngle = cameraEntity.Get<CameraYAngle>().Value;

@@ -31,18 +31,6 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Extensions
             where TComponent4 : struct, IComponent
             where TComponent5 : struct, IComponent =>
             filter.Without<TComponent1>().Without<TComponent2>().Without<TComponent3>().Without<TComponent4>().Without<TComponent5>();
-
-        public static void ShouldBeAtLeast(this Filter filter, int minCount)
-        {
-            if (filter.GetLengthSlow() < minCount)
-                throw new InvalidOperationException();
-        }
-        
-        public static void ShouldBe(this Filter filter, int count)
-        {
-            if (filter.GetLengthSlow() != count)
-                throw new InvalidOperationException();
-        } 
         
         public static bool Any(this Filter filter)
         {
@@ -53,7 +41,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Extensions
             return false;
         }
         
-        public static bool TryGetSingle(this Filter filter, out Entity entityAnswer)
+        public static bool TryGetSingleton(this Filter filter, out Entity entityAnswer)
         {
             entityAnswer = default;
             bool wasAns = false;
@@ -61,7 +49,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Extensions
             {
                 if (wasAns)
                 {
-                    return false;
+                    throw new InvalidOperationException("Filter not singleton");
                 }
                     
                 entityAnswer = tmp;
@@ -72,8 +60,14 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Extensions
 
         public static Entity GetSingleton(this Filter filter)
         {
-            filter.ShouldBe(1);
-            return filter.First();
+            if (filter.TryGetSingleton(out Entity entity))
+            {
+                return entity;
+            }
+            else
+            {
+                throw new InvalidOperationException("No entities in filter");
+            }
         }
     }
 }

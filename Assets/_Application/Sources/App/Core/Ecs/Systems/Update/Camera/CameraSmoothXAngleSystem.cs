@@ -27,7 +27,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Camera
 
         protected override void OnUpdate(float deltaTime)
         {
-            if (_cameraFilter.TryGetSingle(out Entity cameraEntity))
+            if (_cameraFilter.TryGetSingleton(out Entity cameraEntity))
             {
                 float cameraTargetXAngle = cameraEntity.Get<CameraXTargetAngle>().Value;
 

@@ -18,7 +18,7 @@ namespace Sources.App.Core.Ecs.Factories
             return _world.CreateEntity()
                 .Add<TTag>()
                 .Add<PathesTag>()
-                .Set(new RelatedSimulationArea() { SimulationAreaEntity = _world.GetSingleton<TRelatedAreaTag>() })
+                .Set(new RelatedSimulationArea() { SimulationAreaEntity = _world.Filter<TRelatedAreaTag>().Build().GetSingleton() })
                 .Set(new AllRoads { List = pathSystem.Roads.ToList() })
                 .Set(new AllCrossroads { List = pathSystem.Crossroads.ToList() })
                 .Set(new AllPoints { List = new List<Point>() })

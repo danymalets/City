@@ -36,7 +36,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Ui
 
         protected override void OnUpdate(float deltaTime)
         {
-            if (_userWithoutCarFilter.TryGetSingle(out Entity entity))
+            if (_userWithoutCarFilter.TryGetSingleton(out Entity entity))
             {
                 _playerInputView.SetEnterButtonActive(entity.Has<CarInputPossibility>());
             }
