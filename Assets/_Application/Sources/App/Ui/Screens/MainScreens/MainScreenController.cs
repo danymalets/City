@@ -34,16 +34,14 @@ namespace Sources.App.Ui.Screens.MainScreens
 
             _mainScreen.PlayTextButton.Button.onClick.AddListener(OnPlayButtonClicked);
             _mainScreen.ShopTextButton.Button.onClick.AddListener(OnShopButtonClicked);
-            _mainScreen.SettingsTextButton.Button.onClick.AddListener(OnSettingsButtonClicked);
-            _mainScreen.RateUsTextButton.Button.onClick.AddListener(OnRateUsButtonClicked);
+            _mainScreen.SettingsTextButton.onClick.AddListener(OnSettingsButtonClicked);
         }
 
         protected override void OnClose()
         {
             _mainScreen.PlayTextButton.Button.onClick.RemoveListener(OnPlayButtonClicked);
             _mainScreen.ShopTextButton.Button.onClick.RemoveListener(OnShopButtonClicked);
-            _mainScreen.SettingsTextButton.Button.onClick.RemoveListener(OnSettingsButtonClicked);
-            _mainScreen.RateUsTextButton.Button.onClick.RemoveListener(OnRateUsButtonClicked);
+            _mainScreen.SettingsTextButton.onClick.RemoveListener(OnSettingsButtonClicked);
 
             _shopScreenController = null;
         }
@@ -52,8 +50,6 @@ namespace Sources.App.Ui.Screens.MainScreens
         {
             _mainScreen.PlayTextButton.Text.text = Strings.Play;
             _mainScreen.ShopTextButton.Text.text = Strings.Shop;
-            _mainScreen.SettingsTextButton.Text.text = Strings.Settings;
-            _mainScreen.RateUsTextButton.Text.text = Strings.RateUs;
         }
 
         private void OnPlayButtonClicked()

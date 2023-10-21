@@ -71,7 +71,6 @@ namespace Sources.App.Data.Players
         private static class Names
         {
             public static int MoveBlendTree = Animator.StringToHash(nameof(MoveBlendTree));
-            public static int Falling = Animator.StringToHash(nameof(Falling));
             public static int InCarLeft = Animator.StringToHash(nameof(InCarLeft));
             public static int InCarRight = Animator.StringToHash(nameof(InCarRight));
         }

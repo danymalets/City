@@ -6,6 +6,7 @@ using Sources.App.Infrastructure.StateMachine.States.MainUiStates;
 using Sources.App.Services.UserServices;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Screens.LevelScreens;
+using Sources.App.Ui.Screens.PausePopups;
 using Sources.Utils.Di;
 
 namespace Sources.App.Infrastructure.StateMachine.States.LevelStates
@@ -13,7 +14,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.LevelStates
     public class LevelState : GameState
     {
         private GameController _gameController;
-        private LevelScreenController _levelScreen;
+        private PausePopupController _pausePopupController;
         private IQualityChangerService _qualityChanger;
         private IUserAccessService _userAccess;
 
@@ -28,12 +29,12 @@ namespace Sources.App.Infrastructure.StateMachine.States.LevelStates
 
             _qualityChanger.SetQuality(_userAccess.User.Preferences.SelectedQuality);
             
-            _levelScreen = DiContainer.Resolve<IUiControllersService>().Get<LevelScreenController>();
+            _pausePopupController = DiContainer.Resolve<IUiControllersService>().Get<PausePopupController>();
 
             _gameController = new GameController();
             
-            _levelScreen.RestartButtonClicked += LevelScreen_OnRestartButtonClicked;
-            _levelScreen.ExitButtonClicked += LevelScreen_OnExitButtonClicked;
+            _pausePopupController.RestartButtonClicked += PausePopupController_OnRestartButtonClicked;
+            _pausePopupController.ExitButtonClicked += PausePopupController_OnExitButtonClicked;
             _gameController.ForceReloadRequested += GameController_OnForceReloadRequested;
 
             _gameController.StartGame();
@@ -45,7 +46,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.LevelStates
             EnterMainUi();
         }
 
-        private void LevelScreen_OnExitButtonClicked()
+        private void PausePopupController_OnExitButtonClicked()
         {
             FinishGame();
             EnterMainUi();
@@ -56,7 +57,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.LevelStates
             _stateMachine.Enter<MainUiState>();
         }
 
-        private void LevelScreen_OnRestartButtonClicked()
+        private void PausePopupController_OnRestartButtonClicked()
         {
             FinishGame();
             EnterMainUi();
@@ -69,8 +70,8 @@ namespace Sources.App.Infrastructure.StateMachine.States.LevelStates
 
         protected override void OnExit()
         {
-            _levelScreen.RestartButtonClicked -= LevelScreen_OnRestartButtonClicked;
-            _levelScreen.ExitButtonClicked -= LevelScreen_OnExitButtonClicked;
+            _pausePopupController.RestartButtonClicked -= PausePopupController_OnRestartButtonClicked;
+            _pausePopupController.ExitButtonClicked -= PausePopupController_OnExitButtonClicked;
             _gameController.ForceReloadRequested -= GameController_OnForceReloadRequested;
 
             _gameController = null;

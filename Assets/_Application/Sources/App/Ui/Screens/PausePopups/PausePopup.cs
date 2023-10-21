@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Sources.App.Ui.Screens.PausePopups
 {
-    public class PausePopup : GameScreen
+    public class PausePopup : GamePopup
     {
         [field: SerializeField] public TextButton SettingsButton { get; private set; }
         [field: SerializeField] public TextButton ExitButton { get; private set; }

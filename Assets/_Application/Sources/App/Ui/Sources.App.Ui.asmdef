@@ -24,7 +24,9 @@
         "Sources.Services.IapServices",
         "Sources.App.Services.AssetsServices",
         "Sources.Services.LocalizationServices",
-        "Sources.Services.ScreenServices"
+        "Sources.Services.ScreenServices",
+        "Sources.Services.PoolServices",
+        "Sources.Services.InstantiatorServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

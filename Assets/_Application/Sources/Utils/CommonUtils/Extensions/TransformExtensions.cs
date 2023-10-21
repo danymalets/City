@@ -5,7 +5,7 @@ namespace Sources.Utils.CommonUtils.Extensions
 {
     public static class TransformExtensions
     {
-        public static DBox ToDBox(this Transform boxTransform) =>
-            new DBox(boxTransform.position, boxTransform.rotation, boxTransform.lossyScale);
+        public static DBox ToDBox(this Transform transform) =>
+            new DBox(transform.position, transform.rotation, transform.lossyScale);
     }
 }

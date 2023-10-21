@@ -25,7 +25,7 @@ namespace Sources.App.Ui.Screens.PerformanceScreens
         private ITimeService _time;
 
         public PerformanceScreenController(PerformanceScreen performanceScreen) 
-            : base(performanceScreen, new DefaultPopupAnimator(performanceScreen), true)
+            : base(performanceScreen, new ToggleAnimator(performanceScreen), true)
         {
             _performanceScreen = performanceScreen;
         }

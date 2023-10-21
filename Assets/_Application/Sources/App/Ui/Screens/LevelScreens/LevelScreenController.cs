@@ -15,10 +15,6 @@ namespace Sources.App.Ui.Screens.LevelScreens
 
         public CarInputViewController CarInputViewController { get; private set; }
         public PlayerInputViewController PlayerInputViewController { get; private set; }
-        
-        public event Action RestartButtonClicked;
-        public event Action ExitButtonClicked;
-
 
         public LevelScreenController(LevelScreen levelScreen) 
             : base(levelScreen, new ToggleAnimator(levelScreen))
@@ -35,33 +31,21 @@ namespace Sources.App.Ui.Screens.LevelScreens
 
         protected override void OnOpen()
         {
-            _levelScreen.RestartButton.onClick.AddListener(OnRestartButtonClicked);
-            _levelScreen.ExitButton.onClick.AddListener(OnExitButtonClicked);
             _levelScreen.PauseButton.onClick.AddListener(OnPauseButtonClicked);
-
+            
             CarInputViewController.OnOpen();
             PlayerInputViewController.OnOpen();
         }
 
         protected override void OnClose()
         {
-            _levelScreen.RestartButton.onClick.RemoveListener(OnRestartButtonClicked);
-            _levelScreen.ExitButton.onClick.RemoveListener(OnExitButtonClicked);
             _levelScreen.PauseButton.onClick.RemoveListener(OnPauseButtonClicked);
             
             CarInputViewController.OnClose();
             PlayerInputViewController.OnClose();
         }
 
-        private void OnRestartButtonClicked()
-        {
-            RestartButtonClicked?.Invoke();
-        }
-
-        private void OnExitButtonClicked()
-        {
-            ExitButtonClicked?.Invoke();
-        }
+        
 
         private void OnPauseButtonClicked()
         {

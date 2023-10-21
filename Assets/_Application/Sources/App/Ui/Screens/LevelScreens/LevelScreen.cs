@@ -8,8 +8,6 @@ namespace Sources.App.Ui.Screens.LevelScreens
 {
     public class LevelScreen : GameScreen
     {
-        [field: SerializeField] public Button ExitButton { get; private set; }
-        [field: SerializeField] public Button RestartButton { get; private set; }
         [field: SerializeField] public Button PauseButton { get; private set; }
         [field: SerializeField] public PlayerInputView PlayerInputView { get; private set; }
         [field: SerializeField] public CarInputView CarInputView { get; private set; }

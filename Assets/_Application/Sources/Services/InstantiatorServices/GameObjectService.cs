@@ -11,19 +11,19 @@ namespace Sources.Services.InstantiatorServices
             return transform;
         }
 
-        public T Instantiate<T>(T prefab) 
-            where T: MonoBehaviour =>
+        public T Instantiate<T>(T prefab)
+            where T : MonoBehaviour =>
             GameObject.Instantiate(prefab);
 
-        public T Instantiate<T>(T prefab, Vector3 at, Quaternion rotation) 
-            where T: MonoBehaviour =>
+        public T Instantiate<T>(T prefab, Vector3 at, Quaternion rotation)
+            where T : MonoBehaviour =>
             GameObject.Instantiate(prefab, at, rotation);
 
         public T Instantiate<T>(T prefab, Transform parent)
             where T : MonoBehaviour =>
             GameObject.Instantiate(prefab, parent);
 
-        public T Instantiate<T>(T prefab, Vector3 position, Quaternion rotation, Transform parent) 
+        public T Instantiate<T>(T prefab, Vector3 position, Quaternion rotation, Transform parent)
             where T : MonoBehaviour =>
             GameObject.Instantiate(prefab, position, rotation, parent);
 
@@ -32,5 +32,13 @@ namespace Sources.Services.InstantiatorServices
 
         public void Destroy(GameObject obj) =>
             GameObject.Destroy(obj);
+
+        public void DestroyChildren(Transform transform)
+        {
+            foreach (Transform child in transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
     }
 }
