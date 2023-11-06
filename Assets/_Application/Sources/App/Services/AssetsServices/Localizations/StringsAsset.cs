@@ -15,5 +15,6 @@ namespace Sources.App.Services.AssetsServices.Localizations
         [field: SerializeField] public string RemoveAds { get; private set; }
         [field: SerializeField] public string RestorePurchases { get; private set; }
         [field: SerializeField] public string Bought { get; private set; }
+        [field: SerializeField] public string Language { get; private set; }
     }
 }

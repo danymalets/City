@@ -3,6 +3,7 @@ using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Services.BalanceServices;
+using Sources.App.Services.BalanceServices.PlayersBalances;
 using Sources.Utils.CommonUtils.Data;
 using Sources.Utils.CommonUtils.Libs;
 using Sources.Utils.Di;

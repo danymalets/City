@@ -15,7 +15,7 @@ namespace Sources.App.Ui.Screens.MainScreens
         private readonly MainScreen _mainScreen;
         private ShopScreenController _shopScreenController;
         private readonly IApplicationService _applicationService;
-        private SettingsScreenController _settingsScreenController;
+        private SettingsPopupController _settingsPopupController;
 
         public event Action PlayButtonClicked;
 
@@ -30,7 +30,7 @@ namespace Sources.App.Ui.Screens.MainScreens
         {
             IUiControllersService uiControllers = DiContainer.Resolve<IUiControllersService>();
             _shopScreenController = uiControllers.Get<ShopScreenController>();
-            _settingsScreenController = uiControllers.Get<SettingsScreenController>();
+            _settingsPopupController = uiControllers.Get<SettingsPopupController>();
 
             _mainScreen.PlayTextButton.Button.onClick.AddListener(OnPlayButtonClicked);
             _mainScreen.ShopTextButton.Button.onClick.AddListener(OnShopButtonClicked);
@@ -64,7 +64,7 @@ namespace Sources.App.Ui.Screens.MainScreens
 
         private void OnSettingsButtonClicked()
         {
-            _settingsScreenController.Open();
+            _settingsPopupController.Open();
         }
 
         private void OnRateUsButtonClicked()

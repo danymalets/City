@@ -8,7 +8,7 @@ namespace Sources.Services.LocalizationServices
 {
     public interface ILocalizationService : IService
     {
-        Language CurrentLanguage { get; }
+        LanguageAsset CurrentLanguageAsset { get; }
         StringsAsset CurrentStrings { get; }
         event Action LocalizationChanged;
         void ChangeLanguage(LanguageType languageType);

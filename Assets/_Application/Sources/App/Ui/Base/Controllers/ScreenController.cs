@@ -5,8 +5,8 @@ namespace Sources.App.Ui.Base.Controllers
 {
     public abstract class ScreenController : ScreenControllerBase
     {
-        protected ScreenController(GameScreen gameScreen, ScreenAnimator animator, bool isAlwaysOpen = false) 
-            : base(gameScreen, animator, isAlwaysOpen)
+        protected ScreenController(GameScreen gamePopup, ScreenAnimator animator, bool isAlwaysOpen = false) 
+            : base(gamePopup, animator, isAlwaysOpen)
         {
         }
 

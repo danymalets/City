@@ -38,8 +38,6 @@ namespace Sources.Services.PoolServices
                 _forceGroupRoot == null ? 
                 _gameObjectService.CreateEmptyObject($"{_prefab.name} - PoolGroup", _poolRoot) : 
                 _forceGroupRoot;
-
-            Debug.Log($"ku {_groupRoot.name} {_groupRoot.parent.name}");
             
             for (int i = 0; i < _initCount; i++)
             {

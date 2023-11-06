@@ -20,7 +20,7 @@ namespace Sources.App.Services.AudioServices
 
         private readonly HashSet<SoundSource> _playingSounds = new (10);
         private IPoolSpawnerService _poolSpawner;
-        private Preferences _preferences;
+        private UserPreferences _userPreferences;
 
         public void Initialize()
         {
@@ -28,8 +28,8 @@ namespace Sources.App.Services.AudioServices
             
             _poolCreator = DiContainer.Resolve<IPoolCreatorService>();
             _poolSpawner = DiContainer.Resolve<IPoolSpawnerService>();
-            _preferences = DiContainer.Resolve<IUserAccessService>()
-                .User.Preferences;
+            _userPreferences = DiContainer.Resolve<IUserAccessService>()
+                .User.UserPreferences;
 
             _poolCreator.CreatePool(new PoolConfig(_soundSourcePrefab, 20));
         }
@@ -37,13 +37,13 @@ namespace Sources.App.Services.AudioServices
         public void PlayOnce(SoundEffectType soundEffectType)
         {
             SoundEffectData data = _audioData.GetSoundEffectData(soundEffectType);
-            SetupSound(new SoundSourceData(data.Clip, data.Volume, false, _preferences.SoundsOn, data.Stopable));
+            // SetupSound(new SoundSourceData(data.Clip, data.Volume, false, _userPreferences.SoundsOn, data.Stopable));
         }
 
         public void PlayMusic(MusicType musicType)
         {
             MusicData data = _audioData.GetMusicData(musicType);
-            SetupSound(new SoundSourceData(data.Clip, data.Volume, false, _preferences.SoundsOn, true));
+            // SetupSound(new SoundSourceData(data.Clip, data.Volume, false, _userPreferences.SoundsOn, true));
         }
 
         public void StopAll()

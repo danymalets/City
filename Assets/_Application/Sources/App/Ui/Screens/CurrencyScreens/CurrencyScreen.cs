@@ -7,5 +7,6 @@ namespace Sources.App.Ui.Screens.CurrencyScreens
     public class CurrencyScreen : GameScreen
     {
         [field: SerializeField] public CurrencyItem CoinsItem { get; private set; }
+        [field: SerializeField] public CurrencyItem GemsItem { get; private set; }
     }
 }

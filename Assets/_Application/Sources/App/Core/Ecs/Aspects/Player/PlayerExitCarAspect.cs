@@ -25,7 +25,7 @@ namespace Sources.App.Core.Ecs.Aspects.Player
         public FilterBuilder GetFilter(FilterBuilder filter) =>
             filter.With<PlayerTag>();
 
-        public readonly void TryForceExit()
+        public readonly void ForceExit()
         {
             if (Entity.Has<PlayerFullyInCar>())
             {
@@ -56,7 +56,7 @@ namespace Sources.App.Core.Ecs.Aspects.Player
                 Entity.AddWithFixedDelay<PlayerFullyExitCarRequest>(Consts.ExitCarAnimationDuration);
             }
            
-            Entity.GetRef<IPlayerAnimator>().ExitCar();
+            Entity.GetRef<IPlayerAnimator>().ExitCar(isForce);
         }
 
         public readonly void FullyExitCar()

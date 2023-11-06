@@ -116,10 +116,12 @@ MonoBehaviour:
   <SafeArea>k__BackingField: {fileID: 0}
   <CanvasGroup>k__BackingField: {fileID: 4324951711924001307}
   <CloseButtons>k__BackingField: []
-  <Content>k__BackingField: {fileID: 0}
-  <SettingsButton>k__BackingField: {fileID: 0}
-  <ExitButton>k__BackingField: {fileID: 0}
-  <RestartButton>k__BackingField: {fileID: 0}
+  <Content>k__BackingField: {fileID: 6425548302036233081}
+  <Title>k__BackingField: {fileID: 6425548301636363086}
+  <SettingsButton>k__BackingField: {fileID: 6514990580149847831}
+  <ContinueButton>k__BackingField: {fileID: 7325933106644057454}
+  <RestartButton>k__BackingField: {fileID: 5201974858625696049}
+  <ExitButton>k__BackingField: {fileID: 5427227121916268401}
 --- !u!1 &4543123108352689354
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,6 +581,7 @@ GameObject:
   - component: {fileID: 6425548300196103196}
   - component: {fileID: 6425548300196103197}
   - component: {fileID: 6425548300196103199}
+  - component: {fileID: 5427227121916268401}
   m_Layer: 5
   m_Name: Button_GiveUp
   m_TagString: Untagged
@@ -690,6 +693,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5427227121916268401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6425548300196103195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819aa908abbe4c489cda3ca28ecef41e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Button>k__BackingField: {fileID: 6425548300196103199}
+  <Text>k__BackingField: {fileID: 6425548301582539406}
 --- !u!1 &6425548300235238266
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,6 +719,7 @@ GameObject:
   - component: {fileID: 6425548300235238271}
   - component: {fileID: 6425548300235238268}
   - component: {fileID: 6425548300235238270}
+  - component: {fileID: 6514990580149847831}
   m_Layer: 5
   m_Name: Button_Setting
   m_TagString: Untagged
@@ -813,6 +831,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6514990580149847831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6425548300235238266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819aa908abbe4c489cda3ca28ecef41e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Button>k__BackingField: {fileID: 6425548300235238270}
+  <Text>k__BackingField: {fileID: 6425548301718161143}
 --- !u!1 &6425548300868716182
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,6 +857,7 @@ GameObject:
   - component: {fileID: 6425548300868716187}
   - component: {fileID: 6425548300868716184}
   - component: {fileID: 6425548300868716186}
+  - component: {fileID: 5201974858625696049}
   m_Layer: 5
   m_Name: Button_ReStart
   m_TagString: Untagged
@@ -936,6 +969,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5201974858625696049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6425548300868716182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819aa908abbe4c489cda3ca28ecef41e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Button>k__BackingField: {fileID: 6425548300868716186}
+  <Text>k__BackingField: {fileID: 6425548301040095289}
 --- !u!1 &6425548301040095287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,6 +1130,7 @@ GameObject:
   - component: {fileID: 6425548301470588617}
   - component: {fileID: 6425548301470588614}
   - component: {fileID: 6425548301470588616}
+  - component: {fileID: 7325933106644057454}
   m_Layer: 5
   m_Name: Button_Continue
   m_TagString: Untagged
@@ -1194,6 +1242,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7325933106644057454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6425548301470588612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819aa908abbe4c489cda3ca28ecef41e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Button>k__BackingField: {fileID: 6425548301470588616}
+  <Text>k__BackingField: {fileID: 6425548301896542048}
 --- !u!1 &6425548301520722898
 GameObject:
   m_ObjectHideFlags: 0

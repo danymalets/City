@@ -2,6 +2,7 @@ using System.Linq;
 using Sirenix.OdinInspector;
 using Sources.App.Data.Constants;
 using Sources.App.Services.AssetsServices.Monos.Players;
+using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 using UnityEngine;
 using UnityEngine.AI;
@@ -23,7 +24,7 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities.Player
             _animator = GetComponentInChildren<SafeAnimator>();
             _navMeshAgent = GetComponentInChildren<NavMeshObstacle>();
 
-            _playerBorders.SafeCapsuleCollider.Layer = Layers.Player;
+            gameObject.SetLayerRecursive(Layers.Player);
 
             _rootTransform = GetComponentsInChildren<Transform>()
                 .First(t => t.gameObject.name == "Root")

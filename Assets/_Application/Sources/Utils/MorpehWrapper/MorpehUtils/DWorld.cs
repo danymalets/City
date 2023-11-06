@@ -33,6 +33,8 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
         public FilterBuilder Filter => _world.Filter;
 
         public float TimeScale { get; set; } = 1;
+        private float PausedCoeff => IsPaused ? 0 : 1;
+        public bool IsPaused { get; set; } = false;
 
         public Entity CreateEntity() =>
             _world.CreateEntity();
@@ -90,19 +92,21 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
 
             _coroutineContext.RunEachFrame(() =>
             {
-                if (_fpsService.FpsLastSecond >= MinWorkableFps)
+                if (ShouldRun())
                 {
                     DMath.Divide(TimeScale * _time.DeltaTime, _time.DeltaTime, WorldUpdate);
                 }
             }, true);
             _coroutineContext.RunEachFixedUpdate(() =>
             {
-                if (_fpsService.FpsLastSecond >= MinWorkableFps)
+                if (ShouldRun())
                 {
                     DMath.Divide(TimeScale * _time.DeltaTime, _time.DeltaTime, WorldFixedUpdate);
                 }
             });
         }
+
+        private bool ShouldRun() => !IsPaused && _fpsService.FpsLastSecond >= MinWorkableFps;
 
         private void ConstructSystem<TDSystem>(TDSystem system)
             where TDSystem : DSystem

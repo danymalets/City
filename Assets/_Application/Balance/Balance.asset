@@ -17,4 +17,5 @@ MonoBehaviour:
   <PlayersBalance>k__BackingField: {fileID: 11400000, guid: 4d35386de65a94752920915bd2c68438, type: 2}
   <CarsBalance>k__BackingField: {fileID: 11400000, guid: 4ca29f054aa864a8bb9f469439a607f4, type: 2}
   <QualityBalance>k__BackingField: {fileID: 11400000, guid: 76b787ecc614e45b8a01bff7eb11ab4b, type: 2}
+  <EconomyBalance>k__BackingField: {fileID: 11400000, guid: 18146e866f74d4a5b9fd541365bfc979, type: 2}
   <CommonBalance>k__BackingField: {fileID: 11400000, guid: e7e639e6498bc42958b4081b75e15066, type: 2}

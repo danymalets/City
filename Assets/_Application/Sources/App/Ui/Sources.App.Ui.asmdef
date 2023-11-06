@@ -26,7 +26,8 @@
         "Sources.Services.LocalizationServices",
         "Sources.Services.ScreenServices",
         "Sources.Services.PoolServices",
-        "Sources.Services.InstantiatorServices"
+        "Sources.Services.InstantiatorServices",
+        "Sources.App.Services.BalanceServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

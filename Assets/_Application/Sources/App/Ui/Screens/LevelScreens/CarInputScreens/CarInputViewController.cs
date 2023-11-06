@@ -30,21 +30,13 @@ namespace Sources.App.Ui.Screens.LevelScreens.CarInputScreens
         private void OnExitCarButtonClicked()
         {
             ExitCarButtonClicked();
-
-            // if (_userEntity.Has<PlayerFullyInCar>())
-            //     _userEntity.Add<PlayerStartExitCarRequest>();
         }
 
-        // private void Update()
-        // {
-        //     _carInputView.ExitCarButton.interactable = _userEntity.Has<PlayerFullyInCar>();
-        // }
-
         public Vector2 InputDirection => 
-            new (UiUtils.GetInputValue(_carInputView.UpButton,
-                _carInputView.DownButton),
-                UiUtils.GetInputValue(_carInputView.RightButton, 
-                _carInputView.LeftButton));
+            new (UiUtils.GetInputValue(_carInputView.LeftButton, 
+                    _carInputView.RightButton),
+                UiUtils.GetInputValue(_carInputView.UpButton,
+                    _carInputView.DownButton));
 
         public void SetActive(bool isActive)
         {

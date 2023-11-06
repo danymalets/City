@@ -7,34 +7,34 @@ namespace Sources.App.Ui.Screens.ShopScreens.IapItems
     public class IapItemController
     {
         private readonly IapItem _iapItem;
-        
         private readonly IIapService _iapService;
-        
-        public IapItemController(IapItem iapItem)
+        protected readonly IapProductType _iapProductType;
+
+        public IapItemController(IapItem iapItem, IapProductType iapProductType)
         {
             _iapItem = iapItem;
+            _iapProductType = iapProductType;
             _iapService = DiContainer.Resolve<IIapService>();
         }
 
-        public void OnOpen()
+        public void OnSetup()
         {
             _iapItem.Button.onClick.AddListener(OnButtonClicked);
         }
 
-        public void OnClose()
+        public void OnCleanup()
         {
             _iapItem.Button.onClick.RemoveListener(OnButtonClicked);
         }
 
-        public void OnRefresh(StringsAsset strings)
+        public virtual void OnRefresh()
         {
-            _iapItem.PriceText.text = _iapService.GetPriceString(_iapItem.IapProductType);
-            _iapItem.BoughtText.text = strings.Bought;
+            _iapItem.PriceText.text = _iapService.GetPriceString(_iapProductType);
         }
 
         private void OnButtonClicked()
         {
-            _iapService.InitiatePurchase(_iapItem.IapProductType);
+            _iapService.InitiatePurchase(_iapProductType);
         }
     }
 }

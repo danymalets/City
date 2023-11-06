@@ -1,10 +1,17 @@
+using System.Collections.Generic;
 using System.Linq;
+using Sirenix.Utilities;
+using Sources.App.Services.BalanceServices;
+using Sources.App.Services.BalanceServices.CommonBalances;
 using Sources.App.Services.UserServices;
 using Sources.App.Ui.Base.Animators;
 using Sources.App.Ui.Base.Controllers;
+using Sources.App.Ui.Screens.ShopScreens.GemIapsViews;
+using Sources.App.Ui.Screens.ShopScreens.GemsForCoinsExchanges;
 using Sources.App.Ui.Screens.ShopScreens.IapItems;
 using Sources.Services.ApplicationServices;
 using Sources.Services.IapServices;
+using Sources.Utils.CommonUtils.Libs;
 using Sources.Utils.Di;
 using UnityEngine;
 
@@ -14,85 +21,83 @@ namespace Sources.App.Ui.Screens.ShopScreens
     {
         private readonly ShopScreen _shopScreen;
         private readonly IIapService _iapService;
-        private readonly IapItemController[] _iapItemsControllers;
-        private readonly IUserAccessService _userAccessService;
         private readonly IApplicationService _applicationService;
-
+        private IapItemController[] _iapItemControllers;
+        private readonly CoinsForGemsViewController _coinsForGemsViewController;
+        private readonly GemIapsViewController _gemIapsViewController;
+        
         public ShopScreenController(ShopScreen shopScreen) : base(shopScreen, new ToggleAnimator(shopScreen))
         {
             _shopScreen = shopScreen;
-
-            IapItem[] iapItems =
-            {
-                _shopScreen.Buy500CoinsButton,
-                _shopScreen.Buy1000CoinsButton,
-                _shopScreen.BuyRedCarButton,
-                _shopScreen.BuyGreenCarButton,
-                _shopScreen.RemoveAdsButton,
-            };
-
-            _iapItemsControllers = iapItems.Select(iapItem => new IapItemController(iapItem)).ToArray();
-
-            _userAccessService = DiContainer.Resolve<IUserAccessService>();
             _applicationService = DiContainer.Resolve<IApplicationService>();
             _iapService = DiContainer.Resolve<IIapService>();
+
+            _iapItemControllers = new[]
+            {
+                new IapItemController(_shopScreen.IapRedCarItem, IapProductType.RedCar),
+                new IapItemController(_shopScreen.GreenCarItem, IapProductType.GreenCar),
+                new IapItemController(_shopScreen.RemoveAdsItem, IapProductType.RedCar),
+            };
+
+            _coinsForGemsViewController = new CoinsForGemsViewController(shopScreen.CoinsForGemsItems);
+            _gemIapsViewController = new GemIapsViewController(shopScreen.IapGemItems);
+        }
+
+        protected override void OnCreate()
+        {
+            _shopScreen.RestorePurchasesTextButton.gameObject
+                .SetActive(_applicationService.ApplicationPlatform == RuntimePlatform.IPhonePlayer);
         }
 
         protected override void OnOpen()
         {
-            foreach (IapItemController iapItemController in _iapItemsControllers)
-            {
-                iapItemController.OnOpen();
-            }
+            _coinsForGemsViewController.OnSetup();
+            _gemIapsViewController.OnSetup();
             
-            _shopScreen.RestorePurchasesTextButton.gameObject
-                .SetActive(_applicationService.ApplicationPlatform == RuntimePlatform.IPhonePlayer);
+            foreach (IapItemController iapItemController in _iapItemControllers)
+            {
+                iapItemController.OnSetup();
+            }
 
             _shopScreen.RestorePurchasesTextButton.Button.onClick.AddListener(OnRestorePurchasesButtonClicked);
 
             _iapService.Initialized += IapService_OnInitialized;
-            _iapService.PurchaseProcessed += IapService_OnPurchaseProcessed;
         }
 
         protected override void OnClose()
         {
-            foreach (IapItemController iapItemController in _iapItemsControllers)
+            _coinsForGemsViewController.OnCleanup();
+            _gemIapsViewController.OnCleanup();
+
+            foreach (IapItemController iapItemController in _iapItemControllers)
             {
-                iapItemController.OnClose();
+                iapItemController.OnCleanup();
             }
 
+            _shopScreen.RestorePurchasesTextButton.Button.onClick.AddListener(OnRestorePurchasesButtonClicked);
+
             _iapService.Initialized -= IapService_OnInitialized;
-            _iapService.PurchaseProcessed -= IapService_OnPurchaseProcessed;
         }
-        
+
         protected override void OnRefresh()
         {
             _shopScreen.ShopTitle.text = Strings.Shop;
-            
-            _shopScreen.Buy500CoinsButton.TitleText.text = string.Format(Strings.CoinsPattern, 500);
-            _shopScreen.Buy1000CoinsButton.TitleText.text = string.Format(Strings.CoinsPattern, 1000);
-            _shopScreen.BuyRedCarButton.TitleText.text = Strings.RedCar;
-            _shopScreen.BuyGreenCarButton.TitleText.text = Strings.GreenCar;
-            _shopScreen.RemoveAdsButton.TitleText.text = Strings.RemoveAds;
-            
+
+            _shopScreen.IapRedCarItem.TitleText.text = Strings.RedCar;
+            _shopScreen.GreenCarItem.TitleText.text = Strings.GreenCar;
+            _shopScreen.RemoveAdsItem.TitleText.text = Strings.RemoveAds;
+
             _shopScreen.RestorePurchasesTextButton.Text.text = Strings.RestorePurchases;
 
-            _shopScreen.BuyRedCarButton.BoughtPanel.SetActive(_userAccessService.User.Progress.IsRedCarUnlocked);
-            _shopScreen.BuyGreenCarButton.BoughtPanel.SetActive(_userAccessService.User.Progress.IsGreenCarUnlocked);
-            _shopScreen.RemoveAdsButton.BoughtPanel.SetActive(_userAccessService.User.IsRemoveAds);
-
-            foreach (IapItemController iapItemController in _iapItemsControllers)
+            foreach (IapItemController iapItemController in _iapItemControllers)
             {
-                iapItemController.OnRefresh(Strings);
+                iapItemController.OnRefresh();
             }
+
+            _gemIapsViewController.OnRefresh();
         }
 
         private void IapService_OnInitialized()
-        {
-            Refresh();
-        }
-
-        private void IapService_OnPurchaseProcessed()
         {
             Refresh();
         }

@@ -30,7 +30,7 @@ namespace Sources.Services.CoroutineRunnerServices
             return coroutine;
         }
         
-        public Coroutine RunEachFrame(Action action, bool andNow = false)
+        public Coroutine RunEachFrame(Action action, bool andNow)
         {
             Coroutine coroutine = _coroutineService.RunEachFrame(action, andNow);
             _runningCoroutines.Add(coroutine);

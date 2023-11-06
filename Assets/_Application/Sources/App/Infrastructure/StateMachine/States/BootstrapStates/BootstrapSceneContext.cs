@@ -2,6 +2,8 @@ using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.States.RegistationStates;
 using Sources.Services.SceneLoaderServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace Sources.App.Infrastructure.StateMachine.States.BootstrapStates
 {
@@ -9,8 +11,8 @@ namespace Sources.App.Infrastructure.StateMachine.States.BootstrapStates
     public class BootstrapSceneContext : SceneContext
     {
         [SerializeField]
-        private MonoServices _monoServices;
-
+        private BootstrapData _bootstrapData;
+        
         private void Awake()
         {
             StartGameStateMachine();
@@ -19,7 +21,19 @@ namespace Sources.App.Infrastructure.StateMachine.States.BootstrapStates
         private void StartGameStateMachine()
         {
             GameStateMachine gameStateMachine = new();
-            gameStateMachine.Enter<RegistrationState, MonoServices>(_monoServices);
+            gameStateMachine.Enter<RegistrationState, BootstrapData>(_bootstrapData);
+        }
+
+        [RuntimeInitializeOnLoadMethod]
+        private static void Init()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            Debug.Log("OnInit");
+        }
+
+        private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            Debug.Log("OnSceneLoaded: " + scene.name);
         }
     }
 }

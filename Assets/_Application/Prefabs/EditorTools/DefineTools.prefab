@@ -46,10 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _defineGroups:
   - _define: FORCE_DEBUG
-    _allPlatforms: 1
-    _android: 1
-    _ios: 1
-  - _define: PERFORMANCE
-    _allPlatforms: 1
+    _allPlatforms: 0
+    _standalone: 1
     _android: 1
     _ios: 1

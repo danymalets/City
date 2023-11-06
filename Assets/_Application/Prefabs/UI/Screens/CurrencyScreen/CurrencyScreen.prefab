@@ -116,6 +116,7 @@ MonoBehaviour:
   <CanvasGroup>k__BackingField: {fileID: 4324951711924001307}
   <CloseButtons>k__BackingField: []
   <CoinsItem>k__BackingField: {fileID: 4517287739783919642}
+  <GemsItem>k__BackingField: {fileID: 4987414586036559917}
 --- !u!1 &4144205878157948531
 GameObject:
   m_ObjectHideFlags: 0
@@ -6118,6 +6119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Text>k__BackingField: {fileID: 4144205879441217314}
+  <BuyButton>k__BackingField: {fileID: 4144205878753095584}
 --- !u!1 &4144205879441217313
 GameObject:
   m_ObjectHideFlags: 0
@@ -6409,6 +6411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Text>k__BackingField: {fileID: 4144205878873153229}
+  <BuyButton>k__BackingField: {fileID: 4144205878633295865}
 --- !u!1 &4144205879742320610
 GameObject:
   m_ObjectHideFlags: 0

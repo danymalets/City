@@ -5,6 +5,7 @@ using Sources.App.Core.Ecs.Aspects.Common;
 using Sources.App.Core.Ecs.Aspects.Player;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Services.BalanceServices;
+using Sources.App.Services.BalanceServices.CommonBalances;
 using Sources.Utils.CommonUtils.Libs;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper;

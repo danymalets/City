@@ -1,3 +1,6 @@
+using Sources.App.Services.BalanceServices.CarsBalances;
+using Sources.App.Services.BalanceServices.CommonBalances;
+using Sources.App.Services.BalanceServices.PlayersBalances;
 using Sources.Utils.Di;
 using UnityEngine;
 
@@ -13,6 +16,7 @@ namespace Sources.App.Services.BalanceServices
         [field: SerializeField] public CarsBalance CarsBalance { get; private set; }
 
         [field: SerializeField] public QualityBalance QualityBalance { get; private set; }
+        [field: SerializeField] public EconomyBalance EconomyBalance { get; private set; }
         [field: SerializeField] public CommonBalance CommonBalance { get; private set; }
     }
 }

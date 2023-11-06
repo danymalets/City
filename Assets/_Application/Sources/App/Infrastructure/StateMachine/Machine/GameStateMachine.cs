@@ -6,6 +6,7 @@ using Sources.App.Infrastructure.StateMachine.States.BootstrapStates;
 using Sources.App.Infrastructure.StateMachine.States.LevelStates;
 using Sources.App.Infrastructure.StateMachine.States.MainUiStates;
 using Sources.App.Infrastructure.StateMachine.States.RegistationStates;
+using UnityEngine;
 
 namespace Sources.App.Infrastructure.StateMachine.Machine
 {

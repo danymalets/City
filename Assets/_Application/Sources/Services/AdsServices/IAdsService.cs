@@ -7,5 +7,6 @@ namespace Sources.Services.AdsServices
     {
         bool IsRewardedAvailable();
         void ShowRewarded(Action onSuccess, Action onFailed);
+        void ShowInterstitial(Action onSuccess, Action onFailed);
     }
 }

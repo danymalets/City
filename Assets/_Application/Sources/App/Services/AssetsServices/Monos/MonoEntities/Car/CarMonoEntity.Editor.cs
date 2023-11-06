@@ -27,8 +27,7 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities.Car
             
             _wheelsSystem.DisableSystem();
 
-            foreach (SafeColliderBase collider in _colliders) 
-                collider.Layer = Layers.Car;
+            gameObject.SetLayerRecursive(Layers.Car);
 
             _carBorders.SafeBoxCollider.IsTrigger = false;
             _carBorders.SafeBoxCollider.Layer = Layers.CarBorders;

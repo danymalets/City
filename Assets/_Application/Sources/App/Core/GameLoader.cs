@@ -20,7 +20,7 @@ namespace Sources.App.Core
     public class GameLoader
     {
         private readonly IFpsService _fpsService;
-        private readonly Preferences _userPreferences;
+        private readonly UserPreferences _userUserPreferences;
         private readonly ITimeService _timeService;
         private readonly CoroutineContext _coroutineContext;
         private readonly LevelScreenController _levelScreen;
@@ -31,7 +31,7 @@ namespace Sources.App.Core
         {
             _fpsService = DiContainer.Resolve<IFpsService>();
             _timeService = DiContainer.Resolve<ITimeService>();
-            _userPreferences = DiContainer.Resolve<IUserAccessService>().User.Preferences;
+            _userUserPreferences = DiContainer.Resolve<IUserAccessService>().User.UserPreferences;
             IUiControllersService uiControllers = DiContainer.Resolve<IUiControllersService>();
 
             _levelScreen = uiControllers.Get<LevelScreenController>();
@@ -79,16 +79,16 @@ namespace Sources.App.Core
                     
                     bool shouldReload = false;
                     
-                    if (_userPreferences.BestQualityForDevice == null)
+                    if (_userUserPreferences.BestQualityForDevice == null)
                     {
                         if (_fpsService.FpsLastSecond > Consts.MinFpsForHighQuality)
                         {
-                            _userPreferences.BestQualityForDevice = QualityType.High;
+                            _userUserPreferences.BestQualityForDevice = QualityType.High;
                         }
                         else
                         {
-                            _userPreferences.BestQualityForDevice = QualityType.Low;
-                            _userPreferences.SelectedQuality = QualityType.Low;
+                            _userUserPreferences.BestQualityForDevice = QualityType.Low;
+                            _userUserPreferences.SelectedQuality = QualityType.Low;
 
                             shouldReload = true;
                         }
@@ -96,7 +96,6 @@ namespace Sources.App.Core
                     
                     if (shouldReload)
                     {
-                        Debug.Log($"force req");
                         onReloadRequest?.Invoke();
                     }
                     else

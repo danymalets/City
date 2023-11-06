@@ -14,13 +14,13 @@ namespace Sources.App.Ui.Base.Animators
         protected override void OnOpen(Sequence animation)
         {
             animation
-                .Append(_gameScreen.CanvasGroup.DOFade(1f, 0.3f).From(0f));
+                .Append(_gameScreen.CanvasGroup.DOFade(1f, 0.2f).From(0f).SetEase(Ease.Linear));
         }
 
         protected override void OnClose(Sequence animation)
         {
             animation
-                .Append(_gameScreen.CanvasGroup.DOFade(0f, 0.3f).From(1f));
+                .Append(_gameScreen.CanvasGroup.DOFade(0f, 0.2f).From(1f).SetEase(Ease.Linear));
         }
     }
 }

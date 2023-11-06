@@ -23,5 +23,14 @@ namespace Sources.Utils.CommonUtils.Extensions
             Bounds bound = DBounds.CombineBounds(allBounds);
             return bound;
         }
+
+        public static void SetLayerRecursive(this GameObject gameObject, int layer)
+        {
+            gameObject.layer = layer;
+            foreach (Transform transform in gameObject.transform)
+            {
+                transform.gameObject.SetLayerRecursive(layer);
+            }
+        }
     }
 }

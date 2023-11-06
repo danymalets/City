@@ -11,7 +11,7 @@ namespace Sources.App.Ui.Base.Controllers
 {
     public abstract class ScreenControllerBase
     {
-        private readonly GameScreen _gameScreen;
+        private readonly GameScreen _gamePopup;
         private readonly ScreenAnimator _screenAnimator;
         protected readonly CoroutineContext _coroutineContext;
 
@@ -25,10 +25,10 @@ namespace Sources.App.Ui.Base.Controllers
         public event Action<ScreenControllerBase> Opened; // Анимация открытия началась
         public event Action<ScreenControllerBase> Closed; // Анимация закрытия началась
 
-        protected ScreenControllerBase(GameScreen gameScreen, ScreenAnimator screenAnimator, bool isAlwaysOpen)
+        protected ScreenControllerBase(GameScreen gamePopup, ScreenAnimator screenAnimator, bool isAlwaysOpen)
         {
             IsAlwaysOpen = isAlwaysOpen;
-            _gameScreen = gameScreen;
+            _gamePopup = gamePopup;
             _screenAnimator = screenAnimator;
             _coroutineContext = new CoroutineContext();
             _localizationService = DiContainer.Resolve<ILocalizationService>();
@@ -36,10 +36,10 @@ namespace Sources.App.Ui.Base.Controllers
 
         internal void Prepare()
         {
-            OnPrepare();
+            OnCreate();
         }
 
-        protected virtual void OnPrepare()
+        protected virtual void OnCreate()
         {
             
         }
@@ -60,13 +60,13 @@ namespace Sources.App.Ui.Base.Controllers
         
         private void SubscribeCloseButtons()
         {
-            foreach (Button closeButton in _gameScreen.CloseButtons)
+            foreach (Button closeButton in _gamePopup.CloseButtons)
                 closeButton.onClick.AddListener(OnCloseButtonClickedInternal);
         }
         
         private void UnsubscribeCloseButtons()
         {
-            foreach (Button closeButton in _gameScreen.CloseButtons)
+            foreach (Button closeButton in _gamePopup.CloseButtons)
                 closeButton.onClick.RemoveListener(OnCloseButtonClickedInternal);
         }
 

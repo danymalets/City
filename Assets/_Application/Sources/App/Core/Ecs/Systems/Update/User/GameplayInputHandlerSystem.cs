@@ -9,6 +9,7 @@ using Sources.App.Data.Cars;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
+using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.User
 {
@@ -55,7 +56,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
                 {
                     if (userEntity.Has<PlayerFullyInCar>())
                     {
-                        userEntity.GetAspect<PlayerExitCarAspect>().FullyExitCar();
+                        userEntity.GetAspect<PlayerExitCarAspect>().ForceExit();
                     }
                 }
 

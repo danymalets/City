@@ -4,6 +4,7 @@ using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Ecs.Despawners;
 using Sources.App.Services.BalanceServices;
+using Sources.App.Services.BalanceServices.PlayersBalances;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;

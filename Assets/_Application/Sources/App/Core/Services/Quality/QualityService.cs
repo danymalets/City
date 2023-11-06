@@ -1,4 +1,5 @@
 using Sources.App.Services.BalanceServices;
+using Sources.App.Services.BalanceServices.CommonBalances;
 using Sources.App.Services.UserServices;
 using Sources.App.Services.UserServices.Users.PreferencesData;
 using Sources.Services.TimeServices;
@@ -9,7 +10,7 @@ namespace Sources.App.Core.Services.Quality
 {
     public class QualityService : IQualityAccessService, IQualityChangerService, IInitializable
     {
-        private readonly Preferences _preferences;
+        private readonly UserPreferences _userPreferences;
         private readonly QualityBalance _qualityBalance;
         private readonly ITimeService _time;
 
@@ -17,19 +18,19 @@ namespace Sources.App.Core.Services.Quality
 
         public QualityService()
         {
-            _preferences = DiContainer.Resolve<IUserAccessService>().User.Preferences;
+            _userPreferences = DiContainer.Resolve<IUserAccessService>().User.UserPreferences;
             _qualityBalance = DiContainer.Resolve<Balance>().QualityBalance;
             _time = DiContainer.Resolve<ITimeService>();
         }
 
         public void Initialize()
         {
-            SetQuality(_preferences.SelectedQuality);
+            SetQuality(_userPreferences.SelectedQuality);
         }
 
         public void SetQuality(QualityType qualityType)
         {
-            _preferences.SelectedQuality = qualityType;
+            _userPreferences.SelectedQuality = qualityType;
             GameQualitySettings = _qualityBalance.Get(qualityType);
             SetQuality(GameQualitySettings);
         }

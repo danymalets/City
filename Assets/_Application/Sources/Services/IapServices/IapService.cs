@@ -33,11 +33,20 @@ namespace Sources.Services.IapServices
         {
             _unityIaps.Initialize(new[]
             {
-                new IapProduct(IapProductType.Coins500, ProductType.Consumable, 0.99M,
-                    IapsKeys.Coins500, IapsKeys.Coins500, IapsKeys.Coins500),
+                new IapProduct(IapProductType.Gems40, ProductType.Consumable, 0.99M,
+                    IapsKeys.Gems40, IapsKeys.Gems40, IapsKeys.Gems40),
                 
-                new IapProduct(IapProductType.Coins1000, ProductType.Consumable, 1.99M,
-                    IapsKeys.Coins1000, IapsKeys.Coins1000, IapsKeys.Coins1000),
+                new IapProduct(IapProductType.Gems220, ProductType.Consumable, 0.99M,
+                    IapsKeys.Gems220, IapsKeys.Gems220, IapsKeys.Gems220),
+                
+                new IapProduct(IapProductType.Gems480, ProductType.Consumable, 0.99M,
+                    IapsKeys.Gems480, IapsKeys.Gems480, IapsKeys.Gems480),
+                
+                new IapProduct(IapProductType.Gems1200, ProductType.Consumable, 0.99M,
+                    IapsKeys.Gems1200, IapsKeys.Gems1200, IapsKeys.Gems1200),
+                
+                new IapProduct(IapProductType.Gems2100, ProductType.Consumable, 0.99M,
+                    IapsKeys.Gems2100, IapsKeys.Gems2100, IapsKeys.Gems2100),
                 
                 new IapProduct(IapProductType.RedCar, ProductType.NonConsumable, 2.99M,
                     IapsKeys.RedCar, IapsKeys.RedCar, IapsKeys.RedCar),

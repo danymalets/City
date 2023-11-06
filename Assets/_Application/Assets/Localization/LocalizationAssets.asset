@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ecdce2a807041769996ec57ff451958, type: 3}
+  m_Name: LocalizationAssets
+  m_EditorClassIdentifier: 
+  <Languages>k__BackingField:
+  - <LanguageType>k__BackingField: 0
+    <NameInEnglish>k__BackingField: English
+    <NameInNative>k__BackingField: English
+    <LanguageCode>k__BackingField: en
+    <Strings>k__BackingField: {fileID: 11400000, guid: 0361111573b014c8aa0a0c842d358765, type: 2}
+    <FlagSprite>k__BackingField: {fileID: 21300000, guid: 77a9d892ce0a9494388c3e8e2c94b25e, type: 3}
+    <IsDefaultLanguage>k__BackingField: 1
+    <SystemLanguages>k__BackingField: 0a000000
+  - <LanguageType>k__BackingField: 1
+    <NameInEnglish>k__BackingField: Russian
+    <NameInNative>k__BackingField: "\u0420\u0443\u0441\u0441\u043A\u0438\u0439"
+    <LanguageCode>k__BackingField: ru
+    <Strings>k__BackingField: {fileID: 11400000, guid: 87a1fe697010e4ea8b14f919bfdb88d0, type: 2}
+    <FlagSprite>k__BackingField: {fileID: 21300000, guid: 7af9652001132497ba7088f0b27ebe03, type: 3}
+    <IsDefaultLanguage>k__BackingField: 0
+    <SystemLanguages>k__BackingField: 1e0000000300000026000000

@@ -6,7 +6,8 @@
         "Sources.App.Data",
         "Sources.Utils.CommonUtils",
         "Sources.Services.PoolServices",
-        "Sources.App.Services.UserServices"
+        "Sources.App.Services.UserServices",
+        "Sources.Services.IapServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

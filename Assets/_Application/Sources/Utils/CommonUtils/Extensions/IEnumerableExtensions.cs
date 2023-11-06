@@ -110,6 +110,20 @@ namespace Sources.Utils.CommonUtils.Extensions
             return false;
         }
         
+        public static bool TryGetFirst<T>(this IEnumerable<T> enumerable, Predicate<T> predicate, out T value)
+        {
+            foreach (T el in enumerable)
+            {
+                if (predicate(el))
+                {
+                    value = el;
+                    return true;
+                }
+            }
+            value = default;
+            return false;
+        }
+        
         public static bool TryGetLast<T>(this IEnumerable<T> enumerable, out T value)
         {
             value = default;

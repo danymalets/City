@@ -35,9 +35,11 @@ namespace Sources.App.Infrastructure.StateMachine.States.BootstrapStates
             screen.SleepTimeout = SleepTimeout.NeverSleep;
 
             PreparePool();
-            
+
+#if FORCE_DEBUG
             uiControllers.Get<PerformanceScreenController>().Open();
             uiControllers.Get<DebugMenuScreenController>().Open();
+#endif
 
             _stateMachine.Enter<MainUiState>();
         }

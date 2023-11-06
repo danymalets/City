@@ -25,5 +25,10 @@ namespace Sources.Services.AdsServices
         
         public void ShowRewarded(Action onSuccess, Action onFailed) => 
             _ironSourceAdapter.ShowRewarded(onSuccess, onFailed);
+
+        public void ShowInterstitial(Action onSuccess, Action onFailed)
+        {
+            _ironSourceAdapter.ShowInterstitial(onSuccess, onFailed);
+        }
     }
 }

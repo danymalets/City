@@ -12,7 +12,7 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities.Props
 {
     [RequireComponent(typeof(SafeTransform))]
     [RequireComponent(typeof(RigidbodySwitcher))]
-    public class PropsMonoEntity : MonoEntity
+    public partial class PropsMonoEntity : MonoEntity
     {
         [SerializeField]
         private PropsMonoEntity[] _derivedProps;
@@ -40,7 +40,6 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities.Props
         [SerializeField]
         private MonoPoint _supportPoint;
 
-
         public IEnumerable<PropsMonoEntity> DerivedProps => _derivedProps;
         public IRigidbodySwitcher RigidbodySwitcher => _rigidbodySwitcher;
         public float Mass => _mass;
@@ -49,14 +48,5 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities.Props
         public IPoint CenterOfMassPoint => _centerOfMassPoint;
         public bool IsVertical => _isVertical;
         public IPoint VerticalPoint => _supportPoint;
-
-        [Button("Force Validate", ButtonSizes.Large)]
-        protected override void OnValidate()
-        {
-            base.OnValidate();
-            _colliders = GetComponentsInChildren<SafeColliderBase>();
-            _safeTransform = GetComponent<SafeTransform>();
-            _rigidbodySwitcher = GetComponent<RigidbodySwitcher>();
-        }
     }
 }

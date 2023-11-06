@@ -19,14 +19,13 @@ namespace Sources.App.Ui.Base.Animators
             _animation?.Complete();
             
             _animation = DOTween.Sequence()
-                .AppendCallback(() => _gameScreen.gameObject.Enable())
-                .AppendCallback(() => _gameScreen.CanvasGroup.interactable = false);
+                .AppendCallback(() => _gameScreen.gameObject.Enable());
             
             OnOpen(_animation);
             
             _animation
-                .AppendCallback(() => _gameScreen.CanvasGroup.interactable = true)
-                .SetLink(_gameScreen.gameObject);
+                .SetLink(_gameScreen.gameObject)
+                .SetUpdate(true);
         }
         
         public void PlayClose(bool isForce)
@@ -34,14 +33,14 @@ namespace Sources.App.Ui.Base.Animators
             _animation?.Complete();
             
             _animation = DOTween.Sequence()
-                .AppendCallback(() => _gameScreen.gameObject.Enable())
-                .AppendCallback(() => _gameScreen.CanvasGroup.interactable = false);
+                .AppendCallback(() => _gameScreen.gameObject.Enable());
             
             OnClose(_animation);
             
             _animation
                 .AppendCallback(() => _gameScreen.gameObject.Disable())
-                .SetLink(_gameScreen.gameObject);
+                .SetLink(_gameScreen.gameObject)
+                .SetUpdate(true);
 
             if (isForce)
             {

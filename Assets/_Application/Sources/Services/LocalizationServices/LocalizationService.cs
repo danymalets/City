@@ -14,49 +14,38 @@ namespace Sources.Services.LocalizationServices
     public class LocalizationService : IInitializable, ILocalizationService
     {
         private readonly IApplicationService _applicationService;
-        private readonly IUserAccessService _userAccessService;
         private readonly LocalizationAssets _localizationAssets;
+        private readonly UserPreferences _userPreferences;
 
-        public Language CurrentLanguage { get; private set; }
-        public StringsAsset CurrentStrings => CurrentLanguage.Strings;
+        public LanguageAsset CurrentLanguageAsset { get; private set; }
+        public StringsAsset CurrentStrings => CurrentLanguageAsset.Strings;
         public event Action LocalizationChanged;
 
         public LocalizationService()
         {
             _applicationService = DiContainer.Resolve<IApplicationService>();
-            _userAccessService = DiContainer.Resolve<IUserAccessService>();
+            _userPreferences = DiContainer.Resolve<IUserAccessService>().User.UserPreferences;
             _localizationAssets = DiContainer.Resolve<Assets>().LocalizationAssets;
         }
 
         public void Initialize()
         {
-            CurrentLanguage = GetLanguage(GetLanguageType());
+            CurrentLanguageAsset = GetLanguage(GetLanguageType());
         }
 
-        private Language GetLanguage(LanguageType languageType)
-        {
-            if (languageType == _localizationAssets.DefaultLanguage.Type)
-            {
-                return _localizationAssets.DefaultLanguage;
-            }
-            else
-            {
-                return _localizationAssets.Languages.First(la => la.Type == languageType);
-            }
-        }
+        private LanguageAsset GetLanguage(LanguageType languageType) => 
+            _localizationAssets.Languages.First(la => la.LanguageType == languageType);
 
         public void ChangeLanguage(LanguageType languageType)
         {
-            _userAccessService.User.Preferences.SelectedLanguage = languageType;
-            CurrentLanguage = GetLanguage(languageType);
+            _userPreferences.SelectedLanguage = languageType;
+            CurrentLanguageAsset = GetLanguage(languageType);
             LocalizationChanged?.Invoke();
         }
 
         private LanguageType GetLanguageType()
         {
-            LanguageType? selectedLanguage = _userAccessService.User.Preferences.SelectedLanguage;
-            
-            if (selectedLanguage.TryGetValue(out LanguageType language))
+            if (_userPreferences.SelectedLanguage.TryGetValue(out LanguageType language))
             {
                 return language;
             }
@@ -66,17 +55,18 @@ namespace Sources.Services.LocalizationServices
             }
         }
 
-        private LanguageType FindLanguageType(SystemLanguage appSystemLanguage)
+        private LanguageType FindLanguageType(SystemLanguage systemLanguage)
         {
-            foreach (Language language in _localizationAssets.Languages)
+            if (_localizationAssets.Languages.TryGetFirst(
+                    l => l.SystemLanguages.Any(sl => sl == systemLanguage),
+                    out LanguageAsset languageAsset))
             {
-                if (language.SystemLanguages.Any(systemLanguage => systemLanguage == appSystemLanguage))
-                {
-                    return language.Type;
-                }
+                return languageAsset.LanguageType;
             }
-
-            return _localizationAssets.DefaultLanguage.Type;
+            else
+            {
+                return _localizationAssets.Languages.First(l => l.IsDefaultLanguage).LanguageType;
+            }
         }
     }
 }

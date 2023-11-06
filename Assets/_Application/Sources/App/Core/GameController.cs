@@ -34,7 +34,7 @@ namespace Sources.App.Core
             _gameLoader = new GameLoader();
         }
         
-        public void  StartGame()
+        public void StartGame()
         {
             _gameLoader.StartLoadGame(levelContext =>
             {

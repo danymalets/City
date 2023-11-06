@@ -24,29 +24,34 @@ namespace Sources.Services.IapServices
 
         private void ApplyPurchase(IapProductType iapProductType)
         {
-            if (iapProductType == IapProductType.Coins500)
+            switch (iapProductType)
             {
-                _userAccessService.User.Wallet.Coins.AddCurrency(500);
-            }
-            else if (iapProductType == IapProductType.Coins1000)
-            {
-                _userAccessService.User.Wallet.Coins.AddCurrency(1000);
-            }
-            else if (iapProductType == IapProductType.RedCar)
-            {
-                _userAccessService.User.Progress.IsRedCarUnlocked = true;
-            }
-            else if (iapProductType == IapProductType.GreenCar)
-            {
-                _userAccessService.User.Progress.IsGreenCarUnlocked = true;
-            }
-            else if (iapProductType == IapProductType.RemoveAds)
-            {
-                _userAccessService.User.IsRemoveAds = true;
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException(nameof(iapProductType), iapProductType, null);
+                case IapProductType.Gems40:
+                    _userAccessService.User.UserWallet.Coins.AddCurrency(iapProductType.GetGemsCount());
+                    break;
+                case IapProductType.Gems220:
+                    _userAccessService.User.UserWallet.Coins.AddCurrency(iapProductType.GetGemsCount());
+                    break;
+                case IapProductType.Gems480:
+                    _userAccessService.User.UserWallet.Coins.AddCurrency(iapProductType.GetGemsCount());
+                    break;
+                case IapProductType.Gems1200:
+                    _userAccessService.User.UserWallet.Coins.AddCurrency(iapProductType.GetGemsCount());
+                    break;
+                case IapProductType.Gems2100:
+                    _userAccessService.User.UserWallet.Coins.AddCurrency(iapProductType.GetGemsCount());
+                    break;
+                case IapProductType.RedCar:
+                    _userAccessService.User.UserProgress.IsRedCarUnlocked = true;
+                    break;
+                case IapProductType.GreenCar:
+                    _userAccessService.User.UserProgress.IsGreenCarUnlocked = true;
+                    break;
+                case IapProductType.RemoveAds:
+                    _userAccessService.User.IsRemoveAds = true;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(iapProductType), iapProductType, null);
             }
         }
     }

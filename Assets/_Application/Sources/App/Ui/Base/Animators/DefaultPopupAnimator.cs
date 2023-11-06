@@ -16,7 +16,7 @@ namespace Sources.App.Ui.Base.Animators
         {
             animation
                 .Append(_gamePopup.Content.DOScale(1f, 0.3f).From(0.5f))
-                .Append(_gameScreen.CanvasGroup.DOFade(1f, 0.3f).From(0f));
+                .Join(_gameScreen.CanvasGroup.DOFade(1f, 0.3f).From(0f));
         }
 
         protected override void OnClose(Sequence animation)

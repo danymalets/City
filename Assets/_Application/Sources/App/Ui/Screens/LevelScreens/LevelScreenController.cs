@@ -1,9 +1,11 @@
 using System;
 using Sources.App.Services.AudioServices;
+using Sources.App.Ui.Base;
 using Sources.App.Ui.Base.Animators;
 using Sources.App.Ui.Base.Controllers;
 using Sources.App.Ui.Screens.LevelScreens.CarInputScreens;
 using Sources.App.Ui.Screens.LevelScreens.PlayerInputScreens;
+using Sources.App.Ui.Screens.PausePopups;
 using Sources.Utils.Di;
 
 namespace Sources.App.Ui.Screens.LevelScreens
@@ -12,6 +14,7 @@ namespace Sources.App.Ui.Screens.LevelScreens
     {
         private readonly LevelScreen _levelScreen;
         private readonly IAudioService _audioService;
+        private PausePopupController _pausePopupController;
 
         public CarInputViewController CarInputViewController { get; private set; }
         public PlayerInputViewController PlayerInputViewController { get; private set; }
@@ -19,14 +22,15 @@ namespace Sources.App.Ui.Screens.LevelScreens
         public LevelScreenController(LevelScreen levelScreen) 
             : base(levelScreen, new ToggleAnimator(levelScreen))
         {
-            _levelScreen = levelScreen;
-            CarInputViewController = new CarInputViewController(_levelScreen.CarInputView);
-            PlayerInputViewController = new PlayerInputViewController(_levelScreen.PlayerInputView);
+            CarInputViewController = new CarInputViewController(levelScreen.CarInputView);
+            PlayerInputViewController = new PlayerInputViewController(levelScreen.PlayerInputView);
             _audioService = DiContainer.Resolve<IAudioService>();
+            _levelScreen = levelScreen;
         }
 
-        protected override void OnRefresh()
+        protected override void OnCreate()
         {
+            _pausePopupController = DiContainer.Resolve<IUiControllersService>().Get<PausePopupController>();
         }
 
         protected override void OnOpen()
@@ -45,11 +49,14 @@ namespace Sources.App.Ui.Screens.LevelScreens
             PlayerInputViewController.OnClose();
         }
 
-        
+        protected override void OnRefresh()
+        {
+            
+        }
 
         private void OnPauseButtonClicked()
         {
-            _audioService.PlayOnce(SoundEffectType.ButtonClick);
+            _pausePopupController.Open();
         }
     }
 }

@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/_Application/Scenes/Empty.unity
     guid: de8ab8ca83eae42b3b6d8269b8d78c61
   - enabled: 1
+    path: Assets/_Application/Scenes/PlayerRender.unity
+    guid: f7ee848a750484b748f050718acbad08
+  - enabled: 1
     path: Assets/_Application/Scenes/City.unity
     guid: e128b2d0c515fa74188c2e0bbd09a1bb
   m_configObjects: {}

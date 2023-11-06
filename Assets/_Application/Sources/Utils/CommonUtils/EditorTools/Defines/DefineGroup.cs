@@ -20,6 +20,9 @@ namespace Sources.Utils.CommonUtils.EditorTools.Defines
         private bool _allPlatforms;
         
         [Space(5)]
+        [OnValueChanged(nameof(OnStandaloneChanged))]
+        [SerializeField]
+        private bool _standalone;
         
         [OnValueChanged(nameof(OnAndroidChanged))]
         [SerializeField]
@@ -31,16 +34,24 @@ namespace Sources.Utils.CommonUtils.EditorTools.Defines
 
         private void OnAllPlatformsChanged()
         {
+            _standalone = _allPlatforms;
+            OnStandaloneChanged();
+            
             _android = _allPlatforms;
             OnAndroidChanged();
 
             _ios = _allPlatforms;
             OnIosChanged();
+
+            Debug.Log($"suc");
         }
+
+        private void OnStandaloneChanged() =>
+            DefineUtility.SetDefineEnabled(NamedBuildTarget.Standalone, _define, _standalone);
 
         private void OnAndroidChanged() =>
             DefineUtility.SetDefineEnabled(NamedBuildTarget.Android, _define, _android);
-        
+
         private void OnIosChanged() =>
             DefineUtility.SetDefineEnabled(NamedBuildTarget.iOS, _define, _ios);
     }
