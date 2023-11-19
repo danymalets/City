@@ -39,5 +39,13 @@ namespace Sources.App.Ui.Screens.ShopScreens.GemsForCoinsExchanges
                 itemController.OnCleanup();
             }
         }
+
+        public void OnRefresh()
+        {
+            foreach (CoinsForGemsItemController itemController in _itemsControllers)
+            {
+                itemController.OnRefresh();
+            }
+        }
     }
 }

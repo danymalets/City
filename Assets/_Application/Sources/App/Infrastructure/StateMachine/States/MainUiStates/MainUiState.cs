@@ -5,7 +5,9 @@ using Sources.App.Services.AssetsServices;
 using Sources.App.Services.AssetsServices.Monos.MonoEntities.Player;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Screens.CurrencyScreens;
+using Sources.App.Ui.Screens.LoadingScreens;
 using Sources.App.Ui.Screens.MainScreens;
+using Sources.Services.CoroutineRunnerServices;
 using Sources.Services.SceneLoaderServices;
 using Sources.Utils.Di;
 using UnityEngine.SceneManagement;
@@ -19,6 +21,8 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
         private CurrencyScreenController _currencyScreenController;
         private ISceneLoaderService _sceneLoader;
         private Assets _assets;
+        private LoadingScreenController _loadingScreen;
+        private CoroutineContext _coroutineContext;
 
         public MainUiState(IGameStateMachine stateMachine) : base(stateMachine)
         {
@@ -29,9 +33,12 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
             IUiControllersService uiControllers = DiContainer.Resolve<IUiControllersService>();
             
             _mainScreenController = uiControllers.Get<MainScreenController>();
+            _loadingScreen = uiControllers.Get<LoadingScreenController>();
             _currencyScreenController = uiControllers.Get<CurrencyScreenController>();
 
             _uiCloseService = DiContainer.Resolve<IUiCloseService>();
+
+            _coroutineContext = new CoroutineContext();
 
             _mainScreenController.Open();
             _currencyScreenController.Open();
@@ -46,7 +53,21 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
             {
                 PlayerMonoEntity player = playerRenderSceneContext.Player;
                 _mainScreenController.PlayButtonClicked += OnPlayButtonClicked;
-            }, LoadSceneMode.Additive); 
+            }, LoadSceneMode.Additive);
+
+            RunScreenLoading();
+        }
+
+        private void RunScreenLoading()
+        {
+            _loadingScreen.Open();
+            _coroutineContext.ChangeValue(0, 1, 1, value =>
+            {
+                _loadingScreen.SetProgress(value);
+            }, () =>
+            {
+                _coroutineContext.RunNextFrame(() => _loadingScreen.Close());
+            });
         }
 
         private void OnPlayButtonClicked()

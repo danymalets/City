@@ -17,7 +17,7 @@ namespace Sources.Services.CoroutineRunnerServices
         Coroutine RunWithFrameDelay(int frames, Action action);
         Coroutine RunNextFrame(Action action);
         Coroutine RunWhen(Func<bool> shouldRun, Action action);
-        Coroutine IncreaseNormalValue(float seconds, Action<float> action);
-        Coroutine ChangeValue(float valueFrom, float valueTo, float seconds, Action<float> action);
+        Coroutine IncreaseNormalValue(float seconds, Action<float> action, Action onCompleted = null);
+        Coroutine ChangeValue(float valueFrom, float valueTo, float seconds, Action<float> action, Action onCompleted = null);
     }
 }

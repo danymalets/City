@@ -6,6 +6,7 @@ using Sources.App.Infrastructure.StateMachine.States.MainUiStates;
 using Sources.App.Services.AssetsServices;
 using Sources.App.Services.AssetsServices.Monos.MonoEntities.Player;
 using Sources.App.Services.UserServices;
+using Sources.App.Services.UserServices.Users.PreferencesData;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Screens.LevelScreens;
 using Sources.App.Ui.Screens.PausePopups;
@@ -26,13 +27,17 @@ namespace Sources.App.Infrastructure.StateMachine.States.LevelStates
         protected override void OnEnter()
         {
             _pausePopupController = DiContainer.Resolve<IUiControllersService>().Get<PausePopupController>();
-
+            
+            IQualityChangerService qualityChangerService = DiContainer.Resolve<IQualityChangerService>();
+            UserPreferences userPreferences = DiContainer.Resolve<IUserAccessService>().User.UserPreferences;
+            qualityChangerService.SetQuality(userPreferences.SelectedQuality);
+            
             _gameController = new GameController();
 
             _pausePopupController.RestartButtonClicked += PausePopupController_OnRestartButtonClicked;
             _pausePopupController.ExitButtonClicked += PausePopupController_OnExitButtonClicked;
             _gameController.ForceReloadRequested += GameController_OnForceReloadRequested;
-
+            
             _gameController.StartGame();
         }
 

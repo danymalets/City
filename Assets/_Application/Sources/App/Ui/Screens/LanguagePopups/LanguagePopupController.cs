@@ -3,11 +3,9 @@ using Sources.App.Services.AssetsServices;
 using Sources.App.Services.AssetsServices.Localizations;
 using Sources.App.Ui.Base.Animators;
 using Sources.App.Ui.Base.Controllers;
-using Sources.App.Ui.Base.Views;
 using Sources.App.Ui.Screens.LanguagePopups.LanguageItems;
 using Sources.Services.InstantiatorServices;
 using Sources.Utils.Di;
-using UnityEngine;
 
 namespace Sources.App.Ui.Screens.LanguagePopups
 {
@@ -45,11 +43,8 @@ namespace Sources.App.Ui.Screens.LanguagePopups
 
         protected override void OnOpen()
         {
-            Debug.Log($"op");
             foreach (LanguageItemController languageItemController in _languageItemControllers)
             {
-                Debug.Log($"op1");
-
                 languageItemController.OnSetup();
             }
         }

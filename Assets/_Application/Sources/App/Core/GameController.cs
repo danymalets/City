@@ -1,8 +1,10 @@
 using System;
 using Sources.App.Core.Ecs;
+using Sources.App.Core.Services.Quality;
 using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
 using Sources.App.Services.AudioServices;
 using Sources.App.Services.UserServices;
+using Sources.App.Services.UserServices.Users.PreferencesData;
 using Sources.App.Ui.Base;
 using Sources.Services.AnalyticsServices;
 using Sources.Services.FpsServices;
@@ -19,7 +21,7 @@ namespace Sources.App.Core
         private readonly GameLoader _gameLoader;
 
         private Game _game;
-        
+
         public event Action ForceReloadRequested; 
 
         public GameController()
@@ -30,7 +32,7 @@ namespace Sources.App.Core
             _diBuilder = DiBuilder.Create();
             
             _uiClose = DiContainer.Resolve<IUiCloseService>();
-            
+
             _gameLoader = new GameLoader();
         }
         

@@ -32,13 +32,8 @@ namespace Sources.App.Core.Services.Quality
         {
             _userPreferences.SelectedQuality = qualityType;
             GameQualitySettings = _qualityBalance.Get(qualityType);
-            SetQuality(GameQualitySettings);
-        }
-
-        public void SetQuality(GameQualitySettings qualitySettings)
-        {
-            QualitySettings.SetQualityLevel(qualitySettings.QualityLevelIndex);
-            _time.PhysicsUpdateCount = qualitySettings.PhysicsUpdateCount;
+            QualitySettings.SetQualityLevel(GameQualitySettings.QualityLevelIndex);
+            _time.PhysicsUpdateCount = GameQualitySettings.PhysicsUpdateCount;
         }
     }
 }

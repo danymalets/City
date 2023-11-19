@@ -95,6 +95,7 @@ namespace Sources.App.Ui.Screens.ShopScreens
             }
 
             _gemIapsViewController.OnRefresh();
+            _coinsForGemsViewController.OnRefresh();
         }
 
         private void IapService_OnInitialized()

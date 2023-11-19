@@ -4,6 +4,7 @@ using Sources.App.Services.UserServices.Users.PreferencesData;
 using Sources.Services.PoolServices;
 using Sources.Utils.Di;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Serialization;
 
 namespace Sources.App.Services.AudioServices

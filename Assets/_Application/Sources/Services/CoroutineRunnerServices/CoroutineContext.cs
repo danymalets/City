@@ -85,9 +85,9 @@ namespace Sources.Services.CoroutineRunnerServices
             return coroutine;
         }
         
-        public Coroutine ChangeValue(float valueFrom, float valueTo, float seconds, Action<float> action)
+        public Coroutine ChangeValue(float valueFrom, float valueTo, float seconds, Action<float> action, Action onCompleted = null)
         {
-            Coroutine coroutine = _coroutineService.ChangeValue(valueFrom, valueTo, seconds, action);
+            Coroutine coroutine = _coroutineService.ChangeValue(valueFrom, valueTo, seconds, action, onCompleted);
             _runningCoroutines.Add(coroutine);
             return coroutine;
         }

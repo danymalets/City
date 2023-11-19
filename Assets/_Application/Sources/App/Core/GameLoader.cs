@@ -19,6 +19,8 @@ namespace Sources.App.Core
 {
     public class GameLoader
     {
+        private const float StartProgressValue = 0.1f;
+        
         private readonly IFpsService _fpsService;
         private readonly UserPreferences _userUserPreferences;
         private readonly ITimeService _timeService;
@@ -26,6 +28,7 @@ namespace Sources.App.Core
         private readonly LevelScreenController _levelScreen;
         private readonly LoadingScreenController _loadingScreenController;
         private readonly ISceneLoaderService _sceneLoader;
+
 
         public GameLoader()
         {
@@ -49,7 +52,7 @@ namespace Sources.App.Core
                 StartFpsStabilizer(3f, onLoaded, onReloadRequest);
             });
         }
-        
+
         private void LoadGameScene(Action<ILevelContext> onSceneLoaded)
         {
             string cityScene = DiContainer.Resolve<Assets>().CitySceneName;
@@ -58,8 +61,18 @@ namespace Sources.App.Core
 
             _coroutineContext.RunNextFrame(() =>
             {
-                _sceneLoader.LoadScene<ILevelContext>(cityScene,
-                    levelContext => onSceneLoaded?.Invoke(levelContext));
+                _loadingScreenController.SetProgress(StartProgressValue / 2);
+
+                _coroutineContext.RunNextFrame(() =>
+                {
+                    _loadingScreenController.SetProgress(StartProgressValue);
+                    
+                    _coroutineContext.RunNextFrame(() =>
+                    {
+                        _sceneLoader.LoadScene<ILevelContext>(cityScene,
+                            levelContext => onSceneLoaded?.Invoke(levelContext));
+                    });
+                });
             });
         }
 
@@ -68,7 +81,7 @@ namespace Sources.App.Core
             _levelScreen.Open();
             float time = _timeService.Time;
             
-            _coroutineContext.ChangeValue(0f, 1f, minTime, value => 
+            _coroutineContext.ChangeValue(StartProgressValue, 1f, minTime, value => 
                 _loadingScreenController.SetProgress(value));
             
             _fpsService.RunWhenFpsStabilizes(() =>
