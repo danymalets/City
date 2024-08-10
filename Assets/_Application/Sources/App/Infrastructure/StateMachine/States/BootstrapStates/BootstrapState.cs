@@ -3,6 +3,8 @@ using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.App.Infrastructure.StateMachine.States.MainUiStates;
 using Sources.App.Services.AssetsServices;
 using Sources.App.Ui.Base;
+using Sources.App.Ui.Screens.DebugMenuScreens;
+using Sources.App.Ui.Screens.PerformanceScreens;
 using Sources.Services.ApplicationServices;
 using Sources.Services.PhysicsServices;
 using Sources.Services.PoolServices;
@@ -31,10 +33,8 @@ namespace Sources.App.Infrastructure.StateMachine.States.BootstrapStates
 
             PreparePool();
 
-#if FORCE_DEBUG
             uiControllers.Get<PerformanceScreenController>().Open();
             uiControllers.Get<DebugMenuScreenController>().Open();
-#endif
 
             _stateMachine.Enter<MainUiState>();
         }

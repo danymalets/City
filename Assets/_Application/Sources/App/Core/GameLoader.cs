@@ -95,7 +95,7 @@ namespace Sources.App.Core
                     
                     if (_userUserPreferences.BestQualityForDevice == null)
                     {
-                        if (_fpsService.FpsLastSecond > Consts.MinFpsForHighQuality)
+                        if (_fpsService.FpsLastSecond > Consts.MinFpsForHighQuality || true)
                         {
                             _userUserPreferences.BestQualityForDevice = QualityType.High;
                         }
