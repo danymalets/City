@@ -23,8 +23,8 @@ namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
 
         public bool KeepAnimatorControllerStateOnDisable
         {
-            get => Unsafe.keepAnimatorControllerStateOnDisable;
-            set => Unsafe.keepAnimatorControllerStateOnDisable = value;
+            get => Unsafe.keepAnimatorStateOnDisable;
+            set => Unsafe.keepAnimatorStateOnDisable = value;
         }
     }
 }
