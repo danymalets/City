@@ -3,14 +3,10 @@ using Sources.App.Core.Services.Quality;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.App.Infrastructure.StateMachine.States.MainUiStates;
-using Sources.App.Services.AssetsServices;
-using Sources.App.Services.AssetsServices.Monos.MonoEntities.Player;
 using Sources.App.Services.UserServices;
 using Sources.App.Services.UserServices.Users.PreferencesData;
 using Sources.App.Ui.Base;
-using Sources.App.Ui.Screens.LevelScreens;
 using Sources.App.Ui.Screens.PausePopups;
-using Sources.Services.SceneLoaderServices;
 using Sources.Utils.Di;
 
 namespace Sources.App.Infrastructure.StateMachine.States.LevelStates

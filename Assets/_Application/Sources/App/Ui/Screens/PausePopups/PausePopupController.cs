@@ -2,18 +2,15 @@ using System;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Base.Animators;
 using Sources.App.Ui.Base.Controllers;
-using Sources.App.Ui.Base.Views;
 using Sources.App.Ui.Screens.SettingsScreens;
 using Sources.Services.TimeServices;
 using Sources.Utils.Di;
-using Sources.Utils.MorpehWrapper.MorpehUtils;
 
 namespace Sources.App.Ui.Screens.PausePopups
 {
     public class PausePopupController : ScreenController
     {
         private readonly PausePopup _pausePopup;
-        private DWorld _dWorld;
         private SettingsPopupController _settingsPopupController;
         private readonly ITimeService _timeService;
 
@@ -35,9 +32,9 @@ namespace Sources.App.Ui.Screens.PausePopups
 
         protected override void OnOpen()
         {
-            _dWorld = DiContainer.Resolve<DWorld>();
+            // _dWorld = DiContainer.Resolve<DWorld>();
             _timeService.TimeScale = 0;
-            _dWorld.IsPaused = true;
+            // _dWorld.IsPaused = true;
             _pausePopup.RestartButton.Button.onClick.AddListener(OnRestartButtonClicked);
             _pausePopup.ContinueButton.Button.onClick.AddListener(OnContinueButtonClicked);
             _pausePopup.ExitButton.Button.onClick.AddListener(OnExitButtonClicked);
@@ -46,10 +43,10 @@ namespace Sources.App.Ui.Screens.PausePopups
 
         protected override void OnClose()
         {
-            _dWorld.IsPaused = false;
+            // _dWorld.IsPaused = false;
             _timeService.TimeScale = 1;
 
-            _dWorld = null;
+            // _dWorld = null;
             
             _pausePopup.RestartButton.Button.onClick.RemoveListener(OnRestartButtonClicked);
             _pausePopup.ContinueButton.Button.onClick.RemoveListener(OnContinueButtonClicked);

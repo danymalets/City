@@ -7,28 +7,29 @@ namespace Sources.Services.AdsServices
 {
     public class AdsService : IInitializable, IAdsService
     {
-        private readonly IronSourceAdapter _ironSourceAdapter;
+        // private readonly IronSourceAdapter _ironSourceAdapter = new();
         private bool _isRewardedAvailable;
 
         public AdsService()
         {
-            _ironSourceAdapter = new IronSourceAdapter();
         }
 
         public void Initialize()
         {
-            _ironSourceAdapter.Initialize();
+            // _ironSourceAdapter.Initialize();
         }
 
-        public bool IsRewardedAvailable() =>
-            _ironSourceAdapter.IsRewardedAvailable();
-        
-        public void ShowRewarded(Action onSuccess, Action onFailed) => 
-            _ironSourceAdapter.ShowRewarded(onSuccess, onFailed);
+        public bool IsRewardedAvailable() => true;
+        // _ironSourceAdapter.IsRewardedAvailable();
+
+        public void ShowRewarded(Action onSuccess, Action onFailed)
+        {
+        }
+        // _ironSourceAdapter.ShowRewarded(onSuccess, onFailed);
 
         public void ShowInterstitial(Action onSuccess, Action onFailed)
         {
-            _ironSourceAdapter.ShowInterstitial(onSuccess, onFailed);
+            // _ironSourceAdapter.ShowInterstitial(onSuccess, onFailed);
         }
     }
 }

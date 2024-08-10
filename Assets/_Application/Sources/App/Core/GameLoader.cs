@@ -1,6 +1,7 @@
 using System;
 using Sources.App.Data.Constants;
 using Sources.App.Services.AssetsServices;
+using Sources.App.Services.AssetsServices.IdleCarSpawns;
 using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
 using Sources.App.Services.BalanceServices;
 using Sources.App.Services.UserServices;
@@ -44,7 +45,7 @@ namespace Sources.App.Core
             _coroutineContext = new CoroutineContext();
         }
 
-        public void StartLoadGame(Action<ILevelContext> onSceneLoaded, Action onLoaded, Action onReloadRequest)
+        public void StartLoadGame(Action<LevelSceneContext> onSceneLoaded, Action onLoaded, Action onReloadRequest)
         {
             LoadGameScene(levelContext =>
             {
@@ -53,7 +54,7 @@ namespace Sources.App.Core
             });
         }
 
-        private void LoadGameScene(Action<ILevelContext> onSceneLoaded)
+        private void LoadGameScene(Action<LevelSceneContext> onSceneLoaded)
         {
             string cityScene = DiContainer.Resolve<Assets>().CitySceneName;
 
@@ -69,7 +70,7 @@ namespace Sources.App.Core
                     
                     _coroutineContext.RunNextFrame(() =>
                     {
-                        _sceneLoader.LoadScene<ILevelContext>(cityScene,
+                        _sceneLoader.LoadScene<LevelSceneContext>(cityScene,
                             levelContext => onSceneLoaded?.Invoke(levelContext));
                     });
                 });

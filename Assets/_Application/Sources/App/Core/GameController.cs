@@ -1,13 +1,7 @@
 using System;
-using Sources.App.Core.Ecs;
-using Sources.App.Core.Services.Quality;
-using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
 using Sources.App.Services.AudioServices;
-using Sources.App.Services.UserServices;
-using Sources.App.Services.UserServices.Users.PreferencesData;
 using Sources.App.Ui.Base;
 using Sources.Services.AnalyticsServices;
-using Sources.Services.FpsServices;
 using Sources.Utils.Di;
 
 namespace Sources.App.Core
@@ -20,7 +14,7 @@ namespace Sources.App.Core
         private readonly IAnalyticsService _analytics;
         private readonly GameLoader _gameLoader;
 
-        private Game _game;
+        // private Game _game;
 
         public event Action ForceReloadRequested; 
 
@@ -42,8 +36,8 @@ namespace Sources.App.Core
             {
                 _diBuilder.Register(levelContext);
                 
-                _game = new Game();
-                _game.StartGame();
+                // _game = new Game();
+                // _game.StartGame();
             }, GameLoadingFinished, () =>
             {
                 ForceReloadRequested?.Invoke();
@@ -59,7 +53,7 @@ namespace Sources.App.Core
         {
             _analytics.SendLevelFinished(1, 0);
             
-            _game.FinishGame();
+            // _game.FinishGame();
             _audio.StopAll();
             _uiClose.CloseAll();
 

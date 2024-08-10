@@ -2,7 +2,6 @@ using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.App.Infrastructure.StateMachine.States.LevelStates;
 using Sources.App.Services.AssetsServices;
-using Sources.App.Services.AssetsServices.Monos.MonoEntities.Player;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Screens.CurrencyScreens;
 using Sources.App.Ui.Screens.LoadingScreens;
@@ -10,7 +9,6 @@ using Sources.App.Ui.Screens.MainScreens;
 using Sources.Services.CoroutineRunnerServices;
 using Sources.Services.SceneLoaderServices;
 using Sources.Utils.Di;
-using UnityEngine.SceneManagement;
 
 namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
 {
@@ -49,11 +47,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
             _sceneLoader.LoadEmptyScene(() =>
             {
             });
-            _sceneLoader.LoadScene<PlayerRenderSceneContext>(_assets.PlayerRenderSceneName, playerRenderSceneContext =>
-            {
-                PlayerMonoEntity player = playerRenderSceneContext.Player;
-                _mainScreenController.PlayButtonClicked += OnPlayButtonClicked;
-            }, LoadSceneMode.Additive);
+            _mainScreenController.PlayButtonClicked += OnPlayButtonClicked;
 
             RunScreenLoading();
         }
@@ -77,11 +71,6 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
         
         protected override void OnExit()
         {
-            _sceneLoader.UnloadScene(_assets.PlayerRenderSceneName, () =>
-            {
-                
-            });
-            
             _mainScreenController.PlayButtonClicked -= OnPlayButtonClicked;
 
             _uiCloseService.CloseAll();
