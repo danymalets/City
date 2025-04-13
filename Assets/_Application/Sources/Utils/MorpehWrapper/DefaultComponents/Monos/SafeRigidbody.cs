@@ -12,14 +12,14 @@ namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
 
         public Vector3 Velocity
         {
-            get => Unsafe.velocity;
-            set => Unsafe.velocity = value;
+            get => Unsafe.linearVelocity;
+            set => Unsafe.linearVelocity = value;
         }
 
         public Vector3 LocalVelocity
         {
-            get => Unsafe.transform.InverseTransformDirection(Unsafe.velocity);
-            set => Unsafe.velocity = Unsafe.transform.TransformDirection(value);
+            get => Unsafe.transform.InverseTransformDirection(Unsafe.linearVelocity);
+            set => Unsafe.linearVelocity = Unsafe.transform.TransformDirection(value);
         }
 
         public Vector3 Position

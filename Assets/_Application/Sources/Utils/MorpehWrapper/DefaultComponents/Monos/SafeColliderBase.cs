@@ -16,6 +16,6 @@ namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
 
         public abstract bool Enabled { get; set; }
 
-        public abstract PhysicMaterial PhysicsMaterial { get; set; }
+        public abstract PhysicsMaterial PhysicsMaterial { get; set; }
     }
 }

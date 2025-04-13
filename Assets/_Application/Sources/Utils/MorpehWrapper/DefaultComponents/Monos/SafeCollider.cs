@@ -16,7 +16,7 @@ namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
 
         public override Bounds Bounds => _collider.bounds;
 
-        public override PhysicMaterial PhysicsMaterial
+        public override PhysicsMaterial PhysicsMaterial
         {
             get => _collider.material;
             set => _collider.material = value;
