@@ -2,7 +2,7 @@ trackSelection = true
 refreshSearchWindowsInPlayMode = false
 pickerAdvancedUI = false
 fetchPreview = true
-defaultFlags = 0
+defaultFlags = 264
 keepOpen = true
 queryFolder = "Assets"
 onBoardingDoNotAskAgain = true
@@ -69,7 +69,7 @@ recentSearches = [
 searchItemFavorites = [
 ]
 savedSearchesSortOrder = 0
-showSavedSearchPanel = false
+showSavedSearchPanel = true
 hideTabs = false
 expandedQueries = [
 ]

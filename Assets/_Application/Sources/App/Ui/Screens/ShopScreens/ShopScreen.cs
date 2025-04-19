@@ -4,6 +4,7 @@ using Sources.App.Ui.Screens.ShopScreens.GemsForCoinsExchanges;
 using Sources.App.Ui.Screens.ShopScreens.IapItems;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Sources.App.Ui.Screens.ShopScreens
 {
@@ -18,8 +19,8 @@ namespace Sources.App.Ui.Screens.ShopScreens
         [field: Header("Iap Coins")]
         [field: SerializeField] public IapItem[] IapGemItems { get; private set; }
         [field: Header("Iap Cars")]
-        [field: SerializeField] public IapItem RedBoxItem { get; private set; }
-        [field: SerializeField] public IapItem GreenBoxItem { get; private set; }
+        [field: SerializeField] public IapItem SilverChestItem { get; private set; }
+        [field: SerializeField] public IapItem GoldChestItem { get; private set; }
         [field: Header("Iap Ads")]
         [field: SerializeField] public IapItem RemoveAdsItem { get; private set; }
     }

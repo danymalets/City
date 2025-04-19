@@ -48,10 +48,10 @@ namespace Sources.Services.IapServices
                 new IapProduct(IapProductType.Gems2100, ProductType.Consumable, 0.99M,
                     IapsKeys.Gems2100, IapsKeys.Gems2100, IapsKeys.Gems2100),
                 
-                new IapProduct(IapProductType.RedCar, ProductType.NonConsumable, 2.99M,
+                new IapProduct(IapProductType.GoldChest, ProductType.NonConsumable, 2.99M,
                     IapsKeys.RedCar, IapsKeys.RedCar, IapsKeys.RedCar),
                 
-                new IapProduct(IapProductType.GreenCar, ProductType.NonConsumable, 2.99M,
+                new IapProduct(IapProductType.SilverChest, ProductType.NonConsumable, 2.99M,
                     IapsKeys.GreenCar, IapsKeys.GreenCar, IapsKeys.GreenCar),
                 
                 new IapProduct(IapProductType.RemoveAds, ProductType.NonConsumable, 3.99M,
@@ -64,7 +64,7 @@ namespace Sources.Services.IapServices
         {
             _iapProductExecutor.ExecutePurchase(iapProductType);
 
-            PurchaseProcessed();
+            PurchaseProcessed?.Invoke();
         }
 
         public void RestorePurchases() => 

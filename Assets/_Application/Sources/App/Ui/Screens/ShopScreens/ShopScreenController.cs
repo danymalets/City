@@ -34,9 +34,9 @@ namespace Sources.App.Ui.Screens.ShopScreens
 
             _iapItemControllers = new[]
             {
-                new IapItemController(_shopScreen.RedBoxItem, IapProductType.RedCar),
-                new IapItemController(_shopScreen.GreenBoxItem, IapProductType.GreenCar),
-                new IapItemController(_shopScreen.RemoveAdsItem, IapProductType.RedCar),
+                new IapItemController(_shopScreen.SilverChestItem, IapProductType.GoldChest),
+                new IapItemController(_shopScreen.GoldChestItem, IapProductType.SilverChest),
+                new IapItemController(_shopScreen.RemoveAdsItem, IapProductType.GoldChest),
             };
 
             _coinsForGemsViewController = new CoinsForGemsViewController(shopScreen.CoinsForGemsItems);
@@ -45,10 +45,10 @@ namespace Sources.App.Ui.Screens.ShopScreens
 
         protected override void OnCreate()
         {
-            bool debug = true;
-            
+#if !UNITY_EDITOR
             _shopScreen.RestorePurchasesTextButton.gameObject
-                .SetActive(_applicationService.ApplicationPlatform == RuntimePlatform.IPhonePlayer || debug);
+                .SetActive(_applicationService.ApplicationPlatform == RuntimePlatform.IPhonePlayer);
+#endif
         }
 
         protected override void OnOpen()
@@ -76,7 +76,7 @@ namespace Sources.App.Ui.Screens.ShopScreens
                 iapItemController.OnCleanup();
             }
 
-            _shopScreen.RestorePurchasesTextButton.Button.onClick.AddListener(OnRestorePurchasesButtonClicked);
+            _shopScreen.RestorePurchasesTextButton.Button.onClick.RemoveListener(OnRestorePurchasesButtonClicked);
 
             _iapService.Initialized -= IapService_OnInitialized;
         }
@@ -85,8 +85,8 @@ namespace Sources.App.Ui.Screens.ShopScreens
         {
             _shopScreen.ShopTitle.text = Strings.Shop;
 
-            _shopScreen.RedBoxItem.TitleText.text = Strings.RedBox;
-            _shopScreen.GreenBoxItem.TitleText.text = Strings.GreenBox;
+            _shopScreen.SilverChestItem.TitleText.text = Strings.RedBox;
+            _shopScreen.GoldChestItem.TitleText.text = Strings.GreenBox;
             
             _shopScreen.RemoveAdsItem.SpecialText.text = Strings.Special;
             _shopScreen.RemoveAdsItem.TitleText.text = Strings.RemoveAds;

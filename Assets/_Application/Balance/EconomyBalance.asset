@@ -15,12 +15,12 @@ MonoBehaviour:
   CoinsForGemsForCoinsExchange:
   - <Coins>k__BackingField: 1500
     <Gems>k__BackingField: 12
-  - <Coins>k__BackingField: 4000
+  - <Coins>k__BackingField: 8000
     <Gems>k__BackingField: 48
-  - <Coins>k__BackingField: 12000
+  - <Coins>k__BackingField: 36000
     <Gems>k__BackingField: 120
-  - <Coins>k__BackingField: 25000
+  - <Coins>k__BackingField: 75000
     <Gems>k__BackingField: 240
-  - <Coins>k__BackingField: 60000
+  - <Coins>k__BackingField: 180000
     <Gems>k__BackingField: 490
   ShopGemProducts: 0000000001000000020000000300000004000000

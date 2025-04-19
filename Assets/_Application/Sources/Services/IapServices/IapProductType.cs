@@ -9,8 +9,8 @@ namespace Sources.Services.IapServices
         Gems480,
         Gems1200,
         Gems2100,
-        RedCar,
-        GreenCar,
+        GoldChest,
+        SilverChest,
         RemoveAds,
     }
 

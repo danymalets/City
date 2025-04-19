@@ -27,25 +27,25 @@ namespace Sources.Services.IapServices
             switch (iapProductType)
             {
                 case IapProductType.Gems40:
-                    _userAccessService.User.UserWallet.Coins.AddCurrency(iapProductType.GetGemsCount());
+                    _userAccessService.User.UserWallet.Gems.AddCurrency(iapProductType.GetGemsCount());
                     break;
                 case IapProductType.Gems220:
-                    _userAccessService.User.UserWallet.Coins.AddCurrency(iapProductType.GetGemsCount());
+                    _userAccessService.User.UserWallet.Gems.AddCurrency(iapProductType.GetGemsCount());
                     break;
                 case IapProductType.Gems480:
-                    _userAccessService.User.UserWallet.Coins.AddCurrency(iapProductType.GetGemsCount());
+                    _userAccessService.User.UserWallet.Gems.AddCurrency(iapProductType.GetGemsCount());
                     break;
                 case IapProductType.Gems1200:
-                    _userAccessService.User.UserWallet.Coins.AddCurrency(iapProductType.GetGemsCount());
+                    _userAccessService.User.UserWallet.Gems.AddCurrency(iapProductType.GetGemsCount());
                     break;
                 case IapProductType.Gems2100:
-                    _userAccessService.User.UserWallet.Coins.AddCurrency(iapProductType.GetGemsCount());
+                    _userAccessService.User.UserWallet.Gems.AddCurrency(iapProductType.GetGemsCount());
                     break;
-                case IapProductType.RedCar:
-                    _userAccessService.User.UserProgress.IsRedCarUnlocked = true;
-                    break;
-                case IapProductType.GreenCar:
+                case IapProductType.SilverChest:
                     _userAccessService.User.UserProgress.IsGreenCarUnlocked = true;
+                    break;
+                case IapProductType.GoldChest:
+                    _userAccessService.User.UserProgress.IsRedCarUnlocked = true;
                     break;
                 case IapProductType.RemoveAds:
                     _userAccessService.User.IsRemoveAds = true;
