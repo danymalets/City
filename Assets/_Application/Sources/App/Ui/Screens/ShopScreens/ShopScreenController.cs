@@ -34,8 +34,8 @@ namespace Sources.App.Ui.Screens.ShopScreens
 
             _iapItemControllers = new[]
             {
-                new IapItemController(_shopScreen.IapRedCarItem, IapProductType.RedCar),
-                new IapItemController(_shopScreen.GreenCarItem, IapProductType.GreenCar),
+                new IapItemController(_shopScreen.RedBoxItem, IapProductType.RedCar),
+                new IapItemController(_shopScreen.GreenBoxItem, IapProductType.GreenCar),
                 new IapItemController(_shopScreen.RemoveAdsItem, IapProductType.RedCar),
             };
 
@@ -45,8 +45,10 @@ namespace Sources.App.Ui.Screens.ShopScreens
 
         protected override void OnCreate()
         {
+            bool debug = true;
+            
             _shopScreen.RestorePurchasesTextButton.gameObject
-                .SetActive(_applicationService.ApplicationPlatform == RuntimePlatform.IPhonePlayer);
+                .SetActive(_applicationService.ApplicationPlatform == RuntimePlatform.IPhonePlayer || debug);
         }
 
         protected override void OnOpen()
@@ -83,18 +85,20 @@ namespace Sources.App.Ui.Screens.ShopScreens
         {
             _shopScreen.ShopTitle.text = Strings.Shop;
 
-            _shopScreen.IapRedCarItem.TitleText.text = Strings.RedCar;
-            _shopScreen.GreenCarItem.TitleText.text = Strings.GreenCar;
+            _shopScreen.RedBoxItem.TitleText.text = Strings.RedBox;
+            _shopScreen.GreenBoxItem.TitleText.text = Strings.GreenBox;
+            
+            _shopScreen.RemoveAdsItem.SpecialText.text = Strings.Special;
             _shopScreen.RemoveAdsItem.TitleText.text = Strings.RemoveAds;
 
             _shopScreen.RestorePurchasesTextButton.Text.text = Strings.RestorePurchases;
 
             foreach (IapItemController iapItemController in _iapItemControllers)
             {
-                iapItemController.OnRefresh();
+                iapItemController.OnRefresh(Strings);
             }
 
-            _gemIapsViewController.OnRefresh();
+            _gemIapsViewController.OnRefresh(Strings);
             _coinsForGemsViewController.OnRefresh();
         }
 

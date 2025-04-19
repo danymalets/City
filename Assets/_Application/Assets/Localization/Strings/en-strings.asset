@@ -17,9 +17,20 @@ MonoBehaviour:
   <Shop>k__BackingField: Shop
   <RateUs>k__BackingField: Rate Us
   <CoinsPattern>k__BackingField: '{0} coins'
-  <RedCar>k__BackingField: Red car
-  <GreenCar>k__BackingField: Green car
+  <RedBox>k__BackingField: Red Box
+  <GreenBox>k__BackingField: Green Box
   <RemoveAds>k__BackingField: Remove ads
   <RestorePurchases>k__BackingField: Restore purchases
   <Bought>k__BackingField: Bought
   <Language>k__BackingField: Language
+  <Sounds>k__BackingField: Sounds
+  <Music>k__BackingField: Music
+  <Vibration>k__BackingField: Vibration
+  <Support>k__BackingField: Support
+  <Pause>k__BackingField: Pause
+  <Continue>k__BackingField: Continue
+  <Restart>k__BackingField: Restart
+  <Leave>k__BackingField: Leave
+  <LoadingPattern>k__BackingField: Loading... {0}%
+  <Special>k__BackingField: Special
+  <BestValue>k__BackingField: Best Value

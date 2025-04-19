@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Sources.App.Services.AssetsServices.Localizations;
 using Sources.App.Services.BalanceServices;
 using Sources.App.Services.BalanceServices.CommonBalances;
 using Sources.App.Ui.Screens.ShopScreens.IapItems;
@@ -14,7 +15,7 @@ namespace Sources.App.Ui.Screens.ShopScreens.GemIapsViews
         private readonly IapItem[] _iapItems;
         private CurrencyIapItemController[] _iapItemsControllers;
 
-        public GemIapsViewController(CurrencyIapItem[] iapItems)
+        public GemIapsViewController(IapItem[] iapItems)
         {
             IapProductType[] products = DiContainer.Resolve<Balance>().EconomyBalance.ShopGemProducts;
 
@@ -42,11 +43,11 @@ namespace Sources.App.Ui.Screens.ShopScreens.GemIapsViews
             }
         }
 
-        public void OnRefresh()
+        public void OnRefresh(StringsAsset strings)
         {
             foreach (CurrencyIapItemController itemController in _iapItemsControllers)
             {
-                itemController.OnRefresh();
+                itemController.OnRefresh(strings);
             }
         }
     }

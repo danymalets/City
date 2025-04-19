@@ -12,6 +12,6 @@ namespace Sources.App.Ui.Screens.PausePopups
         [field: SerializeField] public TextButton SettingsButton { get; private set; }
         [field: SerializeField] public TextButton ContinueButton { get; private set; }
         [field: SerializeField] public TextButton RestartButton { get; private set; }
-        [field: SerializeField] public TextButton ExitButton { get; private set; }
+        [field: SerializeField] public TextButton LeaveButton { get; private set; }
     }
 }

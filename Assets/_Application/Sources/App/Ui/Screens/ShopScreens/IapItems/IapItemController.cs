@@ -1,3 +1,4 @@
+using System;
 using Sources.App.Services.AssetsServices.Localizations;
 using Sources.Services.IapServices;
 using Sources.Utils.Di;
@@ -27,8 +28,13 @@ namespace Sources.App.Ui.Screens.ShopScreens.IapItems
             _iapItem.Button.onClick.RemoveListener(OnButtonClicked);
         }
 
-        public virtual void OnRefresh()
+        public virtual void OnRefresh(StringsAsset strings)
         {
+            if (_iapItem.SpecialText != null)
+            {
+                _iapItem.SpecialText.text = strings.Special;
+            }
+
             _iapItem.PriceText.text = _iapService.GetPriceString(_iapProductType);
         }
 

@@ -60,17 +60,21 @@ namespace Sources.App.Ui.Screens.SettingsScreens
             _soundGroupController.OnCleanup();
             _musicGroupController.OnCleanup();
             _vibrationGroupController.OnCleanup();
+            
+            _settingsPopup.LanguageTextButton.Button.onClick.RemoveListener(LanguageTextButton_OnClicked);
+            _settingsPopup.RateUsTextButton.Button.onClick.RemoveListener(RateUsTextButton_OnClicked);
+            _settingsPopup.SupportTextButton.Button.onClick.RemoveListener(SupportTextButton_OnClicked);
         }
 
         protected override void OnRefresh()
         {
-            _settingsPopup.SettingsTitle.text = "Settings";
-            _settingsPopup.SoundsSliderGroup.Text.text = "Sounds";
-            _settingsPopup.MusicSliderGroup.Text.text = "Music";
-            _settingsPopup.VibrationToggleGroup.Text.text = "Vibration";
-            _settingsPopup.LanguageTextButton.Text.text = "Language";
-            _settingsPopup.RateUsTextButton.Text.text = "Rate Us";
-            _settingsPopup.SupportTextButton.Text.text = "Support";
+            _settingsPopup.SettingsTitle.text = Strings.Settings;
+            _settingsPopup.SoundsSliderGroup.Text.text = Strings.Sounds;
+            _settingsPopup.MusicSliderGroup.Text.text = Strings.Music;
+            _settingsPopup.VibrationToggleGroup.Text.text = Strings.Vibration;
+            _settingsPopup.LanguageTextButton.Text.text = Strings.Language;
+            _settingsPopup.RateUsTextButton.Text.text = Strings.RateUs;
+            _settingsPopup.SupportTextButton.Text.text = Strings.Support;
         }
 
         private void LanguageTextButton_OnClicked()

@@ -40,7 +40,7 @@ namespace Sources.App.Ui.Screens.PausePopups
             _dWorld.IsPaused = true;
             _pausePopup.RestartButton.Button.onClick.AddListener(OnRestartButtonClicked);
             _pausePopup.ContinueButton.Button.onClick.AddListener(OnContinueButtonClicked);
-            _pausePopup.ExitButton.Button.onClick.AddListener(OnExitButtonClicked);
+            _pausePopup.LeaveButton.Button.onClick.AddListener(OnExitButtonClicked);
             _pausePopup.SettingsButton.Button.onClick.AddListener(OnSettingsButtonClicked);
         }
 
@@ -53,17 +53,17 @@ namespace Sources.App.Ui.Screens.PausePopups
             
             _pausePopup.RestartButton.Button.onClick.RemoveListener(OnRestartButtonClicked);
             _pausePopup.ContinueButton.Button.onClick.RemoveListener(OnContinueButtonClicked);
-            _pausePopup.ExitButton.Button.onClick.RemoveListener(OnExitButtonClicked);
+            _pausePopup.LeaveButton.Button.onClick.RemoveListener(OnExitButtonClicked);
             _pausePopup.SettingsButton.Button.onClick.RemoveListener(OnSettingsButtonClicked);
         }
 
         protected override void OnRefresh()
         {
-            _pausePopup.Title.text = "Title";
-            _pausePopup.SettingsButton.Text.text = "Settings";
-            _pausePopup.RestartButton.Text.text = "Restart";
-            _pausePopup.ContinueButton.Text.text = "Continue";
-            _pausePopup.ExitButton.Text.text = "Exit";
+            _pausePopup.Title.text = Strings.Pause;
+            _pausePopup.SettingsButton.Text.text = Strings.Settings;
+            _pausePopup.RestartButton.Text.text = Strings.Restart;
+            _pausePopup.ContinueButton.Text.text = Strings.Continue;
+            _pausePopup.LeaveButton.Text.text = Strings.Leave;
         }
 
         private void OnRestartButtonClicked()

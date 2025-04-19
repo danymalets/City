@@ -1,5 +1,3 @@
-using Sources.App.Services.AssetsServices.Localizations;
-using Sources.App.Ui.Base;
 using Sources.App.Ui.Base.Animators;
 using Sources.App.Ui.Base.Controllers;
 using UnityEngine;
@@ -32,7 +30,7 @@ namespace Sources.App.Ui.Screens.LoadingScreens
         public void SetProgress(float value)
         {
             _loadingScreen.ProgressSlider.Slider.value = value;
-            _loadingScreen.ProgressSlider.Text.text = string.Format("Loading... {0}%", Mathf.RoundToInt(value * 100));
+            _loadingScreen.ProgressSlider.Text.text = string.Format(Strings.LoadingPattern, Mathf.RoundToInt(value * 100));
         }
     }
 }
