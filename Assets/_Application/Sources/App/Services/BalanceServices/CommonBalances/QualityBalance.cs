@@ -13,7 +13,7 @@ namespace Sources.App.Services.BalanceServices.CommonBalances
 
         private void OnValidate()
         {
-            DValidate.ValidateEnumsData(GameQualitySettings, 
+            ValidateUtils.ValidateEnumsData(GameQualitySettings, 
                 s => s.QualityType, 
                 qt => new GameQualitySettings(qt));
         }

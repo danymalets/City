@@ -69,7 +69,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
                 _world.Commit();
                 if (DebugPerformance && performanceSender != null)
                 {
-                    DPerformance.Execute(() => runner(system),
+                    PerformanceUtils.Execute(() => runner(system),
                         ticks => performanceSender(system, ticks));
                 }
                 else
@@ -94,14 +94,14 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
             {
                 if (ShouldRun())
                 {
-                    DMath.Divide(TimeScale * _time.DeltaTime, _time.DeltaTime, WorldUpdate);
+                    MathUtils.Divide(TimeScale * _time.DeltaTime, _time.DeltaTime, WorldUpdate);
                 }
             }, true);
             _coroutineContext.RunEachFixedUpdate(() =>
             {
                 if (ShouldRun())
                 {
-                    DMath.Divide(TimeScale * _time.DeltaTime, _time.DeltaTime, WorldFixedUpdate);
+                    MathUtils.Divide(TimeScale * _time.DeltaTime, _time.DeltaTime, WorldFixedUpdate);
                 }
             });
         }

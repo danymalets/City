@@ -16,6 +16,6 @@ namespace Sources.Utils.CommonUtils.Extensions
         }
 
         public static T ValueByCycledIndex<T>(this IList<T> list, int index) =>
-            list[DMath.Mod(index, list.Count)];
+            list[MathUtils.Mod(index, list.Count)];
     }
 }

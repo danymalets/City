@@ -1,3 +1,4 @@
+using Sources.App.Services.AssetsServices.Audio;
 using Sources.App.Services.UserServices;
 using Sources.App.Services.UserServices.Users.PreferencesData;
 using Sources.App.Ui.Base;
@@ -79,16 +80,19 @@ namespace Sources.App.Ui.Screens.SettingsScreens
 
         private void LanguageTextButton_OnClicked()
         {
+            _audioService.PlayOnce(SoundType.ButtonClick);
             _languagePopupController.Open();
         }
 
         private void RateUsTextButton_OnClicked()
         {
+            _audioService.PlayOnce(SoundType.ButtonClick);
             _applicationService.OpenUrl("https://www.google.com/");
         }
 
         private void SupportTextButton_OnClicked()
         {
+            _audioService.PlayOnce(SoundType.ButtonClick);
             _applicationService.OpenUrl("https://www.google.com/");
         }
     }

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Sources.Utils.CommonUtils.Libs
 {
-    public static class DEnums
+    public static class EnumUtils
     {
         public static IEnumerable<TEnum> GetAllEnums<TEnum>() where TEnum : Enum => 
             Enum.GetValues(typeof(TEnum)).Cast<TEnum>();

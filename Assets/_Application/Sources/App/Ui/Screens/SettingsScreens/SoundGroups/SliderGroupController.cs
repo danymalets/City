@@ -40,7 +40,7 @@ namespace Sources.App.Ui.Screens.SettingsScreens.SoundGroups
         
         private void UpdateView(float value)
         {
-            bool isEnabled = DMath.Greater(value, 0);
+            bool isEnabled = MathUtils.Greater(value, 0);
             
             _toggleableImageController.SetEnabled(isEnabled);
         }

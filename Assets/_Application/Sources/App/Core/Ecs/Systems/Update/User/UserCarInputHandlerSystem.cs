@@ -38,12 +38,12 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
 
                 BreakType breakType = BreakType.None;
                 
-                if (userCarInput.Vertical == 1 && DMath.Less(signedSpeed, 0))
+                if (userCarInput.Vertical == 1 && MathUtils.Less(signedSpeed, 0))
                 {
                     breakType = BreakType.Max;
                     motorCoefficient = 0;
                 }
-                else if (userCarInput.Vertical == -1 && DMath.Greater(signedSpeed, 0))
+                else if (userCarInput.Vertical == -1 && MathUtils.Greater(signedSpeed, 0))
                 {
                     breakType = BreakType.Max;
                     motorCoefficient = 0;

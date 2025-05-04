@@ -2,7 +2,7 @@ using System.Linq;
 
 namespace Sources.Utils.CommonUtils.Libs
 {
-    public static class DLayerMask
+    public static class LayerMaskUtils
     {
         public static int Combine(params int[] layerMasks) => 
             layerMasks.Aggregate(0, (current, layer) => current | layer);

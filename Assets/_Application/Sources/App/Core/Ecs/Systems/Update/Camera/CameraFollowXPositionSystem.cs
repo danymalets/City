@@ -42,10 +42,10 @@ namespace Sources.App.Core.Ecs.Systems.Update.Camera
 
                 Vector3 userPosition = userEntity.GetAspect<PlayerPointAspect>().GetPosition();
 
-                float distanceToTarget = DMath.Distance(userPosition.y, followY.Value);
+                float distanceToTarget = MathUtils.Distance(userPosition.y, followY.Value);
                 
                 float delta = Mathf.Max(distanceToTarget - _cameraBalance.CameraMaxDistance, 
-                    DMath.Distance(followY.Value, userPosition.y) * _cameraBalance.CameraFollowYSpeedCoeff * deltaTime);
+                    MathUtils.Distance(followY.Value, userPosition.y) * _cameraBalance.CameraFollowYSpeedCoeff * deltaTime);
                 
                 followY.Value = Mathf.MoveTowards(followY.Value, userPosition.y, delta);
             }

@@ -19,7 +19,7 @@ namespace Sources.App.Services.AssetsServices.Monos.AssetsData
 
         private void OnValidate()
         {
-            DValidate.ValidateEnumsData(_carData, 
+            ValidateUtils.ValidateEnumsData(_carData, 
                 cd => cd.CarType, 
                 cd => new CarAsset(cd));
         }

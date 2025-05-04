@@ -74,7 +74,7 @@ namespace Sources.Utils.CommonUtils.Extensions
 
             float sumWeight = array.Sum(getWeight);
             
-            if (DMath.Equals(sumWeight, 0))
+            if (MathUtils.Equals(sumWeight, 0))
                 throw new InvalidOperationException("Sum weight = 0");
             
             float randValue = Random.Range(0, sumWeight);
@@ -84,13 +84,13 @@ namespace Sources.Utils.CommonUtils.Extensions
                 T element = array[i];
                 float weight = getWeight(element);
                 
-                if (DMath.NotEquals(weight, 0) && randValue < weight)
+                if (MathUtils.NotEquals(weight, 0) && randValue < weight)
                     return element;
                 
                 randValue -= weight;
             }
 
-            return array.First(el => DMath.NotEquals(getWeight(el), 0));
+            return array.First(el => MathUtils.NotEquals(getWeight(el), 0));
         }
 
         public static bool NoOne<T>(this IEnumerable<T> enumerable) =>

@@ -15,7 +15,7 @@ namespace Sources.App.Data.Simulations
         {
             Center = center;
             NormalDirection = normalDirection;
-            SqrRadius = DMath.Sqr(radius);
+            SqrRadius = MathUtils.Sqr(radius);
             BackDistance = backDistance;
         }
 

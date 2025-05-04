@@ -48,8 +48,8 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
 
                         IEnterPoint enterPoint = carEnterPoints[0];
 
-                        float sqrDistance = DVector3.SqrDistance(enterPoint.Position, playerTransform.Position);
-                        if (sqrDistance <= DMath.Sqr(_carsBalance.MaxEnterCarDistance) &&
+                        float sqrDistance = Vector3Utils.SqrDistance(enterPoint.Position, playerTransform.Position);
+                        if (sqrDistance <= MathUtils.Sqr(_carsBalance.MaxEnterCarDistance) &&
                             (enterCar == null || sqrDistance < curMinSqrDistance))
                         {
                             enterCar = carEntity;

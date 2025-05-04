@@ -36,6 +36,8 @@ namespace Sources.App.Ui.Screens.MainScreens
             _mainScreen.PlayTextButton.Button.onClick.AddListener(OnPlayButtonClicked);
             _mainScreen.ShopTextButton.Button.onClick.AddListener(OnShopButtonClicked);
             _mainScreen.SettingsTextButton.onClick.AddListener(OnSettingsButtonClicked);
+            
+            _audioService.PlayMusic(MusicType.Idle);
         }
 
         protected override void OnClose()
@@ -56,6 +58,7 @@ namespace Sources.App.Ui.Screens.MainScreens
 
         private void OnPlayButtonClicked()
         {
+            _audioService.PlayOnce(SoundType.ButtonClick);
             PlayButtonClicked?.Invoke();
         }
 
@@ -67,6 +70,7 @@ namespace Sources.App.Ui.Screens.MainScreens
 
         private void OnSettingsButtonClicked()
         {
+            _audioService.PlayOnce(SoundType.ButtonClick);
             _settingsPopupController.Open();
         }
     }

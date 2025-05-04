@@ -38,13 +38,13 @@ namespace Sources.App.Core.Ecs.Systems.Update.Props
             Vector3 userPosition = _userFilter.GetSingleton()
                 .GetAspect<PlayerPointAspect>().GetPosition();
 
-            float sqrEnableDistance = DMath.Sqr(_commonBalance.PropsRigidbodyEnableDistance);
+            float sqrEnableDistance = MathUtils.Sqr(_commonBalance.PropsRigidbodyEnableDistance);
 
             foreach (Entity propsEntity in _filter)
             {
                 Vector3 position = propsEntity.GetRef<ITransform>().Position;
 
-                if (DVector3.SqrDistance(userPosition, position) < sqrEnableDistance)
+                if (Vector3Utils.SqrDistance(userPosition, position) < sqrEnableDistance)
                 {
                     SwitchableRigidbodyAspect switchableRigidbodyAspect = propsEntity.GetAspect<SwitchableRigidbodyAspect>();
                     switchableRigidbodyAspect.EnableRigidbody();

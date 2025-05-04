@@ -49,8 +49,8 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcPathes
 
                 Vector2 position = simulationAreaData.Center;
 
-                int centerX = DMath.Div(position.x, _simulationSettings.SimulationQuadWidth);
-                int centerY = DMath.Div(position.y, _simulationSettings.SimulationQuadWidth);
+                int centerX = MathUtils.Div(position.x, _simulationSettings.SimulationQuadWidth);
+                int centerY = MathUtils.Div(position.y, _simulationSettings.SimulationQuadWidth);
                 
                 for (int x = centerX - Consts.SimulationOneSideQuadCount;
                      x <= centerX + Consts.SimulationOneSideQuadCount; x++)

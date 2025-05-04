@@ -47,7 +47,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
                       _simulationBalance.CarDistanceAfterBreak
                     : _simulationBalance.MaxNpcRadius + _simulationBalance.NpcDistanceAfterBreak;
 
-                float sqrReqDistance = DMath.Sqr(reqDistance);
+                float sqrReqDistance = MathUtils.Sqr(reqDistance);
                 
                 Vector3 position = npcEntity.GetAspect<PlayerPointAspect>().GetPosition();
                 Queue<TurnChoice> choices = npcEntity.Get<TurnDecisions>().Queue;
@@ -55,7 +55,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 
                 Point lastPoint = choices.Count == 0 ? npcOnPath.PathLine.Target : choices.Last().TurnData.FirstPathLine.Target;
 
-                if (choices.Count == 0 || DVector3.SqrDistance(position, lastPoint.Position) < sqrReqDistance)
+                if (choices.Count == 0 || Vector3Utils.SqrDistance(position, lastPoint.Position) < sqrReqDistance)
                 {
                     TurnData selectedTurnData = lastPoint.Targets.GetRandom();
                     choices.Enqueue(new TurnChoice(lastPoint, selectedTurnData));

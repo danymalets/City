@@ -1,4 +1,5 @@
 using System;
+using Sources.App.Services.AssetsServices.Audio;
 using Sources.App.Services.AudioServices;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Base.Animators;
@@ -54,6 +55,7 @@ namespace Sources.App.Ui.Screens.LevelScreens
 
         private void OnPauseButtonClicked()
         {
+            _audioService.PlayOnce(SoundType.ButtonClick);
             _pausePopupController.Open();
         }
     }

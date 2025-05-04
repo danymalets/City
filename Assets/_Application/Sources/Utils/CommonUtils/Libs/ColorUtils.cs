@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Sources.Utils.CommonUtils.Libs
 {
-    public static class DColor
+    public static class ColorUtils
     {
         public static Color Red = From256(255, 0, 0);
         public static Color Yellow = From256(255, 255, 0);

@@ -35,12 +35,12 @@ namespace Sources.App.Core.Ecs.Systems.Update.PseudoEditor
                     if (!pathLine.GetAssociatedTurn().IsBlocked())
                         _updateGizmosContext.DrawLine(pathLine.Source.Position, pathLine.Target.Position, Color.blue);
                     else
-                        _updateGizmosContext.DrawLine(pathLine.Source.Position, pathLine.Target.Position, DColor.Purple);
+                        _updateGizmosContext.DrawLine(pathLine.Source.Position, pathLine.Target.Position, ColorUtils.Purple);
                 }
 
                 foreach (Point point in points)
                 {
-                    Color color = point.IsSpawnPoint ? DColor.Purple : Color.red;
+                    Color color = point.IsSpawnPoint ? ColorUtils.Purple : Color.red;
 
                     _updateGizmosContext.DrawCube(
                         point.Position, Quaternion.LookRotation(point.Direction),

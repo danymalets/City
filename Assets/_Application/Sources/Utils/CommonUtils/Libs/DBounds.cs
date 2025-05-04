@@ -8,8 +8,8 @@ namespace Sources.Utils.CommonUtils.Libs
     {
         public static Bounds CombineBounds(IEnumerable<Bounds> bounds)
         {
-            Vector3 min = bounds.Select(b => b.min).MinVectorValues();
-            Vector3 max = bounds.Select(b => b.max).MaxVectorValues();
+            Vector3 min = bounds.Select(b => b.min).Min();
+            Vector3 max = bounds.Select(b => b.max).Max();
             return new Bounds((min + max) / 2, max - min);
         }
     }

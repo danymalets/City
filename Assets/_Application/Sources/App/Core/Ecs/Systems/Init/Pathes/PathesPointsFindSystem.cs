@@ -56,8 +56,8 @@ namespace Sources.App.Core.Ecs.Systems.Init.Pathes
 
                         Vector2 position = point.Position.GetXZ();
 
-                        int x = DMath.Div(position.x, _simulationSettings.SimulationQuadWidth);
-                        int y = DMath.Div(position.y, _simulationSettings.SimulationQuadWidth);
+                        int x = MathUtils.Div(position.x, _simulationSettings.SimulationQuadWidth);
+                        int y = MathUtils.Div(position.y, _simulationSettings.SimulationQuadWidth);
 
                         if (allPointsGrid.TryGetValue((x, y), out List<Point> exPoints))
                         {

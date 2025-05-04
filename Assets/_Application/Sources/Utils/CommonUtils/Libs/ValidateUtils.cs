@@ -5,7 +5,7 @@ using Sources.Utils.CommonUtils.Extensions;
 
 namespace Sources.Utils.CommonUtils.Libs
 {
-    public static class DValidate
+    public static class ValidateUtils
     {
         public static void ValidateEnumsData<T, TEnum>(List<T> list, Func<T, TEnum> getEnum, Func<TEnum, T> creatEnum,
             TEnum[] except = null)
@@ -21,7 +21,7 @@ namespace Sources.Utils.CommonUtils.Libs
         {
             except ??= Array.Empty<TEnum>();
 
-            foreach (TEnum en in DEnums.GetAllEnums<TEnum>())
+            foreach (TEnum en in EnumUtils.GetAllEnums<TEnum>())
             {
                 if (list.NoOne(e => en.Equals(getEnum(e))) &&
                     except.NoOne(e => en.Equals(e)))

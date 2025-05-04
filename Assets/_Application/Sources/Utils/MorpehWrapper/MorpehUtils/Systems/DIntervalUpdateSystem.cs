@@ -12,7 +12,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Systems
         {
             _remainingTime -= deltaTime;
             
-            if (DMath.LessOrEquals(_remainingTime, 0))
+            if (MathUtils.LessOrEquals(_remainingTime, 0))
             {
                 OnIntervalUpdate(_remainingTime);
                 _remainingTime = ExecuteInterval;

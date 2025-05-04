@@ -36,7 +36,7 @@ namespace Sources.App.Services.BalanceServices.CarsBalances
         {
             if (_carType.IsColorable())
             {
-                DValidate.ValidateEnumsData(_carColorBalance,
+                ValidateUtils.ValidateEnumsData(_carColorBalance,
                     cct => cct.CarColorColorType,
                     cct => new CarColorBalance(cct),
                 new []{CarColorType.None});

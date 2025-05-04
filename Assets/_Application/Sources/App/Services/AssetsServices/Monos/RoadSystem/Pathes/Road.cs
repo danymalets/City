@@ -26,8 +26,8 @@ namespace Sources.App.Services.AssetsServices.Monos.RoadSystem.Pathes
         // sources and targets related road
         public CrossroadsSideData GetSideData(Vector3 crossroadsPosition)
         {
-            if (DVector3.SqrDistance(crossroadsPosition, _left.Sources.First().Position) <
-                DVector3.SqrDistance(crossroadsPosition, _right.Sources.First().Position))
+            if (Vector3Utils.SqrDistance(crossroadsPosition, _left.Sources.First().Position) <
+                Vector3Utils.SqrDistance(crossroadsPosition, _right.Sources.First().Position))
             {
                 return new CrossroadsSideData(_left.Sources, _right.Targets);
             }
@@ -38,6 +38,6 @@ namespace Sources.App.Services.AssetsServices.Monos.RoadSystem.Pathes
         }
 
         public IRoadLane[] GetLanesByDistanceTo(Vector3 position) =>
-            RoadLanes.OrderBy(r => DVector3.SqrDistance(r.Source.Position, position)).ToArray();
+            RoadLanes.OrderBy(r => Vector3Utils.SqrDistance(r.Source.Position, position)).ToArray();
     }
 }

@@ -39,13 +39,13 @@ namespace Sources.App.Core.Ecs.Systems.Update.Car
             Vector3 userPosition = _userFilter.GetSingleton()
                 .GetAspect<PlayerPointAspect>().GetPosition();
 
-            float maxSqrDistance = DMath.Sqr(_carsBalance.DisableIdleCarRigidBodyDistance);
+            float maxSqrDistance = MathUtils.Sqr(_carsBalance.DisableIdleCarRigidBodyDistance);
 
             foreach (Entity carEntity in _carsFilter)
             {
                 ITransform transform = carEntity.GetRef<ITransform>();
 
-                if (DVector3.SqrDistance(userPosition, transform.Position) > maxSqrDistance)
+                if (Vector3Utils.SqrDistance(userPosition, transform.Position) > maxSqrDistance)
                 {
                     SwitchableRigidbodyAspect rigidbodySwitcher = carEntity.GetAspect<SwitchableRigidbodyAspect>();
                     rigidbodySwitcher.DisableRigidbody();

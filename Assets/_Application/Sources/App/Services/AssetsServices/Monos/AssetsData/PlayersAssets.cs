@@ -19,7 +19,7 @@ namespace Sources.App.Services.AssetsServices.Monos.AssetsData
 
         private void OnValidate()
         {
-            DValidate.ValidateEnumsData(_playerData, 
+            ValidateUtils.ValidateEnumsData(_playerData, 
                 pd => pd.PlayerType, 
                 pd => new PlayerAsset(pd));
         }

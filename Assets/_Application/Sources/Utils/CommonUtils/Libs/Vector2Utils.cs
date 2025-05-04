@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Sources.Utils.CommonUtils.Libs
 {
-    public static class DVector2
+    public static class Vector2Utils
     {
         public static float SqrDistance(Vector2 first, Vector2 second) =>
             Vector2.SqrMagnitude(second - first);

@@ -64,7 +64,7 @@ namespace Sources.App.Core.Ecs.Systems.Init.Pathes
 
                 foreach (int deltaIndex in s_deltaIndices)
                 {
-                    int targetIndex = DMath.Mod(sourceIndex + deltaIndex, crossroadRoads.Length);
+                    int targetIndex = MathUtils.Mod(sourceIndex + deltaIndex, crossroadRoads.Length);
                     IRoad targetRoad = crossroadRoads[targetIndex];
 
                     if (sourceRoad != null && targetRoad != null)
@@ -95,8 +95,8 @@ namespace Sources.App.Core.Ecs.Systems.Init.Pathes
 
                 foreach ((int delta, int banRoadDelta, int banTurnDelta) in s_banns)
                 {
-                    // Road targetRoad = crossroadRoads[DMath.Mod(sourceIndex + delta, crossroadRoads.Length)];
-                    IRoad banRoad = crossroadRoads[DMath.Mod(sourceIndex + banRoadDelta, crossroadRoads.Length)];
+                    // Road targetRoad = crossroadRoads[MathUtils.Mod(sourceIndex + delta, crossroadRoads.Length)];
+                    IRoad banRoad = crossroadRoads[MathUtils.Mod(sourceIndex + banRoadDelta, crossroadRoads.Length)];
 
                     if (banRoad == null)
                         continue;
@@ -154,6 +154,6 @@ namespace Sources.App.Core.Ecs.Systems.Init.Pathes
 
         private Vector3 GetAnchorPoint(Point source, Point target) =>
             source.Position + source.Direction.normalized *
-            DVector3.ManhattanDistance(source.Position, target.Position) / 2;
+            Vector3Utils.ManhattanDistance(source.Position, target.Position) / 2;
     }
 }

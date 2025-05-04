@@ -38,6 +38,8 @@ namespace Sources.App.Core
         
         public void StartGame()
         {
+            _audio.StopAll();
+
             _gameLoader.StartLoadGame(levelContext =>
             {
                 _diBuilder.Register(levelContext);

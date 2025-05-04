@@ -37,7 +37,7 @@ namespace Sources.Services.ScreenServices
             {
                 if (Width != Screen.width ||
                     Height != Screen.height ||
-                    DMath.NotEquals(SafeArea, Screen.safeArea))
+                    MathUtils.NotEquals(SafeArea, Screen.safeArea))
                 {
                     UpdateResolution();
                     ScreenResolutionChanged?.Invoke();

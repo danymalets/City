@@ -50,8 +50,8 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
                 {
                     if (!choiceData.IsForceMove)
                     {
-                        if (DVector3.SqrDistance(choiceData.Point.Position, wheels.RootPosition) <=
-                            DMath.Sqr(reqDistance))
+                        if (Vector3Utils.SqrDistance(choiceData.Point.Position, wheels.RootPosition) <=
+                            MathUtils.Sqr(reqDistance))
                         {
                             TurnChoice[] turnChoices = GetThisAndAllDependentChoices(choiceData, choices).ToArray();
 

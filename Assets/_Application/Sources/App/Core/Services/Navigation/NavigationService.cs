@@ -37,7 +37,7 @@ namespace Sources.App.Core.Services.Navigation
         {
             bool result = false;
             Vector3[] pathInternal = null;
-            DPerformance.Execute(() => { result = TryGetPathInternal(agentId, source, target, maxDistanceToTarget, out pathInternal); },
+            PerformanceUtils.Execute(() => { result = TryGetPathInternal(agentId, source, target, maxDistanceToTarget, out pathInternal); },
                 ticks => { Debug.Log($"Path finder solve in {ticks / 1000:F}"); });
             path = pathInternal;
             return result;
@@ -55,7 +55,7 @@ namespace Sources.App.Core.Services.Navigation
             };
 
             if (NavMesh.CalculatePath(source, target, navMeshQueryFilter, navPath)
-                && DVector3.SqrDistance(target, navPath.corners[^1]) < DMath.Sqr(maxDistanceToTarget))
+                && Vector3Utils.SqrDistance(target, navPath.corners[^1]) < MathUtils.Sqr(maxDistanceToTarget))
             {
                 path = navPath.corners;
                 return true;

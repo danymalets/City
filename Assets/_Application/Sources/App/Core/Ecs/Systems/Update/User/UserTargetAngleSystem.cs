@@ -38,7 +38,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
                     float inputAngle = Vector3.SignedAngle(Vector3.forward, input, Vector3.up);
 
                     // чтобы при инпуте "вниз" его не дергало решая влево или вправо ему нужно
-                    if (DMath.Equals(Mathf.Abs(inputAngle), 180))
+                    if (MathUtils.Equals(Mathf.Abs(inputAngle), 180))
                     {
                         inputAngle = 179f;
                     }

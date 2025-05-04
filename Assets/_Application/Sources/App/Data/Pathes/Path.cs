@@ -51,7 +51,7 @@ namespace Sources.App.Data.Pathes
             Direction.sqrMagnitude;
 
         public float SqrDistanceTo(Vector3 point) =>
-            DVector3.SqrDistance(
+            Vector3Utils.SqrDistance(
                 Vector3.Lerp(Source.Position, Target.Position, GetProgress(point)),
                 point);
     }

@@ -16,7 +16,7 @@ MonoBehaviour:
   <MusicData>k__BackingField:
   - _type: 1
     _clip: {fileID: 8300000, guid: c502041826854664683f9914f63427b0, type: 3}
-    _volume: 1
+    _volume: 0.05
   <SoundEffectData>k__BackingField:
   - _type: 1
     _clip: {fileID: 8300000, guid: e6cab2dcd38140eabf6a07daf9433e2f, type: 3}

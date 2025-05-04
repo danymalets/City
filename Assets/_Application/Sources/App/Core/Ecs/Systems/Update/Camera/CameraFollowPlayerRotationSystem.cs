@@ -49,7 +49,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Camera
 
                 float targetAngle = userRotation.eulerAngles.y;
 
-                float signedDistance = DMath.SignedNearestAngle(targetAngle, cameraYAngle.Value);
+                float signedDistance = MathUtils.SignedNearestAngle(targetAngle, cameraYAngle.Value);
 
                 float distance = Mathf.Abs(signedDistance);
                 float speed = (distance - _cameraBalance.DeadAngle) * _cameraBalance.CameraRotationCoeff;

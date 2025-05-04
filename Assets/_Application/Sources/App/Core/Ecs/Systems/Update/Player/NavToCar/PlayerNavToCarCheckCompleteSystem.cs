@@ -31,7 +31,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player.NavToCar
 
         protected override void OnUpdate(float deltaTime)
         {
-            float sqrDistance = DMath.Sqr(_playersBalance.DistanceToEnterCar);
+            float sqrDistance = MathUtils.Sqr(_playersBalance.DistanceToEnterCar);
 
             foreach (Entity playerEntity in _playerFilter)
             {
@@ -42,7 +42,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player.NavToCar
 
                 playerEntity.Remove<OnNavToCar>();
                 
-                if (DVector3.SqrDistance(playerEntity.GetRef<ITransform>().Position,
+                if (Vector3Utils.SqrDistance(playerEntity.GetRef<ITransform>().Position,
                         enterPoint.Position) <= sqrDistance)
                 {
                     playerEntity.Set(new NavToCarCompletedEvent

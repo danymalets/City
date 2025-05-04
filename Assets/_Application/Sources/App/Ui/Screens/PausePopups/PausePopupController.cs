@@ -1,4 +1,5 @@
 using System;
+using Sources.App.Services.AssetsServices.Audio;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Base.Animators;
 using Sources.App.Ui.Base.Controllers;
@@ -68,21 +69,25 @@ namespace Sources.App.Ui.Screens.PausePopups
 
         private void OnRestartButtonClicked()
         {
+            _audioService.PlayOnce(SoundType.ButtonClick);
             RestartButtonClicked?.Invoke();
         }
 
         private void OnExitButtonClicked()
-        {
+        {            
+            _audioService.PlayOnce(SoundType.ButtonClick);
             ExitButtonClicked?.Invoke();
         }
 
         private void OnSettingsButtonClicked()
         {
+            _audioService.PlayOnce(SoundType.ButtonClick);
             _settingsPopupController.Open();
         }
 
         private void OnContinueButtonClicked()
         {
+            _audioService.PlayOnce(SoundType.ButtonClick);
             Close();
         }
     }

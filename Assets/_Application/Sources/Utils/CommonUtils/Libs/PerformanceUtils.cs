@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace Sources.Utils.CommonUtils.Libs
 {
-    public static class DPerformance
+    public static class PerformanceUtils
     {
         public static void Execute(Action action, Action<long> onExecuted) => 
             onExecuted?.Invoke(Execute(action));

@@ -1,4 +1,5 @@
 using System;
+using Sources.App.Services.AssetsServices.Audio;
 using Sources.App.Services.AssetsServices.Localizations;
 using Sources.App.Services.AudioServices;
 using Sources.App.Ui.Base.Animators;
@@ -75,6 +76,7 @@ namespace Sources.App.Ui.Base.Controllers
 
         private void OnCloseButtonClickedInternal()
         {
+            _audioService.PlayOnce(SoundType.ButtonClick);
             OnCloseButtonClicked();
             Close();
         }
