@@ -1,5 +1,5 @@
 using Sources.App.Infrastructure.StateMachine.Machine;
-using Sources.App.Infrastructure.StateMachine.States.RegistationStates;
+using Sources.App.Infrastructure.StateMachine.States.InitializationStates;
 using Sources.Services.SceneLoaderServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,19 +21,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.BootstrapStates
         private void StartGameStateMachine()
         {
             GameStateMachine gameStateMachine = new();
-            gameStateMachine.Enter<RegistrationState, BootstrapData>(_bootstrapData);
-        }
-
-        [RuntimeInitializeOnLoadMethod]
-        private static void Init()
-        {
-            SceneManager.sceneLoaded += OnSceneLoaded;
-            Debug.Log("OnInit");
-        }
-
-        private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-            Debug.Log("OnSceneLoaded: " + scene.name);
+            gameStateMachine.Enter<InitializationState, BootstrapData>(_bootstrapData);
         }
     }
 }

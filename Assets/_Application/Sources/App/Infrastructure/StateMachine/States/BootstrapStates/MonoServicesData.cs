@@ -14,9 +14,9 @@ namespace Sources.App.Infrastructure.StateMachine.States.BootstrapStates
     {
         [field: SerializeField] public UiViews UiViews { get; private set; }
         [field: SerializeField] public CoroutineService CoroutineService { get; private set; }
-        [field: SerializeField]  public ApplicationService ApplicationService { get; private set; }
+        [field: SerializeField] public ApplicationService ApplicationService { get; private set; }
         [field: SerializeField] public Transform PoolRoot { get; private set; }
-        [field: SerializeField] public AudioService AudioService { get; private set; }
+        [field: SerializeField] public Transform AudioRoot { get; private set; }
         [field: SerializeField] public Assets Assets { get; private set; }
         [field: SerializeField] public Balance BalanceService { get; private set; }
         [field: SerializeField] public GizmosService GizmosService { get; private set; }

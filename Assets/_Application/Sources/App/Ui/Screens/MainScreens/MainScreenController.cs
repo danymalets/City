@@ -1,4 +1,5 @@
 using System;
+using Sources.App.Services.AssetsServices.Audio;
 using Sources.App.Services.AssetsServices.Localizations;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Base.Animators;
@@ -44,6 +45,7 @@ namespace Sources.App.Ui.Screens.MainScreens
             _mainScreen.SettingsTextButton.onClick.RemoveListener(OnSettingsButtonClicked);
 
             _shopScreenController = null;
+            _settingsPopupController = null;
         }
 
         protected override void OnRefresh()
@@ -59,17 +61,13 @@ namespace Sources.App.Ui.Screens.MainScreens
 
         private void OnShopButtonClicked()
         {
+            _audioService.PlayOnce(SoundType.ButtonClick);
             _shopScreenController.Open();
         }
 
         private void OnSettingsButtonClicked()
         {
             _settingsPopupController.Open();
-        }
-
-        private void OnRateUsButtonClicked()
-        {
-            _applicationService.OpenUrl("http://google.com");
         }
     }
 }

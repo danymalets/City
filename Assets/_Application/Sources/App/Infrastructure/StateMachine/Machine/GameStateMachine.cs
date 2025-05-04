@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.App.Infrastructure.StateMachine.States;
 using Sources.App.Infrastructure.StateMachine.States.BootstrapStates;
+using Sources.App.Infrastructure.StateMachine.States.InitializationStates;
 using Sources.App.Infrastructure.StateMachine.States.LevelStates;
 using Sources.App.Infrastructure.StateMachine.States.MainUiStates;
-using Sources.App.Infrastructure.StateMachine.States.RegistationStates;
 using UnityEngine;
 
 namespace Sources.App.Infrastructure.StateMachine.Machine
@@ -20,7 +20,7 @@ namespace Sources.App.Infrastructure.StateMachine.Machine
         {
             _states = new Dictionary<Type, GameStateBase>
             {
-                [typeof(RegistrationState)] = new RegistrationState(this),
+                [typeof(InitializationState)] = new InitializationState(this),
                 [typeof(BootstrapState)] = new BootstrapState(this),
                 [typeof(MainUiState)] = new MainUiState(this),
                 [typeof(LevelState)] = new LevelState(this),

@@ -1,10 +1,10 @@
 using System;
 
-namespace Sources.App.Services.AudioServices
+namespace Sources.App.Services.AssetsServices.Audio
 {
     [Serializable]
     public enum MusicType
     {
-        RoadNoise = 0
+        Idle = 1,
     }
 }

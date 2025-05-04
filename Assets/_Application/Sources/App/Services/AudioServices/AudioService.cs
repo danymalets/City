@@ -1,71 +1,94 @@
 using System.Collections.Generic;
-using Sources.App.Services.UserServices;
-using Sources.App.Services.UserServices.Users.PreferencesData;
+using System.Linq;
+using Cysharp.Threading.Tasks;
+using Sources.App.Services.AssetsServices;
+using Sources.App.Services.AssetsServices.Audio;
+using Sources.Services.InstantiatorServices;
 using Sources.Services.PoolServices;
 using Sources.Utils.Di;
 using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.Serialization;
 
 namespace Sources.App.Services.AudioServices
 {
-    [RequireComponent(typeof(AudioData))]
-    public class AudioService : MonoBehaviour, IInitializable, IAudioService
+    public class AudioService : IInitializable, IAudioService
     {
-        [FormerlySerializedAs("_soundPrefab")]
-        [SerializeField]
-        private SoundSource _soundSourcePrefab;
+        private readonly IPoolCreatorService _poolCreator;
+        private readonly AudioAssets _audioAssets;
+        
+        private Dictionary<MusicType, MusicData> _musics = new();
+        private Dictionary<SoundType, SoundEffectData> _soundEffects = new();
+        private readonly HashSet<AudioSourceController> _playingSounds = new (10);
+        private AudioSourceView _audioSourceViewPrefab;
+        private readonly IGameObjectService _gameObjectService;
+        private Transform _instancesRoot;
 
-        private IPoolCreatorService _poolCreator;
-        private AudioData _audioData;
+        public AudioService(Transform root)
+        {
+            _instancesRoot = root;
+            
+            _audioAssets = DiContainer.Resolve<Assets>().AudioAssets;
 
-        private readonly HashSet<SoundSource> _playingSounds = new (10);
-        private IPoolSpawnerService _poolSpawner;
-        private UserPreferences _userPreferences;
+            _poolCreator = DiContainer.Resolve<IPoolCreatorService>();
+            
+            _gameObjectService = DiContainer.Resolve<IGameObjectService>();
+
+            UpdateCycle().Forget();
+        }
 
         public void Initialize()
         {
-            _audioData = GetComponent<AudioData>();
-            
-            _poolCreator = DiContainer.Resolve<IPoolCreatorService>();
-            _poolSpawner = DiContainer.Resolve<IPoolSpawnerService>();
-            _userPreferences = DiContainer.Resolve<IUserAccessService>()
-                .User.UserPreferences;
+            _audioSourceViewPrefab = _audioAssets.AudioSourceViewPrefab;
 
-            _poolCreator.CreatePool(new PoolConfig(_soundSourcePrefab, 20));
+            _poolCreator.CreatePool(new PoolConfig(_audioSourceViewPrefab, 10));
+            _musics = _audioAssets.MusicData.ToDictionary(e => e.Type, e => e);
+            _soundEffects = _audioAssets.SoundEffectData.ToDictionary(e => e.Type, e => e);
         }
         
-        public void PlayOnce(SoundEffectType soundEffectType)
+        public void PlayOnce(SoundType soundType)
         {
-            SoundEffectData data = _audioData.GetSoundEffectData(soundEffectType);
-            // SetupSound(new SoundSourceData(data.Clip, data.Volume, false, _userPreferences.SoundsOn, data.Stopable));
+            var data = _soundEffects[soundType];
+            SetupSound(new SoundSourceData(data.Clip, data.Volume, false, data.Stopable));
         }
 
         public void PlayMusic(MusicType musicType)
         {
-            MusicData data = _audioData.GetMusicData(musicType);
-            // SetupSound(new SoundSourceData(data.Clip, data.Volume, false, _userPreferences.SoundsOn, true));
+            var data = _musics[musicType];
+            SetupSound(new SoundSourceData(data.Clip, data.Volume, true, true));
         }
 
         public void StopAll()
         {
-            foreach (SoundSource sound in _playingSounds)
+            foreach (var playingSound in _playingSounds)
             {
-                if (sound.Stopable)
-                    sound.Stop();
+                playingSound.TryStop();
             }
         }
 
-        private void SetupSound(SoundSourceData soundSourceData)
+        private async UniTask UpdateCycle()
         {
-            SoundSource soundSource = _poolSpawner.Spawn(_soundSourcePrefab, transform);
-            _playingSounds.Add(soundSource);
-            soundSource.Setup(soundSourceData, OnSoundPlayed);
+            while (true)
+            {
+                Update();
+                await UniTask.NextFrame();
+            }
         }
 
-        private void OnSoundPlayed(SoundSource soundSource)
+        private void Update()
         {
-            _playingSounds.Remove(soundSource);
+            foreach (var playingSound in _playingSounds.ToArray())
+            {
+                if (playingSound.TryCleanup())
+                {
+                    _playingSounds.Remove(playingSound);
+                }
+            }
+        }
+
+        private void SetupSound(SoundSourceData data)
+        {
+            var soundSourceController = new AudioSourceController(data, _instancesRoot);
+            soundSourceController.Play();
+            _playingSounds.Add(soundSourceController);
         }
     }
 }

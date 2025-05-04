@@ -27,13 +27,13 @@ using Sources.Services.TimeServices;
 using Sources.Services.VibrationServices;
 using Sources.Utils.Di;
 
-namespace Sources.App.Infrastructure.StateMachine.States.RegistationStates
+namespace Sources.App.Infrastructure.StateMachine.States.InitializationStates
 {
-    public class RegistrationState : GameState<BootstrapData>
+    public class InitializationState : GameState<BootstrapData>
     {
         private IDiBuilder _diBuilder;
 
-        public RegistrationState(IGameStateMachine stateMachine) : base(stateMachine)
+        public InitializationState(IGameStateMachine stateMachine) : base(stateMachine)
         {
         }
         
@@ -57,11 +57,13 @@ namespace Sources.App.Infrastructure.StateMachine.States.RegistationStates
             _diBuilder.Register<UserService, IUserAccessService, IUserSaveService>();
             _diBuilder.Register<VibrationService, IVibrationService>();
             _diBuilder.Register<Assets>(monoServicesData.Assets);
+            
             _diBuilder.Register<PoolService, IPoolCreatorService, IPoolSpawnerService, IPoolDespawnerService>(
                 new PoolService(monoServicesData.PoolRoot));
+            
             _diBuilder.Register<TimeService, ITimeService>();
             _diBuilder.Register<FpsService, IFpsService>();
-            _diBuilder.Register<IAudioService>(monoServicesData.AudioService);
+            _diBuilder.Register<IAudioService>(new AudioService(monoServicesData.AudioRoot));
             _diBuilder.Register<Balance>(monoServicesData.BalanceService);
             _diBuilder.Register<LocalizationService, ILocalizationService>();
             _diBuilder.Register<IGizmosService>(monoServicesData.GizmosService);
@@ -75,8 +77,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.RegistationStates
                 new UiControllersService(monoServicesData.UiViews));
 
             gameObjectService.DontDestroyOnLoad(monoServicesData.gameObject);
-
-
+            
 #if !FORCE_DEBUG
             gameObjectService.Destroy(bootstrapData.DebugMenu);
 #endif

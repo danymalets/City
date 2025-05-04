@@ -13,7 +13,6 @@ namespace Sources.App.Ui.Screens.LevelScreens
     public class LevelScreenController : ScreenController
     {
         private readonly LevelScreen _levelScreen;
-        private readonly IAudioService _audioService;
         private PausePopupController _pausePopupController;
 
         public CarInputViewController CarInputViewController { get; private set; }
@@ -24,7 +23,6 @@ namespace Sources.App.Ui.Screens.LevelScreens
         {
             CarInputViewController = new CarInputViewController(levelScreen.CarInputView);
             PlayerInputViewController = new PlayerInputViewController(levelScreen.PlayerInputView);
-            _audioService = DiContainer.Resolve<IAudioService>();
             _levelScreen = levelScreen;
         }
 

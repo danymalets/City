@@ -1,5 +1,6 @@
 using System;
 using Sources.App.Services.AssetsServices.Localizations;
+using Sources.App.Services.AudioServices;
 using Sources.App.Ui.Base.Animators;
 using Sources.App.Ui.Base.Views;
 using Sources.Services.CoroutineRunnerServices;
@@ -17,6 +18,7 @@ namespace Sources.App.Ui.Base.Controllers
 
         public readonly bool IsAlwaysOpen;
         private readonly ILocalizationService _localizationService;
+        protected readonly IAudioService _audioService;
 
         protected StringsAsset Strings => _localizationService.CurrentStrings;
 
@@ -32,6 +34,7 @@ namespace Sources.App.Ui.Base.Controllers
             _screenAnimator = screenAnimator;
             _coroutineContext = new CoroutineContext();
             _localizationService = DiContainer.Resolve<ILocalizationService>();
+            _audioService = DiContainer.Resolve<IAudioService>();
         }
 
         internal void Prepare()

@@ -1,13 +1,13 @@
 using System;
 using UnityEngine;
 
-namespace Sources.App.Services.AudioServices
+namespace Sources.App.Services.AssetsServices.Audio
 {
     [Serializable]
     public class SoundEffectData
     {
         [SerializeField]
-        private SoundEffectType _type;
+        private SoundType _type;
 
         [SerializeField]
         private AudioClip _clip;
@@ -19,7 +19,7 @@ namespace Sources.App.Services.AudioServices
         [SerializeField]
         private bool _stopable = true;
 
-        public SoundEffectType Type => _type;
+        public SoundType Type => _type;
         public AudioClip Clip => _clip;
         public float Volume => _volume;
         public bool Stopable => _stopable;

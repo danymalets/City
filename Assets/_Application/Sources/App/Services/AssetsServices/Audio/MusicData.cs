@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Sources.App.Services.AudioServices
+namespace Sources.App.Services.AssetsServices.Audio
 {
     [Serializable]
     public class MusicData
