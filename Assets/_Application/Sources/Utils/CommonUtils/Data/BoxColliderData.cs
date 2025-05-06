@@ -1,4 +1,4 @@
-
+ 
 using UnityEngine;
 
 namespace Sources.Utils.CommonUtils.Data

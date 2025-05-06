@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Sources.Utils.CommonUtils.EditorTools
 {
-    public static class FindMissingScriptsRecursively
+    public static class PrefabUtils
     {
         [MenuItem("Auto/Remove Missing Scripts Recursively Visit Prefabs")]
         private static void FindAndRemoveMissingInSelected()

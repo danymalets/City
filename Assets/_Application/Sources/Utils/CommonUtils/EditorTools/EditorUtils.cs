@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Sources.Utils.CommonUtils.EditorTools
 {
-    public static class DEditor
+    public static class EditorUtils
     {
         public static T InstantiatePrefab<T>(T prefab) where T : MonoBehaviour =>
             PrefabUtility.InstantiatePrefab(prefab) as T;

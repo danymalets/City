@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Sources.Utils.CommonUtils.EditorTools
 {
-    public static class AssetsFinder
+    public static class AssetsUtils
     {
         public static IEnumerable<T> FindAssetsByType<T>() where T : Object
         {

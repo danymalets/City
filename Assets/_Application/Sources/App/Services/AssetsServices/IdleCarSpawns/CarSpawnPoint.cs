@@ -43,7 +43,7 @@ namespace Sources.App.Services.AssetsServices.IdleCarSpawns
 //             if (!_visualizationEnabled)
 //                 return;
 //
-//             // _visual = DEditor.InstantiatePrefab(ProjectAssets.EditorServices.Assets
+//             // _visual = EditorUtils.InstantiatePrefab(ProjectAssets.EditorServices.Assets
 //             //     .CarsAssets.GetCarPrefab(_carType), transform);
 //
 //             _visual.transform.localPosition -= _visual.RootOffset;

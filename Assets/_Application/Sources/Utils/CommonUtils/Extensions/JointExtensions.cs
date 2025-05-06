@@ -6,14 +6,14 @@ namespace Sources.Utils.CommonUtils.Extensions
     {
         public static void SetLimit(this ConfigurableJoint joint, float limit)
         {
-            SoftJointLimit jointLinearLimit = joint.linearLimit;
+            var jointLinearLimit = joint.linearLimit;
             jointLinearLimit.limit = limit;
             joint.linearLimit = jointLinearLimit;
         }
         
         public static void SetSpring(this ConfigurableJoint joint, float spring)
         {
-            SoftJointLimitSpring limitSpring = joint.linearLimitSpring;
+            var limitSpring = joint.linearLimitSpring;
             limitSpring.spring = spring;
             joint.linearLimitSpring = limitSpring;
         }

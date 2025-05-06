@@ -1,5 +1,3 @@
-using Sources.Utils.CommonUtils.Data.Live;
-
 namespace Sources.App.Services.UserServices.Users.PreferencesData
 {
     public class UserPreferences
