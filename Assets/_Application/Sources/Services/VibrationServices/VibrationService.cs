@@ -11,8 +11,7 @@ namespace Sources.Services.VibrationServices
         
         public VibrationService()
         {
-             _userPreferences = DiContainer.Resolve<IUserAccessService>()
-                .User.UserPreferences;
+             _userPreferences = DiContainer.Resolve<IUserAccessService>().User.UserPreferences;
         }
 
         public void Vibrate()

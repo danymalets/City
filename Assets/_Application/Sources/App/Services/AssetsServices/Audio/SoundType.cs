@@ -6,7 +6,8 @@ namespace Sources.App.Services.AssetsServices.Audio
     public enum SoundType
     {
         ButtonClick = 1,
-        Lose = 2,
-        Win = 3,
+        SliderChangeValue = 2,
+        PurchaseSuccess = 3,
+        PurchaseError = 4,
     }
 }

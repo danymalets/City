@@ -1,3 +1,5 @@
+using Sources.App.Services.AssetsServices.Audio;
+using Sources.App.Services.AudioServices;
 using Sources.App.Services.BalanceServices.CommonBalances;
 using Sources.App.Services.UserServices;
 using Sources.App.Services.UserServices.Users.Wallets;
@@ -11,12 +13,14 @@ namespace Sources.App.Ui.Screens.ShopScreens.GemsForCoinsExchanges
         private readonly CoinsForGemsBalance _balance;
         private readonly UserWallet _userWallet;
         private readonly IUserSaveService _userSaveService;
+        private readonly IAudioService _audioService;
 
         public CoinsForGemsItemController(CoinsForGemsItem item, CoinsForGemsBalance balance)
         {
             _balance = balance;
             _userWallet = DiContainer.Resolve<IUserAccessService>().User.UserWallet;
             _userSaveService = DiContainer.Resolve<IUserSaveService>();
+            _audioService = DiContainer.Resolve<IAudioService>();
             _item = item;
         }
 
@@ -42,6 +46,11 @@ namespace Sources.App.Ui.Screens.ShopScreens.GemsForCoinsExchanges
             {
                 _userWallet.Coins.AddCurrency(_balance.Coins);
                 _userSaveService.Save();
+                _audioService.PlayOnce(SoundType.PurchaseSuccess);
+            }
+            else
+            {
+                _audioService.PlayOnce(SoundType.PurchaseError);
             }
         }
     }

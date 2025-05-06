@@ -46,10 +46,8 @@ namespace Sources.App.Ui.Screens.ShopScreens
 
         protected override void OnCreate()
         {
-#if !UNITY_EDITOR
             _shopScreen.RestorePurchasesTextButton.gameObject
                 .SetActive(_applicationService.ApplicationPlatform == RuntimePlatform.IPhonePlayer);
-#endif
         }
 
         protected override void OnOpen()
@@ -65,6 +63,7 @@ namespace Sources.App.Ui.Screens.ShopScreens
             _shopScreen.RestorePurchasesTextButton.Button.onClick.AddListener(OnRestorePurchasesButtonClicked);
 
             _iapService.Initialized += IapService_OnInitialized;
+            _iapService.PurchaseProcessed += IapService_OnPurchaseProcessed;
         }
 
         protected override void OnClose()
@@ -80,6 +79,7 @@ namespace Sources.App.Ui.Screens.ShopScreens
             _shopScreen.RestorePurchasesTextButton.Button.onClick.RemoveListener(OnRestorePurchasesButtonClicked);
 
             _iapService.Initialized -= IapService_OnInitialized;
+            _iapService.PurchaseProcessed -= IapService_OnPurchaseProcessed;
         }
 
         protected override void OnRefresh()
@@ -112,6 +112,11 @@ namespace Sources.App.Ui.Screens.ShopScreens
         {
             _audioService.PlayOnce(SoundType.ButtonClick);
             _iapService.RestorePurchases();
+        }
+
+        private void IapService_OnPurchaseProcessed()
+        {
+            _audioService.PlayOnce(SoundType.PurchaseSuccess);
         }
     }
 }

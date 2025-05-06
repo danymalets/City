@@ -29,7 +29,8 @@ namespace Sources.App.Services.AudioServices
             _audioSourceView = _poolSpawner.Spawn(_audioSourceViewPrefab, _instancesRoot);
 
             var audioSource = _audioSourceView.AudioSource;
-            
+
+            audioSource.outputAudioMixerGroup = _data.AudioMiserGroup;
             audioSource.clip = _data.AudioClip;
             audioSource.volume = _data.Volume;
             audioSource.loop = _data.IsLoop;

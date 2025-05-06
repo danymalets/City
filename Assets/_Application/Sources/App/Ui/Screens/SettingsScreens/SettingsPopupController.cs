@@ -1,4 +1,5 @@
 using Sources.App.Services.AssetsServices.Audio;
+using Sources.App.Services.AudioServices;
 using Sources.App.Services.UserServices;
 using Sources.App.Services.UserServices.Users.PreferencesData;
 using Sources.App.Ui.Base;
@@ -31,10 +32,18 @@ namespace Sources.App.Ui.Screens.SettingsScreens
             UserPreferences userPreferences = DiContainer.Resolve<IUserAccessService>().User.UserPreferences;
             
             _soundGroupController = new SliderGroupController(settingsPopup.SoundsSliderGroup, 
-                () => userPreferences.SoundsVolume, value => userPreferences.SoundsVolume = value);
+                () => userPreferences.SoundsVolume, value =>
+                {
+                    userPreferences.SoundsVolume = value;
+                    _audioService.SetSoundsGroupVolume(value);
+                });
             
             _musicGroupController = new SliderGroupController(settingsPopup.MusicSliderGroup, 
-                () => userPreferences.MusicVolume, value => userPreferences.MusicVolume = value);
+                () => userPreferences.MusicVolume, value =>
+                {
+                    userPreferences.MusicVolume = value;
+                    _audioService.SetMusicsGroupVolume(value);
+                });
 
             _vibrationGroupController = new ToggleGroupController(settingsPopup.VibrationToggleGroup, 
                 () => userPreferences.IsVibrationsOn, value => userPreferences.IsVibrationsOn = value);

@@ -3,6 +3,7 @@ using System.Linq;
 using Cysharp.Threading.Tasks;
 using Sources.App.Services.AssetsServices;
 using Sources.App.Services.AssetsServices.Audio;
+using Sources.App.Services.UserServices;
 using Sources.Services.InstantiatorServices;
 using Sources.Services.PoolServices;
 using Sources.Utils.Di;
@@ -12,6 +13,15 @@ namespace Sources.App.Services.AudioServices
 {
     public class AudioService : IInitializable, IAudioService
     {
+        private static class Parameters
+        {
+            public const string SoundsVolume = "SoundsVolume";
+            public const string MusicsVolume = "MusicsVolume";
+        }
+        
+        private const float MinVolume = -80f;
+        private const float MaxVolume = 0f;
+        
         private readonly IPoolCreatorService _poolCreator;
         private readonly AudioAssets _audioAssets;
         
@@ -31,8 +41,6 @@ namespace Sources.App.Services.AudioServices
             _poolCreator = DiContainer.Resolve<IPoolCreatorService>();
             
             _gameObjectService = DiContainer.Resolve<IGameObjectService>();
-
-            UpdateCycle().Forget();
         }
 
         public void Initialize()
@@ -42,18 +50,39 @@ namespace Sources.App.Services.AudioServices
             _poolCreator.CreatePool(new PoolConfig(_audioSourceViewPrefab, 10));
             _musics = _audioAssets.MusicData.ToDictionary(e => e.Type, e => e);
             _soundEffects = _audioAssets.SoundEffectData.ToDictionary(e => e.Type, e => e);
+            
+            var userPreferences = DiContainer.Resolve<IUserAccessService>().User.UserPreferences;
+            SetSoundsGroupVolume(userPreferences.SoundsVolume);
+            SetMusicsGroupVolume(userPreferences.MusicVolume);
+            
+            UpdateCycle().Forget();
         }
-        
+
+        public void SetSoundsGroupVolume(float volume)
+        {
+            SetMixerFloat(Parameters.SoundsVolume, volume);
+        }
+
+        public void SetMusicsGroupVolume(float volume)
+        {
+            SetMixerFloat(Parameters.MusicsVolume, volume);
+        }
+
+        private void SetMixerFloat(string parameterName, float volume)
+        {
+            _audioAssets.MasterMixerGroup.audioMixer.SetFloat(parameterName, Mathf.Lerp(MinVolume, MaxVolume, Mathf.Pow(volume, 1f/12f)));
+        }
+
         public void PlayOnce(SoundType soundType)
         {
             var data = _soundEffects[soundType];
-            SetupSound(new SoundSourceData(data.Clip, data.Volume, false, data.Stopable));
+            SetupSound(new SoundSourceData(_audioAssets.SoundsMixerGroup, data.Clip, data.Volume, false, data.Stopable));
         }
 
         public void PlayMusic(MusicType musicType)
         {
             var data = _musics[musicType];
-            SetupSound(new SoundSourceData(data.Clip, data.Volume, true, true));
+            SetupSound(new SoundSourceData(_audioAssets.MusicsMixerGroup, data.Clip, data.Volume, true, true));
         }
 
         public void StopAll()
