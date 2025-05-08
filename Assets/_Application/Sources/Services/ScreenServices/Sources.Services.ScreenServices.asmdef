@@ -4,7 +4,8 @@
     "references": [
         "Sources.Utils.CommonUtils",
         "Sources.Services.CoroutineRunnerServices",
-        "Sources.Utils.Di"
+        "Sources.Utils.Di",
+        "Sources.Services.GameLoopServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

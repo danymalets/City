@@ -36,7 +36,7 @@ namespace Sources.App.Ui.Screens.PerformanceScreens
             _application = DiContainer.Resolve<IApplicationService>();
             _time = DiContainer.Resolve<ITimeService>();
 
-            _coroutineContext.RunEachSeconds(1, OnUpdate, true);
+            _gameLoopService.RunEachSeconds(1, OnUpdate, true, _gameLoopCancellationToken);
         }
 
         private void OnUpdate()
@@ -47,8 +47,7 @@ namespace Sources.App.Ui.Screens.PerformanceScreens
                     string.Format(TargetFpsPattern, _application.TargetFrameRate), 
                     string.Format(PhysicsUpdateCountPattern, _time.PhysicsUpdateCount),
                     string.Format(DeviceNamePattern, _application.DeviceName), 
-                    string.Format(DeviceModelPattern, _application.DeviceModel), 
-                    string.Format(RigidbodyCountPattern, GameObject.FindObjectsOfType<Rigidbody>().Length));
+                    string.Format(DeviceModelPattern, _application.DeviceModel));
         }
 
         protected override void OnRefresh()
@@ -58,7 +57,6 @@ namespace Sources.App.Ui.Screens.PerformanceScreens
 
         protected override void OnClose()
         {
-            _coroutineContext.StopAllCoroutines();
             _fpsService = null;
         }
     }

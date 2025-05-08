@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.App.Infrastructure.StateMachine.States.LevelStates;
@@ -7,7 +9,7 @@ using Sources.App.Ui.Base;
 using Sources.App.Ui.Screens.CurrencyScreens;
 using Sources.App.Ui.Screens.LoadingScreens;
 using Sources.App.Ui.Screens.MainScreens;
-using Sources.Services.CoroutineRunnerServices;
+using Sources.Services.GameLoopServices;
 using Sources.Services.SceneLoaderServices;
 using Sources.Utils.Di;
 using UnityEngine.SceneManagement;
@@ -22,7 +24,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
         private ISceneLoaderService _sceneLoader;
         private Assets _assets;
         private LoadingScreenController _loadingScreen;
-        private CoroutineContext _coroutineContext;
+        private IGameLoopService _gameLoopService;
 
         public MainUiState(IGameStateMachine stateMachine) : base(stateMachine)
         {
@@ -32,13 +34,13 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
         {
             IUiControllersService uiControllers = DiContainer.Resolve<IUiControllersService>();
             
+            _gameLoopService = DiContainer.Resolve<IGameLoopService>();
+
             _mainScreenController = uiControllers.Get<MainScreenController>();
             _loadingScreen = uiControllers.Get<LoadingScreenController>();
             _currencyScreenController = uiControllers.Get<CurrencyScreenController>();
 
             _uiCloseService = DiContainer.Resolve<IUiCloseService>();
-
-            _coroutineContext = new CoroutineContext();
 
             _mainScreenController.Open();
             _currencyScreenController.Open();
@@ -46,28 +48,30 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
             _assets = DiContainer.Resolve<Assets>();
             _sceneLoader = DiContainer.Resolve<ISceneLoaderService>();
 
-            _sceneLoader.LoadEmptyScene(() =>
-            {
-            });
-            _sceneLoader.LoadScene<PlayerRenderSceneContext>(_assets.PlayerRenderSceneName, playerRenderSceneContext =>
-            {
-                PlayerMonoEntity player = playerRenderSceneContext.Player;
-                _mainScreenController.PlayButtonClicked += OnPlayButtonClicked;
-            }, LoadSceneMode.Additive);
+            RunScreenLoading().Forget();
 
-            RunScreenLoading();
+            EnterAsync_TEMP().Forget();
         }
 
-        private void RunScreenLoading()
+        private async UniTask EnterAsync_TEMP()
+        {
+            await _sceneLoader.LoadEmptyScene();
+            var playerRenderSceneContext = await _sceneLoader.LoadScene<PlayerRenderSceneContext>(_assets.PlayerRenderSceneName, LoadSceneMode.Additive);
+            
+            PlayerMonoEntity player = playerRenderSceneContext.Player;
+            _mainScreenController.PlayButtonClicked += OnPlayButtonClicked;
+        }
+
+        private async UniTask RunScreenLoading()
         {
             _loadingScreen.Open();
-            _coroutineContext.ChangeValue(0, 1, 1, value =>
-            {
-                _loadingScreen.SetProgress(value);
-            }, () =>
-            {
-                _coroutineContext.RunNextFrame(() => _loadingScreen.Close());
-            });
+
+            await _gameLoopService.ChangeValue(0, 1, 1, value =>
+                _loadingScreen.SetProgress(value));
+
+            await UniTask.NextFrame();
+
+            _loadingScreen.Close();
         }
 
         private void OnPlayButtonClicked()
@@ -77,11 +81,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
         
         protected override void OnExit()
         {
-            _sceneLoader.UnloadScene(_assets.PlayerRenderSceneName, () =>
-            {
-                
-            });
-            
+            _sceneLoader.UnloadScene(_assets.PlayerRenderSceneName);
             _mainScreenController.PlayButtonClicked -= OnPlayButtonClicked;
 
             _uiCloseService.CloseAll();

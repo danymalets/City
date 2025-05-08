@@ -7,11 +7,11 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Systems
 {
     public abstract class DSystem
     {
-        protected DWorld _world;
+        protected CustomWorld _world;
         protected IGizmosService _gizmos;
         protected GizmosContext _updateGizmosContext;
 
-        public void Setup(DWorld world)
+        public void Setup(CustomWorld world)
         {
             _world = world;
             _gizmos = DiContainer.Resolve<IGizmosService>();

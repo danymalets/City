@@ -2,9 +2,9 @@
     "name": "Sources.Services.SceneLoaderServices",
     "rootNamespace": "",
     "references": [
-        "Sources.Services.CoroutineRunnerServices",
         "Sources.Utils.Di",
-        "Sources.Utils.CommonUtils"
+        "Sources.Utils.CommonUtils",
+        "UniTask"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

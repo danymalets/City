@@ -19,7 +19,7 @@ namespace Sources.App.Ui.Screens.ShopScreens.GemIapsViews
         {
             IapProductType[] products = DiContainer.Resolve<Balance>().EconomyBalance.ShopGemProducts;
 
-            DAssert.IsTrue(iapItems.Length == products.Length);
+            AssertUtils.IsTrue(iapItems.Length == products.Length);
             _iapItemsControllers = new CurrencyIapItemController[iapItems.Length];
             for (int i = 0; i < iapItems.Length; i++)
             {

@@ -26,13 +26,13 @@ namespace Sources.App.Data.Points
 
         public bool IsSimple()
         {
-            DAssert.IsTrue(Targets.Count != 0);
+            AssertUtils.IsTrue(Targets.Count != 0);
             return Targets.Count == 1;
         }
         
         public bool IsSimpleBack()
         {
-            DAssert.IsTrue(Sources.Count != 0);
+            AssertUtils.IsTrue(Sources.Count != 0);
             return Sources.Count == 1;
         }
 

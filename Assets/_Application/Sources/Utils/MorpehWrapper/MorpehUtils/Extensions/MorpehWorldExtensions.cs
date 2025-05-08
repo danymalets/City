@@ -6,7 +6,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Extensions
 {
     public static class MorpehWorldExtensions
     {
-        public static Entity CreateFromMono(this DWorld world, MonoEntity monoEntity)
+        public static Entity CreateFromMono(this CustomWorld world, MonoEntity monoEntity)
         {
             Entity entity = world.CreateEntity();
             monoEntity.Setup(entity);

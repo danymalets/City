@@ -3,7 +3,6 @@ using Sources.App.Services.AudioServices;
 using Sources.App.Services.BalanceServices;
 using Sources.App.Ui.Base.Views;
 using Sources.Services.ApplicationServices;
-using Sources.Services.CoroutineRunnerServices;
 using Sources.Services.GizmosServices;
 using Sources.Services.PoolServices;
 using UnityEngine;
@@ -13,7 +12,6 @@ namespace Sources.App.Infrastructure.StateMachine.States.BootstrapStates
     public class MonoServicesData : MonoBehaviour
     {
         [field: SerializeField] public UiViews UiViews { get; private set; }
-        [field: SerializeField] public CoroutineService CoroutineService { get; private set; }
         [field: SerializeField] public ApplicationService ApplicationService { get; private set; }
         [field: SerializeField] public Transform PoolRoot { get; private set; }
         [field: SerializeField] public Transform AudioRoot { get; private set; }

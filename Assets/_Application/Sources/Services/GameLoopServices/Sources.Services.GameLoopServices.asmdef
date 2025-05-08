@@ -1,0 +1,19 @@
+{
+    "name": "Sources.Services.GameLoopServices",
+    "rootNamespace": "",
+    "references": [
+        "Sources.Utils.Di",
+        "Sources.Services.TimeServices",
+        "Sources.Utils.CommonUtils",
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

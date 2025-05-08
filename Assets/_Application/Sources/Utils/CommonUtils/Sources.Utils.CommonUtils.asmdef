@@ -2,7 +2,9 @@
     "name": "Sources.Utils.CommonUtils",
     "rootNamespace": "",
     "references": [
-        "Scellecs.Morpeh"
+        "Scellecs.Morpeh",
+        "UniTask",
+        "UniTask.Linq"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

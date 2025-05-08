@@ -10,7 +10,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Extensions
         public static ref TComponent Get<TComponent>(this Entity entity) where TComponent : struct, IComponent
         {
 #if FORCE_DEBUG
-            DAssert.IsTrue(entity.Has<TComponent>());
+            AssertUtils.IsTrue(entity.Has<TComponent>());
 #endif
             return ref entity.GetComponent<TComponent>();
         }
@@ -49,7 +49,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Extensions
         public static Entity Add<TComponent>(this Entity entity) where TComponent : struct, IComponent
         {
 #if FORCE_DEBUG
-            DAssert.IsTrue(entity.NotHas<TComponent>(), "Cannot add, entity also has this component");
+            AssertUtils.IsTrue(entity.NotHas<TComponent>(), "Cannot add, entity also has this component");
 #endif
             entity.AddComponent<TComponent>();
             return entity;
@@ -91,7 +91,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Extensions
             where TComponent : struct, IComponent
         {
 #if FORCE_DEBUG
-            DAssert.IsTrue(entity.Has<TComponent>());
+            AssertUtils.IsTrue(entity.Has<TComponent>());
 #endif
             entity.RemoveComponent<TComponent>();
         }

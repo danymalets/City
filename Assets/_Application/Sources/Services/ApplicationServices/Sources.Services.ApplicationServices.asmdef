@@ -3,8 +3,8 @@
     "rootNamespace": "",
     "references": [
         "Sources.Utils.Di",
-        "Sources.Services.CoroutineRunnerServices",
-        "Sources.Services.ApplicationInputServices"
+        "Sources.Services.ApplicationInputServices",
+        "Sources.Services.GameLoopServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

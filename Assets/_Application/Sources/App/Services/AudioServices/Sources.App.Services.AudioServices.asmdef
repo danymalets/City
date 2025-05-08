@@ -8,7 +8,8 @@
         "Sources.App.Services.UserServices",
         "Sources.App.Services.AssetsServices",
         "Sources.Services.InstantiatorServices",
-        "UniTask"
+        "UniTask",
+        "UniTask.Linq"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

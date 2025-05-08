@@ -9,7 +9,8 @@
         "Sources.Services.CoroutineRunnerServices",
         "Sources.Services.TimeServices",
         "Sources.Services.FpsServices",
-        "Sources.Services.GizmosServices"
+        "Sources.Services.GizmosServices",
+        "Sources.Services.GameLoopServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

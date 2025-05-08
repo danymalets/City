@@ -16,7 +16,7 @@ namespace Sources.App.Ui.Screens.ShopScreens.GemsForCoinsExchanges
         {
             CoinsForGemsBalance[] products = DiContainer.Resolve<Balance>().EconomyBalance.CoinsForGemsForCoinsExchange;
 
-            DAssert.IsTrue(items.Length == products.Length);
+            AssertUtils.IsTrue(items.Length == products.Length);
             _itemsControllers = new CoinsForGemsItemController[items.Length];
             for (int i = 0; i < items.Length; i++)
             {

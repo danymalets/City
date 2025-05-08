@@ -11,8 +11,8 @@ using Sources.Services.AdsServices;
 using Sources.Services.AnalyticsServices;
 using Sources.Services.ApplicationInputServices;
 using Sources.Services.ApplicationServices;
-using Sources.Services.CoroutineRunnerServices;
 using Sources.Services.FpsServices;
+using Sources.Services.GameLoopServices;
 using Sources.Services.GizmosServices;
 using Sources.Services.IapServices;
 using Sources.Services.InstantiatorServices;
@@ -46,8 +46,10 @@ namespace Sources.App.Infrastructure.StateMachine.States.InitializationStates
             IGameObjectService gameObjectService = 
                 _diBuilder.Register<GameObjectService, IGameObjectService>();
 
+            _diBuilder.Register<TimeService, ITimeService>();
+            _diBuilder.Register<GameLoopService, IGameLoopService>();
+            
             _diBuilder.Register<PhysicsService, IPhysicsService>();
-            _diBuilder.Register<ICoroutineService>(monoServicesData.CoroutineService);
             _diBuilder.Register<ApplicationInputService, IApplicationInputService>();
             _diBuilder.Register<IApplicationService>(monoServicesData.ApplicationService);
             _diBuilder.Register<SceneLoaderService, ISceneLoaderService>();
@@ -61,7 +63,6 @@ namespace Sources.App.Infrastructure.StateMachine.States.InitializationStates
             _diBuilder.Register<PoolService, IPoolCreatorService, IPoolSpawnerService, IPoolDespawnerService>(
                 new PoolService(monoServicesData.PoolRoot));
             
-            _diBuilder.Register<TimeService, ITimeService>();
             _diBuilder.Register<FpsService, IFpsService>();
             _diBuilder.Register<IAudioService>(new AudioService(monoServicesData.AudioRoot));
             _diBuilder.Register<Balance>(monoServicesData.BalanceService);

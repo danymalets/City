@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using Sources.Services.CoroutineRunnerServices;
+using Sources.Services.GameLoopServices;
 using Sources.Utils.CommonUtils.Libs;
 using Sources.Utils.Di;
 using UnityEngine;
@@ -9,6 +9,7 @@ namespace Sources.Services.ScreenServices
 {
     public class ScreenService : IInitializable, IScreenService
     {
+        private readonly IGameLoopService _gameLoopService;
         public int Height { get; private set; }
 
         public int Width { get; private set; }
@@ -25,15 +26,16 @@ namespace Sources.Services.ScreenServices
 
         public event Action ScreenResolutionChanged;
 
-        private CoroutineContext _coroutineContext;
+        public ScreenService()
+        {
+            _gameLoopService = DiContainer.Resolve<IGameLoopService>();
+        }
 
         public void Initialize()
         {
             UpdateResolution();
-
-            _coroutineContext = new CoroutineContext();
-
-            _coroutineContext.RunEachSeconds(0.5f, () =>
+            
+            _gameLoopService.RunEachSeconds(0.5f, () =>
             {
                 if (Width != Screen.width ||
                     Height != Screen.height ||

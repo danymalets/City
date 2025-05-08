@@ -13,8 +13,8 @@ namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
         public SafeRigidbody EnableRigidbodyInternal()
         {
 #if FORCE_DEBUG
-            DAssert.IsTrue(_rigidbody == null);
-            DAssert.IsTrue(_safeRigidbody == null);
+            AssertUtils.IsTrue(_rigidbody == null);
+            AssertUtils.IsTrue(_safeRigidbody == null);
 #endif
 
             _rigidbody = gameObject.AddComponent<Rigidbody>();
@@ -25,8 +25,8 @@ namespace Sources.Utils.MorpehWrapper.DefaultComponents.Monos
         public void DisableRigidbodyInternal()
         {
 #if FORCE_DEBUG
-            DAssert.IsTrue(_rigidbody != null);
-            DAssert.IsTrue(_safeRigidbody != null);
+            AssertUtils.IsTrue(_rigidbody != null);
+            AssertUtils.IsTrue(_safeRigidbody != null);
 #endif
 
             _rigidbody.interpolation = RigidbodyInterpolation.None;

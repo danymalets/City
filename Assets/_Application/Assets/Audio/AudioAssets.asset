@@ -24,16 +24,16 @@ MonoBehaviour:
   - _type: 1
     _clip: {fileID: 8300000, guid: e6cab2dcd38140eabf6a07daf9433e2f, type: 3}
     _volume: 1
-    _stopable: 1
+    _stopable: 0
   - _type: 2
     _clip: {fileID: 8300000, guid: e6cab2dcd38140eabf6a07daf9433e2f, type: 3}
     _volume: 0.6
-    _stopable: 1
+    _stopable: 0
   - _type: 3
     _clip: {fileID: 8300000, guid: a37f44cbf8c2a7443a3c361efa2f233a, type: 3}
     _volume: 1
-    _stopable: 1
+    _stopable: 0
   - _type: 4
     _clip: {fileID: 8300000, guid: 5ff823f546b52574a931e1d9b44290a6, type: 3}
     _volume: 1
-    _stopable: 1
+    _stopable: 0

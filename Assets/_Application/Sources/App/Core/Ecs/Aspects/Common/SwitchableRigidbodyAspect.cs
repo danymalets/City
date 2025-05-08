@@ -26,7 +26,7 @@ namespace Sources.App.Core.Ecs.Aspects.Common
         public readonly SafeRigidbody EnableRigidbody()
         {
 #if FORCE_DEBUG
-            DAssert.IsTrue(!HasPhysicBody());
+            AssertUtils.IsTrue(!HasPhysicBody());
 #endif
             
             SafeRigidbody safeRigidbody = RigidbodySwitcher.EnableRigidbodyInternal();
@@ -49,7 +49,7 @@ namespace Sources.App.Core.Ecs.Aspects.Common
         public readonly void DisableRigidbody()
         {
 #if FORCE_DEBUG
-            DAssert.IsTrue(HasPhysicBody());
+            AssertUtils.IsTrue(HasPhysicBody());
 #endif
 
             if (Entity.TryGetRef(out IWheelsSystem wheelsSystem))

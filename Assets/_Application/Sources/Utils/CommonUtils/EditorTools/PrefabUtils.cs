@@ -9,7 +9,7 @@ namespace Sources.Utils.CommonUtils.EditorTools
 {
     public static class PrefabUtils
     {
-        [MenuItem("Auto/Remove Missing Scripts Recursively Visit Prefabs")]
+        [MenuItem("Project Tools/Remove Missing Scripts Recursively Visit Prefabs")]
         private static void FindAndRemoveMissingInSelected()
         {
             // EditorUtility.CollectDeepHierarchy does not include inactive children

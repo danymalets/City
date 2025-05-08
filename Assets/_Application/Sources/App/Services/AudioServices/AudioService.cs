@@ -1,11 +1,14 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Linq;
 using Sources.App.Services.AssetsServices;
 using Sources.App.Services.AssetsServices.Audio;
 using Sources.App.Services.UserServices;
 using Sources.Services.InstantiatorServices;
 using Sources.Services.PoolServices;
+using Sources.Utils.CommonUtils.Libs;
 using Sources.Utils.Di;
 using UnityEngine;
 
@@ -29,8 +32,7 @@ namespace Sources.App.Services.AudioServices
         private Dictionary<SoundType, SoundEffectData> _soundEffects = new();
         private readonly HashSet<AudioSourceController> _playingSounds = new (10);
         private AudioSourceView _audioSourceViewPrefab;
-        private readonly IGameObjectService _gameObjectService;
-        private Transform _instancesRoot;
+        private readonly Transform _instancesRoot;
 
         public AudioService(Transform root)
         {
@@ -39,8 +41,6 @@ namespace Sources.App.Services.AudioServices
             _audioAssets = DiContainer.Resolve<Assets>().AudioAssets;
 
             _poolCreator = DiContainer.Resolve<IPoolCreatorService>();
-            
-            _gameObjectService = DiContainer.Resolve<IGameObjectService>();
         }
 
         public void Initialize()
@@ -54,8 +54,8 @@ namespace Sources.App.Services.AudioServices
             var userPreferences = DiContainer.Resolve<IUserAccessService>().User.UserPreferences;
             SetSoundsGroupVolume(userPreferences.SoundsVolume);
             SetMusicsGroupVolume(userPreferences.MusicVolume);
-            
-            UpdateCycle().Forget();
+
+            UniTasksUtils.RunEachUpdate(OnUpdate);
         }
 
         public void SetSoundsGroupVolume(float volume)
@@ -93,16 +93,7 @@ namespace Sources.App.Services.AudioServices
             }
         }
 
-        private async UniTask UpdateCycle()
-        {
-            while (true)
-            {
-                Update();
-                await UniTask.NextFrame();
-            }
-        }
-
-        private void Update()
+        private void OnUpdate()
         {
             foreach (var playingSound in _playingSounds.ToArray())
             {

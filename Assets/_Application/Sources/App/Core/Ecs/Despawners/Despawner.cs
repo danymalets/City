@@ -6,12 +6,12 @@ namespace Sources.App.Core.Ecs.Despawners
 {
     public abstract class Despawner
     {
-        protected readonly DWorld _world;
+        protected readonly CustomWorld _world;
         protected readonly IPoolDespawnerService _poolDespawner;
         
         protected Despawner()
         {
-            _world = DiContainer.Resolve<DWorld>();
+            _world = DiContainer.Resolve<CustomWorld>();
             _poolDespawner = DiContainer.Resolve<IPoolDespawnerService>();
         }
     }

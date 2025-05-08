@@ -14,7 +14,7 @@ namespace Sources.App.Ui.Screens.PausePopups
     public class PausePopupController : ScreenController
     {
         private readonly PausePopup _pausePopup;
-        private DWorld _dWorld;
+        private CustomWorld _customWorld;
         private SettingsPopupController _settingsPopupController;
         private readonly ITimeService _timeService;
 
@@ -36,9 +36,9 @@ namespace Sources.App.Ui.Screens.PausePopups
 
         protected override void OnOpen()
         {
-            _dWorld = DiContainer.Resolve<DWorld>();
+            _customWorld = DiContainer.Resolve<CustomWorld>();
             _timeService.TimeScale = 0;
-            _dWorld.IsPaused = true;
+            _customWorld.IsPaused = true;
             _pausePopup.RestartButton.Button.onClick.AddListener(OnRestartButtonClicked);
             _pausePopup.ContinueButton.Button.onClick.AddListener(OnContinueButtonClicked);
             _pausePopup.LeaveButton.Button.onClick.AddListener(OnExitButtonClicked);
@@ -47,10 +47,10 @@ namespace Sources.App.Ui.Screens.PausePopups
 
         protected override void OnClose()
         {
-            _dWorld.IsPaused = false;
+            _customWorld.IsPaused = false;
             _timeService.TimeScale = 1;
 
-            _dWorld = null;
+            _customWorld = null;
             
             _pausePopup.RestartButton.Button.onClick.RemoveListener(OnRestartButtonClicked);
             _pausePopup.ContinueButton.Button.onClick.RemoveListener(OnContinueButtonClicked);

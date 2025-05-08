@@ -9,7 +9,7 @@ namespace Sources.App.Core.Ecs.Factories
 {
     public abstract class Factory
     {
-        protected readonly DWorld _world;
+        protected readonly CustomWorld _world;
         protected readonly Assets _assets;
         protected readonly ILevelContext _levelContext;
         protected readonly Balance _balance;
@@ -17,7 +17,7 @@ namespace Sources.App.Core.Ecs.Factories
 
         protected Factory()
         {
-            _world = DiContainer.Resolve<DWorld>();
+            _world = DiContainer.Resolve<CustomWorld>();
             _assets = DiContainer.Resolve<Assets>();
             _balance = DiContainer.Resolve<Balance>();
             _poolSpawner = DiContainer.Resolve<IPoolSpawnerService>();

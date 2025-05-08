@@ -37,14 +37,14 @@ namespace Sources.App.Core.Ecs
 {
     public class Game
     {
-        private readonly DWorld _world;
+        private readonly CustomWorld _world;
         private readonly IDiBuilder _diBuilder;
 
         public Game()
         {
             _diBuilder = DiBuilder.Create();
 
-            _world = _diBuilder.Register<DWorld>();
+            _world = _diBuilder.Register<CustomWorld>();
             
             RegisterGameServices();
 

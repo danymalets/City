@@ -18,7 +18,7 @@ namespace Sources.App.Core.Ecs.Aspects.Car
         public readonly void TakePlaceInternal(int place, Entity player)
         {
 #if FORCE_DEBUG
-            DAssert.IsTrue(IsFree(place));
+            AssertUtils.IsTrue(IsFree(place));
 #endif
             Passengers[place] = player;
         }
@@ -26,7 +26,7 @@ namespace Sources.App.Core.Ecs.Aspects.Car
         public readonly void FreeUpPlaceInternal(int place, Entity entity)
         {
 #if FORCE_DEBUG
-            DAssert.IsTrue(Passengers[place] == entity);
+            AssertUtils.IsTrue(Passengers[place] == entity);
 #endif
             Passengers[place] = null;
         }

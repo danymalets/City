@@ -1,6 +1,6 @@
 using System;
 using Sources.Services.ApplicationInputServices;
-using Sources.Services.CoroutineRunnerServices;
+using Sources.Services.GameLoopServices;
 using Sources.Utils.Di;
 using UnityEngine;
 
@@ -17,8 +17,8 @@ namespace Sources.Services.ApplicationServices
         public event Action Unpaused;
         public event Action ApplicationQuit;
 
-        private CoroutineContext _coroutineContext;
         private IApplicationInputService _applicationInput;
+        private IGameLoopService _gameLoopService;
 
         public int TargetFrameRate
         {
@@ -46,11 +46,10 @@ namespace Sources.Services.ApplicationServices
 
         public void Initialize()
         {
-            _coroutineContext = new CoroutineContext();
-
             _applicationInput = DiContainer.Resolve<IApplicationInputService>();
+            _gameLoopService = DiContainer.Resolve<IGameLoopService>();
             
-            _coroutineContext.RunEachFrame(() =>
+            _gameLoopService.RunEachFrame(() =>
             {
                 if (_applicationInput.GetKeyDown(KeyCode.Escape))
                     BackButtonClicked?.Invoke();
@@ -73,7 +72,17 @@ namespace Sources.Services.ApplicationServices
 
         private void OnApplicationPause(bool pauseStatus)
         {
+            if (pauseStatus)
+            {
+                Paused?.Invoke();
+            }
+            else
+            {
+                Unpaused?.Invoke();
+            }
+            
             PauseStatusChanged?.Invoke(pauseStatus);
+            
             Debug.Log($"pauseStatus {pauseStatus}");
         }
 

@@ -1,10 +1,11 @@
 using System;
+using System.Threading;
 using Sources.App.Services.AssetsServices.Audio;
 using Sources.App.Services.AssetsServices.Localizations;
 using Sources.App.Services.AudioServices;
 using Sources.App.Ui.Base.Animators;
 using Sources.App.Ui.Base.Views;
-using Sources.Services.CoroutineRunnerServices;
+using Sources.Services.GameLoopServices;
 using Sources.Services.LocalizationServices;
 using Sources.Utils.Di;
 using UnityEngine.UI;
@@ -15,11 +16,13 @@ namespace Sources.App.Ui.Base.Controllers
     {
         private readonly GameScreen _gamePopup;
         private readonly ScreenAnimator _screenAnimator;
-        protected readonly CoroutineContext _coroutineContext;
 
         public readonly bool IsAlwaysOpen;
         private readonly ILocalizationService _localizationService;
         protected readonly IAudioService _audioService;
+        protected readonly IGameLoopService _gameLoopService;
+        private readonly CancellationTokenSource _gameLoopCancellationTokenSource;
+        protected readonly CancellationToken _gameLoopCancellationToken;
 
         protected StringsAsset Strings => _localizationService.CurrentStrings;
 
@@ -33,7 +36,10 @@ namespace Sources.App.Ui.Base.Controllers
             IsAlwaysOpen = isAlwaysOpen;
             _gamePopup = gamePopup;
             _screenAnimator = screenAnimator;
-            _coroutineContext = new CoroutineContext();
+            _gameLoopCancellationTokenSource = new CancellationTokenSource();
+            _gameLoopCancellationToken = _gameLoopCancellationTokenSource.Token;
+            _gameLoopService = DiContainer.Resolve<IGameLoopService>();
+
             _localizationService = DiContainer.Resolve<ILocalizationService>();
             _audioService = DiContainer.Resolve<IAudioService>();
         }
@@ -91,9 +97,9 @@ namespace Sources.App.Ui.Base.Controllers
         {        
             Closed?.Invoke(this);
             IsOpen = false;
+            _gameLoopCancellationTokenSource.Cancel();
             UnsubscribeCloseButtons();
             _screenAnimator.PlayClose(isForce);
-            _coroutineContext.StopAllCoroutines();
             OnClose();
         }
 
