@@ -12,7 +12,6 @@ using Sources.App.Ui.Screens.ShopScreens.GemsForCoinsExchanges;
 using Sources.App.Ui.Screens.ShopScreens.IapItems;
 using Sources.Services.ApplicationServices;
 using Sources.Services.IapServices;
-using Sources.Utils.CommonUtils.Libs;
 using Sources.Utils.Di;
 using UnityEngine;
 

@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 
-namespace Sources.Utils.CommonUtils.Libs
+namespace Sources.Utils.CommonUtils.Utils
 {
     public static class PerformanceUtils
     {

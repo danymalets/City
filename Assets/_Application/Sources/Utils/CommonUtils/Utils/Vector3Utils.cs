@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Sources.Utils.CommonUtils.Libs
+namespace Sources.Utils.CommonUtils.Utils
 {
     public static class Vector3Utils
     {

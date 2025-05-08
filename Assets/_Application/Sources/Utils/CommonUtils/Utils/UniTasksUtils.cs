@@ -2,9 +2,8 @@ using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Linq;
-using UnityEngine;
 
-namespace Sources.Utils.CommonUtils.Libs
+namespace Sources.Utils.CommonUtils.Utils
 {
     public static class UniTasksUtils
     {

@@ -1,6 +1,6 @@
 using System.Linq;
 
-namespace Sources.Utils.CommonUtils.Libs
+namespace Sources.Utils.CommonUtils.Utils
 {
     public static class LayerMaskUtils
     {

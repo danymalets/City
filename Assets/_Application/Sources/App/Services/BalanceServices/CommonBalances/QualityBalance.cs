@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sources.App.Services.UserServices.Users.PreferencesData;
-using Sources.Utils.CommonUtils.Libs;
+using Sources.Utils.CommonUtils.Utils;
 using UnityEngine;
 
 namespace Sources.App.Services.BalanceServices.CommonBalances

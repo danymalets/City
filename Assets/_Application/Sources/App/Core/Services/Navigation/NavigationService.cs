@@ -1,4 +1,4 @@
-using Sources.Utils.CommonUtils.Libs;
+using Sources.Utils.CommonUtils.Utils;
 using Sources.Utils.Di;
 using UnityEngine;
 using UnityEngine.AI;

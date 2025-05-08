@@ -1,4 +1,4 @@
-using Sources.Utils.CommonUtils.Libs;
+using Sources.Utils.CommonUtils.Utils;
 
 namespace Sources.App.Data.Constants
 {

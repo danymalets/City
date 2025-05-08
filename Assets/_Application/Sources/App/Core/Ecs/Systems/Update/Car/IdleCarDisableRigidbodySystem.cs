@@ -6,7 +6,7 @@ using Sources.App.Core.Ecs.Components.Player.Npc;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Services.BalanceServices;
 using Sources.App.Services.BalanceServices.CarsBalances;
-using Sources.Utils.CommonUtils.Libs;
+using Sources.Utils.CommonUtils.Utils;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;

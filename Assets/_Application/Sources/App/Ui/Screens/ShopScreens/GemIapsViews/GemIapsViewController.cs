@@ -4,7 +4,7 @@ using Sources.App.Services.BalanceServices;
 using Sources.App.Services.BalanceServices.CommonBalances;
 using Sources.App.Ui.Screens.ShopScreens.IapItems;
 using Sources.Services.IapServices;
-using Sources.Utils.CommonUtils.Libs;
+using Sources.Utils.CommonUtils.Utils;
 using Sources.Utils.Di;
 using UnityEngine;
 

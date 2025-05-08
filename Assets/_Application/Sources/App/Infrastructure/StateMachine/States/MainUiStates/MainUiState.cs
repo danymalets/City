@@ -30,7 +30,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
         {
         }
 
-        protected override void OnEnter()
+        protected override async void OnEnter()
         {
             IUiControllersService uiControllers = DiContainer.Resolve<IUiControllersService>();
             
@@ -50,11 +50,6 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
 
             RunScreenLoading().Forget();
 
-            EnterAsync_TEMP().Forget();
-        }
-
-        private async UniTask EnterAsync_TEMP()
-        {
             await _sceneLoader.LoadEmptyScene();
             var playerRenderSceneContext = await _sceneLoader.LoadScene<PlayerRenderSceneContext>(_assets.PlayerRenderSceneName, LoadSceneMode.Additive);
             

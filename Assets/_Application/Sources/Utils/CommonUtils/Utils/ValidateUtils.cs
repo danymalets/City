@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Sources.Utils.CommonUtils.Extensions;
 
-namespace Sources.Utils.CommonUtils.Libs
+namespace Sources.Utils.CommonUtils.Utils
 {
     public static class ValidateUtils
     {

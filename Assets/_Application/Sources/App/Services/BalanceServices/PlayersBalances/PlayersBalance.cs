@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Sources.App.Data.Players;
 using Sources.Utils.CommonUtils.Extensions;
-using Sources.Utils.CommonUtils.Libs;
+using Sources.Utils.CommonUtils.Utils;
 using UnityEngine;
 
 namespace Sources.App.Services.BalanceServices.PlayersBalances

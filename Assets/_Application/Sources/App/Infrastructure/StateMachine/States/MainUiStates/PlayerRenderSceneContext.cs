@@ -2,7 +2,7 @@ using Sources.App.Services.AssetsServices.Monos.MonoEntities.Player;
 using Sources.Services.SceneLoaderServices;
 using UnityEngine;
 
-namespace Sources.App.Infrastructure.StateMachine.States.LevelStates
+namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
 {
     public class PlayerRenderSceneContext : SceneContext
     {

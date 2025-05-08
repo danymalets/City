@@ -5,7 +5,7 @@ using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Data.Pathes;
 using Sources.App.Data.Points;
 using Sources.Utils.CommonUtils.Extensions;
-using Sources.Utils.CommonUtils.Libs;
+using Sources.Utils.CommonUtils.Utils;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using UnityEngine;

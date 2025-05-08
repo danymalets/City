@@ -3,7 +3,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using Sources.Services.TimeServices;
 using Sources.Utils.CommonUtils.EditorTools;
-using Sources.Utils.CommonUtils.Libs;
+using Sources.Utils.CommonUtils.Utils;
 using Sources.Utils.Di;
 using UnityEngine;
 
@@ -23,38 +23,42 @@ namespace Sources.Services.GameLoopServices
             AssertUtils.IsTrue(period > 0);
             float timer = shouldRunNow ? 0 : period;
 
-            while (true)
+            while (!cancellationToken.IsCancellationRequested)
             {
                 while (timer <= 0)
                 {
                     timer += period;
                     action?.Invoke();
                 }
-                await UniTask.NextFrame();
+
                 timer -= _timeService.DeltaTime;
+                
+                await UniTask.NextFrame();
             }
         }
 
         public async void RunEachFrame(Action action, bool shouldRunNow, CancellationToken cancellationToken = default)
         {
-            if (shouldRunNow)
-            {
-                action?.Invoke();
-            }
-
-            while (true)
+            if (!shouldRunNow)
             {
                 await UniTask.NextFrame();
+            }
+
+            while (!cancellationToken.IsCancellationRequested)
+            {
                 action?.Invoke();
+                await UniTask.NextFrame();
             }
         }
 
         public async void RunEachFixedUpdate(Action action, CancellationToken cancellationToken = default)
         {
-            while (true)
+            await UniTask.WaitForFixedUpdate();
+
+            while (!cancellationToken.IsCancellationRequested)
             {
-                await UniTask.WaitForFixedUpdate();
                 action?.Invoke();
+                await UniTask.WaitForFixedUpdate();
             }
         }
 
@@ -66,7 +70,7 @@ namespace Sources.Services.GameLoopServices
 
         public async UniTask IncreaseNormalValue(float seconds, Action<float> action, CancellationToken cancellationToken = default)
         {
-            for (float elapsedTime = 0; elapsedTime < seconds; elapsedTime += Time.deltaTime)
+            for (float elapsedTime = 0; elapsedTime < seconds && !cancellationToken.IsCancellationRequested; elapsedTime += Time.deltaTime)
             {
                 action(elapsedTime / seconds);
                 await UniTask.NextFrame();

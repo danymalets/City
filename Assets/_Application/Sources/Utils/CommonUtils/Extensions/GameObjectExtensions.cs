@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using Sources.Utils.CommonUtils.Libs;
+using Sources.Utils.CommonUtils.Utils;
 using UnityEngine;
 
 namespace Sources.Utils.CommonUtils.Extensions

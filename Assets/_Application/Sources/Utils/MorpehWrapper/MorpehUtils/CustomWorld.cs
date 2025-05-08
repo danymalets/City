@@ -5,7 +5,7 @@ using Scellecs.Morpeh;
 using Sources.Services.FpsServices;
 using Sources.Services.GameLoopServices;
 using Sources.Services.TimeServices;
-using Sources.Utils.CommonUtils.Libs;
+using Sources.Utils.CommonUtils.Utils;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.CustomSystems;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
