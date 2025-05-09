@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using Sources.App.Data.Constants;
 using Sources.App.Services.AssetsServices;
 using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
+using Sources.App.Services.AudioServices;
 using Sources.App.Services.BalanceServices;
 using Sources.App.Services.UserServices;
 using Sources.App.Services.UserServices.Users.PreferencesData;
@@ -29,12 +30,13 @@ namespace Sources.App.Core
         private readonly LoadingScreenController _loadingScreenController;
         private readonly ISceneLoaderService _sceneLoader;
         private readonly IGameLoopService _gameLoopService;
-
-
+        private readonly IAudioService _audioService;
+        
         public GameLoader()
         {
             _fpsService = DiContainer.Resolve<IFpsService>();
             _timeService = DiContainer.Resolve<ITimeService>();
+            _audioService = DiContainer.Resolve<IAudioService>();
             _userUserPreferences = DiContainer.Resolve<IUserAccessService>().User.UserPreferences;
             IUiControllersService uiControllers = DiContainer.Resolve<IUiControllersService>();
 
@@ -46,13 +48,22 @@ namespace Sources.App.Core
             _sceneLoader = DiContainer.Resolve<ISceneLoaderService>();
         }
 
-        public async void StartLoadGame(Action<ILevelContext> onSceneLoaded, Action onLoaded, Action onReloadRequest)
+        public async UniTask<bool> StartLoadGame(Action<ILevelContext> onSceneLoaded)
         {
+            _audioService.SetCoreMusicsGroupVolume(0);
             var levelContext = await LoadGameScene();
             
             onSceneLoaded?.Invoke(levelContext);
             
-            StartFpsStabilizer(3f, onLoaded, onReloadRequest);
+            var success = await StartFpsStabilizer(3f);
+
+            if (success)
+            {
+                _audioService.StopAll();
+                _audioService.SetCoreMusicsGroupVolume(1);
+            }
+
+            return success;
         }
 
         private async UniTask<ILevelContext> LoadGameScene()
@@ -74,7 +85,7 @@ namespace Sources.App.Core
             return await _sceneLoader.LoadScene<ILevelContext>(cityScene);
         }
 
-        private async void StartFpsStabilizer(float minTime, Action onLoaded, Action onReloadRequest)
+        private async UniTask<bool> StartFpsStabilizer(float minTime)
         {
             _levelScreen.Open();
             float time = _timeService.Time;
@@ -104,16 +115,8 @@ namespace Sources.App.Core
                     shouldReload = true;
                 }
             }
-            
-            if (shouldReload)
-            {
-                onReloadRequest?.Invoke();
-            }
-            else
-            {
-                onLoaded?.Invoke();
-            }
-            
+
+            return !shouldReload;
         }
     }
 }

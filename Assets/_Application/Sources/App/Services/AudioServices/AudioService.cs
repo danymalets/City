@@ -21,6 +21,7 @@ namespace Sources.App.Services.AudioServices
         {
             public const string SoundsVolume = "SoundsVolume";
             public const string MusicsVolume = "MusicsVolume";
+            public const string CoreMusicsVolume = "CoreMusicsVolume";
         }
         
         private const float MinVolume = -80f;
@@ -61,20 +62,10 @@ namespace Sources.App.Services.AudioServices
             _gameLoopService.RunEachFrame(OnUpdate);
         }
 
-        public void SetSoundsGroupVolume(float volume)
-        {
-            SetMixerFloat(Parameters.SoundsVolume, volume);
-        }
+        public void SetSoundsGroupVolume(float volume) => SetMixerFloat(Parameters.SoundsVolume, volume);
 
-        public void SetMusicsGroupVolume(float volume)
-        {
-            SetMixerFloat(Parameters.MusicsVolume, volume);
-        }
-
-        private void SetMixerFloat(string parameterName, float volume)
-        {
-            _audioAssets.MasterMixerGroup.audioMixer.SetFloat(parameterName, Mathf.Lerp(MinVolume, MaxVolume, Mathf.Pow(volume, 1f/12f)));
-        }
+        public void SetMusicsGroupVolume(float volume) => SetMixerFloat(Parameters.MusicsVolume, volume);
+        public void SetCoreMusicsGroupVolume(float volume) => SetMixerFloat(Parameters.CoreMusicsVolume, volume);
 
         public void PlayOnce(SoundType soundType)
         {
@@ -113,5 +104,7 @@ namespace Sources.App.Services.AudioServices
             soundSourceController.Play();
             _playingSounds.Add(soundSourceController);
         }
+
+        private void SetMixerFloat(string parameterName, float volume) => _audioAssets.MasterMixerGroup.audioMixer.SetFloat(parameterName, Mathf.Lerp(MinVolume, MaxVolume, Mathf.Pow(volume, 1f/12f)));
     }
 }

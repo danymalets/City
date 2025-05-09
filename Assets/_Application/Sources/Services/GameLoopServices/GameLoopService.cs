@@ -18,7 +18,7 @@ namespace Sources.Services.GameLoopServices
             _timeService = DiContainer.Resolve<ITimeService>();
         }
         
-        public async void RunEachSeconds(float period, Action action, bool shouldRunNow, CancellationToken cancellationToken = default)
+        public async UniTaskVoid RunEachSeconds(float period, Action action, bool shouldRunNow, CancellationToken cancellationToken = default)
         {
             AssertUtils.IsTrue(period > 0);
             float timer = shouldRunNow ? 0 : period;
@@ -37,7 +37,7 @@ namespace Sources.Services.GameLoopServices
             }
         }
 
-        public async void RunEachFrame(Action action, bool shouldRunNow, CancellationToken cancellationToken = default)
+        public async UniTaskVoid RunEachFrame(Action action, bool shouldRunNow, CancellationToken cancellationToken = default)
         {
             if (!shouldRunNow)
             {
@@ -51,7 +51,7 @@ namespace Sources.Services.GameLoopServices
             }
         }
 
-        public async void RunEachFixedUpdate(Action action, CancellationToken cancellationToken = default)
+        public async UniTaskVoid RunEachFixedUpdate(Action action, CancellationToken cancellationToken = default)
         {
             await UniTask.WaitForFixedUpdate();
 

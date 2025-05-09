@@ -14,7 +14,7 @@ namespace Sources.App.Core
 {
     public class GameController
     {
-        private readonly IAudioService _audio;
+        private readonly IAudioService _audioService;
         private readonly IUiCloseService _uiClose;
         private readonly IDiBuilder _diBuilder;
         private readonly IAnalyticsService _analytics;
@@ -27,7 +27,7 @@ namespace Sources.App.Core
         public GameController()
         {
             _analytics = DiContainer.Resolve<IAnalyticsService>();
-            _audio = DiContainer.Resolve<IAudioService>();
+            _audioService = DiContainer.Resolve<IAudioService>();
 
             _diBuilder = DiBuilder.Create();
             
@@ -36,20 +36,24 @@ namespace Sources.App.Core
             _gameLoader = new GameLoader();
         }
         
-        public void StartGame()
+        public async void StartGame()
         {
-            _audio.StopAll();
-
-            _gameLoader.StartLoadGame(levelContext =>
+            var success = await _gameLoader.StartLoadGame(levelContext =>
             {
                 _diBuilder.Register(levelContext);
-                
+
                 _game = new Game();
                 _game.StartGame();
-            }, GameLoadingFinished, () =>
+            });
+
+            if (success)
+            {
+                GameLoadingFinished();
+            }
+            else
             {
                 ForceReloadRequested?.Invoke();
-            });
+            }
         }
 
         private void GameLoadingFinished()
@@ -62,7 +66,7 @@ namespace Sources.App.Core
             _analytics.SendLevelFinished(1, 0);
             
             _game.FinishGame();
-            _audio.StopAll();
+            _audioService.StopAll();
             _uiClose.CloseAll();
 
             _diBuilder.Dispose();

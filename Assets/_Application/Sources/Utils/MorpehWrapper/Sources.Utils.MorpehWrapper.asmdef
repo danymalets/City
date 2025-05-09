@@ -6,11 +6,11 @@
         "Sources.Utils.CommonUtils",
         "Sources.Utils.Di",
         "Sources.Services.PoolServices",
-        "Sources.Services.CoroutineRunnerServices",
         "Sources.Services.TimeServices",
         "Sources.Services.FpsServices",
         "Sources.Services.GizmosServices",
-        "Sources.Services.GameLoopServices"
+        "Sources.Services.GameLoopServices",
+        "UniTask"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

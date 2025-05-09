@@ -3,9 +3,9 @@
     "rootNamespace": "",
     "references": [
         "Sources.Utils.CommonUtils",
-        "Sources.Services.CoroutineRunnerServices",
         "Sources.Utils.Di",
-        "Sources.Services.GameLoopServices"
+        "Sources.Services.GameLoopServices",
+        "UniTask"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

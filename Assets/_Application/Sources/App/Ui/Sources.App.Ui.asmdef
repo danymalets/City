@@ -5,9 +5,7 @@
         "Sources.App.Data",
         "Sources.App.Core.Components",
         "Sources.App.Services.UserServices",
-        "Sources.Services.UiServices",
         "Sources.Services.FpsServices",
-        "Sources.Services.CoroutineRunnerServices",
         "Sources.Services.ApplicationServices",
         "Sources.Services.TimeServices",
         "Sources.Utils.MorpehWrapper",
@@ -28,7 +26,8 @@
         "Sources.Services.PoolServices",
         "Sources.Services.GameObjectServices",
         "Sources.App.Services.BalanceServices",
-        "Sources.Services.GameLoopServices"
+        "Sources.Services.GameLoopServices",
+        "UniTask"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

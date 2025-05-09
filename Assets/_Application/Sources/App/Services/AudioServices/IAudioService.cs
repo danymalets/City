@@ -7,6 +7,7 @@ namespace Sources.App.Services.AudioServices
     {
         void SetSoundsGroupVolume(float volume);
         void SetMusicsGroupVolume(float volume);
+        void SetCoreMusicsGroupVolume(float volume);
         void PlayOnce(SoundType soundType);
         void PlayMusic(MusicType musicType);
         void StopAll();

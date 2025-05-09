@@ -17,7 +17,6 @@ namespace Sources.App.Ui.Screens.PerformanceScreens
         private const string DeviceModelPattern = "Device Model: {0}";
         private const string TargetFpsPattern = "Target Fps: {0}";
         private const string PhysicsUpdateCountPattern = "Physics Update Count: {0}";
-        private const string RigidbodyCountPattern = "Rigidbodies Count: {0}";
         
         private readonly PerformanceScreen _performanceScreen;
         private IFpsService _fpsService;
