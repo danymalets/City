@@ -11,6 +11,7 @@ using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
+using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.User
 {
@@ -37,7 +38,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
             {
                 ITransform playerTransform = playerEntity.GetRef<ITransform>();
                 
-                Entity enterCar = null;
+                Entity enterCar = default;
                 float curMinSqrDistance = 0;
 
                 foreach (Entity carEntity in _carsFilter)
@@ -50,20 +51,25 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
 
                         float sqrDistance = Vector3Utils.SqrDistance(enterPoint.Position, playerTransform.Position);
                         if (sqrDistance <= MathUtils.Sqr(_carsBalance.MaxEnterCarDistance) &&
-                            (enterCar == null || sqrDistance < curMinSqrDistance))
+                            (enterCar == default || sqrDistance < curMinSqrDistance))
                         {
+                            Debug.Log($"set");
+
                             enterCar = carEntity;
                             curMinSqrDistance = sqrDistance;
                         }
                     }
                 }
 
-                if (enterCar != null)
+                if (enterCar != default)
                 {
+                    Debug.Log($"ok");
                     playerEntity.Set(new CarInputPossibility { CarEntity = enterCar });
                 }
                 else
                 {
+                    Debug.Log($"not ok");
+
                     playerEntity.RemoveIfHas<CarInputPossibility>();
                 }
             }

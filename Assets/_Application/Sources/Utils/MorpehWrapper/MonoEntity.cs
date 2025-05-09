@@ -22,7 +22,7 @@ namespace Sources.Utils.MorpehWrapper
         public void Cleanup()
         {
             foreach (PhysicsEventsReceiver eventsReceiver in _collisionsReceivers) 
-                eventsReceiver.Entity = null;
+                eventsReceiver.Entity = default;
         }
         
         protected virtual void OnValidate()

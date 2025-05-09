@@ -98,7 +98,7 @@ namespace Sources.App.Core.Ecs.Factories
                 .Add<CarBreak>()
                 .Add<SteeringAngle>()
                 .Add<SmoothSteeringAngle>()
-                .Set(new CarPassengers { Passengers = Enumerable.Repeat<Entity>(null, 4).ToList() })
+                .Set(new CarPassengers { Passengers = Enumerable.Repeat<Entity>(default, 4).ToList() })
                 .Set(new CarMaxSpeed { Value = Mathf.Infinity });
         }
     }

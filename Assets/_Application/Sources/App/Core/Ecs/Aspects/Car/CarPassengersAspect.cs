@@ -27,17 +27,17 @@ namespace Sources.App.Core.Ecs.Aspects.Car
 #if FORCE_DEBUG
             AssertUtils.IsTrue(Passengers[place] == entity);
 #endif
-            Passengers[place] = null;
+            Passengers[place] = default;
         }
 
         public bool IsFree(int place) =>
-            Passengers[place] == null;
+            Passengers[place] == default;
 
         public readonly int PlacesCount =>
             Passengers.Count;
 
         public readonly int PassengersCount => 
-            Passengers.Count(p => p != null);
+            Passengers.Count(p => p != default);
 
         public readonly bool IsNoPassengers =>
             PassengersCount == 0;
