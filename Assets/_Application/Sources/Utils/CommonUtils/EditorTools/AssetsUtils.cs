@@ -10,7 +10,7 @@ namespace Sources.Utils.CommonUtils.EditorTools
     {
         public static IEnumerable<T> FindAssetsByType<T>() where T : Object
         {
-            string[] guids = AssetDatabase.FindAssets("", new[]{"Assets"}); // or Assets/
+            string[] guids = AssetDatabase.FindAssets("", new[]{ "Assets" });
            
             Debug.Log(guids.Length);
             

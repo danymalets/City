@@ -9,14 +9,16 @@ using Sources.App.Ui.Base;
 using Sources.App.Ui.Screens.CurrencyScreens;
 using Sources.App.Ui.Screens.LoadingScreens;
 using Sources.App.Ui.Screens.MainScreens;
+using Sources.Services.AdsServices;
 using Sources.Services.GameLoopServices;
 using Sources.Services.SceneLoaderServices;
 using Sources.Utils.Di;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
 {
-    public class MainUiState : GameState
+    public class MainUiState : GameState<bool>
     {
         private MainScreenController _mainScreenController;
         private IUiCloseService _uiCloseService;
@@ -25,12 +27,13 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
         private Assets _assets;
         private LoadingScreenController _loadingScreen;
         private IGameLoopService _gameLoopService;
+        private IAdsService _adsService;
 
         public MainUiState(IGameStateMachine stateMachine) : base(stateMachine)
         {
         }
 
-        protected override async void OnEnter()
+        protected override async void OnEnter(bool firstEnter)
         {
             IUiControllersService uiControllers = DiContainer.Resolve<IUiControllersService>();
             
@@ -41,6 +44,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
             _currencyScreenController = uiControllers.Get<CurrencyScreenController>();
 
             _uiCloseService = DiContainer.Resolve<IUiCloseService>();
+            _adsService = DiContainer.Resolve<IAdsService>();
 
             _mainScreenController.Open();
             _currencyScreenController.Open();
@@ -52,6 +56,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
 
             await _sceneLoader.LoadEmptyScene();
             var playerRenderSceneContext = await _sceneLoader.LoadScene<PlayerRenderSceneContext>(_assets.PlayerRenderSceneName, LoadSceneMode.Additive);
+            
             
             PlayerMonoEntity player = playerRenderSceneContext.Player;
             _mainScreenController.PlayButtonClicked += OnPlayButtonClicked;
@@ -67,6 +72,10 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
             await UniTask.NextFrame();
 
             _loadingScreen.Close();
+            
+            var result = await _adsService.ShowInterstitial();
+
+            Debug.Log($"result {result}");
         }
 
         private void OnPlayButtonClicked()

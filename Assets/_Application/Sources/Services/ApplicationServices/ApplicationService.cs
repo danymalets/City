@@ -35,7 +35,7 @@ namespace Sources.Services.ApplicationServices
         public string DeviceModel =>
             SystemInfo.deviceModel;
 
-        public bool HasInternet => 
+        public bool IsInternetReachable => 
             Application.internetReachability != NetworkReachability.NotReachable;
         
         public SystemLanguage SystemLanguage =>

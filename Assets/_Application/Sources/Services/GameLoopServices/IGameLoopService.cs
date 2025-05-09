@@ -7,7 +7,7 @@ namespace Sources.Services.GameLoopServices
 {
     public interface IGameLoopService : IService
     {
-        void RunEachFrame(Action action, bool shouldRunNow, CancellationToken cancellationToken = default);
+        void RunEachFrame(Action action, bool shouldRunNow = true, CancellationToken cancellationToken = default);
         void RunEachSeconds(float period, Action action, bool shouldRunNow = true, CancellationToken cancellationToken = default);
         void RunEachFixedUpdate(Action action, CancellationToken cancellationToken = default);
         UniTask ChangeValue(float sourceValue, float targetValue, float time, Action<float> onValueChanged, CancellationToken cancellationToken = default);

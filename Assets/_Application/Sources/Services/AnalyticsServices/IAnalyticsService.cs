@@ -6,6 +6,6 @@ namespace Sources.Services.AnalyticsServices
     {
         void SendLevelStarted(int level);
         void SendLevelFinished(int level, float time);
-        void SendCarBought(string carName, int price);
+        void SendBoxBought(string carName, int price);
     }
 }

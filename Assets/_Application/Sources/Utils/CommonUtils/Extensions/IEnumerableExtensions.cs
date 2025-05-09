@@ -53,18 +53,6 @@ namespace Sources.Utils.CommonUtils.Extensions
             return res;
         }
         
-        public static T GetNearestTo<T>(this IEnumerable<T> sources, 
-            MonoBehaviour target)
-            where T : MonoBehaviour
-        {
-            if (!sources.Any())
-                throw new InvalidOperationException("No data in collection");
-            
-            return sources.MinBy(source => 
-                Vector3.Distance(source.transform.position, 
-                    target.transform.position));
-        }
-        
         public static T GetRandomWithWeights<T>(
             this IList<T> array, 
             Func<T, float> getWeight)

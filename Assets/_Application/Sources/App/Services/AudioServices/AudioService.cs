@@ -6,6 +6,7 @@ using Cysharp.Threading.Tasks.Linq;
 using Sources.App.Services.AssetsServices;
 using Sources.App.Services.AssetsServices.Audio;
 using Sources.App.Services.UserServices;
+using Sources.Services.GameLoopServices;
 using Sources.Services.InstantiatorServices;
 using Sources.Services.PoolServices;
 using Sources.Utils.CommonUtils.Utils;
@@ -33,6 +34,7 @@ namespace Sources.App.Services.AudioServices
         private readonly HashSet<AudioSourceController> _playingSounds = new (10);
         private AudioSourceView _audioSourceViewPrefab;
         private readonly Transform _instancesRoot;
+        private readonly IGameLoopService _gameLoopService;
 
         public AudioService(Transform root)
         {
@@ -41,6 +43,7 @@ namespace Sources.App.Services.AudioServices
             _audioAssets = DiContainer.Resolve<Assets>().AudioAssets;
 
             _poolCreator = DiContainer.Resolve<IPoolCreatorService>();
+            _gameLoopService = DiContainer.Resolve<IGameLoopService>();
         }
 
         public void Initialize()
@@ -55,7 +58,7 @@ namespace Sources.App.Services.AudioServices
             SetSoundsGroupVolume(userPreferences.SoundsVolume);
             SetMusicsGroupVolume(userPreferences.MusicVolume);
 
-            UniTasksUtils.RunEachUpdate(OnUpdate);
+            _gameLoopService.RunEachFrame(OnUpdate);
         }
 
         public void SetSoundsGroupVolume(float volume)

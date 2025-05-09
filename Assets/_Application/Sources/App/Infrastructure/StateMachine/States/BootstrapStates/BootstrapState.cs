@@ -41,7 +41,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.BootstrapStates
             uiControllers.Get<DebugMenuScreenController>().Open();
 #endif
 
-            _stateMachine.Enter<MainUiState>();
+            _stateMachine.Enter<MainUiState, bool>(true);
         }
         
         private void PreparePool()

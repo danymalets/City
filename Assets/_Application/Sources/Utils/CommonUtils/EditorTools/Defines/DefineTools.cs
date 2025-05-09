@@ -13,7 +13,6 @@ namespace Sources.Utils.CommonUtils.EditorTools.Defines
                 "Assets/_Application/Prefabs/EditorTools/DefineTools.prefab"));
 
         [SerializeField]
-        // ReSharper disable once NotAccessedField.Local
         private DefineGroup[] _defineGroups;
     }
 }

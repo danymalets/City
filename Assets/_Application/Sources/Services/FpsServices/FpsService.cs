@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
+using Sources.Services.GameLoopServices;
 using Sources.Services.TimeServices;
 using Sources.Utils.CommonUtils.Utils;
 using Sources.Utils.Di;
@@ -18,15 +19,17 @@ namespace Sources.Services.FpsServices
         private readonly Queue<float> _deltaTimes = new(150);
 
         private float _sumDeltaTimes = 0;
+        private readonly IGameLoopService _gameLoopService;
 
         public FpsService()
         {            
             _timeService = DiContainer.Resolve<ITimeService>();
+            _gameLoopService = DiContainer.Resolve<IGameLoopService>();
         }
 
         public void Initialize()
         {
-            UniTasksUtils.RunEachUpdate(OnUpdate);
+            _gameLoopService.RunEachFrame(OnUpdate, false);
         }
 
         private void OnUpdate()

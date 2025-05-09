@@ -63,7 +63,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Player.NavToCar
             obj == target || Vector3.Dot(source - target, obj - target) < 0;
 
         private float GetAngle(Vector3 source, Vector3 target) =>
-            Quaternion.LookRotation((target - source).GetX0Z(),
+            Quaternion.LookRotation((target - source).WithY(0),
                 Vector3.up).eulerAngles.y;
     }
 }

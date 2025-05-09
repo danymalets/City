@@ -18,7 +18,7 @@ namespace Sources.Services.ApplicationServices
         string DeviceName { get; }
         RuntimePlatform ApplicationPlatform { get; }
         string DeviceModel { get; }
-        bool HasInternet { get; }
+        bool IsInternetReachable { get; }
         SystemLanguage SystemLanguage { get; }
         void OpenUrl(string url);
     }

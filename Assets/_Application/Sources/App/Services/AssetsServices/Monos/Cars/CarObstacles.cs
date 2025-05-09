@@ -23,8 +23,8 @@ namespace Sources.App.Services.AssetsServices.Monos.Cars
 
             bounds.min = bounds.min.WithY(0);
 
-            _navMeshObstacle.center = bounds.center.WithDeltaZ(ForwardDistance / 2);
-            _navMeshObstacle.size = bounds.size.WithDeltaZ(ForwardDistance);
+            _navMeshObstacle.center = bounds.center + Vector3.forward * ForwardDistance / 2;
+            _navMeshObstacle.size = bounds.size + Vector3.forward * ForwardDistance;
         }
     }
 }

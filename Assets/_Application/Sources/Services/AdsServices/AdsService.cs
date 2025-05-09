@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using Sources.Services.ApplicationServices;
 using Sources.Utils.Di;
 using UnityEngine;
@@ -23,12 +24,11 @@ namespace Sources.Services.AdsServices
         public bool IsRewardedAvailable() =>
             _ironSourceAdapter.IsRewardedAvailable();
         
-        public void ShowRewarded(Action onSuccess, Action onFailed) => 
-            _ironSourceAdapter.ShowRewarded(onSuccess, onFailed);
-
-        public void ShowInterstitial(Action onSuccess, Action onFailed)
-        {
-            _ironSourceAdapter.ShowInterstitial(onSuccess, onFailed);
-        }
+        public UniTask<bool> ShowRewarded() => 
+            _ironSourceAdapter.ShowRewarded();
+        
+        public UniTask<bool> ShowInterstitial() =>
+            _ironSourceAdapter.ShowInterstitial();
+        
     }
 }

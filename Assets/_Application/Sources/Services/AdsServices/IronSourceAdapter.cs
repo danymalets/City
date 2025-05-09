@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using Sources.Services.ApplicationServices;
 using Sources.Utils.Di;
 using UnityEngine;
@@ -10,8 +11,7 @@ namespace Sources.Services.AdsServices
         private const string AppKey = "1babbeefd";
 
         private readonly IApplicationService _applicationService;
-        private Action _onSuccess;
-        private Action _onFailed;
+        private UniTaskCompletionSource<bool> _completionSource;
 
         public IronSourceAdapter()
         {
@@ -51,11 +51,8 @@ namespace Sources.Services.AdsServices
         private bool IsInterstitialAvailable() =>
             IronSource.Agent.isInterstitialReady();
 
-        public void ShowRewarded(Action onSuccess, Action onFailed)
+        public UniTask<bool> ShowRewarded()
         {
-            _onSuccess = onSuccess;
-            _onFailed = onFailed;
-
             Debug.Log($"[IronSource] ShowRewarded IsRewardedAvailable:{IsRewardedAvailable()}");
 
             if (IsRewardedAvailable())
@@ -66,12 +63,13 @@ namespace Sources.Services.AdsServices
             {
                 InvokeFailed();
             }
+
+            return _completionSource.Task;
         }
 
-        public void ShowInterstitial(Action onSuccess, Action onFailed)
+        public UniTask<bool> ShowInterstitial()
         {
-            _onSuccess = onSuccess;
-            _onFailed = onFailed;
+            _completionSource = new UniTaskCompletionSource<bool>();
 
             Debug.Log($"[IronSource] ShowInterstitial IsInterstitialAvailable:{IsInterstitialAvailable()}");
 
@@ -83,6 +81,8 @@ namespace Sources.Services.AdsServices
             {
                 InvokeFailed();
             }
+            
+            return _completionSource.Task;
         }
 
         private void SdkInitializationCompletedEvent()
@@ -193,16 +193,12 @@ namespace Sources.Services.AdsServices
 
         private void InvokeSuccess()
         {
-            _onSuccess?.Invoke();
-            _onSuccess = null;
-            _onFailed = null;
+            _completionSource.TrySetResult(true);
         }
 
         private void InvokeFailed()
         {
-            _onFailed?.Invoke();
-            _onSuccess = null;
-            _onFailed = null;
+            _completionSource.TrySetResult(false);
         }
     }
 }

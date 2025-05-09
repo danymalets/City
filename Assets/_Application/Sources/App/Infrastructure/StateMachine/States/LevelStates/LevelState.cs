@@ -59,7 +59,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.LevelStates
         private void FinishGameAndEnterMainMenu()
         {
             FinishGame();
-            _stateMachine.Enter<MainUiState>();
+            _stateMachine.Enter<MainUiState, bool>(false);
         }
 
         private void ForceRestartGame()
