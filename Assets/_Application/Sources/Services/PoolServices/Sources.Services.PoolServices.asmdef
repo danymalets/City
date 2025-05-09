@@ -4,7 +4,7 @@
     "references": [
         "Sources.Utils.Di",
         "Sources.Utils.CommonUtils",
-        "Sources.Services.InstantiatorServices"
+        "Sources.Services.GameObjectServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

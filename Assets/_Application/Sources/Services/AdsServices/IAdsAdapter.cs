@@ -1,11 +1,10 @@
-using System;
 using Cysharp.Threading.Tasks;
-using Sources.Utils.Di;
 
 namespace Sources.Services.AdsServices
 {
-    public interface IAdsService : IService
+    public interface IAdsAdapter
     {
+        void Initialize();
         bool IsRewardedAvailable();
         UniTask<bool> ShowInterstitial();
         UniTask<bool> ShowRewarded();

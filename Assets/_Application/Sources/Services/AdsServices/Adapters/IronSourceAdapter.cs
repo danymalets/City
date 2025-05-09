@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Sources.Services.AdsServices
 {
-    public class IronSourceAdapter
+    public class IronSourceAdapter : IAdsAdapter
     {
         private const string AppKey = "1babbeefd";
 

@@ -26,7 +26,7 @@
         "Sources.Services.LocalizationServices",
         "Sources.Services.ScreenServices",
         "Sources.Services.PoolServices",
-        "Sources.Services.InstantiatorServices",
+        "Sources.Services.GameObjectServices",
         "Sources.App.Services.BalanceServices",
         "Sources.Services.GameLoopServices"
     ],

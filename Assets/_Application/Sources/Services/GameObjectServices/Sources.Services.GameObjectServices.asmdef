@@ -1,5 +1,5 @@
 {
-    "name": "Sources.Services.InstantiatorServices",
+    "name": "Sources.Services.GameObjectServices",
     "rootNamespace": "",
     "references": [
         "Sources.Utils.Di"

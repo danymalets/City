@@ -20,7 +20,7 @@
         "Sources.Services.TimeServices",
         "Sources.Services.FpsServices",
         "Sources.Services.GizmosServices",
-        "Sources.Services.InstantiatorServices",
+        "Sources.Services.GameObjectServices",
         "Sources.Utils.MorpehWrapper",
         "Sources.Utils.CommonUtils",
         "Sources.Utils.Di",

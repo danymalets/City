@@ -7,7 +7,7 @@
         "Sources.Services.PoolServices",
         "Sources.App.Services.UserServices",
         "Sources.App.Services.AssetsServices",
-        "Sources.Services.InstantiatorServices",
+        "Sources.Services.GameObjectServices",
         "UniTask",
         "UniTask.Linq",
         "Sources.Services.GameLoopServices"

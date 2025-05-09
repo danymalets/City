@@ -8,27 +8,25 @@ namespace Sources.Services.AdsServices
 {
     public class AdsService : IInitializable, IAdsService
     {
-        private readonly IronSourceAdapter _ironSourceAdapter;
+        private readonly IAdsAdapter _adsAdapter;
         private bool _isRewardedAvailable;
 
         public AdsService()
         {
-            _ironSourceAdapter = new IronSourceAdapter();
+            _adsAdapter = new EmptyAdsAdapter();
         }
 
-        public void Initialize()
-        {
-            _ironSourceAdapter.Initialize();
-        }
+        public void Initialize() => 
+            _adsAdapter.Initialize();
 
         public bool IsRewardedAvailable() =>
-            _ironSourceAdapter.IsRewardedAvailable();
+            _adsAdapter.IsRewardedAvailable();
         
         public UniTask<bool> ShowRewarded() => 
-            _ironSourceAdapter.ShowRewarded();
+            _adsAdapter.ShowRewarded();
         
         public UniTask<bool> ShowInterstitial() =>
-            _ironSourceAdapter.ShowInterstitial();
+            _adsAdapter.ShowInterstitial();
         
     }
 }
