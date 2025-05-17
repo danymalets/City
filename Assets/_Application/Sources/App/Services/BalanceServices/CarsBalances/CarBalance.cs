@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using Sources.App.Data.Cars;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.CommonUtils.Utils;
+using TriInspector;
 using UnityEngine;
 
 namespace Sources.App.Services.BalanceServices.CarsBalances
@@ -18,9 +18,9 @@ namespace Sources.App.Services.BalanceServices.CarsBalances
         private float _weight = 100;
 
         // ReSharper disable once UnusedMember.Local
-        private bool Show => _carType.IsColorable();
+        private bool Hide => !_carType.IsColorable();
         
-        [ShowIf(nameof(Show))]
+        [HideIf(nameof(Hide))]
         [SerializeField]
         private List<CarColorBalance> _carColorBalance = new();
         

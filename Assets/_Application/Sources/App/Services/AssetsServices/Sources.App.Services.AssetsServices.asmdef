@@ -15,7 +15,8 @@
         "Sources.ProjectServices.BalanceServices",
         "Sources.Services.GizmosServices",
         "Sources.App.Services.BalanceServices",
-        "Sources.App.Services.UserServices"
+        "Sources.App.Services.UserServices",
+        "TriInspector"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

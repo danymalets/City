@@ -1,15 +1,15 @@
 using System.Linq;
-using Sirenix.OdinInspector;
 using Sources.App.Data.Constants;
 using Sources.App.Services.AssetsServices.Monos.Cars;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
+using TriInspector;
 
 namespace Sources.App.Services.AssetsServices.Monos.MonoEntities.Car
 {
     public partial class CarMonoEntity
     {
-        [Button("Bake", ButtonSizes.Large)]
+        [Button("Bake")]
         private void Bake()
         {
             base.OnValidate();
@@ -33,11 +33,11 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities.Car
             _carBorders.SafeBoxCollider.Layer = Layers.CarBorders;
         }
 
-        [Button("Set auto borders (do not use multi-click on this button)", ButtonSizes.Large)]
+        [Button("Set auto borders (do not use multi-click on this button)")]
         private void SetAutoBorders() => 
             _carBorders.SetupBounds(_colliders);
         
-        [Button("Set auto obstacles (do not use multi-click on this button)", ButtonSizes.Large)]
+        [Button("Set auto obstacles (do not use multi-click on this button)")]
         private void SetAutoObstacles() => 
             _carObstacles.SetupBounds(_colliders);
     }

@@ -1,5 +1,5 @@
 using System;
-using Sirenix.OdinInspector;
+using TriInspector;
 using UnityEngine;
 
 namespace Sources.App.Services.AssetsServices.Monos.RoadSystem.Pathes.Generators
@@ -52,7 +52,7 @@ namespace Sources.App.Services.AssetsServices.Monos.RoadSystem.Pathes.Generators
         private Road GetRoadPrefab(int i) => 
             i % 2 == 0 ? _roadEvenPrefab : _roadOddPrefab;
 
-        [Button("CLEAR", ButtonSizes.Large)]
+        [Button("CLEAR")]
         private void Clear()
         {
             foreach (Transform child in transform)
@@ -61,7 +61,7 @@ namespace Sources.App.Services.AssetsServices.Monos.RoadSystem.Pathes.Generators
             }
         }
 
-        [Button("GENERATE", ButtonSizes.Large)]
+        [Button("GENERATE")]
         private void Generate()
         {
             float xLength = _roadHorizontalLength * _xRoadsCount + GetVerticalLengthSum(_xRoadsCount - 1);

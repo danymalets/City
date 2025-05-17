@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using Sources.App.Data.Pathes;
 using Sources.App.Data.Points;
+using TriInspector;
 using UnityEngine;
 
 namespace Sources.App.Services.AssetsServices.IdleCarSpawns

@@ -47,6 +47,6 @@ MonoBehaviour:
   _defineGroups:
   - _define: FORCE_DEBUG
     _allPlatforms: 1
-    _standalone: 0
-    _android: 0
-    _ios: 0
+    _standalone: 1
+    _android: 1
+    _ios: 1

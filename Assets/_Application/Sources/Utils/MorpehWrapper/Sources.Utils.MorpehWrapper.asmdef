@@ -10,7 +10,8 @@
         "Sources.Services.FpsServices",
         "Sources.Services.GizmosServices",
         "Sources.Services.GameLoopServices",
-        "UniTask"
+        "UniTask",
+        "TriInspector"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

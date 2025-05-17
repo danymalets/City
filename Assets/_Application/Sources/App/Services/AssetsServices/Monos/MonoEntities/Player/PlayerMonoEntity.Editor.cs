@@ -1,9 +1,9 @@
 using System.Linq;
-using Sirenix.OdinInspector;
 using Sources.App.Data.Constants;
 using Sources.App.Services.AssetsServices.Monos.Players;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
+using TriInspector;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,7 +12,7 @@ namespace Sources.App.Services.AssetsServices.Monos.MonoEntities.Player
     public partial class PlayerMonoEntity
     {
 #if UNITY_EDITOR
-        [Button("Bake", ButtonSizes.Large)]
+        [Button("Bake")]
         private void Bake()
         {
             base.OnValidate();

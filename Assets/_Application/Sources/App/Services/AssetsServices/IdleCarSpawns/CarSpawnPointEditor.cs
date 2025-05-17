@@ -1,11 +1,9 @@
-using Sirenix.OdinInspector;
 using Sources.App.Data.Cars;
 using Sources.App.Data.Constants;
 using Sources.App.Services.AssetsServices.Monos.AssetsData;
-using Sources.App.Services.AssetsServices.Monos.MonoEntities;
 using Sources.App.Services.AssetsServices.Monos.MonoEntities.Car;
-using Sources.Services.PoolServices;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
+using TriInspector;
 using UnityEngine;
 
 namespace Sources.App.Services.AssetsServices.IdleCarSpawns
@@ -87,7 +85,7 @@ namespace Sources.App.Services.AssetsServices.IdleCarSpawns
             }
         }
 
-        [Button("Force Update", ButtonSizes.Large)]
+        [Button("Force Update")]
         private void ForceUpdate()
         {
             InstantiateNew();

@@ -1,10 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
-using Sirenix.Utilities;
 using Sources.App.Services.AssetsServices.Audio;
-using Sources.App.Services.BalanceServices;
-using Sources.App.Services.BalanceServices.CommonBalances;
-using Sources.App.Services.UserServices;
 using Sources.App.Ui.Base.Animators;
 using Sources.App.Ui.Base.Controllers;
 using Sources.App.Ui.Screens.ShopScreens.GemIapsViews;

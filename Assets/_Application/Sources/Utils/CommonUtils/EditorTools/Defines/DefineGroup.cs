@@ -1,7 +1,7 @@
 #if UNITY_EDITOR
 
 using System;
-using Sirenix.OdinInspector;
+using TriInspector;
 using UnityEditor.Build;
 using UnityEngine;
 
@@ -42,8 +42,6 @@ namespace Sources.Utils.CommonUtils.EditorTools.Defines
 
             _ios = _allPlatforms;
             OnIosChanged();
-
-            Debug.Log($"suc");
         }
 
         private void OnStandaloneChanged() =>

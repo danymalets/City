@@ -1,11 +1,11 @@
-using Sirenix.OdinInspector;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
+using TriInspector;
 
 namespace Sources.App.Services.AssetsServices.Monos.MonoEntities.Camera
 {
     public partial class CameraMonoEntity
     {
-        [Button("Bake", ButtonSizes.Large)]
+        [Button("Bake")]
         private void Bake()
         {
             base.OnValidate();

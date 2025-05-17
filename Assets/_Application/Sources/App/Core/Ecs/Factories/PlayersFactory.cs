@@ -1,6 +1,6 @@
+using System;
 using System.Linq;
 using Scellecs.Morpeh;
-using Sirenix.Utilities;
 using Sources.App.Core.Ecs.Aspects.Common;
 using Sources.App.Core.Ecs.Aspects.Player;
 using Sources.App.Core.Ecs.Components.Car;
@@ -128,7 +128,7 @@ namespace Sources.App.Core.Ecs.Factories
                 .SetRef<IPlayerAnimator>(new PlayerAnimator(playerMonoEntity.Animator))
                 .SetRef<IPlayerBorders>(playerMonoEntity.PlayerBorders)
                 .SetRef<ICollider[]>(new ICollider[] { playerMonoEntity.PlayerBorders.SafeCapsuleCollider })
-                .SetupRef<ICollider[]>(cs => cs.ForEach(c => c.Layer = Layers.Player))
+                .SetupRef<ICollider[]>(cs => Array.ForEach(cs, c => c.Layer = Layers.Player))
                 .SetupRef<IPlayerAnimator>(pa => pa.SetMoveSpeed(0, true))
                 .SetupAspect<SwitchableRigidbodyAspect>(pa => pa.EnableRigidbody())
                 .Set(new PlayerTargetAngle { Value = rotation.eulerAngles.y })

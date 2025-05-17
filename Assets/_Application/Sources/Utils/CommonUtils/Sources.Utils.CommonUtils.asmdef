@@ -4,7 +4,8 @@
     "references": [
         "Scellecs.Morpeh",
         "UniTask",
-        "UniTask.Linq"
+        "UniTask.Linq",
+        "TriInspector"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

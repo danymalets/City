@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using Sources.App.Data.Points;
 using Sources.App.Services.AssetsServices.Monos.Points;
 using Sources.Utils.MorpehWrapper;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
+using TriInspector;
 using UnityEngine;
 using UnityEngine.Serialization;
 

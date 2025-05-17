@@ -57,8 +57,8 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
             await _sceneLoader.LoadEmptyScene();
             var playerRenderSceneContext = await _sceneLoader.LoadScene<PlayerRenderSceneContext>(_assets.PlayerRenderSceneName, LoadSceneMode.Additive);
             
-            
             PlayerMonoEntity player = playerRenderSceneContext.Player;
+
             _mainScreenController.PlayButtonClicked += OnPlayButtonClicked;
         }
 

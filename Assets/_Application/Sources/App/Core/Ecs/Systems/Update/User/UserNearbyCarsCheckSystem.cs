@@ -53,8 +53,6 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
                         if (sqrDistance <= MathUtils.Sqr(_carsBalance.MaxEnterCarDistance) &&
                             (enterCar == default || sqrDistance < curMinSqrDistance))
                         {
-                            Debug.Log($"set");
-
                             enterCar = carEntity;
                             curMinSqrDistance = sqrDistance;
                         }
@@ -63,13 +61,10 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
 
                 if (enterCar != default)
                 {
-                    Debug.Log($"ok");
                     playerEntity.Set(new CarInputPossibility { CarEntity = enterCar });
                 }
                 else
                 {
-                    Debug.Log($"not ok");
-
                     playerEntity.RemoveIfHas<CarInputPossibility>();
                 }
             }

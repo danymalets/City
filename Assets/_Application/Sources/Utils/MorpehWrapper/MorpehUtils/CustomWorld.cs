@@ -54,7 +54,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
             _systemsPerformance = new SystemsPerformance();
 
 #if FORCE_DEBUG
-                _coroutineContext.RunEachSeconds(3f, () =>
+            _gameLoopService.RunEachSeconds(3f, () =>
                 {
                     _systemsPerformance.LogData();
                     _systemsPerformance.Reset();

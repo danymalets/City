@@ -1,11 +1,11 @@
-using Sirenix.OdinInspector;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
+using TriInspector;
 
 namespace Sources.App.Services.AssetsServices.Monos.MonoEntities.Props
 {
     public partial class PropsMonoEntity
     {
-        [Button("Force Validate", ButtonSizes.Large)]
+        [Button("Force Validate")]
         protected override void OnValidate()
         {
             base.OnValidate();

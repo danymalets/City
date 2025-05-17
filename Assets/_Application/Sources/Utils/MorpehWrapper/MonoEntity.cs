@@ -1,8 +1,8 @@
 using Scellecs.Morpeh;
-using Sirenix.OdinInspector;
 using Sources.Services.PoolServices;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
+using TriInspector;
 using UnityEngine;
 
 namespace Sources.Utils.MorpehWrapper
@@ -30,7 +30,7 @@ namespace Sources.Utils.MorpehWrapper
             _collisionsReceivers = GetComponentsInChildren<PhysicsEventsReceiver>();
         }
 
-        [Button("Make Safe", ButtonSizes.Large)]
+        [Button("Make Safe")]
         public void MakeSafe()
         {
             AddRequired<SafeBoxCollider, BoxCollider>();
