@@ -11,6 +11,7 @@ using Sources.App.Ui.Screens.LoadingScreens;
 using Sources.App.Ui.Screens.MainScreens;
 using Sources.Services.AdsServices;
 using Sources.Services.GameLoopServices;
+using Sources.Services.LogServices;
 using Sources.Services.SceneLoaderServices;
 using Sources.Utils.Di;
 using UnityEngine;
@@ -28,6 +29,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
         private LoadingScreenController _loadingScreen;
         private IGameLoopService _gameLoopService;
         private IAdsService _adsService;
+        private ILogService _logService;
 
         public MainUiState(IGameStateMachine stateMachine) : base(stateMachine)
         {
@@ -38,6 +40,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
             IUiControllersService uiControllers = DiContainer.Resolve<IUiControllersService>();
             
             _gameLoopService = DiContainer.Resolve<IGameLoopService>();
+            _logService = DiContainer.Resolve<ILogService>();
 
             _mainScreenController = uiControllers.Get<MainScreenController>();
             _loadingScreen = uiControllers.Get<LoadingScreenController>();
@@ -75,7 +78,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
             
             var result = await _adsService.ShowInterstitial();
 
-            Debug.Log($"result {result}");
+            _logService.Log($"result {result}");
         }
 
         private void OnPlayButtonClicked()
@@ -93,6 +96,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
             _uiCloseService = null;
             _assets = null;
             _sceneLoader = null;
+            _logService = null;
         }
     }
 }

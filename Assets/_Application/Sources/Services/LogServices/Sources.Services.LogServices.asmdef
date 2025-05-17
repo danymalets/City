@@ -1,13 +1,8 @@
 {
-    "name": "Sources.App.Services.UserServices",
+    "name": "Sources.Services.LogServices",
     "rootNamespace": "",
     "references": [
-        "Sources.Utils.Di",
-        "Sources.Utils.CommonUtils",
-        "Sources.Services.JsonSerializerServices",
-        "Sources.Services.PlayerPreferencesServices",
-        "Sources.Services.ApplicationServices",
-        "Sources.Services.LogServices"
+        "Sources.Utils.Di"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -18,4 +13,4 @@
     "defineConstraints": [],
     "versionDefines": [],
     "noEngineReferences": false
-}
+} 

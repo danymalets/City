@@ -29,7 +29,8 @@
         "Sources.Services.IapServices",
         "Sources.Services.LocalizationServices",
         "UniTask",
-        "Sources.Services.GameLoopServices"
+        "Sources.Services.GameLoopServices",
+        "Sources.Services.LogServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

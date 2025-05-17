@@ -1,6 +1,7 @@
 using System;
 using Sources.Services.ApplicationInputServices;
 using Sources.Services.GameLoopServices;
+using Sources.Services.LogServices;
 using Sources.Utils.Di;
 using UnityEngine;
 
@@ -19,6 +20,7 @@ namespace Sources.Services.ApplicationServices
 
         private IApplicationInputService _applicationInput;
         private IGameLoopService _gameLoopService;
+        private ILogService _logService;
 
         public int TargetFrameRate
         {
@@ -48,6 +50,7 @@ namespace Sources.Services.ApplicationServices
         {
             _applicationInput = DiContainer.Resolve<IApplicationInputService>();
             _gameLoopService = DiContainer.Resolve<IGameLoopService>();
+            _logService = DiContainer.Resolve<ILogService>();
             
             _gameLoopService.RunEachFrame(() =>
             {
@@ -83,7 +86,7 @@ namespace Sources.Services.ApplicationServices
             
             PauseStatusChanged?.Invoke(pauseStatus);
             
-            Debug.Log($"pauseStatus {pauseStatus}");
+            _logService.Log($"pauseStatus {pauseStatus}");
         }
 
         private void OnApplicationQuit() =>

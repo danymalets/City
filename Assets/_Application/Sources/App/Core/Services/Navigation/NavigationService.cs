@@ -1,3 +1,4 @@
+using Sources.Services.LogServices;
 using Sources.Utils.CommonUtils.Utils;
 using Sources.Utils.Di;
 using UnityEngine;
@@ -9,11 +10,13 @@ namespace Sources.App.Core.Services.Navigation
     {
         private int _playerAgentId;
         private int _carAgentId;
+        private ILogService _logService;
 
         public void Initialize()
         {
             _playerAgentId = NavMeshUtility.GetNavMeshAgentID("Player");
             _carAgentId = NavMeshUtility.GetNavMeshAgentID("Car");
+            _logService = DiContainer.Resolve<ILogService>();
         }
 
         public bool TryGetPlayerPath(Vector3 source, Vector3 target, out Vector3[] path)
@@ -38,7 +41,7 @@ namespace Sources.App.Core.Services.Navigation
             bool result = false;
             Vector3[] pathInternal = null;
             PerformanceUtils.Execute(() => { result = TryGetPathInternal(agentId, source, target, maxDistanceToTarget, out pathInternal); },
-                ticks => { Debug.Log($"Path finder solve in {ticks / 1000:F}"); });
+                ticks => { _logService.Log($"Path finder solve in {ticks / 1000:F}"); });
             path = pathInternal;
             return result;
         }

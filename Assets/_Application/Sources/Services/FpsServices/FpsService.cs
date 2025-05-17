@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using Sources.Services.GameLoopServices;
+using Sources.Services.LogServices;
 using Sources.Services.TimeServices;
 using Sources.Utils.CommonUtils.Utils;
 using Sources.Utils.Di;
@@ -15,16 +16,16 @@ namespace Sources.Services.FpsServices
         public float FpsLastSecond { get; private set; }
 
         private readonly ITimeService _timeService;
-
         private readonly Queue<float> _deltaTimes = new(150);
-
         private float _sumDeltaTimes = 0;
         private readonly IGameLoopService _gameLoopService;
-
+        private readonly ILogService _logService;
+        
         public FpsService()
-        {            
+        {
             _timeService = DiContainer.Resolve<ITimeService>();
             _gameLoopService = DiContainer.Resolve<IGameLoopService>();
+            _logService = DiContainer.Resolve<ILogService>();
         }
 
         public void Initialize()
@@ -57,7 +58,7 @@ namespace Sources.Services.FpsServices
 
             } while (FpsLastSecond > fps);
 
-            Debug.Log($"[FpsService] Fps: {FpsLastSecond:F1} - stable");
+            _logService.Log($"[FpsService] Fps: {FpsLastSecond:F1} - stable");
         }
     }
 }

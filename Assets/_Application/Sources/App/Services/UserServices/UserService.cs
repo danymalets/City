@@ -1,6 +1,7 @@
 using Sources.App.Services.UserServices.Users;
 using Sources.Services.ApplicationServices;
 using Sources.Services.JsonSerializerServices;
+using Sources.Services.LogServices;
 using Sources.Services.PlayerPreferencesServices;
 using Sources.Utils.Di;
 using UnityEngine;
@@ -18,11 +19,13 @@ namespace Sources.App.Services.UserServices
 
         private readonly IJsonSerializerService _jsonSerializer;
         private readonly IPlayerPrefsService _playerPrefs;
+        private readonly ILogService _logService;
 
         public UserService()
         {
             _jsonSerializer = DiContainer.Resolve<IJsonSerializerService>();
             _playerPrefs = DiContainer.Resolve<IPlayerPrefsService>();
+            _logService = DiContainer.Resolve<ILogService>();
         }
 
         public void Initialize()
@@ -65,7 +68,7 @@ namespace Sources.App.Services.UserServices
             else
             {
                 CreateNewUser();
-                Debug.LogError($"Cannot deserialize user. New Created.");
+                _logService.LogError($"Cannot deserialize user. New Created.");
             }
         }
 
@@ -93,7 +96,7 @@ namespace Sources.App.Services.UserServices
 
 #if UNITY_EDITOR
             string jsonDebug = _jsonSerializer.Serialize(User, true);
-            Debug.Log($"User save: \n \n{jsonDebug}");
+            _logService.Log($"User save: \n \n{jsonDebug}");
 #endif
 
             string json = _jsonSerializer.Serialize(User);

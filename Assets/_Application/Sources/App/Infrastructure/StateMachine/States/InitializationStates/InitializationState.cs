@@ -18,6 +18,7 @@ using Sources.Services.IapServices;
 using Sources.Services.InstantiatorServices;
 using Sources.Services.JsonSerializerServices;
 using Sources.Services.LocalizationServices;
+using Sources.Services.LogServices;
 using Sources.Services.PhysicsServices;
 using Sources.Services.PlayerPreferencesServices;
 using Sources.Services.PoolServices;
@@ -48,6 +49,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.InitializationStates
 
             _diBuilder.Register<TimeService, ITimeService>();
             _diBuilder.Register<GameLoopService, IGameLoopService>();
+            _diBuilder.Register<LogService, ILogService>();
             
             _diBuilder.Register<PhysicsService, IPhysicsService>();
             _diBuilder.Register<ApplicationInputService, IApplicationInputService>();
