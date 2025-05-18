@@ -34,7 +34,7 @@ namespace Sources.App.Services.UserServices
 
             IApplicationService application = DiContainer.Resolve<IApplicationService>();
             application.Unfocused += ApplicationCycle_OnUnfocused;
-            application.Paused += ApplicationCycle_Paused;
+            application.Paused += ApplicationCycle_OnPaused;
             application.ApplicationQuit += ApplicationCycle_OnApplicationQuit;
         }
 
@@ -75,7 +75,7 @@ namespace Sources.App.Services.UserServices
         private void CreateNewUser() =>
             User = new User();
 
-        private void ApplicationCycle_Paused()
+        private void ApplicationCycle_OnPaused()
         {
             Save();
         }
