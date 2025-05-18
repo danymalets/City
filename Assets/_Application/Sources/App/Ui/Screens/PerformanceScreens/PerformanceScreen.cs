@@ -6,8 +6,8 @@ namespace Sources.App.Ui.Screens.PerformanceScreens
 {
     public class PerformanceScreen : GameScreen
     {
-        [field: SerializeField] public TextMeshProUGUI FpsText { get; private set; }
-
-        [field: SerializeField] public TextMeshProUGUI InfoText { get; private set; }
+        [field: SerializeField] public TextMeshProUGUI FpsValueText { get; private set; }
+        [field: SerializeField] public TextMeshProUGUI TargetFrameRateValueText { get; private set; }
+        [field: SerializeField] public TextMeshProUGUI PhysicsUpdateCountValueText { get; private set; }
     }
 }

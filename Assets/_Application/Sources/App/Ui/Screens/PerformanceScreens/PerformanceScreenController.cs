@@ -12,11 +12,6 @@ namespace Sources.App.Ui.Screens.PerformanceScreens
 {
     public class PerformanceScreenController : ScreenController
     {
-        private const string FpsPattern = "Fps: {0}";
-        private const string DeviceNamePattern = "Device Name: {0}";
-        private const string DeviceModelPattern = "Device Model: {0}";
-        private const string TargetFpsPattern = "Target Fps: {0}";
-        private const string PhysicsUpdateCountPattern = "Physics Update Count: {0}";
         
         private readonly PerformanceScreen _performanceScreen;
         private IFpsService _fpsService;
@@ -40,23 +35,17 @@ namespace Sources.App.Ui.Screens.PerformanceScreens
 
         private void OnUpdate()
         {
-            _performanceScreen.FpsText.text = string.Format(FpsPattern, $"{_fpsService.FpsLastSecond:F1}");
-            _performanceScreen.InfoText.text =
-                string.Join("\n", 
-                    string.Format(TargetFpsPattern, _application.TargetFrameRate), 
-                    string.Format(PhysicsUpdateCountPattern, _time.PhysicsUpdateCount),
-                    string.Format(DeviceNamePattern, _application.DeviceName), 
-                    string.Format(DeviceModelPattern, _application.DeviceModel));
+            _performanceScreen.FpsValueText.text = $"{_fpsService.FpsLastSecond:F1}";
+            _performanceScreen.TargetFrameRateValueText.text = $"{_application.TargetFrameRate}";
+            _performanceScreen.PhysicsUpdateCountValueText.text = $"{_time.PhysicsUpdateCount}";
         }
 
         protected override void OnRefresh()
         {
-            
         }
 
         protected override void OnClose()
         {
-            _fpsService = null;
         }
     }
 }
