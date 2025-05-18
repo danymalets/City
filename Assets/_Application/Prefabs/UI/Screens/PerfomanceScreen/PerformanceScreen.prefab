@@ -158,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -541, y: -20}
+  m_AnchoredPosition: {x: -432, y: -20}
   m_SizeDelta: {x: 350, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2156464605757835980
@@ -296,7 +296,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3406054285376381894, guid: 88292d827e89e434eb79950aeddb32a6, type: 3}
       propertyPath: m_text
-      value: 'FUC:'
+      value: 'FFPS:'
       objectReference: {fileID: 0}
     - target: {fileID: 3406054285376381894, guid: 88292d827e89e434eb79950aeddb32a6, type: 3}
       propertyPath: m_fontSize
@@ -436,7 +436,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7900803745672682981, guid: 88292d827e89e434eb79950aeddb32a6, type: 3}
       propertyPath: m_Name
-      value: FucSubPanel
+      value: FfpsSubPanel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

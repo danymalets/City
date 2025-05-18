@@ -17,8 +17,6 @@ namespace Sources.Services.LogServices
         public void LogWarning(string message) => Debug.LogWarning($"[**WARNING**] {GetLogText(message)}");
         public void LogError(string message) => Debug.LogWarning($"[****ERROR****] {GetLogText(message)}");
 
-        public bool IsLogEnabled { get; set; }
-
         private string GetLogText(string message) => 
             $"[{DateTime.UtcNow.AddHours(_deltaHour).ToString(@"MM\/dd\/yyyy HH:mm:ss.fff",CultureInfo.InvariantCulture)} UTC+{_deltaHour}] <{typeof(T).Name}> {message}";
     }

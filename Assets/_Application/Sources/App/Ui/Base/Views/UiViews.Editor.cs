@@ -1,5 +1,7 @@
 #if UNITY_EDITOR
 
+using Sirenix.OdinInspector;
+using Sources.Utils.CommonUtils.Extensions;
 using UnityEditor;
 
 namespace Sources.App.Ui.Base.Views
@@ -14,6 +16,15 @@ namespace Sources.App.Ui.Base.Views
         private void OnValidate()
         {
             GameScreens = GetComponentsInChildren<GameScreen>(true);
+        }
+
+        [Button]
+        private void DisableAll()
+        {
+            foreach (var gameScreen in GetComponentsInChildren<GameScreen>(true))
+            {
+                gameScreen.gameObject.Disable();
+            }
         }
     }
 }

@@ -21,12 +21,20 @@ namespace Sources.App.Ui.Screens.DebugMenuScreens
 
         protected override void OnOpen()
         {
-            _debugMenuScreen.OpenDebugMenuButton.gameObject.Enable();
+            _debugMenuScreen.DebugMenuButton.gameObject.Enable();
             _debugMenuScreen.DebugMenu.gameObject.Disable();
+
+            _debugMenuScreen.DebugMenuButton.onClick.AddListener(OnDebugMenuButtonClicked);
         }
 
         protected override void OnClose()
         {
+            _debugMenuScreen.DebugMenuButton.onClick.RemoveListener(OnDebugMenuButtonClicked);
+        }
+        
+        private void OnDebugMenuButtonClicked()
+        {
+            _debugMenuScreen.DebugMenu.gameObject.SetActive(!_debugMenuScreen.DebugMenu.gameObject.activeSelf);
         }
     }
 }
