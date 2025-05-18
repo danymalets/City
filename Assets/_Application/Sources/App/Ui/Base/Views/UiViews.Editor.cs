@@ -1,6 +1,6 @@
 #if UNITY_EDITOR
 
-using Sirenix.OdinInspector;
+using TriInspector;
 using Sources.Utils.CommonUtils.Extensions;
 using UnityEditor;
 
@@ -18,7 +18,7 @@ namespace Sources.App.Ui.Base.Views
             GameScreens = GetComponentsInChildren<GameScreen>(true);
         }
 
-        [Button]
+        [Button(ButtonSizes.Large)]
         private void DisableAll()
         {
             foreach (var gameScreen in GetComponentsInChildren<GameScreen>(true))

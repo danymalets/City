@@ -2135,9 +2135,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 167968652277855100}
     m_Modifications:
+    - target: {fileID: 894793501227027256, guid: 98688893454b74f1e8053f4a4f92ebbc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1980274464424619712, guid: 98688893454b74f1e8053f4a4f92ebbc, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516701434925519260, guid: 98688893454b74f1e8053f4a4f92ebbc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6001950576269490676, guid: 98688893454b74f1e8053f4a4f92ebbc, type: 3}
       propertyPath: m_BlockingMask.m_Bits
