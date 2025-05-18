@@ -30,7 +30,7 @@ namespace Sources.App.Ui.Screens.ShopScreens
             {
                 new IapItemController(_shopScreen.SilverChestItem, IapProductType.GoldChest),
                 new IapItemController(_shopScreen.GoldChestItem, IapProductType.SilverChest),
-                new IapItemController(_shopScreen.RemoveAdsItem, IapProductType.GoldChest),
+                new IapItemController(_shopScreen.RemoveAdsItem, IapProductType.RemoveAds),
             };
 
             _coinsForGemsViewController = new CoinsForGemsViewController(shopScreen.CoinsForGemsItems);

@@ -91,5 +91,8 @@ namespace Sources.Services.ApplicationServices
 
         private void OnApplicationQuit() =>
             ApplicationQuit?.Invoke();
+
+        public void Quit() => 
+            Application.Quit();
     }
 }

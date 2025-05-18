@@ -1,11 +1,12 @@
 using System;
+using Unity.Plastic.Newtonsoft.Json;
 
 namespace Sources.App.Services.UserServices.Users.Wallets
 {
     public class UserWallet
     {
-        public UserCurrency Coins { get; } = new(100);
-        public UserCurrency Gems { get; } = new(900);
+        [JsonProperty] public UserCurrency Coins { get; } = new();
+        [JsonProperty] public UserCurrency Gems { get; } = new();
 
         public bool TrySpend(CurrencyType currencyType, long spendValue) =>
             GetCurrency(currencyType).TrySpend(spendValue);

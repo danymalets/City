@@ -21,5 +21,6 @@ namespace Sources.Services.ApplicationServices
         bool IsInternetReachable { get; }
         SystemLanguage SystemLanguage { get; }
         void OpenUrl(string url);
+        void Quit();
     }
 }

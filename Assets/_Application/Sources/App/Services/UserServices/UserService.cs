@@ -19,6 +19,7 @@ namespace Sources.App.Services.UserServices
 
         private readonly IJsonSerializerService _jsonSerializer;
         private readonly IPlayerPrefsService _playerPrefs;
+        private readonly IApplicationService _applicationService;
         private readonly ILogService _logService;
 
         public UserService()
@@ -26,50 +27,64 @@ namespace Sources.App.Services.UserServices
             _jsonSerializer = DiContainer.Resolve<IJsonSerializerService>();
             _playerPrefs = DiContainer.Resolve<IPlayerPrefsService>();
             _logService = DiContainer.Resolve<ILogService>();
+            _applicationService = DiContainer.Resolve<IApplicationService>();
         }
 
         public void Initialize()
         {
-            InitializeUser();
+            if (!TryInitializeUser())
+            {
+                return;
+            }
 
-            IApplicationService application = DiContainer.Resolve<IApplicationService>();
-            application.Unfocused += ApplicationCycle_OnUnfocused;
-            application.Paused += ApplicationCycle_OnPaused;
-            application.ApplicationQuit += ApplicationCycle_OnApplicationQuit;
+            _applicationService.Unfocused += ApplicationCycle_OnUnfocused;
+            _applicationService.Paused += ApplicationCycle_OnPaused;
+            _applicationService.ApplicationQuit += ApplicationCycle_OnApplicationQuit;
         }
 
-        private void InitializeUser()
+        private bool TryInitializeUser()
         {
-            if (_playerPrefs.HasKey(UserVersionKey))
+            Debug.Log($"z {_playerPrefs.HasKey(UserVersionKey)}");
+            
+            if (_playerPrefs.TryGetInt(UserVersionKey, out var lastSavedVersion))
             {
-                if (UserVersion == _playerPrefs.GetInt(UserVersionKey))
+                if (TryLoadUser())
                 {
-                    TryLoadUser();
+                    Debug.Log($"a");
+
+                    if (lastSavedVersion < UserVersion)
+                    {
+                        // migrations
+                    }
                 }
                 else
                 {
-                    CreateNewUser();
+                    _logService.LogError("Cannot load user. Quit application.");
+                    _applicationService.Quit();
+                    return false;
                 }
             }
             else
             {
+                Debug.Log($"b");
+
                 CreateNewUser();
             }
+
+            return true;
         }
 
-        private void TryLoadUser()
+        private bool TryLoadUser()
         {
-            string json = _playerPrefs.GetString(UserKey);
+            var json = _playerPrefs.GetString(UserKey);
+            Debug.Log($"Get \n\n {json}");
+            if (!_jsonSerializer.TryDeserialize(json, out User user)) return false;
+            User = user;
+            
+            Debug.Log($"Get \n\n {user.UserProgress.IsGreenCarUnlocked}");
 
-            if (_jsonSerializer.TryDeserialize(json, out User user))
-            {
-                User = user;
-            }
-            else
-            {
-                CreateNewUser();
-                _logService.LogError($"Cannot deserialize user. New Created.");
-            }
+            return true;
+
         }
 
         private void CreateNewUser() =>
@@ -92,12 +107,12 @@ namespace Sources.App.Services.UserServices
 
         public void Save()
         {
-            _playerPrefs.SetInt(UserVersionKey, UserVersion);
-
 #if UNITY_EDITOR
             string jsonDebug = _jsonSerializer.Serialize(User, true);
             _logService.Log($"User save: \n \n{jsonDebug}");
 #endif
+
+            _playerPrefs.SetInt(UserVersionKey, UserVersion);
 
             string json = _jsonSerializer.Serialize(User);
             _playerPrefs.SetString(UserKey, json);

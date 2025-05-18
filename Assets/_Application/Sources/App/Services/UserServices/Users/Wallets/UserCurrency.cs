@@ -1,11 +1,12 @@
 using System;
+using Newtonsoft.Json;
 using UnityEngine.Assertions;
 
 namespace Sources.App.Services.UserServices.Users.Wallets
 {
     public class UserCurrency
     {
-        public long Value { get; private set; }
+        [JsonProperty] public long Value { get; private set;  }
 
         public event Action<long> Changed;
         

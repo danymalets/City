@@ -48,7 +48,7 @@ namespace Sources.Services.IapServices
                     _userAccessService.User.UserProgress.IsRedCarUnlocked = true;
                     break;
                 case IapProductType.RemoveAds:
-                    _userAccessService.User.IsRemoveAds = true;
+                    _userAccessService.User.UserProgress.IsRemoveAds = true;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(iapProductType), iapProductType, null);
