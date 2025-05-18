@@ -5,6 +5,7 @@ using Sources.Services.LogServices;
 using Sources.Services.PlayerPreferencesServices;
 using Sources.Utils.Di;
 using UnityEngine;
+using ILogger = Sources.Services.LogServices.ILogger;
 
 namespace Sources.App.Services.UserServices
 {
@@ -20,13 +21,13 @@ namespace Sources.App.Services.UserServices
         private readonly IJsonSerializerService _jsonSerializer;
         private readonly IPlayerPrefsService _playerPrefs;
         private readonly IApplicationService _applicationService;
-        private readonly ILogService _logService;
+        private readonly ILogger _logger;
 
         public UserService()
         {
             _jsonSerializer = DiContainer.Resolve<IJsonSerializerService>();
             _playerPrefs = DiContainer.Resolve<IPlayerPrefsService>();
-            _logService = DiContainer.Resolve<ILogService>();
+            _logger = DiContainer.Resolve<ILogService>().CreateLogger<UserService>();
             _applicationService = DiContainer.Resolve<IApplicationService>();
         }
 
@@ -44,13 +45,10 @@ namespace Sources.App.Services.UserServices
 
         private bool TryInitializeUser()
         {
-            Debug.Log($"z {_playerPrefs.HasKey(UserVersionKey)}");
-            
             if (_playerPrefs.TryGetInt(UserVersionKey, out var lastSavedVersion))
             {
                 if (TryLoadUser())
                 {
-                    Debug.Log($"a");
 
                     if (lastSavedVersion < UserVersion)
                     {
@@ -59,14 +57,13 @@ namespace Sources.App.Services.UserServices
                 }
                 else
                 {
-                    _logService.LogError("Cannot load user. Quit application.");
+                    _logger.LogError("Cannot load user. Quit application.");
                     _applicationService.Quit();
                     return false;
                 }
             }
             else
             {
-                Debug.Log($"b");
 
                 CreateNewUser();
             }
@@ -77,12 +74,13 @@ namespace Sources.App.Services.UserServices
         private bool TryLoadUser()
         {
             var json = _playerPrefs.GetString(UserKey);
-            Debug.Log($"Get \n\n {json}");
-            if (!_jsonSerializer.TryDeserialize(json, out User user)) return false;
-            User = user;
             
-            Debug.Log($"Get \n\n {user.UserProgress.IsGreenCarUnlocked}");
-
+            if (!_jsonSerializer.TryDeserialize(json, out User user))
+            {
+                return false;
+            }
+            
+            User = user;
             return true;
 
         }
@@ -109,7 +107,7 @@ namespace Sources.App.Services.UserServices
         {
 #if UNITY_EDITOR
             string jsonDebug = _jsonSerializer.Serialize(User, true);
-            _logService.Log($"User save: \n \n{jsonDebug}");
+            _logger.Log($"User save: \n \n{jsonDebug}");
 #endif
 
             _playerPrefs.SetInt(UserVersionKey, UserVersion);

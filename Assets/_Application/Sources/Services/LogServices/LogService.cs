@@ -1,34 +1,14 @@
-using System;
-using UnityEngine;
-
 namespace Sources.Services.LogServices
 {
     public class LogService : ILogService
     {
-        public bool IsLogEnabled { get; set; } = true;
+        private readonly LogSettings _logSettings;
 
-        public void Log(string message)
+        public LogService(LogSettings logSettings)
         {
-            if (!IsLogEnabled) return;
-            Debug.Log(message);
+            _logSettings = logSettings;
         }
 
-        public void LogWarning(string message)
-        {
-            if (!IsLogEnabled) return;
-            Debug.LogWarning(message);
-        }
-
-        public void LogError(string message)
-        {
-            if (!IsLogEnabled) return;
-            Debug.LogError(message);
-        }
-
-        public void LogException(Exception exception)
-        {
-            if (!IsLogEnabled) return;
-            Debug.LogException(exception);
-        }
+        public ILogger CreateLogger<T>() => new Logger<T>(_logSettings);
     }
 } 

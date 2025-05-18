@@ -8,6 +8,7 @@ using Sources.Services.TimeServices;
 using Sources.Utils.CommonUtils.Utils;
 using Sources.Utils.Di;
 using UnityEngine;
+using ILogger = Sources.Services.LogServices.ILogger;
 
 namespace Sources.Services.FpsServices
 {
@@ -19,13 +20,13 @@ namespace Sources.Services.FpsServices
         private readonly Queue<float> _deltaTimes = new(150);
         private float _sumDeltaTimes = 0;
         private readonly IGameLoopService _gameLoopService;
-        private readonly ILogService _logService;
+        private readonly ILogger _logger;
         
         public FpsService()
         {
             _timeService = DiContainer.Resolve<ITimeService>();
             _gameLoopService = DiContainer.Resolve<IGameLoopService>();
-            _logService = DiContainer.Resolve<ILogService>();
+            _logger = DiContainer.Resolve<ILogService>().CreateLogger<FpsService>();
         }
 
         public void Initialize()
@@ -58,7 +59,7 @@ namespace Sources.Services.FpsServices
 
             } while (FpsLastSecond > fps);
 
-            _logService.Log($"[FpsService] Fps: {FpsLastSecond:F1} - stable");
+            _logger.Log($"[FpsService] Fps: {FpsLastSecond:F1} - stable");
         }
     }
 }

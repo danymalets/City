@@ -6,6 +6,7 @@ using Sources.Services.LogServices;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.Di;
 using UnityEngine;
+using ILogger = Sources.Services.LogServices.ILogger;
 
 namespace Sources.Services.PoolServices
 {
@@ -19,7 +20,7 @@ namespace Sources.Services.PoolServices
         private int _createdCount;
         private readonly IGameObjectService _gameObjectService;
         private readonly Transform _forceGroupRoot;
-        private readonly ILogService _logService;
+        private readonly ILogger _logger;
 
         public event Action<RespawnableBehaviour, PoolGroup> ObjectInstantiated;
         public event Action<RespawnableBehaviour, PoolGroup> ObjectDestroyed;
@@ -27,7 +28,7 @@ namespace Sources.Services.PoolServices
         public PoolGroup(Transform poolRoot, RespawnableBehaviour prefab, int initCount, Transform forceGroupRoot = null)
         {
             _gameObjectService = DiContainer.Resolve<IGameObjectService>();
-            _logService = DiContainer.Resolve<ILogService>();
+            _logger = DiContainer.Resolve<ILogService>().CreateLogger<PoolGroup>();
             
             _poolRoot = poolRoot;
             _prefab = prefab;
@@ -62,7 +63,7 @@ namespace Sources.Services.PoolServices
         {
             if (_stack.IsEmpty())
             {
-                _logService.LogWarning($"Pool {_prefab.gameObject.name} is too small. New object instantiated.");
+                _logger.LogWarning($"Pool {_prefab.gameObject.name} is too small. New object instantiated.");
                 CreateNewAndPush(); // todo: send to service info 
             }
 

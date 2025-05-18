@@ -7,6 +7,7 @@ using Sources.Services.LogServices;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using UnityEngine;
+using ILogger = Sources.Services.LogServices.ILogger;
 
 namespace Sources.App.Core.Ecs.Systems.Init
 {
@@ -14,13 +15,13 @@ namespace Sources.App.Core.Ecs.Systems.Init
     {
         private readonly IIdleCarsSystem _idleCarsSystem;
         private readonly ICarsFactory _carsFactory;
-        private readonly ILogService _logService;
+        private readonly ILogger _logger;
 
         public IdleCarsInitSystem()
         {
             _idleCarsSystem = DiContainer.Resolve<ILevelContext>().IdleCarsSystem;
             _carsFactory = DiContainer.Resolve<ICarsFactory>();
-            _logService = DiContainer.Resolve<ILogService>();
+            _logger = DiContainer.Resolve<ILogService>().CreateLogger<IdleCarsInitSystem>();
         }
 
         protected override void OnInitialize()
@@ -30,7 +31,7 @@ namespace Sources.App.Core.Ecs.Systems.Init
                 if (!_carsFactory.TryCreateCar(point.CarType, point.CarColor, point.Position,
                         point.Rotation, true, out Entity createdCar))
                 {
-                    _logService.LogError("cannot create car");
+                    _logger.LogError("cannot create car");
                 }
             }
         }

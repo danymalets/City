@@ -11,6 +11,7 @@ using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using UnityEngine;
+using ILogger = Sources.Services.LogServices.ILogger;
 
 namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 {
@@ -22,11 +23,11 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
         
         private Filter _filter;
         private readonly IPhysicsService _physics;
-        private readonly ILogService _logService;
+        private readonly ILogger _logger;
 
         public NpcCarBreakPoint()
         {
-            _logService = DiContainer.Resolve<ILogService>();
+            _logger = DiContainer.Resolve<ILogService>().CreateLogger<NpcCarBreakPoint>();
         }
 
         protected override void OnInitFilters()
@@ -49,7 +50,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 
                 float distance = Vector3.Distance(wheels.RootPosition, target);
 
-                //_logService.Log($"dist: {distance}");
+                //_logger.Log($"dist: {distance}");
                 
                 distance -= 0.1f;
 
@@ -62,11 +63,11 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
                     float progress = distance / breakDistance;
                     float mxSpeed = maxSpeed.Value * progress;
 
-                    _logService.Log($"progress {progress} cur speed {physicBody.SignedSpeed} max speed {mxSpeed}");
+                    _logger.Log($"progress {progress} cur speed {physicBody.SignedSpeed} max speed {mxSpeed}");
                     
                     if (physicBody.SignedSpeed > mxSpeed)
                     {
-                        _logService.Log($"break");
+                        _logger.Log($"break");
                         carBreak.BreakType = BreakType.Max;
                         carMotorCoefficient.Coefficient = 0;
                     }

@@ -49,7 +49,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.InitializationStates
 
             _diBuilder.Register<TimeService, ITimeService>();
             _diBuilder.Register<GameLoopService, IGameLoopService>();
-            _diBuilder.Register<LogService, ILogService>();
+            _diBuilder.Register<ILogService>(new LogService(new LogSettings{ IsLocalTime = true }));
             
             _diBuilder.Register<PhysicsService, IPhysicsService>();
             _diBuilder.Register<ApplicationInputService, IApplicationInputService>();

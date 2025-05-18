@@ -4,6 +4,7 @@ using Sources.Services.GameLoopServices;
 using Sources.Services.LogServices;
 using Sources.Utils.Di;
 using UnityEngine;
+using ILogger = Sources.Services.LogServices.ILogger;
 
 namespace Sources.Services.ApplicationServices
 {
@@ -20,7 +21,7 @@ namespace Sources.Services.ApplicationServices
 
         private IApplicationInputService _applicationInput;
         private IGameLoopService _gameLoopService;
-        private ILogService _logService;
+        private ILogger _logger;
 
         public int TargetFrameRate
         {
@@ -50,7 +51,7 @@ namespace Sources.Services.ApplicationServices
         {
             _applicationInput = DiContainer.Resolve<IApplicationInputService>();
             _gameLoopService = DiContainer.Resolve<IGameLoopService>();
-            _logService = DiContainer.Resolve<ILogService>();
+            _logger = DiContainer.Resolve<ILogService>().CreateLogger<ApplicationService>();
             
             _gameLoopService.RunEachFrame(() =>
             {
@@ -86,7 +87,7 @@ namespace Sources.Services.ApplicationServices
             
             PauseStatusChanged?.Invoke(pauseStatus);
             
-            _logService.Log($"pauseStatus {pauseStatus}");
+            _logger.Log($"pauseStatus {pauseStatus}");
         }
 
         private void OnApplicationQuit() =>
