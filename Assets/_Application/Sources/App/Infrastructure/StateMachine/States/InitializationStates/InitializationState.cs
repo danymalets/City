@@ -5,6 +5,7 @@ using Sources.App.Infrastructure.StateMachine.States.BootstrapStates;
 using Sources.App.Services.AssetsServices;
 using Sources.App.Services.AudioServices;
 using Sources.App.Services.BalanceServices;
+using Sources.App.Services.InputServices;
 using Sources.App.Services.UserServices;
 using Sources.App.Ui.Base;
 using Sources.Services.AdsServices;
@@ -47,6 +48,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.InitializationStates
             IGameObjectService gameObjectService = 
                 _diBuilder.Register<GameObjectService, IGameObjectService>();
 
+            _diBuilder.Register<InputService, IInputService>();
             _diBuilder.Register<TimeService, ITimeService>();
             _diBuilder.Register<GameLoopService, IGameLoopService>();
             _diBuilder.Register<ILogService>(new LogService(new LogSettings{ IsLocalTime = true }));

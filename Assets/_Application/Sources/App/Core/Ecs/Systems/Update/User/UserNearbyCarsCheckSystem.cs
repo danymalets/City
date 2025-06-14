@@ -28,7 +28,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
 
         protected override void OnInitFilters()
         {
-            _filter = _world.Filter<UserTag>().Without<PlayerInCar>().Build();
+            _filter = _world.Filter<UserTag>().Build();
             _carsFilter = _world.Filter<CarTag>().Build();
         }
 
@@ -41,20 +41,23 @@ namespace Sources.App.Core.Ecs.Systems.Update.User
                 Entity enterCar = default;
                 float curMinSqrDistance = 0;
 
-                foreach (Entity carEntity in _carsFilter)
+                if (!playerEntity.Has<PlayerInCar>())
                 {
-                    if (carEntity.GetAspect<CarPassengersAspect>().IsNoPassengers)
+                    foreach (Entity carEntity in _carsFilter)
                     {
-                        IEnterPoint[] carEnterPoints = carEntity.GetRef<IEnterPoint[]>();
-
-                        IEnterPoint enterPoint = carEnterPoints[0];
-
-                        float sqrDistance = Vector3Utils.SqrDistance(enterPoint.Position, playerTransform.Position);
-                        if (sqrDistance <= MathUtils.Sqr(_carsBalance.MaxEnterCarDistance) &&
-                            (enterCar == default || sqrDistance < curMinSqrDistance))
+                        if (carEntity.GetAspect<CarPassengersAspect>().IsNoPassengers)
                         {
-                            enterCar = carEntity;
-                            curMinSqrDistance = sqrDistance;
+                            IEnterPoint[] carEnterPoints = carEntity.GetRef<IEnterPoint[]>();
+
+                            IEnterPoint enterPoint = carEnterPoints[0];
+
+                            float sqrDistance = Vector3Utils.SqrDistance(enterPoint.Position, playerTransform.Position);
+                            if (sqrDistance <= MathUtils.Sqr(_carsBalance.MaxEnterCarDistance) &&
+                                (enterCar == default || sqrDistance < curMinSqrDistance))
+                            {
+                                enterCar = carEntity;
+                                curMinSqrDistance = sqrDistance;
+                            }
                         }
                     }
                 }
