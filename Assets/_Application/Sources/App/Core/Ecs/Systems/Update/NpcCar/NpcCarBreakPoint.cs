@@ -4,14 +4,11 @@ using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Player.InCar;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Data.Cars;
-using Sources.Services.LogServices;
 using Sources.Services.PhysicsServices;
-using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using UnityEngine;
-using ILogger = Sources.Services.LogServices.ILogger;
 
 namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 {
@@ -23,12 +20,6 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
         
         private Filter _filter;
         private readonly IPhysicsService _physics;
-        private readonly ILogger _logger;
-
-        public NpcCarBreakPoint()
-        {
-            _logger = DiContainer.Resolve<ILogService>().CreateLogger<NpcCarBreakPoint>();
-        }
 
         protected override void OnInitFilters()
         {
@@ -50,7 +41,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 
                 float distance = Vector3.Distance(wheels.RootPosition, target);
 
-                //_logger.Log($"dist: {distance}");
+                //Debug.Log($"dist: {distance}");
                 
                 distance -= 0.1f;
 
@@ -63,11 +54,11 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
                     float progress = distance / breakDistance;
                     float mxSpeed = maxSpeed.Value * progress;
 
-                    _logger.Log($"progress {progress} cur speed {physicBody.SignedSpeed} max speed {mxSpeed}");
+                    Debug.Log($"progress {progress} cur speed {physicBody.SignedSpeed} max speed {mxSpeed}");
                     
                     if (physicBody.SignedSpeed > mxSpeed)
                     {
-                        _logger.Log($"break");
+                        Debug.Log($"break");
                         carBreak.BreakType = BreakType.Max;
                         carMotorCoefficient.Coefficient = 0;
                     }
