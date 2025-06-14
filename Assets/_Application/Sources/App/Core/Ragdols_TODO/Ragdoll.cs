@@ -7,9 +7,6 @@ namespace Sources.App.Core.Ragdols_TODO
     public class Ragdoll : MonoBehaviour
     {
         [SerializeField]
-        private GameObject _glider;
-
-        [SerializeField]
         private Transform _rootBones;
 
         [SerializeField]
@@ -73,7 +70,6 @@ namespace Sources.App.Core.Ragdols_TODO
                 collider.enabled = true;
 
             _animator.enabled = false;
-            _glider.Disable();
 
             _mainCollider.enabled = false;
             

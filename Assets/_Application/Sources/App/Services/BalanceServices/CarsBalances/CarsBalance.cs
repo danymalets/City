@@ -22,9 +22,6 @@ namespace Sources.App.Services.BalanceServices.CarsBalances
 
         private void OnValidate()
         {
-            ValidateUtils.ValidateEnumsData(_carBalance,
-                cb => cb.CarType, carType => new CarBalance(carType));
-
             foreach (CarBalance carBalance in _carBalance)
             {
                 carBalance.OnValidate();

@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 namespace Sources.Utils.CommonUtils.Utils
 {
-    public static class NavMeshUtility
+    public static class NavMeshUtils
     {
         public static int GetNavMeshAgentID(string name)
         {

@@ -59,7 +59,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
             RunScreenLoading().Forget();
 
             await _sceneLoader.LoadEmptyScene();
-            var playerRenderSceneContext = await _sceneLoader.LoadScene<PlayerRenderSceneContext>(_assets.PlayerRenderSceneName, LoadSceneMode.Additive);
+            var playerRenderSceneContext = await _sceneLoader.LoadScene<PlayerRenderSceneContext>(_assets.ScenesAssets.PlayerRenderSceneName, LoadSceneMode.Additive);
             
             PlayerMonoEntity player = playerRenderSceneContext.Player;
 
@@ -89,7 +89,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
         
         protected override void OnExit()
         {
-            _sceneLoader.UnloadScene(_assets.PlayerRenderSceneName);
+            _sceneLoader.UnloadScene(_assets.ScenesAssets.PlayerRenderSceneName);
             _mainScreenController.PlayButtonClicked -= OnPlayButtonClicked;
 
             _uiCloseService.CloseAll();

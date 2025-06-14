@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Sources.Utils.CommonUtils.Utils
 {
-    public static class DBounds
+    public static class BoundsUtils
     {
         public static Bounds CombineBounds(IEnumerable<Bounds> bounds)
         {

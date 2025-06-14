@@ -3,6 +3,7 @@ using Sources.App.Services.AssetsServices.Localizations;
 using Sources.App.Services.AssetsServices.Monos.AssetsData;
 using Sources.Utils.Di;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Sources.App.Services.AssetsServices
 {
@@ -10,8 +11,7 @@ namespace Sources.App.Services.AssetsServices
     public class Assets : ScriptableObject, IService
     {
         [field: SerializeField] public AudioAssets AudioAssets { get; private set; }
-        [field: SerializeField] public string PlayerRenderSceneName { get; private set; } = "PlayerRender";
-        [field: SerializeField] public string CitySceneName { get; private set; } = "City";
+        [field: SerializeField] public ScenesAssets ScenesAssets { get; private set; }
         [field: SerializeField] public CarsAssets CarsAssets { get; private set; }
         [field: SerializeField] public PlayersAssets PlayersAssets { get; private set; }
         [field: SerializeField] public LocalizationAssets LocalizationAssets { get; private set; }

@@ -16,13 +16,6 @@ namespace Sources.App.Services.AssetsServices.Monos.AssetsData
         
         public IEnumerable<CarMonoEntity> CarPrefabs => 
             _carData.Select(d => d.CarPrefab);
-
-        private void OnValidate()
-        {
-            ValidateUtils.ValidateEnumsData(_carData, 
-                cd => cd.CarType, 
-                cd => new CarAsset(cd));
-        }
         
         public CarMonoEntity GetCarPrefab(CarType carType) =>
             _carData.First(cd => cd.CarType == carType).CarPrefab;

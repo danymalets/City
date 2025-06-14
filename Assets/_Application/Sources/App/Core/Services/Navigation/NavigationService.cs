@@ -20,8 +20,8 @@ namespace Sources.App.Core.Services.Navigation
 
         public void Initialize()
         {
-            _playerAgentId = NavMeshUtility.GetNavMeshAgentID("Player");
-            _carAgentId = NavMeshUtility.GetNavMeshAgentID("Car");
+            _playerAgentId = NavMeshUtils.GetNavMeshAgentID("Player");
+            _carAgentId = NavMeshUtils.GetNavMeshAgentID("Car");
         }
 
         public bool TryGetPlayerPath(Vector3 source, Vector3 target, out Vector3[] path)

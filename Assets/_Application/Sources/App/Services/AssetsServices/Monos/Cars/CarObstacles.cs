@@ -19,7 +19,7 @@ namespace Sources.App.Services.AssetsServices.Monos.Cars
         {
             IEnumerable<Bounds> allBounds = colliders.Select(c => c.Bounds);
 
-            Bounds bounds = DBounds.CombineBounds(allBounds);
+            Bounds bounds = BoundsUtils.CombineBounds(allBounds);
 
             bounds.min = bounds.min.WithY(0);
 

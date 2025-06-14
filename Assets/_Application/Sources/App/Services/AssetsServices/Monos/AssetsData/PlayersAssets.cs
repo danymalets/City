@@ -17,13 +17,6 @@ namespace Sources.App.Services.AssetsServices.Monos.AssetsData
         public IEnumerable<PlayerMonoEntity> PlayerPrefabs =>
             _playerData.Select(d => d.PlayerPrefab);
 
-        private void OnValidate()
-        {
-            ValidateUtils.ValidateEnumsData(_playerData, 
-                pd => pd.PlayerType, 
-                pd => new PlayerAsset(pd));
-        }
-
         public PlayerMonoEntity GetPlayerPrefab(PlayerType playerType) =>
             _playerData.First(pd => pd.PlayerType == playerType).PlayerPrefab;
     }

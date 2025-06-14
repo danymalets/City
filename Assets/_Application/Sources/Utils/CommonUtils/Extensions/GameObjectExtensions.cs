@@ -20,7 +20,7 @@ namespace Sources.Utils.CommonUtils.Extensions
             IEnumerable<Bounds> allBounds = gameObject
                 .GetComponentsInChildren<MeshRenderer>().Select(mr => mr.bounds);
             
-            Bounds bound = DBounds.CombineBounds(allBounds);
+            Bounds bound = BoundsUtils.CombineBounds(allBounds);
             return bound;
         }
 

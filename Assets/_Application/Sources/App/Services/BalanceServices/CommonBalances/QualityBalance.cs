@@ -11,13 +11,6 @@ namespace Sources.App.Services.BalanceServices.CommonBalances
     {
         [field: SerializeField] public List<GameQualitySettings> GameQualitySettings = new();
 
-        private void OnValidate()
-        {
-            ValidateUtils.ValidateEnumsData(GameQualitySettings, 
-                s => s.QualityType, 
-                qt => new GameQualitySettings(qt));
-        }
-
         public GameQualitySettings Get(QualityType qualityType) =>
             GameQualitySettings.First(qs => qs.QualityType == qualityType);
     }

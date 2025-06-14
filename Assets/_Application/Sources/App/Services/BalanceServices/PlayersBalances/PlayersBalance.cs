@@ -24,13 +24,6 @@ namespace Sources.App.Services.BalanceServices.PlayersBalances
         
         [SerializeField]
         private List<PlayerBalance> _playersBalance;
-
-        private void OnValidate()
-        {
-            ValidateUtils.ValidateEnumsData(_playersBalance,
-                pb => pb.PlayerType,
-                pb => new PlayerBalance(pb));
-        }
         
         public PlayerType GetRandomPlayerType() =>
             _playersBalance.GetRandomWithWeights(pb => pb.Weight).PlayerType;
