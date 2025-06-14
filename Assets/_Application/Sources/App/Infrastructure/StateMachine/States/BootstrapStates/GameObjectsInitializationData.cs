@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Sources.App.Infrastructure.StateMachine.States.BootstrapStates
 {
-    public class MonoServicesData : MonoBehaviour
+    public class GameObjectsInitializationData : MonoBehaviour
     {
         [field: SerializeField] public UiViews UiViews { get; private set; }
         [field: SerializeField] public ApplicationService ApplicationService { get; private set; }
@@ -18,5 +18,6 @@ namespace Sources.App.Infrastructure.StateMachine.States.BootstrapStates
         [field: SerializeField] public Assets Assets { get; private set; }
         [field: SerializeField] public Balance BalanceService { get; private set; }
         [field: SerializeField] public GizmosService GizmosService { get; private set; }
+        [field: SerializeField] public GameObject DebugMenu { get; private set; }
     }
 }

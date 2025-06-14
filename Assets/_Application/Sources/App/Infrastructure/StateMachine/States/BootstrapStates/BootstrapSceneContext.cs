@@ -10,9 +10,9 @@ namespace Sources.App.Infrastructure.StateMachine.States.BootstrapStates
     [DefaultExecutionOrder(-100)]
     public class BootstrapSceneContext : SceneContext
     {
-        [SerializeField]
-        private BootstrapData _bootstrapData;
-        
+        [FormerlySerializedAs("_gameObjectsData")] [FormerlySerializedAs("_monoServicesData")] [SerializeField]
+        private GameObjectsInitializationData _gameObjectsInitializationData;
+
         private void Awake()
         {
             StartGameStateMachine();
@@ -21,7 +21,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.BootstrapStates
         private void StartGameStateMachine()
         {
             GameStateMachine gameStateMachine = new();
-            gameStateMachine.Enter<InitializationState, BootstrapData>(_bootstrapData);
+            gameStateMachine.Enter<InitializationState, GameObjectsInitializationData>(_gameObjectsInitializationData);
         }
     }
 }

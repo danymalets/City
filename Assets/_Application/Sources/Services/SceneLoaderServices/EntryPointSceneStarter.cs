@@ -13,9 +13,6 @@ namespace Sources.Services.SceneLoaderServices
 
         private void Awake()
         {
-            if (!Application.isPlaying)
-                return;
-            
             if (!s_isGameStarted)
             {
                 s_isGameStarted = true;

@@ -31,7 +31,7 @@ using Sources.Utils.Di;
 
 namespace Sources.App.Infrastructure.StateMachine.States.InitializationStates
 {
-    public class InitializationState : GameState<BootstrapData>
+    public class InitializationState : GameState<GameObjectsInitializationData>
     {
         private IDiBuilder _diBuilder;
 
@@ -39,10 +39,8 @@ namespace Sources.App.Infrastructure.StateMachine.States.InitializationStates
         {
         }
         
-        protected override void OnEnter(BootstrapData bootstrapData)
+        protected override void OnEnter(GameObjectsInitializationData gameObjectsInitializationData)
         {
-            MonoServicesData monoServicesData = bootstrapData.MonoServicesData;
-            
             _diBuilder = DiBuilder.Create();
             
             IGameObjectService gameObjectService = 
@@ -55,23 +53,23 @@ namespace Sources.App.Infrastructure.StateMachine.States.InitializationStates
             
             _diBuilder.Register<PhysicsService, IPhysicsService>();
             _diBuilder.Register<ApplicationInputService, IApplicationInputService>();
-            _diBuilder.Register<IApplicationService>(monoServicesData.ApplicationService);
+            _diBuilder.Register<IApplicationService>(gameObjectsInitializationData.ApplicationService);
             _diBuilder.Register<SceneLoaderService, ISceneLoaderService>();
             _diBuilder.Register<ScreenService, IScreenService>();
             _diBuilder.Register<JsonSerializerService, IJsonSerializerService>();
             _diBuilder.Register<PlayerPrefsService, IPlayerPrefsService>();
             _diBuilder.Register<UserService, IUserAccessService, IUserSaveService>();
             _diBuilder.Register<VibrationService, IVibrationService>();
-            _diBuilder.Register<Assets>(monoServicesData.Assets);
+            _diBuilder.Register<Assets>(gameObjectsInitializationData.Assets);
             
             _diBuilder.Register<PoolService, IPoolCreatorService, IPoolSpawnerService, IPoolDespawnerService>(
-                new PoolService(monoServicesData.PoolRoot));
+                new PoolService(gameObjectsInitializationData.PoolRoot));
             
             _diBuilder.Register<FpsService, IFpsService>();
-            _diBuilder.Register<IAudioService>(new AudioService(monoServicesData.AudioRoot));
-            _diBuilder.Register<Balance>(monoServicesData.BalanceService);
+            _diBuilder.Register<IAudioService>(new AudioService(gameObjectsInitializationData.AudioRoot));
+            _diBuilder.Register<Balance>(gameObjectsInitializationData.BalanceService);
             _diBuilder.Register<LocalizationService, ILocalizationService>();
-            _diBuilder.Register<IGizmosService>(monoServicesData.GizmosService);
+            _diBuilder.Register<IGizmosService>(gameObjectsInitializationData.GizmosService);
             _diBuilder.Register<QualityService, IQualityAccessService, IQualityChangerService>();
             
             _diBuilder.Register<AdsService, IAdsService>();
@@ -79,12 +77,12 @@ namespace Sources.App.Infrastructure.StateMachine.States.InitializationStates
             _diBuilder.Register<IapService, IIapService>();
             
             _diBuilder.Register<UiControllersService, IUiControllersService, IUiRefreshService, IUiCloseService>(
-                new UiControllersService(monoServicesData.UiViews));
+                new UiControllersService(gameObjectsInitializationData.UiViews));
 
-            gameObjectService.DontDestroyOnLoad(monoServicesData.gameObject);
+            gameObjectService.DontDestroyOnLoad(gameObjectsInitializationData.gameObject);
             
 #if !FORCE_DEBUG
-            gameObjectService.Destroy(bootstrapData.DebugMenu);
+            gameObjectService.Destroy(gameObjectsInitializationData.DebugMenu);
 #endif
 
             _stateMachine.Enter<BootstrapState>();
