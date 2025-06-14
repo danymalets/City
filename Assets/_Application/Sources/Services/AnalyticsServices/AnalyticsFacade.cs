@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Sources.Services.AnalyticsServices.Adapters;
+// using Sources.Services.AnalyticsServices.Adapters;
 
 namespace Sources.Services.AnalyticsServices
 {
@@ -7,8 +7,8 @@ namespace Sources.Services.AnalyticsServices
     {
         private readonly IAnalyticsAdapter[] _analyticsAdapters = 
         {
-            new GameAnalyticsAdapter(),
-            new FirebaseAnalyticsAdapter(),
+            // new GameAnalyticsAdapter(),
+            // new FirebaseAnalyticsAdapter(),
         };
 
         public void Initialize()
