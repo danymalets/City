@@ -10,7 +10,6 @@ using Sources.App.Services.UserServices;
 using Sources.App.Ui.Base;
 using Sources.Services.AdsServices;
 using Sources.Services.AnalyticsServices;
-using Sources.Services.ApplicationInputServices;
 using Sources.Services.ApplicationServices;
 using Sources.Services.FpsServices;
 using Sources.Services.GameLoopServices;
@@ -52,7 +51,6 @@ namespace Sources.App.Infrastructure.StateMachine.States.InitializationStates
             _diBuilder.Register<ILogService>(new LogService(new LogSettings{ IsLocalTime = true }));
             
             _diBuilder.Register<PhysicsService, IPhysicsService>();
-            _diBuilder.Register<ApplicationInputService, IApplicationInputService>();
             _diBuilder.Register<IApplicationService>(gameObjectsInitializationData.ApplicationService);
             _diBuilder.Register<SceneLoaderService, ISceneLoaderService>();
             _diBuilder.Register<ScreenService, IScreenService>();

@@ -1,5 +1,4 @@
 using System;
-using Sources.Services.ApplicationInputServices;
 using Sources.Services.GameLoopServices;
 using Sources.Utils.Di;
 using UnityEngine;
@@ -17,7 +16,6 @@ namespace Sources.Services.ApplicationServices
         public event Action Unpaused;
         public event Action ApplicationQuit;
 
-        private IApplicationInputService _applicationInput;
         private IGameLoopService _gameLoopService;
 
         public int TargetFrameRate
@@ -46,14 +44,7 @@ namespace Sources.Services.ApplicationServices
 
         public void Initialize()
         {
-            _applicationInput = DiContainer.Resolve<IApplicationInputService>();
             _gameLoopService = DiContainer.Resolve<IGameLoopService>();
-            
-            _gameLoopService.RunEachFrame(() =>
-            {
-                if (_applicationInput.GetKeyDown(KeyCode.Escape))
-                    BackButtonClicked?.Invoke();
-            }, true);
         }
 
         private void OnApplicationFocus(bool hasFocus)
@@ -82,8 +73,6 @@ namespace Sources.Services.ApplicationServices
             }
             
             PauseStatusChanged?.Invoke(pauseStatus);
-            
-            Debug.Log($"pauseStatus {pauseStatus}");
         }
 
         private void OnApplicationQuit() =>
