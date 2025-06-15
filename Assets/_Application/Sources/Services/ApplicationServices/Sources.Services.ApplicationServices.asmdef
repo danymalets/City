@@ -6,7 +6,8 @@
         "Sources.Services.ApplicationInputServices",
         "Sources.Services.GameLoopServices",
         "UniTask",
-        "Sources.Services.LogServices"
+        "Sources.Services.LogServices",
+        "Sources.App.Services.InputServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

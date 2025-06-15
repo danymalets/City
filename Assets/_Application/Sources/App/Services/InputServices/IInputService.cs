@@ -8,5 +8,6 @@ namespace Sources.App.Services.InputServices
         public Vector2 GetMove();
         public bool WasEnterCarPressed();
         public bool WasExitCarPressed();
+        public bool WasAndroidBackPressed();
     }
 }

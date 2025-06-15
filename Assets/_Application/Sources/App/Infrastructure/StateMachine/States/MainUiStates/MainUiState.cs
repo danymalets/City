@@ -78,8 +78,6 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
             _loadingScreen.Close();
             
             var result = await _adsService.ShowInterstitial();
-
-            _logger.Log($"result {result}");
         }
 
         private void OnPlayButtonClicked()

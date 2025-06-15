@@ -58,8 +58,6 @@ namespace Sources.Services.FpsServices
                 await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
 
             } while (FpsLastSecond > fps);
-
-            _logger.Log($"[FpsService] Fps: {FpsLastSecond:F1} - stable");
         }
     }
 }

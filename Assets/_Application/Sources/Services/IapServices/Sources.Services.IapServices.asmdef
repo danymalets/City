@@ -7,7 +7,8 @@
         "UnityEngine.Purchasing.Stores",
         "Sources.Utils.CommonUtils",
         "Sources.App.Services.UserServices",
-        "Sources.Services.ApplicationServices"
+        "Sources.Services.ApplicationServices",
+        "Sources.Services.LogServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

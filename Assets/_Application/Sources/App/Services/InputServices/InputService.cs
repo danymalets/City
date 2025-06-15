@@ -1,5 +1,6 @@
 using Sources.Utils.Di;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Sources.App.Services.InputServices
 {
@@ -17,10 +18,10 @@ namespace Sources.App.Services.InputServices
             _inputAction.Enable();
         }
 
-
         public Vector2 GetMove() => _inputAction.Player.Move.ReadValue<Vector2>();
         public bool WasEnterCarPressed() => _inputAction.Player.EnterCar.WasPressedThisFrame();
 
         public bool WasExitCarPressed() => _inputAction.Player.ExitCar.WasPressedThisFrame();
+        public bool WasAndroidBackPressed() => Keyboard.current.escapeKey.wasPressedThisFrame;
     }
 }
