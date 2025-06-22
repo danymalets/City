@@ -15,7 +15,6 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
     public class CustomWorld : IService
     {
         private const float MinWorkableFps = 0;
-        private const bool DebugPerformance = false;
 
         private readonly World _world;
         private readonly ITimeService _time;
