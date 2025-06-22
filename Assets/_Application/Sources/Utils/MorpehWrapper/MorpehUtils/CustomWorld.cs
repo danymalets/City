@@ -69,15 +69,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
             foreach (TDSystem system in systems)
             {
                 _world.Commit();
-                if (DebugPerformance && performanceSender != null)
-                {
-                    PerformanceUtils.Execute(() => runner(system),
-                        ticks => performanceSender(system, ticks));
-                }
-                else
-                {
-                    runner(system);
-                }
+                runner(system);
             }
 
             _world.Commit();
