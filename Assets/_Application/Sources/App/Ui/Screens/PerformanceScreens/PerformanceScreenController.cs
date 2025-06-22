@@ -40,10 +40,6 @@ namespace Sources.App.Ui.Screens.PerformanceScreens
             _performanceScreen.PhysicsUpdateCountValueText.text = $"{_time.PhysicsUpdateCount}";
         }
 
-        protected override void OnRefresh()
-        {
-        }
-
         protected override void OnClose()
         {
         }

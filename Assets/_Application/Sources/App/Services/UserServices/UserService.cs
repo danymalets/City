@@ -19,7 +19,7 @@ namespace Sources.App.Services.UserServices
 
         public User User { get; private set; }
 
-        public Action UserChanged { get; private set; }
+        public Action UserChanged { get; }
 
         private readonly IJsonSerializerService _jsonSerializer;
         private readonly IPlayerPrefsService _playerPrefs;

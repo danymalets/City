@@ -50,9 +50,5 @@ namespace Sources.App.Ui.Screens.CurrencyScreens
                 itemController.OnClose();
             }
         }
-        
-        protected override void OnRefresh()
-        {
-        }
     }
 }

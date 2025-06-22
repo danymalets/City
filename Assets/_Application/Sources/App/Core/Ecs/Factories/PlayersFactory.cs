@@ -14,7 +14,7 @@ using Sources.App.Data.Constants;
 using Sources.App.Data.Pathes;
 using Sources.App.Data.Players;
 using Sources.App.Data.Points;
-using Sources.App.Services.AssetsServices.Monos.MonoEntities.Player;
+using Sources.App.Services.AssetsServices.Common.Monos.MonoEntities.Player;
 using Sources.App.Services.BalanceServices;
 using Sources.App.Services.BalanceServices.PlayersBalances;
 using Sources.Services.PhysicsServices;
@@ -44,7 +44,7 @@ namespace Sources.App.Core.Ecs.Factories
         public PlayerMonoEntity GetRandomPlayerPrefab()
         {
             PlayerType playerType = _balance.PlayersBalance.GetRandomPlayerType();
-            return _assets.PlayersAssets.GetPlayerPrefab(playerType);
+            return _assets.CommonAssets.PlayersAssets.GetPlayerPrefab(playerType);
         }
 
         public Entity CreateUserInCar(PlayerMonoEntity playerPrefab, Entity carEntity)

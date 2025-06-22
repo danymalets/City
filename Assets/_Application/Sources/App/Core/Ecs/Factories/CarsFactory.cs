@@ -8,7 +8,7 @@ using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Data.Cars;
 using Sources.App.Data.Constants;
 using Sources.App.Data.Points;
-using Sources.App.Services.AssetsServices.Monos.MonoEntities.Car;
+using Sources.App.Services.AssetsServices.Common.Monos.MonoEntities.Car;
 using Sources.App.Services.BalanceServices;
 using Sources.App.Services.BalanceServices.CarsBalances;
 using Sources.Services.PhysicsServices;
@@ -35,14 +35,14 @@ namespace Sources.App.Core.Ecs.Factories
         public bool TryCreateCar(CarType carType, CarColorType? carColor, Vector3 position,
             Quaternion rotation, bool isIdle, out Entity createdCar)
         {
-            return TryCreateCar(_assets.CarsAssets.GetCarPrefab(carType), carColor, position,
+            return TryCreateCar(_assets.CommonAssets.CarsAssets.GetCarPrefab(carType), carColor, position,
                 rotation, isIdle, out createdCar);
         }
 
         public bool TryCreateRandomCarOnPath(Point point, bool isIdle, out Entity createdCar)
         {
             CarColorData carColorData = _carsBalance.GetRandomCar();
-            CarMonoEntity carPrefab = _assets.CarsAssets.GetCarPrefab(carColorData.CarType);
+            CarMonoEntity carPrefab = _assets.CommonAssets.CarsAssets.GetCarPrefab(carColorData.CarType);
             return TryCreateCar(carPrefab, carColorData.CarColor, point.Position, point.Rotation,
                 isIdle, out createdCar);
         }

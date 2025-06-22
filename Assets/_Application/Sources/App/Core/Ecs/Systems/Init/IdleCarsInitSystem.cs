@@ -2,7 +2,7 @@ using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Factories;
 using Sources.App.Data.Pathes;
 using Sources.App.Data.Points;
-using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
+using Sources.App.Services.AssetsServices.Common.IdleCarSpawns.Common;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using UnityEngine;

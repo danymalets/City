@@ -62,7 +62,7 @@ namespace Sources.App.Ui.Base
 
             foreach (ScreenControllerBase screenController in _screenControllers.Values)
             {
-                screenController.Prepare();
+                screenController.Create();
                 
                 screenController.Opened += ScreenController_OnOpened;
                 screenController.Closed += ScreenController_OnClosed;

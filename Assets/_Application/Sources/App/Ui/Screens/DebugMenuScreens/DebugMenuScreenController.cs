@@ -15,36 +15,12 @@ namespace Sources.App.Ui.Screens.DebugMenuScreens
     {
         private readonly DebugMenuScreen _debugMenuScreen;
         private readonly DebugMenuViewController _debugMenuViewController;
-        private IUserAccessService _userAccessService;
 
         public DebugMenuScreenController(DebugMenuScreen debugMenuScreen) : 
             base(debugMenuScreen, new ToggleAnimator(debugMenuScreen), true)
         {
             _debugMenuScreen = debugMenuScreen;
             _debugMenuViewController = new DebugMenuViewController(_debugMenuScreen.DebugMenu);
-            
-        }
-
-        protected override void OnCreate()
-        {
-            base.OnCreate();
-            
-            _userAccessService = DiContainer.Resolve<IUserAccessService>();
-
-#if FORCE_DEBUG
-            _debugMenuViewController.Initialize(new DebugItemProvider[]
-            {
-                new SetCurrencyDebugItemProvider(CurrencyType.Coins, 10_000),
-                new SetCurrencyDebugItemProvider(CurrencyType.Gems, 100),
-                new ResetUserItemProvider(),
-                new RunGameDebugItemProvider(),
-            }.Select(itemProvider => itemProvider.GetItem()));
-#endif
-        }
-
-        protected override void OnRefresh()
-        {
-            
         }
 
         protected override void OnOpen()
@@ -62,7 +38,23 @@ namespace Sources.App.Ui.Screens.DebugMenuScreens
         
         private void OnDebugMenuButtonClicked()
         {
-            _debugMenuScreen.DebugMenu.gameObject.SetActive(!_debugMenuScreen.DebugMenu.gameObject.activeSelf);
+            var wasActive = _debugMenuScreen.DebugMenu.gameObject.activeSelf;
+            _debugMenuScreen.DebugMenu.gameObject.SetActive(!wasActive);
+
+            if (wasActive)
+            {
+                _debugMenuViewController.OnOpen(new DebugItemProvider[]
+                {
+                    new SetCurrencyDebugItemProvider(CurrencyType.Coins, 10_000),
+                    new SetCurrencyDebugItemProvider(CurrencyType.Gems, 100),
+                    new ResetUserItemProvider(),
+                    new RunGameDebugItemProvider(),
+                }.Select(itemProvider => itemProvider.GetItem()));
+            }
+            else
+            {
+                _debugMenuViewController.OnClose();
+            }
         }
     }
 }

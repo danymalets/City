@@ -2,7 +2,7 @@ using Sources.App.Core.Ecs.Factories;
 using Sources.App.Data;
 using Sources.App.Data.Players;
 using Sources.App.Services.AssetsServices;
-using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
+using Sources.App.Services.AssetsServices.Common.IdleCarSpawns.Common;
 using Sources.Services.PhysicsServices;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
@@ -32,7 +32,7 @@ namespace Sources.App.Core.Ecs.Systems.Init
             
             // _factory.CreateUserInCar(playerPrefab, car);
 
-            _playersFactory.CreateUser(_assets.PlayersAssets.GetPlayerPrefab(PlayerType.Gangster), 
+            _playersFactory.CreateUser(_assets.CommonAssets.PlayersAssets.GetPlayerPrefab(PlayerType.Gangster), 
                 _levelContext.UserSpawnPoint.Position, _levelContext.UserSpawnPoint.Rotation);
 
             _physics.SyncTransforms();

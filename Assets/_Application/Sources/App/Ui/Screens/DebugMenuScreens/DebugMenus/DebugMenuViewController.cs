@@ -19,7 +19,7 @@ namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus
             _gameObjectService = DiContainer.Resolve<IGameObjectService>();
         }
 
-        public void Initialize(IEnumerable<DebugExecutorItem> debugExecutorItems)
+        public void OnOpen(IEnumerable<DebugExecutorItem> debugExecutorItems)
         {
             foreach (var debugExecutorItem in debugExecutorItems)
             {
@@ -31,7 +31,7 @@ namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus
             }
         }
 
-        public void Dispose()
+        public void OnClose()
         {
             foreach (var debugExecutorController in _debugExecutorControllers)
             {

@@ -47,12 +47,7 @@ namespace Sources.App.Ui.Screens.LevelScreens
             CarInputViewController.OnClose();
             PlayerInputViewController.OnClose();
         }
-
-        protected override void OnRefresh()
-        {
-            
-        }
-
+        
         private void OnPauseButtonClicked()
         {
             _audioService.PlayOnce(SoundType.ButtonClick);

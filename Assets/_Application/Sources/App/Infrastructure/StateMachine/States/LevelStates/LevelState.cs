@@ -4,7 +4,6 @@ using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.App.Infrastructure.StateMachine.States.MainUiStates;
 using Sources.App.Services.AssetsServices;
-using Sources.App.Services.AssetsServices.Monos.MonoEntities.Player;
 using Sources.App.Services.GameRunnerServices;
 using Sources.App.Services.UserServices;
 using Sources.App.Services.UserServices.Users.PreferencesData;

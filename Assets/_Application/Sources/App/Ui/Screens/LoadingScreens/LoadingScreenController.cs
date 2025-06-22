@@ -23,10 +23,6 @@ namespace Sources.App.Ui.Screens.LoadingScreens
         {
         }
 
-        protected override void OnRefresh()
-        {
-        }
-
         public void SetProgress(float value)
         {
             _loadingScreen.ProgressSlider.Slider.value = value;

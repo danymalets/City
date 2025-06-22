@@ -2,7 +2,7 @@ using System;
 using Cysharp.Threading.Tasks;
 using Sources.App.Data.Constants;
 using Sources.App.Services.AssetsServices;
-using Sources.App.Services.AssetsServices.IdleCarSpawns.Common;
+using Sources.App.Services.AssetsServices.Common.IdleCarSpawns.Common;
 using Sources.App.Services.AudioServices;
 using Sources.App.Services.BalanceServices;
 using Sources.App.Services.UserServices;

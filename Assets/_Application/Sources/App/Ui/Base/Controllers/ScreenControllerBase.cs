@@ -44,15 +44,12 @@ namespace Sources.App.Ui.Base.Controllers
             _audioService = DiContainer.Resolve<IAudioService>();
         }
 
-        internal void Prepare()
+        internal void Create()
         {
             OnCreate();
         }
 
-        protected virtual void OnCreate()
-        {
-            
-        }
+        protected virtual void OnCreate() { }
 
         internal void OnOpenInternal()
         {
@@ -63,11 +60,8 @@ namespace Sources.App.Ui.Base.Controllers
             Refresh();
         }
 
-        public void Refresh()
-        {
-            OnRefresh();
-        }
-        
+        public void Refresh() => OnRefresh();
+
         private void SubscribeCloseButtons()
         {
             foreach (Button closeButton in _gamePopup.CloseButtons)
@@ -87,12 +81,10 @@ namespace Sources.App.Ui.Base.Controllers
             Close();
         }
 
-        protected virtual void OnCloseButtonClicked()
-        {
-        }
+        protected virtual void OnCloseButtonClicked() { }
 
-        protected abstract void OnRefresh();
-        
+        protected virtual void OnRefresh() { }
+
         public void Close(bool isForce = false)
         {        
             Closed?.Invoke(this);
