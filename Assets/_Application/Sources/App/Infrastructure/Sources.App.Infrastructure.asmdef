@@ -17,7 +17,6 @@
         "Sources.Services.VibrationServices",
         "Sources.Services.PlayerPreferencesServices",
         "Sources.Services.JsonSerializerServices",
-        "Sources.Services.ApplicationInputServices",
         "Sources.Services.GameObjectServices",
         "Sources.Utils.Di",
         "Sources.Utils.MorpehWrapper",
@@ -31,7 +30,9 @@
         "UniTask",
         "Sources.Services.GameLoopServices",
         "Sources.Services.LogServices",
-        "Sources.App.Services.InputServices"
+        "Sources.App.Services.InputServices",
+        "Sources.App.Services.GameRunnerServices",
+        "Sources.App.Services.GameReloadServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

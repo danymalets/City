@@ -49,5 +49,8 @@ namespace Sources.Services.PlayerPreferencesServices
 
         public void Save() => 
             PlayerPrefs.Save();
+
+        public void ClearPlayerPrefs() => 
+            PlayerPrefs.DeleteAll();
     }
 }

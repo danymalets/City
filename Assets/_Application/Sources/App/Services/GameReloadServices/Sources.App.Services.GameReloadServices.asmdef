@@ -1,0 +1,22 @@
+{
+    "name": "Sources.App.Services.GameReloadServices",
+    "rootNamespace": "",
+    "references": [
+        "Sources.Utils.Di",
+        "Sources.App.Data",
+        "Sources.Utils.CommonUtils",
+        "Sources.Services.PoolServices",
+        "Sources.App.Services.UserServices",
+        "Sources.Services.IapServices",
+        "TriInspector"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

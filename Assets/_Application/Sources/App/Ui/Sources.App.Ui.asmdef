@@ -28,7 +28,9 @@
         "Sources.App.Services.BalanceServices",
         "Sources.Services.GameLoopServices",
         "UniTask",
-        "TriInspector"
+        "TriInspector",
+        "Sources.App.Services.GameRunnerServices",
+        "Sources.App.Services.GameReloadServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

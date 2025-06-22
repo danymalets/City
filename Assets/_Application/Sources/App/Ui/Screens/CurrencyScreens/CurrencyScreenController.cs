@@ -7,6 +7,7 @@ using Sources.App.Ui.Base.Controllers;
 using Sources.App.Ui.Screens.CurrencyScreens.CurrencyItems;
 using Sources.App.Ui.Screens.ShopScreens;
 using Sources.Utils.Di;
+using UnityEngine;
 
 namespace Sources.App.Ui.Screens.CurrencyScreens
 {
@@ -14,24 +15,23 @@ namespace Sources.App.Ui.Screens.CurrencyScreens
     {
         private CurrencyItemController[] _itemControllers;
         private readonly CurrencyScreen _currencyScreen;
-        private readonly UserWallet _userUserWallet;
+        private ShopScreenController _shopScreenController;
 
         public CurrencyScreenController(CurrencyScreen currencyScreen)
             : base(currencyScreen, new ToggleAnimator(currencyScreen))
         {
-            _userUserWallet = DiContainer.Resolve<IUserAccessService>().User.UserWallet;
             _currencyScreen = currencyScreen;
         }
 
         protected override void OnCreate()
         {
-            ShopScreenController shopScreenController = 
+            _shopScreenController = 
                 DiContainer.Resolve<IUiControllersService>().Get<ShopScreenController>();
-
+            
             _itemControllers = new[]
             {
-                new CurrencyItemController(_currencyScreen.CoinsItem, _userUserWallet.Coins, shopScreenController.Open),
-                new CurrencyItemController(_currencyScreen.GemsItem, _userUserWallet.Gems, shopScreenController.Open),
+                new CurrencyItemController(_currencyScreen.CoinsItem, CurrencyType.Coins, _shopScreenController.Open),
+                new CurrencyItemController(_currencyScreen.GemsItem, CurrencyType.Gems, _shopScreenController.Open),
             };
         }
 
@@ -51,8 +51,6 @@ namespace Sources.App.Ui.Screens.CurrencyScreens
             }
         }
         
-        
-
         protected override void OnRefresh()
         {
         }

@@ -5,8 +5,8 @@ namespace Sources.App.Services.UserServices.Users.Wallets
 {
     public class UserWallet
     {
-        [JsonProperty] public UserCurrency Coins { get; } = new();
-        [JsonProperty] public UserCurrency Gems { get; } = new();
+        [JsonProperty] public UserCurrency Coins { get; } = new(5000);
+        [JsonProperty] public UserCurrency Gems { get; } = new(50);
 
         public bool TrySpend(CurrencyType currencyType, long spendValue) =>
             GetCurrency(currencyType).TrySpend(spendValue);
@@ -22,6 +22,11 @@ namespace Sources.App.Services.UserServices.Users.Wallets
                 CurrencyType.Gems => Gems,
                 _ => throw new ArgumentOutOfRangeException(nameof(type), type, $"Currency {type} not found")
             };
+        }
+
+        public void SetCurrency(CurrencyType type, int value)
+        {
+            GetCurrency(type).SetCurrency(value);
         }
     }
 }

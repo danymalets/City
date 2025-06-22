@@ -37,5 +37,11 @@ namespace Sources.App.Services.UserServices.Users.Wallets
             Value += value;
             Changed?.Invoke(Value);
         }
+
+        public void SetCurrency(long value)
+        {
+            Value = value;
+            Changed?.Invoke(Value);
+        }
     }
 }

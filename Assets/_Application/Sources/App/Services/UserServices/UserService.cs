@@ -1,3 +1,4 @@
+using System;
 using Sources.App.Services.UserServices.Users;
 using Sources.Services.ApplicationServices;
 using Sources.Services.JsonSerializerServices;
@@ -9,7 +10,7 @@ using ILogger = Sources.Services.LogServices.ILogger;
 
 namespace Sources.App.Services.UserServices
 {
-    public class UserService : IUserAccessService, IUserSaveService, IInitializable
+    public class UserService : IUserAccessService, IUserSaveService, IUserResetService, IInitializable
     {
         private const int UserVersion = 1;
 
@@ -17,6 +18,8 @@ namespace Sources.App.Services.UserServices
         private const string UserKey = "User";
 
         public User User { get; private set; }
+
+        public Action UserChanged { get; private set; }
 
         private readonly IJsonSerializerService _jsonSerializer;
         private readonly IPlayerPrefsService _playerPrefs;
@@ -49,22 +52,21 @@ namespace Sources.App.Services.UserServices
             {
                 if (TryLoadUser())
                 {
-
                     if (lastSavedVersion < UserVersion)
                     {
                         // migrations
+                        
                     }
                 }
                 else
                 {
-                    _logger.LogError("Cannot load user. Quit application.");
+                    _logger.LogError($"Cannot load user v{lastSavedVersion}->v{UserVersion}. Quit application.");
                     _applicationService.Quit();
                     return false;
                 }
             }
             else
             {
-
                 CreateNewUser();
             }
 
@@ -83,6 +85,12 @@ namespace Sources.App.Services.UserServices
             User = user;
             return true;
 
+        }
+        
+        public void Reset()
+        {
+            CreateNewUser();
+            Save();
         }
 
         private void CreateNewUser() =>

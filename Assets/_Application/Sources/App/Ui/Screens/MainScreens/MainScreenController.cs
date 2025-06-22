@@ -1,6 +1,7 @@
 using System;
 using Sources.App.Services.AssetsServices.Audio;
 using Sources.App.Services.AssetsServices.Localizations;
+using Sources.App.Services.GameRunnerServices;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Base.Animators;
 using Sources.App.Ui.Base.Controllers;
@@ -17,8 +18,7 @@ namespace Sources.App.Ui.Screens.MainScreens
         private ShopScreenController _shopScreenController;
         private readonly IApplicationService _applicationService;
         private SettingsPopupController _settingsPopupController;
-
-        public event Action PlayButtonClicked;
+        private IGameRunnerService _gameRunner;
 
         public MainScreenController(MainScreen mainScreen) :
             base(mainScreen, new ToggleAnimator(mainScreen))
@@ -30,6 +30,7 @@ namespace Sources.App.Ui.Screens.MainScreens
         protected override void OnOpen()
         {
             IUiControllersService uiControllers = DiContainer.Resolve<IUiControllersService>();
+            _gameRunner = DiContainer.Resolve<IGameRunnerService>();
             _shopScreenController = uiControllers.Get<ShopScreenController>();
             _settingsPopupController = uiControllers.Get<SettingsPopupController>();
 
@@ -59,7 +60,7 @@ namespace Sources.App.Ui.Screens.MainScreens
         private void OnPlayButtonClicked()
         {
             _audioService.PlayOnce(SoundType.ButtonClick);
-            PlayButtonClicked?.Invoke();
+            _gameRunner.RunGame(new RunGameSettings(true));
         }
 
         private void OnShopButtonClicked()

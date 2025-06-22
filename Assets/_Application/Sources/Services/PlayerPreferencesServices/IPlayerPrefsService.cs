@@ -15,5 +15,6 @@ namespace Sources.Services.PlayerPreferencesServices
         bool TryGetInt(string key, out int value);
         
         void Save();
+        void ClearPlayerPrefs();
     }
 }

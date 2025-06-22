@@ -1,22 +1,20 @@
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.App.Infrastructure.StateMachine.States.LevelStates;
 using Sources.App.Services.AssetsServices;
 using Sources.App.Services.AssetsServices.Monos.MonoEntities.Player;
+using Sources.App.Services.GameReloadServices;
+using Sources.App.Services.GameRunnerServices;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Screens.CurrencyScreens;
 using Sources.App.Ui.Screens.LoadingScreens;
 using Sources.App.Ui.Screens.MainScreens;
 using Sources.Services.AdsServices;
 using Sources.Services.GameLoopServices;
-using Sources.Services.LogServices;
 using Sources.Services.SceneLoaderServices;
 using Sources.Utils.Di;
-using UnityEngine;
 using UnityEngine.SceneManagement;
-using ILogger = Sources.Services.LogServices.ILogger;
 
 namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
 {
@@ -30,18 +28,28 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
         private LoadingScreenController _loadingScreen;
         private IGameLoopService _gameLoopService;
         private IAdsService _adsService;
-        private ILogger _logger;
+        private IDiBuilder _diBuilder;
+        private GameRunnerService _gameRunnerService;
+        private GameReloadService _gameReloadService;
 
         public MainUiState(IGameStateMachine stateMachine) : base(stateMachine)
         {
         }
 
-        protected override async void OnEnter(bool firstEnter)
+        protected override async void OnEnter(bool isFirstEnter)
         {
             IUiControllersService uiControllers = DiContainer.Resolve<IUiControllersService>();
+
+
+            _diBuilder = DiBuilder.Create();
             
+            _gameRunnerService = new GameRunnerService();
+            _diBuilder.Register<IGameRunnerService>(_gameRunnerService);
+            
+            _gameReloadService = new GameReloadService();
+            _diBuilder.Register<IGameReloadService>(_gameReloadService);
+
             _gameLoopService = DiContainer.Resolve<IGameLoopService>();
-            _logger = DiContainer.Resolve<ILogService>().CreateLogger<MainUiState>();
 
             _mainScreenController = uiControllers.Get<MainScreenController>();
             _loadingScreen = uiControllers.Get<LoadingScreenController>();
@@ -63,7 +71,8 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
             
             PlayerMonoEntity player = playerRenderSceneContext.Player;
 
-            _mainScreenController.PlayButtonClicked += OnPlayButtonClicked;
+            _gameRunnerService.RunGameRequested += GameRunner_RunGameRequested;
+            _gameReloadService.ReloadGameRequested += GameReloader_ReloadGameRequested;
         }
 
         private async UniTask RunScreenLoading()
@@ -77,25 +86,31 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
 
             _loadingScreen.Close();
             
-            var result = await _adsService.ShowInterstitial();
+            await _adsService.ShowInterstitial();
         }
 
-        private void OnPlayButtonClicked()
+        private void GameRunner_RunGameRequested(RunGameSettings runGameSettings)
         {
-            _stateMachine.Enter<LevelState>();
+            _stateMachine.Enter<LevelState, RunGameSettings>(runGameSettings);
+        }
+        
+        private void GameReloader_ReloadGameRequested()
+        {
+            _stateMachine.Enter<MainUiState, bool>(false);
         }
         
         protected override void OnExit()
-        {
-            _sceneLoader.UnloadScene(_assets.ScenesAssets.PlayerRenderSceneName);
-            _mainScreenController.PlayButtonClicked -= OnPlayButtonClicked;
-
+        {            
+            _gameRunnerService.RunGameRequested -= GameRunner_RunGameRequested;
+            _diBuilder.Dispose();
+            
+            _sceneLoader.UnloadScene(_assets.ScenesAssets.PlayerRenderSceneName);           
+            
             _uiCloseService.CloseAll();
             _mainScreenController = null;
             _uiCloseService = null;
             _assets = null;
             _sceneLoader = null;
-            _logger = null;
         }
     }
 }

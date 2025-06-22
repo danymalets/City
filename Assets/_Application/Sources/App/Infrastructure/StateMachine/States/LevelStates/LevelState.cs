@@ -5,6 +5,7 @@ using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.App.Infrastructure.StateMachine.States.MainUiStates;
 using Sources.App.Services.AssetsServices;
 using Sources.App.Services.AssetsServices.Monos.MonoEntities.Player;
+using Sources.App.Services.GameRunnerServices;
 using Sources.App.Services.UserServices;
 using Sources.App.Services.UserServices.Users.PreferencesData;
 using Sources.App.Ui.Base;
@@ -15,17 +16,19 @@ using Sources.Utils.Di;
 
 namespace Sources.App.Infrastructure.StateMachine.States.LevelStates
 {
-    public class LevelState : GameState
+    public class LevelState : GameState<RunGameSettings>
     {
         private GameController _gameController;
         private PausePopupController _pausePopupController;
+        private RunGameSettings _runGameSettings;
 
         public LevelState(IGameStateMachine stateMachine) : base(stateMachine)
         {
         }
 
-        protected override void OnEnter()
+        protected override void OnEnter(RunGameSettings runGameSettings)
         {
+            _runGameSettings = runGameSettings;
             _pausePopupController = DiContainer.Resolve<IUiControllersService>().Get<PausePopupController>();
             
             IQualityChangerService qualityChangerService = DiContainer.Resolve<IQualityChangerService>();
@@ -65,7 +68,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.LevelStates
         private void ForceRestartGame()
         {
             FinishGame();
-            _stateMachine.Enter<LevelState>();
+            _stateMachine.Enter<LevelState, RunGameSettings>(_runGameSettings);
         }
 
         private void FinishGame()

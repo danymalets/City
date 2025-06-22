@@ -56,7 +56,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.InitializationStates
             _diBuilder.Register<ScreenService, IScreenService>();
             _diBuilder.Register<JsonSerializerService, IJsonSerializerService>();
             _diBuilder.Register<PlayerPrefsService, IPlayerPrefsService>();
-            _diBuilder.Register<UserService, IUserAccessService, IUserSaveService>();
+            _diBuilder.Register<UserService, IUserAccessService, IUserSaveService, IUserResetService>();
             _diBuilder.Register<VibrationService, IVibrationService>();
             _diBuilder.Register<Assets>(gameObjectsInitializationData.Assets);
             

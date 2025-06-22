@@ -5,11 +5,16 @@ namespace Sources.Services.IapServices
 {
     public class EmptyIapsAdapter : IIapsAdapter
     {
+        private Action<IapProductType> _onPurchaseProcess;
 
-        public void InitiatePurchase(IapProductType iapProductType) { }
+        public void InitiatePurchase(IapProductType iapProductType)
+        {
+            _onPurchaseProcess.Invoke(iapProductType);
+        }
 
         public void Initialize(IEnumerable<IapProduct> products, Action<IapProductType> onPurchaseProcess)
         {
+            _onPurchaseProcess = onPurchaseProcess;
             Initialized?.Invoke();
         }
 
