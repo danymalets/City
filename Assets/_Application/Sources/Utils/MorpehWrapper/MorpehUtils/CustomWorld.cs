@@ -28,7 +28,6 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
         private readonly SystemsPerformance _systemsPerformance;
         private readonly IGameLoopService _gameLoopService;
         private CancellationTokenSource _cancellationTokenSource;
-        private CancellationTokenSource _cancellationTokenSource2;
 
         public FilterBuilder Filter => _world.Filter;
 
@@ -84,7 +83,6 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
             RunSystems(_initializers, s => s.Initialize(), null);
 
             _cancellationTokenSource = new CancellationTokenSource();
-            _cancellationTokenSource2 = new CancellationTokenSource();
             _gameLoopService.RunEachFrame(() =>
             {
                 if (ShouldRun())
@@ -98,7 +96,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
                 {
                     MathUtils.Divide(TimeScale * _time.DeltaTime, _time.DeltaTime, WorldFixedUpdate);
                 }
-            }, _cancellationTokenSource2.Token);
+            }, _cancellationTokenSource.Token);
         }
 
         private bool ShouldRun() => !IsPaused && _fpsService.FpsLastSecond >= MinWorkableFps;
@@ -145,7 +143,6 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
         public void FinishGame()
         {
             _cancellationTokenSource.Cancel();
-            _cancellationTokenSource2.Cancel();
 
             RunSystems(_disposers, s => s.Dispose(), null);
 
