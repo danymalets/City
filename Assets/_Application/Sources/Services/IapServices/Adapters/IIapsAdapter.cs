@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Sources.Services.IapServices
+namespace Sources.Services.IapServices.Adapters
 {
     internal interface IIapsAdapter
     {

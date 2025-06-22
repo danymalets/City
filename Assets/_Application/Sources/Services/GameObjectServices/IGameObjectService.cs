@@ -1,7 +1,7 @@
 using Sources.Utils.Di;
 using UnityEngine;
 
-namespace Sources.Services.InstantiatorServices
+namespace Sources.Services.GameObjectServices
 {
     public interface IGameObjectService : IService
     {

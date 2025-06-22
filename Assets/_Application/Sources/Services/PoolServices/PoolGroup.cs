@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Sources.Services.InstantiatorServices;
+using Sources.Services.GameObjectServices;
 using Sources.Services.LogServices;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.Di;

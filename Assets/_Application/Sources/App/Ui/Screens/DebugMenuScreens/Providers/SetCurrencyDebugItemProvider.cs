@@ -1,10 +1,11 @@
 using Cysharp.Threading.Tasks;
 using Sources.App.Services.UserServices;
 using Sources.App.Services.UserServices.Users.Wallets;
+using Sources.App.Ui.Screens.DebugMenuScreens.ExecutionItems;
 using Sources.Utils.Di;
 using TMPro;
 
-namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.Providers
+namespace Sources.App.Ui.Screens.DebugMenuScreens.Providers
 {
     public class SetCurrencyDebugItemProvider : DebugItemProvider
     {

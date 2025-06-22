@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Sources.Services.AnalyticsServices
+namespace Sources.Services.AnalyticsServices.Adapters
 {
     internal interface IAnalyticsAdapter
     {

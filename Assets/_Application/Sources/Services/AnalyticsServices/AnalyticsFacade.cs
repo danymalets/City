@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Sources.Services.AnalyticsServices.Adapters;
+
 // using Sources.Services.AnalyticsServices.Adapters;
 
 namespace Sources.Services.AnalyticsServices

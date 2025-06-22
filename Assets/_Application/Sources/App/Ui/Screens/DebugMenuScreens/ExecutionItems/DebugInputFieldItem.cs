@@ -1,6 +1,6 @@
 using static TMPro.TMP_InputField;
 
-namespace Sources.App.Ui.Screens.DebugMenuScreens
+namespace Sources.App.Ui.Screens.DebugMenuScreens.ExecutionItems
 {
     public class DebugInputFieldItem : DebugInputItem
     {

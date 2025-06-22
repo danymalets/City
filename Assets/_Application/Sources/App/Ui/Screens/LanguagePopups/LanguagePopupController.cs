@@ -4,7 +4,7 @@ using Sources.App.Services.AssetsServices.Localizations;
 using Sources.App.Ui.Base.Animators;
 using Sources.App.Ui.Base.Controllers;
 using Sources.App.Ui.Screens.LanguagePopups.LanguageItems;
-using Sources.Services.InstantiatorServices;
+using Sources.Services.GameObjectServices;
 using Sources.Utils.Di;
 
 namespace Sources.App.Ui.Screens.LanguagePopups

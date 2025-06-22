@@ -1,4 +1,6 @@
-namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.Providers
+using Sources.App.Ui.Screens.DebugMenuScreens.ExecutionItems;
+
+namespace Sources.App.Ui.Screens.DebugMenuScreens.Providers
 {
     public abstract class DebugItemProvider
     {

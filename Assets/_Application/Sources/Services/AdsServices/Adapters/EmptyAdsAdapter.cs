@@ -1,6 +1,6 @@
 using Cysharp.Threading.Tasks;
 
-namespace Sources.Services.AdsServices
+namespace Sources.Services.AdsServices.Adapters
 {
     public class EmptyAdsAdapter : IAdsAdapter
     {

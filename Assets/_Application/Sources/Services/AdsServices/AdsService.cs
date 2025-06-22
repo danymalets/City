@@ -1,5 +1,6 @@
 using System;
 using Cysharp.Threading.Tasks;
+using Sources.Services.AdsServices.Adapters;
 using Sources.Services.ApplicationServices;
 using Sources.Utils.Di;
 using UnityEngine;

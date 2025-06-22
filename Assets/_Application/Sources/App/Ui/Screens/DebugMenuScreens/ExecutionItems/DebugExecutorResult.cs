@@ -1,4 +1,4 @@
-namespace Sources.App.Ui.Screens.DebugMenuScreens
+namespace Sources.App.Ui.Screens.DebugMenuScreens.ExecutionItems
 {
     public class DebugExecutorResult 
     {
