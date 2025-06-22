@@ -1,5 +1,5 @@
 {
-    "name": "Sources.App.Services.GameRunnerServices",
+    "name": "Sources.App.Services.MatchRunnerServices",
     "rootNamespace": "",
     "references": [
         "Sources.Utils.Di",

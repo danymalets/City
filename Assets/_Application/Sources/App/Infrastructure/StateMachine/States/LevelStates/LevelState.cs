@@ -16,19 +16,19 @@ using Sources.Utils.Di;
 
 namespace Sources.App.Infrastructure.StateMachine.States.LevelStates
 {
-    public class LevelState : GameState<RunGameSettings>
+    public class LevelState : GameState<RunMatchSettings>
     {
         private GameController _gameController;
         private PausePopupController _pausePopupController;
-        private RunGameSettings _runGameSettings;
+        private RunMatchSettings _runMatchSettings;
 
         public LevelState(IGameStateMachine stateMachine) : base(stateMachine)
         {
         }
 
-        protected override void OnEnter(RunGameSettings runGameSettings)
+        protected override void OnEnter(RunMatchSettings runMatchSettings)
         {
-            _runGameSettings = runGameSettings;
+            _runMatchSettings = runMatchSettings;
             _pausePopupController = DiContainer.Resolve<IUiControllersService>().Get<PausePopupController>();
             
             IQualityChangerService qualityChangerService = DiContainer.Resolve<IQualityChangerService>();
@@ -68,7 +68,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.LevelStates
         private void ForceRestartGame()
         {
             FinishGame();
-            _stateMachine.Enter<LevelState, RunGameSettings>(_runGameSettings);
+            _stateMachine.Enter<LevelState, RunMatchSettings>(_runMatchSettings);
         }
 
         private void FinishGame()

@@ -60,7 +60,7 @@ namespace Sources.App.Ui.Screens.MainScreens
         private void OnPlayButtonClicked()
         {
             _audioService.PlayOnce(SoundType.ButtonClick);
-            _gameRunner.RunGame(new RunGameSettings(true));
+            _gameRunner.RunGame(new RunMatchSettings(true));
         }
 
         private void OnShopButtonClicked()

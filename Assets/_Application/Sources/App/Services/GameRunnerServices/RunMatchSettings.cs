@@ -1,10 +1,10 @@
 namespace Sources.App.Services.GameRunnerServices
 {
-    public struct RunGameSettings
+    public struct RunMatchSettings
     {
         public bool IsLocal { get; }
 
-        public RunGameSettings(bool isLocal)
+        public RunMatchSettings(bool isLocal)
         {
             IsLocal = isLocal;
         }

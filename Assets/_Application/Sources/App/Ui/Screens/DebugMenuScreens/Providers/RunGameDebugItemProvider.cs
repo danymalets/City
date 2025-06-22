@@ -1,8 +1,6 @@
 using System;
 using Cysharp.Threading.Tasks;
 using Sources.App.Services.GameRunnerServices;
-using Sources.App.Services.UserServices;
-using Sources.App.Services.UserServices.Users.Wallets;
 using Sources.Utils.Di;
 using TMPro;
 
@@ -22,7 +20,7 @@ namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.Providers
                 {
                     if (DiContainer.TryResolve(out IGameRunnerService gameRunnerService))
                     {
-                        gameRunnerService.RunGame(new RunGameSettings(true));
+                        gameRunnerService.RunGame(new RunMatchSettings(true));
                         return UniTask.FromResult(new DebugExecutorResult(DebugResultStatus.Success));
                     }
                     else

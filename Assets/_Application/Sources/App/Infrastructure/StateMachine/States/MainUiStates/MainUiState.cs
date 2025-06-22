@@ -29,7 +29,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
         private IGameLoopService _gameLoopService;
         private IAdsService _adsService;
         private IDiBuilder _diBuilder;
-        private GameRunnerService _gameRunnerService;
+        private MatchRunnerService _matchRunnerService;
         private GameReloadService _gameReloadService;
 
         public MainUiState(IGameStateMachine stateMachine) : base(stateMachine)
@@ -43,8 +43,8 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
 
             _diBuilder = DiBuilder.Create();
             
-            _gameRunnerService = new GameRunnerService();
-            _diBuilder.Register<IGameRunnerService>(_gameRunnerService);
+            _matchRunnerService = new MatchRunnerService();
+            _diBuilder.Register<IGameRunnerService>(_matchRunnerService);
             
             _gameReloadService = new GameReloadService();
             _diBuilder.Register<IGameReloadService>(_gameReloadService);
@@ -71,7 +71,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
             
             PlayerMonoEntity player = playerRenderSceneContext.Player;
 
-            _gameRunnerService.RunGameRequested += GameRunner_RunGameRequested;
+            _matchRunnerService.RunGameRequested += MatchRunnerRunMatchRequested;
             _gameReloadService.ReloadGameRequested += GameReloader_ReloadGameRequested;
         }
 
@@ -89,9 +89,9 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
             await _adsService.ShowInterstitial();
         }
 
-        private void GameRunner_RunGameRequested(RunGameSettings runGameSettings)
+        private void MatchRunnerRunMatchRequested(RunMatchSettings runMatchSettings)
         {
-            _stateMachine.Enter<LevelState, RunGameSettings>(runGameSettings);
+            _stateMachine.Enter<LevelState, RunMatchSettings>(runMatchSettings);
         }
         
         private void GameReloader_ReloadGameRequested()
@@ -101,7 +101,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
         
         protected override void OnExit()
         {            
-            _gameRunnerService.RunGameRequested -= GameRunner_RunGameRequested;
+            _matchRunnerService.RunGameRequested -= MatchRunnerRunMatchRequested;
             _diBuilder.Dispose();
             
             _sceneLoader.UnloadScene(_assets.ScenesAssets.PlayerRenderSceneName);           
