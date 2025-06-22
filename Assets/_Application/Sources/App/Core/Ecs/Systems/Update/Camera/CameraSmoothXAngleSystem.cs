@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Camera
 {
-    public class CameraSmoothXAngleSystem : DUpdateSystem
+    public class CameraSmoothXAngleSystem : CustomUpdateSystem
     {
         private Filter _cameraFilter;
         private readonly CameraBalance _cameraBalance;

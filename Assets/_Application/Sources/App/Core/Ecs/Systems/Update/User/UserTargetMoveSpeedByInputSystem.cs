@@ -14,7 +14,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.User
 {
-    public class UserTargetMoveSpeedByInputSystem : DUpdateSystem
+    public class UserTargetMoveSpeedByInputSystem : CustomUpdateSystem
     {
         private Filter _filter;
         private readonly PlayersBalance _playersBalance;

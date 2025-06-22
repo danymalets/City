@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.User
 {
-    public class UserFogUpdateSystem : DUpdateSystem
+    public class UserFogUpdateSystem : CustomUpdateSystem
     {
         private Filter _filter;
         private readonly IFog _fog;

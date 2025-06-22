@@ -8,7 +8,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Player
 {
-    public class PlayerAnimatorSpeedSystem : DUpdateSystem
+    public class PlayerAnimatorSpeedSystem : CustomUpdateSystem
     {
         private Filter _filter;
 

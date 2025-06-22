@@ -6,7 +6,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Init.Pathes
 {
-    public class PathesInitSystem : DInitializer
+    public class PathesInitSystem : CustomInitializer
     {
         private readonly ILevelContext _levelContext;
         private readonly IPathesFactory _pathesFactory;

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Sources.Utils.MorpehWrapper.MorpehUtils.Systems
 {
-    public abstract class DSystem
+    public abstract class CustomSystem
     {
         protected CustomWorld _world;
         protected IGizmosService _gizmos;

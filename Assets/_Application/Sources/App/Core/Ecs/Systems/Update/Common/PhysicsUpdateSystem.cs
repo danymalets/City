@@ -4,7 +4,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Common
 {
-    public class PhysicsUpdateSystem : DUpdateSystem
+    public class PhysicsUpdateSystem : CustomUpdateSystem
     {
         private readonly IPhysicsService _physics;
 

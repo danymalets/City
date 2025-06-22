@@ -13,7 +13,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Generation
 {
-    public class SimulationCameraUpdateSystem : DUpdateSystem
+    public class SimulationCameraUpdateSystem : CustomUpdateSystem
     {
         private Filter _simulationAreaFilter;
         private Filter _simulationCameraFilter;

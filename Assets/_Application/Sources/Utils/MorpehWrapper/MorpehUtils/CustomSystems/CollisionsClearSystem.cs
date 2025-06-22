@@ -8,7 +8,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.Utils.MorpehWrapper.MorpehUtils.CustomSystems
 {
-    public class CollisionsClearSystem : DUpdateSystem
+    public class CollisionsClearSystem : CustomUpdateSystem
     {
         private Filter _filter;
 

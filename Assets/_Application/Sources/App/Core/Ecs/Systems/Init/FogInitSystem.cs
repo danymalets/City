@@ -6,7 +6,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Init
 {
-    public class FogInitSystem : DInitializer
+    public class FogInitSystem : CustomInitializer
     {
         private readonly ILevelContext _levelContext;
         private readonly ISimulationSettings _simulationSettings;

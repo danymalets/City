@@ -14,7 +14,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Npc
 {
-    public class NpcOnPathForwardColliderRequestSystem : DUpdateSystem
+    public class NpcOnPathForwardColliderRequestSystem : CustomUpdateSystem
     {
         private Filter _filter;
 

@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Npc
 {
-    public class NpcPathEndCheckSystem : DUpdateSystem
+    public class NpcPathEndCheckSystem : CustomUpdateSystem
     {
         private Filter _filter;
 

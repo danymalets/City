@@ -10,7 +10,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Player
 {
-    public class PlayerDeathHandlerSystem : DUpdateSystem
+    public class PlayerDeathHandlerSystem : CustomUpdateSystem
     {
         private Filter _filter;
 

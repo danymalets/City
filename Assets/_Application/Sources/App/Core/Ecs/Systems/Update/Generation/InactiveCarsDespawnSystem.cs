@@ -18,7 +18,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Generation
 {
-    public class InactiveCarsDespawnSystem : DUpdateSystem
+    public class InactiveCarsDespawnSystem : CustomUpdateSystem
     {
         private Filter _carFilter;
         private readonly ICarsDespawner _carsDespawner;

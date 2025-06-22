@@ -10,17 +10,17 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
     {
         private const int LogCount = 10;
         
-        private readonly Dictionary<DUpdateSystem, long> _updateData = new();
-        private readonly Dictionary<DUpdateSystem, long> _fixedData = new();
+        private readonly Dictionary<CustomUpdateSystem, long> _updateData = new();
+        private readonly Dictionary<CustomUpdateSystem, long> _fixedData = new();
         private int _fixeds;
         private int _updates;
 
-        public void WriteFixedData(DUpdateSystem fixedUpdateSystem, long ticks)
+        public void WriteFixedData(CustomUpdateSystem fixedUpdateSystem, long ticks)
         {
             _fixedData.IncreaseValue(fixedUpdateSystem, ticks);
         }
         
-        public void WriteUpdateData(DUpdateSystem updateSystem, long ticks)
+        public void WriteUpdateData(CustomUpdateSystem updateSystem, long ticks)
         {
             if (updateSystem.GetType().Name.Contains("Gizmos"))
                 return;
@@ -39,10 +39,10 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
             // Debug.Log(text);
         }
 
-        private string GetDebugText(Dictionary<DUpdateSystem, long> data) => 
+        private string GetDebugText(Dictionary<CustomUpdateSystem, long> data) => 
             string.Join("\n", GetSlowestSystems(data).Select(d => $"{d.system.GetType().Name} - {d.percent:R}%"));
 
-        private IEnumerable<(DUpdateSystem system, float percent)> GetSlowestSystems(Dictionary<DUpdateSystem, long> data)
+        private IEnumerable<(CustomUpdateSystem system, float percent)> GetSlowestSystems(Dictionary<CustomUpdateSystem, long> data)
         {
             long sum = data.Values.Sum();
             return data.OrderByDescending(d => d.Value)

@@ -16,7 +16,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Car
 {
-    public class IdleCarDisableRigidbodySystem : DUpdateSystem
+    public class IdleCarDisableRigidbodySystem : CustomUpdateSystem
     {
         private readonly CarsBalance _carsBalance;
 

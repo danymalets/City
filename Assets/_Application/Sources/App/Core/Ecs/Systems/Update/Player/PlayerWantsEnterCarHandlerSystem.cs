@@ -16,7 +16,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Player
 {
-    public class PlayerWantsEnterCarHandlerSystem : DUpdateSystem
+    public class PlayerWantsEnterCarHandlerSystem : CustomUpdateSystem
     {
         private Filter _filter;
         private Filter _carsFilter;

@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Car
 {
-    public class CarSmoothSteeringAngleSystem : DUpdateSystem
+    public class CarSmoothSteeringAngleSystem : CustomUpdateSystem
     {
         public const float AngleSpeed = 180f;
         

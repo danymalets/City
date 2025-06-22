@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Car
 {
-    public class WheelGeometrySystem : DUpdateSystem
+    public class WheelGeometrySystem : CustomUpdateSystem
     {
         private Filter _filter;
 

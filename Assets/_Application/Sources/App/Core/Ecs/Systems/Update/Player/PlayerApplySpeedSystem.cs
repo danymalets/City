@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Player
 {
-    public class PlayerApplySpeedSystem : DUpdateSystem
+    public class PlayerApplySpeedSystem : CustomUpdateSystem
     {
         private Filter _filter;
 

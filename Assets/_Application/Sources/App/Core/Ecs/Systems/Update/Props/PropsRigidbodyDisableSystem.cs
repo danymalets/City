@@ -15,7 +15,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Props
 {
-    public class PropsRigidbodyDisableSystem : DUpdateSystem
+    public class PropsRigidbodyDisableSystem : CustomUpdateSystem
     {
         private Filter _filter;
         private Filter _userFilter;

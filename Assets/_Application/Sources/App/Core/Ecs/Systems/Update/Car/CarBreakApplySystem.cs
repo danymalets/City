@@ -8,7 +8,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Car
 {
-    public class CarBreakApplySystem : DUpdateSystem
+    public class CarBreakApplySystem : CustomUpdateSystem
     {
         private const float BreakTorqueLite = 1.5f;
         private const float BreakTorqueMax = 1_000_000_000f;

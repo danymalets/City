@@ -6,7 +6,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.Utils.MorpehWrapper.MorpehUtils.CustomSystems
 {
-    public abstract class ComponentProcessSystem<TAwaiter> : DUpdateSystem
+    public abstract class ComponentProcessSystem<TAwaiter> : CustomUpdateSystem
         where TAwaiter : struct, IAwaiters, IComponent
     {
         private Filter _filter;

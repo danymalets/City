@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Init
 {
-    public class PlayerDeathAnimationWarmUpSystem : DInitializer
+    public class PlayerDeathAnimationWarmUpSystem : CustomInitializer
     {
         private readonly IPlayersFactory _playersFactory;
 

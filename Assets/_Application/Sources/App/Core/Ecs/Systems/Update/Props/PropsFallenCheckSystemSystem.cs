@@ -16,7 +16,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Props
 {
-    public class PropsFallenCheckSystemSystem : DUpdateSystem
+    public class PropsFallenCheckSystemSystem : CustomUpdateSystem
     {
         private Filter _filter;
         private readonly CommonBalance _commonBalance;

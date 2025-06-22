@@ -4,7 +4,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Init
 {
-    public class CameraInitSystem : DInitializer
+    public class CameraInitSystem : CustomInitializer
     {
         private readonly ICamerasFactory _cameraFactory;
 

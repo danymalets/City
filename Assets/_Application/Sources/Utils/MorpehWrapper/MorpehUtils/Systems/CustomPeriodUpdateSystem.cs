@@ -1,6 +1,6 @@
 namespace Sources.Utils.MorpehWrapper.MorpehUtils.Systems
 {
-    public abstract class DPeriodUpdateSystem : DUpdateSystem
+    public abstract class CustomPeriodUpdateSystem : CustomUpdateSystem
     {
         private int _remainingCount = 0;
         private float _deltaTime = 0;

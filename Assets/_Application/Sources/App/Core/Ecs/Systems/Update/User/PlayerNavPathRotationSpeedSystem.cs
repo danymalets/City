@@ -10,7 +10,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.User
 {
-    public class PlayerNavPathRotationSpeedSystem : DUpdateSystem
+    public class PlayerNavPathRotationSpeedSystem : CustomUpdateSystem
     {
         private Filter _filter;
         private readonly PlayersBalance _playerBalance;

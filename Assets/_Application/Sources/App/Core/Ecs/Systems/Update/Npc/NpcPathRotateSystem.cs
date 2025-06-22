@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Npc
 {
-    public class NpcPathRotateSystem : DUpdateSystem
+    public class NpcPathRotateSystem : CustomUpdateSystem
     {
         private Filter _filter;
 

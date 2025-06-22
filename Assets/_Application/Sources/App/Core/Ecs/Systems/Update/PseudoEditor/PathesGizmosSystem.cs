@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.PseudoEditor
 {
-    public class PathesGizmosSystem : DUpdateSystem
+    public class PathesGizmosSystem : CustomUpdateSystem
     {
         private Filter _filter;
 

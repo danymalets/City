@@ -13,7 +13,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 {
-    public class NpcPathLineChangeSystem : DUpdateSystem
+    public class NpcPathLineChangeSystem : CustomUpdateSystem
     {
         private Filter _filter;
 

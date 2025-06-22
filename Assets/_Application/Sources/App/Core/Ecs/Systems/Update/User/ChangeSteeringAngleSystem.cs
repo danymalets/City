@@ -11,7 +11,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.User
 {
-    public class ChangeSteeringAngleSystem : DUpdateSystem
+    public class ChangeSteeringAngleSystem : CustomUpdateSystem
     {
         private Filter _filter;
         private readonly CarsBalance _carsBalance;

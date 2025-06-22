@@ -13,7 +13,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Player
 {
-    public class PlayerFallCheckSystem : DUpdateSystem
+    public class PlayerFallCheckSystem : CustomUpdateSystem
     {
         private Filter _filter;
         private readonly PlayersBalance _playersBalance;

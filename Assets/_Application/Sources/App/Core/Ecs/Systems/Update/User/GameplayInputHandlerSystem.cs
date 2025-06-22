@@ -13,7 +13,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.User
 {
-    public class GameplayInputHandlerSystem : DUpdateSystem
+    public class GameplayInputHandlerSystem : CustomUpdateSystem
     {
         private Filter _filter;
         private readonly IGameplayInputAccessService _gameplayInputAccessService;

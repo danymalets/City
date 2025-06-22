@@ -8,7 +8,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Player.NavToCar
 {
-    public class PlayerNavToCarCompletedHandlerSystem : DUpdateSystem
+    public class PlayerNavToCarCompletedHandlerSystem : CustomUpdateSystem
     {
         private Filter _playerFilter;
         

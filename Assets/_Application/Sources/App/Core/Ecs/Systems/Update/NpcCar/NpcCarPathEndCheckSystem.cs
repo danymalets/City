@@ -10,7 +10,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 {
-    public class NpcCarPathEndCheckSystem : DUpdateSystem
+    public class NpcCarPathEndCheckSystem : CustomUpdateSystem
     {
         private Filter _filter;
 

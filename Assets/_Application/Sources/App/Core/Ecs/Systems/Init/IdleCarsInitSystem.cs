@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Init
 {
-    public class IdleCarsInitSystem : DInitializer
+    public class IdleCarsInitSystem : CustomInitializer
     {
         private readonly IIdleCarsSystem _idleCarsSystem;
         private readonly ICarsFactory _carsFactory;

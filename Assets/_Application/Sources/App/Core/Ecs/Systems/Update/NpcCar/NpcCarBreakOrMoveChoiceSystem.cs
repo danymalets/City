@@ -18,7 +18,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 {
-    public class NpcCarBreakOrMoveChoiceSystem : DUpdateSystem
+    public class NpcCarBreakOrMoveChoiceSystem : CustomUpdateSystem
     {
         private Filter _filter;
         private readonly SimulationBalance _simulationBalance;

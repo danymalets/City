@@ -11,7 +11,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Ui
 {
-    public class InputScreenSwitcherSystem : DUpdateSystem
+    public class InputScreenSwitcherSystem : CustomUpdateSystem
     {
         private readonly CarInputViewController _carInputView;
         private readonly PlayerInputViewController _playerInputView;

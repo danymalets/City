@@ -9,7 +9,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Init
 {
-    public class UserInitSystem : DInitializer
+    public class UserInitSystem : CustomInitializer
     {
         private readonly ILevelContext _levelContext;
 

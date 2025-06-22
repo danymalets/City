@@ -7,7 +7,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Dispose
 {
-    public class PlayersDisposeSystem : DDisposer
+    public class PlayersDisposeSystem : CustomDisposer
     {
         private Filter _filter;
         private readonly IPlayersDespawner _playersDespawner;

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Sources.Utils.MorpehWrapper.MorpehUtils.Systems
 {
-    public abstract class DIntervalUpdateSystem : DUpdateSystem
+    public abstract class CustomIntervalUpdateSystem : CustomUpdateSystem
     {
         private float _remainingTime = 0;
         protected abstract float ExecuteInterval { get; }

@@ -7,7 +7,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Player
 {
-    public class FallAnimationHandlerSystem : DUpdateSystem
+    public class FallAnimationHandlerSystem : CustomUpdateSystem
     {
         private Filter _filter;
 

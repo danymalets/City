@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Car
 {
-    public class CarBreakResetSystem : DUpdateSystem
+    public class CarBreakResetSystem : CustomUpdateSystem
     {
         private Filter _filter;
 

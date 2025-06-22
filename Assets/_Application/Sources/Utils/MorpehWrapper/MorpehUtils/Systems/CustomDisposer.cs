@@ -3,24 +3,18 @@ using UnityEngine;
 
 namespace Sources.Utils.MorpehWrapper.MorpehUtils.Systems
 {
-    public abstract class DUpdateSystem : DSystem
+    public abstract class CustomDisposer : CustomSystem
     {
         protected override void OnInitFilters()
         {
-        }
-
-        public void Update(float deltaTime)
-        {
-            _updateGizmosContext.ClearAll();
             
-            TryUpdate(deltaTime);
         }
-
-        private void TryUpdate(float deltaTime)
+        
+        public void Dispose()
         {
             try
             {
-                OnUpdate(deltaTime);
+                OnDispose();
             }
             catch (Exception exception)
             {
@@ -28,6 +22,6 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils.Systems
             }
         }
 
-        protected abstract void OnUpdate(float deltaTime);
+        protected abstract void OnDispose();
     }
 }

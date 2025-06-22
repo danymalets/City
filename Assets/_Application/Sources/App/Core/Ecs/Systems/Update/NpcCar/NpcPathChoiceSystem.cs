@@ -22,7 +22,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 {
-    public class NpcPathChoiceSystem : DUpdateSystem
+    public class NpcPathChoiceSystem : CustomUpdateSystem
     {
         private Filter _filter;
         private readonly SimulationBalance _simulationBalance;

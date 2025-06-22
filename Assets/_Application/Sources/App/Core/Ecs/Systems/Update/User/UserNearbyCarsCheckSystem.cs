@@ -15,7 +15,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.User
 {
-    public class UserNearbyCarsCheckSystem : DUpdateSystem
+    public class UserNearbyCarsCheckSystem : CustomUpdateSystem
     {
         private Filter _filter;
         private Filter _carsFilter;

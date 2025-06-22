@@ -9,7 +9,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Init
 {
-    public class SimulationAreasInitSystem : DInitializer
+    public class SimulationAreasInitSystem : CustomInitializer
     {
         private readonly ISimulationAreasFactory _simulationAreasFactory;
         private readonly ISimulationSettings _simulationSettings;

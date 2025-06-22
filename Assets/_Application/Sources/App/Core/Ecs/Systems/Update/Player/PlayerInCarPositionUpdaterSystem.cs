@@ -11,7 +11,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Player
 {
-    public class PlayerInCarPositionUpdaterSystem : DUpdateSystem
+    public class PlayerInCarPositionUpdaterSystem : CustomUpdateSystem
     {
         private Filter _filter;
         private Filter _carsFilter;

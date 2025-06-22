@@ -15,7 +15,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Player
 {
-    public class PlayerMoveAngleCalculateSystem : DUpdateSystem
+    public class PlayerMoveAngleCalculateSystem : CustomUpdateSystem
     {
         private Filter _filter;
         private readonly PlayersBalance _playersBalance;

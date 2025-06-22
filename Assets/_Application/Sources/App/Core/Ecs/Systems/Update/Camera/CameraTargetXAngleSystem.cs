@@ -12,7 +12,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Camera
 {
-    public class CameraTargetXAngleSystem : DUpdateSystem
+    public class CameraTargetXAngleSystem : CustomUpdateSystem
     {
         private Filter _cameraFilter;
         private readonly CameraBalance _cameraBalance;

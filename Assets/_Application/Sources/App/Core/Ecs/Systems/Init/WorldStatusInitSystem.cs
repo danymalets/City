@@ -4,7 +4,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Init
 {
-    public class WorldStatusInitSystem : DInitializer
+    public class WorldStatusInitSystem : CustomInitializer
     {
         public WorldStatusInitSystem()
         {

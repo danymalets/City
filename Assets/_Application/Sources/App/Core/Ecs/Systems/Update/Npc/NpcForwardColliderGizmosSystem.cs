@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Npc
 {
-    public class NpcForwardColliderGizmosSystem : DUpdateSystem
+    public class NpcForwardColliderGizmosSystem : CustomUpdateSystem
     {
         private Filter _filter;
 

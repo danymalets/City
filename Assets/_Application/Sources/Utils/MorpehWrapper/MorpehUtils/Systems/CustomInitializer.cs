@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Sources.Utils.MorpehWrapper.MorpehUtils.Systems
 {
-    public abstract class DInitializer : DSystem
+    public abstract class CustomInitializer : CustomSystem
     {
         protected override void OnInitFilters()
         {

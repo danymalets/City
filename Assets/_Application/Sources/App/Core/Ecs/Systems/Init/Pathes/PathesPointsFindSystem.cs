@@ -14,7 +14,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Init.Pathes
 {
-    public class PathesPointsFindSystem : DInitializer
+    public class PathesPointsFindSystem : CustomInitializer
     {
         private Filter _filter;
         private readonly ISimulationSettings _simulationSettings;

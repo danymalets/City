@@ -16,7 +16,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 {
-    public class NpcCarCheckForwardTriggerSystem : DUpdateSystem
+    public class NpcCarCheckForwardTriggerSystem : CustomUpdateSystem
     {
         private Filter _filter;
         private readonly IPhysicsService _physics;

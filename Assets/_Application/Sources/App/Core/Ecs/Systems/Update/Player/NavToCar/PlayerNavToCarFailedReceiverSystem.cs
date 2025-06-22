@@ -6,7 +6,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Player.NavToCar
 {
-    public class PlayerNavToCarFailedReceiverSystem : DUpdateSystem
+    public class PlayerNavToCarFailedReceiverSystem : CustomUpdateSystem
     {
         private Filter _playerFilter;
         

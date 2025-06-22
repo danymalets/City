@@ -14,7 +14,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Generation
 {
-    public class SimulationAreaUpdateSystem : DUpdateSystem
+    public class SimulationAreaUpdateSystem : CustomUpdateSystem
     {
         private Filter _simulationAreaFilter;
         private Filter _simulationCameraFilter;

@@ -15,7 +15,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.User
 {
-    public class UserRotationSpeedSystem : DUpdateSystem
+    public class UserRotationSpeedSystem : CustomUpdateSystem
     {
         private const float MaxInputAngle = 90;
 

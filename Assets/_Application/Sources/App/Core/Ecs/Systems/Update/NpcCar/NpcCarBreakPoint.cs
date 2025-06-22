@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 {
-    public class NpcCarBreakPoint : DUpdateSystem
+    public class NpcCarBreakPoint : CustomUpdateSystem
     {
         private Vector3 target = new(-23.72f + 1000f,0,-55.5f);
         private float breakDistance = 1.5f;

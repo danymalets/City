@@ -18,7 +18,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 {
-    public class CarForwardColliderCalculateSystem : DUpdateSystem
+    public class CarForwardColliderCalculateSystem : CustomUpdateSystem
     {
         private Filter _filter;
         private readonly SimulationBalance _simulationBalance;

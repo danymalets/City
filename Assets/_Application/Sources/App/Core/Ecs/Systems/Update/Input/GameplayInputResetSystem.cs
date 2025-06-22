@@ -4,7 +4,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Input
 {
-    public class GameplayInputResetSystem : DUpdateSystem
+    public class GameplayInputResetSystem : CustomUpdateSystem
     {
         private readonly IGameplayInputService _gameplayInputService;
 

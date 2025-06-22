@@ -22,10 +22,10 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
 
         private readonly IFpsService _fpsService;
 
-        private readonly List<DInitializer> _initializers = new();
-        private readonly List<DUpdateSystem> _updateSystems = new();
-        private readonly List<DUpdateSystem> _fixedSystems = new();
-        private readonly List<DDisposer> _disposers = new();
+        private readonly List<CustomInitializer> _initializers = new();
+        private readonly List<CustomUpdateSystem> _updateSystems = new();
+        private readonly List<CustomUpdateSystem> _fixedSystems = new();
+        private readonly List<CustomDisposer> _disposers = new();
         private readonly SystemsPerformance _systemsPerformance;
         private readonly IGameLoopService _gameLoopService;
         private CancellationTokenSource _cancellationTokenSource;
@@ -64,7 +64,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
 
         public void RunSystems<TDSystem>(IEnumerable<TDSystem> systems,
             Action<TDSystem> runner, Action<TDSystem, long> performanceSender)
-            where TDSystem : DSystem
+            where TDSystem : CustomSystem
         {
             foreach (TDSystem system in systems)
             {
@@ -113,7 +113,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
         private bool ShouldRun() => !IsPaused && _fpsService.FpsLastSecond >= MinWorkableFps;
 
         private void ConstructSystem<TDSystem>(TDSystem system)
-            where TDSystem : DSystem
+            where TDSystem : CustomSystem
         {
             system.Setup(this);
             system.InitFilters();
@@ -133,16 +133,16 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
             _systemsPerformance.EndFixed();
         }
 
-        public void AddInitializer<TDInitializer>() where TDInitializer : DInitializer, new() => 
+        public void AddInitializer<TDInitializer>() where TDInitializer : CustomInitializer, new() => 
             _initializers.Add(new TDInitializer());    
         
-        public void AddDisposer<TDDisposer>() where TDDisposer : DDisposer, new() => 
+        public void AddDisposer<TDDisposer>() where TDDisposer : CustomDisposer, new() => 
             _disposers.Add(new TDDisposer());
 
-        public void AddUpdateSystem<TDUpdateSystem>() where TDUpdateSystem : DUpdateSystem, new() => 
+        public void AddUpdateSystem<TDUpdateSystem>() where TDUpdateSystem : CustomUpdateSystem, new() => 
             _updateSystems.Add(new TDUpdateSystem());
 
-        public void AddFixedSystem<TDFixedUpdateSystem>() where TDFixedUpdateSystem : DUpdateSystem, new() => 
+        public void AddFixedSystem<TDFixedUpdateSystem>() where TDFixedUpdateSystem : CustomUpdateSystem, new() => 
             _fixedSystems.Add(new TDFixedUpdateSystem());
 
         public void AddOneFrame<TComponent>() where TComponent : struct, IComponent =>

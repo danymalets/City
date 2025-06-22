@@ -10,7 +10,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Common
 {
-    public class MapCameraUpdateSystem : DUpdateSystem
+    public class MapCameraUpdateSystem : CustomUpdateSystem
     {
         private Filter _userFiler;
         private readonly IMapCamera _mapCamera;

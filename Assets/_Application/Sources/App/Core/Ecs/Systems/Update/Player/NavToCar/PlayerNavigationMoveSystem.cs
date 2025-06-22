@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Player.NavToCar
 {
-    public class PlayerNavigationMoveSystem : DUpdateSystem
+    public class PlayerNavigationMoveSystem : CustomUpdateSystem
     {
         private Filter _playerFilter;
         

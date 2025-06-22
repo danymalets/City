@@ -10,7 +10,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.User
 {
-    public class UserCarInputHandlerSystem : DUpdateSystem
+    public class UserCarInputHandlerSystem : CustomUpdateSystem
     {
         private Filter _filter;
 

@@ -18,7 +18,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Generation
 {
-    public class InactiveNpcDespawnSystem : DUpdateSystem
+    public class InactiveNpcDespawnSystem : CustomUpdateSystem
     {
         private Filter _npcFilter;
         private Filter _userFilter;

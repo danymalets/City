@@ -11,7 +11,7 @@ using ICollider = Sources.Utils.MorpehWrapper.DefaultComponents.Monos.ICollider;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Player
 {
-    public class SetFallenLayerRequestHandlerSystem : DUpdateSystem
+    public class SetFallenLayerRequestHandlerSystem : CustomUpdateSystem
     {
         private Filter _filter;
 

@@ -14,7 +14,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Player.NavToCar
 {
-    public class PlayerNavToCarCheckCompleteSystem : DUpdateSystem
+    public class PlayerNavToCarCheckCompleteSystem : CustomUpdateSystem
     {
         private Filter _playerFilter;
         private readonly PlayersBalance _playersBalance;

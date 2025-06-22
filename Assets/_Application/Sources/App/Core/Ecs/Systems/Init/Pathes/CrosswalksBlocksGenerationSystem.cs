@@ -10,7 +10,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Init.Pathes
 {
-    public class CrosswalksBlocksGenerationSystem : DInitializer
+    public class CrosswalksBlocksGenerationSystem : CustomInitializer
     {
         private Filter _filter;
 

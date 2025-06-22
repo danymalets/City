@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 {
-    public class CarForwardColliderGizmosSystem : DUpdateSystem
+    public class CarForwardColliderGizmosSystem : CustomUpdateSystem
     {
         private Filter _filter;
         private readonly SimulationBalance _simulationBalance;

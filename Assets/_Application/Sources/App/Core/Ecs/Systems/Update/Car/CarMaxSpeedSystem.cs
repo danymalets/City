@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Car
 {
-    public class CarMaxSpeedSystem : DUpdateSystem
+    public class CarMaxSpeedSystem : CustomUpdateSystem
     {
         private Filter _filter;
         private readonly CarsBalance _carsBalance;

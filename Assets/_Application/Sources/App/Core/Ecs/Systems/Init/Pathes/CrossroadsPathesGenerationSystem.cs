@@ -17,7 +17,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Init.Pathes
 {
-    public class CrossroadsPathesGenerationSystem : DInitializer
+    public class CrossroadsPathesGenerationSystem : CustomInitializer
     {
         private Filter _filter;
         private SimulationBalance _simulationBalance;

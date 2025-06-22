@@ -13,7 +13,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 {
-    public class NpcCarPathSteeringAngleSystem : DUpdateSystem
+    public class NpcCarPathSteeringAngleSystem : CustomUpdateSystem
     {
         private Filter _filter;
 

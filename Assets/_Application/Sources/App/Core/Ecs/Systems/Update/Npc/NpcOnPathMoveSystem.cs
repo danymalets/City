@@ -12,7 +12,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Npc
 {
-    public class NpcOnPathMoveSystem : DUpdateSystem
+    public class NpcOnPathMoveSystem : CustomUpdateSystem
     {
         private Filter _filter;
         private readonly PlayersBalance _playersBalance;

@@ -7,7 +7,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Car
 {
-    public class SteeringAngleApplySystem : DUpdateSystem
+    public class SteeringAngleApplySystem : CustomUpdateSystem
     {
         private Filter _filter;
 

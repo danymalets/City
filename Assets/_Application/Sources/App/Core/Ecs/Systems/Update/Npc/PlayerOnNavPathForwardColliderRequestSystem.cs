@@ -9,7 +9,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Npc
 {
-    public class PlayerOnNavPathForwardColliderRequestSystem : DUpdateSystem
+    public class PlayerOnNavPathForwardColliderRequestSystem : CustomUpdateSystem
     {
         private Filter _filter;
 

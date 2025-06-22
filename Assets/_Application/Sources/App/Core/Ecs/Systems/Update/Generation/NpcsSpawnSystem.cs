@@ -21,7 +21,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Generation
 {
-    public class NpcsSpawnSystem : DUpdateSystem
+    public class NpcsSpawnSystem : CustomUpdateSystem
     {
         private Filter _pathesFilter;
         private readonly SimulationBalance _simulationBalance;

@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Player
 {
-    public class PlayerSmoothAngleSystem : DUpdateSystem
+    public class PlayerSmoothAngleSystem : CustomUpdateSystem
     {
         private Filter _filter;
 

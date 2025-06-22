@@ -21,7 +21,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Player
 {
-    public class PlayerCarFullyExitSystem : DUpdateSystem
+    public class PlayerCarFullyExitSystem : CustomUpdateSystem
     {
         private Filter _filter;
 

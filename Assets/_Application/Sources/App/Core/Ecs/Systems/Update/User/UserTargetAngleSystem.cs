@@ -14,7 +14,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.User
 {
-    public class UserTargetAngleSystem : DUpdateSystem
+    public class UserTargetAngleSystem : CustomUpdateSystem
     {
         private Filter _filter;
 

@@ -15,7 +15,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Camera
 {
-    public class CameraFollowPlayerPositionSystem : DUpdateSystem
+    public class CameraFollowPlayerPositionSystem : CustomUpdateSystem
     {
         private readonly CameraBalance _cameraBalance;
 

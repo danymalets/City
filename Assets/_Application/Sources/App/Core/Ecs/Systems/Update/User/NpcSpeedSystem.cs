@@ -12,7 +12,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.User
 {
-    public class NpcSpeedSystem : DUpdateSystem
+    public class NpcSpeedSystem : CustomUpdateSystem
     {
         private Filter _filter;
         private readonly PlayersBalance _playerBalance;

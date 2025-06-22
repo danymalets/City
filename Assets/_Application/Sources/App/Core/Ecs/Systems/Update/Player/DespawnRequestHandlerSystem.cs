@@ -9,7 +9,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Player
 {
-    public class DespawnRequestHandlerSystem : DUpdateSystem
+    public class DespawnRequestHandlerSystem : CustomUpdateSystem
     {
         private Filter _filter;
         private readonly IPlayersDespawner _playersDespawner;

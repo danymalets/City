@@ -11,7 +11,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Car
 {
-    public class CarMotorApplySystem : DUpdateSystem
+    public class CarMotorApplySystem : CustomUpdateSystem
     {
         private Filter _filter;
         private readonly CarsBalance _carsBalance;

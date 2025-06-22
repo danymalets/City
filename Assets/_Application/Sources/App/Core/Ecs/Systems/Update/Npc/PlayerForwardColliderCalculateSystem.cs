@@ -16,7 +16,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Npc
 {
-    public class PlayerForwardColliderCalculateSystem : DUpdateSystem
+    public class PlayerForwardColliderCalculateSystem : CustomUpdateSystem
     {
         private Filter _npcOnPathfilter;
         private readonly SimulationBalance _simulationBalance;

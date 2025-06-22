@@ -13,7 +13,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Player
 {
-    public class JumpRequestHandlerSystem : DUpdateSystem
+    public class JumpRequestHandlerSystem : CustomUpdateSystem
     {
         private Filter _filter;
         private readonly PlayersBalance _playersBalance;

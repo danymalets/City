@@ -19,7 +19,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
 {
-    public class NpcBreakOrMoveChoiceSystem : DUpdateSystem
+    public class NpcBreakOrMoveChoiceSystem : CustomUpdateSystem
     {
         private Filter _filter;
         private readonly SimulationBalance _simulationBalance;

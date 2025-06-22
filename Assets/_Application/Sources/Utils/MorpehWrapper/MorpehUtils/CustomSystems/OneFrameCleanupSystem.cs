@@ -4,7 +4,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.Utils.MorpehWrapper.MorpehUtils.CustomSystems
 {
-    public class OneFrameCleanupSystem<TComponent> : DUpdateSystem where TComponent : struct, IComponent
+    public class OneFrameCleanupSystem<TComponent> : CustomUpdateSystem where TComponent : struct, IComponent
     {
         private Filter _filter;
 

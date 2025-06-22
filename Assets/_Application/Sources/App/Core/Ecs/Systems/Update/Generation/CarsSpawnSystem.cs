@@ -18,7 +18,7 @@ using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
 namespace Sources.App.Core.Ecs.Systems.Update.Generation
 {
-    public class CarsSpawnSystem : DUpdateSystem
+    public class CarsSpawnSystem : CustomUpdateSystem
     {
         private readonly ICarsFactory _carsFactory;
         private readonly IPlayersFactory _playersFactory;

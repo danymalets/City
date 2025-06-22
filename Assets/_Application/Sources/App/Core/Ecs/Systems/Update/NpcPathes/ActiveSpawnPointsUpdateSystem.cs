@@ -17,7 +17,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Update.NpcPathes
 {
-    public class ActiveSpawnPointsUpdateSystem : DPeriodUpdateSystem
+    public class ActiveSpawnPointsUpdateSystem : CustomPeriodUpdateSystem
     {
         private Filter _pathesFilter;
         private readonly ISimulationSettings _simulationSettings;

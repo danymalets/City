@@ -13,7 +13,7 @@ using UnityEngine;
 
 namespace Sources.App.Core.Ecs.Systems.Init.Pathes
 {
-    public class RoadPathesGenerationSystem : DInitializer
+    public class RoadPathesGenerationSystem : CustomInitializer
     {
         private Filter _filter;
         private SimulationBalance _simulationBalance;
