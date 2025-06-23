@@ -1,8 +1,9 @@
 using Sources.App.Ui.Common;
+using Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.DebugExecutors.DebugInputFields;
 using TMPro;
 using UnityEngine;
 
-namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus
+namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.DebugExecutors
 {
     public class DebugExecutorView : MonoBehaviour
     {

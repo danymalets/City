@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
-using Sources.App.Ui.Screens.DebugMenuScreens.ExecutionItems;
+using Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.DebugExecutors.DebugInputFields;
+using Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.ExecutionItems;
+using Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.ExecutionItems.DepugInputsItems;
 using Sources.Services.GameObjectServices;
 using Sources.Utils.Di;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus
+namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.DebugExecutors
 {
     public class DebugExecutorController
     {
@@ -34,7 +34,7 @@ namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus
             
             foreach (var debugInputItem in _debugExecutorItem.Inputs) 
             {
-                if (debugInputItem is DebugInputFieldItem debugInputFieldItem)
+                if (debugInputItem is DebugTextInputItem debugInputFieldItem)
                 {
                     var debugFieldInputView = _gameObjectService.Instantiate(_debugExecutorView.DebugFieldInputViewPrefab, _debugExecutorView.ContentParent);
                     debugFieldInputView.Title.text = $"{debugInputItem.Title}:";

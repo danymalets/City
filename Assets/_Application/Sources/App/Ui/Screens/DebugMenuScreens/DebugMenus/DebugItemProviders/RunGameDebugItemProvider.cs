@@ -1,9 +1,10 @@
 using Cysharp.Threading.Tasks;
 using Sources.App.Services.GameRunnerServices;
-using Sources.App.Ui.Screens.DebugMenuScreens.ExecutionItems;
+using Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.ExecutionItems;
+using Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.ExecutionItems.DepugInputsItems;
 using Sources.Utils.Di;
 
-namespace Sources.App.Ui.Screens.DebugMenuScreens.Providers
+namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.DebugItemProviders
 {
     public class RunGameDebugItemProvider : DebugItemProvider
     {

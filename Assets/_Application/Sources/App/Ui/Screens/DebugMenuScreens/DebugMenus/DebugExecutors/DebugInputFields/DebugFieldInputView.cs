@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus
+namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.DebugExecutors.DebugInputFields
 {
     public class DebugFieldInputView : MonoBehaviour
     {

@@ -16,7 +16,6 @@ namespace Sources.App.Services.AssetsServices.Localizations
         [field: SerializeField] public string RestorePurchases { get; private set; }
         [field: SerializeField] public string Bought { get; private set; }
         [field: SerializeField] public string Language { get; private set; }
-        
         [field: SerializeField] public string Sounds { get; private set; }
         [field: SerializeField] public string Music { get; private set; }
         [field: SerializeField] public string Vibration { get; private set; }

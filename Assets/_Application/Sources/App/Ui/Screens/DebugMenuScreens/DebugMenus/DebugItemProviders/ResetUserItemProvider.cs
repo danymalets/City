@@ -1,11 +1,12 @@
 using Cysharp.Threading.Tasks;
 using Sources.App.Services.GameReloadServices;
 using Sources.App.Services.UserServices;
-using Sources.App.Ui.Screens.DebugMenuScreens.ExecutionItems;
+using Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.ExecutionItems;
+using Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.ExecutionItems.DepugInputsItems;
 using Sources.Services.ApplicationServices;
 using Sources.Utils.Di;
 
-namespace Sources.App.Ui.Screens.DebugMenuScreens.Providers
+namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.DebugItemProviders
 {
     public class ResetUserItemProvider : DebugItemProvider
     {

@@ -1,7 +1,8 @@
 using System;
 using Cysharp.Threading.Tasks;
+using Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.ExecutionItems.DepugInputsItems;
 
-namespace Sources.App.Ui.Screens.DebugMenuScreens.ExecutionItems
+namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.ExecutionItems
 {
     public class DebugExecutorItem
     {

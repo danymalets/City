@@ -1,11 +1,12 @@
 using Cysharp.Threading.Tasks;
 using Sources.App.Services.UserServices;
 using Sources.App.Services.UserServices.Users.Wallets;
-using Sources.App.Ui.Screens.DebugMenuScreens.ExecutionItems;
+using Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.ExecutionItems;
+using Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.ExecutionItems.DepugInputsItems;
 using Sources.Utils.Di;
 using TMPro;
 
-namespace Sources.App.Ui.Screens.DebugMenuScreens.Providers
+namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.DebugItemProviders
 {
     public class SetCurrencyDebugItemProvider : DebugItemProvider
     {
@@ -23,7 +24,7 @@ namespace Sources.App.Ui.Screens.DebugMenuScreens.Providers
         public override DebugExecutorItem GetItem()
         {
             return new DebugExecutorItem($"Set {_currencyType}",
-                new DebugInputItem[] { new DebugInputFieldItem("Value", TMP_InputField.ContentType.IntegerNumber, _defaultValue) }, (input) =>
+                new DebugInputItem[] { new DebugTextInputItem("Value", TMP_InputField.ContentType.IntegerNumber, _defaultValue) }, (input) =>
                 {
                     if (int.TryParse(input[0], out int value))
                     {

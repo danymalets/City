@@ -4,7 +4,7 @@ using Sources.App.Services.UserServices.Users.Wallets;
 using Sources.App.Ui.Base.Animators;
 using Sources.App.Ui.Base.Controllers;
 using Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus;
-using Sources.App.Ui.Screens.DebugMenuScreens.Providers;
+using Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.DebugItemProviders;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.Di;
 using static TMPro.TMP_InputField;
