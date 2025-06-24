@@ -41,7 +41,7 @@ namespace Sources.App.Ui.Screens.DebugMenuScreens
             var wasActive = _debugMenuScreen.DebugMenu.gameObject.activeSelf;
             _debugMenuScreen.DebugMenu.gameObject.SetActive(!wasActive);
 
-            if (wasActive)
+            if (!wasActive)
             {
                 _debugMenuViewController.OnOpen(new DebugItemProvider[]
                 {
