@@ -38,6 +38,7 @@ namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus
             {
                 debugExecutorController.Dispose();
             }
+            _debugExecutorControllers.Clear();
         }
     }
 }
