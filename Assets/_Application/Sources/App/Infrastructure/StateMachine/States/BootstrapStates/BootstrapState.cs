@@ -50,7 +50,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.BootstrapStates
 
             foreach (CarMonoEntity carPrefab in assets.CommonAssets.CarsAssets.CarPrefabs)
             {
-                poolCreatorService.CreatePool(new PoolConfig(carPrefab, 10));
+                poolCreatorService.CreatePool(new PoolConfig(carPrefab, 15));
             }
 
             foreach (PlayerMonoEntity playerPrefab in assets.CommonAssets.PlayersAssets.PlayerPrefabs)
