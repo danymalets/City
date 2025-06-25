@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.DebugExecutors.DebugInputFields;
 using Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.ExecutionItems;
@@ -19,6 +21,7 @@ namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.DebugExecutors
         
         private readonly List<DebugFieldInputView> _debugFieldInputViews = new();
         private bool _hasRunningExecutor;
+        private CancellationTokenSource _cancellationTokenSource;
 
         public DebugExecutorController(DebugExecutorView debugExecutorView, DebugExecutorItem debugExecutorItem)
         {
@@ -48,6 +51,12 @@ namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.DebugExecutors
         }
         
         private async void OnExecuteButtonClicked()
+        {
+            _cancellationTokenSource = new CancellationTokenSource();
+            await RunExecutor(_cancellationTokenSource);
+        }
+
+        private async Task RunExecutor(CancellationTokenSource cancellationTokenSource)
         {
             if (_hasRunningExecutor)
             {
