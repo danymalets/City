@@ -22,7 +22,7 @@ namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.DebugItemProviders
         public override DebugExecutorItem GetItem()
         {
             return new DebugExecutorItem($"Reset User",
-                new DebugInputItem[] { }, (input) =>
+                new DebugInputItem[] { }, (input, ct) =>
                 {
                     if (DiContainer.TryResolve(out IGameReloadService gameReloadService))
                     {

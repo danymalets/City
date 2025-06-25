@@ -46,13 +46,12 @@ namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.DebugExecutors
                     _debugFieldInputViews.Add(debugFieldInputView);
                 }
             }
-            
+            _cancellationTokenSource = new CancellationTokenSource();
             _debugExecutorView.ExecuteButton.Button.onClick.AddListener(OnExecuteButtonClicked);
         }
         
         private async void OnExecuteButtonClicked()
         {
-            _cancellationTokenSource = new CancellationTokenSource();
             await RunExecutor(_cancellationTokenSource);
         }
 
@@ -62,20 +61,27 @@ namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.DebugExecutors
             {
                 return;
             }
-
-            _debugExecutorView.ExecuteButton.Button.interactable = false;
-            _hasRunningExecutor = true;
-            ViewResult(new DebugExecutorResult(DebugResultStatus.Waiting));
-            var result = await _debugExecutorItem.Result(_debugFieldInputViews.Select(view => view.InputField.text).ToArray());
-            ViewResult(result);
-            await UniTask.WaitForSeconds(2f);
-            ViewResult(new DebugExecutorResult(DebugResultStatus.End));
-            _debugExecutorView.ExecuteButton.Button.interactable = true;
-            _hasRunningExecutor = false;
+            
+            try
+            {
+                _debugExecutorView.ExecuteButton.Button.interactable = false;
+                _hasRunningExecutor = true;
+                ViewResult(new DebugExecutorResult(DebugResultStatus.Waiting));
+                var result = await _debugExecutorItem.Result(_debugFieldInputViews.Select(view => view.InputField.text).ToArray(), cancellationTokenSource.Token);
+                ViewResult(result);
+                await UniTask.WaitForSeconds(2f, cancellationToken:cancellationTokenSource.Token);
+                ViewResult(new DebugExecutorResult(DebugResultStatus.End));
+                _debugExecutorView.ExecuteButton.Button.interactable = true;
+                _hasRunningExecutor = false;
+            }
+            catch (OperationCanceledException e)
+            {
+            }
         }
 
         public void Dispose()
         {
+            _cancellationTokenSource.Cancel();
             _debugFieldInputViews.Clear();
             _debugExecutorView.ExecuteButton.Button.onClick.RemoveListener(OnExecuteButtonClicked);
             _gameObjectService.Destroy(_debugExecutorView.gameObject);

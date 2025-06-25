@@ -24,7 +24,7 @@ namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.DebugItemProviders
         public override DebugExecutorItem GetItem()
         {
             return new DebugExecutorItem($"Set {_currencyType}",
-                new DebugInputItem[] { new DebugTextInputItem("Value", TMP_InputField.ContentType.IntegerNumber, _defaultValue) }, (input) =>
+                new DebugInputItem[] { new DebugTextInputItem("Value", TMP_InputField.ContentType.IntegerNumber, _defaultValue) }, (input, ct) =>
                 {
                     if (int.TryParse(input[0], out int value))
                     {

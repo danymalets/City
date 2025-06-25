@@ -95,13 +95,11 @@ namespace Sources.App.Ui.Screens.SettingsScreens
 
         private void RateUsTextButton_OnClicked()
         {
-            _audioService.PlayOnce(SoundType.ButtonClick);
             _applicationService.OpenUrl("https://www.google.com/");
         }
 
         private void SupportTextButton_OnClicked()
         {
-            _audioService.PlayOnce(SoundType.ButtonClick);
             _applicationService.OpenUrl("https://www.google.com/");
         }
     }
