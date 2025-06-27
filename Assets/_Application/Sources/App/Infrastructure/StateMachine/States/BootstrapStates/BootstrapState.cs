@@ -28,9 +28,9 @@ namespace Sources.App.Infrastructure.StateMachine.States.BootstrapStates
             IPhysicsService physics = DiContainer.Resolve<IPhysicsService>();
             IScreenService screen = DiContainer.Resolve<IScreenService>();
             IUiControllersService uiControllers = DiContainer.Resolve<IUiControllersService>();
-            
-            application.TargetFrameRate = Mathf.Min(60, screen.MaxDeviceFrameRate);
-            physics.AutoSimulation = false;
+
+            application.TargetFrameRate = Mathf.Min(60, Mathf.CeilToInt(screen.MaxDeviceFrameRate));
+            physics.SimulationMode = SimulationMode.Script;
             screen.SleepTimeout = SleepTimeout.NeverSleep;
 
             PreparePool();

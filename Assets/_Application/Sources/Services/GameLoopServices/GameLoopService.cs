@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Sources.Services.ApplicationServices;
 using Sources.Services.TimeServices;
 using Sources.Utils.CommonUtils.Utils;
 using Sources.Utils.Di;
@@ -8,15 +9,29 @@ using UnityEngine;
 
 namespace Sources.Services.GameLoopServices
 {
-    public class GameLoopService : IGameLoopService
+    public class GameLoopService : IGameLoopService, IInitializable
     {
         private readonly ITimeService _timeService;
+        private readonly IApplicationService _applicationService;
+        private readonly CancellationTokenSource _applicationCancellationTokenSource;
 
         public GameLoopService()
         {
             _timeService = DiContainer.Resolve<ITimeService>();
+            _applicationService = DiContainer.Resolve<IApplicationService>();
+            _applicationCancellationTokenSource = new CancellationTokenSource();
         }
-        
+
+        public void Initialize()
+        {
+            _applicationService.ApplicationQuit += ApplicationService_OnApplicationQuit;
+        }
+
+        private void ApplicationService_OnApplicationQuit()
+        {
+            _applicationCancellationTokenSource.Cancel();
+        }
+
         public async UniTaskVoid RunEachSeconds(float period, Action action, bool shouldRunNow, CancellationToken cancellationToken = default)
         {
             AssertUtils.IsTrue(period > 0);
@@ -52,10 +67,11 @@ namespace Sources.Services.GameLoopServices
 
         public async UniTaskVoid RunEachFixedUpdate(Action action, CancellationToken cancellationToken = default)
         {
+            var cancellationTokenSource = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, _applicationCancellationTokenSource.Token);
             while (true)
             {
+                await UniTask.WaitForFixedUpdate(cancellationTokenSource.Token);
                 action?.Invoke();
-                await UniTask.WaitForFixedUpdate(cancellationToken);
             }
         }
 

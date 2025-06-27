@@ -1,12 +1,10 @@
 using System;
-using Sources.App.Services.InputServices;
-using Sources.Services.GameLoopServices;
 using Sources.Utils.Di;
 using UnityEngine;
 
 namespace Sources.Services.ApplicationServices
 {
-    public class ApplicationService : MonoBehaviour, IApplicationService, IInitializable
+    public class ApplicationService : MonoBehaviour, IApplicationService
     {
         public event Action BackButtonClicked;
         public event Action<bool> FocusStatusChanged;
@@ -16,9 +14,6 @@ namespace Sources.Services.ApplicationServices
         public event Action Paused;
         public event Action Unpaused;
         public event Action ApplicationQuit;
-
-        private IInputService _inputService;
-        private IGameLoopService _gameLoopService;
 
         public int TargetFrameRate
         {
@@ -43,18 +38,6 @@ namespace Sources.Services.ApplicationServices
         
         public void OpenUrl(string url) =>
             Application.OpenURL(url);
-
-        public void Initialize()
-        {
-            _inputService = DiContainer.Resolve<IInputService>();
-            _gameLoopService = DiContainer.Resolve<IGameLoopService>();
-            
-            _gameLoopService.RunEachFrame(() =>
-            {
-                if (_inputService.WasAndroidBackPressed())
-                    BackButtonClicked?.Invoke();
-            }, true);
-        }
 
         private void OnApplicationFocus(bool hasFocus)
         {

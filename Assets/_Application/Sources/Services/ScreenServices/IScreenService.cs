@@ -9,7 +9,7 @@ namespace Sources.Services.ScreenServices
         int Height { get; }
         int Width { get; }
         Rect SafeArea { get; }
-        int MaxDeviceFrameRate { get; }
+        float MaxDeviceFrameRate { get; }
         int SleepTimeout { get; set; }
 
         event Action ScreenResolutionChanged;

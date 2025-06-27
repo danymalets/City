@@ -3,11 +3,8 @@
     "rootNamespace": "",
     "references": [
         "Sources.Utils.Di",
-        "Sources.Services.ApplicationInputServices",
-        "Sources.Services.GameLoopServices",
         "UniTask",
-        "Sources.Services.LogServices",
-        "Sources.App.Services.InputServices"
+        "Sources.Services.LogServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -47,11 +47,11 @@ namespace Sources.App.Infrastructure.StateMachine.States.InitializationStates
 
             _diBuilder.Register<InputService, IInputService>();
             _diBuilder.Register<TimeService, ITimeService>();
+            _diBuilder.Register<IApplicationService>(gameObjectsInitializationData.ApplicationService);
             _diBuilder.Register<GameLoopService, IGameLoopService>();
             _diBuilder.Register<ILogService>(new LogService(new LogSettings{ IsLocalTime = true }));
-            
+
             _diBuilder.Register<PhysicsService, IPhysicsService>();
-            _diBuilder.Register<IApplicationService>(gameObjectsInitializationData.ApplicationService);
             _diBuilder.Register<SceneLoaderService, ISceneLoaderService>();
             _diBuilder.Register<ScreenService, IScreenService>();
             _diBuilder.Register<JsonSerializerService, IJsonSerializerService>();

@@ -16,8 +16,8 @@ namespace Sources.Services.ScreenServices
 
         public Rect SafeArea { get; private set; }
 
-        public int MaxDeviceFrameRate => Screen.resolutions.Max(r => r.refreshRate);
-
+        public float MaxDeviceFrameRate => (float)Screen.resolutions.Max(r => r.refreshRateRatio.value);
+        
         public int SleepTimeout
         {
             get => Screen.sleepTimeout;

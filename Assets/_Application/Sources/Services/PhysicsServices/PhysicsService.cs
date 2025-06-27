@@ -7,10 +7,10 @@ namespace Sources.Services.PhysicsServices
     {
         private bool _autoSimulate;
 
-        public bool AutoSimulation
+        public SimulationMode SimulationMode
         {
-            get => Physics.autoSimulation;
-            set => Physics.autoSimulation = value;
+            get => Physics.simulationMode;
+            set => Physics.simulationMode = value;
         }
 
         public void Simulate(float step) => 

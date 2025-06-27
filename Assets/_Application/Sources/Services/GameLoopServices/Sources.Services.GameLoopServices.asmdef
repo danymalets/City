@@ -5,7 +5,8 @@
         "Sources.Utils.Di",
         "Sources.Services.TimeServices",
         "Sources.Utils.CommonUtils",
-        "UniTask"
+        "UniTask",
+        "Sources.Services.ApplicationServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
