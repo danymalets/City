@@ -15,6 +15,7 @@ using Sources.App.Ui.Screens.SettingsScreens;
 using Sources.App.Ui.Screens.ShopScreens;
 using Sources.Services.IapServices;
 using Sources.Services.LocalizationServices;
+using Sources.Services.ScreenServices;
 using Sources.Utils.CommonUtils.Collections;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.Di;
@@ -29,10 +30,12 @@ namespace Sources.App.Ui.Base
         private readonly HashSet<ScreenControllerBase> _openedWindows = new();
         private readonly ILocalizationService _localizationService;
         private readonly IIapService _iapService;
+        private readonly IScreenService _screenService;
 
         public UiControllersService(UiViews uiViews)
         {
             _screens.AddRange(uiViews.GameScreens);
+            _screenService = DiContainer.Resolve<IScreenService>();
             _localizationService = DiContainer.Resolve<ILocalizationService>();
             _iapService = DiContainer.Resolve<IIapService>();
         }
@@ -68,6 +71,7 @@ namespace Sources.App.Ui.Base
                 screenController.Closed += ScreenController_OnClosed;
             }
 
+            _screenService.ScreenResolutionChanged += ScreenService_ScreenResolutionChanged;
             _localizationService.LocalizationChanged += LocalizationService_OnLocalizationChanged;
             _iapService.PurchaseProcessed += IapService_OnPurchaseProcessed;
         }
@@ -80,6 +84,7 @@ namespace Sources.App.Ui.Base
                 screenController.Closed -= ScreenController_OnClosed;
             }
             
+            _screenService.ScreenResolutionChanged -= ScreenService_ScreenResolutionChanged;
             _localizationService.LocalizationChanged -= LocalizationService_OnLocalizationChanged;
             _iapService.PurchaseProcessed -= IapService_OnPurchaseProcessed;
         }
@@ -114,6 +119,11 @@ namespace Sources.App.Ui.Base
         private void ScreenController_OnClosed(ScreenControllerBase screenController)
         {
             _openedWindows.Remove(screenController);
+        }
+
+        private void ScreenService_ScreenResolutionChanged()
+        {
+            Refresh();
         }
 
         private void LocalizationService_OnLocalizationChanged()

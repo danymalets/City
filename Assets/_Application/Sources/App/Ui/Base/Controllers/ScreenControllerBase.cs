@@ -7,14 +7,17 @@ using Sources.App.Ui.Base.Animators;
 using Sources.App.Ui.Base.Views;
 using Sources.Services.GameLoopServices;
 using Sources.Services.LocalizationServices;
+using Sources.Services.ScreenServices;
+using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.Di;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Sources.App.Ui.Base.Controllers
 {
     public abstract class ScreenControllerBase
     {
-        private readonly GameScreen _gamePopup;
+        private readonly GameScreen _gameScreen;
         private readonly ScreenAnimator _screenAnimator;
 
         public readonly bool IsAlwaysOpen;
@@ -23,23 +26,25 @@ namespace Sources.App.Ui.Base.Controllers
         protected readonly IGameLoopService _gameLoopService;
         private readonly CancellationTokenSource _gameLoopCancellationTokenSource;
         protected readonly CancellationToken _gameLoopCancellationToken;
+        private readonly IScreenService _screenService;
 
         protected StringsAsset Strings => _localizationService.CurrentStrings;
 
         public bool IsOpen { get; private set; }
 
-        public event Action<ScreenControllerBase> Opened; // Анимация открытия началась
-        public event Action<ScreenControllerBase> Closed; // Анимация закрытия началась
+        public event Action<ScreenControllerBase> Opened; // Animation "Open" started
+        public event Action<ScreenControllerBase> Closed; // Animation "Close" started
 
-        protected ScreenControllerBase(GameScreen gamePopup, ScreenAnimator screenAnimator, bool isAlwaysOpen)
+        protected ScreenControllerBase(GameScreen gameScreen, ScreenAnimator screenAnimator, bool isAlwaysOpen)
         {
             IsAlwaysOpen = isAlwaysOpen;
-            _gamePopup = gamePopup;
+            _gameScreen = gameScreen;
             _screenAnimator = screenAnimator;
             _gameLoopCancellationTokenSource = new CancellationTokenSource();
             _gameLoopCancellationToken = _gameLoopCancellationTokenSource.Token;
             _gameLoopService = DiContainer.Resolve<IGameLoopService>();
-
+            
+            _screenService = DiContainer.Resolve<IScreenService>();
             _localizationService = DiContainer.Resolve<ILocalizationService>();
             _audioService = DiContainer.Resolve<IAudioService>();
         }
@@ -60,17 +65,25 @@ namespace Sources.App.Ui.Base.Controllers
             Refresh();
         }
 
-        public void Refresh() => OnRefresh();
+        public void Refresh()
+        {
+            if (_gameScreen.SafeArea != null)
+            {
+                (Vector2 minAnchor, Vector2 maxAnchor) = _screenService.GetSafeAreaMinMaxAnchors();
+                _gameScreen.SafeArea.RectTransform.SetMinMaxAnchors(minAnchor, maxAnchor);
+            }
+            OnRefresh();
+        } 
 
         private void SubscribeCloseButtons()
         {
-            foreach (Button closeButton in _gamePopup.CloseButtons)
+            foreach (Button closeButton in _gameScreen.CloseButtons)
                 closeButton.onClick.AddListener(OnCloseButtonClickedInternal);
         }
         
         private void UnsubscribeCloseButtons()
         {
-            foreach (Button closeButton in _gamePopup.CloseButtons)
+            foreach (Button closeButton in _gameScreen.CloseButtons)
                 closeButton.onClick.RemoveListener(OnCloseButtonClickedInternal);
         }
 

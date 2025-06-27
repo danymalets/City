@@ -13,6 +13,7 @@ namespace Sources.Services.ScreenServices
         public int Height { get; private set; }
 
         public int Width { get; private set; }
+        public Vector2Int Size => new(Width, Height);
 
         public Rect SafeArea { get; private set; }
 
@@ -24,6 +25,16 @@ namespace Sources.Services.ScreenServices
             set => Screen.sleepTimeout = value;
         }
 
+        public (Vector2 minAnchor, Vector2 maxAnchor) GetSafeAreaMinMaxAnchors()
+        {
+            Vector2 anchorMin = SafeArea.position;
+            Vector2 anchorMax = SafeArea.position + SafeArea.size;
+
+            anchorMin /= Size;
+            anchorMax /= Size;
+            return (anchorMin, anchorMax);
+        }
+        
         public event Action ScreenResolutionChanged;
 
         public ScreenService()
