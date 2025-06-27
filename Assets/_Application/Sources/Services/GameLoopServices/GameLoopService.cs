@@ -22,7 +22,7 @@ namespace Sources.Services.GameLoopServices
             AssertUtils.IsTrue(period > 0);
             float timer = shouldRunNow ? 0 : period;
 
-            while (!cancellationToken.IsCancellationRequested)
+            while (true)
             {
                 while (timer <= 0)
                 {
@@ -32,7 +32,7 @@ namespace Sources.Services.GameLoopServices
 
                 timer -= _timeService.DeltaTime;
                 
-                await UniTask.NextFrame();
+                await UniTask.NextFrame(cancellationToken);
             }
         }
 
@@ -40,24 +40,22 @@ namespace Sources.Services.GameLoopServices
         {
             if (!shouldRunNow)
             {
-                await UniTask.NextFrame();
+                await UniTask.NextFrame(cancellationToken);
             }
 
-            while (!cancellationToken.IsCancellationRequested)
-            {
+            while (true)
+            {                
                 action?.Invoke();
-                await UniTask.NextFrame();
+                await UniTask.NextFrame(cancellationToken);
             }
         }
 
         public async UniTaskVoid RunEachFixedUpdate(Action action, CancellationToken cancellationToken = default)
         {
-            await UniTask.WaitForFixedUpdate();
-
-            while (!cancellationToken.IsCancellationRequested)
+            while (true)
             {
                 action?.Invoke();
-                await UniTask.WaitForFixedUpdate();
+                await UniTask.WaitForFixedUpdate(cancellationToken);
             }
         }
 

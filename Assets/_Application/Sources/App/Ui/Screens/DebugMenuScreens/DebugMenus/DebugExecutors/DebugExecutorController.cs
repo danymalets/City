@@ -50,33 +50,31 @@ namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.DebugExecutors
             _debugExecutorView.ExecuteButton.Button.onClick.AddListener(OnExecuteButtonClicked);
         }
         
-        private async void OnExecuteButtonClicked()
-        {
-            await RunExecutor(_cancellationTokenSource);
-        }
+        private void OnExecuteButtonClicked() => 
+            RunExecutor().Forget();
 
-        private async Task RunExecutor(CancellationTokenSource cancellationTokenSource)
+        private async UniTaskVoid RunExecutor()
         {
             if (_hasRunningExecutor)
             {
                 return;
             }
             
-            try
-            {
-                _debugExecutorView.ExecuteButton.Button.interactable = false;
-                _hasRunningExecutor = true;
-                ViewResult(new DebugExecutorResult(DebugResultStatus.Waiting));
-                var result = await _debugExecutorItem.Result(_debugFieldInputViews.Select(view => view.InputField.text).ToArray(), cancellationTokenSource.Token);
-                ViewResult(result);
-                await UniTask.WaitForSeconds(2f, cancellationToken:cancellationTokenSource.Token);
-                ViewResult(new DebugExecutorResult(DebugResultStatus.End));
-                _debugExecutorView.ExecuteButton.Button.interactable = true;
-                _hasRunningExecutor = false;
-            }
-            catch (OperationCanceledException e)
-            {
-            }
+            _debugExecutorView.ExecuteButton.Button.interactable = false;
+            _hasRunningExecutor = true;
+            
+            ViewResult(new DebugExecutorResult(DebugResultStatus.Waiting));
+            
+            var result = await _debugExecutorItem.Result(_debugFieldInputViews.Select(view => view.InputField.text).ToArray());
+            
+            ViewResult(result);
+            
+            await UniTask.WaitForSeconds(2f, cancellationToken:_cancellationTokenSource.Token);
+            
+            ViewResult(new DebugExecutorResult(DebugResultStatus.End));
+            
+            _debugExecutorView.ExecuteButton.Button.interactable = true;
+            _hasRunningExecutor = false;
         }
 
         public void Dispose()
