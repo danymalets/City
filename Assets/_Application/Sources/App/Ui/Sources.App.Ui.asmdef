@@ -29,7 +29,6 @@
         "Sources.Services.GameLoopServices",
         "UniTask",
         "TriInspector",
-        "Sources.App.Services.GameRunnerServices",
         "Sources.App.Services.GameReloadServices",
         "Sources.App.Services.MatchRunnerServices"
     ],

@@ -11,21 +11,6 @@ namespace Sources.Utils.Di
                 throw new InvalidOperationException("Service has already been registered");
             
             Implementation<TService>.ServiceInstance = implementation;
-            Implementation<TService>.ServiceRegistered?.Invoke(implementation);
-            Implementation<TService>.ServiceRegistered = null;
-        }
-
-        public static void InvokeWhenBind<TService>(Action<TService> serviceRegistered)
-            where TService : class, IService
-        {
-            if (TryResolve(out TService service))
-            {
-                serviceRegistered?.Invoke(service);
-            }
-            else
-            {
-                Implementation<TService>.ServiceRegistered += serviceRegistered;
-            }
         }
         
         internal static void Unbind<TService>() where TService : class, IService
@@ -52,7 +37,7 @@ namespace Sources.Utils.Di
             return service;
         }
 
-        public static bool IsRegistered<TService>() where TService : class, IService
+        private static bool IsRegistered<TService>() where TService : class, IService
         {
             TService service = Implementation<TService>.ServiceInstance;
             return service != null;
@@ -60,7 +45,6 @@ namespace Sources.Utils.Di
 
         private static class Implementation<TService> where TService : class, IService
         {
-            public static Action<TService> ServiceRegistered;
             public static TService ServiceInstance;
         }
     }
