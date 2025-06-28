@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Plugins.Demigiant.DOTween.Modules;
 using Sources.App.Ui.Base.Views;
 
 namespace Sources.App.Ui.Base.Animators

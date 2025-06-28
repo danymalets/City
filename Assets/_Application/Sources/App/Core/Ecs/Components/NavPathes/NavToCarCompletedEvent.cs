@@ -1,5 +1,5 @@
 using Scellecs.Morpeh;
-using Sources.App.Data.Cars;
+using Sources.App.Core.Ecs.Data;
 
 namespace Sources.App.Core.Ecs.Components.NavPathes
 {

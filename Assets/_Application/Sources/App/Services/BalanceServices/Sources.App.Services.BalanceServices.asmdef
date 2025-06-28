@@ -3,12 +3,12 @@
     "rootNamespace": "",
     "references": [
         "Sources.Utils.Di",
-        "Sources.App.Data",
         "Sources.Utils.CommonUtils",
         "Sources.Services.PoolServices",
         "Sources.App.Services.UserServices",
         "Sources.Services.IapServices",
-        "TriInspector"
+        "TriInspector",
+        "Sources.App.Services.AssetsServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

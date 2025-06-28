@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Scellecs.Morpeh;
-using Sources.App.Data.Pathes;
+using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Pathes;
 
 namespace Sources.App.Core.Ecs.Components.Player.Npc.NpcPathes
 {

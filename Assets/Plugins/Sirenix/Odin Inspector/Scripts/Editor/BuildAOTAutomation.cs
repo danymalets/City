@@ -4,16 +4,15 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System.IO;
+using Sirenix.Serialization;
+using UnityEditor;
+using UnityEditor.Build;
+
 #if UNITY_EDITOR && UNITY_5_6_OR_NEWER
 
-namespace Sirenix.Serialization.Internal
+namespace Plugins.Sirenix.Odin_Inspector.Scripts.Editor
 {
-    using Sirenix.Serialization;
-    using UnityEditor;
-    using UnityEditor.Build;
-    using System.IO;
-    using System;
-
 #if UNITY_2018_1_OR_NEWER
 
     using UnityEditor.Build.Reporting;

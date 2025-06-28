@@ -1,7 +1,8 @@
 using Scellecs.Morpeh;
-using Sources.App.Data.Pathes;
-using Sources.App.Data.Points;
+using Sources.App.Core.Ecs.Data;
 using Sources.App.Services.AssetsServices.Common.Monos.MonoEntities.Player;
+using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Pathes;
+using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Points;
 using Sources.Utils.Di;
 using UnityEngine;
 

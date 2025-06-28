@@ -1,11 +1,8 @@
 using Scellecs.Morpeh;
-using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Aspects.Player;
 using Sources.App.Core.Ecs.Components.Camera;
-using Sources.App.Core.Ecs.Components.SimulationAreas;
 using Sources.App.Core.Ecs.Components.SimulationCamera;
 using Sources.App.Core.Ecs.Components.Tags;
-using Sources.App.Data;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;

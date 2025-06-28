@@ -3,8 +3,9 @@ using System.Linq;
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Player.Npc.NpcPathes;
 using Sources.App.Core.Ecs.Components.Tags;
-using Sources.App.Data.Pathes;
-using Sources.App.Data.Points;
+using Sources.App.Core.Ecs.Data;
+using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Pathes;
+using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Points;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 
 namespace Sources.App.Core.Ecs.Factories

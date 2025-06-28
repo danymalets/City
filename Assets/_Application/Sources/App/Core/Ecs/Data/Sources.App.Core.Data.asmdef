@@ -1,0 +1,19 @@
+{
+    "name": "Sources.App.Core.Data",
+    "rootNamespace": "",
+    "references": [
+        "Sources.Utils.CommonUtils",
+        "Scellecs.Morpeh",
+        "Sources.App.Services.BalanceServices",
+        "Sources.App.Services.AssetsServices"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

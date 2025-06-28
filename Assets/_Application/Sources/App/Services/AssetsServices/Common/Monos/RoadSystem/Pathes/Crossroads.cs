@@ -1,4 +1,4 @@
-using Sources.App.Data.Pathes;
+using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Pathes;
 using UnityEngine;
 
 namespace Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes

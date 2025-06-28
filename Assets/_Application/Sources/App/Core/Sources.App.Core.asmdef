@@ -37,7 +37,8 @@
         "UniTask",
         "Sources.Services.GameLoopServices",
         "Sources.Services.LogServices",
-        "Sources.App.Services.InputServices"
+        "Sources.App.Services.InputServices",
+        "Sources.App.Core.Data"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

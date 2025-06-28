@@ -1,16 +1,11 @@
 using Scellecs.Morpeh;
-using Sources.App.Core.Ecs.Aspects;
 using Sources.App.Core.Ecs.Aspects.Player;
-using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Player.InCar;
 using Sources.App.Core.Ecs.Components.Player.Npc;
 using Sources.App.Core.Ecs.Components.SimulationAreas;
 using Sources.App.Core.Ecs.Components.Tags;
+using Sources.App.Core.Ecs.Data.Simulations;
 using Sources.App.Core.Ecs.Despawners;
-using Sources.App.Core.Services;
-using Sources.App.Data;
-using Sources.App.Data.Simulations;
-using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;

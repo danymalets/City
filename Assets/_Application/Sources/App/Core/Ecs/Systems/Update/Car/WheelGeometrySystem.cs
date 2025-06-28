@@ -1,7 +1,7 @@
 using System;
 using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Tags;
-using Sources.App.Data.Cars;
+using Sources.App.Services.AssetsServices.Common.Monos.Cars;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.MorpehWrapper;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;

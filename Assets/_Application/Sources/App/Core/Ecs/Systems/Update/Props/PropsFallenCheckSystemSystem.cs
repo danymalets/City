@@ -4,7 +4,6 @@ using Sources.App.Core.Ecs.Aspects.Common;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Props;
 using Sources.App.Core.Ecs.Components.Tags;
-using Sources.App.Data.Constants;
 using Sources.App.Services.BalanceServices;
 using Sources.App.Services.BalanceServices.CommonBalances;
 using Sources.Utils.Di;

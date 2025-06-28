@@ -6,7 +6,6 @@
         "Sources.App.Services.AssetsServices",
         "Sources.Services.ApplicationServices",
         "Sources.App.Services.UserServices",
-        "Sources.App.Data",
         "Sources.Utils.CommonUtils"
     ],
     "includePlatforms": [],

@@ -4,14 +4,14 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System;
+using System.Linq;
+using UnityEditor;
+
 #if UNITY_EDITOR
 
-namespace Sirenix.Utilities
+namespace Plugins.Sirenix.Odin_Inspector.Scripts.Editor
 {
-    using System;
-    using System.Linq;
-    using UnityEditor;
-
     /// <summary>
     /// Defines the ODIN_INSPECTOR symbol.
     /// </summary>

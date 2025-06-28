@@ -1,5 +1,5 @@
 using System;
-using Sources.App.Data.Pathes;
+using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Pathes;
 using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Points;
 using UnityEngine;
 

@@ -1,13 +1,8 @@
 using Scellecs.Morpeh;
-using Sources.App.Core.Ecs.Aspects;
-using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.SimulationAreas;
 using Sources.App.Core.Ecs.Components.SimulationCamera;
 using Sources.App.Core.Ecs.Components.Tags;
-using Sources.App.Core.Ecs.Despawners;
-using Sources.App.Data;
-using Sources.App.Data.Simulations;
-using Sources.Utils.Di;
+using Sources.App.Core.Ecs.Data.Simulations;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 using UnityEngine;

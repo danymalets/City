@@ -4,7 +4,7 @@ using Sources.App.Core.Ecs.Aspects.Player;
 using Sources.App.Core.Ecs.Components.Common;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Tags;
-using Sources.App.Data.Constants;
+using Sources.App.Services.AssetsServices.Constants;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 

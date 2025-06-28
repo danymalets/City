@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Sources.App.Data.Cars;
+using Sources.App.Services.AssetsServices.Common.Monos.Cars;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.CommonUtils.Utils;
 using UnityEngine;

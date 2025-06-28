@@ -1,4 +1,3 @@
-using Sources.App.Data.Cars;
 using UnityEngine;
 
 namespace Sources.App.Services.AssetsServices.Common.Monos.Cars

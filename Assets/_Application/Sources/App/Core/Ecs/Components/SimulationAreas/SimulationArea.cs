@@ -1,6 +1,5 @@
 using Scellecs.Morpeh;
-using Sources.App.Data;
-using Sources.App.Data.Simulations;
+using Sources.App.Core.Ecs.Data.Simulations;
 
 namespace Sources.App.Core.Ecs.Components.SimulationAreas
 {

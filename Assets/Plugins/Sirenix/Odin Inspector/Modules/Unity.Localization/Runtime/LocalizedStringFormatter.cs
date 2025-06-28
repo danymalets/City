@@ -4,14 +4,15 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-using Sirenix.Serialization;
-using System.Reflection;
-using UnityEngine.Localization;
 using System;
+using System.Reflection;
+using Plugins.Sirenix.Odin_Inspector.Modules.Unity.Localization.Runtime;
+using Sirenix.Serialization;
+using UnityEngine.Localization;
 
-[assembly: RegisterFormatter(typeof(Sirenix.OdinInspector.Modules.Localization.LocalizedStringFormatter))]
+[assembly: RegisterFormatter(typeof(LocalizedStringFormatter))]
 
-namespace Sirenix.OdinInspector.Modules.Localization
+namespace Plugins.Sirenix.Odin_Inspector.Modules.Unity.Localization.Runtime
 {
     public class LocalizedStringFormatter : ReflectionOrEmittedBaseFormatter<LocalizedString>
     {

@@ -1,6 +1,6 @@
 using System.Linq;
-using Sources.App.Data.Constants;
 using Sources.App.Services.AssetsServices.Common.Monos.Players;
+using Sources.App.Services.AssetsServices.Constants;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 using TriInspector;

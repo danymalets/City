@@ -4,17 +4,18 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System.Collections.Generic;
+using System.IO;
+using Sirenix.OdinInspector.Editor;
+using Sirenix.Serialization.Utilities.Editor;
+using Sirenix.Utilities;
+using UnityEditor;
+using UnityEditor.Build;
+
 #if UNITY_EDITOR && UNITY_5_6_OR_NEWER
 
-namespace Sirenix.OdinInspector.Editor
+namespace Plugins.Sirenix.Odin_Inspector.Scripts.Editor
 {
-    using System.IO;
-    using System.Collections.Generic;
-    using Sirenix.Serialization.Utilities.Editor;
-    using Sirenix.Utilities;
-    using UnityEditor;
-    using UnityEditor.Build;
-
 #if UNITY_2018_1_OR_NEWER
     using UnityEditor.Build.Reporting;
 #endif

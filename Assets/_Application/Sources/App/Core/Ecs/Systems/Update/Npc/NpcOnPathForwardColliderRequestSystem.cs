@@ -2,7 +2,6 @@ using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Player.Npc;
 using Sources.App.Core.Ecs.Components.Tags;
-using Sources.App.Data.Players;
 using Sources.App.Services.BalanceServices;
 using Sources.Utils.CommonUtils.Data;
 using Sources.Utils.CommonUtils.Extensions;

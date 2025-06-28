@@ -4,7 +4,7 @@ using Sources.App.Core.Ecs.Components.Car;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Player.Npc;
 using Sources.App.Core.Ecs.Components.Tags;
-using Sources.App.Data.Constants;
+using Sources.App.Services.AssetsServices.Constants;
 using Sources.Services.PhysicsServices;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.Di;

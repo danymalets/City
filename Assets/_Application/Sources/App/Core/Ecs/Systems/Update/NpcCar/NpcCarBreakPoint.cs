@@ -3,7 +3,7 @@ using Sources.App.Core.Ecs.Components.Car;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Player.InCar;
 using Sources.App.Core.Ecs.Components.Tags;
-using Sources.App.Data.Cars;
+using Sources.App.Services.AssetsServices.Common.Monos.Cars;
 using Sources.Services.PhysicsServices;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;

@@ -4,12 +4,13 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using Sirenix.OdinInspector.Editor;
+using UnityEngine;
+
 #if UNITY_EDITOR && UNITY_2017_2_OR_NEWER
 
-namespace Sirenix.OdinInspector.Editor.Drawers
+namespace Plugins.Sirenix.Odin_Inspector.Scripts.Editor
 {
-    using UnityEngine;
-
     public sealed class Vector2IntResolver : BaseMemberPropertyResolver<Vector2Int>
     {
         protected override InspectorPropertyInfo[] GetPropertyInfos()

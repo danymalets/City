@@ -1,4 +1,8 @@
-﻿#if UNITY_2017_2_OR_NEWER
+﻿using Plugins.Sirenix.Odin_Inspector.Scripts;
+using Sirenix.Serialization;
+using UnityEngine;
+
+#if UNITY_2017_2_OR_NEWER
 
 //-----------------------------------------------------------------------
 // <copyright file="VectorIntFormatters.cs" company="Sirenix IVS">
@@ -6,19 +10,17 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
-[assembly: Sirenix.Serialization.RegisterFormatter(typeof(Sirenix.Serialization.Vector2IntFormatter))]
-[assembly: Sirenix.Serialization.RegisterFormatter(typeof(Sirenix.Serialization.Vector3IntFormatter))]
-namespace Sirenix.Serialization
+[assembly: Sirenix.Serialization.RegisterFormatter(typeof(Vector2IntFormatter))]
+[assembly: Sirenix.Serialization.RegisterFormatter(typeof(Vector3IntFormatter))]
+namespace Plugins.Sirenix.Odin_Inspector.Scripts
 {
-    using UnityEngine;
-
     /// <summary>
     /// Custom formatter for the <see cref="Vector2Int"/> type.
     /// </summary>
     /// <seealso cref="Sirenix.Serialization.MinimalBaseFormatter{UnityEngine.Vector2Int}" />
     public class Vector2IntFormatter : MinimalBaseFormatter<Vector2Int>
     {
-        private static readonly Serializer<int> Serializer = Serialization.Serializer.Get<int>();
+        private static readonly Serializer<int> Serializer = global::Sirenix.Serialization.Serializer.Get<int>();
 
         /// <summary>
         /// Reads into the specified value using the specified reader.
@@ -49,7 +51,7 @@ namespace Sirenix.Serialization
     /// <seealso cref="Sirenix.Serialization.MinimalBaseFormatter{UnityEngine.Vector3Int}" />
     public class Vector3IntFormatter : MinimalBaseFormatter<Vector3Int>
     {
-        private static readonly Serializer<int> Serializer = Serialization.Serializer.Get<int>();
+        private static readonly Serializer<int> Serializer = global::Sirenix.Serialization.Serializer.Get<int>();
 
         /// <summary>
         /// Reads into the specified value using the specified reader.

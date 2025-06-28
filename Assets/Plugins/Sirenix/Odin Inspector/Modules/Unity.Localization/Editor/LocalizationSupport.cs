@@ -4,17 +4,18 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using System.Reflection;
+using Sirenix.OdinInspector;
+using Sirenix.OdinInspector.Editor;
+using Sirenix.Utilities.Editor;
+using UnityEngine.Localization;
+
 #if UNITY_EDITOR
 
-namespace Sirenix.OdinInspector.Modules.Localization.Editor
+namespace Plugins.Sirenix.Odin_Inspector.Modules.Unity.Localization.Editor
 {
-    using UnityEngine.Localization;
-    using Sirenix.OdinInspector.Editor;
-    using System.Collections.Generic;
-    using System;
-    using Sirenix.Utilities.Editor;
-    using System.Reflection;
-
     public class LocalizedStringProcessor : OdinAttributeProcessor<LocalizedString>
     {
         public override bool CanProcessChildMemberAttributes(InspectorProperty parentProperty, MemberInfo member)

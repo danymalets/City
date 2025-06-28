@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using Sources.App.Data.Pathes;
-using Sources.App.Data.Points;
 using Sources.App.Services.AssetsServices.Common.Monos.MonoEntities.Camera;
 using Sources.App.Services.AssetsServices.Common.Monos.MonoEntities.Props;
+using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Pathes;
+using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Points;
 using Sources.Services.SceneLoaderServices;
 using Sources.Utils.Di;
 

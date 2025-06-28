@@ -2,9 +2,11 @@
     "name": "Sources.App.Core.Components",
     "rootNamespace": "",
     "references": [
-        "Sources.App.Data",
         "Sources.Utils.CommonUtils",
-        "Scellecs.Morpeh"
+        "Scellecs.Morpeh",
+        "Sources.App.Core.Data",
+        "Sources.App.Services.BalanceServices",
+        "Sources.App.Services.AssetsServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
