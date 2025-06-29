@@ -6,7 +6,7 @@ using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Ecs.Components.WorldStatus;
 using Sources.App.Core.Ecs.Factories;
 using Sources.App.Core.Services.Simulation;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Points;
+using Sources.App.Services.AssetsServices.Common.PathSystems.Pathes.Pathes;
 using Sources.App.Services.BalanceServices.CommonBalances;
 using Sources.Services.PhysicsServices;
 using Sources.Utils.CommonUtils.Extensions;
@@ -47,12 +47,12 @@ namespace Sources.App.Core.Ecs.Systems.Update.Generation
 
             int npcs = _npcFilter.GetLengthSlow();
 
-            List<Point> activePoints = pathesEntity.Get<ActiveSpawnPoints>().List;
-            List<Point> horizonPoints = pathesEntity.Get<HorizonSpawnPoints>().List;
+            List<PathPoint> activePoints = pathesEntity.Get<ActiveSpawnPoints>().List;
+            List<PathPoint> horizonPoints = pathesEntity.Get<HorizonSpawnPoints>().List;
 
             int reqNpcs = (activePoints.Count + horizonPoints.Count) * _simulationSettings.NpcsPer1000SpawnPoints / 1000;
 
-            List<Point> spawnPoints = new List<Point>(horizonPoints);
+            List<PathPoint> spawnPoints = new List<PathPoint>(horizonPoints);
             
             if (_worldStatusFilter.GetSingleton()
                 .Has<ActiveSimulationOn>())
@@ -65,7 +65,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Generation
             if (npcs >= reqNpcs)
                 return;
             
-            foreach (Point point in spawnPoints)
+            foreach (PathPoint point in spawnPoints)
             {
                 if (_playersFactory.TryCreateRandomNpc(point, out Entity createdEntity))
                 {

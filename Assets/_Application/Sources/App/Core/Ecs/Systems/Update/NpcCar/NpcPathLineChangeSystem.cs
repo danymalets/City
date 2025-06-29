@@ -7,9 +7,7 @@ using Sources.App.Core.Ecs.Components.Player.Npc.NpcCar;
 using Sources.App.Core.Ecs.Components.Player.Npc.NpcPathes;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Ecs.Data;
-using Sources.App.Services.AssetsServices.Common.Monos.Cars;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Pathes;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Points;
+using Sources.App.Services.AssetsServices.Common.PathSystems.Pathes.Pathes;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
@@ -30,7 +28,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
             {
                 ref NpcOnPath npcOnPath = ref npcEntity.Get<NpcOnPath>();
                 List<TurnData> carTurns = npcEntity.Get<ActiveTurns>().List;
-                Point reachedPoint = npcEntity.Get<NpcPointReachedEvent>().Point;
+                PathPoint reachedPoint = npcEntity.Get<NpcPointReachedEvent>().Point;
                 Queue<TurnChoice> choices = npcEntity.Get<TurnDecisions>().Queue;
 
                 TurnChoice turnChoice = choices.Dequeue();

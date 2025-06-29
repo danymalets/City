@@ -3,7 +3,7 @@ using Sources.App.Core.Ecs.Aspects.Car;
 using Sources.App.Core.Ecs.Components.Player;
 using Sources.App.Core.Ecs.Components.Player.InCar;
 using Sources.App.Core.Ecs.Components.Tags;
-using Sources.App.Services.AssetsServices.Common.Monos.Cars;
+using Sources.App.Services.AssetsServices.Common.Cars.CarsData;
 using Sources.App.Services.BalanceServices;
 using Sources.App.Services.BalanceServices.CarsBalances;
 using Sources.Utils.CommonUtils.Utils;

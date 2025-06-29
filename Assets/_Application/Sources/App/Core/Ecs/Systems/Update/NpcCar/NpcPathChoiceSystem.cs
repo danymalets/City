@@ -10,9 +10,7 @@ using Sources.App.Core.Ecs.Components.Player.Npc;
 using Sources.App.Core.Ecs.Components.Player.Npc.NpcCar;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Ecs.Data;
-using Sources.App.Services.AssetsServices.Common.Monos.Cars;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Pathes;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Points;
+using Sources.App.Services.AssetsServices.Common.PathSystems.Pathes.Pathes;
 using Sources.App.Services.BalanceServices;
 using Sources.App.Services.BalanceServices.CommonBalances;
 using Sources.Utils.CommonUtils.Extensions;
@@ -55,7 +53,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
                 Queue<TurnChoice> choices = npcEntity.Get<TurnDecisions>().Queue;
                 NpcOnPath npcOnPath = npcEntity.Get<NpcOnPath>();
 
-                Point lastPoint = choices.Count == 0 ? npcOnPath.PathLine.Target : choices.Last().TurnData.FirstPathLine.Target;
+                PathPoint lastPoint = choices.Count == 0 ? npcOnPath.PathLine.Target : choices.Last().TurnData.FirstPathLine.Target;
 
                 if (choices.Count == 0 || Vector3Utils.SqrDistance(position, lastPoint.Position) < sqrReqDistance)
                 {

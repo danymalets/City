@@ -4,7 +4,7 @@ using Sources.App.Core.Ecs.Aspects.Car;
 using Sources.App.Core.Ecs.Components.NavPathes;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Ecs.Data;
-using Sources.App.Services.AssetsServices.Common.Monos.Cars;
+using Sources.App.Services.AssetsServices.Common.Cars.CarsData;
 using Sources.App.Services.BalanceServices;
 using Sources.App.Services.BalanceServices.PlayersBalances;
 using Sources.Utils.CommonUtils.Utils;

@@ -4,8 +4,7 @@ using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Player.Npc.NpcPathes;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Ecs.Data;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Pathes;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Points;
+using Sources.App.Services.AssetsServices.Common.PathSystems.Pathes.Pathes;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 
 namespace Sources.App.Core.Ecs.Factories
@@ -22,11 +21,11 @@ namespace Sources.App.Core.Ecs.Factories
                 .Set(new RelatedSimulationArea() { SimulationAreaEntity = _world.Filter<TRelatedAreaTag>().Build().GetSingleton() })
                 .Set(new AllRoads { List = pathSystem.Roads.ToList() })
                 .Set(new AllCrossroads { List = pathSystem.Crossroads.ToList() })
-                .Set(new AllPoints { List = new List<Point>() })
-                .Set(new AllSpawnPointsGrid { Grid = new Dictionary<(int x, int y), List<Point>>() })
-                .Set(new AllSpawnPoints { List = new List<Point>() })
-                .Set(new ActiveSpawnPoints { List = new List<Point>() })
-                .Set(new HorizonSpawnPoints { List = new List<Point>() })
+                .Set(new AllPoints { List = new List<PathPoint>() })
+                .Set(new AllSpawnPointsGrid { Grid = new Dictionary<(int x, int y), List<PathPoint>>() })
+                .Set(new AllSpawnPoints { List = new List<PathPoint>() })
+                .Set(new ActiveSpawnPoints { List = new List<PathPoint>() })
+                .Set(new HorizonSpawnPoints { List = new List<PathPoint>() })
                 .Set(new AllPathLines { List = new List<PathLine>() });
         }
     }

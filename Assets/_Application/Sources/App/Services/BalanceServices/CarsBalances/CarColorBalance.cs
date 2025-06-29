@@ -1,5 +1,5 @@
 using System;
-using Sources.App.Services.AssetsServices.Common.Monos.Cars;
+using Sources.App.Services.AssetsServices.Common.Cars.CarsData;
 using UnityEngine;
 
 namespace Sources.App.Services.BalanceServices.CarsBalances

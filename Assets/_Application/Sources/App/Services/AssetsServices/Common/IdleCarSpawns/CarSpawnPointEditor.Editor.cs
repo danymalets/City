@@ -1,5 +1,5 @@
-using Sources.App.Services.AssetsServices.Common.Monos.Cars;
-using Sources.App.Services.AssetsServices.Common.Monos.MonoEntities.Car;
+using Sources.App.Services.AssetsServices.Common.Cars.CarsData;
+using Sources.App.Services.AssetsServices.Common.MonoEntities.Car;
 using Sources.App.Services.AssetsServices.Constants;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;
 using TriInspector;

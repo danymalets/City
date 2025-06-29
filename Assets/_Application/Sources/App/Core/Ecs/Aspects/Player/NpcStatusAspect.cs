@@ -6,8 +6,7 @@ using Sources.App.Core.Ecs.Components.Player.Npc.NpcCar;
 using Sources.App.Core.Ecs.Components.Player.Npc.NpcPathes;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Ecs.Data;
-using Sources.App.Services.AssetsServices.Common.Monos.Cars;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Pathes;
+using Sources.App.Services.AssetsServices.Common.PathSystems.Pathes.Pathes;
 using Sources.Utils.MorpehWrapper.Aspects;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 

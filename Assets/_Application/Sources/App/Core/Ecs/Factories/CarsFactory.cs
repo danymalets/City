@@ -6,9 +6,9 @@ using Sources.App.Core.Ecs.Components.Car;
 using Sources.App.Core.Ecs.Components.Player.Npc;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Ecs.Data;
-using Sources.App.Services.AssetsServices.Common.Monos.Cars;
-using Sources.App.Services.AssetsServices.Common.Monos.MonoEntities.Car;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Points;
+using Sources.App.Services.AssetsServices.Common.Cars.CarsData;
+using Sources.App.Services.AssetsServices.Common.MonoEntities.Car;
+using Sources.App.Services.AssetsServices.Common.PathSystems.Pathes.Pathes;
 using Sources.App.Services.AssetsServices.Constants;
 using Sources.App.Services.BalanceServices;
 using Sources.App.Services.BalanceServices.CarsBalances;
@@ -40,7 +40,7 @@ namespace Sources.App.Core.Ecs.Factories
                 rotation, isIdle, out createdCar);
         }
 
-        public bool TryCreateRandomCarOnPath(Point point, bool isIdle, out Entity createdCar)
+        public bool TryCreateRandomCarOnPath(PathPoint point, bool isIdle, out Entity createdCar)
         {
             CarColorData carColorData = _carsBalance.GetRandomCar();
             CarMonoEntity carPrefab = _assets.CommonAssets.CarsAssets.GetCarPrefab(carColorData.CarType);

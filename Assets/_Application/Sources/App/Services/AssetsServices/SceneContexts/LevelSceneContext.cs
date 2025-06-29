@@ -1,13 +1,11 @@
 using System.Collections.Generic;
 using Sources.App.Services.AssetsServices.Common.IdleCarSpawns;
-using Sources.App.Services.AssetsServices.Common.IdleCarSpawns.Common;
-using Sources.App.Services.AssetsServices.Common.Monos;
-using Sources.App.Services.AssetsServices.Common.Monos.MonoEntities.Camera;
-using Sources.App.Services.AssetsServices.Common.Monos.MonoEntities.Props;
-using Sources.App.Services.AssetsServices.Common.Monos.Points;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Pathes;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Points;
+using Sources.App.Services.AssetsServices.Common.MonoEntities.Camera;
+using Sources.App.Services.AssetsServices.Common.MonoEntities.Props;
+using Sources.App.Services.AssetsServices.Common.PathSystems;
+using Sources.App.Services.AssetsServices.Common.PathSystems.Pathes.Pathes;
+using Sources.App.Services.AssetsServices.Common.PathSystems.Pathes.Points;
+using Sources.App.Services.AssetsServices.Common.Scene;
 using Sources.Services.SceneLoaderServices;
 using UnityEngine;
 

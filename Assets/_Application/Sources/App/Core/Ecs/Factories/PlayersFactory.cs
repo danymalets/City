@@ -10,10 +10,9 @@ using Sources.App.Core.Ecs.Components.Player.Npc;
 using Sources.App.Core.Ecs.Components.Player.User;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Ecs.Data;
-using Sources.App.Services.AssetsServices.Common.Monos.MonoEntities.Player;
-using Sources.App.Services.AssetsServices.Common.Monos.Players;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Pathes;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Points;
+using Sources.App.Services.AssetsServices.Common.MonoEntities.Player;
+using Sources.App.Services.AssetsServices.Common.PathSystems.Pathes.Pathes;
+using Sources.App.Services.AssetsServices.Common.Players.PlayersData;
 using Sources.App.Services.AssetsServices.Constants;
 using Sources.App.Services.BalanceServices;
 using Sources.App.Services.BalanceServices.PlayersBalances;
@@ -64,7 +63,7 @@ namespace Sources.App.Core.Ecs.Factories
             CreatePlayer(playerPrefab, position, rotation)
                 .Add<NpcTag>();
 
-        public bool TryCreateRandomNpc(Point point, out Entity createdEntity)
+        public bool TryCreateRandomNpc(PathPoint point, out Entity createdEntity)
         {
             PlayerMonoEntity playerPrefab = GetRandomPlayerPrefab();
 
@@ -83,7 +82,7 @@ namespace Sources.App.Core.Ecs.Factories
             }
         }
 
-        private bool CanCreateNpc(Point point, SafeCapsuleCollider capsule)
+        private bool CanCreateNpc(PathPoint point, SafeCapsuleCollider capsule)
         {
             return !_physics.CheckCapsule(capsule.Start + point.Position, capsule.End + point.Position,
                 capsule.Radius, LayerMasks.CarsAndPlayers);
@@ -108,7 +107,7 @@ namespace Sources.App.Core.Ecs.Factories
             return npc;
         }
 
-        public Entity CreateRandomNpcInCarOnPath(Entity car, Point point) =>
+        public Entity CreateRandomNpcInCarOnPath(Entity car, PathPoint point) =>
             CreateNpcInCarOnPath(GetRandomPlayerPrefab(), car, point.Targets.First().FirstPathLine);
 
         private Entity CreatePlayer(PlayerMonoEntity playerPrefab, Vector3 position, Quaternion rotation)

@@ -1,6 +1,6 @@
 using Sources.App.Core.Services;
 using Sources.App.Core.Services.Simulation;
-using Sources.App.Services.AssetsServices.Common.IdleCarSpawns.Common;
+using Sources.App.Services.AssetsServices.Common.Scene;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 

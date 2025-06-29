@@ -1,4 +1,4 @@
-using Sources.App.Services.AssetsServices.Common.Monos.MonoEntities.Props;
+using Sources.App.Services.AssetsServices.Common.MonoEntities.Props;
 using TriInspector;
 
 namespace Sources.App.Services.AssetsServices.SceneContexts

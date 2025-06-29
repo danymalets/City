@@ -1,6 +1,5 @@
 using System.Collections.Generic;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Pathes;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Points;
+using Sources.App.Services.AssetsServices.Common.PathSystems.Pathes.Pathes;
 using TriInspector;
 using UnityEngine;
 

@@ -3,7 +3,7 @@ using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.App.Infrastructure.StateMachine.States.LevelStates;
 using Sources.App.Services.AssetsServices;
-using Sources.App.Services.AssetsServices.Common.Monos.MonoEntities.Player;
+using Sources.App.Services.AssetsServices.Common.MonoEntities.Player;
 using Sources.App.Services.GameReloadServices;
 using Sources.App.Services.GameRunnerServices;
 using Sources.App.Ui.Base;

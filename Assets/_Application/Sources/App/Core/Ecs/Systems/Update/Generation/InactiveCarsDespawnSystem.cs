@@ -4,7 +4,7 @@ using Sources.App.Core.Ecs.Components.SimulationAreas;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Ecs.Data.Simulations;
 using Sources.App.Core.Ecs.Despawners;
-using Sources.App.Services.AssetsServices.Common.Monos.Cars;
+using Sources.App.Services.AssetsServices.Common.Cars.CarsData;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;

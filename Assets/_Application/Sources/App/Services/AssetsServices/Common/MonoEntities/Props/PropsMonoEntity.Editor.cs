@@ -1,0 +1,17 @@
+using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
+using TriInspector;
+
+namespace Sources.App.Services.AssetsServices.Common.MonoEntities.Props
+{
+    public partial class PropsMonoEntity
+    {
+        [Button("Force Validate")]
+        protected override void OnValidate()
+        {
+            base.OnValidate();
+            _colliders = GetComponentsInChildren<SafeColliderBase>();
+            _safeTransform = GetComponent<SafeTransform>();
+            _rigidbodySwitcher = GetComponent<RigidbodySwitcher>();
+        }
+    }
+}

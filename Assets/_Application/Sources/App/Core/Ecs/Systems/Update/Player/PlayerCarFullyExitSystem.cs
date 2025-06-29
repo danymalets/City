@@ -10,7 +10,7 @@ using Sources.App.Core.Ecs.Components.Player.InCar;
 using Sources.App.Core.Ecs.Components.Player.Npc;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Ecs.Data;
-using Sources.App.Services.AssetsServices.Common.Monos.Cars;
+using Sources.App.Services.AssetsServices.Common.Cars.CarsData;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Monos;
 using Sources.Utils.MorpehWrapper.DefaultComponents.Views;

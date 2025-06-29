@@ -1,5 +1,5 @@
 using Scellecs.Morpeh;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Pathes;
+using Sources.App.Services.AssetsServices.Common.PathSystems.Pathes.Pathes;
 using Sources.Utils.Di;
 
 namespace Sources.App.Core.Ecs.Factories

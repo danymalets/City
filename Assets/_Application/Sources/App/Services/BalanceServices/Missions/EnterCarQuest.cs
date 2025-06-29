@@ -1,4 +1,4 @@
-using Sources.App.Services.AssetsServices.Common.Monos.Cars;
+using Sources.App.Services.AssetsServices.Common.Cars.CarsData;
 using Sources.App.Services.UserServices.Users.Missions;
 
 namespace Sources.App.Services.BalanceServices.Missions

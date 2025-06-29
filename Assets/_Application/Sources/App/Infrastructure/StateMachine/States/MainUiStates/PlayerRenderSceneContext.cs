@@ -1,4 +1,4 @@
-using Sources.App.Services.AssetsServices.Common.Monos.MonoEntities.Player;
+using Sources.App.Services.AssetsServices.Common.MonoEntities.Player;
 using Sources.Services.SceneLoaderServices;
 using UnityEngine;
 

@@ -6,8 +6,8 @@ using Sources.App.Core.Ecs.Components.Player.Npc;
 using Sources.App.Core.Ecs.Components.Player.Npc.NpcCar;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Ecs.Data;
-using Sources.App.Services.AssetsServices.Common.Monos.Cars;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Points;
+using Sources.App.Services.AssetsServices.Common.Cars.CarsData;
+using Sources.App.Services.AssetsServices.Common.PathSystems.Pathes.Pathes;
 using Sources.App.Services.BalanceServices;
 using Sources.App.Services.BalanceServices.CommonBalances;
 using Sources.Utils.Di;
@@ -39,7 +39,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcCar
             
             foreach (Entity npcEntity in _filter)
             {
-                Point breakPoint = npcEntity.Get<NpcCarBreakRequest>().Point;
+                PathPoint breakPoint = npcEntity.Get<NpcCarBreakRequest>().Point;
                 
                 Entity carEntity = npcEntity.Get<PlayerInCar>().CarPlaceData.Car;
 

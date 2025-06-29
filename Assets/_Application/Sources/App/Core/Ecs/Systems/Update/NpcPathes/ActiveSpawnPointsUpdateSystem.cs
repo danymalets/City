@@ -5,7 +5,7 @@ using Sources.App.Core.Ecs.Components.SimulationAreas;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Ecs.Data.Simulations;
 using Sources.App.Core.Services.Simulation;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Points;
+using Sources.App.Services.AssetsServices.Common.PathSystems.Pathes.Pathes;
 using Sources.App.Services.AssetsServices.Constants;
 using Sources.Utils.CommonUtils.Utils;
 using Sources.Utils.Di;
@@ -36,9 +36,9 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcPathes
         {
             foreach (Entity pathEntity in _pathesFilter)
             {
-                Dictionary<(int x, int y), List<Point>> allSpawnPointsGrid = pathEntity.Get<AllSpawnPointsGrid>().Grid;
-                List<Point> activePoints = pathEntity.Get<ActiveSpawnPoints>().List;
-                List<Point> horizonPoints = pathEntity.Get<HorizonSpawnPoints>().List;
+                Dictionary<(int x, int y), List<PathPoint>> allSpawnPointsGrid = pathEntity.Get<AllSpawnPointsGrid>().Grid;
+                List<PathPoint> activePoints = pathEntity.Get<ActiveSpawnPoints>().List;
+                List<PathPoint> horizonPoints = pathEntity.Get<HorizonSpawnPoints>().List;
                 SimulationAreaData simulationAreaData = pathEntity.Get<RelatedSimulationArea>()
                     .SimulationAreaEntity.Get<SimulationArea>().AreaData;
                 
@@ -56,9 +56,9 @@ namespace Sources.App.Core.Ecs.Systems.Update.NpcPathes
                     for (int y = centerY - Consts.SimulationOneSideQuadCount;
                          y <= centerY + Consts.SimulationOneSideQuadCount; y++)
                     {
-                        if (allSpawnPointsGrid.TryGetValue((x, y), out List<Point> points))
+                        if (allSpawnPointsGrid.TryGetValue((x, y), out List<PathPoint> points))
                         {
-                            foreach (Point point in points)
+                            foreach (PathPoint point in points)
                             {
                                 if (simulationAreaData.IsInsideBig(point.Position))
                                 {

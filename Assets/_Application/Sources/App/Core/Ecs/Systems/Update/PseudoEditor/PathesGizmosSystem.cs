@@ -3,8 +3,7 @@ using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Player.Npc.NpcPathes;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Ecs.Data;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Pathes;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Points;
+using Sources.App.Services.AssetsServices.Common.PathSystems.Pathes.Pathes;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.CommonUtils.Utils;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
@@ -26,9 +25,9 @@ namespace Sources.App.Core.Ecs.Systems.Update.PseudoEditor
         {
             foreach (Entity pathesEntity in _filter)
             {
-                List<Point> points = pathesEntity.Get<AllPoints>().List;
-                List<Point> activePoints = pathesEntity.Get<ActiveSpawnPoints>().List;
-                List<Point> horizonPoints = pathesEntity.Get<HorizonSpawnPoints>().List;
+                List<PathPoint> points = pathesEntity.Get<AllPoints>().List;
+                List<PathPoint> activePoints = pathesEntity.Get<ActiveSpawnPoints>().List;
+                List<PathPoint> horizonPoints = pathesEntity.Get<HorizonSpawnPoints>().List;
                 List<PathLine> pathLines = pathesEntity.Get<AllPathLines>().List;
 
                 foreach (PathLine pathLine in pathLines)
@@ -39,7 +38,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.PseudoEditor
                         _updateGizmosContext.DrawLine(pathLine.Source.Position, pathLine.Target.Position, ColorUtils.Purple);
                 }
 
-                foreach (Point point in points)
+                foreach (PathPoint point in points)
                 {
                     Color color = point.IsSpawnPoint ? ColorUtils.Purple : Color.red;
 
@@ -60,13 +59,13 @@ namespace Sources.App.Core.Ecs.Systems.Update.PseudoEditor
                     }
                 }
 
-                // foreach (Point point in activePoints)
+                // foreach (PathPoint point in activePoints)
                 // {
                 //     _updateGizmosContext.DrawSphere(
                 //         point.Position + point.Direction.normalized * 0.1f, 2f,
                 //         Color.red.WithAlpha(1f));
                 // }
-                // foreach (Point point in horizonPoints)
+                // foreach (PathPoint point in horizonPoints)
                 // {
                 //     _updateGizmosContext.DrawSphere(
                 //         point.Position + point.Direction.normalized * 0.1f, 2f,

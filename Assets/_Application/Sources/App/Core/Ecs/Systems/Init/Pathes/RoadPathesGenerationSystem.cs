@@ -3,8 +3,7 @@ using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Player.Npc.NpcPathes;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Ecs.Data;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Pathes;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Points;
+using Sources.App.Services.AssetsServices.Common.PathSystems.Pathes.Pathes;
 using Sources.App.Services.BalanceServices;
 using Sources.App.Services.BalanceServices.CommonBalances;
 using Sources.Utils.Di;
@@ -47,7 +46,7 @@ namespace Sources.App.Core.Ecs.Systems.Init.Pathes
 
         private void GeneratePathLines(List<PathLine> pathLines, IRoad road, IRoadLane roadLane, bool isCar)
         {
-            List<Point> points = new();
+            List<PathPoint> points = new();
 
             Vector3 source = roadLane.Source.Position;
             Vector3 target = roadLane.Target.Position;
@@ -71,16 +70,16 @@ namespace Sources.App.Core.Ecs.Systems.Init.Pathes
                 float progress = (float)i / pointsCount;
                 Vector3 position = Vector3.Lerp(source, preBreakPosition, progress);
 
-                points.Add(new Point(position, direction, road.IsSpawnPoint));
+                points.Add(new PathPoint(position, direction, road.IsSpawnPoint));
             }
             
             if (isCar)
             {
                 Vector3 prePosition = Vector3.MoveTowards(target, source, _simulationBalance.CrosswalkWidth);
-                points.Add(new Point(prePosition, direction, false));
+                points.Add(new PathPoint(prePosition, direction, false));
             }
             
-            points.Add(new Point(target, direction, false));
+            points.Add(new PathPoint(target, direction, false));
 
             
             for (int i = 0; i < points.Count - 1; i++)

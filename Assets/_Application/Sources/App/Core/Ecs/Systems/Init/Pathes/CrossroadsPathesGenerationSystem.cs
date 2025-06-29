@@ -4,9 +4,7 @@ using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Player.Npc.NpcPathes;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Ecs.Data;
-using Sources.App.Services.AssetsServices.Common.Monos.Cars;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Pathes;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Points;
+using Sources.App.Services.AssetsServices.Common.PathSystems.Pathes.Pathes;
 using Sources.App.Services.BalanceServices;
 using Sources.App.Services.BalanceServices.CommonBalances;
 using Sources.Utils.CommonUtils.Extensions;
@@ -70,8 +68,8 @@ namespace Sources.App.Core.Ecs.Systems.Init.Pathes
 
                     if (sourceRoad != null && targetRoad != null)
                     {
-                        Point sourcePoint = sourceRoad.GetSideData(crossroadPosition).Targets.First();
-                        Point targetPoint = targetRoad.GetSideData(crossroadPosition).Sources.First();
+                        PathPoint sourcePoint = sourceRoad.GetSideData(crossroadPosition).Targets.First();
+                        PathPoint targetPoint = targetRoad.GetSideData(crossroadPosition).Sources.First();
                         
                         Generate(pathLines, sourcePoint, targetPoint, deltaIndex);
                         
@@ -120,11 +118,11 @@ namespace Sources.App.Core.Ecs.Systems.Init.Pathes
         }
 
         private void Generate(List<PathLine> pathLines,
-            Point source, Point target, int delta)
+            PathPoint source, PathPoint target, int delta)
         {
             int pointsCount = s_pointsCountByDelta[delta];
 
-            List<Point> points = new();
+            List<PathPoint> points = new();
 
             Vector3 anchor = GetAnchorPoint(source, target);
 
@@ -140,7 +138,7 @@ namespace Sources.App.Core.Ecs.Systems.Init.Pathes
                 Vector3 second = Vector3.Lerp(anchor, targetPosition, progress);
                 Vector3 result = Vector3.Lerp(first, second, progress);
 
-                points.Add(new Point(result, second - first, false));
+                points.Add(new PathPoint(result, second - first, false));
             }
 
             points.Add(target);
@@ -153,7 +151,7 @@ namespace Sources.App.Core.Ecs.Systems.Init.Pathes
             }
         }
 
-        private Vector3 GetAnchorPoint(Point source, Point target) =>
+        private Vector3 GetAnchorPoint(PathPoint source, PathPoint target) =>
             source.Position + source.Direction.normalized *
             Vector3Utils.ManhattanDistance(source.Position, target.Position) / 2;
     }

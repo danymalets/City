@@ -11,7 +11,7 @@ using Sources.App.Core.Ecs.Data;
 using Sources.App.Core.Ecs.Factories;
 using Sources.App.Core.Services;
 using Sources.App.Core.Services.Simulation;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Points;
+using Sources.App.Services.AssetsServices.Common.PathSystems.Pathes.Pathes;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
@@ -49,12 +49,12 @@ namespace Sources.App.Core.Ecs.Systems.Update.Generation
 
             int cars = _npcWithCarsFilter.GetLengthSlow();
 
-            List<Point> activePoints = pathesEntity.Get<ActiveSpawnPoints>().List;
-            List<Point> horizonPoints = pathesEntity.Get<HorizonSpawnPoints>().List;
+            List<PathPoint> activePoints = pathesEntity.Get<ActiveSpawnPoints>().List;
+            List<PathPoint> horizonPoints = pathesEntity.Get<HorizonSpawnPoints>().List;
 
             int reqCars = (activePoints.Count + horizonPoints.Count) * _simulationSettings.CarsPer1000SpawnPoints / 1000;
 
-            List<Point> spawnPoints = new List<Point>(horizonPoints);;
+            List<PathPoint> spawnPoints = new List<PathPoint>(horizonPoints);;
 
             if (_worldStatusFilter.GetSingleton()
                 .Has<ActiveSimulationOn>())
@@ -67,7 +67,7 @@ namespace Sources.App.Core.Ecs.Systems.Update.Generation
             if (cars >= reqCars)
                 return;
             
-            foreach (Point point in spawnPoints)
+            foreach (PathPoint point in spawnPoints)
             {
                 if (_carsFactory.TryCreateRandomCarOnPath(point, false, out Entity car))
                 {

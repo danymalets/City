@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Sources.App.Services.AssetsServices.Common.Monos.Players;
+using Sources.App.Services.AssetsServices.Common.Players.PlayersData;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.CommonUtils.Utils;
 using UnityEngine;

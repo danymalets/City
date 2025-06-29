@@ -4,8 +4,7 @@ using Scellecs.Morpeh;
 using Sources.App.Core.Ecs.Components.Player.Npc.NpcPathes;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Ecs.Data;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Pathes;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Points;
+using Sources.App.Services.AssetsServices.Common.PathSystems.Pathes.Pathes;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Extensions;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
 
@@ -50,16 +49,16 @@ namespace Sources.App.Core.Ecs.Systems.Init.Pathes
             CrossroadsSideData roadSideData = road.GetSideData(crossroads.Position);
             IRoadLane[] crosswalkLanes = crosswalk.GetLanesByDistanceTo(crossroads.Position);
 
-            Point roadSource = roadSideData.Sources.First();
-            Point roadTarget = roadSideData.Targets.First();
+            PathPoint roadSource = roadSideData.Sources.First();
+            PathPoint roadTarget = roadSideData.Targets.First();
             
             IRoadLane firstCrosswalkLane = crosswalkLanes[0];
             IRoadLane secondCrosswalkLane = crosswalkLanes[1];
 
-            Point firstCrosswalkLaneSource = firstCrosswalkLane.Source.RelatedPoint;
-            Point firstCrosswalkLaneTarget = firstCrosswalkLane.Target.RelatedPoint;
-            Point secondCrosswalkLaneSource = secondCrosswalkLane.Source.RelatedPoint;
-            Point secondCrosswalkLaneTarget = secondCrosswalkLane.Target.RelatedPoint;
+            PathPoint firstCrosswalkLaneSource = firstCrosswalkLane.Source.RelatedPoint;
+            PathPoint firstCrosswalkLaneTarget = firstCrosswalkLane.Target.RelatedPoint;
+            PathPoint secondCrosswalkLaneSource = secondCrosswalkLane.Source.RelatedPoint;
+            PathPoint secondCrosswalkLaneTarget = secondCrosswalkLane.Target.RelatedPoint;
 
             firstCrosswalkLaneSource.GetSimpleTurn().TargetPoint = firstCrosswalkLaneTarget;
             firstCrosswalkLaneSource.GetSimpleTurn().BlockableTurns.Add(roadSource.GetSimpleTurn());

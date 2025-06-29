@@ -1,4 +1,4 @@
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Points;
+using Sources.App.Services.AssetsServices.Common.PathSystems.Pathes.Points;
 
 namespace Sources.App.Services.BalanceServices.Missions
 {

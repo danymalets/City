@@ -4,8 +4,7 @@ using Sources.App.Core.Ecs.Components.Player.Npc.NpcPathes;
 using Sources.App.Core.Ecs.Components.Tags;
 using Sources.App.Core.Ecs.Data;
 using Sources.App.Core.Services.Simulation;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Pathes;
-using Sources.App.Services.AssetsServices.Common.Monos.RoadSystem.Pathes.Points;
+using Sources.App.Services.AssetsServices.Common.PathSystems.Pathes.Pathes;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.CommonUtils.Utils;
 using Sources.Utils.Di;
@@ -34,12 +33,12 @@ namespace Sources.App.Core.Ecs.Systems.Init.Pathes
         {
             foreach (Entity pathesEntity in _filter)
             {
-                List<Point> allPoints = pathesEntity.Get<AllPoints>().List;
-                Dictionary<(int x, int y), List<Point>> allPointsGrid = pathesEntity.Get<AllSpawnPointsGrid>().Grid;
-                List<Point> spawnPoints = pathesEntity.Get<AllSpawnPoints>().List;
+                List<PathPoint> allPoints = pathesEntity.Get<AllPoints>().List;
+                Dictionary<(int x, int y), List<PathPoint>> allPointsGrid = pathesEntity.Get<AllSpawnPointsGrid>().Grid;
+                List<PathPoint> spawnPoints = pathesEntity.Get<AllSpawnPoints>().List;
                 List<PathLine> pathLines = pathesEntity.Get<AllPathLines>().List;
 
-                HashSet<Point> pointsSet = new();
+                HashSet<PathPoint> pointsSet = new();
 
                 foreach (PathLine pathLine in pathLines)
                 {
@@ -47,7 +46,7 @@ namespace Sources.App.Core.Ecs.Systems.Init.Pathes
                     pointsSet.Add(pathLine.Target);
                 }
 
-                foreach (Point point in pointsSet)
+                foreach (PathPoint point in pointsSet)
                 {
                     allPoints.Add(point);
 
@@ -60,13 +59,13 @@ namespace Sources.App.Core.Ecs.Systems.Init.Pathes
                         int x = MathUtils.Div(position.x, _simulationSettings.SimulationQuadWidth);
                         int y = MathUtils.Div(position.y, _simulationSettings.SimulationQuadWidth);
 
-                        if (allPointsGrid.TryGetValue((x, y), out List<Point> exPoints))
+                        if (allPointsGrid.TryGetValue((x, y), out List<PathPoint> exPoints))
                         {
                             exPoints.Add(point);
                         }
                         else
                         {
-                            allPointsGrid.Add((x, y), new List<Point> { point });
+                            allPointsGrid.Add((x, y), new List<PathPoint> { point });
                         }
                     }
                 }

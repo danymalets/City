@@ -1,5 +1,5 @@
 using Scellecs.Morpeh;
-using Sources.App.Services.AssetsServices.Common.Monos.Cars;
+using Sources.App.Services.AssetsServices.Common.Cars.CarsData;
 using Sources.Utils.CommonUtils.Utils;
 using Sources.Utils.MorpehWrapper;
 using Sources.Utils.MorpehWrapper.Aspects;
