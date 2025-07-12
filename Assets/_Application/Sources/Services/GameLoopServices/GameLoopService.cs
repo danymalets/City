@@ -35,8 +35,6 @@ namespace Sources.Services.GameLoopServices
         public async UniTaskVoid RunEachSeconds(float period, Action action, bool shouldRunNow, CancellationToken cancellationToken = default)
         {
             AssertUtils.IsTrue(period > 0);
-            
-            cancellationToken = CombineWithApplicationQuit(_applicationCancellationTokenSource.Token);
 
             var timer = shouldRunNow ? 0 : period;
 
@@ -56,8 +54,6 @@ namespace Sources.Services.GameLoopServices
 
         public async UniTaskVoid RunEachFrame(Action action, bool shouldRunNow, CancellationToken cancellationToken = default)
         {
-            cancellationToken = CombineWithApplicationQuit(_applicationCancellationTokenSource.Token);
-            
             if (!shouldRunNow)
             {
                 await UniTask.NextFrame(cancellationToken);
@@ -72,7 +68,6 @@ namespace Sources.Services.GameLoopServices
 
         public async UniTaskVoid RunEachFixedUpdate(Action action, CancellationToken cancellationToken = default)
         {
-            cancellationToken = CombineWithApplicationQuit(_applicationCancellationTokenSource.Token);
             while (true)
             {
                 await UniTask.WaitForFixedUpdate(cancellationToken);
@@ -83,15 +78,11 @@ namespace Sources.Services.GameLoopServices
         public async UniTask ChangeValue(float sourceValue, float targetValue, float time, Action<float> onValueChanged,
             CancellationToken cancellationToken = default)
         {
-            cancellationToken = CombineWithApplicationQuit(_applicationCancellationTokenSource.Token);
-
             await IncreaseNormalValue(time, normalValue => onValueChanged?.Invoke(Mathf.Lerp(sourceValue, targetValue, normalValue)), cancellationToken);
         }
 
         public async UniTask IncreaseNormalValue(float seconds, Action<float> action, CancellationToken cancellationToken = default)
         {
-            cancellationToken = CombineWithApplicationQuit(_applicationCancellationTokenSource.Token);
-
             for (float elapsedTime = 0; elapsedTime < seconds && !cancellationToken.IsCancellationRequested; elapsedTime += Time.deltaTime)
             {
                 action(elapsedTime / seconds);
@@ -100,9 +91,9 @@ namespace Sources.Services.GameLoopServices
             action?.Invoke(1);
         }
 
-        public CancellationToken GetApplicationQuitCancellationToken() => _applicationCancellationTokenSource.Token;
-        public CancellationToken CombineWithApplicationQuit(CancellationToken cancellationToken) =>
-            CancellationTokenSource.CreateLinkedTokenSource(cancellationToken,
-                GetApplicationQuitCancellationToken()).Token;
+        public CancellationTokenSource CreateCancellationTokenSource() =>
+            CancellationTokenSource.CreateLinkedTokenSource(GetApplicationQuitCancellationToken());
+
+        private CancellationToken GetApplicationQuitCancellationToken() => _applicationCancellationTokenSource.Token;
     }
 }

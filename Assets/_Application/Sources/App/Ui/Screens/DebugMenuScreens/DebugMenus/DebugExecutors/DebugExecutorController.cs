@@ -49,7 +49,7 @@ namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.DebugExecutors
                     _debugFieldInputViews.Add(debugFieldInputView);
                 }
             }
-            _cancellationTokenSource = new CancellationTokenSource();
+            _cancellationTokenSource = _gameLoopService.CreateCancellationTokenSource();
             _debugExecutorView.ExecuteButton.Button.onClick.AddListener(OnExecuteButtonClicked);
         }
         
@@ -72,7 +72,7 @@ namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.DebugExecutors
             
             ViewResult(result);
             
-            await UniTask.WaitForSeconds(2f, cancellationToken:_gameLoopService.CombineWithApplicationQuit(_cancellationTokenSource.Token));
+            await UniTask.WaitForSeconds(2f, cancellationToken: _cancellationTokenSource.Token);
             
             ViewResult(new DebugExecutorResult(DebugResultStatus.End));
             

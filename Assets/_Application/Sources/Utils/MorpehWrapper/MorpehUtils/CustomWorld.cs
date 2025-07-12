@@ -9,6 +9,7 @@ using Sources.Utils.CommonUtils.Utils;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.CustomSystems;
 using Sources.Utils.MorpehWrapper.MorpehUtils.Systems;
+using UnityEngine;
 
 namespace Sources.Utils.MorpehWrapper.MorpehUtils
 {
@@ -82,7 +83,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
 
             RunSystems(_initializers, s => s.Initialize(), null);
 
-            _cancellationTokenSource = new CancellationTokenSource();
+            _cancellationTokenSource = _gameLoopService.CreateCancellationTokenSource();
             _gameLoopService.RunEachFrame(() =>
             {
                 if (ShouldRun())
