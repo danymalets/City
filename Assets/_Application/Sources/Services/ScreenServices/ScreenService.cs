@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using Sources.Services.GameLoopServices;
+using Sources.Services.UpdateLoopServices;
 using Sources.Utils.CommonUtils.Utils;
 using Sources.Utils.Di;
 using UnityEngine;
@@ -9,7 +9,7 @@ namespace Sources.Services.ScreenServices
 {
     public class ScreenService : IInitializable, IScreenService
     {
-        private readonly IGameLoopService _gameLoopService;
+        private readonly IUpdateLoopService _updateLoopService;
         public int Height { get; private set; }
 
         public int Width { get; private set; }
@@ -39,14 +39,14 @@ namespace Sources.Services.ScreenServices
 
         public ScreenService()
         {
-            _gameLoopService = DiContainer.Resolve<IGameLoopService>();
+            _updateLoopService = DiContainer.Resolve<IUpdateLoopService>();
         }
 
         public void Initialize()
         {
             UpdateResolution();
             
-            _gameLoopService.RunEachSeconds(0.5f, () =>
+            _updateLoopService.RunEachSeconds(0.5f, () =>
             {
                 if (Width != Screen.width ||
                     Height != Screen.height ||

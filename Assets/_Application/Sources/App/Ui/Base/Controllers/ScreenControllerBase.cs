@@ -5,9 +5,9 @@ using Sources.App.Services.AssetsServices.Localizations;
 using Sources.App.Services.AudioServices;
 using Sources.App.Ui.Base.Animators;
 using Sources.App.Ui.Base.Views;
-using Sources.Services.GameLoopServices;
 using Sources.Services.LocalizationServices;
 using Sources.Services.ScreenServices;
+using Sources.Services.UpdateLoopServices;
 using Sources.Utils.CommonUtils.Extensions;
 using Sources.Utils.Di;
 using UnityEngine;
@@ -23,7 +23,7 @@ namespace Sources.App.Ui.Base.Controllers
         public readonly bool IsAlwaysOpen;
         private readonly ILocalizationService _localizationService;
         protected readonly IAudioService _audioService;
-        protected readonly IGameLoopService _gameLoopService;
+        protected readonly IUpdateLoopService UpdateLoopService;
         private readonly IScreenService _screenService;
 
         protected StringsAsset Strings => _localizationService.CurrentStrings;
@@ -38,7 +38,7 @@ namespace Sources.App.Ui.Base.Controllers
             IsAlwaysOpen = isAlwaysOpen;
             _gameScreen = gameScreen;
             _screenAnimator = screenAnimator;
-            _gameLoopService = DiContainer.Resolve<IGameLoopService>();
+            UpdateLoopService = DiContainer.Resolve<IUpdateLoopService>();
             
             _screenService = DiContainer.Resolve<IScreenService>();
             _localizationService = DiContainer.Resolve<ILocalizationService>();

@@ -4,7 +4,7 @@
     "references": [
         "Sources.Utils.CommonUtils",
         "Sources.Utils.Di",
-        "Sources.Services.GameLoopServices",
+        "Sources.Services.UpdateLoopServices",
         "UniTask"
     ],
     "includePlatforms": [],

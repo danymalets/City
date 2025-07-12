@@ -7,8 +7,8 @@ using Cysharp.Threading.Tasks;
 using Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.DebugExecutors.DebugInputFields;
 using Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.ExecutionItems;
 using Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.ExecutionItems.DepugInputsItems;
-using Sources.Services.GameLoopServices;
 using Sources.Services.GameObjectServices;
+using Sources.Services.UpdateLoopServices;
 using Sources.Utils.Di;
 using UnityEngine;
 
@@ -23,14 +23,14 @@ namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.DebugExecutors
         private readonly List<DebugFieldInputView> _debugFieldInputViews = new();
         private bool _hasRunningExecutor;
         private CancellationTokenSource _cancellationTokenSource;
-        private readonly IGameLoopService _gameLoopService;
+        private readonly IUpdateLoopService _updateLoopService;
 
         public DebugExecutorController(DebugExecutorView debugExecutorView, DebugExecutorItem debugExecutorItem)
         {
             _debugExecutorView = debugExecutorView;
             _debugExecutorItem = debugExecutorItem;
             _gameObjectService = DiContainer.Resolve<IGameObjectService>();
-            _gameLoopService = DiContainer.Resolve<IGameLoopService>();
+            _updateLoopService = DiContainer.Resolve<IUpdateLoopService>();
         }
 
         public void Initialize()
@@ -49,7 +49,7 @@ namespace Sources.App.Ui.Screens.DebugMenuScreens.DebugMenus.DebugExecutors
                     _debugFieldInputViews.Add(debugFieldInputView);
                 }
             }
-            _cancellationTokenSource = _gameLoopService.CreateCancellationTokenSource();
+            _cancellationTokenSource = _updateLoopService.CreateCancellationTokenSource();
             _debugExecutorView.ExecuteButton.Button.onClick.AddListener(OnExecuteButtonClicked);
         }
         

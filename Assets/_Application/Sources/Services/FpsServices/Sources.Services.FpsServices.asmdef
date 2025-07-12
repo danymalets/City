@@ -6,7 +6,7 @@
         "Sources.Services.TimeServices",
         "Sources.Utils.CommonUtils",
         "UniTask",
-        "Sources.Services.GameLoopServices",
+        "Sources.Services.UpdateLoopServices",
         "Sources.Services.LogServices"
     ],
     "includePlatforms": [],

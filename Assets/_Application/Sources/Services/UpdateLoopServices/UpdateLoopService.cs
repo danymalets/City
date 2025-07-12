@@ -7,15 +7,15 @@ using Sources.Utils.CommonUtils.Utils;
 using Sources.Utils.Di;
 using UnityEngine;
 
-namespace Sources.Services.GameLoopServices
+namespace Sources.Services.UpdateLoopServices
 {
-    public class GameLoopService : IGameLoopService, IInitializable
+    public class UpdateLoopService : IUpdateLoopService, IInitializable
     {
         private readonly ITimeService _timeService;
         private readonly IApplicationService _applicationService;
         private readonly CancellationTokenSource _applicationCancellationTokenSource;
 
-        public GameLoopService()
+        public UpdateLoopService()
         {
             _timeService = DiContainer.Resolve<ITimeService>();
             _applicationService = DiContainer.Resolve<IApplicationService>();

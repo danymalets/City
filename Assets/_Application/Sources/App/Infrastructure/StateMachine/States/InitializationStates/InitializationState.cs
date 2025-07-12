@@ -12,7 +12,6 @@ using Sources.Services.AdsServices;
 using Sources.Services.AnalyticsServices;
 using Sources.Services.ApplicationServices;
 using Sources.Services.FpsServices;
-using Sources.Services.GameLoopServices;
 using Sources.Services.GameObjectServices;
 using Sources.Services.GizmosServices;
 using Sources.Services.IapServices;
@@ -25,6 +24,7 @@ using Sources.Services.PoolServices;
 using Sources.Services.SceneLoaderServices;
 using Sources.Services.ScreenServices;
 using Sources.Services.TimeServices;
+using Sources.Services.UpdateLoopServices;
 using Sources.Services.VibrationServices;
 using Sources.Utils.Di;
 
@@ -48,7 +48,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.InitializationStates
             _diBuilder.Register<InputService, IInputService>();
             _diBuilder.Register<TimeService, ITimeService>();
             _diBuilder.Register<IApplicationService>(gameObjectsInitializationData.ApplicationService);
-            _diBuilder.Register<GameLoopService, IGameLoopService>();
+            _diBuilder.Register<UpdateLoopService, IUpdateLoopService>();
             _diBuilder.Register<ILogService>(new LogService(new LogSettings{ IsLocalTime = true }));
 
             _diBuilder.Register<PhysicsService, IPhysicsService>();

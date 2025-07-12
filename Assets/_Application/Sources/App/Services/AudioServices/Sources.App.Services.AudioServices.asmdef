@@ -10,7 +10,7 @@
         "Sources.Services.GameObjectServices",
         "UniTask",
         "UniTask.Linq",
-        "Sources.Services.GameLoopServices"
+        "Sources.Services.UpdateLoopServices"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -11,8 +11,8 @@ using Sources.App.Ui.Screens.CurrencyScreens;
 using Sources.App.Ui.Screens.LoadingScreens;
 using Sources.App.Ui.Screens.MainScreens;
 using Sources.Services.AdsServices;
-using Sources.Services.GameLoopServices;
 using Sources.Services.SceneLoaderServices;
+using Sources.Services.UpdateLoopServices;
 using Sources.Utils.Di;
 using UnityEngine.SceneManagement;
 
@@ -26,7 +26,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
         private ISceneLoaderService _sceneLoader;
         private Assets _assets;
         private LoadingScreenController _loadingScreen;
-        private IGameLoopService _gameLoopService;
+        private IUpdateLoopService _updateLoopService;
         private IAdsService _adsService;
         private IDiBuilder _diBuilder;
         private MatchRunnerService _matchRunnerService;
@@ -49,7 +49,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
             _gameReloadService = new GameReloadService();
             _diBuilder.Register<IGameReloadService>(_gameReloadService);
 
-            _gameLoopService = DiContainer.Resolve<IGameLoopService>();
+            _updateLoopService = DiContainer.Resolve<IUpdateLoopService>();
 
             _mainScreenController = uiControllers.Get<MainScreenController>();
             _loadingScreen = uiControllers.Get<LoadingScreenController>();
@@ -79,7 +79,7 @@ namespace Sources.App.Infrastructure.StateMachine.States.MainUiStates
         {
             _loadingScreen.Open();
 
-            await _gameLoopService.ChangeValue(0, 1, 1, value =>
+            await _updateLoopService.ChangeValue(0, 1, 1, value =>
                 _loadingScreen.SetProgress(value));
 
             await UniTask.NextFrame();

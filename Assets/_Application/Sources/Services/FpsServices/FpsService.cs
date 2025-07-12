@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
-using Sources.Services.GameLoopServices;
 using Sources.Services.LogServices;
 using Sources.Services.TimeServices;
+using Sources.Services.UpdateLoopServices;
 using Sources.Utils.CommonUtils.Utils;
 using Sources.Utils.Di;
 using UnityEngine;
@@ -19,19 +19,19 @@ namespace Sources.Services.FpsServices
         private readonly ITimeService _timeService;
         private readonly Queue<float> _deltaTimes = new(150);
         private float _sumDeltaTimes = 0;
-        private readonly IGameLoopService _gameLoopService;
+        private readonly IUpdateLoopService _updateLoopService;
         private readonly ILogger _logger;
         
         public FpsService()
         {
             _timeService = DiContainer.Resolve<ITimeService>();
-            _gameLoopService = DiContainer.Resolve<IGameLoopService>();
+            _updateLoopService = DiContainer.Resolve<IUpdateLoopService>();
             _logger = DiContainer.Resolve<ILogService>().CreateLogger<FpsService>();
         }
 
         public void Initialize()
         {
-            _gameLoopService.RunEachFrame(OnUpdate, false);
+            _updateLoopService.RunEachFrame(OnUpdate, false);
         }
 
         private void OnUpdate()

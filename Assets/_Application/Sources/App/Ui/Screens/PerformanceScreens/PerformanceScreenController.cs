@@ -32,8 +32,8 @@ namespace Sources.App.Ui.Screens.PerformanceScreens
             _application = DiContainer.Resolve<IApplicationService>();
             _time = DiContainer.Resolve<ITimeService>();
             
-            _cancellationTokenSource = _gameLoopService.CreateCancellationTokenSource();
-            _gameLoopService.RunEachSeconds(1, OnUpdate, true, _cancellationTokenSource.Token);
+            _cancellationTokenSource = UpdateLoopService.CreateCancellationTokenSource();
+            UpdateLoopService.RunEachSeconds(1, OnUpdate, true, _cancellationTokenSource.Token);
         }
 
         private void OnUpdate()

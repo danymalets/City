@@ -28,7 +28,7 @@
         "Sources.Services.IapServices",
         "Sources.Services.LocalizationServices",
         "UniTask",
-        "Sources.Services.GameLoopServices",
+        "Sources.Services.UpdateLoopServices",
         "Sources.Services.LogServices",
         "Sources.App.Services.InputServices",
         "Sources.App.Services.GameRunnerServices",

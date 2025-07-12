@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Threading;
 using Scellecs.Morpeh;
 using Sources.Services.FpsServices;
-using Sources.Services.GameLoopServices;
 using Sources.Services.TimeServices;
+using Sources.Services.UpdateLoopServices;
 using Sources.Utils.CommonUtils.Utils;
 using Sources.Utils.Di;
 using Sources.Utils.MorpehWrapper.MorpehUtils.CustomSystems;
@@ -27,7 +27,7 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
         private readonly List<CustomUpdateSystem> _fixedSystems = new();
         private readonly List<CustomDisposer> _disposers = new();
         private readonly SystemsPerformance _systemsPerformance;
-        private readonly IGameLoopService _gameLoopService;
+        private readonly IUpdateLoopService _updateLoopService;
         private CancellationTokenSource _cancellationTokenSource;
 
         public FilterBuilder Filter => _world.Filter;
@@ -47,13 +47,13 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
             _world = World.Create();
             _world.UpdateByUnity = false;
 
-            _gameLoopService = DiContainer.Resolve<IGameLoopService>();
+            _updateLoopService = DiContainer.Resolve<IUpdateLoopService>();
 
 
             _systemsPerformance = new SystemsPerformance();
 
 #if FORCE_DEBUG
-            _gameLoopService.RunEachSeconds(3f, () =>
+            _updateLoopService.RunEachSeconds(3f, () =>
                 {
                     _systemsPerformance.LogData();
                     _systemsPerformance.Reset();
@@ -83,15 +83,15 @@ namespace Sources.Utils.MorpehWrapper.MorpehUtils
 
             RunSystems(_initializers, s => s.Initialize(), null);
 
-            _cancellationTokenSource = _gameLoopService.CreateCancellationTokenSource();
-            _gameLoopService.RunEachFrame(() =>
+            _cancellationTokenSource = _updateLoopService.CreateCancellationTokenSource();
+            _updateLoopService.RunEachFrame(() =>
             {
                 if (ShouldRun())
                 {
                     MathUtils.Divide(TimeScale * _time.DeltaTime, _time.DeltaTime, WorldUpdate);
                 }
             }, true, _cancellationTokenSource.Token);
-            _gameLoopService.RunEachFixedUpdate(() =>
+            _updateLoopService.RunEachFixedUpdate(() =>
             {
                 if (ShouldRun())
                 {

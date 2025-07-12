@@ -9,7 +9,7 @@
         "Sources.Services.TimeServices",
         "Sources.Services.FpsServices",
         "Sources.Services.GizmosServices",
-        "Sources.Services.GameLoopServices",
+        "Sources.Services.UpdateLoopServices",
         "UniTask",
         "TriInspector"
     ],

@@ -11,9 +11,9 @@ using Sources.App.Ui.Base;
 using Sources.App.Ui.Screens.LevelScreens;
 using Sources.App.Ui.Screens.LoadingScreens;
 using Sources.Services.FpsServices;
-using Sources.Services.GameLoopServices;
 using Sources.Services.SceneLoaderServices;
 using Sources.Services.TimeServices;
+using Sources.Services.UpdateLoopServices;
 using Sources.Utils.Di;
 using UnityEngine;
 
@@ -29,7 +29,7 @@ namespace Sources.App.Core
         private readonly LevelScreenController _levelScreen;
         private readonly LoadingScreenController _loadingScreenController;
         private readonly ISceneLoaderService _sceneLoader;
-        private readonly IGameLoopService _gameLoopService;
+        private readonly IUpdateLoopService _updateLoopService;
         private readonly IAudioService _audioService;
         
         public GameLoader()
@@ -42,7 +42,7 @@ namespace Sources.App.Core
 
             _levelScreen = uiControllers.Get<LevelScreenController>();
             _loadingScreenController = uiControllers.Get<LoadingScreenController>();
-            _gameLoopService = DiContainer.Resolve<IGameLoopService>();
+            _updateLoopService = DiContainer.Resolve<IUpdateLoopService>();
 
             
             _sceneLoader = DiContainer.Resolve<ISceneLoaderService>();
@@ -90,7 +90,7 @@ namespace Sources.App.Core
             _levelScreen.Open();
             float time = _timeService.Time;
             
-            _gameLoopService.ChangeValue(StartProgressValue, 1f, minTime, value => 
+            _updateLoopService.ChangeValue(StartProgressValue, 1f, minTime, value => 
                 _loadingScreenController.SetProgress(value));
 
             await _fpsService.WaitForStableFps();

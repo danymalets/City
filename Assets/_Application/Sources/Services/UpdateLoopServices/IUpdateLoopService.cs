@@ -3,9 +3,9 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using Sources.Utils.Di;
 
-namespace Sources.Services.GameLoopServices
+namespace Sources.Services.UpdateLoopServices
 {
-    public interface IGameLoopService : IService
+    public interface IUpdateLoopService : IService
     {
         UniTaskVoid RunEachFrame(Action action, bool shouldRunNow = true, CancellationToken cancellationToken = default);
         UniTaskVoid RunEachSeconds(float period, Action action, bool shouldRunNow = true, CancellationToken cancellationToken = default);

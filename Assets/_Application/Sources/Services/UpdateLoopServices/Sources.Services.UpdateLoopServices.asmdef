@@ -1,5 +1,5 @@
 {
-    "name": "Sources.Services.GameLoopServices",
+    "name": "Sources.Services.UpdateLoopServices",
     "rootNamespace": "",
     "references": [
         "Sources.Utils.Di",

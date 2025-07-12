@@ -35,7 +35,7 @@
         "Unity.InputSystem",
         "Sources.Services.AnalyticsServices",
         "UniTask",
-        "Sources.Services.GameLoopServices",
+        "Sources.Services.UpdateLoopServices",
         "Sources.Services.LogServices",
         "Sources.App.Services.InputServices",
         "Sources.App.Core.Data"
