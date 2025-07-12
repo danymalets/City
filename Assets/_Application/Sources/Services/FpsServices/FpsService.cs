@@ -5,9 +5,7 @@ using Cysharp.Threading.Tasks;
 using Sources.Services.LogServices;
 using Sources.Services.TimeServices;
 using Sources.Services.UpdateLoopServices;
-using Sources.Utils.CommonUtils.Utils;
 using Sources.Utils.Di;
-using UnityEngine;
 using ILogger = Sources.Services.LogServices.ILogger;
 
 namespace Sources.Services.FpsServices

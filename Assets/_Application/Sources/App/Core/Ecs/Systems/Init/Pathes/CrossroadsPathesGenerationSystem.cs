@@ -18,19 +18,19 @@ namespace Sources.App.Core.Ecs.Systems.Init.Pathes
 {
     public class CrossroadsPathesGenerationSystem : CustomInitializer
     {
-        private Filter _filter;
-        private SimulationBalance _simulationBalance;
+        private static readonly int[] DeltaIndices = { -2, -1, +1 };
 
-        private static readonly int[] s_deltaIndices = { -2, -1, +1 };
+        private static readonly Dictionary<int, int> PointsCountByDelta = new() { [-2] = 1, [-1] = 9, [+1] = 3 };
 
-        private static readonly Dictionary<int, int> s_pointsCountByDelta = new() { [-2] = 1, [-1] = 9, [+1] = 3 };
-
-        private static readonly (int Delta, int banRoadDelta, int banTurnDelta)[] s_banns =
+        private static readonly (int Delta, int banRoadDelta, int banTurnDelta)[] Banns =
         {
             (-2, -2, -1), (-2, -1, -2), (-2, -1, -1), (-2, +1, -2), (-2, +1, -1), (-2, +1, +1),
             (-1, -2, -2), (-1, -2, -1), (-1, -2, +1), (-1, -1, -2), (-1, -1, -1), (-1, +1, -2), (-1, +1, -1), (-1, +1, +1),
             (+1, -2, -1), (+1, -1, -1), (+1, -1, -2),
         };
+
+        private Filter _filter;
+        private SimulationBalance _simulationBalance;
 
         protected override void OnInitFilters()
         {
@@ -61,7 +61,7 @@ namespace Sources.App.Core.Ecs.Systems.Init.Pathes
             {
                 IRoad sourceRoad = crossroadRoads[sourceIndex];
 
-                foreach (int deltaIndex in s_deltaIndices)
+                foreach (int deltaIndex in DeltaIndices)
                 {
                     int targetIndex = MathUtils.Mod(sourceIndex + deltaIndex, crossroadRoads.Length);
                     IRoad targetRoad = crossroadRoads[targetIndex];
@@ -92,7 +92,7 @@ namespace Sources.App.Core.Ecs.Systems.Init.Pathes
 
                 List<TurnData> roadTurns = sourceRoad.GetSideData(crossroadPosition).Targets.First().Targets;
 
-                foreach ((int delta, int banRoadDelta, int banTurnDelta) in s_banns)
+                foreach ((int delta, int banRoadDelta, int banTurnDelta) in Banns)
                 {
                     // Road targetRoad = crossroadRoads[MathUtils.Mod(sourceIndex + delta, crossroadRoads.Length)];
                     IRoad banRoad = crossroadRoads[MathUtils.Mod(sourceIndex + banRoadDelta, crossroadRoads.Length)];
@@ -120,7 +120,7 @@ namespace Sources.App.Core.Ecs.Systems.Init.Pathes
         private void Generate(List<PathLine> pathLines,
             PathPoint source, PathPoint target, int delta)
         {
-            int pointsCount = s_pointsCountByDelta[delta];
+            int pointsCount = PointsCountByDelta[delta];
 
             List<PathPoint> points = new();
 
