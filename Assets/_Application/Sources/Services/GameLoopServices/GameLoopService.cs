@@ -35,7 +35,10 @@ namespace Sources.Services.GameLoopServices
         public async UniTaskVoid RunEachSeconds(float period, Action action, bool shouldRunNow, CancellationToken cancellationToken = default)
         {
             AssertUtils.IsTrue(period > 0);
-            float timer = shouldRunNow ? 0 : period;
+            
+            cancellationToken = CombineWithApplicationQuit(_applicationCancellationTokenSource.Token);
+
+            var timer = shouldRunNow ? 0 : period;
 
             while (true)
             {
@@ -53,6 +56,8 @@ namespace Sources.Services.GameLoopServices
 
         public async UniTaskVoid RunEachFrame(Action action, bool shouldRunNow, CancellationToken cancellationToken = default)
         {
+            cancellationToken = CombineWithApplicationQuit(_applicationCancellationTokenSource.Token);
+            
             if (!shouldRunNow)
             {
                 await UniTask.NextFrame(cancellationToken);
@@ -67,10 +72,10 @@ namespace Sources.Services.GameLoopServices
 
         public async UniTaskVoid RunEachFixedUpdate(Action action, CancellationToken cancellationToken = default)
         {
-            var cancellationTokenSource = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, _applicationCancellationTokenSource.Token);
+            cancellationToken = CombineWithApplicationQuit(_applicationCancellationTokenSource.Token);
             while (true)
             {
-                await UniTask.WaitForFixedUpdate(cancellationTokenSource.Token);
+                await UniTask.WaitForFixedUpdate(cancellationToken);
                 action?.Invoke();
             }
         }
@@ -78,17 +83,26 @@ namespace Sources.Services.GameLoopServices
         public async UniTask ChangeValue(float sourceValue, float targetValue, float time, Action<float> onValueChanged,
             CancellationToken cancellationToken = default)
         {
+            cancellationToken = CombineWithApplicationQuit(_applicationCancellationTokenSource.Token);
+
             await IncreaseNormalValue(time, normalValue => onValueChanged?.Invoke(Mathf.Lerp(sourceValue, targetValue, normalValue)), cancellationToken);
         }
 
         public async UniTask IncreaseNormalValue(float seconds, Action<float> action, CancellationToken cancellationToken = default)
         {
+            cancellationToken = CombineWithApplicationQuit(_applicationCancellationTokenSource.Token);
+
             for (float elapsedTime = 0; elapsedTime < seconds && !cancellationToken.IsCancellationRequested; elapsedTime += Time.deltaTime)
             {
                 action(elapsedTime / seconds);
-                await UniTask.NextFrame();
+                await UniTask.NextFrame(cancellationToken);
             }
             action?.Invoke(1);
         }
+
+        public CancellationToken GetApplicationQuitCancellationToken() => _applicationCancellationTokenSource.Token;
+        public CancellationToken CombineWithApplicationQuit(CancellationToken cancellationToken) =>
+            CancellationTokenSource.CreateLinkedTokenSource(cancellationToken,
+                GetApplicationQuitCancellationToken()).Token;
     }
 }

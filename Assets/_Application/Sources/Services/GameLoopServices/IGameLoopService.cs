@@ -12,5 +12,7 @@ namespace Sources.Services.GameLoopServices
         UniTaskVoid RunEachFixedUpdate(Action action, CancellationToken cancellationToken = default);
         UniTask ChangeValue(float sourceValue, float targetValue, float time, Action<float> onValueChanged, CancellationToken cancellationToken = default);
         UniTask IncreaseNormalValue(float seconds, Action<float> action, CancellationToken cancellationToken = default);
+        CancellationToken CombineWithApplicationQuit(CancellationToken cancellationToken);
+        CancellationToken GetApplicationQuitCancellationToken();
     }
 }

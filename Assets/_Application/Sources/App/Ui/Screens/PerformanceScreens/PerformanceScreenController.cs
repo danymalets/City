@@ -1,3 +1,4 @@
+using System.Threading;
 using Sources.App.Services.AssetsServices.Localizations;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Base.Animators;
@@ -17,6 +18,7 @@ namespace Sources.App.Ui.Screens.PerformanceScreens
         private IFpsService _fpsService;
         private IApplicationService _application;
         private ITimeService _time;
+        private CancellationTokenSource _cancellationTokenSource;
 
         public PerformanceScreenController(PerformanceScreen performanceScreen) 
             : base(performanceScreen, new ToggleAnimator(performanceScreen), true)
@@ -29,8 +31,10 @@ namespace Sources.App.Ui.Screens.PerformanceScreens
             _fpsService = DiContainer.Resolve<IFpsService>();
             _application = DiContainer.Resolve<IApplicationService>();
             _time = DiContainer.Resolve<ITimeService>();
-
-            _gameLoopService.RunEachSeconds(1, OnUpdate, true, _gameLoopCancellationToken);
+            
+            _cancellationTokenSource = new CancellationTokenSource();
+            _gameLoopService.RunEachSeconds(1, OnUpdate, true,
+                _gameLoopService.CombineWithApplicationQuit(_cancellationTokenSource.Token));
         }
 
         private void OnUpdate()
@@ -42,6 +46,7 @@ namespace Sources.App.Ui.Screens.PerformanceScreens
 
         protected override void OnClose()
         {
+            _cancellationTokenSource.Cancel();
         }
     }
 }

@@ -24,8 +24,6 @@ namespace Sources.App.Ui.Base.Controllers
         private readonly ILocalizationService _localizationService;
         protected readonly IAudioService _audioService;
         protected readonly IGameLoopService _gameLoopService;
-        private readonly CancellationTokenSource _gameLoopCancellationTokenSource;
-        protected readonly CancellationToken _gameLoopCancellationToken;
         private readonly IScreenService _screenService;
 
         protected StringsAsset Strings => _localizationService.CurrentStrings;
@@ -40,8 +38,6 @@ namespace Sources.App.Ui.Base.Controllers
             IsAlwaysOpen = isAlwaysOpen;
             _gameScreen = gameScreen;
             _screenAnimator = screenAnimator;
-            _gameLoopCancellationTokenSource = new CancellationTokenSource();
-            _gameLoopCancellationToken = _gameLoopCancellationTokenSource.Token;
             _gameLoopService = DiContainer.Resolve<IGameLoopService>();
             
             _screenService = DiContainer.Resolve<IScreenService>();
@@ -102,7 +98,6 @@ namespace Sources.App.Ui.Base.Controllers
         {        
             Closed?.Invoke(this);
             IsOpen = false;
-            _gameLoopCancellationTokenSource.Cancel();
             UnsubscribeCloseButtons();
             _screenAnimator.PlayClose(isForce);
             OnClose();
