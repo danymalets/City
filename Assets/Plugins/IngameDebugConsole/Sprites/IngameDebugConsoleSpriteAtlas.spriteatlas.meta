@@ -1,7 +1,8 @@
 fileFormatVersion: 2
-guid: 466e67dabd1db22468246c39eddb6c3f
-AssemblyDefinitionImporter:
+guid: d829dcfc225f56440a2b10d9ac318aea
+NativeFormatImporter:
   externalObjects: {}
+  mainObjectFileID: 4343727234628468602
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -10,5 +11,5 @@ AssetOrigin:
   productId: 68068
   packageName: In-game Debug Console
   packageVersion: 1.8.2
-  assetPath: Assets/Plugins/IngameDebugConsole/Editor/IngameDebugConsole.Editor.asmdef
+  assetPath: Assets/Plugins/IngameDebugConsole/Sprites/IngameDebugConsoleSpriteAtlas.spriteatlas
   uploadId: 764785

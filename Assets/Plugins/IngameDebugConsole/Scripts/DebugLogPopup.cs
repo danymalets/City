@@ -1,13 +1,14 @@
-﻿using System.Collections;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System.Collections;
+using TMPro;
 #if UNITY_EDITOR && UNITY_2021_1_OR_NEWER
 using Screen = UnityEngine.Device.Screen; // To support Device Simulator on Unity 2021.1+
 #endif
 
 // Manager class for the debug popup
-namespace Plugins.IngameDebugConsole.Scripts
+namespace IngameDebugConsole
 {
 	public class DebugLogPopup : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 	{
@@ -27,11 +28,11 @@ namespace Plugins.IngameDebugConsole.Scripts
 		private DebugLogManager debugManager;
 
 		[SerializeField]
-		private Text newInfoCountText;
+		private TextMeshProUGUI newInfoCountText;
 		[SerializeField]
-		private Text newWarningCountText;
+		private TextMeshProUGUI newWarningCountText;
 		[SerializeField]
-		private Text newErrorCountText;
+		private TextMeshProUGUI newErrorCountText;
 
 		[SerializeField]
 		private Color alertColorInfo;
@@ -51,6 +52,8 @@ namespace Plugins.IngameDebugConsole.Scripts
 
 		// Coroutines for simple code-based animations
 		private IEnumerator moveToPosCoroutine = null;
+
+		public bool IsVisible { get; private set; }
 
 		private void Awake()
 		{
@@ -97,7 +100,7 @@ namespace Plugins.IngameDebugConsole.Scripts
 				backgroundImage.color = alertColorInfo;
 		}
 
-		private void Reset()
+		private void ResetValues()
 		{
 			newInfoCount = 0;
 			newWarningCount = 0;
@@ -137,10 +140,11 @@ namespace Plugins.IngameDebugConsole.Scripts
 		public void Show()
 		{
 			canvasGroup.blocksRaycasts = true;
-			canvasGroup.alpha = 1f;
+			canvasGroup.alpha = debugManager.popupOpacity;
+			IsVisible = true;
 
 			// Reset the counters
-			Reset();
+			ResetValues();
 
 			// Update position in case resolution was changed while the popup was hidden
 			UpdatePosition( true );
@@ -152,6 +156,7 @@ namespace Plugins.IngameDebugConsole.Scripts
 			canvasGroup.blocksRaycasts = false;
 			canvasGroup.alpha = 0f;
 
+			IsVisible = false;
 			isPopupBeingDragged = false;
 		}
 
@@ -199,7 +204,7 @@ namespace Plugins.IngameDebugConsole.Scripts
 
 			if( debugManager.popupAvoidsScreenCutout )
 			{
-#if UNITY_2017_2_OR_NEWER && ( UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS )
+#if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
 				Rect safeArea = Screen.safeArea;
 
 				int screenWidth = Screen.width;

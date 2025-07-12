@@ -1,53 +1,18 @@
-﻿using System.Text;
-using System.Text.RegularExpressions;
-using UnityEditor;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System.Text;
+using TMPro;
+#if UNITY_EDITOR
+using UnityEditor;
+using System.Text.RegularExpressions;
+#endif
 
 // A UI element to show information about a debug entry
-namespace Plugins.IngameDebugConsole.Scripts
+namespace IngameDebugConsole
 {
 	public class DebugLogItem : MonoBehaviour, IPointerClickHandler
 	{
-		#region Platform Specific Elements
-#if !UNITY_2018_1_OR_NEWER
-#if !UNITY_EDITOR && UNITY_ANDROID
-		private static AndroidJavaClass m_ajc = null;
-		private static AndroidJavaClass AJC
-		{
-			get
-			{
-				if( m_ajc == null )
-					m_ajc = new AndroidJavaClass( "com.yasirkula.unity.DebugConsole" );
-
-				return m_ajc;
-			}
-		}
-
-		private static AndroidJavaObject m_context = null;
-		private static AndroidJavaObject Context
-		{
-			get
-			{
-				if( m_context == null )
-				{
-					using( AndroidJavaObject unityClass = new AndroidJavaClass( "com.unity3d.player.UnityPlayer" ) )
-					{
-						m_context = unityClass.GetStatic<AndroidJavaObject>( "currentActivity" );
-					}
-				}
-
-				return m_context;
-			}
-		}
-#elif !UNITY_EDITOR && UNITY_IOS
-		[System.Runtime.InteropServices.DllImport( "__Internal" )]
-		private static extern void _DebugConsole_CopyText( string text );
-#endif
-#endif
-		#endregion
-
 #pragma warning disable 0649
 		// Cached components
 		[SerializeField]
@@ -63,7 +28,7 @@ namespace Plugins.IngameDebugConsole.Scripts
 		public CanvasGroup CanvasGroup { get { return canvasGroupComponent; } }
 
 		[SerializeField]
-		private Text logText;
+		private TextMeshProUGUI logText;
 		[SerializeField]
 		private Image logTypeImage;
 
@@ -71,10 +36,10 @@ namespace Plugins.IngameDebugConsole.Scripts
 		[SerializeField]
 		private GameObject logCountParent;
 		[SerializeField]
-		private Text logCountText;
+		private TextMeshProUGUI logCountText;
 
 		[SerializeField]
-		private RectTransform copyLogButton;
+		private Button copyLogButton;
 #pragma warning restore 0649
 
 		// Debug entry to show with this log item
@@ -85,8 +50,7 @@ namespace Plugins.IngameDebugConsole.Scripts
 		public DebugLogEntryTimestamp? Timestamp { get { return logEntryTimestamp; } }
 
 		// Index of the entry in the list of entries
-		private int entryIndex;
-		public int Index { get { return entryIndex; } }
+		[System.NonSerialized] public int Index;
 
 		private bool isExpanded;
 		public bool Expanded { get { return isExpanded; } }
@@ -103,8 +67,12 @@ namespace Plugins.IngameDebugConsole.Scripts
 
 			logTextOriginalPosition = logText.rectTransform.anchoredPosition;
 			logTextOriginalSize = logText.rectTransform.sizeDelta;
-			copyLogButtonHeight = copyLogButton.anchoredPosition.y + copyLogButton.sizeDelta.y + 2f; // 2f: space between text and button
+			copyLogButtonHeight = ( copyLogButton.transform as RectTransform ).anchoredPosition.y + ( copyLogButton.transform as RectTransform ).sizeDelta.y + 2f; // 2f: space between text and button
 
+            if (listView.manager.logItemFontOverride != null)
+                logText.font = listView.manager.logItemFontOverride;
+
+			copyLogButton.onClick.AddListener( CopyLog );
 #if !UNITY_EDITOR && UNITY_WEBGL
 			copyLogButton.gameObject.AddComponent<DebugLogItemCopyWebGL>().Initialize( this );
 #endif
@@ -114,13 +82,12 @@ namespace Plugins.IngameDebugConsole.Scripts
 		{
 			this.logEntry = logEntry;
 			this.logEntryTimestamp = logEntryTimestamp;
-			this.entryIndex = entryIndex;
+			this.Index = entryIndex;
 			this.isExpanded = isExpanded;
 
 			Vector2 size = transformComponent.sizeDelta;
 			if( isExpanded )
 			{
-				logText.horizontalOverflow = HorizontalWrapMode.Wrap;
 				size.y = listView.SelectedItemHeight;
 
 				if( !copyLogButton.gameObject.activeSelf )
@@ -133,7 +100,6 @@ namespace Plugins.IngameDebugConsole.Scripts
 			}
 			else
 			{
-				logText.horizontalOverflow = HorizontalWrapMode.Overflow;
 				size.y = listView.ItemHeight;
 
 				if( copyLogButton.gameObject.activeSelf )
@@ -148,13 +114,13 @@ namespace Plugins.IngameDebugConsole.Scripts
 			transformComponent.sizeDelta = size;
 
 			SetText( logEntry, logEntryTimestamp, isExpanded );
-			logTypeImage.sprite = logEntry.logTypeSpriteRepresentation;
+			logTypeImage.sprite = DebugLogManager.logSpriteRepresentations[(int) logEntry.logType];
 		}
 
 		// Show the collapsed count of the debug entry
 		public void ShowCount()
 		{
-			logCountText.text = logEntry.count.ToString();
+			logCountText.SetText( "{0}", logEntry.count );
 
 			if( !logCountParent.activeSelf )
 				logCountParent.SetActive( true );
@@ -176,29 +142,47 @@ namespace Plugins.IngameDebugConsole.Scripts
 				SetText( logEntry, timestamp, isExpanded );
 		}
 
-		private void SetText( DebugLogEntry logEntry, DebugLogEntryTimestamp? logEntryTimestamp, bool isExpanded )
-		{
-			if( !logEntryTimestamp.HasValue || ( !isExpanded && !listView.manager.alwaysDisplayTimestamps ) )
-				logText.text = isExpanded ? logEntry.ToString() : logEntry.logString;
-			else
-			{
-				StringBuilder sb = listView.manager.sharedStringBuilder;
-				sb.Length = 0;
+        private void SetText(DebugLogEntry logEntry, DebugLogEntryTimestamp? logEntryTimestamp, bool isExpanded)
+        {
+            string text = isExpanded ? logEntry.ToString() : logEntry.logString;
+            int maxLogLength = isExpanded ? listView.manager.maxExpandedLogLength : listView.manager.maxCollapsedLogLength;
 
-				if( isExpanded )
-				{
-					logEntryTimestamp.Value.AppendFullTimestamp( sb );
-					sb.Append( ": " ).Append( logEntry.ToString() );
-				}
-				else
-				{
-					logEntryTimestamp.Value.AppendTime( sb );
-					sb.Append( " " ).Append( logEntry.logString );
-				}
+            if (!logEntryTimestamp.HasValue || (!isExpanded && !listView.manager.alwaysDisplayTimestamps))
+            {
+                if (text.Length <= maxLogLength)
+                    logText.text = text;
+                else
+                {
+                    if (listView.manager.textBuffer.Length < maxLogLength)
+                        listView.manager.textBuffer = new char[maxLogLength];
 
-				logText.text = sb.ToString();
-			}
-		}
+                    text.CopyTo(0, listView.manager.textBuffer, 0, maxLogLength);
+                    logText.SetText(listView.manager.textBuffer, 0, maxLogLength);
+                }
+            }
+            else
+            {
+                StringBuilder sb = listView.manager.sharedStringBuilder;
+                sb.Length = 0;
+
+                if (isExpanded)
+                {
+                    logEntryTimestamp.Value.AppendFullTimestamp(sb);
+                    sb.Append(": ").Append(text, 0, Mathf.Min(text.Length, maxLogLength - sb.Length));
+                }
+                else
+                {
+                    logEntryTimestamp.Value.AppendTime(sb);
+                    sb.Append(" ").Append(text, 0, Mathf.Min(text.Length, maxLogLength - sb.Length));
+                }
+
+                if (listView.manager.textBuffer.Length < sb.Length)
+                    listView.manager.textBuffer = new char[sb.Length];
+
+                sb.CopyTo(0, listView.manager.textBuffer, 0, sb.Length);
+                logText.SetText(listView.manager.textBuffer, 0, sb.Length);
+            }
+        }
 
 		// This log item is clicked, show the debug entry's stack trace
 		public void OnPointerClick( PointerEventData eventData )
@@ -223,20 +207,12 @@ namespace Plugins.IngameDebugConsole.Scripts
 #endif
 		}
 
-		public void CopyLog()
+		private void CopyLog()
 		{
 #if UNITY_EDITOR || !UNITY_WEBGL
 			string log = GetCopyContent();
-			if( string.IsNullOrEmpty( log ) )
-				return;
-
-#if UNITY_EDITOR || UNITY_2018_1_OR_NEWER || ( !UNITY_ANDROID && !UNITY_IOS )
-			GUIUtility.systemCopyBuffer = log;
-#elif UNITY_ANDROID
-			AJC.CallStatic( "CopyText", Context, log );
-#elif UNITY_IOS
-			_DebugConsole_CopyText( log );
-#endif
+			if( !string.IsNullOrEmpty( log ) )
+				GUIUtility.systemCopyBuffer = log;
 #endif
 		}
 
@@ -256,18 +232,21 @@ namespace Plugins.IngameDebugConsole.Scripts
 			}
 		}
 
+		/// Here, we're using <see cref="TMP_Text.GetRenderedValues(bool)"/> instead of <see cref="TMP_Text.preferredHeight"/> because the latter doesn't take
+		/// <see cref="TMP_Text.maxVisibleCharacters"/> into account. However, for <see cref="TMP_Text.GetRenderedValues(bool)"/> to work, we need to give it
+		/// enough space (increase log item's height) and let it regenerate its mesh <see cref="TMP_Text.ForceMeshUpdate"/>.
 		public float CalculateExpandedHeight( DebugLogEntry logEntry, DebugLogEntryTimestamp? logEntryTimestamp )
 		{
 			string text = logText.text;
-			HorizontalWrapMode wrapMode = logText.horizontalOverflow;
+			Vector2 size = ( transform as RectTransform ).sizeDelta;
 
+			( transform as RectTransform ).sizeDelta = new Vector2( size.x, 10000f );
 			SetText( logEntry, logEntryTimestamp, true );
-			logText.horizontalOverflow = HorizontalWrapMode.Wrap;
+			logText.ForceMeshUpdate();
+			float result = logText.GetRenderedValues( true ).y + copyLogButtonHeight;
 
-			float result = logText.preferredHeight + copyLogButtonHeight;
-
+			( transform as RectTransform ).sizeDelta = size;
 			logText.text = text;
-			logText.horizontalOverflow = wrapMode;
 
 			return Mathf.Max( listView.ItemHeight, result );
 		}

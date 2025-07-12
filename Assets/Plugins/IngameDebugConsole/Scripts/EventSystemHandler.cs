@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+#if ENABLE_INPUT_SYSTEM && !ENABLE_LEGACY_INPUT_MANAGER
+using UnityEngine.InputSystem.UI;
+#endif
 
-namespace Plugins.IngameDebugConsole.Scripts
+namespace IngameDebugConsole
 {
 	// Avoid multiple EventSystems in the scene by activating the embedded EventSystem only if one doesn't already exist in the scene
 	[DefaultExecutionOrder( 1000 )]
@@ -12,6 +15,18 @@ namespace Plugins.IngameDebugConsole.Scripts
 		[SerializeField]
 		private GameObject embeddedEventSystem;
 #pragma warning restore 0649
+
+#if ENABLE_INPUT_SYSTEM && !ENABLE_LEGACY_INPUT_MANAGER
+		private void Awake()
+		{
+			StandaloneInputModule legacyInputModule = embeddedEventSystem.GetComponent<StandaloneInputModule>();
+			if( legacyInputModule )
+			{
+				DestroyImmediate( legacyInputModule );
+				embeddedEventSystem.AddComponent<InputSystemUIInputModule>();
+			}
+		}
+#endif
 
 		private void OnEnable()
 		{
@@ -33,6 +48,7 @@ namespace Plugins.IngameDebugConsole.Scripts
 
 		private void OnSceneLoaded( Scene scene, LoadSceneMode mode )
 		{
+			DeactivateEventSystem();
 			ActivateEventSystemIfNeeded();
 		}
 

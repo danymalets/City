@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 // Listens to scroll events on the scroll rect that debug items are stored
 // and decides whether snap to bottom should be true or not
 // 
 // Procedure: if, after a user input (drag or scroll), scrollbar is at the bottom, then 
 // snap to bottom shall be true, otherwise it shall be false
-namespace Plugins.IngameDebugConsole.Scripts
+namespace IngameDebugConsole
 {
 	public class DebugsOnScrollListener : MonoBehaviour, IScrollHandler, IBeginDragHandler, IEndDragHandler
 	{
@@ -16,45 +16,32 @@ namespace Plugins.IngameDebugConsole.Scripts
 
 		public void OnScroll( PointerEventData data )
 		{
-			if( IsScrollbarAtBottom() )
-				debugLogManager.SetSnapToBottom( true );
-			else
-				debugLogManager.SetSnapToBottom( false );
+			debugLogManager.SnapToBottom = IsScrollbarAtBottom();
 		}
 
 		public void OnBeginDrag( PointerEventData data )
 		{
-			debugLogManager.SetSnapToBottom( false );
+			debugLogManager.SnapToBottom = false;
 		}
 
 		public void OnEndDrag( PointerEventData data )
 		{
-			if( IsScrollbarAtBottom() )
-				debugLogManager.SetSnapToBottom( true );
-			else
-				debugLogManager.SetSnapToBottom( false );
+			debugLogManager.SnapToBottom = IsScrollbarAtBottom();
 		}
 
 		public void OnScrollbarDragStart( BaseEventData data )
 		{
-			debugLogManager.SetSnapToBottom( false );
+			debugLogManager.SnapToBottom = false;
 		}
 
 		public void OnScrollbarDragEnd( BaseEventData data )
 		{
-			if( IsScrollbarAtBottom() )
-				debugLogManager.SetSnapToBottom( true );
-			else
-				debugLogManager.SetSnapToBottom( false );
+			debugLogManager.SnapToBottom = IsScrollbarAtBottom();
 		}
 
 		private bool IsScrollbarAtBottom()
 		{
-			float scrollbarYPos = debugsScrollRect.verticalNormalizedPosition;
-			if( scrollbarYPos <= 1E-6f )
-				return true;
-
-			return false;
+			return debugsScrollRect.verticalNormalizedPosition <= 1E-6f;
 		}
 	}
 }

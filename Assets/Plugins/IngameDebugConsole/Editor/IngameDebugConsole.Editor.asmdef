@@ -1,6 +1,5 @@
 {
     "name": "IngameDebugConsole.Editor",
-    "rootNamespace": "",
     "references": [
         "IngameDebugConsole.Runtime"
     ],
