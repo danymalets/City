@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Linq;
 using Sources.App.Services.AssetsServices;
@@ -35,6 +36,7 @@ namespace Sources.App.Services.AudioServices
         private AudioSourceView _audioSourceViewPrefab;
         private readonly Transform _instancesRoot;
         private readonly IUpdateLoopService _updateLoopService;
+        private CancellationTokenSource _cancellationTokenSource;
 
         public AudioService(Transform root)
         {
@@ -58,7 +60,8 @@ namespace Sources.App.Services.AudioServices
             SetSoundsGroupVolume(userPreferences.SoundsVolume);
             SetMusicsGroupVolume(userPreferences.MusicVolume);
 
-            _updateLoopService.RunEachFrame(OnUpdate);
+            _cancellationTokenSource = _updateLoopService.CreateCancellationTokenSource();
+            _updateLoopService.RunEachFrame(OnUpdate, false, _cancellationTokenSource.Token);
         }
 
         public void SetSoundsGroupVolume(float volume) => SetMixerFloat(Parameters.SoundsVolume, volume);
