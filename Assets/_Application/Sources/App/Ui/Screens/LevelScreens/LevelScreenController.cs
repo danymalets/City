@@ -1,10 +1,8 @@
 using System;
 using Sources.App.Services.AssetsServices.Audio;
-using Sources.App.Services.AudioServices;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Base.Animators;
 using Sources.App.Ui.Base.Controllers;
-using Sources.App.Ui.Screens.LevelScreens.CarInputScreens;
 using Sources.App.Ui.Screens.LevelScreens.PlayerInputScreens;
 using Sources.App.Ui.Screens.PausePopups;
 using Sources.Utils.Di;
@@ -16,13 +14,11 @@ namespace Sources.App.Ui.Screens.LevelScreens
         private readonly LevelScreen _levelScreen;
         private PausePopupController _pausePopupController;
 
-        public CarInputViewController CarInputViewController { get; private set; }
         public PlayerInputViewController PlayerInputViewController { get; private set; }
 
         public LevelScreenController(LevelScreen levelScreen) 
             : base(levelScreen, new ToggleAnimator(levelScreen))
         {
-            CarInputViewController = new CarInputViewController(levelScreen.CarInputView);
             PlayerInputViewController = new PlayerInputViewController(levelScreen.PlayerInputView);
             _levelScreen = levelScreen;
         }
@@ -36,7 +32,6 @@ namespace Sources.App.Ui.Screens.LevelScreens
         {
             _levelScreen.PauseButton.onClick.AddListener(OnPauseButtonClicked);
             
-            CarInputViewController.OnOpen();
             PlayerInputViewController.OnOpen();
         }
 
@@ -44,7 +39,6 @@ namespace Sources.App.Ui.Screens.LevelScreens
         {
             _levelScreen.PauseButton.onClick.RemoveListener(OnPauseButtonClicked);
             
-            CarInputViewController.OnClose();
             PlayerInputViewController.OnClose();
         }
         

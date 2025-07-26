@@ -7,14 +7,12 @@ using Sources.App.Ui.Base.Views;
 using Sources.App.Ui.Screens.SettingsScreens;
 using Sources.Services.TimeServices;
 using Sources.Utils.Di;
-using Sources.Utils.MorpehWrapper.MorpehUtils;
 
 namespace Sources.App.Ui.Screens.PausePopups
 {
     public class PausePopupController : ScreenController
     {
         private readonly PausePopup _pausePopup;
-        private CustomWorld _customWorld;
         private SettingsPopupController _settingsPopupController;
         private readonly ITimeService _timeService;
 
@@ -36,9 +34,7 @@ namespace Sources.App.Ui.Screens.PausePopups
 
         protected override void OnOpen()
         {
-            _customWorld = DiContainer.Resolve<CustomWorld>();
             _timeService.TimeScale = 0;
-            _customWorld.IsPaused = true;
             _pausePopup.RestartButton.Button.onClick.AddListener(OnRestartButtonClicked);
             _pausePopup.ContinueButton.Button.onClick.AddListener(OnContinueButtonClicked);
             _pausePopup.LeaveButton.Button.onClick.AddListener(OnExitButtonClicked);
@@ -47,11 +43,8 @@ namespace Sources.App.Ui.Screens.PausePopups
 
         protected override void OnClose()
         {
-            _customWorld.IsPaused = false;
             _timeService.TimeScale = 1;
 
-            _customWorld = null;
-            
             _pausePopup.RestartButton.Button.onClick.RemoveListener(OnRestartButtonClicked);
             _pausePopup.ContinueButton.Button.onClick.RemoveListener(OnContinueButtonClicked);
             _pausePopup.LeaveButton.Button.onClick.RemoveListener(OnExitButtonClicked);

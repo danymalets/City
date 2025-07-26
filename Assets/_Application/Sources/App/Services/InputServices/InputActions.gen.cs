@@ -39,16 +39,7 @@ namespace Sources.App.Services.InputServices
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""EnterCar"",
-                    ""type"": ""Button"",
-                    ""id"": ""82300ebb-4834-40fa-8294-b434d864ce29"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ExitCar"",
+                    ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""e871edcb-cb48-4f68-a167-57246135de2f"",
                     ""expectedControlType"": """",
@@ -115,23 +106,12 @@ namespace Sources.App.Services.InputServices
                 },
                 {
                     ""name"": """",
-                    ""id"": ""5d009ea0-8186-490b-8236-43f04b64ecae"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""EnterCar"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""2be4f80e-815a-473a-a56f-d8b2c53d2aea"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ExitCar"",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -143,8 +123,7 @@ namespace Sources.App.Services.InputServices
             // Player
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-            m_Player_EnterCar = m_Player.FindAction("EnterCar", throwIfNotFound: true);
-            m_Player_ExitCar = m_Player.FindAction("ExitCar", throwIfNotFound: true);
+            m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         }
 
         ~@InputActions()
@@ -212,15 +191,13 @@ namespace Sources.App.Services.InputServices
         private readonly InputActionMap m_Player;
         private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
         private readonly InputAction m_Player_Move;
-        private readonly InputAction m_Player_EnterCar;
-        private readonly InputAction m_Player_ExitCar;
+        private readonly InputAction m_Player_Jump;
         public struct PlayerActions
         {
             private @InputActions m_Wrapper;
             public PlayerActions(@InputActions wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Player_Move;
-            public InputAction @EnterCar => m_Wrapper.m_Player_EnterCar;
-            public InputAction @ExitCar => m_Wrapper.m_Player_ExitCar;
+            public InputAction @Jump => m_Wrapper.m_Player_Jump;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -233,12 +210,9 @@ namespace Sources.App.Services.InputServices
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
-                @EnterCar.started += instance.OnEnterCar;
-                @EnterCar.performed += instance.OnEnterCar;
-                @EnterCar.canceled += instance.OnEnterCar;
-                @ExitCar.started += instance.OnExitCar;
-                @ExitCar.performed += instance.OnExitCar;
-                @ExitCar.canceled += instance.OnExitCar;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -246,12 +220,9 @@ namespace Sources.App.Services.InputServices
                 @Move.started -= instance.OnMove;
                 @Move.performed -= instance.OnMove;
                 @Move.canceled -= instance.OnMove;
-                @EnterCar.started -= instance.OnEnterCar;
-                @EnterCar.performed -= instance.OnEnterCar;
-                @EnterCar.canceled -= instance.OnEnterCar;
-                @ExitCar.started -= instance.OnExitCar;
-                @ExitCar.performed -= instance.OnExitCar;
-                @ExitCar.canceled -= instance.OnExitCar;
+                @Jump.started -= instance.OnJump;
+                @Jump.performed -= instance.OnJump;
+                @Jump.canceled -= instance.OnJump;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -272,8 +243,7 @@ namespace Sources.App.Services.InputServices
         public interface IPlayerActions
         {
             void OnMove(InputAction.CallbackContext context);
-            void OnEnterCar(InputAction.CallbackContext context);
-            void OnExitCar(InputAction.CallbackContext context);
+            void OnJump(InputAction.CallbackContext context);
         }
     }
 }

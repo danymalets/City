@@ -19,9 +19,7 @@ namespace Sources.App.Services.InputServices
         }
 
         public Vector2 GetMove() => _inputAction.Player.Move.ReadValue<Vector2>();
-        public bool WasEnterCarPressed() => _inputAction.Player.EnterCar.WasPressedThisFrame();
-
-        public bool WasExitCarPressed() => _inputAction.Player.ExitCar.WasPressedThisFrame();
+        public bool WasJumpPressed() => _inputAction.Player.Jump.WasPressedThisFrame();
         public bool WasAndroidBackPressed() => Keyboard.current.escapeKey.wasPressedThisFrame;
     }
 }

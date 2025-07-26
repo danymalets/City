@@ -15,16 +15,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "EnterCar",
-                    "type": "Button",
-                    "id": "82300ebb-4834-40fa-8294-b434d864ce29",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ExitCar",
+                    "name": "Jump",
                     "type": "Button",
                     "id": "e871edcb-cb48-4f68-a167-57246135de2f",
                     "expectedControlType": "",
@@ -91,23 +82,12 @@
                 },
                 {
                     "name": "",
-                    "id": "5d009ea0-8186-490b-8236-43f04b64ecae",
-                    "path": "<Keyboard>/f",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "EnterCar",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "2be4f80e-815a-473a-a56f-d8b2c53d2aea",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ExitCar",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -2,8 +2,6 @@ using Sources.App.Infrastructure.StateMachine.Machine;
 using Sources.App.Infrastructure.StateMachine.StateBase;
 using Sources.App.Infrastructure.StateMachine.States.MainUiStates;
 using Sources.App.Services.AssetsServices;
-using Sources.App.Services.AssetsServices.Common.MonoEntities.Car;
-using Sources.App.Services.AssetsServices.Common.MonoEntities.Player;
 using Sources.App.Ui.Base;
 using Sources.App.Ui.Screens.DebugMenuScreens;
 using Sources.App.Ui.Screens.PerformanceScreens;
@@ -47,16 +45,8 @@ namespace Sources.App.Infrastructure.StateMachine.States.BootstrapStates
         {
             IPoolCreatorService poolCreatorService = DiContainer.Resolve<IPoolCreatorService>();
             Assets assets = DiContainer.Resolve<Assets>();
-
-            foreach (CarMonoEntity carPrefab in assets.CommonAssets.CarsAssets.CarPrefabs)
-            {
-                poolCreatorService.CreatePool(new PoolConfig(carPrefab, 15));
-            }
-
-            foreach (PlayerMonoEntity playerPrefab in assets.CommonAssets.PlayersAssets.PlayerPrefabs)
-            {
-                poolCreatorService.CreatePool(new PoolConfig(playerPrefab, 20));
-            }
+            
+            //
         }
     }
 }

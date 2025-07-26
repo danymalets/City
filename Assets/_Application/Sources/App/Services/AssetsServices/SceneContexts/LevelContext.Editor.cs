@@ -1,4 +1,3 @@
-using Sources.App.Services.AssetsServices.Common.MonoEntities.Props;
 using TriInspector;
 
 namespace Sources.App.Services.AssetsServices.SceneContexts
@@ -8,7 +7,6 @@ namespace Sources.App.Services.AssetsServices.SceneContexts
         [Button("Force Validate")]
         private void OnValidate()
         {
-            _props = FindObjectsOfType<PropsMonoEntity>();
         }
     }
 }

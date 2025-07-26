@@ -1,5 +1,4 @@
 using System;
-using Sources.App.Core.Ecs;
 using Sources.App.Core.Services.Quality;
 using Sources.App.Services.AudioServices;
 using Sources.App.Services.UserServices;
@@ -18,7 +17,6 @@ namespace Sources.App.Core
         private readonly IDiBuilder _diBuilder;
         private readonly IAnalyticsService _analytics;
         private readonly GameLoader _gameLoader;
-
         private Game _game;
 
         public event Action ForceReloadRequested; 
@@ -70,5 +68,17 @@ namespace Sources.App.Core
 
             _diBuilder.Dispose();
         }
+
+        private class Game
+        {
+            public void StartGame()
+            {
+            }
+
+            public void FinishGame()
+            {
+            }
+        }
     }
+    
 }
