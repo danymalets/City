@@ -6,6 +6,6 @@ namespace Sources.App.Services.AssetsServices
     public class ScenesAssets : ScriptableObject
     {
         [field: SerializeField] public string PlayerRenderSceneName { get; private set; } = "PlayerRender";
-        [field: SerializeField] public string CitySceneName { get; private set; } = "City";
+        [field: SerializeField] public string LevelSceneName { get; private set; } = "City";
     }
 }

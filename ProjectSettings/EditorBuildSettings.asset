@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/_Application/Scenes/RenderScenes/PlayerRender.unity
     guid: f7ee848a750484b748f050718acbad08
   - enabled: 1
-    path: Assets/_Application/Scenes/GameScenes/City.unity
+    path: Assets/_Application/Scenes/GameScenes/Level.unity
     guid: e128b2d0c515fa74188c2e0bbd09a1bb
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: ddcc2a3a41bca7c42b77ebc0f92525b6, type: 3}

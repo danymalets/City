@@ -68,7 +68,7 @@ namespace Sources.App.Core
 
         private async UniTask<ILevelContext> LoadGameScene()
         {
-            string cityScene = DiContainer.Resolve<Assets>().ScenesAssets.CitySceneName;
+            string cityScene = DiContainer.Resolve<Assets>().ScenesAssets.LevelSceneName;
 
             _loadingScreenController.Open();
 
