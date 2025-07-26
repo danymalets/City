@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aacbd6dc4a844eca94af1b11998512a0, type: 3}
   m_Name: PhysicsAssets
   m_EditorClassIdentifier: 
-  <PlayerPhysicsMaterial>k__BackingField: {fileID: 0}
+  <PlayerPhysicsMaterial>k__BackingField: {fileID: 13400000, guid: 763d3427e8b71409f970ec5c5976baaf, type: 2}
