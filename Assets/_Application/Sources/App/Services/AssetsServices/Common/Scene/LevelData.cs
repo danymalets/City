@@ -1,3 +1,5 @@
+using Sources.App.Services.AssetsServices.SceneContexts;
+
 namespace Sources.App.Services.AssetsServices.Common.Scene
 {
     public class LevelData
